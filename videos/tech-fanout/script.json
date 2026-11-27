@@ -169,6 +169,13 @@
       "dx": 20.0
      },
      {
+      "layer": "bSaw",
+      "at": "s3:cut-8",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 14.0
+     },
+     {
       "layer": "bKerf",
       "at": "s1:start-40",
       "until": "s3:uncut+30",
@@ -189,7 +196,8 @@
       "dur": 12,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.06
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "cRow1",
@@ -198,7 +206,8 @@
       "dur": 12,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.06
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "cRow2",
@@ -207,7 +216,8 @@
       "dur": 12,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.06
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "cRow3",
@@ -216,7 +226,8 @@
       "dur": 12,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.06
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "cRow4",
@@ -225,7 +236,8 @@
       "dur": 12,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.06
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "cRow5",
@@ -234,7 +246,8 @@
       "dur": 12,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.06
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "cRow6",
@@ -243,7 +256,8 @@
       "dur": 12,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.06
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "cExtra",
@@ -284,7 +298,8 @@
       "dur": 10,
       "dy": 1.2,
       "fallIn": true,
-      "bounce": 0.04
+      "bounce": 0.04,
+      "opacity": 0
      },
      {
       "layer": "dRow1",
@@ -293,7 +308,8 @@
       "dur": 10,
       "dy": 1.2,
       "fallIn": true,
-      "bounce": 0.04
+      "bounce": 0.04,
+      "opacity": 0
      },
      {
       "layer": "dRow2",
@@ -302,7 +318,8 @@
       "dur": 10,
       "dy": 1.2,
       "fallIn": true,
-      "bounce": 0.04
+      "bounce": 0.04,
+      "opacity": 0
      },
      {
       "layer": "dRow3",
@@ -311,7 +328,8 @@
       "dur": 10,
       "dy": 1.2,
       "fallIn": true,
-      "bounce": 0.04
+      "bounce": 0.04,
+      "opacity": 0
      },
      {
       "layer": "dHead",
@@ -454,7 +472,8 @@
       "dur": 14,
       "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.08
+      "bounce": 0.08,
+      "opacity": 0
      },
      {
       "layer": "fR1",
@@ -520,7 +539,8 @@
       "dur": 16,
       "dy": 2.5,
       "fallIn": true,
-      "bounce": 0.05
+      "bounce": 0.05,
+      "opacity": 0
      }
     ],
     "labels": [
@@ -742,10 +762,10 @@
      {
       "at": "cut-2",
       "dur": 20,
-      "x": 42.5,
-      "y": 1.0,
-      "d": 39.6,
-      "elev": 30
+      "x": 38.6,
+      "y": 1.4,
+      "d": 27.0,
+      "elev": 14
      }
     ],
     "run": [
@@ -1011,8 +1031,8 @@
       "text": "取放頭（挑好晶片）",
       "en": "Pick-and-place head",
       "color": "blue",
-      "at": "fo-4",
-      "until": "fo+41",
+      "at": "fo",
+      "until": "fo+45",
       "cut": true
      },
      {

@@ -13,7 +13,7 @@ const pol = (aDeg, r) => [R2(r * Math.cos(aDeg * D2R)), R2(r * Math.sin(aDeg * D
 let seed = 20261128;
 const rnd = () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 const palette = {
-  moldC: "#25272C", moldEC: "#3A3D45", piC: "#D9A441", piDC: "#B8862E", solderC: "#C9CED6", padC: "#D8B04A", subC: "#2F7D4F", subDC: "#225E3B", tapeC: "#E8E2C8", carrierC: "#CFE6F2", uFillC: "#E9E3D2", redC: "#E5484D", dieTopC: "#59657A",
+  moldC: "#25272C", moldEC: "#3A3D45", piC: "#D9A441", piDC: "#B8862E", solderC: "#C9CED6", padC: "#D8B04A", subC: "#2F7D4F", subDC: "#225E3B", tapeC: "#F5F2E6", carrierC: "#CFE6F2", uFillC: "#E9E3D2", redC: "#E5484D", dieTopC: "#59657A",
   eqC: "#18A957",
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60", backC: "#2B3650",
   glassC: "#BFD3F2", lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", rubber: "#2B2F36", gold: "#C9A24A", estop: "#D93A2B", cutC: "#6E809C",
@@ -26,7 +26,7 @@ const glowM = (c, op, ei = 1) => M("std", c, { emissive: c, ei, opacity: op, rou
 const materials = {
   mold: M("std", "moldC", { rough: 0.85, metal: 0.05, env: 0.1 }), moldE: M("std", "moldEC", { rough: 0.8, metal: 0.05 }), pi: M("std", "piC", { rough: 0.5, metal: 0, opacity: 0.85, env: 0.3 }), piD: M("std", "piDC", { rough: 0.55, metal: 0, opacity: 0.9 }),
   solder: M("std", "solderC", { rough: 0.25, metal: 0.9, env: 0.9 }), pad: M("std", "padC", { rough: 0.3, metal: 0.9, env: 0.8 }), sub: M("std", "subC", { rough: 0.6, metal: 0.05 }), subD: M("std", "subDC", { rough: 0.6, metal: 0.05 }),
-  tape: M("std", "tapeC", { rough: 0.8, metal: 0, opacity: 0.85 }), carrier: M("phys", "carrierC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.55, env: 0.7 }), uFill: M("std", "uFillC", { rough: 0.7, metal: 0 }), red: glowM("redC", 0.95, 0.7), dieTop: M("std", "dieTopC", { rough: 0.3, metal: 0.6, env: 0.7 }),
+  tape: M("std", "tapeC", { rough: 0.8, metal: 0, opacity: 0.35 }), carrier: M("phys", "carrierC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.55, env: 0.7 }), uFill: M("std", "uFillC", { rough: 0.7, metal: 0 }), red: glowM("redC", 0.95, 0.7), dieTop: M("std", "dieTopC", { rough: 0.3, metal: 0.6, env: 0.7 }),
   floor: M("std", "floorC", { rough: 0.7, metal: 0.3, tex: "brushed", texScale: 3 }), panel: M("std", "panel", { rough: 0.55, metal: 0.05, env: 0.25 }), panel2: M("std", "panel2", { rough: 0.6, metal: 0.05, env: 0.2 }),
   seam: M("std", "seam", { rough: 0.6, metal: 0.3 }), band: M("std", "band", { rough: 0.4, metal: 0.3, env: 0.4 }), back: M("std", "backC", { rough: 0.7, metal: 0.1 }),
   steel: M("std", "steel", { rough: 0.35, metal: 0.85, env: 0.5 }), steel2: M("std", "steel2", { rough: 0.3, metal: 0.8, env: 0.6, tex: "brushed", texScale: 2 }), alu: M("std", "aluC", { rough: 0.3, metal: 0.8, env: 0.6, tex: "brushed", texScale: 1.6 }),
@@ -112,7 +112,7 @@ const foPkg = (pre, X, y0 = 1.0, o = {}) => {
   if (half) BOX(`${pre}MoBack`, `${pre}Die`, X - dieW / 2, X + dieW / 2, Y("mold", 0), Y("mold", 1), z0, dz0, "mold");
   else { BOX(`${pre}MoBk`, `${pre}Die`, X - dieW / 2, X + dieW / 2, Y("mold", 0), Y("mold", 1), z0, dz0, "mold"); BOX(`${pre}MoFr`, `${pre}Die`, X - dieW / 2, X + dieW / 2, Y("mold", 0), Y("mold", 1), dz1, z1, "mold"); }
   if (half) { BOX(`${pre}DieO1`, `${pre}Die`, X - dieW / 2, X + dieW / 2, R2(Y("die", 1) - 0.05), Y("die", 1), 0, 0.03, "edge"); BOX(`${pre}DieO2`, `${pre}Die`, X - dieW / 2, R2(X - dieW / 2 + 0.05), Y("die", 0), Y("die", 1), 0, 0.03, "edge"); BOX(`${pre}DieO3`, `${pre}Die`, R2(X + dieW / 2 - 0.05), X + dieW / 2, Y("die", 0), Y("die", 1), 0, 0.03, "edge"); }
-  if (tiv) P({ id: `${pre}Tiv`, layer: `${pre}Die`, shape: "cyl", size: [0.22, R2(FO.mold[1] - FO.mold[0])], rot: V, pos: [X, R2((Y("mold", 0) + Y("mold", 1)) / 2), 0], at: GRID([-5, -4, 4, 5], [-5, -3, -1, 1, 3, 5]).filter(([x, , z]) => Math.abs(z) <= D / 2 - 0.5), mat: "cu" });
+  if (tiv) P({ id: `${pre}Tiv`, layer: `${pre}Die`, shape: "cyl", size: [0.22, R2(FO.mold[1] - FO.mold[0])], rot: V, pos: [X, R2((Y("mold", 0) + Y("mold", 1)) / 2), 0], at: GRID([-W / 2 + 0.7, -W / 2 + 1.4, W / 2 - 1.4, W / 2 - 0.7].map(R2), [-3, -1.5, 0, 1.5, 3]).filter(([x, , z]) => Math.abs(z) <= D / 2 - 0.5), mat: "cu" });
   return { tr, Y, xsB, zsB };
 };
 
@@ -135,7 +135,7 @@ const BPK = [1.0, 5.0]; // 頂出的那顆（晶圓右前方）
 LAY("bPick", [2, 1, BXc + BPK[0], 1.6]); BOX("bPkDie", "bPick", BXc + BPK[0] - 0.92, BXc + BPK[0] + 0.92, 1.0, 1.42, BPK[1] - 0.92, BPK[1] + 0.92, "si");
 P({ id: "bPkBall", layer: "bPick", shape: "sphere", size: [0.16], pos: [BXc + BPK[0], 1.52, BPK[1]], at: GRID([-0.5, 0, 0.5], [-0.5, 0, 0.5]), mat: "solder" });
 BOX("bPkHole", "bWafer", BXc + BPK[0] - 0.92, BXc + BPK[0] + 0.92, 1.41, 1.425, BPK[1] - 0.92, BPK[1] + 0.92, "dark");
-LAY("bBare", [2, 1, BXc + 11.5, 1.3]); BOX("bBareDie", "bBare", BXc + 10.6, BXc + 12.4, 1.0, 1.42, 4.1, 5.9, "si"); BOX("bBarePad", "bBare", BXc + 10.7, BXc + 12.3, 1.42, 1.44, 4.2, 5.8, "dieTop"); // 同尺寸裸晶片對照
+// （同尺寸裸晶片對照拿掉：近景會掉到卡片區；頂出那顆抬起就看得出跟一格晶片一樣大）
 // 切割刀（主軸＋護罩＋刀片＋冷卻水嘴），沿 x 方向切割道走
 LAY("bSaw", [6, 5, BXc - 12, 4.5]); const SZ = 3.0;
 ZC("bBlade", "bSaw", 2.2, R2(SZ - 0.04), R2(SZ + 0.04), BXc - 12, 2.6, "steel2"); ZC("bHub", "bSaw", 0.7, R2(SZ - 0.3), R2(SZ + 0.3), BXc - 12, 2.6, "steel");
@@ -206,7 +206,7 @@ actions.fHot = { type: "pulse", _說明: "加熱固化（整片發熱）→冷�
 actions.fFlow = { type: "flow", _說明: "模封料流動，把晶片往外推", layer: "fR3", path: [[FXc + 2.5, 1.75, 2.5], [FXc + 4.6, 1.75, 4.6], [FXc + 6.4, 1.75, 6.4]], n: 6, lanes: 2, laneDir: [1, 0, -1], laneGap: 0.8, size: 0.14, shape: "liquid", rate: 0.25, color: "moldEC", track: false, free: true, jitter: 0.1 };
 
 // ═════ 站 G：公司（台積電整合扇出型 InFO-PoP；力成方形面板）═════
-const GXc = 216; BACKDROP("gBack", 200, 232, 11.0); PLINTH("gPl", 200, 232, 8);
+const GXc = 216; BACKDROP("gBack", 200, 232, 11.0, -6.4); PLINTH("gPl", 200, 232, 8);
 const SIGNS = [["tsmc", "logo:tsmc"], ["ptc", "text:ptc=力成|6239"]];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-fanout", "flag:TW", ...SIGNS.map(([, a]) => a)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
 const SIGNM = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
@@ -215,11 +215,11 @@ SIGNS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFF
 const GK = [GXc - 8, GXc + 8];
 ["gA", "gB"].forEach((id, i) => { const x = GK[i]; LAY(id, [12, 9, x, 4.5]);
   BOX(`${id}Ped`, id, x - 5.5, x + 5.5, 1.0, 2.2, -5.0, 3.0, "panel"); BOX(`${id}PedT`, id, x - 5.6, x + 5.6, 2.2, 2.3, -5.1, 3.1, "steel2");
-  const sg = SIGNM[`sign-${SIGNS[i][0]}`], sw = Math.min(5.0, R2(1.0 * sg.aspect)); P({ id: `${id}Sign`, layer: id, shape: "plane", size: [sw, R2(sw / sg.aspect)], pos: [x, 1.6, 3.12], uv01: true, shadow: false, mat: `t_${SIGNS[i][0]}` });
+  const sg = SIGNM[`sign-${SIGNS[i][0]}`], sw = Math.min(6.0, R2(1.15 * sg.aspect)); P({ id: `${id}Sign`, layer: id, shape: "plane", size: [sw, R2(sw / sg.aspect)], pos: [x, 1.62, 3.12], uv01: true, shadow: false, mat: `t_${SIGNS[i][0]}` });
   const fg = SIGNM["flag-TW"]; const px = i === 0 ? -5.0 : 5.0; VC(`${id}Pole`, id, 0.08, 2.3, 9.0, "steel2", { x: R2(x + px), z: -4.4 }); P({ id: `${id}Flag`, layer: id, shape: "plane", size: [2.4, R2(2.4 / fg.aspect)], pos: [R2(x + px + (i === 0 ? 1.25 : -1.25)), 8.1, -4.4], uv01: true, shadow: false, mat: "f_TW" }); SPH(`${id}PoleTop`, id, 0.16, R2(x + px), 9.05, -4.4, "gold"); });
 // 台積電：InFO-PoP（處理器扇出封裝＋穿模銅柱＋疊在上面的記憶體封裝），整顆（不剖）
 foPkg("gI", GK[0], 2.3, { half: false, W: 9, dieW: 4, tiv: true });
-LAY("gMem", [9, 2, GK[0], 6.4]); P({ id: "gMemBall", layer: "gMem", shape: "sphere", size: [0.3], pos: [GK[0], 5.5, 0], at: GRID([-4, -3, 3, 4], [-4, -3, -2, -1, 0, 1, 2, 3, 4]), mat: "solder" });
+LAY("gMem", [9, 2, GK[0], 6.4]); P({ id: "gMemBall", layer: "gMem", shape: "sphere", size: [0.3], pos: [GK[0], 5.5, 0], at: GRID([-3.8, -3.1, 3.1, 3.8], [-3, -1.5, 0, 1.5, 3]), mat: "solder" });
 BOX("gMemSub", "gMem", GK[0] - 4.5, GK[0] + 4.5, 5.8, 6.3, -4.5, 4.5, "sub"); BOX("gMemMold", "gMem", GK[0] - 4.5, GK[0] + 4.5, 6.3, 7.4, -4.5, 4.5, "mold"); BOX("gMemMark", "gMem", GK[0] - 2.4, GK[0] + 2.4, 7.4, 7.42, -1.6, 1.6, "moldE");
 // 力成：方形面板（大量晶片陣列）＋旁邊一片圓晶圓對照
 LAY("gPanel", [10, 0.6, GK[1], 2.6]); BOX("gPanelB", "gPanel", GK[1] - 4.8, GK[1] + 4.8, 2.3, 2.8, -4.8, 4.8, "mold"); BOX("gPanelO", "gPanel", GK[1] - 4.8, GK[1] + 4.8, 2.76, 2.81, 4.8, 4.84, "edge");
@@ -240,7 +240,7 @@ P({ id: "hToolSeam", layer: "hTool", shape: "box", size: [0.05, 7.4, 0.04], pos:
 // ═════ 標註點 ═════
 Object.assign(anchors, {
   aSubA: A("aFlip", [AX0 - 12, 2.3, 0], -170, -170), aBumpA: A("aFlip", [AX0 - 9.6, 3.4, 0], -150, -110), aFoA: A("aFoDie", [AX0 + 11.5, 3.2, 0], 150, -110), aRdlA: A("aFoRdl", [AX0 + 12, 2.3, 0], 170, -170),
-  bWaferA: A("bWafer", [BXc - 4, 1.45, 3], -150, -100), bPickA: A("bPick", [BXc + BPK[0], 1.6, BPK[1]], 150, -110), bBareA: A("bBare", [BXc + 11.5, 1.44, 5], 150, -90), bSawA: A("bSaw", [BXc - 12, 2.6, SZ + 0.1], -150, -100),
+  bWaferA: A("bWafer", [BXc - 4, 1.45, 3], -150, -100), bPickA: A("bPick", [BXc + BPK[0], 1.6, BPK[1]], 150, -110), bSawA: A("bSaw", [BXc - 12, 2.6, SZ + 0.1], -150, -100),
   cPadA: A("cDie", [CXc + 3.6, 1.88, 3.6], 150, 110), cBallA: A("cRow0", [CXc - 3.6, 2.6, -3.6], -150, -110), cExtraA: A("cExtra", [CXc + 3.0, 3.1, 4.55], 150, -110), cEdgeA: A("cEdge", [CXc - CD / 2, 1.9, CD / 2], -150, 110),
   dCarA: A("dCarrier", [DXc - 7, 1.4, 6], -150, 110), dHeadA: A("dHead", [HX0, 3.6, DR[0]], -150, -100), dMoldA: A("dMold3", [DXc + 7.5, 2.25, 3], 150, -100), dChaseA: A("dChase", [DXc + 6, 5.6, 4], 150, -100),
   eBallA: A("eBall", [EXc + 4.5, 1.42, -0.5], 150, 110), eRdlA: A("eRdlOut", [EXc + 4.5, 2.28, -0.5], 150, -60), ePi1A: A("ePi1", [EXc - 6, 2.5, 0], -150, -80), eDieA: A("eDie", [EXc, 3.2, 0], -150, -120),
