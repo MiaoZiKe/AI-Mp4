@@ -343,7 +343,7 @@ actions.sAbf = { type: "pulse", _說明: "載板裡的絕緣膜（預告）亮�
 Object.assign(anchors, {
   wDie: A("wDies", [WX - 0.2, 2.65, 0.7], -150, -90), wPad: A("wWafer", [WX + 0.3, 1.2, 1.0], 150, 100),
   line0: A("line", [LX - 6.2, 4.4, 3.5], -120, -110),
-  bHood: A("bHood", [BX - 5.0, 7.9, 3.6], -150, -90), bHead: A("bHead", [HX0 + 0.25, GY - 1.0, 0.25], -150, -80), bCam: A("bCam", [CAMX + 0.55, GY - 1.0, 1.4], 150, -90), bFlip: A("bFlip", [FLX - 1.2, FLY + 0.1, FZ + 0.12], -150, 100), bWafer: A("bChuck", [CX + 1.2, CY, 1.6], 150, 100),
+  bHood: A("bHood", [BX - 5.0, 7.9, 3.6], -150, -90), bDeck: A("bBase", [BX - 5.0, BY, 3.8], -150, 100), bHead: A("bHead", [HX0 + 0.25, GY - 1.0, 0.25], -150, -80), bCam: A("bCam", [CAMX + 0.55, GY - 1.0, 1.4], 150, -90), bFlip: A("bFlip", [FLX - 1.2, FLY + 0.1, FZ + 0.12], -150, 100), bWafer: A("bChuck", [CX + 1.2, CY, 1.6], 150, 100),
   tHeater: A("tHead", [TX + 1.6, THY + 0.45, 1.25], 150, -90), tStack: A("tL5", [TX + SW / 2, LAYY(5) + 0.1, SD / 2], 150, 90), tNcf: A("tL3", [TX - SW / 2, LAYY(3) + 0.03, SD / 2], -150, 90),
   dNeedle: A("dHead", [NX, NY + 0.4, 2.0], -150, -90), dUf: A("dUf2", [DX - 0.5, DY0 + 0.95, 2.2], 150, 100),
   cWafer: A("cWafR", [CWX + 2.0, CWY + 0.6, 2.3], 150, -90), cRoll: A("cRoller", [CWX - 3.2, CWY + 1.2, 2.8], -150, -90), cOven: A("cOven", [OX + 2.2, CCY + 4.0, 3.0], 150, -90),

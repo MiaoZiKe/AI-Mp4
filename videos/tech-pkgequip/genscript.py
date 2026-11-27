@@ -110,7 +110,7 @@ VIS += [mv("wDies", "s1:tool", FAR, 18, dy=-1.15)]
 VIS += [mv("lnFoup", "s2:voice", FAR, 110, dx=17.5)]
 # ── s3 覆晶接合機：①外殼頂蓋與前窗往上掀開 ②對位相機往前抽出 ③組回；運作：頂針頂起→翻轉器翻面→接合頭接手→移到晶圓→放下 ──
 B = INFO
-VIS += [mv("bHood", "s3:voice-3", FAR, 18, dy=5.5)]
+VIS += [mv("bHood", "s3:voice-3", FAR, 18, dy=3.0), hid("bHood", "s3:voice+22", FAR, 10, 0)]   # 掀開後淡出（講內部時蓋子不擋）
 VIS += [mv("bCam", "s3:align-2", "s3:align+40", 14, dz=1.6)]
 vis("bPick", [(T0, "s3:flip-6")], 1); vis("bFlipDie", [("s3:flip-6", "s3:flip+22")], 1); vis("bCarry", [("s3:flip+22", FAR)], 1)
 DXH, DZH = round(B["CX"] - 0.45 - B["HX0"], 3), -0.2
@@ -157,7 +157,7 @@ P["s2"] = {"zoom": [{"to": "room", "at": "voice-18", "dur": 1}, {"to": "room", "
 P["s3"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "shot": [shot(CC, 78.0, 2.58, 49.5, 22, 1)],
  "run": [run("bPinUp", "flip-24", "flip-4", 6), run("bFlipTurn", "flip-4", FAR, 14), run("bSuck", "flip-8", "s4:start+4", 4), run("bCamGlow", "align+2", "align+40", 4)],
- "labels": [lab("bHood", "接合機（外殼掀開）", "Flip-chip bonder", "blue", "voice-2", "voice+44", xy=[390, 962]),
+ "labels": [lab("bDeck", "接合機（外殼掀開）", "Flip-chip bonder", "blue", "voice-2", "voice+44", xy=[390, 962]),
             lab("bCam", "對位相機", "Alignment camera", "amber", "align", "align+46"),
             lab("bWafer", "放到中介層：誤差比頭髮細", "Placed far finer than a hair", "blue", "hair", "hair+46")],
  "overlay": [card("s3", "pe-flip", "翻面、對位、放下", "示意（不標精度數字）", {"bond": "bond", "flip": "flip", "align": "align", "hair": "hair"})]}
