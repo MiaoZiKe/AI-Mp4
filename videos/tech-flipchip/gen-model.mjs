@@ -165,9 +165,10 @@ BOX("wbDieB", "wbDie", BX - 3.8 - BD / 2, BX - 3.8 + BD / 2, BSUB, BSUB + 0.3, -
 const edge = []; for (let i = 0; i < 6; i++) { const t = -0.85 + i * 0.34; edge.push([t, -0.95], [t, 0.95], [-0.95, t], [0.95, t]); }
 P({ id: "wbPad", layer: "wbDie", shape: "box", size: [0.14, 0.02, 0.14], pos: [R2(BX - 3.8), R2(BSUB + 0.31), 0], at: edge.map(([a, b]) => [a, 0, b]), mat: "padAl" });
 P({ id: "wbLead", layer: "wbDie", shape: "box", size: [0.18, 0.02, 0.18], pos: [R2(BX - 3.8), R2(BSUB + 0.01), 0], at: edge.map(([a, b]) => [R2(a * 1.75), 0, R2(b * 1.75)]), mat: "gold" });
-edge.forEach(([a, b], k) => { const x0 = BX - 3.8 + a, z0 = b, x1 = BX - 3.8 + a * 1.75, z1 = b * 1.75, top = BSUB + 0.75;
-  if (Math.abs(b) > 0.9) { SEG(`wbW${k}a`, "wbDie", x0, BSUB + 0.31, x0, top, z0, 0.025, "wire"); const L = Math.hypot(x1 - x0, z1 - z0); P({ id: `wbW${k}b`, layer: "wbDie", shape: "box", size: [0.025, 0.025, R2(Math.abs(z1 - z0))], pos: [R2((x0 + x1) / 2), top, R2((z0 + z1) / 2)], rot: [0, R2(Math.atan2(x1 - x0, z1 - z0) / D2R), 0], mat: "wire" }); SEG(`wbW${k}c`, "wbDie", x1, top, x1, BSUB + 0.02, z1, 0.025, "wire"); void L; }
-  else { SEG(`wbW${k}a`, "wbDie", x0, BSUB + 0.31, x0, top, z0, 0.025, "wire"); SEG(`wbW${k}b`, "wbDie", x0, top, x1, top, z0, 0.025, "wire"); SEG(`wbW${k}c`, "wbDie", x1, top, x1, BSUB + 0.02, z1, 0.025, "wire"); } });
+/* 金線＝真實的弧（球焊點先往上、拱過去、斜斜落到載板），用一串小圓珠排成線 */
+const WARC = (a, b, n = 40) => { const x0 = BX - 3.8 + a, z0 = b, x1 = BX - 3.8 + a * 1.75, z1 = b * 1.75, y0 = BSUB + 0.31, y1 = BSUB + 0.02;
+  return Array.from({ length: n + 1 }, (_, i) => { const t = i / n, s = Math.min(1, t * 1.25); return [R2(x0 + (x1 - x0) * s), R2(y0 + (y1 - y0) * t + 0.5 * Math.sin(Math.PI * Math.pow(t, 0.8))), R2(z0 + (z1 - z0) * s)]; }); };
+edge.forEach(([a, b], k) => { P({ id: `wbW${k}`, layer: "wbDie", shape: "sphere", size: [0.02], pos: [0, 0, 0], at: WARC(a, b), mat: "wire" }); });
 // 覆晶：晶片正面朝下，整面 8×8 凸塊；抬高（爆開示意）讓凸塊與對應焊墊看得到
 LAY("fcPads", [2.4, 0.1, BX + 3.8, BSUB]); P({ id: "fcPad", layer: "fcPads", shape: "cyl", size: [0.08, 0.02], rot: V, pos: [R2(BX + 3.8), R2(BSUB + 0.01), 0], at: bumpGrid(8, 1.8).map(([a, b]) => [a, 0, b]), mat: "gold" });
 LAY("fcDie", [2.4, 0.6, BX + 3.8, 2.3]);
@@ -210,33 +211,39 @@ LAY("dDome", [10, 0.6, DX, RT + CU + 0.3]); P({ id: "dDomeB", layer: "dDome", sh
 LAY("dBath", [10, 2, DX, RT + 1]);
 
 // ═════ 站 P：覆晶封裝剖面（s6 回焊自我對位、s7 熱脹冷縮、s8 底部填充）═════
-const PX0 = 102, PZ = 1.6, PB = [-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].map((d) => R2(PX0 + d)), PSUB = 2.0, PPAD = 0.08, PCU0 = 2.62, PCU1 = 3.1, PDIE0 = 3.1, PDIE1 = 3.9;
-LAY("pPlinth", [14, 1, PX0, 0.5], true); BOX("pPl", "pPlinth", PX0 - 6.8, PX0 + 6.8, 0, 0.9, -2.6, 2.6, "band"); BOX("pPlTop", "pPlinth", PX0 - 6.8, PX0 + 6.8, 0.9, 1.0, -2.6, 2.6, "panel2");
+const PX0 = 102, PZ = 1.6, PB = [-2.8, -1.4, 0, 1.4, 2.8].map((d) => R2(PX0 + d))   /* 5 顆凸塊、窄一點，鏡頭拉開時兩側邊緣、針筒、圓角都在畫面內 */, PSUB = 2.0, PPAD = 0.08, PCU0 = 2.62, PCU1 = 3.1, PDIE0 = 3.1, PDIE1 = 3.9;
+LAY("pPlinth", [14, 1, PX0, 0.5], true); BOX("pPl", "pPlinth", PX0 - 5.4, PX0 + 5.4, 0, 0.9, -2.6, 2.6, "band"); BOX("pPlTop", "pPlinth", PX0 - 5.4, PX0 + 5.4, 0.9, 1.0, -2.6, 2.6, "panel2");
 // 載板：左右兩半（熱脹時各往外伸），內部銅層線、焊墊、底部錫球
 // 兩半在中間重疊 0.5（熱脹時各往外伸 0.38，仍連成一整塊，不會裂開）；右半略窄一點避免重疊面閃爍
-for (const [s, a, b] of [["L", PX0 - 5.8, PX0 + 0.5], ["R", PX0 - 0.5, PX0 + 5.8]]) {
+for (const [s, a, b] of [["L", PX0 - 4.4, PX0 + 0.5], ["R", PX0 - 0.5, PX0 + 4.4]]) {
   LAY(`pSub${s}`, [6, 1, (a + b) / 2, 1.5]);
   BOX(`pSubB${s}`, `pSub${s}`, a, b, 1.0, s === "R" ? PSUB - 0.004 : PSUB, s === "R" ? -PZ + 0.004 : -PZ, s === "R" ? PZ - 0.004 : PZ, "sub");
   P({ id: `pSubCu${s}`, layer: `pSub${s}`, shape: "box", size: [R2(b - a), 0.04, 0.02], pos: [R2((a + b) / 2), 0, R2(PZ + (s === "R" ? 0.006 : 0.012))], at: [1.3, 1.55, 1.8].map((y) => [0, y, 0]), mat: "cu" });
-  P({ id: `pPad${s}`, layer: `pSub${s}`, shape: "box", size: [0.7, PPAD, R2(2 * PZ - 0.5)], pos: [0, R2(PSUB + PPAD / 2), 0], at: PB.filter((x) => (s === "L" ? x < PX0 : x > PX0)).map((x) => [x, 0, 0]), mat: "gold" });
   P({ id: `pBall${s}`, layer: `pSub${s}`, shape: "sphere", size: [0.2], pos: [0, 0.95, 0], at: [0.9, 2.1, 3.3, 4.5].map((d) => [R2(s === "L" ? PX0 - d : PX0 + d), 0, 0]), mat: "sn" });
 }
-P({ id: "pPadC", layer: "pSubL", shape: "box", size: [0.7, PPAD, R2(2 * PZ - 0.5)], pos: [PX0, R2(PSUB + PPAD / 2), 0], mat: "gold" });
+/* 焊墊各自一層：熱脹時離中心越遠、跟著載板往外移越多（外圈 0.38、內圈 0.19、中心不動） */
+PB.forEach((x, i) => { LAY(`pPad${i}`, [0.6, 0.3, x, 2.1]); P({ id: `pPadB${i}`, layer: `pPad${i}`, shape: "cyl", size: [0.38, PPAD], rot: V, pos: [x, R2(PSUB + PPAD / 2), 0], mat: "gold" }); });
 // 晶片（倒扣）＋銅柱（與晶片一起動）
 LAY("pDie", [11, 1.4, PX0, 3.4]);
-BOX("pDieB", "pDie", PX0 - 5.0, PX0 + 5.0, PDIE0, PDIE1, -PZ + 0.2, PZ - 0.2, "si"); P({ id: "pDieLine", layer: "pDie", shape: "box", size: [10, 0.02, 0.02], pos: [PX0, 0, PZ - 0.19], at: [3.3, 3.5].map((y) => [0, y, 0]), mat: "siE" });
-P({ id: "pCu", layer: "pDie", shape: "box", size: [0.56, R2(PCU1 - PCU0), R2(2 * PZ - 0.8)], pos: [0, R2((PCU0 + PCU1) / 2), 0], at: PB.map((x) => [x, 0, 0]), mat: "cu" });
+BOX("pDieB", "pDie", PX0 - 3.5, PX0 + 3.5, PDIE0, PDIE1, -PZ + 0.2, PZ - 0.2, "si"); P({ id: "pDieLine", layer: "pDie", shape: "box", size: [10, 0.02, 0.02], pos: [PX0, 0, PZ - 0.19], at: [3.3, 3.5].map((y) => [0, y, 0]), mat: "siE" });
+P({ id: "pCu", layer: "pDie", shape: "cyl", size: [0.28, R2(PCU1 - PCU0)], rot: V, pos: [0, R2((PCU0 + PCU1) / 2), 0], at: PB.map((x) => [x, 0, 0]), mat: "cu" });
 // 錫：未熔（圓球，s6 放歪時隨晶片）｜熔化後（腰鼓形，連到焊墊；熱脹時外圈拉斜由兩側層位移表現）
-LAY("pSnSolid", [11, 0.6, PX0, 2.4]); P({ id: "pSnS", layer: "pSnSolid", shape: "sphere", size: [0.27], pos: [0, R2(PCU0 - 0.26), 0], at: PB.map((x) => [x, 0, 0]), scale: [1, 1, 2.6], mat: "sn" });
+LAY("pSnSolid", [11, 0.6, PX0, 2.4]); P({ id: "pSnS", layer: "pSnSolid", shape: "sphere", size: [0.27], pos: [0, R2(PCU0 - 0.26), 0], at: PB.map((x) => [x, 0, 0]), mat: "sn" });
 for (const [s, f] of [["L", (x) => x < PX0 - 0.1], ["C", (x) => Math.abs(x - PX0) < 0.1], ["R", (x) => x > PX0 + 0.1]]) {
   LAY(`pSn${s}`, [6, 0.6, PX0, 2.4]);
-  P({ id: `pSnM${s}`, layer: `pSn${s}`, shape: "cyl", size: [0.34, R2(PCU0 - PSUB - PPAD + 0.02)], rot: V, pos: [0, R2((PCU0 + PSUB + PPAD) / 2), 0], at: PB.filter(f).map((x) => [x, 0, 0]), scale: [1, 2.6, 1], mat: "sn" });
+  P({ id: `pSnM${s}`, layer: `pSn${s}`, shape: "sphere", size: [0.36], pos: [0, R2((PCU0 + PSUB + PPAD) / 2), 0], at: PB.filter(f).map((x) => [x, 0, 0]), scale: [1, 0.78, 1], mat: "sn" });
 }
-LAY("pHot", [11, 0.6, PX0, 2.4]); P({ id: "pHotB", layer: "pHot", shape: "sphere", size: [0.3], pos: [0, R2(PCU0 - 0.26), 0], at: PB.map((x) => [x, 0, 0]), scale: [1, 1, 2.6], mat: "snHot" });
+LAY("pHot", [11, 0.6, PX0, 2.4]); P({ id: "pHotB", layer: "pHot", shape: "sphere", size: [0.3], pos: [0, R2(PCU0 - 0.26), 0], at: PB.map((x) => [x, 0, 0]), mat: "snHot" });
 // 熱脹冷縮：外圈焊點的裂紋（紅）
-LAY("pCrack", [11, 0.4, PX0, 2.4]); P({ id: "pCrackB", layer: "pCrack", shape: "box", size: [0.5, 0.05, 0.05], pos: [0, R2(PCU0 - 0.05), PZ - 0.2], at: [PB[0], PB[6]].map((x) => [x, 0, 0]), rot: [0, 0, 18], mat: "bad" });
+/* 熱脹時被扭的焊點：上端黏在銅柱（跟晶片不動）、下端跟焊墊往外移 → 斜成平行四邊形，越外圈越斜 */
+const SH = [-0.38, -0.19, 0, 0.19, 0.38], SHH = R2(PCU0 - PSUB - PPAD);
+LAY("pStrain", [11, 0.6, PX0, 2.4]);
+PB.forEach((x, i) => { const off = SH[i], L = Math.hypot(SHH, off), ang = Math.atan2(off, SHH) / D2R;
+  P({ id: `pStr${i}`, layer: "pStrain", shape: "box", size: [0.42, R2(L), 0.42], pos: [R2(x + off / 2), R2(PSUB + PPAD + SHH / 2), 0], rot: [0, 0, R2(ang)], mat: "sn" }); });
+/* 裂紋：最外圈兩顆焊點和焊墊的交界，紅色細縫（示意） */
+LAY("pCrack", [11, 0.4, PX0, 2.4]); P({ id: "pCrackB", layer: "pCrack", shape: "box", size: [0.46, 0.06, 0.48], pos: [0, R2(PSUB + PPAD + 0.06), 0], at: [[PB[0] + SH[0] * 0.85, 0, 0], [PB[4] + SH[4] * 0.85, 0, 0]].map(([x, y, z]) => [R2(x), y, z]), mat: "bad" });
 // 底部填充：沿縫隙 10 段由左往右漸漸填滿（毛細前緣），濕膠（亮琥珀）→ 烤硬（深色）；兩側圓角
-const UFN = 10, UF0 = PX0 - 5.0, UF1 = PX0 + 5.0;
+const UFN = 8, UF0 = PX0 - 3.5, UF1 = PX0 + 3.5;
 for (let k = 0; k < UFN; k++) { LAY(`pUf${k}`, [1, 1, R2(UF0 + (k + 0.5) * (UF1 - UF0) / UFN), 2.6]); BOX(`pUfB${k}`, `pUf${k}`, UF0 + (k * (UF1 - UF0)) / UFN, UF0 + ((k + 1) * (UF1 - UF0)) / UFN, PSUB + 0.01, PDIE0 - 0.01, -PZ + 0.25, PZ - 0.25, "ufWet"); }
 LAY("pUfFillet", [11, 1, PX0, 2.6]); P({ id: "pUfFil", layer: "pUfFillet", shape: "poly", size: [1, 1, R2(2 * PZ - 0.5)], pts: [[0, 0], [0.7, 0], [0, 1.0]], pos: [UF1, PSUB, R2(-(PZ - 0.25))], mat: "ufWet" }); P({ id: "pUfFil2", layer: "pUfFillet", shape: "poly", size: [1, 1, R2(2 * PZ - 0.5)], pts: [[0, 0], [-0.7, 0], [0, 1.0]], pos: [UF0, PSUB, R2(-(PZ - 0.25))], mat: "ufWet" });
 LAY("pUfCure", [11, 1, PX0, 2.6]); BOX("pUfC", "pUfCure", UF0, UF1, PSUB + 0.012, PDIE0 - 0.012, -PZ + 0.24, PZ - 0.24, "ufCure");
@@ -246,7 +253,7 @@ LAY("pNeedle", [1, 3, UF0 - 0.6, 4.5]);
 VC("pNdTip", "pNeedle", 0.07, PSUB + 0.3, PSUB + 1.6, "steel2", { x: R2(UF0 - 0.55) }); VC("pNdHub", "pNeedle", 0.22, PSUB + 1.6, PSUB + 2.0, "dark", { x: R2(UF0 - 0.55) }); VC("pNdBarrel", "pNeedle", 0.4, PSUB + 2.0, PSUB + 3.6, "window", { x: R2(UF0 - 0.55) });
 VC("pNdFluid", "pNeedle", 0.34, PSUB + 2.05, PSUB + 3.0, "ufWet", { x: R2(UF0 - 0.55) }); VC("pNdPlunger", "pNeedle", 0.36, PSUB + 3.0, PSUB + 3.2, "rubber", { x: R2(UF0 - 0.55) });
 // 熱（回焊、熱脹時）：底下的加熱板發光
-LAY("pHeater", [14, 0.3, PX0, 1.0]); BOX("pHeat", "pHeater", PX0 - 6.6, PX0 + 6.6, 0.96, 1.0, -2.4, 2.4, "heat");
+LAY("pHeater", [14, 0.3, PX0, 1.0]); BOX("pHeat", "pHeater", PX0 - 5.2, PX0 + 5.2, 0.96, 1.0, -2.4, 2.4, "heat");
 
 // ═════ 站 H：公司（s9）＝台灣地圖＋日月光（高雄）｜美國地圖＋安靠（亞利桑那 Tempe）；各自的展示台＋廠房（外型不同） ═════
 const MAPJ = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "tech-mask2", "map.json"), "utf8")).rings;
@@ -274,23 +281,19 @@ const mapTable = (lay, cx, cz, w, d, ring, proj) => {
   const pts = ring.map(([lo, la]) => proj(lo, la)), xs = pts.map((p) => p[0]), zs = pts.map((p) => p[1]), mx = (Math.min(...xs) + Math.max(...xs)) / 2, mz = (Math.min(...zs) + Math.max(...zs)) / 2;
   P({ id: `${lay}Land`, layer: lay, shape: "poly", size: [1, 1, 0.22], pts: pts.map(([x, z]) => [R2(x - mx), R2(-(z - mz))]), rot: [-90, 0, 0], pos: [R2(mx), 0.3, R2(mz)], mat: "land" });
 };
-// 台灣（左）：島高約 7.6
-const TWX = HX0 - 6, PT = (lon, lat) => [R2(TWX + (lon - 120.95) * 2.0), R2(-(lat - 23.6) * 2.2)];
-LAY("hTwMap", [8, 1, TWX, 0.3], true); mapTable("hTwMap", TWX, 0, 7, 9, MAPJ.TW[0], PT);
-const [KHX, KHZ] = PT(120.3, 22.62); LAY("hTwPin", [1, 2, KHX, 1.3]); pin("hTP", "hTwPin", KHX, KHZ, HTOP);
-LAY("hAse", [4, 3, TWX - 1.8, 1.5]); BOX("hAseDeck", "hAse", TWX - 4.6, TWX - 0.6, HTOP - 0.2, HTOP, 1.2, 4.0, "band");
-plant("as", "hAse", TWX - 2.6, 2.4, 3.0, 1.4, 1.9, "roofASE", HTOP, { sign: "sign-fcase", signW: 2.0, flag: "flag-TW", winRows: [0.3, 0.55, 0.8] });
-dots("hAseLead", "hAse", [TWX - 1.0, 2.0], [KHX - 0.3, KHZ + 0.2], HTOP + 0.05, 5);
-// 美國（右）：本土寬約 12
-const USX = HX0 + 7, PU = (lon, lat) => [R2(USX + (lon + 96) * 0.2), R2(-(lat - 38.5) * 0.25)];
-LAY("hUsMap", [13, 1, USX, 0.3], true); mapTable("hUsMap", USX, 0, 13, 8, MAPJ.US[0], PU);
-const [AZX, AZZ] = PU(-111.94, 33.43); LAY("hUsPin", [1, 2, AZX, 1.3]); pin("hUP", "hUsPin", AZX, AZZ, HTOP);
-LAY("hAmk", [5, 3, USX - 2.5, 1.5]); BOX("hAmkDeck", "hAmk", USX - 5.6, USX - 0.6, HTOP - 0.2, HTOP, 1.6, 3.8, "band");
-plant("am", "hAmk", USX - 3.1, 2.6, 3.8, 1.2, 1.3, "roofAMK", HTOP, { sign: "sign-fcamk", signW: 2.4, flag: "flag-US", winRows: [0.62], ahGap: 1.1, ahSize: [0.7, 0.3, 0.5], stackH: 1.1 });
-dots("hAmkLead", "hAmk", [USX - 2.4, 2.0], [AZX + 0.3, AZZ + 0.2], HTOP + 0.05, 5);
-// Besi：接合機前方立一面廠牌（國旗只在 2D 卡）
-LAY("aSign", [2, 1, 4.6, 2.2]); P({ id: "aSignPost", layer: "aSign", shape: "cyl", size: [0.04, 0.6], rot: V, pos: [0, R2(DY + 0.3), 3.2], at: [[3.9, 0, 0], [5.5, 0, 0]], mat: "steel2" }); plate("aSignP", "aSign", "sign-fcbesi", 1.8, 4.7, R2(DY + 0.95), 3.22);
-
+// 2026/11/27 第 40 條（公司卡期間鏡頭不切不搖）：三家放在同一張展示台上，一個鏡頭拍完——日月光（台灣）、安靠（美國）、Besi（荷蘭）三座外型不同的廠房＋各自國旗旗桿＋名牌
+LAY("hDeck", [26, 1, HX0, 0.3], true);
+BOX("hDeckB", "hDeck", HX0 - 12.5, HX0 + 12.5, 0, HTOP - 0.02, -4.2, 4.6, "band"); BOX("hDeckT", "hDeck", HX0 - 12.4, HX0 + 12.4, HTOP - 0.02, HTOP, -4.1, 4.5, "panel2");
+P({ id: "hDeckSeam", layer: "hDeck", shape: "box", size: [0.06, 0.02, 8.6], pos: [0, HTOP + 0.005, 0.2], at: [HX0 - 4.2, HX0 + 4.2].map((x) => [x, 0, 0]), mat: "seam" });
+LAY("hAse", [7, 4, HX0 - 8.2, 1.8]);
+plant("as", "hAse", HX0 - 8.4, 0, 4.6, 2.2, 2.9, "roofASE", HTOP, { sign: "sign-fcase", signW: 2.6, flag: "flag-TW", winRows: [0.3, 0.55, 0.8] });
+LAY("hAmk", [7, 3, HX0, 1.5]);
+plant("am", "hAmk", HX0 - 0.2, 0, 6.0, 2.0, 1.8, "roofAMK", HTOP, { sign: "sign-fcamk", signW: 2.8, flag: "flag-US", winRows: [0.62], ahGap: 1.4, ahSize: [0.9, 0.36, 0.6], stackH: 1.4 });
+LAY("hBesi", [7, 3, HX0 + 8.4, 1.5]);
+materials.roofBesi = M("std", "#14A38B", { rough: 0.5, metal: 0.1 });
+plant("bs", "hBesi", HX0 + 8.2, 0, 4.4, 2.0, 2.1, "roofBesi", HTOP, { sign: "sign-fcbesi", signW: 2.0, flag: "flag-NL", winRows: [0.45, 0.72] });
+P({ id: "bsSaw", layer: "hBesi", shape: "poly", size: [1, 1, 2.0], pts: [[-2.2, 0], [-1.1, 0.55], [-1.1, 0], [0, 0.55], [0, 0], [1.1, 0.55], [1.1, 0], [2.2, 0.55], [2.2, 0]], pos: [R2(HX0 + 8.2), R2(HTOP + 2.14), -1.0], mat: "panel2" });
+P({ id: "bsSawGlass", layer: "hBesi", shape: "box", size: [0.04, 0.5, 1.9], pos: [0, R2(HTOP + 2.4), 0], at: [-1.1, 0, 1.1, 2.2].map((d) => [R2(HX0 + 8.2 + d - 0.02), 0, 0]), mat: "win" });
 // ═════ 站 N：下一集預告（s10）＝重組晶圓（黑色封模＋晶粒），重布線（金色細線）從晶粒邊緣往外扇出 ═════
 const NX = 176;
 LAY("nBase", [12, 1, NX, 0.5], true); BOX("nPl", "nBase", NX - 5.8, NX + 5.8, 0, 0.9, -5.0, 5.0, "band"); BOX("nPlTop", "nBase", NX - 5.8, NX + 5.8, 0.9, 1.0, -5.0, 5.0, "panel2");
@@ -310,19 +313,21 @@ actions.vac = { type: "pulse", parts: ["flTip"], color: "okC", glow: 0.9, freq: 
 actions.vacHead = { type: "pulse", parts: ["hdNozzle"], color: "okC", glow: 0.9, freq: 2, halo: 0 };
 actions.upcamFlash = { type: "pulse", parts: ["ucRing"], color: "ringLight", glow: 1, freq: 3, halo: 0.4 };
 actions.fluxSpin = { type: "rotate", parts: ["fxPlate", "fxFilm"], axis: [0, 1, 0], pivot: [FX, 0, 0], rps: 0.25, rampSpin: true };
-actions.sigWire = { type: "flow", _說明: "訊號沿金線走（長弧）", layer: "wbDie", path: [[BX - 3.8 + 0.95, BSUB + 0.31, -0.17], [BX - 3.8 + 0.95, BSUB + 0.75, -0.17], [BX - 3.8 + 1.66, BSUB + 0.75, -0.17], [BX - 3.8 + 1.66, BSUB + 0.02, -0.17], [BX - 3.8 + 2.3, BSUB + 0.02, -0.17]], n: 3, size: 0.09, shape: "dot", rate: 0.45, color: "sigC", track: true };
+actions.sigWire = { type: "flow", _說明: "訊號沿金線的弧走（長）", layer: "wbDie", path: WARC(0.95, -0.17, 12).map(([x, y, z]) => [x, y, R2(z + 0.03)]), n: 3, size: 0.09, shape: "dot", rate: 0.45, color: "sigC", track: true };
 actions.sigBump = { type: "flow", _說明: "訊號穿過凸塊直接往下（短）", layer: "fcDie", path: [[BX + 3.8 + 0.26, BSUB + 0.22, 0.26], [BX + 3.8 + 0.26, BSUB + 0.02, 0.26], [BX + 3.8 + 0.26, BSUB - 0.3, 0.26]], n: 3, size: 0.09, shape: "dot", rate: 0.45, color: "sigC", track: true };
-actions.heatUp = { type: "wave", _說明: "熱從晶片背面經導熱膏、散熱蓋往上散", from: { layer: "cLid", p: [CX, CSUB + 0.85, 0] }, dir: [0, 1, 0], reach: 2.4, count: 3, r0: 0.6, spread: 2.2, rate: 0.6, color: "heatC", width: 0.08 };
+actions.heatUp = { type: "flow", _說明: "熱從晶片背面經導熱膏、散熱蓋一路往上走（箭頭往上，示意）", layer: "cLid", path: [[CX - 0.9, CSUB + 0.9, 0], [CX - 0.9, CSUB + 1.9, 0], [CX - 0.9, CSUB + 3.0, 0]], n: 3, lanes: 3, laneDir: [1, 0, 0], laneGap: 0.9, size: 0.16, shape: "arrow", rate: 0.5, color: "heatC", track: false, free: true };
 actions.dieHot = { type: "pulse", parts: ["cDie"], color: "heatC", glow: 0.7, freq: 1, halo: 0 };
 actions.plate = { type: "flow", _說明: "電鍍液在光阻開孔裡微小對流（示意），銅離子往孔底走", layer: "dBath", path: [[DB[1] - 0.3, RT + 2.2, 1.0], [DB[1] - 0.2, RT + 1.2, 1.0], [DB[1] + 0.2, RT + 0.3, 1.0]], n: 6, lanes: 3, laneDir: [1, 0, 0], laneGap: 3.0, size: 0.07, shape: "dot", rate: 0.6, color: "cuL", track: false, free: true, jitter: 0.1 };
+actions.meltM = { type: "pulse", parts: ["pSnML", "pSnMC", "pSnMR"], color: "snHot", glow: 0.9, freq: 1.2, halo: 0.15 };
 actions.melt = { type: "pulse", parts: ["pHotB"], color: "snHot", glow: 1, freq: 1.5, halo: 0.2 };
 actions.heaterOn = { type: "pulse", parts: ["pHeat"], color: "heatC", glow: 0.9, freq: 0.8, halo: 0, steady: true };
 actions.crackP = { type: "pulse", parts: ["pCrackB"], color: "badC", glow: 1, freq: 2, halo: 0.3 };
 actions.ufDrip = { type: "flow", _說明: "膠從針頭擠出、往縫口落（稠，慢）", layer: "pNeedle", path: [[UF0 - 0.55, PSUB + 0.3, 0.6], [UF0 - 0.45, PSUB + 0.05, 0.6], [UF0 - 0.1, PSUB + 0.05, 0.6]], n: 3, size: 0.1, shape: "dot", rate: 0.35, color: "ufWet", track: false, free: true, jitter: 0.02 };
 actions.ufCureGlow = { type: "pulse", parts: ["pUfC", "pUfCF", "pUfCF2"], color: "heatC", glow: 0.5, freq: 1, halo: 0 };
 actions.rdlGlow = { type: "pulse", parts: idsOf("nRdl").filter((i) => i.startsWith("nR")), color: "rdlC", glow: 0.6, freq: 1.2, halo: 0 };
-actions.asePin = { type: "pulse", parts: ["hTPRing", "hTPHead"], color: "pinR", glow: 1, freq: 1.4, halo: 0.5 };
-actions.amkPin = { type: "pulse", parts: ["hUPRing", "hUPHead"], color: "pinR", glow: 1, freq: 1.4, halo: 0.5 };
+actions.aseOn = { type: "pulse", parts: idsOf("hAse").filter((i) => i.startsWith("asWn")), color: "winC", glow: 0.9, freq: 1.2, halo: 0.3 };
+actions.amkOn = { type: "pulse", parts: idsOf("hAmk").filter((i) => i.startsWith("amWn")), color: "winC", glow: 0.9, freq: 1.2, halo: 0.3 };
+actions.besiOn = { type: "pulse", parts: idsOf("hBesi").filter((i) => i.startsWith("bsWn")), color: "winC", glow: 0.9, freq: 1.2, halo: 0.3 };
 
 // ═════ 標註點 ═════
 Object.assign(anchors, {
@@ -331,9 +336,9 @@ Object.assign(anchors, {
   wbWire: A("wbDie", [BX - 3.8 + 1.3, BSUB + 0.75, 0.95], -150, -90), fcBumpA: A("fcDie", [BX + 3.8 + 0.6, BSUB + 0.13, 0.9], 150, 100),
   lidA: A("cLid", [CX + 2.0, CSUB + 0.82, 1.8], 150, -90), timA: A("cTim", [CX + 0.9, CSUB + 0.62, 1.0], 150, 100),
   resistA: A("dResist", [DX + 4.2, RT + RH, DZ], 150, -90), cuA: A("dCu1", [DB[2] + 0.4, RT + 0.5, DZ], 150, 100), snA: A("dSn1", [DB[0] - 0.4, RT + CU + 0.3, DZ], -150, -90), domeA: A("dDome", [DB[1] + 0.4, RT + CU + 0.2, DZ], 150, -90),
-  pSnA: A("pSnC", [PX0 + 0.3, PSUB + 0.3, PZ - 0.25], 150, 100), pDieA: A("pDie", [PX0 + 3.5, PDIE1, PZ - 0.2], 150, -90), pCrackA: A("pCrack", [PB[6], PCU0 - 0.05, PZ - 0.2], 150, 100),
+  pSnA: A("pSnC", [PX0 + 0.3, PSUB + 0.3, 0.36], 150, 100), pDieA: A("pDie", [PX0 + 3.5, PDIE1, PZ - 0.2], 150, -90), pCrackA: A("pCrack", [R2(PB[4] + 0.32), PSUB + PPAD + 0.06, 0.24], 150, 100),
   pUfA: A("pUf4", [PX0 - 0.5, PSUB + 0.5, PZ - 0.25], 150, 100), pNeedleA: A("pNeedle", [UF0 - 0.55, PSUB + 1.2, 0], -150, -90),
-  aseA: A("hAse", [TWX - 3.6, HTOP + 1.6, 3.1], -150, -90), amkA: A("hAmk", [USX - 4.6, HTOP + 1.1, 3.2], -150, -90), besiA: A("aSign", [4.0, DY + 1.2, 3.22], -150, -90),
+  aseA: A("hAse", [HX0 - 9.8, HTOP + 2.4, 1.1], -150, -90), amkA: A("hAmk", [HX0 - 2.0, HTOP + 1.5, 1.0], -150, -90), besiA: A("hBesi", [HX0 + 9.6, HTOP + 1.8, 1.0], 150, -90),
   rdlA: A("nRdl", [NX + 1.5, 1.33, 1.5], 150, -90),
 });
 
@@ -347,7 +352,7 @@ const model = {
   pose: { yaw0: 0, yawIso: 0, drift: 0 },
   camera: { stand: { d: 40, elev: 30, y: 3 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { DY, WX, TY, DT, PX, PY, HX, HDIE_TOP, FX, SX, SUBY, GY, BX, CX, CSUB, DX, RT, CU, PX0, PB, PSUB, PCU0, UFN, UF0, UF1, HX0, TWX, USX, KHX, KHZ, AZX, AZZ, NX },
+  info: { DY, WX, TY, DT, PX, PY, HX, HDIE_TOP, FX, SX, SUBY, GY, BX, CX, CSUB, DX, RT, CU, PX0, PB, PSUB, PCU0, UFN, UF0, UF1, HX0, NX },
 };
 fs.writeFileSync(path.join(HERE, "model.json"), JSON.stringify(model, null, 1) + "\n");
 console.log(`✔ model.json：${parts.length} 個零件、${parts.reduce((a, p) => a + Math.max(1, p.at?.length ?? 0), 0)} 個實體、${layers.length} 層`);

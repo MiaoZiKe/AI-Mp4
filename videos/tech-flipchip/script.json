@@ -95,7 +95,7 @@
    "tts": "腳不夠用，晶片的電怎麼接出去？前一集看完封裝材料，這集看覆晶。",
    "subtitle": {
     "zh": "腳不夠用\n晶片的電怎麼接出去？\n前一集\n看完封裝材料\n這集看覆晶",
-    "en": "Not enough pins: | how does a chip's power get out? | Last episode: | packaging materials. | This one: flip chip."
+    "en": "Not enough pins: | how do a chip's signals get out? | Last episode: | packaging materials. | This one: flip chip."
    },
    "keywords": [
     "腳不夠用",
@@ -121,7 +121,7 @@
    ],
    "props": {
     "hook": {
-     "kicker": "接上集：封裝材料",
+     "kicker": "接上集：倒過來好在哪？",
      "title": "腳不夠用？",
      "size": 120,
      "top": 236
@@ -131,51 +131,51 @@
       "at": "start-30",
       "dur": 1,
       "x": 0.4,
-      "y": 2.4,
-      "d": 40,
-      "elev": 34
+      "y": 2.0,
+      "d": 42,
+      "elev": 28
      },
      {
       "at": "start",
       "dur": 160,
       "x": 0.4,
-      "y": 2.4,
-      "d": 37,
-      "elev": 36
+      "y": 2.0,
+      "d": 40,
+      "elev": 29
      }
     ],
     "shift": [
      {
       "layer": "eject",
-      "at": "s2:flip-24",
-      "until": "s2:flip+10",
-      "dur": 8,
+      "at": "s2:flip-22",
+      "until": "s2:flip+6",
+      "dur": 6,
       "dy": 0.12
      },
      {
       "layer": "flipper",
-      "at": "s2:flip-14",
-      "until": "s2:flip+32",
-      "dur": 14,
+      "at": "s2:flip-12",
+      "until": "s2:flip+24",
+      "dur": 10,
       "dy": 0.6
      },
      {
       "layer": "flipper2",
-      "at": "s2:flip-14",
-      "until": "s2:flip+32",
-      "dur": 14,
+      "at": "s2:flip-12",
+      "until": "s2:flip+24",
+      "dur": 10,
       "dy": 0.6
      },
      {
       "layer": "die",
-      "at": "s2:flip-14",
+      "at": "s2:flip-12",
       "until": "s12:start+400",
-      "dur": 14,
+      "dur": 10,
       "dy": 0.6
      },
      {
       "layer": "flipper",
-      "at": "s2:flip+30",
+      "at": "s2:flip+22",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 3
@@ -183,7 +183,7 @@
      {
       "layer": "flipper2",
       "at": "s1:start-40",
-      "until": "s2:flip+30",
+      "until": "s2:flip+22",
       "opacity": 0,
       "dur": 1
      },
@@ -197,148 +197,127 @@
      {
       "layer": "head",
       "at": "s1:start-40",
-      "until": "s2:flip+22",
-      "dur": 10,
+      "until": "s2:flip+16",
+      "dur": 8,
       "dy": 1.4
      },
      {
       "layer": "die",
-      "at": "s2:flip+34",
+      "at": "s2:flip+26",
       "until": "s12:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": 0.6
      },
      {
       "layer": "die",
-      "at": "s2:flip+44",
+      "at": "s2:flip+34",
       "until": "s12:start+400",
-      "dur": 14,
+      "dur": 12,
       "dx": 2.3
      },
      {
       "layer": "die",
-      "at": "s2:flip+58",
-      "until": "s2:flip+66",
-      "dur": 8,
+      "at": "s2:flip+46",
+      "until": "s2:flip+52",
+      "dur": 6,
       "dy": -3.325
      },
      {
       "layer": "die",
-      "at": "s2:flip+78",
+      "at": "s2:flip+58",
       "until": "s12:start+400",
-      "dur": 14,
+      "dur": 12,
       "dx": 3.4
      },
      {
       "layer": "die",
-      "at": "s2:flip+94",
+      "at": "s2:flip+72",
       "until": "s12:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": -3.225
+     },
+     {
+      "layer": "head",
+      "at": "s2:flip+26",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dy": 0.6
      },
      {
       "layer": "head",
       "at": "s2:flip+34",
       "until": "s12:start+400",
-      "dur": 10,
-      "dy": 0.6
-     },
-     {
-      "layer": "head",
-      "at": "s2:flip+44",
-      "until": "s12:start+400",
-      "dur": 14,
+      "dur": 12,
       "dx": 2.3
      },
      {
       "layer": "head",
-      "at": "s2:flip+58",
-      "until": "s2:flip+66",
-      "dur": 8,
+      "at": "s2:flip+46",
+      "until": "s2:flip+52",
+      "dur": 6,
       "dy": -3.325
      },
      {
       "layer": "head",
-      "at": "s2:flip+78",
+      "at": "s2:flip+58",
       "until": "s12:start+400",
-      "dur": 14,
+      "dur": 12,
       "dx": 3.4
      },
      {
       "layer": "head",
-      "at": "s2:flip+94",
+      "at": "s2:flip+72",
       "until": "s12:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": -3.225
      },
      {
       "layer": "head",
-      "at": "s2:flip+112",
+      "at": "s2:flip+84",
       "until": "s12:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": 1.0
      },
      {
       "layer": "cover",
-      "at": "s9:besi+2",
-      "until": "s9:besi+72",
-      "dur": 16,
-      "dy": 2.4
+      "at": "s1:q-30",
+      "until": "s1:q+76",
+      "dur": 14,
+      "dy": 1.0
      },
      {
       "layer": "head",
-      "at": "s9:besi+2",
-      "until": "s9:besi+72",
-      "dur": 16,
-      "dy": 1.6
+      "at": "s1:q-30",
+      "until": "s1:q+76",
+      "dur": 14,
+      "dx": 3.0
      },
      {
-      "layer": "flipper2",
-      "at": "s9:besi+22",
-      "until": "s9:besi+66",
-      "dur": 16,
+      "layer": "flipper",
+      "at": "s1:q+20",
+      "until": "s1:q+76",
+      "dur": 12,
       "dx": -2.4
      },
      {
       "layer": "flipBase",
-      "at": "s9:besi+22",
-      "until": "s9:besi+66",
-      "dur": 16,
+      "at": "s1:q+20",
+      "until": "s1:q+76",
+      "dur": 12,
       "dx": -2.4
      },
      {
       "layer": "flux",
-      "at": "s9:besi+42",
-      "until": "s9:besi+60",
-      "dur": 14,
+      "at": "s1:q+20",
+      "until": "s1:q+76",
+      "dur": 12,
       "dz": 2.4
-     },
-     {
-      "layer": "wtable",
-      "at": "s9:besi+42",
-      "until": "s9:besi+60",
-      "dur": 14,
-      "dy": -0.7
-     },
-     {
-      "layer": "eject",
-      "at": "s9:besi+42",
-      "until": "s9:besi+60",
-      "dur": 14,
-      "dy": -0.7
-     },
-     {
-      "layer": "aSign",
-      "at": "s1:start-40",
-      "until": "s9:fcb",
-      "opacity": 0,
-      "dur": 3
      },
      {
       "layer": "fcDie",
       "at": "s1:start-40",
-      "until": "s3:short+24",
-      "dur": 22,
+      "until": "s3:short",
+      "dur": 20,
       "dy": 1.0
      },
      {
@@ -359,7 +338,7 @@
      },
      {
       "layer": "dUbm",
-      "at": "s5:end+40",
+      "at": "s5:sn+28",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 3
@@ -389,16 +368,16 @@
      },
      {
       "layer": "dResist",
-      "at": "s5:end+28",
+      "at": "s5:sn+30",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "dResist",
-      "at": "s5:end+16",
+      "at": "s5:sn+16",
       "until": "s12:start+400",
-      "dur": 14,
+      "dur": 12,
       "dy": 2.6
      },
      {
@@ -432,13 +411,13 @@
      {
       "layer": "dSn0",
       "at": "s1:start-40",
-      "until": "s5:sn+0",
+      "until": "s5:sn-6",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "dSn0",
-      "at": "s5:end+48",
+      "at": "s5:sn+30",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 3
@@ -446,13 +425,13 @@
      {
       "layer": "dSn1",
       "at": "s1:start-40",
-      "until": "s5:sn+8",
+      "until": "s5:sn+0",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "dSn1",
-      "at": "s5:end+48",
+      "at": "s5:sn+30",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 3
@@ -460,55 +439,55 @@
      {
       "layer": "dDome",
       "at": "s1:start-40",
-      "until": "s5:end+48",
+      "until": "s5:sn+30",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "pDie",
       "at": "s1:start-40",
-      "until": "s6:melt+8",
-      "dur": 34,
+      "until": "s6:melt+6",
+      "dur": 30,
       "dx": 0.55,
       "dy": 0.07
      },
      {
       "layer": "pSnSolid",
       "at": "s1:start-40",
-      "until": "s6:melt+8",
-      "dur": 34,
+      "until": "s6:melt+6",
+      "dur": 30,
       "dx": 0.55,
       "dy": 0.07
      },
      {
       "layer": "pHot",
       "at": "s1:start-40",
-      "until": "s6:melt+8",
-      "dur": 34,
+      "until": "s6:melt+6",
+      "dur": 30,
       "dx": 0.55,
       "dy": 0.07
      },
      {
       "layer": "pSnL",
       "at": "s1:start-40",
-      "until": "s6:melt+8",
-      "dur": 34,
+      "until": "s6:melt+6",
+      "dur": 30,
       "dx": 0.55,
       "dy": 0.07
      },
      {
       "layer": "pSnC",
       "at": "s1:start-40",
-      "until": "s6:melt+8",
-      "dur": 34,
+      "until": "s6:melt+6",
+      "dur": 30,
       "dx": 0.55,
       "dy": 0.07
      },
      {
       "layer": "pSnR",
       "at": "s1:start-40",
-      "until": "s6:melt+8",
-      "dur": 34,
+      "until": "s6:melt+6",
+      "dur": 30,
       "dx": 0.55,
       "dy": 0.07
      },
@@ -538,21 +517,42 @@
       "at": "s1:start-40",
       "until": "s6:melt+4",
       "opacity": 0,
-      "dur": 3
+      "dur": 6
+     },
+     {
+      "layer": "pSnL",
+      "at": "s7:cte+16",
+      "until": "s7:crack+38",
+      "opacity": 0,
+      "dur": 6
      },
      {
       "layer": "pSnC",
       "at": "s1:start-40",
       "until": "s6:melt+4",
       "opacity": 0,
-      "dur": 3
+      "dur": 6
+     },
+     {
+      "layer": "pSnC",
+      "at": "s7:cte+16",
+      "until": "s7:crack+38",
+      "opacity": 0,
+      "dur": 6
      },
      {
       "layer": "pSnR",
       "at": "s1:start-40",
       "until": "s6:melt+4",
       "opacity": 0,
-      "dur": 3
+      "dur": 6
+     },
+     {
+      "layer": "pSnR",
+      "at": "s7:cte+16",
+      "until": "s7:crack+38",
+      "opacity": 0,
+      "dur": 6
      },
      {
       "layer": "pHeater",
@@ -563,45 +563,73 @@
      },
      {
       "layer": "pHeater",
-      "at": "s6:end+40",
+      "at": "s6:align+10",
       "until": "s7:cte-4",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "pHeater",
-      "at": "s7:end+36",
+      "at": "s7:crack+24",
       "until": "s8:bake-2",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "pSubL",
-      "at": "s7:x5-10",
-      "until": "s7:end+34",
-      "dur": 26,
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
       "dx": -0.38
      },
      {
       "layer": "pSubR",
-      "at": "s7:x5-10",
-      "until": "s7:end+34",
-      "dur": 26,
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
       "dx": 0.38
      },
      {
-      "layer": "pSnL",
-      "at": "s7:x5-10",
-      "until": "s7:end+34",
-      "dur": 26,
+      "layer": "pPad0",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": -0.38
+     },
+     {
+      "layer": "pPad1",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
       "dx": -0.19
      },
      {
-      "layer": "pSnR",
-      "at": "s7:x5-10",
-      "until": "s7:end+34",
-      "dur": 26,
+      "layer": "pPad3",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
       "dx": 0.19
+     },
+     {
+      "layer": "pPad4",
+      "at": "s7:cte+4",
+      "until": "s7:crack+26",
+      "dur": 24,
+      "dx": 0.38
+     },
+     {
+      "layer": "pStrain",
+      "at": "s1:start-40",
+      "until": "s7:cte+16",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "pStrain",
+      "at": "s7:crack+38",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 6
      },
      {
       "layer": "pCrack",
@@ -612,7 +640,7 @@
      },
      {
       "layer": "pCrack",
-      "at": "s7:end+30",
+      "at": "s8:start",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 3
@@ -744,34 +772,6 @@
       "dur": 3
      },
      {
-      "layer": "pUf8",
-      "at": "s1:start-40",
-      "until": "s8:wick+46",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
-      "layer": "pUf8",
-      "at": "s8:bake+12",
-      "until": "s12:start+400",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
-      "layer": "pUf9",
-      "at": "s1:start-40",
-      "until": "s8:wick+53",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
-      "layer": "pUf9",
-      "at": "s8:bake+12",
-      "until": "s12:start+400",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
       "layer": "pUfFillet",
       "at": "s1:start-40",
       "until": "s8:wick+56",
@@ -818,7 +818,27 @@
       "id": "upcamFlash",
       "at": "start-30",
       "ramp": 6,
-      "until": "s1:end+30"
+      "until": "s1:end+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "head",
+      "text": "接合頭",
+      "en": "Bond head",
+      "color": "blue",
+      "at": "q-26",
+      "until": "q+14",
+      "cut": true
+     },
+     {
+      "part": "flipper",
+      "text": "翻面單元",
+      "en": "Flip unit",
+      "color": "amber",
+      "at": "q+24",
+      "until": "q+66",
+      "cut": true
      }
     ],
     "overlay": [
@@ -849,9 +869,9 @@
      }
     ]
    },
-   "durationSec": 6.6,
-   "holdSec": 1.2,
-   "pauseAfter": 1.2
+   "durationSec": 6.1,
+   "holdSec": 0.7,
+   "pauseAfter": 0.7
   },
   {
    "id": "s2",
@@ -929,21 +949,21 @@
      },
      {
       "id": "vacHead",
-      "at": "flip+24",
+      "at": "flip+16",
       "ramp": 4,
-      "until": "flip+110"
+      "until": "flip+82"
      },
      {
       "id": "flip",
       "at": "flip",
-      "ramp": 20,
+      "ramp": 18,
       "until": "flip+1"
      },
      {
       "id": "flipBackArm",
-      "at": "flip+36",
-      "ramp": 22,
-      "until": "flip+37"
+      "at": "flip+28",
+      "ramp": 20,
+      "until": "flip+29"
      }
     ],
     "labels": [
@@ -952,26 +972,17 @@
       "text": "翻面單元",
       "en": "Flip unit",
       "color": "amber",
-      "at": "flip-4",
-      "until": "flip+41",
-      "cut": true
-     },
-     {
-      "part": "flux",
-      "text": "助焊劑盤",
-      "en": "Flux plate",
-      "color": "blue",
-      "at": "flip+43",
-      "until": "flip+88",
+      "at": "flip-6",
+      "until": "flip+39",
       "cut": true
      },
      {
       "part": "rail",
       "text": "載板",
       "en": "Substrate",
-      "color": "amber",
-      "at": "flip+90",
-      "until": "flip+135",
+      "color": "blue",
+      "at": "flip+60",
+      "until": "flip+105",
       "cut": true
      }
     ],
@@ -1009,10 +1020,10 @@
      }
     ]
    },
-   "durationSec": 8.4,
-   "holdSec": 3.4,
+   "durationSec": 5.7,
+   "holdSec": 0.7,
    "headSec": 0.2,
-   "pauseAfter": 3.4
+   "pauseAfter": 0.7
   },
   {
    "id": "s3",
@@ -1137,10 +1148,10 @@
      }
     ]
    },
-   "durationSec": 7.4,
-   "holdSec": 2.6,
+   "durationSec": 5.5,
+   "holdSec": 0.7,
    "headSec": 0.2,
-   "pauseAfter": 2.6
+   "pauseAfter": 0.7
   },
   {
    "id": "s4",
@@ -1221,9 +1232,13 @@
       "text": "散熱蓋",
       "en": "Heat lid",
       "color": "blue",
-      "at": "lid+2",
-      "until": "lid+47",
-      "cut": true
+      "at": "lid+5",
+      "until": "lid+36",
+      "cut": true,
+      "xy": [
+       820,
+       400
+      ]
      }
     ],
     "overlay": [
@@ -1254,10 +1269,10 @@
      }
     ]
    },
-   "durationSec": 5.8,
-   "holdSec": 2.1,
-   "headSec": 0.2,
-   "pauseAfter": 2.1
+   "durationSec": 4.5,
+   "holdSec": 0.73,
+   "headSec": 0.3,
+   "pauseAfter": 0.73
   },
   {
    "id": "s5",
@@ -1340,15 +1355,6 @@
       "at": "cu+2",
       "until": "cu+47",
       "cut": true
-     },
-     {
-      "part": "domeA",
-      "text": "回焊成圓頂",
-      "en": "Reflowed cap",
-      "color": "blue",
-      "at": "sn+62",
-      "until": "sn+102",
-      "cut": true
      }
     ],
     "overlay": [
@@ -1382,10 +1388,10 @@
      }
     ]
    },
-   "durationSec": 8.4,
-   "holdSec": 3.0,
+   "durationSec": 6.1,
+   "holdSec": 0.7,
    "headSec": 0.2,
-   "pauseAfter": 3.0
+   "pauseAfter": 0.7
   },
   {
    "id": "s6",
@@ -1441,8 +1447,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 102,
-      "y": 1.6,
-      "d": 21,
+      "y": 1.5,
+      "d": 27,
       "elev": 18
      }
     ],
@@ -1451,13 +1457,19 @@
       "id": "heaterOn",
       "at": "place+6",
       "ramp": 8,
-      "until": "end+40"
+      "until": "align+10"
      },
      {
       "id": "melt",
       "at": "place+10",
       "ramp": 6,
       "until": "melt+10"
+     },
+     {
+      "id": "meltM",
+      "at": "melt+4",
+      "ramp": 8,
+      "until": "align+12"
      }
     ],
     "labels": [
@@ -1514,10 +1526,10 @@
      }
     ]
    },
-   "durationSec": 8.2,
-   "holdSec": 2.9,
+   "durationSec": 6.1,
+   "holdSec": 0.7,
    "headSec": 0.2,
-   "pauseAfter": 2.9
+   "pauseAfter": 0.7
   },
   {
    "id": "s7",
@@ -1569,8 +1581,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 102,
-      "y": 1.6,
-      "d": 21,
+      "y": 1.5,
+      "d": 27,
       "elev": 18
      }
     ],
@@ -1579,13 +1591,13 @@
       "id": "heaterOn",
       "at": "cte-4",
       "ramp": 8,
-      "until": "end+36"
+      "until": "crack+24"
      },
      {
       "id": "crackP",
       "at": "crack",
       "ramp": 4,
-      "until": "end+30"
+      "until": "s8:start"
      }
     ],
     "labels": [
@@ -1594,8 +1606,8 @@
       "text": "焊點被扭",
       "en": "Joint strained",
       "color": "amber",
-      "at": "crack",
-      "until": "crack+45",
+      "at": "crack-12",
+      "until": "crack+33",
       "cut": true
      }
     ],
@@ -1630,10 +1642,10 @@
      }
     ]
    },
-   "durationSec": 6.4,
-   "holdSec": 2.4,
+   "durationSec": 4.9,
+   "holdSec": 0.7,
    "headSec": 0.2,
-   "pauseAfter": 2.4
+   "pauseAfter": 0.7
   },
   {
    "id": "s8",
@@ -1689,8 +1701,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 102,
-      "y": 1.6,
-      "d": 21,
+      "y": 1.5,
+      "d": 27,
       "elev": 18
      }
     ],
@@ -1772,10 +1784,10 @@
      }
     ]
    },
-   "durationSec": 8.2,
-   "holdSec": 3.2,
+   "durationSec": 5.7,
+   "holdSec": 0.7,
    "headSec": 0.2,
-   "pauseAfter": 3.2
+   "pauseAfter": 0.7
   },
   {
    "id": "s9",
@@ -1824,50 +1836,43 @@
       "to": "co",
       "at": "voice-4",
       "dur": 1
-     },
-     {
-      "to": "tool",
-      "at": "fcb-4",
-      "dur": 1
      }
     ],
     "shot": [
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 141.0,
-      "y": 0.2,
-      "d": 31,
-      "elev": 40
-     },
-     {
-      "at": "fcb-4",
-      "dur": 1,
-      "x": 0.6,
-      "y": 3.6,
-      "d": 30,
-      "elev": 30
+      "x": 140,
+      "y": 1.4,
+      "d": 38,
+      "elev": 28
      }
     ],
     "run": [
      {
-      "id": "asePin",
+      "id": "aseOn",
       "at": "ase-4",
       "ramp": 6,
-      "until": "fcb"
+      "until": "s12:start+400"
      },
      {
-      "id": "amkPin",
+      "id": "amkOn",
       "at": "amk-4",
       "ramp": 6,
-      "until": "fcb"
+      "until": "s12:start+400"
+     },
+     {
+      "id": "besiOn",
+      "at": "besi-4",
+      "ramp": 6,
+      "until": "s12:start+400"
      }
     ],
     "labels": [
      {
       "part": "aseA",
-      "text": "日月光（高雄）",
-      "en": "ASE, Kaohsiung",
+      "text": "日月光（台灣）",
+      "en": "ASE, Taiwan",
       "color": "blue",
       "at": "big",
       "until": "big+45",
@@ -1879,17 +1884,8 @@
       "text": "Besi（荷蘭）",
       "en": "Besi, Netherlands",
       "color": "amber",
-      "at": "besi-2",
-      "until": "besi+43",
-      "cut": true
-     },
-     {
-      "part": "head",
-      "text": "接合頭",
-      "en": "Bond head",
-      "color": "blue",
-      "at": "besi+46",
-      "until": "besi+91",
+      "at": "besi-4",
+      "until": "besi+41",
       "cut": true
      }
     ],
@@ -1898,7 +1894,7 @@
       "type": "section",
       "kind": "fc-co",
       "at": "voice-3",
-      "until": "s10:voice-3",
+      "until": "s10:voice-1",
       "x": 64,
       "y": 1036,
       "w": 952,
@@ -1927,10 +1923,10 @@
      }
     ]
    },
-   "durationSec": 8.3,
-   "holdSec": 3.5,
+   "durationSec": 5.7,
+   "holdSec": 0.87,
    "headSec": 0.2,
-   "pauseAfter": 3.5
+   "pauseAfter": 0.87
   },
   {
    "id": "s10",
@@ -1972,13 +1968,13 @@
     "zoom": [
      {
       "to": "next",
-      "at": "voice-4",
+      "at": "voice-2",
       "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "voice-2",
       "dur": 1,
       "x": 176,
       "y": 0.8,
@@ -2009,7 +2005,7 @@
      {
       "type": "section",
       "kind": "fc-next",
-      "at": "voice-3",
+      "at": "voice-1",
       "until": "s11:voice-3",
       "x": 64,
       "y": 1066,
@@ -2036,10 +2032,9 @@
      }
     ]
    },
-   "durationSec": 7.6,
-   "holdSec": 1.4,
-   "headSec": 0.2,
-   "pauseAfter": 1.4
+   "durationSec": 6.7,
+   "holdSec": 0.7,
+   "pauseAfter": 0.7
   },
   {
    "id": "s11",
@@ -2112,8 +2107,8 @@
      }
     ]
    },
-   "durationSec": 5.0,
-   "holdSec": 1.2,
+   "durationSec": 4.8,
+   "holdSec": 0.7,
    "headSec": 0.2
   },
   {
