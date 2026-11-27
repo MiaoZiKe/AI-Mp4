@@ -1474,14 +1474,14 @@
      {
       "layer": "botA",
       "at": "bv+2",
-      "until": "ctl+52",
+      "until": "ctl+30",
       "dur": 24,
       "dy": 5.2
      },
      {
       "layer": "bcap",
       "at": "bv-2",
-      "until": "ctl+52",
+      "until": "ctl+30",
       "dur": 18,
       "dy": -10.9,
       "dx": 2.6,
@@ -1491,7 +1491,7 @@
      {
       "layer": "regA",
       "at": "like-18",
-      "until": "ctl+52",
+      "until": "ctl+30",
       "dur": 24,
       "dz": 4.8,
       "dy": 0.4
@@ -1499,14 +1499,14 @@
      {
       "layer": "purge",
       "at": "gas-6",
-      "until": "ctl+52",
+      "until": "ctl+30",
       "dur": 24,
       "dz": 4.6
      },
      {
       "layer": "ctlDoor",
       "at": "ctl-2",
-      "until": "ctl+52",
+      "until": "ctl+30",
       "dur": 22,
       "dx": 3.4,
       "dz": 1.6
@@ -1517,13 +1517,13 @@
       "id": "purgeN2",
       "at": "gas+10",
       "ramp": 6,
-      "until": "ctl+52"
+      "until": "ctl+30"
      },
      {
       "id": "estopFlash",
-      "at": "ctl+56",
+      "at": "ctl+34",
       "ramp": 4,
-      "until": "ctl+80"
+      "until": "ctl+54"
      }
     ],
     "labels": [
@@ -2007,28 +2007,28 @@
      },
      {
       "layer": "vc2",
-      "at": "split+12",
+      "at": "split+6",
       "until": "split+92",
       "dur": 16,
       "dx": -1.2
      },
      {
       "layer": "vc3",
-      "at": "split+32",
+      "at": "split+20",
       "until": "split+92",
       "dur": 16,
       "dx": 0.0
      },
      {
       "layer": "vc4",
-      "at": "split+52",
+      "at": "split+34",
       "until": "split+92",
       "dur": 16,
       "dx": 1.2
      },
      {
       "layer": "vc5",
-      "at": "split+72",
+      "at": "split+48",
       "until": "split+92",
       "dur": 16,
       "dx": 2.4
@@ -2439,16 +2439,16 @@
       "text": "噴頭",
       "en": "Showerhead",
       "color": "amber",
-      "at": "shw+12",
-      "until": "shw+57"
+      "at": "shw+6",
+      "until": "shw+49"
      },
      {
       "part": "pump",
       "text": "乾式泵",
       "en": "Dry pump",
       "color": "blue",
-      "at": "pump+6",
-      "until": "pump+51"
+      "at": "pump+2",
+      "until": "pump+46"
      }
     ],
     "overlay": [
@@ -2746,12 +2746,12 @@
      {
       "type": "section",
       "kind": "gas-co",
-      "at": "lin-6",
-      "until": "s12:start-18",
+      "at": "start-4",
+      "until": "s12:start+14",
       "x": 64,
       "y": 1040,
       "w": 952,
-      "h": 350,
+      "h": 356,
       "avoid": false,
       "title": "做氣體的公司",
       "tag": "公司官網與年報",
@@ -2769,8 +2769,8 @@
      }
     ]
    },
-   "durationSec": 4.5,
-   "pauseAfter": 0.5
+   "durationSec": 4.8,
+   "pauseAfter": 1.0
   },
   {
    "id": "s12",
@@ -2807,7 +2807,7 @@
    "props": {
     "shot": [
      {
-      "at": "start-2",
+      "at": "start+14",
       "dur": 1,
       "x": 22,
       "y": 9,
@@ -2834,7 +2834,7 @@
      {
       "type": "section",
       "kind": "gas-next",
-      "at": "start+14",
+      "at": "start+32",
       "until": "s13:start-18",
       "x": 64,
       "y": 1066,
