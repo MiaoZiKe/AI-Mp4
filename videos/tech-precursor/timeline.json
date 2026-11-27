@@ -2,1204 +2,3342 @@
  "version": 2,
  "slug": "tech-precursor",
  "fps": 30,
- "totalFrames": 2388,
- "totalSec": 79.6,
- "gapSec": 0,
- "transitionFrames": 0,
- "silent": true,
- "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "totalFrames": 2625,
+ "totalSec": 87.5,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
-   "audioFrame": 0,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/tech-precursor/01-s1.wav",
+   "audioFrame": 8,
+   "audioSec": 3.7,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 156,
+   "durationFrames": 181,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 0,
-   "voiceEndFrame": 93,
-   "stillFrame": 155,
+   "voiceStartFrame": 9,
+   "voiceEndFrame": 118,
+   "stillFrame": 171,
    "subtitleWindow": [
     0,
-    157
+    178
    ],
    "sourceWindow": [
     0,
-    156
+    176
    ],
+   "pauseAfter": 2.1,
    "lines": [
     {
      "text": "前一集說",
      "start": 0,
      "chars": [
-      0,
-      4,
-      10,
-      17
+      8,
+      13,
+      17,
+      22
      ]
     },
     {
      "text": "改用氣體原料",
-     "start": 21,
+     "start": 33,
      "chars": [
-      23,
-      29,
       35,
-      41,
-      48,
-      54
-     ]
-    },
-    {
-     "text": "氣體，",
-     "start": 58,
-     "chars": [
-      60,
-      66,
+      40,
+      47,
+      55,
+      61,
       66
      ]
     },
     {
-     "text": "從哪來？",
-     "start": 70,
+     "text": "氣體，",
+     "start": 80,
      "chars": [
-      72,
-      79,
-      85,
-      85
+      82,
+      89,
+      89
+     ]
+    },
+    {
+     "text": "從哪來？",
+     "start": 99,
+     "chars": [
+      101,
+      106,
+      110,
+      110
      ]
     }
    ],
    "keywords": [
     {
      "text": "氣體原料",
-     "start": 35
+     "start": 47
     },
     {
      "text": "從哪來",
-     "start": 72
+     "start": 101
     }
    ],
    "cues": [
     {
      "id": "prev",
      "text": "前一集",
-     "frame": 0
+     "frame": 9,
+     "early": 0
     },
     {
      "id": "q",
      "text": "從哪來",
-     "frame": 74
+     "frame": 102,
+     "early": 0
     }
    ],
+   "hash": "e634a6e87c4d-f9d6241105",
    "sub": "前一集說\n改用氣體原料\n氣體，從哪來？",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.821,
+    "minScore": 0.217,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.96,
+      "start": 0.94,
+      "ch": "改",
+      "errMs": -20
+     },
+     {
+      "onset": 2.54,
+      "start": 2.52,
+      "ch": "氣",
+      "errMs": -20
+     },
+     {
+      "onset": 3.16,
+      "start": 3.14,
+      "ch": "從",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "前",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.958
+    },
+    {
+     "text": "一",
+     "start": 0.22,
+     "end": 0.28,
+     "score": 0.372
+    },
+    {
+     "text": "集",
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.994
+    },
+    {
+     "text": "說",
+     "start": 0.52,
+     "end": 0.64,
+     "score": 0.883
+    },
+    {
+     "text": "改",
+     "start": 0.94,
+     "end": 1.08,
+     "score": 0.997
+    },
+    {
+     "text": "用",
+     "start": 1.12,
+     "end": 1.26,
+     "score": 0.995
+    },
+    {
+     "text": "氣",
+     "start": 1.34,
+     "end": 1.5,
+     "score": 0.217
+    },
+    {
+     "text": "體",
+     "start": 1.6,
+     "end": 1.7,
+     "score": 0.941
+    },
+    {
+     "text": "原",
+     "start": 1.8,
+     "end": 1.94,
+     "score": 0.865
+    },
+    {
+     "text": "料",
+     "start": 1.98,
+     "end": 2.16,
+     "score": 0.977
+    },
+    {
+     "text": "氣",
+     "start": 2.52,
+     "end": 2.66,
+     "score": 0.268
+    },
+    {
+     "text": "體",
+     "start": 2.74,
+     "end": 2.84,
+     "score": 0.869
+    },
+    {
+     "text": "從",
+     "start": 3.14,
+     "end": 3.3,
+     "score": 0.988
+    },
+    {
+     "text": "哪",
+     "start": 3.32,
+     "end": 3.38,
+     "score": 0.992
+    },
+    {
+     "text": "來",
+     "start": 3.46,
+     "end": 3.62,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.34,
+    0.52,
+    0.94,
+    1.12,
+    1.34,
+    1.6,
+    1.8,
+    1.98,
+    2.52,
+    2.74,
+    3.14,
+    3.32,
+    3.46
+   ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 160,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 156,
-   "durationFrames": 222,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 160,
-   "voiceEndFrame": 330,
-   "stillFrame": 377,
+   "audio": "audio/tech-precursor/02-s2.wav",
+   "audioFrame": 180,
+   "audioSec": 6.52,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 171,
+   "durationFrames": 251,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 181,
+   "voiceEndFrame": 375,
+   "stillFrame": 412,
    "subtitleWindow": [
-    157,
-    379
+    178,
+    419
    ],
    "sourceWindow": [
-    156,
-    378
+    176,
+    417
    ],
+   "pauseAfter": 1.6,
    "lines": [
     {
      "text": "這種原料叫前驅物",
-     "start": 157,
+     "start": 178,
      "chars": [
-      158,
-      164,
-      170,
-      176,
-      181,
-      187,
-      193,
-      199
+      180,
+      183,
+      188,
+      192,
+      199,
+      207,
+      214,
+      220
      ]
     },
     {
      "text": "像做菜前備好",
-     "start": 203,
+     "start": 233,
      "chars": [
-      205,
-      211,
-      217,
-      222,
-      228,
-      234
+      235,
+      242,
+      247,
+      252,
+      260,
+      266
      ]
     },
     {
      "text": "的醬料",
-     "start": 238,
+     "start": 268,
      "chars": [
-      240,
-      246,
-      252
+      270,
+      273,
+      279
      ]
     },
     {
      "text": "裝在氣櫃裡",
-     "start": 256,
+     "start": 291,
      "chars": [
-      258,
-      264,
-      269,
-      275,
-      281
+      293,
+      299,
+      305,
+      311,
+      317
      ]
     },
     {
      "text": "有液體也有固體",
-     "start": 285,
+     "start": 328,
      "chars": [
-      287,
-      293,
-      299,
-      305,
-      310,
-      316,
-      322
+      330,
+      336,
+      342,
+      353,
+      357,
+      362,
+      368
      ]
     }
    ],
    "keywords": [
     {
      "text": "前驅物",
-     "start": 187
+     "start": 207
     },
     {
      "text": "醬料",
-     "start": 246
+     "start": 273
     },
     {
      "text": "固體",
-     "start": 316
+     "start": 362
     }
    ],
    "cues": [
     {
      "id": "name",
      "text": "前驅物",
-     "frame": 189
+     "frame": 208,
+     "early": 0
     },
     {
      "id": "sauce",
      "text": "醬料",
-     "frame": 248
+     "frame": 274,
+     "early": 0
     },
     {
      "id": "cab",
      "text": "氣櫃",
-     "frame": 271
+     "frame": 306,
+     "early": 0
     },
     {
      "id": "solid",
      "text": "固體",
-     "frame": 318
+     "frame": 364,
+     "early": 0
     }
    ],
+   "hash": "781db906c053-f9d6241105",
    "sub": "這種原料叫前驅物\n像做菜前備好\n的醬料\n裝在氣櫃裡\n有液體也有固體",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.952,
+    "minScore": 0.051,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.87,
+      "start": 1.88,
+      "ch": "像",
+      "errMs": 10
+     },
+     {
+      "onset": 3.84,
+      "start": 3.82,
+      "ch": "裝",
+      "errMs": -20
+     },
+     {
+      "onset": 5.03,
+      "start": 5.04,
+      "ch": "有",
+      "errMs": 10
+     },
+     {
+      "onset": 5.82,
+      "start": 5.82,
+      "ch": "也",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "這",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.989
+    },
+    {
+     "text": "種",
+     "start": 0.16,
+     "end": 0.28,
+     "score": 0.966
+    },
+    {
+     "text": "原",
+     "start": 0.3,
+     "end": 0.42,
+     "score": 0.957
+    },
+    {
+     "text": "料",
+     "start": 0.44,
+     "end": 0.64,
+     "score": 0.979
+    },
+    {
+     "text": "叫",
+     "start": 0.7,
+     "end": 0.88,
+     "score": 0.981
+    },
+    {
+     "text": "前",
+     "start": 0.94,
+     "end": 1.14,
+     "score": 0.994
+    },
+    {
+     "text": "驅",
+     "start": 1.18,
+     "end": 1.3,
+     "score": 0.993
+    },
+    {
+     "text": "物",
+     "start": 1.4,
+     "end": 1.48,
+     "score": 0.99
+    },
+    {
+     "text": "像",
+     "start": 1.88,
+     "end": 2.06,
+     "score": 0.995
+    },
+    {
+     "text": "做",
+     "start": 2.1,
+     "end": 2.2,
+     "score": 0.999
+    },
+    {
+     "text": "菜",
+     "start": 2.28,
+     "end": 2.42,
+     "score": 0.996
+    },
+    {
+     "text": "前",
+     "start": 2.46,
+     "end": 2.64,
+     "score": 0.995
+    },
+    {
+     "text": "備",
+     "start": 2.72,
+     "end": 2.84,
+     "score": 0.999
+    },
+    {
+     "text": "好",
+     "start": 2.9,
+     "end": 3.02,
+     "score": 0.997
+    },
+    {
+     "text": "的",
+     "start": 3.04,
+     "end": 3.1,
+     "score": 0.999
+    },
+    {
+     "text": "醬",
+     "start": 3.14,
+     "end": 3.34,
+     "score": 0.998
+    },
+    {
+     "text": "料",
+     "start": 3.36,
+     "end": 3.54,
+     "score": 0.985
+    },
+    {
+     "text": "裝",
+     "start": 3.82,
+     "end": 4,
+     "score": 0.922
+    },
+    {
+     "text": "在",
+     "start": 4.02,
+     "end": 4.14,
+     "score": 0.999
+    },
+    {
+     "text": "氣",
+     "start": 4.2,
+     "end": 4.32,
+     "score": 0.858
+    },
+    {
+     "text": "櫃",
+     "start": 4.42,
+     "end": 4.58,
+     "score": 0.997
+    },
+    {
+     "text": "裡",
+     "start": 4.62,
+     "end": 4.7,
+     "score": 0.994
+    },
+    {
+     "text": "有",
+     "start": 5.04,
+     "end": 5.16,
+     "score": 1
+    },
+    {
+     "text": "液",
+     "start": 5.24,
+     "end": 5.32,
+     "score": 0.051
+    },
+    {
+     "text": "體",
+     "start": 5.44,
+     "end": 5.56,
+     "score": 0.993
+    },
+    {
+     "text": "也",
+     "start": 5.82,
+     "end": 5.9,
+     "score": 0.999
+    },
+    {
+     "text": "有",
+     "start": 5.96,
+     "end": 6.08,
+     "score": 0.999
+    },
+    {
+     "text": "固",
+     "start": 6.12,
+     "end": 6.2,
+     "score": 0.997
+    },
+    {
+     "text": "體",
+     "start": 6.32,
+     "end": 6.44,
+     "score": 0.995
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.16,
+    0.3,
+    0.44,
+    0.7,
+    0.94,
+    1.18,
+    1.4,
+    1.88,
+    2.1,
+    2.28,
+    2.46,
+    2.72,
+    2.9,
+    3.04,
+    3.14,
+    3.36,
+    3.82,
+    4.02,
+    4.2,
+    4.42,
+    4.62,
+    5.04,
+    5.24,
+    5.44,
+    5.82,
+    5.96,
+    6.12,
+    6.32
+   ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 382,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 378,
-   "durationFrames": 342,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 382,
-   "voiceEndFrame": 477,
-   "stillFrame": 719,
+   "audio": "audio/tech-precursor/03-s3.wav",
+   "audioFrame": 421,
+   "audioSec": 3.45,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 412,
+   "durationFrames": 354,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 422,
+   "voiceEndFrame": 524,
+   "stillFrame": 756,
    "subtitleWindow": [
-    379,
-    721
+    419,
+    763
    ],
    "sourceWindow": [
-    378,
-    720
+    417,
+    761
    ],
+   "pauseAfter": 8.1,
    "lines": [
     {
      "text": "先拆開起泡器",
-     "start": 379,
+     "start": 419,
      "chars": [
-      380,
-      386,
-      392,
-      398,
-      404,
-      410
+      422,
+      427,
+      432,
+      438,
+      444,
+      449
      ]
     },
     {
      "text": "裡面有液體",
-     "start": 414,
+     "start": 461,
      "chars": [
-      416,
-      422,
-      428,
-      433,
-      439
+      463,
+      468,
+      474,
+      480,
+      485
      ]
     },
     {
      "text": "和一根插管",
-     "start": 443,
+     "start": 494,
      "chars": [
-      445,
-      451,
-      457,
-      463,
-      469
+      496,
+      501,
+      504,
+      510,
+      517
      ]
     }
    ],
    "keywords": [
     {
      "text": "起泡器",
-     "start": 398
+     "start": 438
     },
     {
      "text": "液體",
-     "start": 433
+     "start": 480
     },
     {
      "text": "插管",
-     "start": 463
+     "start": 510
     }
    ],
    "cues": [
     {
      "id": "open",
      "text": "拆開",
-     "frame": 388
+     "frame": 429,
+     "early": 0
     },
     {
      "id": "bub",
      "text": "起泡器",
-     "frame": 400
+     "frame": 440,
+     "early": 0
     },
     {
      "id": "liq",
      "text": "液體",
-     "frame": 435
+     "frame": 481,
+     "early": 0
     },
     {
      "id": "dip",
      "text": "插管",
-     "frame": 465
+     "frame": 511,
+     "early": 0
     }
    ],
+   "hash": "f7a29a6c2dd7-f9d6241105",
    "sub": "先拆開起泡器\n裡面有液體\n和一根插管",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.87,
+    "minScore": 0.067,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.47,
+      "start": 1.46,
+      "ch": "裡",
+      "errMs": -10
+     },
+     {
+      "onset": 2.52,
+      "start": 2.54,
+      "ch": "和",
+      "errMs": 20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "先",
+     "start": 0.08,
+     "end": 0.22,
+     "score": 0.998
+    },
+    {
+     "text": "拆",
+     "start": 0.26,
+     "end": 0.4,
+     "score": 0.748
+    },
+    {
+     "text": "開",
+     "start": 0.42,
+     "end": 0.56,
+     "score": 0.999
+    },
+    {
+     "text": "起",
+     "start": 0.62,
+     "end": 0.74,
+     "score": 0.997
+    },
+    {
+     "text": "泡",
+     "start": 0.8,
+     "end": 0.94,
+     "score": 0.995
+    },
+    {
+     "text": "器",
+     "start": 0.98,
+     "end": 1.12,
+     "score": 0.997
+    },
+    {
+     "text": "裡",
+     "start": 1.46,
+     "end": 1.56,
+     "score": 0.985
+    },
+    {
+     "text": "面",
+     "start": 1.62,
+     "end": 1.76,
+     "score": 1
+    },
+    {
+     "text": "有",
+     "start": 1.8,
+     "end": 1.94,
+     "score": 1
+    },
+    {
+     "text": "液",
+     "start": 2,
+     "end": 2.08,
+     "score": 0.164
+    },
+    {
+     "text": "體",
+     "start": 2.18,
+     "end": 2.32,
+     "score": 0.993
+    },
+    {
+     "text": "和",
+     "start": 2.54,
+     "end": 2.64,
+     "score": 1
+    },
+    {
+     "text": "一",
+     "start": 2.7,
+     "end": 2.76,
+     "score": 0.067
+    },
+    {
+     "text": "根",
+     "start": 2.82,
+     "end": 2.94,
+     "score": 0.998
+    },
+    {
+     "text": "插",
+     "start": 3,
+     "end": 3.14,
+     "score": 0.987
+    },
+    {
+     "text": "管",
+     "start": 3.24,
+     "end": 3.4,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.26,
+    0.42,
+    0.62,
+    0.8,
+    0.98,
+    1.46,
+    1.62,
+    1.8,
+    2,
+    2.18,
+    2.54,
+    2.7,
+    2.82,
+    3,
+    3.24
+   ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 724,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 720,
-   "durationFrames": 366,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 724,
-   "voiceEndFrame": 801,
-   "stillFrame": 1085,
+   "audio": "audio/tech-precursor/04-s4.wav",
+   "audioFrame": 765,
+   "audioSec": 3.18,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 756,
+   "durationFrames": 388,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 766,
+   "voiceEndFrame": 860,
+   "stillFrame": 1134,
    "subtitleWindow": [
-    721,
-    1087
+    763,
+    1141
    ],
    "sourceWindow": [
-    720,
-    1086
+    761,
+    1139
    ],
+   "pauseAfter": 9.5,
    "lines": [
     {
      "text": "旁邊還有載氣",
-     "start": 721,
+     "start": 763,
      "chars": [
-      722,
-      728,
-      734,
-      740,
-      746,
-      752
+      764,
+      770,
+      777,
+      781,
+      786,
+      794
      ]
     },
     {
      "text": "加熱的管子",
-     "start": 756,
+     "start": 806,
      "chars": [
-      758,
-      763,
-      769,
-      775,
-      781
+      809,
+      816,
+      820,
+      824,
+      831
      ]
     },
     {
      "text": "和閥",
-     "start": 785,
+     "start": 841,
      "chars": [
-      787,
-      793
+      843,
+      849
      ]
     }
    ],
    "keywords": [
     {
      "text": "載氣",
-     "start": 746
+     "start": 786
     },
     {
      "text": "加熱",
-     "start": 758
+     "start": 809
     },
     {
      "text": "閥",
-     "start": 793
+     "start": 849
     }
    ],
    "cues": [
     {
      "id": "gas",
      "text": "載氣",
-     "frame": 748
+     "frame": 788,
+     "early": 0
     },
     {
      "id": "pipe",
      "text": "管子",
-     "frame": 777
+     "frame": 825,
+     "early": 0
     },
     {
      "id": "valve",
      "text": "閥",
-     "frame": 795
+     "frame": 850,
+     "early": 0
     }
    ],
+   "hash": "511afb5fbdee-f9d6241105",
    "sub": "旁邊還有載氣\n加熱的管子\n和閥",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.99,
+    "minScore": 0.915,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.51,
+      "start": 1.5,
+      "ch": "加",
+      "errMs": -10
+     },
+     {
+      "onset": 2.62,
+      "start": 2.64,
+      "ch": "和",
+      "errMs": 20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "旁",
+     "start": 0.02,
+     "end": 0.2,
+     "score": 0.975
+    },
+    {
+     "text": "邊",
+     "start": 0.22,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "還",
+     "start": 0.44,
+     "end": 0.56,
+     "score": 0.915
+    },
+    {
+     "text": "有",
+     "start": 0.58,
+     "end": 0.7,
+     "score": 1
+    },
+    {
+     "text": "載",
+     "start": 0.76,
+     "end": 0.94,
+     "score": 0.999
+    },
+    {
+     "text": "氣",
+     "start": 1.02,
+     "end": 1.16,
+     "score": 0.99
+    },
+    {
+     "text": "加",
+     "start": 1.5,
+     "end": 1.62,
+     "score": 0.999
+    },
+    {
+     "text": "熱",
+     "start": 1.74,
+     "end": 1.82,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 1.9,
+     "end": 1.96,
+     "score": 0.998
+    },
+    {
+     "text": "管",
+     "start": 2,
+     "end": 2.18,
+     "score": 0.999
+    },
+    {
+     "text": "子",
+     "start": 2.26,
+     "end": 2.36,
+     "score": 0.997
+    },
+    {
+     "text": "和",
+     "start": 2.64,
+     "end": 2.72,
+     "score": 0.999
+    },
+    {
+     "text": "閥",
+     "start": 2.84,
+     "end": 2.94,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.22,
+    0.44,
+    0.58,
+    0.76,
+    1.02,
+    1.5,
+    1.74,
+    1.9,
+    2,
+    2.26,
+    2.64,
+    2.84
+   ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 1090,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1086,
-   "durationFrames": 180,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1090,
-   "voiceEndFrame": 1206,
-   "stillFrame": 1265,
+   "audio": "audio/tech-precursor/05-s5.wav",
+   "audioFrame": 1143,
+   "audioSec": 4.27,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1134,
+   "durationFrames": 196,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1144,
+   "voiceEndFrame": 1270,
+   "stillFrame": 1320,
    "subtitleWindow": [
-    1087,
-    1267
+    1141,
+    1327
    ],
    "sourceWindow": [
-    1086,
-    1266
+    1139,
+    1325
    ],
+   "pauseAfter": 2,
    "lines": [
     {
      "text": "載氣吹進液體",
-     "start": 1087,
+     "start": 1141,
      "chars": [
-      1088,
-      1094,
-      1100,
-      1105,
-      1111,
-      1117
+      1143,
+      1149,
+      1157,
+      1162,
+      1167,
+      1173
      ]
     },
     {
      "text": "像在飲料裡",
-     "start": 1121,
+     "start": 1186,
      "chars": [
-      1123,
-      1129,
-      1134,
-      1140,
-      1146
+      1188,
+      1193,
+      1198,
+      1203,
+      1209
      ]
     },
     {
      "text": "吹泡泡",
-     "start": 1150,
+     "start": 1211,
      "chars": [
-      1152,
-      1158,
-      1163
+      1214,
+      1220,
+      1226
      ]
     },
     {
      "text": "把香味帶出來",
-     "start": 1167,
+     "start": 1235,
      "chars": [
-      1169,
-      1175,
-      1181,
-      1187,
-      1192,
-      1198
+      1238,
+      1243,
+      1250,
+      1255,
+      1260,
+      1264
      ]
     }
    ],
    "keywords": [
     {
      "text": "載氣",
-     "start": 1088
+     "start": 1143
     },
     {
      "text": "泡泡",
-     "start": 1158
+     "start": 1220
     },
     {
      "text": "香味",
-     "start": 1175
+     "start": 1243
     }
    ],
    "cues": [
     {
      "id": "blow",
      "text": "吹進液體",
-     "frame": 1102
+     "frame": 1158,
+     "early": 0
     },
     {
      "id": "bubble",
      "text": "吹泡泡",
-     "frame": 1154
+     "frame": 1215,
+     "early": 0
     },
     {
      "id": "scent",
      "text": "香味",
-     "frame": 1177
+     "frame": 1244,
+     "early": 0
     }
    ],
+   "hash": "42e4b0533c3e-f9d6241105",
    "sub": "載氣吹進液體\n像在飲料裡\n吹泡泡\n把香味帶出來",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.948,
+    "minScore": 0.164,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.52,
+      "start": 1.54,
+      "ch": "像",
+      "errMs": 20
+     },
+     {
+      "onset": 3.22,
+      "start": 3.2,
+      "ch": "把",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "載",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.999
+    },
+    {
+     "text": "氣",
+     "start": 0.26,
+     "end": 0.38,
+     "score": 0.976
+    },
+    {
+     "text": "吹",
+     "start": 0.5,
+     "end": 0.66,
+     "score": 0.952
+    },
+    {
+     "text": "進",
+     "start": 0.68,
+     "end": 0.8,
+     "score": 0.998
+    },
+    {
+     "text": "液",
+     "start": 0.86,
+     "end": 0.94,
+     "score": 0.164
+    },
+    {
+     "text": "體",
+     "start": 1.04,
+     "end": 1.16,
+     "score": 0.995
+    },
+    {
+     "text": "像",
+     "start": 1.54,
+     "end": 1.7,
+     "score": 0.994
+    },
+    {
+     "text": "在",
+     "start": 1.72,
+     "end": 1.84,
+     "score": 0.993
+    },
+    {
+     "text": "飲",
+     "start": 1.88,
+     "end": 2,
+     "score": 0.997
+    },
+    {
+     "text": "料",
+     "start": 2.06,
+     "end": 2.22,
+     "score": 0.988
+    },
+    {
+     "text": "裡",
+     "start": 2.26,
+     "end": 2.32,
+     "score": 0.997
+    },
+    {
+     "text": "吹",
+     "start": 2.4,
+     "end": 2.56,
+     "score": 0.975
+    },
+    {
+     "text": "泡",
+     "start": 2.6,
+     "end": 2.78,
+     "score": 0.994
+    },
+    {
+     "text": "泡",
+     "start": 2.8,
+     "end": 2.98,
+     "score": 0.994
+    },
+    {
+     "text": "把",
+     "start": 3.2,
+     "end": 3.28,
+     "score": 0.998
+    },
+    {
+     "text": "香",
+     "start": 3.38,
+     "end": 3.58,
+     "score": 0.981
+    },
+    {
+     "text": "味",
+     "start": 3.6,
+     "end": 3.72,
+     "score": 0.999
+    },
+    {
+     "text": "帶",
+     "start": 3.78,
+     "end": 3.9,
+     "score": 0.998
+    },
+    {
+     "text": "出",
+     "start": 3.94,
+     "end": 4.04,
+     "score": 0.963
+    },
+    {
+     "text": "來",
+     "start": 4.08,
+     "end": 4.22,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.26,
+    0.5,
+    0.68,
+    0.86,
+    1.04,
+    1.54,
+    1.72,
+    1.88,
+    2.06,
+    2.26,
+    2.4,
+    2.6,
+    2.8,
+    3.2,
+    3.38,
+    3.6,
+    3.78,
+    3.94,
+    4.08
+   ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 1270,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1266,
-   "durationFrames": 174,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1270,
-   "voiceEndFrame": 1392,
-   "stillFrame": 1439,
+   "audio": "audio/tech-precursor/06-s6.wav",
+   "audioFrame": 1329,
+   "audioSec": 4.63,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1320,
+   "durationFrames": 194,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1330,
+   "voiceEndFrame": 1467,
+   "stillFrame": 1504,
    "subtitleWindow": [
-    1267,
-    1441
+    1327,
+    1511
    ],
    "sourceWindow": [
-    1266,
-    1440
+    1325,
+    1509
    ],
+   "pauseAfter": 1.6,
    "lines": [
     {
      "text": "管子要比瓶子",
-     "start": 1267,
+     "start": 1327,
      "chars": [
-      1268,
-      1274,
-      1280,
-      1285,
-      1291,
-      1297
+      1328,
+      1335,
+      1340,
+      1344,
+      1348,
+      1356
      ]
     },
     {
      "text": "再熱些",
-     "start": 1301,
+     "start": 1359,
      "chars": [
-      1303,
-      1309,
-      1314
+      1361,
+      1367,
+      1374
      ]
     },
     {
      "text": "蒸氣遇冷",
-     "start": 1318,
+     "start": 1388,
      "chars": [
-      1320,
-      1326,
-      1332,
-      1338
+      1390,
+      1396,
+      1403,
+      1408
      ]
     },
     {
      "text": "就像冷杯子",
-     "start": 1342,
+     "start": 1417,
      "chars": [
-      1344,
-      1349,
-      1355,
-      1361,
-      1367
+      1419,
+      1424,
+      1429,
+      1435,
+      1441
      ]
     },
     {
      "text": "凝水珠",
-     "start": 1371,
+     "start": 1444,
      "chars": [
-      1373,
-      1378,
-      1384
+      1446,
+      1454,
+      1459
      ]
     }
    ],
    "keywords": [
     {
      "text": "再熱些",
-     "start": 1303
+     "start": 1361
     },
     {
      "text": "遇冷",
-     "start": 1332
+     "start": 1403
     },
     {
      "text": "凝水珠",
-     "start": 1373
+     "start": 1446
     }
    ],
    "cues": [
     {
      "id": "hot",
      "text": "再熱些",
-     "frame": 1305
+     "frame": 1363,
+     "early": 0
     },
     {
      "id": "cold",
      "text": "遇冷",
-     "frame": 1334
+     "frame": 1404,
+     "early": 0
     },
     {
      "id": "drop",
      "text": "凝水珠",
-     "frame": 1375
+     "frame": 1448,
+     "early": 0
     }
    ],
+   "hash": "30e914a5c9db-f9d6241105",
    "sub": "管子要比瓶子\n再熱些\n蒸氣遇冷\n就像冷杯子\n凝水珠",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.957,
+    "minScore": 0.569,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 2.09,
+      "start": 2.08,
+      "ch": "蒸",
+      "errMs": -10
+     },
+     {
+      "onset": 3.07,
+      "start": 3.06,
+      "ch": "就",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "管",
+     "start": 0.02,
+     "end": 0.2,
+     "score": 0.942
+    },
+    {
+     "text": "子",
+     "start": 0.26,
+     "end": 0.34,
+     "score": 0.999
+    },
+    {
+     "text": "要",
+     "start": 0.4,
+     "end": 0.54,
+     "score": 0.999
+    },
+    {
+     "text": "比",
+     "start": 0.56,
+     "end": 0.62,
+     "score": 0.999
+    },
+    {
+     "text": "瓶",
+     "start": 0.7,
+     "end": 0.9,
+     "score": 0.946
+    },
+    {
+     "text": "子",
+     "start": 0.94,
+     "end": 1.02,
+     "score": 0.999
+    },
+    {
+     "text": "再",
+     "start": 1.12,
+     "end": 1.28,
+     "score": 1
+    },
+    {
+     "text": "熱",
+     "start": 1.32,
+     "end": 1.42,
+     "score": 0.998
+    },
+    {
+     "text": "些",
+     "start": 1.56,
+     "end": 1.68,
+     "score": 0.996
+    },
+    {
+     "text": "蒸",
+     "start": 2.08,
+     "end": 2.24,
+     "score": 0.992
+    },
+    {
+     "text": "氣",
+     "start": 2.28,
+     "end": 2.4,
+     "score": 0.998
+    },
+    {
+     "text": "遇",
+     "start": 2.5,
+     "end": 2.58,
+     "score": 0.96
+    },
+    {
+     "text": "冷",
+     "start": 2.68,
+     "end": 2.86,
+     "score": 0.569
+    },
+    {
+     "text": "就",
+     "start": 3.06,
+     "end": 3.16,
+     "score": 0.999
+    },
+    {
+     "text": "像",
+     "start": 3.2,
+     "end": 3.36,
+     "score": 0.993
+    },
+    {
+     "text": "冷",
+     "start": 3.38,
+     "end": 3.54,
+     "score": 0.775
+    },
+    {
+     "text": "杯",
+     "start": 3.58,
+     "end": 3.72,
+     "score": 0.987
+    },
+    {
+     "text": "子",
+     "start": 3.78,
+     "end": 3.88,
+     "score": 0.999
+    },
+    {
+     "text": "凝",
+     "start": 3.96,
+     "end": 4.14,
+     "score": 0.962
+    },
+    {
+     "text": "水",
+     "start": 4.2,
+     "end": 4.34,
+     "score": 0.995
+    },
+    {
+     "text": "珠",
+     "start": 4.38,
+     "end": 4.48,
+     "score": 0.997
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.26,
+    0.4,
+    0.56,
+    0.7,
+    0.94,
+    1.12,
+    1.32,
+    1.56,
+    2.08,
+    2.28,
+    2.5,
+    2.68,
+    3.06,
+    3.2,
+    3.38,
+    3.58,
+    3.78,
+    3.96,
+    4.2,
+    4.38
+   ]
   },
   {
    "id": "s7",
-   "audio": null,
-   "audioFrame": 1444,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1440,
-   "durationFrames": 150,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1444,
-   "voiceEndFrame": 1539,
-   "stillFrame": 1589,
+   "audio": "audio/tech-precursor/07-s7.wav",
+   "audioFrame": 1513,
+   "audioSec": 3.41,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1504,
+   "durationFrames": 161,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1514,
+   "voiceEndFrame": 1615,
+   "stillFrame": 1655,
    "subtitleWindow": [
-    1441,
-    1591
+    1511,
+    1662
    ],
    "sourceWindow": [
-    1440,
-    1590
+    1509,
+    1660
    ],
+   "pauseAfter": 1.7,
    "lines": [
     {
      "text": "閥一開一關",
-     "start": 1441,
+     "start": 1511,
      "chars": [
-      1442,
-      1448,
-      1454,
-      1460,
-      1466
+      1514,
+      1522,
+      1527,
+      1532,
+      1536
      ]
     },
     {
      "text": "每次只送",
-     "start": 1470,
+     "start": 1549,
      "chars": [
-      1472,
-      1478,
-      1484,
-      1490
+      1551,
+      1557,
+      1563,
+      1568
      ]
     },
     {
      "text": "一小團蒸氣進去",
-     "start": 1493,
+     "start": 1571,
      "chars": [
-      1495,
-      1501,
-      1507,
-      1513,
-      1519,
-      1525,
-      1531
+      1573,
+      1578,
+      1584,
+      1591,
+      1597,
+      1603,
+      1608
      ]
     }
    ],
    "keywords": [
     {
      "text": "一開一關",
-     "start": 1448
+     "start": 1522
     },
     {
      "text": "一小團",
-     "start": 1495
+     "start": 1573
     }
    ],
    "cues": [
     {
      "id": "open",
      "text": "一開",
-     "frame": 1450
+     "frame": 1523,
+     "early": 0
     },
     {
      "id": "close",
      "text": "一關",
-     "frame": 1462
+     "frame": 1533,
+     "early": 0
     },
     {
      "id": "puff",
      "text": "一小團",
-     "frame": 1497
+     "frame": 1575,
+     "early": 0
     }
    ],
+   "hash": "e4a262240a75-f9d6241105",
    "sub": "閥一開一關\n每次只送\n一小團蒸氣進去",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.836,
+    "minScore": 0.137,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.33,
+      "start": 1.32,
+      "ch": "每",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "閥",
+     "start": 0.08,
+     "end": 0.18,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 0.34,
+     "end": 0.42,
+     "score": 0.308
+    },
+    {
+     "text": "開",
+     "start": 0.5,
+     "end": 0.66,
+     "score": 0.992
+    },
+    {
+     "text": "一",
+     "start": 0.68,
+     "end": 0.72,
+     "score": 0.137
+    },
+    {
+     "text": "關",
+     "start": 0.8,
+     "end": 0.98,
+     "score": 0.962
+    },
+    {
+     "text": "每",
+     "start": 1.32,
+     "end": 1.44,
+     "score": 0.992
+    },
+    {
+     "text": "次",
+     "start": 1.5,
+     "end": 1.62,
+     "score": 0.999
+    },
+    {
+     "text": "只",
+     "start": 1.72,
+     "end": 1.8,
+     "score": 0.919
+    },
+    {
+     "text": "送",
+     "start": 1.88,
+     "end": 2.04,
+     "score": 0.982
+    },
+    {
+     "text": "一",
+     "start": 2.06,
+     "end": 2.12,
+     "score": 0.159
+    },
+    {
+     "text": "小",
+     "start": 2.22,
+     "end": 2.38,
+     "score": 0.998
+    },
+    {
+     "text": "團",
+     "start": 2.42,
+     "end": 2.6,
+     "score": 0.998
+    },
+    {
+     "text": "蒸",
+     "start": 2.66,
+     "end": 2.8,
+     "score": 0.956
+    },
+    {
+     "text": "氣",
+     "start": 2.84,
+     "end": 2.94,
+     "score": 0.985
+    },
+    {
+     "text": "進",
+     "start": 3.04,
+     "end": 3.14,
+     "score": 0.999
+    },
+    {
+     "text": "去",
+     "start": 3.2,
+     "end": 3.32,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.34,
+    0.5,
+    0.68,
+    0.8,
+    1.32,
+    1.5,
+    1.72,
+    1.88,
+    2.06,
+    2.22,
+    2.42,
+    2.66,
+    2.84,
+    3.04,
+    3.2
+   ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1594,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1590,
-   "durationFrames": 252,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1594,
-   "voiceEndFrame": 1758,
-   "stillFrame": 1841,
+   "audio": "audio/tech-precursor/08-s8.wav",
+   "audioFrame": 1664,
+   "audioSec": 6.36,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1655,
+   "durationFrames": 282,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1665,
+   "voiceEndFrame": 1854,
+   "stillFrame": 1927,
    "subtitleWindow": [
-    1591,
-    1843
+    1662,
+    1934
    ],
    "sourceWindow": [
-    1590,
-    1842
+    1660,
+    1932
    ],
+   "pauseAfter": 2.8,
    "lines": [
     {
      "text": "到了表面",
-     "start": 1591,
+     "start": 1662,
      "chars": [
-      1592,
-      1598,
-      1604,
-      1610
+      1663,
+      1668,
+      1671,
+      1676
      ]
     },
     {
      "text": "像刷油漆",
-     "start": 1613,
+     "start": 1687,
      "chars": [
-      1615,
-      1621,
-      1627,
-      1633
+      1689,
+      1696,
+      1702,
+      1708
      ]
     },
     {
      "text": "一次刷一層",
-     "start": 1637,
+     "start": 1720,
      "chars": [
-      1639,
-      1645,
-      1651,
-      1656,
-      1662
+      1723,
+      1728,
+      1736,
+      1742,
+      1746
      ]
     },
     {
      "text": "刷滿就停",
-     "start": 1666,
+     "start": 1760,
      "chars": [
-      1668,
-      1674,
-      1680,
-      1686
+      1762,
+      1768,
+      1774,
+      1778
      ]
     },
     {
      "text": "一圈大約",
-     "start": 1690,
+     "start": 1794,
      "chars": [
-      1692,
-      1697,
-      1703,
-      1709
+      1796,
+      1800,
+      1808,
+      1814
      ]
     },
     {
      "text": "一個原子的厚度",
-     "start": 1713,
+     "start": 1818,
      "chars": [
-      1715,
-      1721,
-      1727,
-      1733,
-      1738,
-      1744,
-      1750
+      1820,
+      1824,
+      1828,
+      1835,
+      1839,
+      1842,
+      1847
      ]
     }
    ],
    "keywords": [
     {
      "text": "刷油漆",
-     "start": 1621
+     "start": 1696
     },
     {
      "text": "刷滿就停",
-     "start": 1668
+     "start": 1762
     },
     {
      "text": "原子",
-     "start": 1727
+     "start": 1828
     }
    ],
    "cues": [
     {
      "id": "paint",
      "text": "刷油漆",
-     "frame": 1623
+     "frame": 1698,
+     "early": 0
     },
     {
      "id": "one",
      "text": "一次刷一層",
-     "frame": 1641
+     "frame": 1724,
+     "early": 0
     },
     {
      "id": "full",
      "text": "刷滿就停",
-     "frame": 1670
+     "frame": 1764,
+     "early": 0
     },
     {
      "id": "atom",
      "text": "一個原子",
-     "frame": 1717
+     "frame": 1821,
+     "early": 0
     }
    ],
+   "hash": "e79675185d98-f9d6241105",
    "sub": "到了表面\n像刷油漆\n一次刷一層\n刷滿就停\n一圈大約\n一個原子的厚度",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.887,
+    "minScore": 0.001,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 50,
+    "onsetCheck": [
+     {
+      "onset": 0.85,
+      "start": 0.88,
+      "ch": "像",
+      "errMs": 30
+     },
+     {
+      "onset": 2.02,
+      "start": 2,
+      "ch": "一",
+      "errMs": -20
+     },
+     {
+      "onset": 3.27,
+      "start": 3.32,
+      "ch": "刷",
+      "errMs": 50
+     },
+     {
+      "onset": 4.47,
+      "start": 4.44,
+      "ch": "一",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "到",
+     "start": 0.02,
+     "end": 0.16,
+     "score": 0.998
+    },
+    {
+     "text": "了",
+     "start": 0.18,
+     "end": 0.24,
+     "score": 0.996
+    },
+    {
+     "text": "表",
+     "start": 0.28,
+     "end": 0.44,
+     "score": 0.938
+    },
+    {
+     "text": "面",
+     "start": 0.46,
+     "end": 0.64,
+     "score": 0.971
+    },
+    {
+     "text": "像",
+     "start": 0.88,
+     "end": 1.06,
+     "score": 0.897
+    },
+    {
+     "text": "刷",
+     "start": 1.12,
+     "end": 1.22,
+     "score": 0.992
+    },
+    {
+     "text": "油",
+     "start": 1.32,
+     "end": 1.44,
+     "score": 0.998
+    },
+    {
+     "text": "漆",
+     "start": 1.5,
+     "end": 1.64,
+     "score": 0.995
+    },
+    {
+     "text": "一",
+     "start": 2,
+     "end": 2.08,
+     "score": 0.779
+    },
+    {
+     "text": "次",
+     "start": 2.18,
+     "end": 2.3,
+     "score": 0.992
+    },
+    {
+     "text": "刷",
+     "start": 2.44,
+     "end": 2.54,
+     "score": 0.994
+    },
+    {
+     "text": "一",
+     "start": 2.64,
+     "end": 2.7,
+     "score": 0.326
+    },
+    {
+     "text": "層",
+     "start": 2.78,
+     "end": 3,
+     "score": 0.998
+    },
+    {
+     "text": "刷",
+     "start": 3.32,
+     "end": 3.44,
+     "score": 0.919
+    },
+    {
+     "text": "滿",
+     "start": 3.52,
+     "end": 3.66,
+     "score": 0.996
+    },
+    {
+     "text": "就",
+     "start": 3.7,
+     "end": 3.8,
+     "score": 0.998
+    },
+    {
+     "text": "停",
+     "start": 3.84,
+     "end": 4.08,
+     "score": 0.97
+    },
+    {
+     "text": "一",
+     "start": 4.44,
+     "end": 4.52,
+     "score": 0.161
+    },
+    {
+     "text": "圈",
+     "start": 4.58,
+     "end": 4.78,
+     "score": 0.997
+    },
+    {
+     "text": "大",
+     "start": 4.84,
+     "end": 4.92,
+     "score": 0.998
+    },
+    {
+     "text": "約",
+     "start": 5.04,
+     "end": 5.12,
+     "score": 0.979
+    },
+    {
+     "text": "一",
+     "start": 5.24,
+     "end": 5.3,
+     "score": 0.001
+    },
+    {
+     "text": "個",
+     "start": 5.38,
+     "end": 5.46,
+     "score": 0.999
+    },
+    {
+     "text": "原",
+     "start": 5.52,
+     "end": 5.68,
+     "score": 0.991
+    },
+    {
+     "text": "子",
+     "start": 5.74,
+     "end": 5.84,
+     "score": 1
+    },
+    {
+     "text": "的",
+     "start": 5.88,
+     "end": 5.94,
+     "score": 0.999
+    },
+    {
+     "text": "厚",
+     "start": 5.98,
+     "end": 6.12,
+     "score": 1
+    },
+    {
+     "text": "度",
+     "start": 6.16,
+     "end": 6.26,
+     "score": 0.949
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.18,
+    0.28,
+    0.46,
+    0.88,
+    1.12,
+    1.32,
+    1.5,
+    2,
+    2.18,
+    2.44,
+    2.64,
+    2.78,
+    3.32,
+    3.52,
+    3.7,
+    3.84,
+    4.44,
+    4.58,
+    4.84,
+    5.04,
+    5.24,
+    5.38,
+    5.52,
+    5.74,
+    5.88,
+    5.98,
+    6.16
+   ]
   },
   {
    "id": "s9",
-   "audio": null,
-   "audioFrame": 1846,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1842,
-   "durationFrames": 156,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1846,
-   "voiceEndFrame": 1959,
-   "stillFrame": 1997,
+   "audio": "audio/tech-precursor/09-s9.wav",
+   "audioFrame": 1936,
+   "audioSec": 5.13,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1927,
+   "durationFrames": 201,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1937,
+   "voiceEndFrame": 2089,
+   "stillFrame": 2118,
    "subtitleWindow": [
-    1843,
-    1999
+    1934,
+    2125
    ],
    "sourceWindow": [
-    1842,
-    1998
+    1932,
+    2123
    ],
+   "pauseAfter": 1.3,
    "lines": [
     {
      "text": "原料要非常乾淨",
-     "start": 1843,
+     "start": 1934,
      "chars": [
-      1844,
-      1849,
-      1853,
-      1858,
-      1862,
-      1867,
-      1871
+      1936,
+      1941,
+      1947,
+      1952,
+      1958,
+      1964,
+      1969
      ]
     },
     {
      "text": "混進一顆",
-     "start": 1874,
+     "start": 1982,
      "chars": [
-      1876,
-      1880,
-      1885,
-      1889
+      1984,
+      1989,
+      1995,
+      1999
      ]
     },
     {
      "text": "雜質金屬原子",
-     "start": 1892,
+     "start": 2003,
      "chars": [
-      1894,
-      1898,
-      1903,
-      1907,
-      1912,
-      1916
+      2005,
+      2012,
+      2016,
+      2022,
+      2027,
+      2034
      ]
     },
     {
      "text": "晶片就可能",
-     "start": 1919,
+     "start": 2043,
      "chars": [
-      1921,
-      1925,
-      1930,
-      1934,
-      1939
+      2046,
+      2050,
+      2056,
+      2061,
+      2067
      ]
     },
     {
      "text": "出問題",
-     "start": 1941,
+     "start": 2069,
      "chars": [
-      1943,
-      1948,
-      1952
+      2071,
+      2076,
+      2082
      ]
     }
    ],
    "keywords": [
     {
      "text": "乾淨",
-     "start": 1867
+     "start": 1964
     },
     {
      "text": "雜質",
-     "start": 1894
+     "start": 2005
     },
     {
      "text": "出問題",
-     "start": 1943
+     "start": 2071
     }
    ],
    "cues": [
     {
      "id": "clean",
      "text": "非常乾淨",
-     "frame": 1860
+     "frame": 1954,
+     "early": 0
     },
     {
      "id": "atom",
      "text": "雜質",
-     "frame": 1896
+     "frame": 2006,
+     "early": 0
     },
     {
      "id": "bad",
      "text": "出問題",
-     "frame": 1945
+     "frame": 2073,
+     "early": 0
     }
    ],
+   "hash": "c0de70b513ef-f9d6241105",
    "sub": "原料要非常乾淨\n混進一顆\n雜質金屬原子\n晶片就可能\n出問題",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.915,
+    "minScore": 0.08,
+    "onsetMedianMs": 25,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.68,
+      "start": 1.64,
+      "ch": "混",
+      "errMs": -40
+     },
+     {
+      "onset": 3.71,
+      "start": 3.7,
+      "ch": "晶",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "原",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.998
+    },
+    {
+     "text": "料",
+     "start": 0.22,
+     "end": 0.38,
+     "score": 0.993
+    },
+    {
+     "text": "要",
+     "start": 0.42,
+     "end": 0.56,
+     "score": 0.998
+    },
+    {
+     "text": "非",
+     "start": 0.6,
+     "end": 0.74,
+     "score": 0.999
+    },
+    {
+     "text": "常",
+     "start": 0.78,
+     "end": 0.96,
+     "score": 0.914
+    },
+    {
+     "text": "乾",
+     "start": 0.98,
+     "end": 1.12,
+     "score": 0.5
+    },
+    {
+     "text": "淨",
+     "start": 1.16,
+     "end": 1.32,
+     "score": 0.848
+    },
+    {
+     "text": "混",
+     "start": 1.64,
+     "end": 1.8,
+     "score": 0.921
+    },
+    {
+     "text": "進",
+     "start": 1.82,
+     "end": 1.96,
+     "score": 0.993
+    },
+    {
+     "text": "一",
+     "start": 2,
+     "end": 2.06,
+     "score": 0.08
+    },
+    {
+     "text": "顆",
+     "start": 2.16,
+     "end": 2.26,
+     "score": 0.999
+    },
+    {
+     "text": "雜",
+     "start": 2.34,
+     "end": 2.44,
+     "score": 0.999
+    },
+    {
+     "text": "質",
+     "start": 2.58,
+     "end": 2.66,
+     "score": 0.991
+    },
+    {
+     "text": "金",
+     "start": 2.72,
+     "end": 2.86,
+     "score": 0.999
+    },
+    {
+     "text": "屬",
+     "start": 2.92,
+     "end": 3.02,
+     "score": 0.87
+    },
+    {
+     "text": "原",
+     "start": 3.08,
+     "end": 3.24,
+     "score": 0.994
+    },
+    {
+     "text": "子",
+     "start": 3.3,
+     "end": 3.4,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 3.7,
+     "end": 3.84,
+     "score": 0.939
+    },
+    {
+     "text": "片",
+     "start": 3.86,
+     "end": 4.02,
+     "score": 0.994
+    },
+    {
+     "text": "就",
+     "start": 4.06,
+     "end": 4.18,
+     "score": 0.997
+    },
+    {
+     "text": "可",
+     "start": 4.22,
+     "end": 4.32,
+     "score": 1
+    },
+    {
+     "text": "能",
+     "start": 4.4,
+     "end": 4.54,
+     "score": 0.985
+    },
+    {
+     "text": "出",
+     "start": 4.56,
+     "end": 4.68,
+     "score": 0.874
+    },
+    {
+     "text": "問",
+     "start": 4.72,
+     "end": 4.84,
+     "score": 0.999
+    },
+    {
+     "text": "題",
+     "start": 4.9,
+     "end": 5,
+     "score": 0.999
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.42,
+    0.6,
+    0.78,
+    0.98,
+    1.16,
+    1.64,
+    1.82,
+    2,
+    2.16,
+    2.34,
+    2.58,
+    2.72,
+    2.92,
+    3.08,
+    3.3,
+    3.7,
+    3.86,
+    4.06,
+    4.22,
+    4.4,
+    4.56,
+    4.72,
+    4.9
+   ]
   },
   {
    "id": "s10",
-   "audio": null,
-   "audioFrame": 2002,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1998,
-   "durationFrames": 168,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 2002,
-   "voiceEndFrame": 2130,
-   "stillFrame": 2165,
+   "audio": "audio/tech-precursor/10-s10.wav",
+   "audioFrame": 2127,
+   "audioSec": 5.78,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 2118,
+   "durationFrames": 217,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 2128,
+   "voiceEndFrame": 2300,
+   "stillFrame": 2325,
    "subtitleWindow": [
-    1999,
-    2167
+    2125,
+    2332
    ],
    "sourceWindow": [
-    1998,
-    2166
+    2123,
+    2330
    ],
+   "pauseAfter": 1.2,
    "lines": [
     {
      "text": "全球少數幾家供應",
-     "start": 1999,
+     "start": 2125,
      "chars": [
-      2000,
-      2005,
-      2010,
-      2015,
-      2020,
-      2025,
-      2030,
-      2034
+      2127,
+      2133,
+      2139,
+      2146,
+      2151,
+      2155,
+      2160,
+      2165
      ]
     },
     {
      "text": "德國默克",
-     "start": 2037,
+     "start": 2175,
      "chars": [
-      2039,
-      2044,
-      2049,
-      2054
+      2177,
+      2183,
+      2188,
+      2194
      ]
     },
     {
      "text": "法國液空",
-     "start": 2057,
+     "start": 2206,
      "chars": [
-      2059,
-      2064,
-      2069,
-      2074
+      2208,
+      2214,
+      2219,
+      2225
      ]
     },
     {
      "text": "台灣有興櫃的",
-     "start": 2077,
+     "start": 2239,
      "chars": [
-      2079,
-      2084,
-      2089,
-      2094,
-      2098,
-      2103
+      2241,
+      2247,
+      2252,
+      2257,
+      2263,
+      2269
      ]
     },
     {
      "text": "宇川精材",
-     "start": 2106,
+     "start": 2271,
      "chars": [
-      2108,
-      2113,
-      2118,
-      2123
+      2273,
+      2279,
+      2285,
+      2291
      ]
     }
    ],
    "keywords": [
     {
      "text": "德國",
-     "start": 2039
+     "start": 2177
     },
     {
      "text": "法國",
-     "start": 2059
+     "start": 2208
     },
     {
      "text": "台灣",
-     "start": 2079
+     "start": 2241
     }
    ],
    "cues": [
     {
      "id": "few",
      "text": "少數幾家",
-     "frame": 2012
+     "frame": 2141,
+     "early": 0
     },
     {
      "id": "de",
      "text": "默克",
-     "frame": 2051
+     "frame": 2189,
+     "early": 0
     },
     {
      "id": "fr",
      "text": "液空",
-     "frame": 2071
+     "frame": 2221,
+     "early": 0
     },
     {
      "id": "tw",
      "text": "宇川",
-     "frame": 2110
+     "frame": 2275,
+     "early": 0
     }
    ],
+   "hash": "9861b8d4969f-f9d6241105",
    "sub": "全球少數幾家供應\n德國默克\n法國液空\n台灣有興櫃的\n宇川精材",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.931,
+    "minScore": 0.411,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 50,
+    "onsetCheck": [
+     {
+      "onset": 1.75,
+      "start": 1.72,
+      "ch": "德",
+      "errMs": -30
+     },
+     {
+      "onset": 2.69,
+      "start": 2.74,
+      "ch": "法",
+      "errMs": 50
+     },
+     {
+      "onset": 3.87,
+      "start": 3.86,
+      "ch": "台",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "全",
+     "start": 0.04,
+     "end": 0.22,
+     "score": 0.924
+    },
+    {
+     "text": "球",
+     "start": 0.26,
+     "end": 0.4,
+     "score": 0.665
+    },
+    {
+     "text": "少",
+     "start": 0.46,
+     "end": 0.64,
+     "score": 0.935
+    },
+    {
+     "text": "數",
+     "start": 0.68,
+     "end": 0.76,
+     "score": 0.992
+    },
+    {
+     "text": "幾",
+     "start": 0.84,
+     "end": 0.92,
+     "score": 0.995
+    },
+    {
+     "text": "家",
+     "start": 0.98,
+     "end": 1.08,
+     "score": 0.945
+    },
+    {
+     "text": "供",
+     "start": 1.14,
+     "end": 1.28,
+     "score": 0.999
+    },
+    {
+     "text": "應",
+     "start": 1.32,
+     "end": 1.48,
+     "score": 0.884
+    },
+    {
+     "text": "德",
+     "start": 1.72,
+     "end": 1.82,
+     "score": 0.999
+    },
+    {
+     "text": "國",
+     "start": 1.92,
+     "end": 2,
+     "score": 0.977
+    },
+    {
+     "text": "默",
+     "start": 2.08,
+     "end": 2.16,
+     "score": 0.939
+    },
+    {
+     "text": "克",
+     "start": 2.28,
+     "end": 2.4,
+     "score": 0.998
+    },
+    {
+     "text": "法",
+     "start": 2.74,
+     "end": 2.84,
+     "score": 0.999
+    },
+    {
+     "text": "國",
+     "start": 2.94,
+     "end": 3.04,
+     "score": 0.859
+    },
+    {
+     "text": "液",
+     "start": 3.12,
+     "end": 3.2,
+     "score": 0.411
+    },
+    {
+     "text": "空",
+     "start": 3.3,
+     "end": 3.5,
+     "score": 0.994
+    },
+    {
+     "text": "台",
+     "start": 3.86,
+     "end": 4,
+     "score": 0.998
+    },
+    {
+     "text": "灣",
+     "start": 4.04,
+     "end": 4.16,
+     "score": 0.998
+    },
+    {
+     "text": "有",
+     "start": 4.2,
+     "end": 4.32,
+     "score": 1
+    },
+    {
+     "text": "興",
+     "start": 4.38,
+     "end": 4.56,
+     "score": 0.852
+    },
+    {
+     "text": "櫃",
+     "start": 4.58,
+     "end": 4.72,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 4.78,
+     "end": 4.84,
+     "score": 0.998
+    },
+    {
+     "text": "宇",
+     "start": 4.92,
+     "end": 5,
+     "score": 0.984
+    },
+    {
+     "text": "川",
+     "start": 5.1,
+     "end": 5.28,
+     "score": 0.972
+    },
+    {
+     "text": "精",
+     "start": 5.32,
+     "end": 5.48,
+     "score": 0.905
+    },
+    {
+     "text": "材",
+     "start": 5.52,
+     "end": 5.72,
+     "score": 0.982
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.26,
+    0.46,
+    0.68,
+    0.84,
+    0.98,
+    1.14,
+    1.32,
+    1.72,
+    1.92,
+    2.08,
+    2.28,
+    2.74,
+    2.94,
+    3.12,
+    3.3,
+    3.86,
+    4.04,
+    4.2,
+    4.38,
+    4.58,
+    4.78,
+    4.92,
+    5.1,
+    5.32,
+    5.52
+   ]
   },
   {
    "id": "s11",
-   "audio": null,
-   "audioFrame": 2170,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 2166,
-   "durationFrames": 126,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 2170,
-   "voiceEndFrame": 2262,
-   "stillFrame": 2291,
+   "audio": "audio/tech-precursor/11-s11.wav",
+   "audioFrame": 2334,
+   "audioSec": 5.52,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 2325,
+   "durationFrames": 214,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 2335,
+   "voiceEndFrame": 2499,
+   "stillFrame": 2529,
    "subtitleWindow": [
-    2167,
-    2293
+    2332,
+    2539
    ],
    "sourceWindow": [
-    2166,
-    2292
+    2330,
+    2534
    ],
    "lines": [
     {
      "text": "下一集",
-     "start": 2167,
+     "start": 2332,
      "chars": [
-      2168,
-      2172,
-      2176
+      2335,
+      2340,
+      2343
      ]
     },
     {
      "text": "製程用的氣體",
-     "start": 2178,
+     "start": 2355,
      "chars": [
-      2180,
-      2183,
-      2187,
-      2191,
-      2195,
-      2199
+      2357,
+      2363,
+      2369,
+      2373,
+      2376,
+      2383
      ]
     },
     {
      "text": "看特用氣體",
-     "start": 2201,
+     "start": 2392,
      "chars": [
-      2203,
-      2206,
-      2210,
-      2214,
-      2218
+      2394,
+      2402,
+      2409,
+      2415,
+      2421
      ]
     },
     {
      "text": "留言前驅物",
-     "start": 2220,
+     "start": 2434,
      "chars": [
-      2222,
-      2226,
-      2229,
-      2233,
-      2237
+      2436,
+      2442,
+      2448,
+      2454,
+      2460
      ]
     },
     {
      "text": "拿完整資料",
-     "start": 2239,
+     "start": 2469,
      "chars": [
-      2241,
-      2245,
-      2249,
-      2252,
-      2256
+      2471,
+      2477,
+      2483,
+      2489,
+      2493
      ]
     }
    ],
    "keywords": [
     {
      "text": "特用氣體",
-     "start": 2206
+     "start": 2402
     },
     {
      "text": "前驅物",
-     "start": 2229
+     "start": 2448
     }
    ],
    "cues": [
     {
      "id": "next",
      "text": "下一集",
-     "frame": 2170
+     "frame": 2336,
+     "early": 0
     },
     {
      "id": "gas",
      "text": "特用氣體",
-     "frame": 2208
+     "frame": 2404,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "留言",
-     "frame": 2224
+     "frame": 2438,
+     "early": 0
     }
    ],
+   "hash": "68c4977f3b0f-f9d6241105",
    "sub": "下一集\n製程用的氣體\n看特用氣體\n留言前驅物\n拿完整資料",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.96,
+    "minScore": 0.558,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.84,
+      "start": 0.82,
+      "ch": "製",
+      "errMs": -20
+     },
+     {
+      "onset": 2.07,
+      "start": 2.06,
+      "ch": "看",
+      "errMs": -10
+     },
+     {
+      "onset": 3.46,
+      "start": 3.46,
+      "ch": "留",
+      "errMs": 0
+     },
+     {
+      "onset": 4.61,
+      "start": 4.62,
+      "ch": "拿",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "下",
+     "start": 0.08,
+     "end": 0.18,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 0.24,
+     "end": 0.3,
+     "score": 0.558
+    },
+    {
+     "text": "集",
+     "start": 0.36,
+     "end": 0.46,
+     "score": 0.997
+    },
+    {
+     "text": "製",
+     "start": 0.82,
+     "end": 0.94,
+     "score": 0.998
+    },
+    {
+     "text": "程",
+     "start": 1.02,
+     "end": 1.18,
+     "score": 0.991
+    },
+    {
+     "text": "用",
+     "start": 1.2,
+     "end": 1.34,
+     "score": 0.901
+    },
+    {
+     "text": "的",
+     "start": 1.36,
+     "end": 1.4,
+     "score": 0.998
+    },
+    {
+     "text": "氣",
+     "start": 1.46,
+     "end": 1.6,
+     "score": 0.986
+    },
+    {
+     "text": "體",
+     "start": 1.68,
+     "end": 1.78,
+     "score": 0.998
+    },
+    {
+     "text": "看",
+     "start": 2.06,
+     "end": 2.24,
+     "score": 0.999
+    },
+    {
+     "text": "特",
+     "start": 2.32,
+     "end": 2.46,
+     "score": 0.998
+    },
+    {
+     "text": "用",
+     "start": 2.56,
+     "end": 2.7,
+     "score": 0.999
+    },
+    {
+     "text": "氣",
+     "start": 2.74,
+     "end": 2.86,
+     "score": 0.996
+    },
+    {
+     "text": "體",
+     "start": 2.94,
+     "end": 3.04,
+     "score": 0.998
+    },
+    {
+     "text": "留",
+     "start": 3.46,
+     "end": 3.6,
+     "score": 0.996
+    },
+    {
+     "text": "言",
+     "start": 3.64,
+     "end": 3.78,
+     "score": 0.996
+    },
+    {
+     "text": "前",
+     "start": 3.84,
+     "end": 4,
+     "score": 0.991
+    },
+    {
+     "text": "驅",
+     "start": 4.06,
+     "end": 4.18,
+     "score": 0.985
+    },
+    {
+     "text": "物",
+     "start": 4.26,
+     "end": 4.34,
+     "score": 0.919
+    },
+    {
+     "text": "拿",
+     "start": 4.62,
+     "end": 4.7,
+     "score": 0.998
+    },
+    {
+     "text": "完",
+     "start": 4.82,
+     "end": 4.96,
+     "score": 0.998
+    },
+    {
+     "text": "整",
+     "start": 5,
+     "end": 5.16,
+     "score": 0.774
+    },
+    {
+     "text": "資",
+     "start": 5.2,
+     "end": 5.28,
+     "score": 0.987
+    },
+    {
+     "text": "料",
+     "start": 5.34,
+     "end": 5.48,
+     "score": 0.988
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.24,
+    0.36,
+    0.82,
+    1.02,
+    1.2,
+    1.36,
+    1.46,
+    1.68,
+    2.06,
+    2.32,
+    2.56,
+    2.74,
+    2.94,
+    3.46,
+    3.64,
+    3.84,
+    4.06,
+    4.26,
+    4.62,
+    4.82,
+    5,
+    5.2,
+    5.34
+   ]
   },
   {
    "id": "s12",
    "audio": null,
-   "audioFrame": 2296,
+   "audioFrame": 2529,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 2292,
+   "startFrame": 2529,
    "durationFrames": 96,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 2296,
-   "voiceEndFrame": 2378,
-   "stillFrame": 2376,
-   "subtitleWindow": [
-    2293,
-    2388
-   ],
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 2539,
+   "voiceEndFrame": 2539,
+   "stillFrame": 2613,
+   "silent": true,
+   "subtitleWindow": null,
    "sourceWindow": [
-    2292,
-    2388
+    2534,
+    2625
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": "",
-   "silentEstimate": true
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-precursor/voice.wav",
+  "lufsIn": -17.52,
+  "lufs": -16,
+  "sec": 87.5
+ }
 }
