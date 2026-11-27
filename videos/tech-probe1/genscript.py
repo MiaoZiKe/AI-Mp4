@@ -52,7 +52,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     for z in zh[:-1]: assert len(re.sub(r"[ ，。？]", "", z)) >= 3, ("字幕短語 <3 字會被併入下一段、英文對位跑掉", sid, z)
     assert re.sub(r"[，。？]", "", "".join(zh)) == re.sub(r"[，。？]", "", nar), (sid, "字幕和念稿不同")
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = 0.7; dur = round(head + nch / 5.2 + 0.2 + hold, 1)   # 第 39 條（11-27 晚）：念完後最多 1 秒就換幕，所有動作在旁白期間做完
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = 0.6; dur = round(head + nch / 5.2 + 0.2 + hold, 1)   # 第 39 條（11-27 晚）：念完後最多 1 秒就換幕，所有動作在旁白期間做完
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -139,11 +139,12 @@ for lay, w in NWIN.items():
 for k in range(1, NS + 1): vis(f"nScr{k}", [(off("s6:scrub-2", 5 * (k - 1) + 2), FAR)], 1)
 
 # ── 站 E：探針卡爆炸分解（s4：接口、加固板、主板、彈簧針板；s8：空間轉換器、導板、針林、組回）──
-C1 = "s8:card8"; C2 = "s8:card8+47"; C3 = "s8:card8+94"; ASM = "s8:card8+140"   # 第 39 條：爆炸四步都在 s8 旁白期間做完
+C1 = "s8:card8"; C2 = "s8:card8+30"; C3 = "s8:many-6"; ASM = "s9:voice+30"   # 第 39 條：拆開三步都在 s8 旁白期間做完；組回不在 s8（拆開狀態留到換幕，下一幕不在這站，s9 開場後才在畫面外組回）
 VIS += [mv("eDock", C1, off(ASM, 8), 18, dy=5.0), mv("eScrew", off(C1, 4), off(ASM, 6), 18, dy=3.9), mv("eStiff", off(C1, 4), off(ASM, 6), 18, dy=3.4)]
 VIS += [mv("ePCB", off(C1, 8), off(ASM, 4), 18, dy=2.2), mv("eIP", off(C1, 12), off(ASM, 2), 18, dy=1.2)]
 VIS += [mv("eST", C2, off(ASM, 2), 16, dy=0.55), mv("eLG", off(C2, 6), ASM, 16, dy=-0.35), mv("eUG", off(C2, 6), ASM, 16, dy=0.12)]
 VIS += [mv("eNdl", C3, ASM, 16, dy=-1.0), mv("eTipHi", C3, ASM, 16, dy=-1.0)]
+VIS += [hid(l, "s8:card8+40", "s9:voice", 1, 0.0) for l in ("eDock", "eScrew", "eStiff", "ePCB", "eIP")]   # 推近後在畫面外（頁首後面），收掉
 vis("eTipHi", [(off(C3, -2), "s9:start")], 4)
 VIS += [mv("eHair", T0, "s4:hair-12", 14, dx=-3.0)]
 vis("eHair", [("s4:hair-14", "s5:start")], 4)
@@ -219,7 +220,7 @@ P["s6"] = {"shot": [S_(CC, NC, 1)],
  "run": [run("nDebris", "scrub+8", "scrub+44", 4), run("nCurrent", "on", "s7:start", 6), run("nGlowOk", "on", "s7:start", 6)],
  "labels": [lab("nOxA", "氧化膜（不導電）", "Oxide film: insulating", "blue", "ox", "ox+46"),
             lab("nScrA", "刮開處露出金屬", "Scrubbed: bare metal", "amber", "scrub+24", "scrub+69"),
-            lab("nOnA", "接通", "Contact made", "blue", "on-6", "on+39")],
+            lab("nOnA", "接通", "Contact made", "blue", "on-12", "on+33")],
  "overlay": [card("s6", "probe1-scrub", "像用指甲刮掉生鏽處", "示意（不標刮痕尺寸）", {"ox": "ox", "insul": "insul", "scrub": "scrub", "nail": "nail", "on": "on"})]}
 P["s7"] = {"zoom": [{"to": "types", "at": CC, "dur": 1}],
  "shot": [S_(CC, KV, 1)],
@@ -229,11 +230,11 @@ P["s7"] = {"zoom": [{"to": "types", "at": CC, "dur": 1}],
             lab("kMemsA", "微機電：半導體製程做的", "MEMS", "amber", "mems-14", "mems+31")],
  "overlay": [card("s7", "probe1-types", "針的做法在進化", "示意", {"evo": "evo", "cant": "cant", "vert": "vert", "mems": "mems"})]}
 P["s8"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
- "shot": [S_(CC, EO, 1)],
+ "shot": [S_(CC, EO, 1), S_("card8+40", EC, 1)],
  "run": [run("etHiPulse", off(C3, -2), "s9:start", 4)],
- "labels": [lab("ePCBA", "上半部：主板、加固板等", "Top: PCB, stiffener, etc.", "amber", C1, off(C1, 45), xy=[540, 985]),
-            lab("eSTA", "空間轉換器、上下導板（孔位錯開）", "Space transformer & guide plates", "blue", C2, off(C2, 45), xy=[540, 985]),
-            lab("eNdlA", "探針：好幾萬根（報導）", "Probes: tens of thousands", "amber", C3, off(C3, 45), xy=[540, 985])],
+ "labels": [lab("ePCBA", "上半部：主板、加固板、彈簧針板", "Top: PCB, stiffener, interposer", "amber", C1, off(C1, 45), xy=[540, 985]),
+            lab("eNdlA", "探針：好幾萬根（報導）", "Probes: tens of thousands", "blue", "many", "many+45", xy=[540, 985]),
+            lab("eTipA", "針尖高低不一（示意放大）", "Uneven tip heights", "amber", "many+47", "many+92", xy=[540, 985])],
  "overlay": [card("s8", "probe1-count", "針越多，越難壓平", "數位時代報導；示意", {"card8": "card8", "many": "many", "more": "more", "flat": "flat"})]}
 P["s9"] = {"zoom": [{"to": "prober", "at": CC, "dur": 1}],
  "shot": [S_(CC, AO, 1), S_("send-14", AT, 24)],

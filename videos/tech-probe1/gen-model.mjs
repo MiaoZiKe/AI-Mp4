@@ -279,7 +279,7 @@ P({ id: "enTip", layer: "eNdl", shape: "sphere", size: [0.018], pos: [EX + 0.05,
 // 不平的針尖（第 8 幕：針越多越難壓得一樣平）：幾根針尖紅色發亮＋針尖平面
 LAY("eTipHi", [1.6, 0.2, EX, 2.6]);
 const hiIdx = [5, 22, 40, 61, 77, 95, 118, 133];
-P({ id: "etHi", layer: "eTipHi", shape: "sphere", size: [0.045], pos: [EX + 0.05, EY.tip, 0], at: hiIdx.map((k) => NG[k]), mat: "tipNg" });
+P({ id: "etHi", layer: "eTipHi", shape: "sphere", size: [0.07], pos: [EX + 0.05, EY.tip, 0], at: hiIdx.map((k) => NG[k]), mat: "tipNg" });
 P({ id: "etPlane", layer: "eTipHi", shape: "box", size: [1.6, 0.006, 1.6], pos: [EX + 0.05, EY.tip - 0.02, 0], mat: "plane" });
 // 頭髮（第 4 幕對照：比最密的針距還寬）
 LAY("eHair", [0.2, 0.2, EX, 2.5]);
