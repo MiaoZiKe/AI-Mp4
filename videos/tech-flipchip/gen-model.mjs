@@ -245,15 +245,15 @@ LAY("pCrack", [11, 0.4, PX0, 2.4]); P({ id: "pCrackB", layer: "pCrack", shape: "
 // 底部填充：沿縫隙 10 段由左往右漸漸填滿（毛細前緣），濕膠（亮琥珀）→ 烤硬（深色）；兩側圓角
 const UFN = 8, UF0 = PX0 - 3.5, UF1 = PX0 + 3.5;
 for (let k = 0; k < UFN; k++) { LAY(`pUf${k}`, [1, 1, R2(UF0 + (k + 0.5) * (UF1 - UF0) / UFN), 2.6]); BOX(`pUfB${k}`, `pUf${k}`, UF0 + (k * (UF1 - UF0)) / UFN, UF0 + ((k + 1) * (UF1 - UF0)) / UFN, PSUB + 0.01, PDIE0 - 0.01, -PZ + 0.25, PZ - 0.25, "ufWet"); }
-LAY("pUfFillet", [11, 1, PX0, 2.6]); P({ id: "pUfFil", layer: "pUfFillet", shape: "poly", size: [1, 1, R2(2 * PZ - 0.5)], pts: [[0, 0], [0.7, 0], [0, 1.0]], pos: [UF1, PSUB, R2(-(PZ - 0.25))], mat: "ufWet" }); P({ id: "pUfFil2", layer: "pUfFillet", shape: "poly", size: [1, 1, R2(2 * PZ - 0.5)], pts: [[0, 0], [-0.7, 0], [0, 1.0]], pos: [UF0, PSUB, R2(-(PZ - 0.25))], mat: "ufWet" });
+LAY("pUfFillet", [11, 1, PX0, 2.6]); /* 圓角（fillet）：晶片邊緣外一圈斜坡（單軸旋轉的方塊） */ P({ id: "pUfFil", layer: "pUfFillet", shape: "box", size: [0.5, 0.95, R2(2 * PZ - 0.5)], pos: [0, R2(PSUB + 0.33), 0], at: [[R2(UF1 + 0.05), 0, 0]], rot: [0, 0, 32], mat: "ufWet" }); P({ id: "pUfFil2", layer: "pUfFillet", shape: "box", size: [0.5, 0.95, R2(2 * PZ - 0.5)], pos: [0, R2(PSUB + 0.33), 0], at: [[R2(UF0 - 0.05), 0, 0]], rot: [0, 0, -32], mat: "ufWet" });
 LAY("pUfCure", [11, 1, PX0, 2.6]); BOX("pUfC", "pUfCure", UF0, UF1, PSUB + 0.012, PDIE0 - 0.012, -PZ + 0.24, PZ - 0.24, "ufCure");
-P({ id: "pUfCF", layer: "pUfCure", shape: "poly", size: [1, 1, R2(2 * PZ - 0.48)], pts: [[0, 0], [0.7, 0], [0, 1.0]], pos: [UF1, PSUB, R2(-(PZ - 0.24))], mat: "ufCure" }); P({ id: "pUfCF2", layer: "pUfCure", shape: "poly", size: [1, 1, R2(2 * PZ - 0.48)], pts: [[0, 0], [-0.7, 0], [0, 1.0]], pos: [UF0, PSUB, R2(-(PZ - 0.24))], mat: "ufCure" });
+P({ id: "pUfCF", layer: "pUfCure", shape: "box", size: [0.5, 0.95, R2(2 * PZ - 0.48)], pos: [0, R2(PSUB + 0.33), 0], at: [[R2(UF1 + 0.05), 0, 0]], rot: [0, 0, 32], mat: "ufCure" }); P({ id: "pUfCF2", layer: "pUfCure", shape: "box", size: [0.5, 0.95, R2(2 * PZ - 0.48)], pos: [0, R2(PSUB + 0.33), 0], at: [[R2(UF0 - 0.05), 0, 0]], rot: [0, 0, -32], mat: "ufCure" });
 // 點膠針頭（沿晶片左緣外側，針尖貼近縫口）
 LAY("pNeedle", [1, 3, UF0 - 0.6, 4.5]);
 VC("pNdTip", "pNeedle", 0.07, PSUB + 0.3, PSUB + 1.6, "steel2", { x: R2(UF0 - 0.55) }); VC("pNdHub", "pNeedle", 0.22, PSUB + 1.6, PSUB + 2.0, "dark", { x: R2(UF0 - 0.55) }); VC("pNdBarrel", "pNeedle", 0.4, PSUB + 2.0, PSUB + 3.6, "window", { x: R2(UF0 - 0.55) });
 VC("pNdFluid", "pNeedle", 0.34, PSUB + 2.05, PSUB + 3.0, "ufWet", { x: R2(UF0 - 0.55) }); VC("pNdPlunger", "pNeedle", 0.36, PSUB + 3.0, PSUB + 3.2, "rubber", { x: R2(UF0 - 0.55) });
 // 熱（回焊、熱脹時）：底下的加熱板發光
-LAY("pHeater", [14, 0.3, PX0, 1.0]); BOX("pHeat", "pHeater", PX0 - 5.2, PX0 + 5.2, 0.96, 1.0, -2.4, 2.4, "heat");
+LAY("pHeater", [14, 0.3, PX0, 1.0]); BOX("pHeat", "pHeater", PX0 - 4.3, PX0 + 4.3, 0.96, 1.0, -PZ + 0.1, PZ - 0.1, "heat");
 
 // ═════ 站 H：公司（s9）＝台灣地圖＋日月光（高雄）｜美國地圖＋安靠（亞利桑那 Tempe）；各自的展示台＋廠房（外型不同） ═════
 const MAPJ = JSON.parse(fs.readFileSync(path.join(ROOT, "videos", "tech-mask2", "map.json"), "utf8")).rings;
@@ -323,7 +323,7 @@ actions.melt = { type: "pulse", parts: ["pHotB"], color: "snHot", glow: 1, freq:
 actions.heaterOn = { type: "pulse", parts: ["pHeat"], color: "heatC", glow: 0.9, freq: 0.8, halo: 0, steady: true };
 actions.crackP = { type: "pulse", parts: ["pCrackB"], color: "badC", glow: 1, freq: 2, halo: 0.3 };
 actions.ufDrip = { type: "flow", _說明: "膠從針頭擠出、往縫口落（稠，慢）", layer: "pNeedle", path: [[UF0 - 0.55, PSUB + 0.3, 0.6], [UF0 - 0.45, PSUB + 0.05, 0.6], [UF0 - 0.1, PSUB + 0.05, 0.6]], n: 3, size: 0.1, shape: "dot", rate: 0.35, color: "ufWet", track: false, free: true, jitter: 0.02 };
-actions.ufCureGlow = { type: "pulse", parts: ["pUfC", "pUfCF", "pUfCF2"], color: "heatC", glow: 0.5, freq: 1, halo: 0 };
+actions.ufCureGlow = { type: "pulse", parts: ["pUfC", "pUfCF", "pUfCF2"], color: "heatC", glow: 0.25, freq: 1, halo: 0 };
 actions.rdlGlow = { type: "pulse", parts: idsOf("nRdl").filter((i) => i.startsWith("nR")), color: "rdlC", glow: 0.6, freq: 1.2, halo: 0 };
 actions.aseOn = { type: "pulse", parts: idsOf("hAse").filter((i) => i.startsWith("asWn")), color: "winC", glow: 0.9, freq: 1.2, halo: 0.3 };
 actions.amkOn = { type: "pulse", parts: idsOf("hAmk").filter((i) => i.startsWith("amWn")), color: "winC", glow: 0.9, freq: 1.2, halo: 0.3 };

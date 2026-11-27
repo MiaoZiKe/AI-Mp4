@@ -98,9 +98,9 @@ def vis(lay, wins, dur=3):
         prev = b
     if prev != FAR: VIS.append(hid(lay, prev, FAR, dur))
 C = "voice-3"; CC = "voice-4"
-def nxt(sid): return f"s{int(sid[1:]) + 1}:voice-3" if sid != "s9" else "s10:voice-1"
+def nxt(sid): return f"s{int(sid[1:]) + 1}:voice-3" if sid != "s9" else "s10:voice"
 # s9→s10：第 39 條（無聲 ≤1.0 秒）與第 40 條（念完最後一家公司名後 ≥1.0 秒才換幕）同時成立的做法：s9 念完留白 0.87 秒＋s10 開口前 4 幀＝1.0 秒，
-# s9 的鏡頭、公司卡、出處列撐到 s10 開口前 1 幀才換（Besi 念完到換幕約 0.97 秒；silent-timeline 開口最少 4 幀，兩條規則只能差 1 幀）
+# s9 的鏡頭撐到 s10 開口那一幀才換（Besi 念完到換幕剛好 1.0 秒），公司卡與出處列同一幀換
 def card(sid, kind, title, tag, t=None, **kw): return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
 
 # ═════ 站 A：取晶粒 → 翻面 → 交給接合頭 → 沾助焊劑 → 放到載板（s2）＝所有位移照幾何算 ═════
@@ -196,16 +196,16 @@ P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "labels": [lab("pNeedleA", "點膠針頭", "Dispensing needle", "amber", "edge", "edge+45"), lab("pUfA", "底部填充", "Underfill", "blue", "gap-8", "gap+37", xy=[800, 420])],
  "overlay": [card("s8", "fc-uf", "像紙巾吸水", "示意", {"edge": "edge", "wick": "wick", "gap": "gap", "bake": "bake", "guard": "guard"})]}
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, I["HX0"], 1.4, 38, 28, 1)],
+ "shot": [shot(CC, I["HX0"], 1.6, 70, 22, 1)],
  "run": [run("aseOn", "ase-4", FAR, 6), run("amkOn", "amk-4", FAR, 6), run("besiOn", "besi-4", FAR, 6)],
  "labels": [lab("aseA", "日月光（台灣）", "ASE, Taiwan", "blue", "big", "big+45", flag="TW"),
             lab("besiA", "Besi（荷蘭）", "Besi, Netherlands", "amber", "besi-4", "besi+41")],
  "overlay": [card("s9", "fc-co", "誰在做", "TrendForce 2024；Besi 廠商說法", {"big": "big", "ase": "ase", "amk": "amk", "fcb": "fcb", "besi": "besi"}, h=360, y=1036)]}
-P["s10"] = {"zoom": [{"to": "next", "at": "voice-2", "dur": 1}],
- "shot": [shot("voice-2", I["NX"], 0.8, 28, 52, 1)],
+P["s10"] = {"zoom": [{"to": "next", "at": "voice", "dur": 1}],
+ "shot": [shot("voice", I["NX"], 0.8, 28, 52, 1)],
  "run": [run("rdlGlow", "rdl+6", FAR, 8)],
  "labels": [lab("rdlA", "重布線（示意）", "Redistribution lines", "amber", "rdl+4", "rdl+49")],
- "overlay": [sec("fc-next", "voice-1", nxt("s10"), "下一集", "系列 3 預告", {"sub": "sub", "next": "next", "rdl": "rdl", "fo": "fo"}, cut=True)] if True else [card("s10", "fc-next", "下一集", "系列 3 預告", {"sub": "sub", "next": "next", "rdl": "rdl", "fo": "fo"})]}
+ "overlay": [sec("fc-next", "voice+1", nxt("s10"), "下一集", "系列 3 預告", {"sub": "sub", "next": "next", "rdl": "rdl", "fo": "fo"}, cut=True)] if True else [card("s10", "fc-next", "下一集", "系列 3 預告", {"sub": "sub", "next": "next", "rdl": "rdl", "fo": "fo"})]}
 P["s11"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],
  "shot": [shot(CC, I["NX"], 0.8, 32, 58, 30)],
  "overlay": [sec("fc-ask", C, "s12:start", "留言", "覆晶", {"phone": "phone", "kw": "kw"}, cut=True)]}
