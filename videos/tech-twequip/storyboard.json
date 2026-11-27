@@ -3,8 +3,8 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 2568,
- "totalSec": 85.6,
+ "totalFrames": 2604,
+ "totalSec": 86.8,
  "scenes": [
   {
    "id": "s1",
@@ -73,9 +73,9 @@
   {
    "id": "s2",
    "startFrame": 144,
-   "durationFrames": 258,
+   "durationFrames": 270,
    "startSec": 4.8,
-   "durationSec": 8.6,
+   "durationSec": 9,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -95,56 +95,74 @@
     {
      "id": "efem",
      "text": "前端搬運區",
-     "frame": 184,
-     "sceneFrame": 40
+     "frame": 179,
+     "sceneFrame": 35
+    },
+    {
+     "id": "arm",
+     "text": "手臂",
+     "frame": 226,
+     "sceneFrame": 82
     },
     {
      "id": "chamber",
      "text": "清洗腔",
-     "frame": 256,
-     "sceneFrame": 112
+     "frame": 288,
+     "sceneFrame": 144
     },
     {
      "id": "cab",
      "text": "藥液櫃",
-     "frame": 329,
-     "sceneFrame": 185
+     "frame": 350,
+     "sceneFrame": 206
     }
    ],
-   "stillFrame": 401,
+   "stillFrame": 413,
    "subtitles": [
     {
      "zh": "外殼打開",
      "en": "Open the cover.",
      "startFrame": 145,
-     "endFrame": 180
+     "endFrame": 175
     },
     {
-     "zh": "前端搬運區管進出",
-     "en": "The front-end module handles transfer;",
-     "startFrame": 180,
-     "endFrame": 252
+     "zh": "前端搬運區有手臂",
+     "en": "Open the cover.",
+     "startFrame": 175,
+     "endFrame": 237
+    },
+    {
+     "zh": "對準器",
+     "en": "The front-end module has a robot and an aligner",
+     "startFrame": 237,
+     "endFrame": 260
+    },
+    {
+     "zh": "管進出",
+     "en": "and handles transfer;",
+     "startFrame": 260,
+     "endFrame": 284
     },
     {
      "zh": "清洗腔一片一片洗",
      "en": "the chambers clean one wafer at a time;",
-     "startFrame": 252,
-     "endFrame": 325
+     "startFrame": 284,
+     "endFrame": 346
     },
     {
      "zh": "藥液櫃供應藥液",
      "en": "the chemical cabinet supplies liquids.",
-     "startFrame": 325,
-     "endFrame": 403
+     "startFrame": 346,
+     "endFrame": 415
     }
    ],
-   "narration": "外殼打開。前端搬運區管進出；清洗腔一片一片洗；藥液櫃供應藥液。"
+   "narration": "外殼打開。前端搬運區有手臂、對準器，管進出；清洗腔一片一片洗；藥液櫃供應藥液。"
   },
   {
    "id": "s3",
-   "startFrame": 402,
+   "startFrame": 414,
    "durationFrames": 216,
-   "startSec": 13.4,
+   "startSec": 13.8,
    "durationSec": 7.2,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -159,68 +177,68 @@
     {
      "id": "fan",
      "text": "風扇",
-     "frame": 419,
+     "frame": 431,
      "sceneFrame": 17
     },
     {
      "id": "air",
      "text": "乾淨空氣",
-     "frame": 452,
+     "frame": 464,
      "sceneFrame": 50
     },
     {
      "id": "door",
      "text": "門被吸開",
-     "frame": 497,
+     "frame": 509,
      "sceneFrame": 95
     },
     {
      "id": "map",
      "text": "感測器",
-     "frame": 523,
+     "frame": 535,
      "sceneFrame": 121
     },
     {
      "id": "slot",
      "text": "每一槽",
-     "frame": 562,
+     "frame": 574,
      "sceneFrame": 160
     }
    ],
-   "stillFrame": 617,
+   "stillFrame": 629,
    "subtitles": [
     {
      "zh": "頂部風扇往下吹乾淨空氣",
      "en": "Fans on top blow clean air downward;",
-     "startFrame": 403,
-     "endFrame": 474
+     "startFrame": 415,
+     "endFrame": 486
     },
     {
      "zh": "晶圓盒門被吸開",
      "en": "the wafer pod's door is pulled open;",
-     "startFrame": 474,
-     "endFrame": 519
+     "startFrame": 486,
+     "endFrame": 531
     },
     {
      "zh": "感測器掃過",
      "en": "a sensor sweeps across",
-     "startFrame": 519,
-     "endFrame": 552
+     "startFrame": 531,
+     "endFrame": 564
     },
     {
      "zh": "數每一槽有沒有片",
      "en": "to check every slot for a wafer.",
-     "startFrame": 552,
-     "endFrame": 619
+     "startFrame": 564,
+     "endFrame": 631
     }
    ],
    "narration": "頂部風扇往下吹乾淨空氣；晶圓盒門被吸開；感測器掃過，數每一槽有沒有片。"
   },
   {
    "id": "s4",
-   "startFrame": 618,
+   "startFrame": 630,
    "durationFrames": 228,
-   "startSec": 20.6,
+   "startSec": 21,
    "durationSec": 7.6,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -235,62 +253,62 @@
     {
      "id": "arm",
      "text": "雙刀手臂",
-     "frame": 622,
+     "frame": 634,
      "sceneFrame": 4
     },
     {
      "id": "lift",
      "text": "托起晶圓",
-     "frame": 681,
+     "frame": 693,
      "sceneFrame": 63
     },
     {
      "id": "align",
      "text": "對準缺口",
-     "frame": 733,
+     "frame": 745,
      "sceneFrame": 115
     },
     {
      "id": "put",
      "text": "清洗腔放好",
-     "frame": 799,
+     "frame": 811,
      "sceneFrame": 181
     }
    ],
-   "stillFrame": 845,
+   "stillFrame": 857,
    "subtitles": [
     {
-     "zh": "雙刀手臂伸進",
-     "en": "A dual-blade arm reaches into the pod and lifts a wafer;",
-     "startFrame": 619,
-     "endFrame": 662
+     "zh": "雙刀手臂伸進盒子",
+     "en": "A dual-blade arm reaches into the pod",
+     "startFrame": 631,
+     "endFrame": 689
     },
     {
-     "zh": "盒子托起晶圓",
-     "en": "A dual-blade arm reaches into the pod and lifts a wafer;",
-     "startFrame": 662,
-     "endFrame": 707
+     "zh": "托起晶圓",
+     "en": "and lifts a wafer;",
+     "startFrame": 689,
+     "endFrame": 719
     },
     {
      "zh": "轉一圈對準缺口",
      "en": "one turn to align the notch;",
-     "startFrame": 707,
-     "endFrame": 758
+     "startFrame": 719,
+     "endFrame": 770
     },
     {
      "zh": "再直直送進清洗腔放好",
      "en": "then straight into the chamber.",
-     "startFrame": 758,
-     "endFrame": 847
+     "startFrame": 770,
+     "endFrame": 859
     }
    ],
    "narration": "雙刀手臂伸進盒子托起晶圓；轉一圈對準缺口；再直直送進清洗腔放好。"
   },
   {
    "id": "s5",
-   "startFrame": 846,
+   "startFrame": 858,
    "durationFrames": 252,
-   "startSec": 28.2,
+   "startSec": 28.6,
    "durationSec": 8.4,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -305,86 +323,86 @@
     {
      "id": "spin",
      "text": "晶圓轉起來",
-     "frame": 850,
+     "frame": 862,
      "sceneFrame": 4
     },
     {
      "id": "pin",
      "text": "有銷抓住",
-     "frame": 893,
+     "frame": 905,
      "sceneFrame": 47
     },
     {
      "id": "nz",
      "text": "噴嘴臂",
-     "frame": 917,
+     "frame": 929,
      "sceneFrame": 71
     },
     {
      "id": "stream",
      "text": "藥液落在中心",
-     "frame": 954,
+     "frame": 966,
      "sceneFrame": 108
     },
     {
      "id": "film",
      "text": "薄薄的液膜",
-     "frame": 1003,
+     "frame": 1015,
      "sceneFrame": 157
     },
     {
      "id": "fling",
      "text": "往外甩",
-     "frame": 1070,
+     "frame": 1082,
      "sceneFrame": 224
     }
    ],
-   "stillFrame": 1097,
+   "stillFrame": 1109,
    "subtitles": [
     {
      "zh": "晶圓轉起來",
      "en": "The wafer spins,",
-     "startFrame": 847,
-     "endFrame": 877
+     "startFrame": 859,
+     "endFrame": 889
     },
     {
      "zh": "邊緣有銷抓住",
      "en": "held by edge pins.",
-     "startFrame": 877,
-     "endFrame": 913
+     "startFrame": 889,
+     "endFrame": 925
     },
     {
      "zh": "噴嘴臂掃過來",
      "en": "The nozzle arm sweeps in,",
-     "startFrame": 913,
-     "endFrame": 950
+     "startFrame": 925,
+     "endFrame": 962
     },
     {
      "zh": "藥液落在中心",
      "en": "liquid lands at the center,",
-     "startFrame": 950,
-     "endFrame": 986
+     "startFrame": 962,
+     "endFrame": 998
     },
     {
      "zh": "推成薄薄的液膜",
      "en": "spreads into a thin film,",
-     "startFrame": 986,
-     "endFrame": 1029
+     "startFrame": 998,
+     "endFrame": 1041
     },
     {
      "zh": "被離心力一路往外甩",
      "en": "and is flung outward by centrifugal force.",
-     "startFrame": 1029,
-     "endFrame": 1099
+     "startFrame": 1041,
+     "endFrame": 1111
     }
    ],
    "narration": "晶圓轉起來，邊緣有銷抓住。噴嘴臂掃過來，藥液落在中心，推成薄薄的液膜，被離心力一路往外甩。"
   },
   {
    "id": "s6",
-   "startFrame": 1098,
+   "startFrame": 1110,
    "durationFrames": 288,
-   "startSec": 36.6,
+   "startSec": 37,
    "durationSec": 9.6,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -399,80 +417,80 @@
     {
      "id": "split",
      "text": "拆開腔體",
-     "frame": 1102,
+     "frame": 1114,
      "sceneFrame": 4
     },
     {
      "id": "nz",
      "text": "噴嘴臂",
-     "frame": 1133,
+     "frame": 1145,
      "sceneFrame": 35
     },
     {
      "id": "cup",
      "text": "擋液杯",
-     "frame": 1180,
+     "frame": 1192,
      "sceneFrame": 82
     },
     {
      "id": "chk",
      "text": "吸盤",
-     "frame": 1290,
+     "frame": 1302,
      "sceneFrame": 192
     },
     {
      "id": "mot",
      "text": "馬達",
-     "frame": 1337,
+     "frame": 1349,
      "sceneFrame": 239
     }
    ],
-   "stillFrame": 1385,
+   "stillFrame": 1397,
    "subtitles": [
     {
      "zh": "拆開腔體",
      "en": "Open up the chamber.",
-     "startFrame": 1099,
-     "endFrame": 1129
+     "startFrame": 1111,
+     "endFrame": 1141
     },
     {
      "zh": "噴嘴臂噴藥液",
      "en": "The nozzle arm sprays liquid;",
-     "startFrame": 1129,
-     "endFrame": 1176
+     "startFrame": 1141,
+     "endFrame": 1188
     },
     {
      "zh": "擋液杯一層一種藥液",
      "en": "the cup has one level per liquid,",
-     "startFrame": 1176,
-     "endFrame": 1247
+     "startFrame": 1188,
+     "endFrame": 1259
     },
     {
      "zh": "不混在一起",
      "en": "so they never mix;",
-     "startFrame": 1247,
-     "endFrame": 1286
+     "startFrame": 1259,
+     "endFrame": 1298
     },
     {
      "zh": "吸盤抓住晶圓",
      "en": "the chuck holds the wafer,",
-     "startFrame": 1286,
-     "endFrame": 1333
+     "startFrame": 1298,
+     "endFrame": 1345
     },
     {
      "zh": "馬達帶著轉",
      "en": "and a motor spins it.",
-     "startFrame": 1333,
-     "endFrame": 1387
+     "startFrame": 1345,
+     "endFrame": 1399
     }
    ],
    "narration": "拆開腔體。噴嘴臂噴藥液；擋液杯一層一種藥液，不混在一起；吸盤抓住晶圓，馬達帶著轉。"
   },
   {
    "id": "s7",
-   "startFrame": 1386,
+   "startFrame": 1398,
    "durationFrames": 216,
-   "startSec": 46.2,
+   "startSec": 46.6,
    "durationSec": 7.2,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -487,63 +505,63 @@
     {
      "id": "dry",
      "text": "甩乾",
-     "frame": 1405,
+     "frame": 1417,
      "sceneFrame": 19
     },
     {
      "id": "expand",
      "text": "從中心往外擴大",
-     "frame": 1450,
+     "frame": 1462,
      "sceneFrame": 64
     },
     {
      "id": "ipa",
      "text": "異丙醇",
-     "frame": 1502,
+     "frame": 1514,
      "sceneFrame": 116
     },
     {
      "id": "mark",
      "text": "水痕",
-     "frame": 1577,
+     "frame": 1589,
      "sceneFrame": 191
     }
    ],
-   "stillFrame": 1601,
+   "stillFrame": 1613,
    "subtitles": [
     {
      "zh": "最後甩乾",
      "en": "Finally, spin-dry:",
-     "startFrame": 1387,
-     "endFrame": 1416
+     "startFrame": 1399,
+     "endFrame": 1428
     },
     {
      "zh": "乾的地方從中心往外擴大",
      "en": "the dry zone grows outward from the center,",
-     "startFrame": 1416,
-     "endFrame": 1498
+     "startFrame": 1428,
+     "endFrame": 1510
     },
     {
      "zh": "異丙醇噴嘴跟著走",
      "en": "an IPA nozzle follows it,",
-     "startFrame": 1498,
-     "endFrame": 1558
+     "startFrame": 1510,
+     "endFrame": 1570
     },
     {
-     "zh": "不留水痕",
-     "en": "leaving no water marks.",
-     "startFrame": 1558,
-     "endFrame": 1603
+     "zh": "避免水痕",
+     "en": "avoiding water marks.",
+     "startFrame": 1570,
+     "endFrame": 1615
     }
    ],
-   "narration": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，不留水痕。"
+   "narration": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，避免水痕。"
   },
   {
    "id": "s8",
-   "startFrame": 1602,
-   "durationFrames": 228,
-   "startSec": 53.4,
-   "durationSec": 7.6,
+   "startFrame": 1614,
+   "durationFrames": 252,
+   "startSec": 53.8,
+   "durationSec": 8.4,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
@@ -557,62 +575,68 @@
     {
      "id": "tank",
      "text": "藥液桶",
-     "frame": 1606,
+     "frame": 1618,
      "sceneFrame": 4
     },
     {
      "id": "pump",
      "text": "幫浦",
-     "frame": 1653,
-     "sceneFrame": 51
+     "frame": 1670,
+     "sceneFrame": 56
     },
     {
      "id": "mix",
      "text": "混合閥",
-     "frame": 1720,
-     "sceneFrame": 118
+     "frame": 1744,
+     "sceneFrame": 130
     },
     {
      "id": "eb",
      "text": "電控箱",
-     "frame": 1767,
-     "sceneFrame": 165
+     "frame": 1797,
+     "sceneFrame": 183
     }
    ],
-   "stillFrame": 1829,
+   "stillFrame": 1865,
    "subtitles": [
     {
      "zh": "藥液桶供應藥液",
      "en": "Drums supply the chemicals;",
-     "startFrame": 1603,
-     "endFrame": 1649
+     "startFrame": 1615,
+     "endFrame": 1666
     },
     {
-     "zh": "幫浦和濾芯送來濾乾淨",
+     "zh": "幫浦送過來",
+     "en": "Drums supply the chemicals;",
+     "startFrame": 1666,
+     "endFrame": 1703
+    },
+    {
+     "zh": "濾芯濾乾淨",
      "en": "pumps and filters deliver them clean;",
-     "startFrame": 1649,
-     "endFrame": 1716
+     "startFrame": 1703,
+     "endFrame": 1740
     },
     {
      "zh": "混合閥配好比例",
      "en": "a mixing valve sets the ratio;",
-     "startFrame": 1716,
-     "endFrame": 1763
+     "startFrame": 1740,
+     "endFrame": 1793
     },
     {
      "zh": "電控箱管整套動作",
      "en": "and an electrical cabinet runs it all.",
-     "startFrame": 1763,
-     "endFrame": 1831
+     "startFrame": 1793,
+     "endFrame": 1867
     }
    ],
-   "narration": "藥液桶供應藥液；幫浦和濾芯送來濾乾淨；混合閥配好比例；電控箱管整套動作。"
+   "narration": "藥液桶供應藥液；幫浦送過來，濾芯濾乾淨；混合閥配好比例；電控箱管整套動作。"
   },
   {
    "id": "s9",
-   "startFrame": 1830,
+   "startFrame": 1866,
    "durationFrames": 180,
-   "startSec": 61,
+   "startSec": 62.2,
    "durationSec": 6,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -627,62 +651,62 @@
     {
      "id": "bat",
      "text": "批次酸槽",
-     "frame": 1848,
+     "frame": 1884,
      "sceneFrame": 18
     },
     {
      "id": "one",
      "text": "一次泡一批",
-     "frame": 1876,
+     "frame": 1912,
      "sceneFrame": 46
     },
     {
      "id": "sgl",
      "text": "單片洗",
-     "frame": 1910,
+     "frame": 1946,
      "sceneFrame": 80
     },
     {
      "id": "use",
      "text": "各有用途",
-     "frame": 1972,
+     "frame": 2008,
      "sceneFrame": 142
     }
    ],
-   "stillFrame": 2009,
+   "stillFrame": 2045,
    "subtitles": [
     {
      "zh": "另有批次酸槽",
      "en": "There are also batch wet benches,",
-     "startFrame": 1831,
-     "endFrame": 1872
+     "startFrame": 1867,
+     "endFrame": 1908
     },
     {
      "zh": "一次泡一批",
      "en": "soaking a whole batch at once;",
-     "startFrame": 1872,
-     "endFrame": 1906
+     "startFrame": 1908,
+     "endFrame": 1942
     },
     {
      "zh": "單片洗則一片一片來",
      "en": "single-wafer tools go one by one;",
-     "startFrame": 1906,
-     "endFrame": 1968
+     "startFrame": 1942,
+     "endFrame": 2004
     },
     {
      "zh": "各有用途",
      "en": "each has its use.",
-     "startFrame": 1968,
-     "endFrame": 2011
+     "startFrame": 2004,
+     "endFrame": 2047
     }
    ],
    "narration": "另有批次酸槽，一次泡一批；單片洗則一片一片來，各有用途。"
   },
   {
    "id": "s10",
-   "startFrame": 2010,
+   "startFrame": 2046,
    "durationFrames": 180,
-   "startSec": 67,
+   "startSec": 68.2,
    "durationSec": 6,
    "component": "ThreeScene",
    "beat": "mechanism",
@@ -697,62 +721,62 @@
     {
      "id": "front",
      "text": "最前段",
-     "frame": 2014,
+     "frame": 2050,
      "sceneFrame": 4
     },
     {
      "id": "foreign",
      "text": "日系、美系大廠",
-     "frame": 2071,
+     "frame": 2107,
      "sceneFrame": 61
     },
     {
      "id": "tw",
      "text": "台灣廠",
-     "frame": 2110,
+     "frame": 2146,
      "sceneFrame": 100
     },
     {
      "id": "back",
      "text": "封裝端和中段",
-     "frame": 2142,
+     "frame": 2178,
      "sceneFrame": 132
     }
    ],
-   "stillFrame": 2189,
+   "stillFrame": 2225,
    "subtitles": [
     {
      "zh": "最前段的清洗機",
      "en": "The front-most cleaning tools",
-     "startFrame": 2011,
-     "endFrame": 2055
+     "startFrame": 2047,
+     "endFrame": 2091
     },
     {
      "zh": "多是日系",
      "en": "The front-most cleaning tools",
-     "startFrame": 2055,
-     "endFrame": 2080
+     "startFrame": 2091,
+     "endFrame": 2116
     },
     {
      "zh": "美系大廠",
      "en": "mostly come from Japanese and US makers;",
-     "startFrame": 2080,
-     "endFrame": 2106
+     "startFrame": 2116,
+     "endFrame": 2142
     },
     {
      "zh": "台灣廠打進封裝端和中段",
      "en": "Taiwan's makers sell into packaging and the mid-stage.",
-     "startFrame": 2106,
-     "endFrame": 2191
+     "startFrame": 2142,
+     "endFrame": 2227
     }
    ],
    "narration": "最前段的清洗機，多是日系、美系大廠；台灣廠打進封裝端和中段。"
   },
   {
    "id": "s11",
-   "startFrame": 2190,
+   "startFrame": 2226,
    "durationFrames": 138,
-   "startSec": 73,
+   "startSec": 74.2,
    "durationSec": 4.6,
    "component": "ThreeScene",
    "beat": "payoff",
@@ -767,50 +791,50 @@
     {
      "id": "gptc",
      "text": "弘塑",
-     "frame": 2194,
+     "frame": 2230,
      "sceneFrame": 4
     },
     {
      "id": "sci",
      "text": "辛耘",
-     "frame": 2210,
+     "frame": 2246,
      "sceneFrame": 20
     },
     {
      "id": "gdg",
      "text": "家登",
-     "frame": 2272,
+     "frame": 2308,
      "sceneFrame": 82
     }
    ],
-   "stillFrame": 2327,
+   "stillFrame": 2363,
    "subtitles": [
     {
      "zh": "弘塑",
      "en": "GPTC and Scientech make wet cleaning tools;",
-     "startFrame": 2191,
-     "endFrame": 2206
+     "startFrame": 2227,
+     "endFrame": 2242
     },
     {
      "zh": "辛耘做濕式清洗機",
      "en": "GPTC and Scientech make wet cleaning tools;",
-     "startFrame": 2206,
-     "endFrame": 2268
+     "startFrame": 2242,
+     "endFrame": 2304
     },
     {
      "zh": "家登做晶圓盒",
      "en": "Gudeng makes wafer pods.",
-     "startFrame": 2268,
-     "endFrame": 2329
+     "startFrame": 2304,
+     "endFrame": 2365
     }
    ],
    "narration": "弘塑、辛耘做濕式清洗機，家登做晶圓盒。"
   },
   {
    "id": "s12",
-   "startFrame": 2328,
+   "startFrame": 2364,
    "durationFrames": 144,
-   "startSec": 77.6,
+   "startSec": 78.8,
    "durationSec": 4.8,
    "component": "ThreeScene",
    "beat": "cta",
@@ -825,44 +849,44 @@
     {
      "id": "next",
      "text": "濺鍍靶材",
-     "frame": 2361,
+     "frame": 2397,
      "sceneFrame": 33
     },
     {
      "id": "kw",
      "text": "留言",
-     "frame": 2390,
+     "frame": 2426,
      "sceneFrame": 62
     }
    ],
-   "stillFrame": 2471,
+   "stillFrame": 2507,
    "subtitles": [
     {
      "zh": "下一集看濺鍍靶材",
      "en": "Next: sputtering targets.",
-     "startFrame": 2329,
-     "endFrame": 2386
+     "startFrame": 2365,
+     "endFrame": 2422
     },
     {
      "zh": "留言設備廠",
      "en": "Comment \"equipment makers\"",
-     "startFrame": 2386,
-     "endFrame": 2422
+     "startFrame": 2422,
+     "endFrame": 2458
     },
     {
      "zh": "拿完整資料",
      "en": "for the full notes.",
-     "startFrame": 2422,
-     "endFrame": 2473
+     "startFrame": 2458,
+     "endFrame": 2509
     }
    ],
    "narration": "下一集看濺鍍靶材。留言設備廠，拿完整資料。"
   },
   {
    "id": "s13",
-   "startFrame": 2472,
+   "startFrame": 2508,
    "durationFrames": 96,
-   "startSec": 82.4,
+   "startSec": 83.6,
    "durationSec": 3.2,
    "component": "ThreeScene",
    "beat": "end",
@@ -874,7 +898,7 @@
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 2556,
+   "stillFrame": 2592,
    "subtitles": []
   }
  ]

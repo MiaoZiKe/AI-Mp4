@@ -159,7 +159,7 @@ const ArmCard: React.FC<P> = ({ o, f, k }) => {
         <Sep x={560} />
         <path d={`M610 ${CT + 150} Q690 ${CT + 40} 770 ${CT + 150}`} stroke={RED} strokeWidth={4} fill="none" strokeDasharray="8 6" opacity={0.7} />
         <path d={`M792 ${CT + 148} l24 24 M816 ${CT + 148} l-24 24`} stroke={RED} strokeWidth={6} opacity={0.8} /><text x={600} y={CT + 196} style={zh(30, RED, 900)}>弧線 ✗</text>
-        <Row x={600} y={CT + 232} t="① 取：刀片托起晶圓" c={lf > 0.5 ? H.amber : H.lineSoft} a={lf} />
+        <Row x={600} y={CT + 232} t="上刀載片・下刀空刀" c={lf > 0.5 ? H.amber : H.lineSoft} a={lf} />
         <Row x={600} y={CT + 276} t="② 轉一圈對準缺口" c={al > 0.5 ? H.amber : H.lineSoft} a={al} />
       </svg>
     </Card>
@@ -306,8 +306,8 @@ const Who: React.FC<P> = ({ o, f, k }) => {
           <rect x={x} y={CT + 12} width={250} height={92} fill={a > 0.5 ? "#FFF6E0" : "#FFFFFF"} stroke={a > 0.5 ? c : H.lineSoft} strokeWidth={a > 0.5 ? 5 : 2} />
           <text x={x + 125} y={CT + 58} textAnchor="middle" style={zh(32, H.text, 900)}>{t}</text><text x={x + 125} y={CT + 94} textAnchor="middle" style={zh(30, H.text2, 800)}>{s}</text>
           {i < 2 ? <Arrow x1={x + 256} y1={CT + 58} x2={x + 300} y2={CT + 58} c={H.text2} w={4} o={0.5} /> : null}</g>; })}
-        <g opacity={0.35 + 0.65 * fo}><rect x={30} y={CT + 134} width={250} height={56} fill="#FFFFFF" stroke={fo > 0.5 ? GREY : H.lineSoft} strokeWidth={fo > 0.5 ? 4 : 2} /><text x={44} y={CT + 172} style={zh(30, H.text, 900)}>日系、美系大廠</text>
-          <text x={30} y={CT + 224} style={zh(30, H.text2, 800)}>清洗機以外商為主</text></g>
+        <g opacity={0.35 + 0.65 * fo}><FlagBox code="JP" x={30} y={CT + 196} a={fo} /><FlagBox code="US" x={92} y={CT + 196} a={fo} /><rect x={30} y={CT + 134} width={250} height={56} fill="#FFFFFF" stroke={fo > 0.5 ? GREY : H.lineSoft} strokeWidth={fo > 0.5 ? 4 : 2} /><text x={44} y={CT + 172} style={zh(30, H.text, 900)}>日系、美系大廠</text>
+          <text x={158} y={CT + 226} style={zh(30, H.text2, 800)}>外商為主</text></g>
         <g opacity={0.35 + 0.65 * tw}><rect x={336} y={CT + 134} width={250} height={56} fill="#FFFFFF" stroke={tw > 0.5 ? OK : H.lineSoft} strokeWidth={tw > 0.5 ? 4 : 2} /><text x={350} y={CT + 172} style={zh(30, H.text, 900)}>弘塑、辛耘</text>
           <FlagBox code="TW" x={530} y={CT + 144} a={tw} /><text x={336} y={CT + 224} style={zh(30, H.text2, 800)}>濕式清洗、蝕刻</text></g>
         <g opacity={0.35 + 0.65 * bk}><text x={642} y={CT + 172} style={zh(30, H.text2, 800)}>濕製程也用得到</text></g>
@@ -320,7 +320,7 @@ const Who: React.FC<P> = ({ o, f, k }) => {
 // ── twequip-co：弘塑、辛耘、家登三家（官網 LOGO 原檔）＋台灣國旗＋真實輪廓；機台外觀為示意 ──
 const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 360;
-  const a = [on(f, T(o, "gptc")), on(f, T(o, "sci")), on(f, T(o, "gdg"))];
+  const a = [on(f, T(o, "gptc")), on(f, T(o, "gptc")), on(f, T(o, "gdg"))];
   const rows: [string, string, string, string][] = [["gptc", "弘塑 GPTC", "濕式清洗機、金屬蝕刻", "3131"], ["scientech", "辛耘 Scientech", "自製濕式清洗機", "3583"], ["gudeng", "家登 Gudeng", "晶圓盒", "3680"]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>

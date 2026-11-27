@@ -84,7 +84,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "series_plan 2-11／2-12"
+    "示意動畫，不是量測"
    ],
    "props": {
     "hook": {
@@ -472,9 +472,16 @@
      {
       "layer": "c1Cup",
       "at": "s7:dry-4",
-      "until": "s13:start+400",
+      "until": "s7:ipa-8",
       "dur": 22,
       "dy": -0.9
+     },
+     {
+      "layer": "c1Cup",
+      "at": "s7:ipa-8",
+      "until": "s13:start+400",
+      "dur": 22,
+      "dy": 0.9
      },
      {
       "layer": "ffu",
@@ -524,6 +531,41 @@
       "until": "s3:start-16",
       "opacity": 0,
       "dur": 10
+     },
+     {
+      "layer": "arBase",
+      "at": "s2:efem-6",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dx": -3.0
+     },
+     {
+      "layer": "arZ",
+      "at": "s2:efem-6",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dx": -3.0
+     },
+     {
+      "layer": "lp1Base",
+      "at": "s2:efem-6",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dx": -3.0
+     },
+     {
+      "layer": "lp2Base",
+      "at": "s2:efem-6",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dx": -3.0
+     },
+     {
+      "layer": "lp3Base",
+      "at": "s2:efem-6",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dx": -3.0
      },
      {
       "layer": "efem",
@@ -743,6 +785,48 @@
       "dx": 4.0
      },
      {
+      "layer": "efem",
+      "at": "s2:open+8",
+      "until": "s3:start-16",
+      "opacity": 0.2,
+      "dur": 10
+     },
+     {
+      "layer": "ccPump",
+      "at": "s2:cab-4",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dy": 2.6
+     },
+     {
+      "layer": "ccFilter",
+      "at": "s2:cab+6",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dy": 5.2
+     },
+     {
+      "layer": "ccHeater",
+      "at": "s2:cab+16",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dy": 7.8
+     },
+     {
+      "layer": "ccValve",
+      "at": "s2:cab+26",
+      "until": "s3:start-16",
+      "dur": 22,
+      "dy": 10.4
+     },
+     {
+      "layer": "ccPipe",
+      "at": "s2:cab-4",
+      "until": "s3:start-16",
+      "opacity": 0.12,
+      "dur": 10
+     },
+     {
       "layer": "c1NzA",
       "at": "s6:nz-8",
       "until": "s7:start-14",
@@ -808,6 +892,13 @@
       "dy": -3.0
      },
      {
+      "layer": "bbRod",
+      "at": "s9:one-4",
+      "until": "s9:one+26",
+      "dur": 12,
+      "dy": -3.0
+     },
+     {
       "layer": "bbCar",
       "at": "s9:one+38",
       "until": "s13:start+400",
@@ -822,7 +913,21 @@
       "dx": 3.2
      },
      {
+      "layer": "bbRod",
+      "at": "s9:one+38",
+      "until": "s13:start+400",
+      "dur": 16,
+      "dx": 3.2
+     },
+     {
       "layer": "bbCass",
+      "at": "s9:one+52",
+      "until": "s9:one+82",
+      "dur": 12,
+      "dy": -3.0
+     },
+     {
+      "layer": "bbRod",
       "at": "s9:one+52",
       "until": "s9:one+82",
       "dur": 12,
@@ -843,7 +948,21 @@
       "dx": 3.2
      },
      {
+      "layer": "bbRod",
+      "at": "s9:one+94",
+      "until": "s13:start+400",
+      "dur": 16,
+      "dx": 3.2
+     },
+     {
       "layer": "bbCass",
+      "at": "s9:one+108",
+      "until": "s9:one+138",
+      "dur": 12,
+      "dy": -3.0
+     },
+     {
+      "layer": "bbRod",
       "at": "s9:one+108",
       "until": "s9:one+138",
       "dur": 12,
@@ -864,7 +983,21 @@
       "dx": 3.2
      },
      {
+      "layer": "bbRod",
+      "at": "s9:one+150",
+      "until": "s13:start+400",
+      "dur": 16,
+      "dx": 3.2
+     },
+     {
       "layer": "bbCass",
+      "at": "s9:one+164",
+      "until": "s9:one+194",
+      "dur": 12,
+      "dy": -3.0
+     },
+     {
+      "layer": "bbRod",
       "at": "s9:one+164",
       "until": "s9:one+194",
       "dur": 12,
@@ -906,6 +1039,13 @@
       "dur": 10
      },
      {
+      "layer": "lp1Base",
+      "at": "s5:start+2",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
       "layer": "foup1",
       "at": "s5:start+2",
       "until": "s10:start+14",
@@ -927,6 +1067,13 @@
       "dur": 10
      },
      {
+      "layer": "lp2Base",
+      "at": "s5:start+2",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
       "layer": "foup2",
       "at": "s5:start+2",
       "until": "s10:start+14",
@@ -942,6 +1089,13 @@
      },
      {
       "layer": "lp3",
+      "at": "s5:start+2",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lp3Base",
       "at": "s5:start+2",
       "until": "s10:start+14",
       "opacity": 0,
@@ -970,7 +1124,7 @@
      },
      {
       "layer": "door2Rail",
-      "at": "s5:start+2",
+      "at": "s4:start+2",
       "until": "s10:start+14",
       "opacity": 0,
       "dur": 10
@@ -984,6 +1138,20 @@
      },
      {
       "layer": "ar",
+      "at": "s5:start+2",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "arBase",
+      "at": "s5:start+2",
+      "until": "s10:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "arZ",
       "at": "s5:start+2",
       "until": "s10:start+14",
       "opacity": 0,
@@ -1410,20 +1578,6 @@
       "dur": 10
      },
      {
-      "layer": "bbLid",
-      "at": "s1:start-40",
-      "until": "s9:start+14",
-      "opacity": 0,
-      "dur": 10
-     },
-     {
-      "layer": "bbLid",
-      "at": "s10:start+2",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 10
-     },
-     {
       "layer": "bbRail",
       "at": "s1:start-40",
       "until": "s9:start+14",
@@ -1452,6 +1606,20 @@
       "dur": 10
      },
      {
+      "layer": "bbRod",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbRod",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
       "layer": "bbCass",
       "at": "s1:start-40",
       "until": "s9:start+14",
@@ -1464,6 +1632,2477 @@
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 10
+     },
+     {
+      "layer": "bbLid",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbLid",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT0",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT0",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT1",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT1",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT2",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT2",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT3",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT3",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT4",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT4",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT5",
+      "at": "s1:start-40",
+      "until": "s9:start+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bbT5",
+      "at": "s10:start+2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "efem",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFront",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ffu",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFloor",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1Base",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2Base",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3Base",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3Door",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "aligner",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ar",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "arBase",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "arZ",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfR",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfB",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cl",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "clFront",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c2",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c3",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c4",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Wall",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Chuck",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Motor",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Cup",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Drain",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Exh",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Shut",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Nz",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Ip",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1CupPipe",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Valve",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Fan",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Pipe",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1NzA",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1IpA",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "nzStr",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ipStr",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebox",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebDoor",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebIn",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cc",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDoor",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccTank",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPump",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccFilter",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccHeater",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccValve",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPipe",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDrain",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bb",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRail",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCar",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRod",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCass",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbLid",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT0",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT1",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT2",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT3",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT4",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT5",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfC",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film0",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film1",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film2",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film3",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film4",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film5",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film6",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film7",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "filmEdge",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry0",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry1",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry2",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry3",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry4",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry5",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry6",
+      "at": "s3:door-14",
+      "until": "s4:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efem",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFront",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ffu",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFloor",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1Base",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2Base",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup2Door",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3Base",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3Door",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "door2Arm",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "door2Rail",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lMap",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "aligner",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "arBase",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfR",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfB",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cl",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "clFront",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c2",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c3",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c4",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Wall",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Chuck",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Motor",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Cup",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Drain",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Exh",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Shut",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Nz",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Ip",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1CupPipe",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Valve",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Fan",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Pipe",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1NzA",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1IpA",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "nzStr",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ipStr",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebox",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebDoor",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebIn",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cc",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDoor",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccTank",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPump",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccFilter",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccHeater",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccValve",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPipe",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDrain",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bb",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRail",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCar",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRod",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCass",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbLid",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT0",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT1",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT2",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT3",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT4",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT5",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfC",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film0",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film1",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film2",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film3",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film4",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film5",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film6",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film7",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "filmEdge",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry0",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry1",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry2",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry3",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry4",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry5",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry6",
+      "at": "s4:start",
+      "until": "s4:start+86",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efem",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFront",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ffu",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFloor",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1Base",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2Base",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup2",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup2Door",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3Base",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3Door",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "door2Arm",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "door2Rail",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lMap",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "aligner",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ar",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "arBase",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "arZ",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfA",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfR",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfB",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cl",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "clFront",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c2",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c3",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c4",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Wall",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Chuck",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Motor",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Cup",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Drain",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Exh",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Shut",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Nz",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Ip",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1CupPipe",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Valve",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Fan",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Pipe",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1NzA",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1IpA",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "nzStr",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ipStr",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cc",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDoor",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccTank",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPump",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccFilter",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccHeater",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccValve",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPipe",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDrain",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bb",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRail",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCar",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRod",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCass",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbLid",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT0",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT1",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT2",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT3",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT4",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT5",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfC",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film0",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film1",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film2",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film3",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film4",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film5",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film6",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film7",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "filmEdge",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry0",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry1",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry2",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry3",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry4",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry5",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry6",
+      "at": "s8:eb-24",
+      "until": "s9:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efem",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFront",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ffu",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "efemFloor",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp1Base",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup1Door",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp2Base",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup2",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup2Door",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lp3Base",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "foup3Door",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "door2Arm",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "door2Rail",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lMap",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "aligner",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ar",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "arBase",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "arZ",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfA",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfR",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfB",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cl",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "clFront",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c2",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c3",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c4",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Wall",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Chuck",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Motor",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Cup",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Drain",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Exh",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Shut",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Nz",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Ip",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1CupPipe",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Valve",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Fan",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1Pipe",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1NzA",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "c1IpA",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "nzStr",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ipStr",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebox",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebDoor",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ebIn",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cc",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDoor",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccTank",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPump",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccFilter",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccHeater",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccValve",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccPipe",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ccDrain",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bb",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRail",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCar",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbRod",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbLid",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT2",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT3",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT4",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT5",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wfC",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film0",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film1",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film2",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film3",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film4",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film5",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film6",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film7",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "filmEdge",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry0",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry1",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry2",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry3",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry4",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry5",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dry6",
+      "at": "s9:one-10",
+      "until": "s10:start",
+      "opacity": 0,
+      "dur": 8
      }
     ],
     "kin": [
@@ -1555,11 +4194,11 @@
    "id": "s2",
    "beat": "mechanism",
    "para": 2,
-   "narration": "外殼打開。前端搬運區管進出；清洗腔一片一片洗；藥液櫃供應藥液。",
-   "tts": "外殼打開。前端搬運區管進出；清洗腔一片一片洗；藥液櫃供應藥液。",
+   "narration": "外殼打開。前端搬運區有手臂、對準器，管進出；清洗腔一片一片洗；藥液櫃供應藥液。",
+   "tts": "外殼打開。前端搬運區有手臂、對準器，管進出；清洗腔一片一片洗；藥液櫃供應藥液。",
    "subtitle": {
-    "zh": "外殼打開\n前端搬運區管進出\n清洗腔一片一片洗\n藥液櫃供應藥液",
-    "en": "Open the cover. | The front-end module handles transfer; | the chambers clean one wafer at a time; | the chemical cabinet supplies liquids."
+    "zh": "外殼打開\n前端搬運區有手臂、對準器\n管進出\n清洗腔一片一片洗\n藥液櫃供應藥液",
+    "en": "Open the cover. | The front-end module has a robot and an aligner | and handles transfer; | the chambers clean one wafer at a time; | the chemical cabinet supplies liquids."
    },
    "keywords": [
     "前端搬運區",
@@ -1574,6 +4213,10 @@
     {
      "id": "efem",
      "text": "前端搬運區"
+    },
+    {
+     "id": "arm",
+     "text": "手臂"
     },
     {
      "id": "chamber",
@@ -1613,22 +4256,30 @@
       "text": "前端搬運區（EFEM）",
       "en": "Front-end module",
       "color": "blue",
-      "at": "efem-2",
+      "at": "open+6",
+      "until": "arm-9"
+     },
+     {
+      "part": "armCol",
+      "text": "雙刀手臂＋預對準器",
+      "en": "Dual-blade robot & aligner",
+      "color": "amber",
+      "at": "arm-2",
       "until": "chamber-9"
      },
      {
       "part": "chamber",
       "text": "清洗腔（單片旋轉）",
       "en": "Single-wafer chamber",
-      "color": "amber",
+      "color": "blue",
       "at": "chamber-2",
       "until": "cab-9"
      },
      {
       "part": "ccTop",
-      "text": "化學液供應櫃",
+      "text": "藥液櫃（化學液供應）",
       "en": "Chemical cabinet",
-      "color": "blue",
+      "color": "amber",
       "at": "cab-2",
       "until": "s3:start-6"
      }
@@ -1663,7 +4314,7 @@
      }
     ]
    },
-   "durationSec": 8.6,
+   "durationSec": 9.0,
    "pauseAfter": 0.7
   },
   {
@@ -1717,6 +4368,14 @@
       "d": 98,
       "elev": 30,
       "yaw": -0.1
+     },
+     {
+      "at": "door-16",
+      "dur": 30,
+      "x": -12.799999999999999,
+      "y": 9.2,
+      "d": 36,
+      "elev": 30
      }
     ],
     "run": [
@@ -1811,8 +4470,8 @@
    "narration": "雙刀手臂伸進盒子托起晶圓；轉一圈對準缺口；再直直送進清洗腔放好。",
    "tts": "雙刀手臂伸進盒子托起晶圓；轉一圈對準缺口；再直直送進清洗腔放好。",
    "subtitle": {
-    "zh": "雙刀手臂伸進盒子托起晶圓\n轉一圈對準缺口\n再直直送進清洗腔放好",
-    "en": "A dual-blade arm reaches into the pod and lifts a wafer; | one turn to align the notch; | then straight into the chamber."
+    "zh": "雙刀手臂伸進盒子\n托起晶圓\n轉一圈對準缺口\n再直直送進清洗腔放好",
+    "en": "A dual-blade arm reaches into the pod | and lifts a wafer; | one turn to align the notch; | then straight into the chamber."
    },
    "keywords": [
     "雙刀",
@@ -1846,15 +4505,14 @@
      {
       "at": "start",
       "dur": 30,
-      "x": -7,
-      "y": 6.8,
-      "d": 72,
-      "elev": 32,
-      "yaw": -0.1
+      "x": -10.6,
+      "y": 9.6,
+      "d": 32,
+      "elev": 34
      },
      {
-      "at": "s4:start+156",
-      "dur": 28,
+      "at": "s4:start+62",
+      "dur": 22,
       "x": -7,
       "y": 6.8,
       "d": 72,
@@ -2126,13 +4784,25 @@
       "at": "s4:start+104",
       "ramp": 8,
       "until": "s4:start+128"
+     },
+     {
+      "id": "zSpin",
+      "at": "s4:start+24",
+      "ramp": 8,
+      "until": "s4:start+42"
+     },
+     {
+      "id": "zSpin",
+      "at": "s4:start+136",
+      "ramp": 8,
+      "until": "s4:start+152"
      }
     ],
     "labels": [
      {
       "part": "blade",
-      "text": "單臂雙刀大氣手臂",
-      "en": "Dual-blade atmospheric robot",
+      "text": "雙刀：上刀載片、下刀空刀",
+      "en": "Dual blade: upper carries, lower empty",
       "color": "blue",
       "at": "arm-2",
       "until": "align-9"
@@ -2276,6 +4946,12 @@
       "until": "film+56"
      },
      {
+      "id": "backJet",
+      "at": "stream",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
       "id": "spir0",
       "at": "film+8",
       "ramp": 6,
@@ -2378,7 +5054,7 @@
       "until": "film-9"
      },
      {
-      "part": "chamber",
+      "part": "film",
       "text": "液膜：離心力推開",
       "en": "Liquid film",
       "color": "blue",
@@ -2557,11 +5233,11 @@
    "id": "s7",
    "beat": "mechanism",
    "para": 7,
-   "narration": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，不留水痕。",
-   "tts": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，不留水痕。",
+   "narration": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，避免水痕。",
+   "tts": "最後甩乾：乾的地方從中心往外擴大，異丙醇噴嘴跟著走，避免水痕。",
    "subtitle": {
-    "zh": "最後甩乾\n乾的地方從中心往外擴大\n異丙醇噴嘴跟著走\n不留水痕",
-    "en": "Finally, spin-dry: | the dry zone grows outward from the center, | an IPA nozzle follows it, | leaving no water marks."
+    "zh": "最後甩乾\n乾的地方從中心往外擴大\n異丙醇噴嘴跟著走\n避免水痕",
+    "en": "Finally, spin-dry: | the dry zone grows outward from the center, | an IPA nozzle follows it, | avoiding water marks."
    },
    "keywords": [
     "甩乾",
@@ -2642,17 +5318,35 @@
       "id": "dw0",
       "at": "dry",
       "ramp": 6,
-      "until": "mark+20"
+      "until": "ipa-8"
      },
      {
       "id": "dw1",
       "at": "dry",
       "ramp": 6,
-      "until": "mark+20"
+      "until": "ipa-8"
      },
      {
       "id": "dw2",
       "at": "dry",
+      "ramp": 6,
+      "until": "ipa-8"
+     },
+     {
+      "id": "dp0",
+      "at": "ipa",
+      "ramp": 6,
+      "until": "mark+20"
+     },
+     {
+      "id": "dp1",
+      "at": "ipa",
+      "ramp": 6,
+      "until": "mark+20"
+     },
+     {
+      "id": "dp2",
+      "at": "ipa",
       "ramp": 6,
       "until": "mark+20"
      },
@@ -2740,10 +5434,10 @@
    "id": "s8",
    "beat": "mechanism",
    "para": 8,
-   "narration": "藥液桶供應藥液；幫浦和濾芯送來濾乾淨；混合閥配好比例；電控箱管整套動作。",
-   "tts": "藥液桶供應藥液；幫浦和濾芯送來濾乾淨；混合閥配好比例；電控箱管整套動作。",
+   "narration": "藥液桶供應藥液；幫浦送過來，濾芯濾乾淨；混合閥配好比例；電控箱管整套動作。",
+   "tts": "藥液桶供應藥液；幫浦送過來，濾芯濾乾淨；混合閥配好比例；電控箱管整套動作。",
    "subtitle": {
-    "zh": "藥液桶供應藥液\n幫浦和濾芯送來濾乾淨\n混合閥配好比例\n電控箱管整套動作",
+    "zh": "藥液桶供應藥液\n幫浦送過來，濾芯濾乾淨\n混合閥配好比例\n電控箱管整套動作",
     "en": "Drums supply the chemicals; | pumps and filters deliver them clean; | a mixing valve sets the ratio; | and an electrical cabinet runs it all."
    },
    "keywords": [
@@ -2783,6 +5477,14 @@
       "d": 95,
       "elev": 22,
       "yaw": 0.05
+     },
+     {
+      "at": "eb-24",
+      "dur": 26,
+      "x": 12.2,
+      "y": 4.4,
+      "d": 40,
+      "elev": 14
      }
     ],
     "run": [
@@ -2881,7 +5583,7 @@
      }
     ]
    },
-   "durationSec": 7.6,
+   "durationSec": 8.4,
    "pauseAfter": 0.6
   },
   {
@@ -2923,13 +5625,21 @@
    "props": {
     "shot": [
      {
-      "at": "start",
-      "dur": 30,
-      "x": 44,
-      "y": 5.15,
-      "d": 115,
+      "at": "start-20",
+      "dur": 26,
+      "x": 45,
+      "y": 5.2,
+      "d": 105,
       "elev": 24,
       "yaw": -0.05
+     },
+     {
+      "at": "one-12",
+      "dur": 30,
+      "x": 37.6,
+      "y": -0.5,
+      "d": 50,
+      "elev": 30
      }
     ],
     "run": [
@@ -2983,6 +5693,22 @@
       "en": "Batch wet bench",
       "color": "amber",
       "at": "bat-2",
+      "until": "one-14"
+     },
+     {
+      "part": "bbweir",
+      "text": "溢流堰＋外槽",
+      "en": "Overflow weir & trough",
+      "color": "blue",
+      "at": "one-4",
+      "until": "one+46"
+     },
+     {
+      "part": "bbht",
+      "text": "加熱棒＋下方泵與濾芯",
+      "en": "Pump, filter & heater",
+      "color": "amber",
+      "at": "one+54",
       "until": "s10:start-4"
      }
     ],
@@ -3059,8 +5785,8 @@
    "props": {
     "shot": [
      {
-      "at": "start",
-      "dur": 40,
+      "at": "start-24",
+      "dur": 32,
       "x": 5,
       "y": 8.5,
       "d": 160,
@@ -3150,7 +5876,7 @@
      {
       "type": "section",
       "kind": "twequip-co",
-      "at": "start+24",
+      "at": "gptc-6",
       "until": "s12:start-5",
       "x": 64,
       "y": 1040,
