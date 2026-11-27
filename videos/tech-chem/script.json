@@ -1525,14 +1525,14 @@
      },
      {
       "layer": "cdsPump",
-      "at": "s4b:water-12",
+      "at": "s4b:water+2",
       "until": "s4c:clean+108",
       "dur": 22,
       "dx": -6.2
      },
      {
       "layer": "cdsValve",
-      "at": "s4b:water-12",
+      "at": "s4b:water+2",
       "until": "s4c:clean+108",
       "dur": 22,
       "dx": -1.8
@@ -1809,8 +1809,8 @@
       "text": "研磨液",
       "en": "Slurry",
       "color": "blue",
-      "at": "etch+44",
-      "until": "name+7"
+      "at": "etch+50",
+      "until": "name+13"
      }
     ],
     "overlay": [
@@ -2096,7 +2096,11 @@
       "en": "Bulk tank",
       "color": "amber",
       "at": "start+12",
-      "until": "start+57"
+      "until": "start+57",
+      "xy": [
+       860,
+       300
+      ]
      },
      {
       "part": "sup",
@@ -2211,8 +2215,8 @@
       "at": "s4b:water-8",
       "until": "s4b:water+38",
       "xy": [
-       330,
-       980
+       790,
+       1010
       ]
      }
     ]
