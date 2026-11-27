@@ -336,13 +336,13 @@ P["s7"] = {"shot": [shot("start", CX1, 7.3, 36, 52, 30)],
  "run": [run("spinHi", "dry", FAR, 14), run("c1Air", "start", FAR, 4), run("ipSweep", "expand", FAR, 52), run("n2Glow", "expand-8", "expand+70", 4), run("ipaGlow", "expand-8", "expand+70", 4), run("nzPark", "start", FAR, 1)] + [run(f"dw{k}", "dry", "ipa-8", 6) for k in range(3)] + [run(f"dp{k}", "ipa", "mark+20", 6) for k in range(3)] + [run(f"fling{k}", "dry", "expand", 6) for k in range(6)],
  "labels": [lab_("ip", "異丙醇（IPA）臂：跟著乾區走", "IPA arm follows the dry front", "amber", "start+36", "start+81")],
  "overlay": [sec("twequip-dry", "start+24", "s8:start-5", "甩乾：乾區由中心向外", "示意", {"dry": "dry", "expand": "expand", "ipa": "ipa", "mark": "mark"})]}
-P["s8"] = {"shot": [shot("start", 22.5, 9.5, 128, 20, 30, yaw=0.05), shot("end+22", 20.6, 11.5, 66, 17, 30), shot(EB(-24), 12.2, 4.4, 40, 14, 26)],
+P["s8"] = {"shot": [shot("start", 22.5, 9.5, 128, 20, 30, yaw=0.05), shot("end+22", 20.6, 7.5, 88, 17, 30), shot(EB(-24), 12.2, 4.4, 40, 14, 26)],
  "capNote": [{"at": EB(-26), "until": "s9:voice-3", "zh": "電控箱：控制整套動作", "en": "Electrical cabinet: runs the whole sequence"}],
  "run": [run("chemFlow", FL0, FL1, 8), run("chemFlow2", add(FL0, 6), FL1, 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", EB(-6), "s9:start", 22), run("ebBlink", EB(0), "s9:start", 6)],
  "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "tank-2", "pump-2"),
             lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "pump-2", "mix-2"),
             lab_("mix", "混合閥島", "Mixing valve island", "blue", "mix-2", "end+4"),
-            lab_("eb", "電控箱（門打開）", "Electrical cabinet", "amber", EB(-4), EB(41))],
+            lab_("eb", "電控箱（門打開）", "Electrical cabinet", "amber", EB(-8), EB(37), xy=[316, 360])],
  "overlay": [sec("twequip-chem", "start+24", "s9:start-5", "藥液怎麼送進腔", "示意（配比不標數字）", {"tank": "tank", "pump": "pump", "mix": "mix", "eb": EB(0)})]}
 P["s9"] = {"shot": [shot("start-10", 45, 5.2, 105, 24, 22, yaw=-0.05), shot("start+46", TKX_C, -0.5, 50, 30, 30)],
  "run": [run(f"bbOver{i}", "start", FAR, 6) for i in range(2)] + [run("bbIpa", "start", FAR, 6), run("bbDrip", "start+92", FAR, 6)],
@@ -353,9 +353,9 @@ P["s9"] = {"shot": [shot("start-10", 45, 5.2, 105, 24, 22, yaw=-0.05), shot("sta
 P["s10"] = {"shot": [shot("start-16", 5, 8.5, 160, 22, 28, yaw=-0.2)],
  "overlay": [sec("twequip-who", "start+24", "s11:start-5", "台灣廠負責哪一段", "媒體報導；不列市占數字", {"front": "front", "foreign": "foreign", "tw": "tw", "back": "back"})]}
 P["s11"] = {"shot": [shot("start", 5, 8.5, 150, 24, 40, yaw=-0.3)],
- "overlay": [sec("twequip-co", "gptc-6", "s12:start-5", "台灣設備與載具廠", "機台外觀為示意，非其實機", {"gptc": "gptc", "sci": "sci", "gdg": "gdg"})]}
+ "overlay": [sec("twequip-co", "gptc-6", "s12:start-14", "台灣設備與載具廠", "機台外觀為示意，非其實機", {"gptc": "gptc", "sci": "sci", "gdg": "gdg"})]}
 P["s12"] = {"shot": [shot("start", 5, 8.5, 150, 26, 40)],
- "overlay": [sec("twequip-next", "start+24", "s13:start-5", "接下來", "下一集：2-13", {"next": "next", "kw": "kw"})]}
+ "overlay": [sec("twequip-next", "start+24", "s13:start-14", "接下來", "下一集：2-13", {"next": "next", "kw": "kw"})]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 

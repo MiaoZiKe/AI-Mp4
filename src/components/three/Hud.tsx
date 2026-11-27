@@ -1065,9 +1065,9 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
 
 /** 字幕：深色框、一次一段單行；關鍵詞念到時上色加底線；英文跟著中文的句 */
 type Cue = { id: string; en: string; keywords: string[]; mark?: string; notes?: { a: number; b: number; zh: string; en: string }[]; window: [number, number]; phrases: { text: string; start: number }[]; keywords_at: { text: string; start: number }[] };
-const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
+const HudCaption: React.FC<{ cues: Cue[]; f: number; hideAt?: number }> = ({ cues, f, hideAt = 1e9 }) => {
   const act = cues.filter((c) => c.phrases.length);
-  if (!act.length) return null;
+  if (!act.length || f >= hideAt) return null;   // 片尾卡進場前先收掉字幕，不讓字幕殘字壓在片尾卡的圈和底板下面（tech-twequip r5）
   const cue = [...act].reverse().find((c) => f >= c.window[0]) ?? act[0];
   const a = cue.window[0], ps = cue.phrases, startOf = (k: number) => (k === 0 ? a : ps[k].start);
   let k = 0; for (let i = 0; i < ps.length; i++) if (f >= startOf(i)) k = i;
@@ -1163,7 +1163,7 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
       <HudMeasures m={m} s={s} f={f} list={meas} y={yy} />
       <HudMeters m={m} s={s} f={f} />
       <HudOverlays m={m} f={f} list={overlays} s={s} />
-      <HudCaption cues={subCues as Cue[]} f={f} />
+      <HudCaption cues={subCues as Cue[]} f={f} hideAt={ecAt !== null ? ecAt - 3 : 1e9} />
       <HudSource cues={srcCues} f={f} px={Math.max((m.product.fx as any)?.srcPx ?? 30, L.SRC_PX)} />
       {ecAt !== null ? <HudEndCard f={f} at={ecAt} nextAt={ecNext} spec={{ ...ec, _tail: endCommentTail(ec, scenes as any) }} channel={channel} /> : null}
       {/* 頁首（頻道 LOGO）畫在最上層：每一幕、包括片尾卡都在左上同一個位置 */}

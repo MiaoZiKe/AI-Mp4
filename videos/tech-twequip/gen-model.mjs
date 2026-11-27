@@ -546,8 +546,8 @@ const wall = (r, c, y0, y1, th) => [lpt("c1Cup", [R2(CX1 + r * Math.cos(th)), y0
 actions.backJet = { type: "flow", _說明: "背面噴嘴：純水朝晶圓背面噴", path: [lpt("c1Chuck", [CX1 + 1.0, 7.7, 0]), lpt("c1Chuck", [CX1 + 1.0, 8.36, 0])], n: 3, lanes: 4, laneGap: 0.5, laneDir: [0, 0, 1], size: 0.05, shape: "dot", rate: 1.0, color: "liqW", track: false };
 // 藥液路徑：桶 → 泵 → 濾芯 → 加熱 → 混合閥（沿管路流動的點）；批次槽溢流
 const cc = (p) => lpt("ccPipe", p);
-actions.chemFlow = { type: "flow", _說明: "藥液：桶 → 幫浦 → 濾芯 → 加熱 → 混合閥島 → 管路出櫃", path: [cc([16.7, 7.5, 0.7]), cc([19.2, 8.7, 0.7]), cc([19.2, 11.2, 0.7]), cc([20.7, 13.1, 0.5]), cc([20.7, 15.4, 0.5]), cc([CCX0 + 1, 15.6, 0.5]), cc([CCX0 - 6.5, 15.6, -CCZ - 0.4])], n: 6, size: 0.19, shape: "dot", rate: 0.35, color: "liqChem", trail: 3, trailGap: 0.06, trailColor: "liqChem", track: false };
-actions.chemFlow2 = { type: "flow", path: [cc([20.6, 7.5, 0.7]), cc([21.8, 8.7, 0.7]), cc([21.8, 11.2, 0.7]), cc([20.7, 13.1, 0.5])], n: 4, size: 0.17, shape: "dot", rate: 0.35, phase: 0.4, color: "liqW", trail: 3, trailGap: 0.06, trailColor: "liqW", track: false };
+actions.chemFlow = { type: "flow", _說明: "藥液：桶 → 幫浦 → 濾芯 → 加熱 → 混合閥島 → 管路出櫃", path: [cc([16.7, 7.5, 0.7]), cc([19.2, 8.7, 0.7]), cc([19.2, 11.2, 0.7]), cc([20.7, 13.1, 0.5]), cc([20.7, 15.4, 0.5]), cc([CCX0 + 1, 15.6, 0.5]), cc([CCX0 - 6.5, 15.6, -CCZ - 0.4])], n: 8, size: 0.26, shape: "dot", rate: 0.35, color: "liqChem", trail: 3, trailGap: 0.06, trailColor: "liqChem", track: false };
+actions.chemFlow2 = { type: "flow", path: [cc([20.6, 7.5, 0.7]), cc([21.8, 8.7, 0.7]), cc([21.8, 11.2, 0.7]), cc([20.7, 13.1, 0.5])], n: 5, size: 0.22, shape: "dot", rate: 0.35, phase: 0.4, color: "liqW", trail: 3, trailGap: 0.06, trailColor: "liqW", track: false };
 actions.pumpBeat = { type: "vibrate", _說明: "隔膜泵微微抖動", parts: ["pmpDome0", "pmpDome1"], axis: [1, 0, 0], amp: 0.03, freq: 3 };
 actions.ebLamp = { type: "pulse", parts: ["ebDoorLamp"], color: "lampG", glow: 0.8, freq: 0.7, halo: 0 };
 actions.ebBlink = { type: "pulse", _說明: "控制板上的指示（箱內）", parts: ["ebToggle"], color: "lampY", glow: 0.9, freq: 1.8, halo: 0 };
