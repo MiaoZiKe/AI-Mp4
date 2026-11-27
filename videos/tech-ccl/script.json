@@ -2,7 +2,7 @@
  "slug": "tech-ccl",
  "prevEpisode": "3-10：玻璃基板",
  "title": "銅箔基板（科技透明圈）",
- "asOf": "2026/11/27",
+ "asOf": "2026/11/28",
  "styleVersion": 3,
  "stage": "three",
  "channel": {
@@ -568,17 +568,150 @@
      },
      {
       "layer": "eCu0",
-      "at": "s6:etch+18",
+      "at": "s6:etch+2",
       "until": "s11:start+400",
       "opacity": 0,
-      "dur": 10
+      "dur": 4
+     },
+     {
+      "layer": "eCu1",
+      "at": "s6:etch+5",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eCu2",
+      "at": "s6:etch+8",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eCu3",
+      "at": "s6:etch+11",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eCu4",
+      "at": "s6:etch+14",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eCu5",
+      "at": "s6:etch+17",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eCu6",
+      "at": "s6:etch+20",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eCu7",
+      "at": "s6:etch+23",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eFilm",
+      "at": "s6:run-6",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "ePanel",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
      },
      {
       "layer": "eTr",
       "at": "s1:start-40",
-      "until": "s6:etch+6",
-      "opacity": 0,
-      "dur": 6
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eFilm",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eChips",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu0",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu1",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu2",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu3",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu4",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu5",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu6",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eCu7",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
      },
      {
       "layer": "sLaneB",
@@ -696,8 +829,8 @@
       "dur": 1,
       "x": 1.6,
       "y": 1.4,
-      "d": 28,
-      "elev": 16
+      "d": 36,
+      "elev": 22
      }
     ],
     "labels": [
@@ -717,6 +850,15 @@
       "color": "blue",
       "at": "fab",
       "until": "fab+45",
+      "cut": true
+     },
+     {
+      "part": "kCuBA",
+      "text": "下銅箔",
+      "en": "Copper foil (bottom)",
+      "color": "amber",
+      "at": "cu",
+      "until": "cu+45",
       "cut": true
      }
     ],
@@ -914,15 +1056,39 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 61.4,
-      "y": 1.9,
-      "d": 33,
+      "x": 62.6,
+      "y": 2.3,
+      "d": 46,
       "elev": 10
      }
     ],
     "run": [
      {
       "id": "rUnSpin",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "rGuideSpin",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "rDipSpin",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "rSqzLo",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "rSqzHi",
       "at": "start-30",
       "ramp": 10,
       "until": "s5:start"
@@ -1222,6 +1388,72 @@
       "until": "etch+30"
      },
      {
+      "id": "eRS0",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS1",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS2",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS3",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS4",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS5",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS6",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS7",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS8",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS9",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "eRS10",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
       "id": "eSig0",
       "at": "run-4",
       "ramp": 4,
@@ -1340,9 +1572,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 155.0,
-      "y": 0.4,
-      "d": 30,
-      "elev": 36
+      "y": 0.2,
+      "d": 35,
+      "elev": 34
      }
     ],
     "run": [
@@ -1360,6 +1592,36 @@
      },
      {
       "id": "sA2",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sA3",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sA4",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sA5",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sA6",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sA7",
       "at": "start-10",
       "ramp": 4,
       "until": "s9:start"
@@ -1463,7 +1725,49 @@
    "props": {
     "run": [
      {
-      "id": "sB",
+      "id": "sB0",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sB1",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sB2",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sB3",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sB4",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sB5",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sB6",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sB7",
       "at": "low+10",
       "ramp": 4,
       "until": "s9:start"
@@ -1487,8 +1791,8 @@
      },
      {
       "part": "sRxBA",
-      "text": "到終點幾乎不減",
-      "en": "Arrives almost intact",
+      "text": "減得少很多",
+      "en": "Much less loss",
       "color": "amber",
       "at": "tenth+2",
       "until": "tenth+47",
@@ -1507,7 +1811,7 @@
       "h": 330,
       "avoid": false,
       "title": "低損耗：吃掉的只剩約十分之一",
-      "tag": "推算；依材料與頻率而異",
+      "tag": "介電損耗推算；依材料與頻率而異",
       "t": {
        "low": {
         "at": "low"
@@ -1567,7 +1871,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "公司官網、財經媒體；截至 2026/11/28"
+    "經濟日報、科技新報、工商時報等報導；截至 2026/11/28"
    ],
    "props": {
     "zoom": [
@@ -1582,9 +1886,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 185.0,
-      "y": 1.9,
-      "d": 36,
-      "elev": 12
+      "y": 0.9,
+      "d": 31,
+      "elev": 14
      }
     ],
     "labels": [
@@ -1610,7 +1914,7 @@
       "h": 392,
       "avoid": false,
       "title": "銅箔基板供應商（台灣）",
-      "tag": "公司官網、財經媒體；截至 2026/11/28",
+      "tag": "媒體報導；截至 2026/11/28",
       "t": {
        "emc": {
         "at": "emc"
@@ -1688,9 +1992,9 @@
       "at": "voice+5",
       "dur": 1,
       "x": 215.0,
-      "y": 0.6,
-      "d": 26,
-      "elev": 22
+      "y": 0.8,
+      "d": 36,
+      "elev": 20
      }
     ],
     "run": [
@@ -1739,7 +2043,7 @@
       "h": 392,
       "avoid": false,
       "title": "銅箔基板供應商（台灣）",
-      "tag": "公司官網、財經媒體；截至 2026/11/28",
+      "tag": "媒體報導；截至 2026/11/28",
       "t": {
        "emc": {
         "at": "s9:emc"

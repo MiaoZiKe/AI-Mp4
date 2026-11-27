@@ -33,7 +33,7 @@ S = [
  [("low", "低損耗樹脂"), ("tenth", "十分之一"), ("track", "跑道")], ["低損耗", "十分之一", "跑道"], ["Altium、NextPCB 技術文章；依材料與頻率而異"]),
 ("s9", "payoff", "台灣有台光電、聯茂、台燿，都在做這種高階基板。",
  ["台灣有台光電 聯茂 台燿", "都在做這種高階基板"], ["Taiwan has Elite Material, ITEQ and TUC,", "all making these high-end laminates."],
- [("tw", "台灣"), ("emc", "台光電"), ("iteq", "聯茂"), ("tuc", "台燿"), ("hi", "高階基板")], ["台光電", "聯茂", "台燿"], ["公司官網、財經媒體；截至 2026/11/28"]),
+ [("tw", "台灣"), ("emc", "台光電"), ("iteq", "聯茂"), ("tuc", "台燿"), ("hi", "高階基板")], ["台光電", "聯茂", "台燿"], ["經濟日報、科技新報、工商時報等報導；截至 2026/11/28"]),
 ("s10", "cta", "樹脂換了，布和銅也得一起升級。布要多平、銅要多光滑？下一集看銅箔與玻纖布。留言銅箔基板，拿完整資料。",
  ["樹脂換了", "布和銅也得一起升級", "布要多平", "銅要多光滑？", "下一集看銅箔與玻纖布", "留言銅箔基板", "拿完整資料"],
  ["The resin has changed,", "so cloth and copper must upgrade too.", "How flat must the cloth be,", "how smooth the copper?", "Next: copper foil and glass fabric.", "Comment \"copper-clad laminate\"", "for the full notes."],
@@ -133,20 +133,22 @@ HPRESS = round(5.2 - INFO["HTOP"], 3)
 VIS.append(mv("hTop", "s5:press-4", FAR, 16, dy=-HPRESS))
 vis("hBleed", [("s5:melt", FAR)], 10); vis("hCore", [("s5:glue-4", FAR)], 12)
 # ── 站 E：整片銅 → 噴藥 → 只剩線路 ──
-vis("eCu0", [(T0, "s6:etch+18")], 10); vis("eTr", [("s6:etch+6", FAR)], 6)
+for k in range(8): vis(f"eCu{k}", [(T0, f"s6:etch+{2 + 3 * k}")], 4)
+vis("eTr", [(T0, FAR)], 1); vis("eFilm", [(T0, "s6:run-6")], 6)
+for l in ["ePanel", "eTr", "eFilm", "eChips"] + [f"eCu{k}" for k in range(8)]: VIS.append(mv(l, T0, "s6:start+4", 36, dx=-3.0))
 # ── 站 S：s7 只有一般材料那道；s8 念到「低損耗」才放上低損耗那道 ──
 drop("sLaneB", "s8:low", dy=1.2, dur=12, bounce=0.05); drop("sRxB", "s8:low", dy=1.2, dur=12, bounce=0.05)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 KV1 = (0.0, -0.6, 30, 38)     # 鉤子：做好的電路板
-KV2 = (1.6, 1.4, 28, 16)      # 夾心爆炸（低角度看分層）
+KV2 = (1.6, 1.4, 36, 22)      # 夾心爆炸（低角度看分層）
 GV = (30.0, -1.2, 24, 46)      # 玻纖布織紋
-RV = (61.4, 1.9, 33, 10)      # 含浸線側面
+RV = (62.6, 2.3, 46, 10)      # 含浸線側面
 HV = (96.0, 2.6, 36, 8)       # 熱壓機
 EV = (125.0, 0.6, 24, 42)     # 蝕刻線
-SV = (155.0, 0.4, 30, 36)     # 損耗對照
-VV = (185.0, 1.9, 36, 12)     # 供應商
-NV = (215.0, 0.6, 26, 22)     # 下一集
+SV = (155.0, 0.2, 35, 34)     # 損耗對照
+VV = (185.0, 0.9, 31, 14)     # 供應商
+NV = (215.0, 0.8, 36, 20)     # 下一集
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
 P["s1"] = {"shot": [S_("start-30", KV1, 1, yaw=0.0)], "shift": VIS,
@@ -155,7 +157,8 @@ P["s1"] = {"shot": [S_("start-30", KV1, 1, yaw=0.0)], "shift": VIS,
 P["s2"] = {"zoom": [{"to": "start", "at": "start-10", "dur": 1}, {"to": "pcb", "at": CC, "dur": 1}],
  "shot": [S_(CC, KV2, 1)],
  "labels": [lab("kCuTA", "銅箔：導電，之後做成線路", "Copper foil", "amber", "cookie+8", "cookie+53"),
-            lab("kPPA", "膠片：玻纖布＋樹脂", "Prepreg: glass fabric + resin", "blue", "fab", "fab+45")],
+            lab("kPPA", "膠片：玻纖布＋樹脂", "Prepreg: glass fabric + resin", "blue", "fab", "fab+45"),
+            lab("kCuBA", "下銅箔", "Copper foil (bottom)", "amber", "cu", "cu+45")],
  "overlay": [card("s2", "ccl-sand", "像夾心餅乾：銅箔／膠片／銅箔", "示意（厚度放大）", {"cookie": "cookie", "fab": "fab", "cu": "cu"})]}
 P["s3"] = {"zoom": [{"to": "glass", "at": CC, "dur": 1}],
  "shot": [S_(CC, GV, 1)],
@@ -165,7 +168,7 @@ P["s3"] = {"zoom": [{"to": "glass", "at": CC, "dur": 1}],
  "overlay": [card("s3", "ccl-fab", "玻纖布：玻璃絲織成，像紗窗", "示意（放大，不按比例）", {"glass": "glass", "screen": "screen", "hold": "hold"})]}
 P["s4"] = {"zoom": [{"to": "treat", "at": CC, "dur": 1}],
  "shot": [S_(CC, RV, 1)],
- "run": [run("rUnSpin", "start-30", "s5:start", 10), run("rWebDryF", "start-30", "s5:start", 4), run("rWebWetF", "start-30", "s5:start", 4),
+ "run": [run("rUnSpin", "start-30", "s5:start", 10)] + [run(x, "start-30", "s5:start", 10) for x in ["rGuideSpin", "rDipSpin", "rSqzLo", "rSqzHi"]] + [ run("rWebDryF", "start-30", "s5:start", 4), run("rWebWetF", "start-30", "s5:start", 4),
          run("rDrip", "towel-6", "s5:start", 4), run("rHeatGlow", "dry-6", "s5:start", 8), run("rHotAir", "dry-4", "s5:start", 6)],
  "labels": [lab("rTankA", "樹脂槽：布整片泡進去", "Resin bath", "amber", "soak", "soak+45"),
             lab("rOvenA", "烘箱：烘到半固化", "Oven: half-cured", "blue", "dry-8", "dry+37")],
@@ -179,20 +182,20 @@ P["s5"] = {"zoom": [{"to": "press", "at": CC, "dur": 1}],
  "overlay": [card("s5", "ccl-press", "熱壓：樹脂先融、再變硬", "示意（不標溫度與壓力）", {"stack": "stack", "foil": "foil", "press": "press", "melt": "melt", "glue": "glue"})]}
 P["s6"] = {"zoom": [{"to": "etch", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
- "run": [run("eSpray", "etch-10", "etch+30", 4)] + [run(f"eSig{k}", "run-4", "s7:start", 4) for k in range(3)],
+ "run": [run("eSpray", "etch-10", "etch+30", 4)] + [run(f"eRS{i}", "start-10", "s7:start", 8) for i in range(11)] + [run(f"eSig{k}", "run-4", "s7:start", 4) for k in range(3)],
  "labels": [lab("eSprayA", "藥水把多的銅吃掉", "Etchant removes copper", "amber", "etch-6", "etch+39"),
             lab("eSigA", "訊號沿著線路跑", "Signals run on the traces", "blue", "run", "run+45")],
  "overlay": [card("s6", "ccl-etch", "板廠：銅蝕刻成線路", "示意", {"etch": "etch", "run": "run"})]}
 P["s7"] = {"zoom": [{"to": "loss", "at": CC, "dur": 1}],
  "shot": [S_(CC, SV, 1)],
- "run": [run("sA0", "start-10", "s9:start", 4), run("sA1", "start-10", "s9:start", 4), run("sA2", "start-10", "s9:start", 4), run("sSrvLed", "start-10", "s9:start", 4)],
+ "run": [run(f"sA{k}", "start-10", "s9:start", 4) for k in range(8)] + [run("sSrvLed", "start-10", "s9:start", 4)],
  "labels": [lab("sLaneAA", "一般材料", "Ordinary material", "amber", "fast", "fast+45"),
             lab("sRxAA", "訊號被吃掉，到這只剩一點", "Signal fades", "blue", "eat", "eat+45")],
  "overlay": [card("s7", "ccl-mud", "一般材料：像在泥巴路跑步", "示意（光點大小＝訊號強弱）", {"ai": "ai", "fast": "fast", "eat": "eat", "mud": "mud"})]}
-P["s8"] = {"run": [run("sB", "low+10", "s9:start", 4), run("sRxBGlow", "low+30", "s9:start", 6)],
+P["s8"] = {"run": [run(f"sB{k}", "low+10", "s9:start", 4) for k in range(8)] + [run("sRxBGlow", "low+30", "s9:start", 6)],
  "labels": [lab("sLaneBA", "低損耗樹脂", "Low-loss resin", "blue", "low", "low+45"),
-            lab("sRxBA", "到終點幾乎不減", "Arrives almost intact", "amber", "tenth+2", "tenth+47")],
- "overlay": [card("s8", "ccl-track", "低損耗：吃掉的只剩約十分之一", "推算；依材料與頻率而異", {"low": "low", "tenth": "tenth", "track": "track"})]}
+            lab("sRxBA", "減得少很多", "Much less loss", "amber", "tenth+2", "tenth+47")],
+ "overlay": [card("s8", "ccl-track", "低損耗：吃掉的只剩約十分之一", "介電損耗推算；依材料與頻率而異", {"low": "low", "tenth": "tenth", "track": "track"})]}
 # 第 40 條：三家公司 → 卡片完整顯示 ≥ 1.2×3＋1.5＝5.1 秒；不夠就把卡片與 s9 鏡頭延到 s10 開頭（照 tech-pad r7／tech-pkgmat r2），延長幀數依 timeline.json 自動算
 _tl = {x["id"]: x for x in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]} if os.path.exists(os.path.join(HERE, "timeline.json")) else {}
 if "s9" in _tl and "s10" in _tl:
@@ -201,7 +204,7 @@ if "s9" in _tl and "s10" in _tl:
 else:
     CO_N = 0
 EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
-CO = ("ccl-co", "銅箔基板供應商（台灣）", "公司官網、財經媒體；截至 2026/11/28")
+CO = ("ccl-co", "銅箔基板供應商（台灣）", "媒體報導；截至 2026/11/28")
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, VV, 1)],
  "labels": [lab("vA1", "高階銅箔基板（示意）", "High-end laminates", "amber", "hi-6", "hi+39")],
@@ -221,7 +224,7 @@ levels = [lv("start", "電路板（示意）", "CIRCUIT BOARD", "10 cm", "1 cm")
           lv("press", "熱壓機（示意）", "LAMINATION PRESS", "5 m", "1 m"), lv("etch", "蝕刻成線路（示意）", "ETCHING", "50 cm", "5 cm"),
           lv("loss", "損耗對照（示意）", "SIGNAL LOSS", "50 cm", "5 cm"), lv("co", "銅箔基板供應商", "SUPPLIERS", "100 cm", "10 cm"), lv("next", "銅箔與玻纖布（下一集）", "NEXT", "100 cm", "10 cm")]
 levels[0]["handoff3D"] = True
-out = {"slug": "tech-ccl", "prevEpisode": "3-10：玻璃基板", "title": "銅箔基板（科技透明圈）", "asOf": "2026/11/27", "styleVersion": 3, "stage": "three",
+out = {"slug": "tech-ccl", "prevEpisode": "3-10：玻璃基板", "title": "銅箔基板（科技透明圈）", "asOf": "2026/11/28", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light", "sourceFollowsCaption": True,
        "voice": {"voiceName": "Iapetus", "model": "gemini-2.5-flash-preview-tts", "mode": "take", "profile": "tech-b", "_說明": "旁白金手指第三版；本支子聊天室不送 TTS，由頻道負責人配音"},
        "hud": {"levels": levels, "theme": "dark", "schematic": {"text": "", "zh": "示意，非特定廠牌實機"}, "maxLabels": 4, "smallPx": 30, "layout": "fill", "scanBand": 0.3},

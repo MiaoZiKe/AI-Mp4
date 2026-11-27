@@ -218,7 +218,7 @@ const Track: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, lo = on(f, T(o, "low")), te = on(f, T(o, "tenth")), tk = on(f, T(o, "track"));
   const g = cl01((f - T(o, "tenth")) / 20);
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
-    <text x={30} y={CT + 40} style={zh(26, H.text2, 800)}>被吃掉的訊號（示意）</text>
+    <text x={30} y={CT + 40} style={zh(26, H.text2, 800)}>介電損耗（示意）</text>
     <rect x={30} y={CT + 62} width={260} height={40} fill={MUD} /><text x={30} y={CT + 132} style={zh(26, H.text2, 800)}>一般材料</text>
     <rect x={30} y={CT + 156} width={260 * (1 - 0.9 * g)} height={40} fill={TRACK} opacity={0.4 + 0.6 * lo} />
     <text x={30} y={CT + 226} style={zh(26, H.text2, 800)}>低損耗樹脂</text>
@@ -244,8 +244,8 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <g opacity={0.4 + 0.6 * Math.max(fl, nx)}><Weave x={30} y={CT + 40} w={128} h={80} p={16} /></g>
     <Cap x={94} y={CT + 150} t="布：多平？" />
-    <g opacity={0.4 + 0.6 * Math.max(sm, nx)}><path d={`M182,${CT + 100} ${Array.from({ length: 13 }, (_, i) => `L${182 + i * 10},${CT + 100 - (i % 2 ? 8 : 0) * (1 - sm * 0.7)}`).join(" ")} L302,${CT + 120} L182,${CT + 120} Z`} fill={CU} />
-      <rect x={182} y={CT + 120} width={120} height={20} fill={PP} /></g>
+    <g opacity={0.4 + 0.6 * Math.max(sm, nx)}><path d={`M182,${CT + 84} L302,${CT + 84} L302,${CT + 104} ${Array.from({ length: 13 }, (_, i) => `L${302 - i * 10},${CT + 104 + (i % 2 ? 8 : 0) * (1 - sm * 0.7)}`).join(" ")} L182,${CT + 104} Z`} fill={CU} />
+      <rect x={182} y={CT + 112} width={120} height={20} fill={PP} /></g>
     <Cap x={242} y={CT + 170} t="銅：多光滑？" />
     <Sep x={334} />
     <Row x={360} y={CT + 48} t="樹脂換了，布和銅也升級" c={H.text2} a={up} />

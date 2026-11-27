@@ -35,6 +35,7 @@ const materials = {
   pp: M("phys", "ppC", { rough: 0.25, metal: 0, clearcoat: 0.6, opacity: 0.72, env: 0.5 }), ppD: M("std", "ppD", { rough: 0.4, metal: 0, env: 0.3 }),
   core: M("std", "coreC", { rough: 0.5, metal: 0, env: 0.25 }), resinL: M("phys", "resinL", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.8, env: 0.8 }),
   heat: glowM("heatC", 1, 0.8), hot: glowM("hotC", 1, 0.6),
+  film: M("std", "trackC", { rough: 0.4, metal: 0, opacity: 0.85 }),
   pcb: M("std", "pcbC", { rough: 0.45, metal: 0.1, env: 0.35, tex: "traces", texScale: 1.2 }), pcbD: M("std", "pcbD", { rough: 0.5, metal: 0.1 }), silk: M("std", "silk", { rough: 0.6, metal: 0 }),
   cap: M("std", "capC", { rough: 0.5, metal: 0.2 }), mud: M("std", "mudC", { rough: 0.95, metal: 0 }), mudD: M("std", "mudD", { rough: 0.95, metal: 0 }),
   track: M("std", "trackC", { rough: 0.5, metal: 0, env: 0.3 }), trackL: M("std", "trackL", { rough: 0.5, metal: 0 }),
@@ -119,9 +120,10 @@ for (let j = 0; j < GN; j++) {
   const id = `gF${j}`; LAY(id, [7, 0.4, GX, GY]);
   for (let i = 0; i < GN - 1; i++) SEG3(`${id}_${i}`, id, [gx(i), R2(GY + GA * sg(i, j)), gz(j)], [gx(i + 1), R2(GY + GA * sg(i + 1, j)), gz(j)], GR, "yarnS");
 }
+P({ id: "gWJ", layer: "gWarp", shape: "sphere", size: [GR], pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => Array.from({ length: GN }, (_, j) => [gx(i), R2(GY - GA * sg(i, j)), gz(j)])).flat(), mat: "yarn" });
 // 一根紗拆開＝很多根玻璃絲（散開的尾端）
 LAY("gFil", [2, 1, GX + 4, GY]);
-for (let k = 0; k < 9; k++) { const t = (k - 4) / 4; SEG3(`gFl${k}`, "gFil", [gx(GN - 1), GY, gz(GN - 1) + 0.3], [R2(gx(GN - 1) + 0.25 * t), R2(GY + 0.5 * t), R2(gz(GN - 1) + 2.0)], 0.035, "yarn"); }
+for (let k = 0; k < 15; k++) { const t = (k - 7) / 7, u = ((k * 5) % 7 - 3) / 3; SEG3(`gFl${k}`, "gFil", [GX, R2(GY + 0.2), R2(gz(GN - 1) + 0.2)], [R2(GX + 1.1 * t), R2(GY + 0.9 + 0.5 * u), R2(gz(GN - 1) + 2.4)], 0.05, "yarn"); }
 // 後面一捲布
 LAY("gRoll", [8, 2, GX, 2]);
 HXC("grRoll", "gRoll", 0.9, GX - 4, GX + 4, 1.85, -5.6, "yarn"); HXC("grCore", "gRoll", 0.25, GX - 4.4, GX + 4.4, 1.85, -5.6, "steel");
@@ -136,14 +138,18 @@ BOX("rBed", "rFrame", RX - 7.5, RX + 10.5, 0, 0.3, -1.8, 1.8, "band");
 ZC("rRollStandB", "rFrame", 0.12, -1.6, 1.6, RX - 6, 2.2, "steel"); BOX("rUnStand", "rFrame", RX - 6.2, RX - 5.8, 0.3, 2.2, -1.7, -1.5, "dark"); BOX("rUnStand2", "rFrame", RX - 6.2, RX - 5.8, 0.3, 2.2, 1.5, 1.7, "dark");
 LAY("rUnwind", [2, 2, RX - 6, 2.2]); ZC("rUnRoll", "rUnwind", 0.95, -1.25, 1.25, RX - 6, 2.2, "yarn"); ZC("rUnMark", "rUnwind", 0.12, 1.25, 1.28, RX - 5.4, 2.6, "mark");
 // 導輥
-P({ id: "rGuide", layer: "rFrame", shape: "cyl", size: [0.16, 2.8], pos: [0, 0, 0], at: [[RX - 3.6, 3.05, 0], [RX - 1.8, 0.75, 0]], mat: "steel2" });
+ZC("rGuide0", "rFrame", 0.16, -1.4, 1.4, RX - 3.6, 3.05, "steel2"); ZC("rGuide1", "rFrame", 0.16, -1.4, 1.4, RX - 1.8, 0.75, "steel2");
+for (const [n, x, y] of [["g0", RX - 3.6, 3.05], ["g1", RX - 1.8, 0.75], ["s0", RX + 0.4, 2.25], ["s1", RX + 0.4, 2.95]]) for (const z of [-1.55, 1.55]) BOX(`rBrg${n}${z > 0 ? "F" : "B"}`, "rFrame", R2(x - 0.28), R2(x + 0.28), R2(y - 0.28), R2(y + 0.28), R2(z - 0.12), R2(z + 0.12), "dark");
+for (const z of [-1.72, 1.72]) { BOX(`rSideG${z > 0 ? "F" : "B"}`, "rFrame", RX - 4.0, RX - 3.2, 0.3, 3.4, R2(z - 0.05), R2(z + 0.05), "steel"); BOX(`rSideS${z > 0 ? "F" : "B"}`, "rFrame", RX + 0.05, RX + 0.75, 0.3, 3.35, R2(z - 0.05), R2(z + 0.05), "steel"); }
+
 // 樹脂槽（前壁透明）
 BOX("rTankB", "rFrame", RX - 3.2, RX - 0.4, 0.3, 1.7, -1.5, -1.4, "steel2"); BOX("rTankL", "rFrame", RX - 3.2, RX - 3.1, 0.3, 1.7, -1.5, 1.5, "steel2"); BOX("rTankR", "rFrame", RX - 0.5, RX - 0.4, 0.3, 1.7, -1.5, 1.5, "steel2");
 BOX("rTankBot", "rFrame", RX - 3.2, RX - 0.4, 0.3, 0.4, -1.5, 1.5, "steel2"); BOX("rTankF", "rFrame", RX - 3.2, RX - 0.4, 0.3, 1.7, 1.4, 1.5, "glass");
 BOX("rResin", "rFrame", RX - 3.1, RX - 0.5, 0.4, 1.45, -1.4, 1.4, "resinL");
 VC("rPipe", "rFrame", 0.1, 1.7, 3.6, "steel", { x: RX - 0.8, z: -1.2 }); BOX("rPump", "rFrame", RX - 1.3, RX - 0.3, 3.6, 4.2, -1.6, -0.8, "dark");
 // 擠壓輥（一對）
-P({ id: "rSqz", layer: "rFrame", shape: "cyl", size: [0.28, 2.8], pos: [0, 0, 0], at: [[RX + 0.4, 2.25, 0], [RX + 0.4, 2.95, 0]], mat: "rubber" });
+ZC("rSqz0", "rFrame", 0.28, -1.4, 1.4, RX + 0.4, 2.25, "rubber"); ZC("rSqz1", "rFrame", 0.28, -1.4, 1.4, RX + 0.4, 2.95, "rubber");
+for (const [n, x, y, r] of [["G0", RX - 3.6, 3.05, 0.16], ["G1", RX - 1.8, 0.75, 0.16], ["S0", RX + 0.4, 2.25, 0.28], ["S1", RX + 0.4, 2.95, 0.28]]) BOX(`rMk${n}`, "rFrame", R2(x - 0.04), R2(x + 0.04), R2(y + r - 0.08), R2(y + r + 0.01), 1.36, 1.44, "mark");
 BOX("rSqzStand", "rFrame", RX + 0.2, RX + 0.6, 0.3, 3.3, -1.6, -1.4, "dark");
 // 烘箱（前蓋透明，上下加熱管，熱風箭頭）
 const OV0 = RX + 1.6, OV1 = RX + 7.6;
@@ -176,7 +182,7 @@ P({ id: "hCabLamp", layer: "hFrame", shape: "sphere", size: [0.11], pos: [0, 2.3
 SPH("hCabLampR", "hFrame", 0.11, HX0 + 5.3, 1.9, 1.05, "lampR");
 // 上熱板（可動）＋活塞桿
 LAY("hTop", [7, 2, HX0, 5.8]);
-BOX("htPlaten", "hTop", HX0 - 3.2, HX0 + 3.2, 5.2, 5.8, -1.8, 1.8, "steel"); VC("htRod", "hTop", 0.4, 5.8, 7.6, "steel2", { x: HX0 });
+BOX("htPlaten", "hTop", HX0 - 3.2, HX0 + 3.2, 5.2, 5.8, -1.8, 1.8, "steel"); VC("htRod", "hTop", 0.4, 5.8, 9.4, "steel2", { x: HX0 });
 P({ id: "htHeat", layer: "hTop", shape: "cyl", size: [0.09, 0.06], pos: [0, 5.5, 1.82], at: Array.from({ length: 7 }, (_, i) => [R2(HX0 - 2.7 + i * 0.9), 0, 0]), mat: "heat" });
 P({ id: "htBush", layer: "hTop", shape: "tube", size: [0.34, 0.24, 0.6], rot: V, pos: [0, 5.5, 0], at: [[HX0 - 3.6, 0, -1.7], [HX0 + 3.6, 0, -1.7], [HX0 - 3.6, 0, 1.7], [HX0 + 3.6, 0, 1.7]], mat: "gold" });
 // 一疊（book）：每張各自一層，依序落下
@@ -196,20 +202,29 @@ LAY("hCore", [5.6, 0.7, HX0, 2.33]); BOX("hCoreB", "hCore", HX0 - 2.81, HX0 + 2.
 const EX = 125;
 LAY("eLine", [10, 4, EX, 2]);
 BOX("eFrame", "eLine", EX - 5, EX + 5, 0, 0.95, -2.6, 2.6, "panel"); BOX("eBand", "eLine", EX - 5, EX + 5, 0.95, 1.05, -2.6, 2.6, "band");
-P({ id: "eRoller", layer: "eLine", shape: "cyl", size: [0.11, 4.6], pos: [0, 1.13, 0], at: Array.from({ length: 11 }, (_, i) => [R2(EX - 4.5 + i * 0.9), 0, 0]), mat: "steel2" });
+for (let i = 0; i < 11; i++) { ZC(`eRol${i}`, "eLine", 0.11, -2.3, 2.3, R2(EX - 4.5 + i * 0.9), 1.13, "steel2"); BOX(`eRolMk${i}`, "eLine", R2(EX - 4.5 + i * 0.9 - 0.03), R2(EX - 4.5 + i * 0.9 + 0.03), 1.18, 1.25, 2.2, 2.32, "mark"); }
 HXC("eBar", "eLine", 0.12, EX - 4.4, EX + 4.4, 3.4, 0, "steel");
 P({ id: "eNozzle", layer: "eLine", shape: "cone", size: [0.15, 0.05, 0.32], rot: [-90, 0, 0], pos: [0, 3.14, 0], at: [-3.6, -2.4, -1.2, 0, 1.2, 2.4, 3.6].map((x) => [R2(EX + x), 0, 0]), mat: "darker" });
 for (const x of [-4.8, 4.8]) VC(`ePost${x}`, "eLine", 0.1, 1.05, 3.6, "steel", { x: EX + x, z: -1.8 });
 BOX("eHood", "eLine", EX - 5, EX + 5, 3.6, 3.8, -2.4, 0.4, "glass"); BOX("eWarn", "eLine", EX - 4.6, EX - 3.2, 0.4, 0.7, 2.6, 2.64, "warnY");
 LAY("ePanel", [8, 0.3, EX, 1.3]); BOX("epCore", "ePanel", EX - 4, EX + 4, 1.24, 1.4, -2.1, 2.1, "core"); BOX("epCuB", "ePanel", EX - 4, EX + 4, 1.2, 1.24, -2.1, 2.1, "cu");
-LAY("eCu0", [8, 0.1, EX, 1.42]); BOX("ecFull", "eCu0", EX - 4, EX + 4, 1.4, 1.44, -2.1, 2.1, "cuHi");
+for (let k = 0; k < 8; k++) { LAY(`eCu${k}`, [1, 0.1, R2(EX - 3.5 + k), 1.42]); BOX(`ecFull${k}`, `eCu${k}`, R2(EX - 4 + k), R2(EX - 3 + k), 1.4, 1.45, -2.1, 2.1, "cuHi"); }
 // 線路：三條走線（含轉角）＋焊墊＋過孔
 LAY("eTr", [8, 0.1, EX, 1.42]);
-const ETR = [[[-3.6, -1.4], [-1.2, -1.4], [-0.4, -0.6], [3.6, -0.6]], [[-3.6, 0.2], [3.6, 0.2]], [[-3.6, 1.4], [0.2, 1.4], [1.0, 0.9], [3.6, 0.9]]];
+const ETR = [[[-3.6, -1.4], [-1.2, -1.4], [-0.4, -0.6], [3.6, -0.6]], [[-3.6, 0.2], [3.6, 0.2]], [[-3.6, 1.4], [0.2, 1.4], [1.0, 0.9], [3.6, 0.9]],
+  [[-3.6, -1.85], [3.6, -1.85]], [[-3.6, -0.95], [-2.0, -0.95], [-1.6, -0.2], [0.8, -0.2], [1.4, -1.2], [3.6, -1.2]], [[-3.6, 0.65], [-0.8, 0.65], [-0.4, 0.45], [3.6, 0.45]],
+  [[-3.6, 1.85], [3.6, 1.85]], [[-2.4, 1.05], [-1.0, 1.05]]];
 ETR.forEach((pts, k) => { for (let i = 0; i < pts.length - 1; i++) { const [x0, z0] = pts[i], [x1, z1] = pts[i + 1], L = Math.hypot(x1 - x0, z1 - z0), ang = -Math.atan2(z1 - z0, x1 - x0) / D2R;
   P({ id: `eT${k}_${i}`, layer: "eTr", shape: "box", size: [R2(L + 0.16), 0.04, 0.16], pos: [R2(EX + (x0 + x1) / 2), 1.42, R2((z0 + z1) / 2)], rot: [0, R2(ang), 0], mat: "cuHi" }); }
-  for (const [x, z] of [pts[0], pts[pts.length - 1]]) P({ id: `ePad${k}_${x > 0 ? 1 : 0}`, layer: "eTr", shape: "cyl", size: [0.22, 0.04], rot: V, pos: [R2(EX + x), 1.42, z], mat: "cuHi" }); });
-P({ id: "eVia", layer: "eTr", shape: "cyl", size: [0.07, 0.05], rot: V, pos: [0, 1.43, 0], at: [[EX - 3.6, 0, -1.4], [EX + 3.6, 0, -0.6], [EX - 3.6, 0, 0.2], [EX + 3.6, 0, 0.2], [EX - 3.6, 0, 1.4], [EX + 3.6, 0, 0.9]], mat: "darker" });
+  for (const [x, z] of [pts[0], pts[pts.length - 1]]) P({ id: `ePad${k}_${x > 0 ? 1 : 0}_${z}`, layer: "eTr", shape: "cyl", size: [0.22, 0.04], rot: V, pos: [R2(EX + x), 1.42, z], mat: "cuHi" }); });
+P({ id: "eVia", layer: "eTr", shape: "cyl", size: [0.07, 0.05], rot: V, pos: [0, 1.43, 0], at: ETR.flatMap((pts) => [pts[0], pts[pts.length - 1]]).map(([x, z]) => [R2(EX + x), 0, z]), mat: "darker" });
+// 中央一顆有接腳的晶片（QFP）
+BOX("eIc", "eTr", EX + 1.6, EX + 2.6, 1.44, 1.6, 1.0, 1.7, "chip"); P({ id: "eIcPin", layer: "eTr", shape: "box", size: [0.06, 0.03, 0.18], pos: [0, 1.45, 0], at: [0, 1, 2, 3, 4, 5, 6].flatMap((i) => [[R2(EX + 1.7 + i * 0.14), 0, 0.9], [R2(EX + 1.7 + i * 0.14), 0, 1.8]]), mat: "padGold" });
+// 乾膜：蝕刻前蓋住要留下的線路（藍色），蝕刻完剝掉
+LAY("eFilm", [8, 0.1, EX, 1.46]);
+ETR.forEach((pts, k) => { for (let i = 0; i < pts.length - 1; i++) { const [x0, z0] = pts[i], [x1, z1] = pts[i + 1], L = Math.hypot(x1 - x0, z1 - z0), ang = -Math.atan2(z1 - z0, x1 - x0) / D2R;
+  P({ id: `eF${k}_${i}`, layer: "eFilm", shape: "box", size: [R2(L + 0.2), 0.03, 0.2], pos: [R2(EX + (x0 + x1) / 2), 1.455, R2((z0 + z1) / 2)], rot: [0, R2(ang), 0], mat: "film" }); }
+  for (const [x, z] of [pts[0], pts[pts.length - 1]]) P({ id: `eFp${k}_${x > 0 ? 1 : 0}_${z}`, layer: "eFilm", shape: "cyl", size: [0.25, 0.03], rot: V, pos: [R2(EX + x), 1.455, z], mat: "film" }); });
 // 兩端的小晶片（送出／接收）
 LAY("eChips", [8, 0.4, EX, 1.6]);
 for (const [x, n] of [[-4.5, "Tx"], [4.5, "Rx"]]) { BOX(`e${n}`, "eChips", R2(EX + x - 0.5), R2(EX + x + 0.5), 1.24, 1.6, -1.8, 1.8, "chip"); BOX(`e${n}Top`, "eChips", R2(EX + x - 0.45), R2(EX + x + 0.45), 1.6, 1.61, -1.7, 1.7, "chipTop"); }
@@ -223,6 +238,7 @@ const lane = (pre, z, mat, lay) => {
   BOX(`${pre}Board`, lay, SX - SL - 0.3, SX + SL + 0.3, 0.75, 0.95, z - 1.2, z + 1.2, mat);
   BOX(`${pre}Trace`, lay, SX - SL + 0.6, SX + SL - 0.6, 0.95, 0.99, z - 0.09, z + 0.09, "cuHi");
   BOX(`${pre}Tx`, lay, SX - SL - 0.2, SX - SL + 0.8, 0.95, 1.35, z - 0.8, z + 0.8, "chip"); BOX(`${pre}TxTop`, lay, SX - SL - 0.15, SX - SL + 0.75, 1.35, 1.36, z - 0.75, z + 0.75, "chipTop");
+  P({ id: `${pre}Pin`, layer: lay, shape: "box", size: [0.08, 0.04, 0.22], pos: [0, 0.97, 0], at: [SX - SL + 0.3, SX + SL - 0.3].flatMap((cx) => [0, 1, 2, 3, 4, 5].flatMap((i) => [[R2(cx - 0.4 + i * 0.16), 0, R2(z - 0.9)], [R2(cx - 0.4 + i * 0.16), 0, R2(z + 0.9)]])), mat: "padGold" });
   BOX(`${pre}Rx`, lay, SX + SL - 0.8, SX + SL + 0.2, 0.95, 1.35, z - 0.8, z + 0.8, "chip"); BOX(`${pre}RxTop`, lay, SX + SL - 0.75, SX + SL + 0.15, 1.35, 1.36, z - 0.75, z + 0.75, "chipTop");
 };
 lane("sa", LA, "mud", "sLaneA"); lane("sb", LB, "track", "sLaneB");
@@ -237,6 +253,8 @@ LAY("sRxB", [0.4, 0.4, SX + SL - 0.3, 1.5]); SPH("sbRxLed", "sRxB", 0.13, SX + S
 LAY("sServer", [8, 4, SX, 3]);
 BOX("ssBox", "sServer", SX - 4, SX + 4, 0.75, 4.6, -6.0, -4.2, "darker");
 P({ id: "ssSlot", layer: "sServer", shape: "box", size: [7.4, 0.5, 0.05], pos: [SX, 0, -4.18], at: Array.from({ length: 6 }, (_, i) => [0, R2(1.1 + i * 0.6), 0]), mat: "dark" });
+P({ id: "ssHdl", layer: "sServer", shape: "box", size: [0.12, 0.3, 0.12], pos: [0, 0, -4.1], at: Array.from({ length: 6 }, (_, i) => [[R2(SX - 3.6), R2(1.1 + i * 0.6), 0], [R2(SX + 3.0), R2(1.1 + i * 0.6), 0]]).flat(), mat: "steel2" });
+P({ id: "ssVent", layer: "sServer", shape: "box", size: [0.08, 0.3, 0.02], pos: [0, 0, -4.14], at: Array.from({ length: 6 }, (_, i) => Array.from({ length: 14 }, (_, j) => [R2(SX - 2.2 + j * 0.32), R2(1.1 + i * 0.6), 0])).flat(), mat: "darker" });
 P({ id: "ssLed", layer: "sServer", shape: "sphere", size: [0.07], pos: [0, 0, -4.15], at: Array.from({ length: 6 }, (_, i) => [R2(SX + 3.4), R2(1.1 + i * 0.6), 0]), mat: "lampG" });
 
 // ═════ 站 V：供應商展示台（x 185）：三座台子各放一疊銅箔基板 ═════
@@ -284,6 +302,11 @@ BOX("ncSheet", "nCuRoll", NX - 4.8, NX - 1.2, 1.12, 1.15, 0.4, 2.2, "cuHi");
 LAY("nGlRoll", [3, 3, NX + 3, 2]); HXC("ngRoll", "nGlRoll", 1.0, NX + 1, NX + 5, 2.1, -0.6, "yarn"); HXC("ngCore", "nGlRoll", 0.25, NX + 0.6, NX + 5.4, 2.1, -0.6, "steel");
 for (const x of [0.5, 5.5]) BOX(`ngStand${x}`, "nGlRoll", NX + x - 0.12, NX + x + 0.12, 0.75, 2.1, -0.8, -0.4, "dark");
 BOX("ngSheet", "nGlRoll", NX + 1.2, NX + 4.8, 0.76, 0.79, 0.4, 2.2, "yarnS");
+P({ id: "ncRing", layer: "nCuRoll", shape: "tube", size: [1.01, 0.97, 0.02], rot: HX, pos: [0, 2.1, -0.6], at: [NX - 5.01, NX - 0.99].map((x) => [x, 0, 0]), mat: "cu" });
+P({ id: "ncRing2", layer: "nCuRoll", shape: "tube", size: [0.7, 0.66, 0.02], rot: HX, pos: [0, 2.1, -0.6], at: [NX - 5.01, NX - 0.99].map((x) => [x, 0, 0]), mat: "cu" });
+P({ id: "ngRingE", layer: "nGlRoll", shape: "tube", size: [1.01, 0.97, 0.02], rot: HX, pos: [0, 2.1, -0.6], at: [NX + 0.99, NX + 5.01].map((x) => [x, 0, 0]), mat: "yarnS" });
+P({ id: "ngRingE2", layer: "nGlRoll", shape: "tube", size: [0.7, 0.66, 0.02], rot: HX, pos: [0, 2.1, -0.6], at: [NX + 0.99, NX + 5.01].map((x) => [x, 0, 0]), mat: "yarnS" });
+P({ id: "ngWv", layer: "nGlRoll", shape: "tube", size: [1.015, 0.99, 0.03], rot: HX, pos: [0, 2.1, -0.6], at: Array.from({ length: 19 }, (_, i) => [R2(NX + 1.2 + i * 0.2), 0, 0]), mat: "yarnS" });
 P({ id: "ngWarp", layer: "nGlRoll", shape: "box", size: [0.06, 0.03, 1.8], pos: [0, 0.8, 1.3], at: Array.from({ length: 12 }, (_, i) => [R2(NX + 1.4 + i * 0.3), 0, 0]), mat: "yarn" });
 P({ id: "ngWeft", layer: "nGlRoll", shape: "box", size: [3.6, 0.03, 0.06], pos: [NX + 3, 0.81, 0], at: Array.from({ length: 6 }, (_, i) => [0, 0, R2(0.55 + i * 0.3)]), mat: "yarn" });
 
@@ -294,29 +317,33 @@ actions.gGlow = { type: "pulse", _說明: "念到「撐住形狀」：經緯紗�
 actions.rUnSpin = { type: "rotate", _說明: "放卷：布捲轉動送布", parts: ["rUnRoll", "rUnMark"], axis: [0, 0, -1], pivot: [RX - 6, 2.2, 0], rps: 0.35, rampSpin: true };
 actions.rWebDryF = { type: "flow", _說明: "乾布往前走（白色標記點）", layer: "rWebDry", path: [[RX - 6, 3.2, 1.0], [RX - 3.6, 3.26, 1.0], [RX - 2.5, 1.5, 1.0]], n: 4, size: 0.09, shape: "dot", rate: 0.45, color: "glassC", track: false };
 actions.rWebWetF = { type: "flow", _說明: "布浸過樹脂後往前走，經擠壓輥、進烘箱（琥珀色標記點）", layer: "rWebWet", path: [[RX - 2.5, 1.5, 1.0], [RX - 1.8, 0.66, 1.0], [RX + 0.4, 2.65, 1.0], [OV0, 2.65, 1.0], [OV1, 2.65, 1.0], [RX + 8.6, 2.65, 1.0]], n: 8, size: 0.09, shape: "dot", rate: 0.3, color: "ppC", track: false };
+actions.rGuideSpin = { type: "rotate", parts: ["rGuide0", "rMkG0"], axis: [0, 0, -1], pivot: [RX - 3.6, 3.05, 0], rps: 0.9, rampSpin: true };
+actions.rDipSpin = { type: "rotate", parts: ["rGuide1", "rMkG1"], axis: [0, 0, 1], pivot: [RX - 1.8, 0.75, 0], rps: 0.9, rampSpin: true };
+actions.rSqzLo = { type: "rotate", _說明: "擠壓輥一對反向轉（下支逆、上支順，夾著布往右送）", parts: ["rSqz0", "rMkS0"], axis: [0, 0, -1], pivot: [RX + 0.4, 2.25, 0], rps: 0.5, rampSpin: true };
+actions.rSqzHi = { type: "rotate", parts: ["rSqz1", "rMkS1"], axis: [0, 0, 1], pivot: [RX + 0.4, 2.95, 0], rps: 0.5, rampSpin: true };
+for (let i = 0; i < 11; i++) actions[`eRS${i}`] = { type: "rotate", parts: [`eRol${i}`, `eRolMk${i}`], axis: [0, 0, -1], pivot: [R2(EX - 4.5 + i * 0.9), 1.13, 0], rps: 0.6, rampSpin: true };
 actions.rDrip = { type: "flow", _說明: "擠壓輥擠掉多的樹脂，滴回槽裡（受重力加速）", layer: "rFrame", path: [[RX + 0.1, 2.3, 0.6], [RX - 0.6, 1.45, 0.6]], n: 3, lanes: 2, laneDir: [0, 0, -1], laneGap: 0.9, size: 0.08, shape: "dot", rate: 1.1, color: "resinL", track: false, accel: true, free: true };
 actions.rHeatGlow = { type: "pulse", _說明: "烘箱加熱管發紅（把樹脂烘到半固化）", parts: ["rHeat"], color: "heatC", glow: 0.8, freq: 0.8, halo: 0 };
 actions.rHotAir = { type: "flow", _說明: "烘箱裡熱風貼著布面吹過（布在 y2.6）", layer: "rFrame", path: [[OV0 + 0.4, 2.76, 0], [OV1 - 0.4, 2.76, 0]], n: 4, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.8, size: 0.12, shape: "arrow", rate: 0.9, color: "hotC", track: false };
 actions.hHeat = { type: "pulse", _說明: "上下熱板加熱（示意，不標溫度）", parts: ["hBotHeat", "htHeat"], color: "heatC", glow: 0.9, freq: 0.8, halo: 0 };
 actions.hStackHot = { type: "pulse", _說明: "膠片受熱（樹脂變軟、流動）", parts: ["hPP0b", "hPP1b", "hPP2b", "hPP3b"], color: "hotC", glow: 0.35, freq: 1.0, halo: 0 };
 actions.eSpray = { type: "flow", _說明: "蝕刻藥水往下噴（受重力加速）", layer: "eLine", path: [[EX - 3.6, 3.0, 0], [EX - 3.6, 1.5, 0]], n: 3, lanes: 7, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.09, shape: "dot", rate: 1.2, color: "glassC", track: false, accel: true, free: true };
-ETR.forEach((pts, k) => { actions[`eSig${k}`] = { type: "flow", ...(k === 0 ? { _說明: "訊號沿三條走線從送出晶片跑到接收晶片" } : {}), layer: "eTr", path: pts.map(([x, z]) => [R2(EX + x), 1.47, z]), n: 3, size: 0.12, shape: "dot", rate: 0.6, color: "sigC", track: false, phase: k * 0.3 }; });
+ETR.slice(0, 3).forEach((pts, k) => { actions[`eSig${k}`] = { type: "flow", ...(k === 0 ? { _說明: "訊號沿三條走線從送出晶片跑到接收晶片" } : {}), layer: "eTr", path: pts.map(([x, z]) => [R2(EX + x), 1.47, z]), n: 3, size: 0.12, shape: "dot", rate: 0.6, color: "sigC", track: false, phase: k * 0.3 }; });
 // 損耗對照：一般材料（後道）訊號越走越小；低損耗（前道）幾乎不變
 const SA = [SX - SL + 0.8, SX - 2, SX + 2, SX + SL - 0.8];
-actions.sA0 = { type: "flow", _說明: "一般材料：訊號走一段就被吃掉一截（光點越來越小，示意）", layer: "sLaneA", path: [[SA[0], 1.04, LA], [SA[1], 1.04, LA]], n: 3, size: 0.26, shape: "dot", rate: 0.6, color: "sigC", track: false };
-actions.sA1 = { type: "flow", layer: "sLaneA", path: [[SA[1], 1.04, LA], [SA[2], 1.04, LA]], n: 3, size: 0.15, shape: "dot", rate: 0.6, color: "sigC", track: false, phase: 0.33 };
-actions.sA2 = { type: "flow", layer: "sLaneA", path: [[SA[2], 1.04, LA], [SA[3], 1.04, LA]], n: 3, size: 0.07, shape: "dot", rate: 0.6, color: "sigW", track: false, phase: 0.66 };
-actions.sB = { type: "flow", _說明: "低損耗：同樣距離，光點幾乎不變小", layer: "sLaneB", path: [[SA[0], 1.04, LB], [SA[3], 1.04, LB]], n: 6, size: 0.24, shape: "dot", rate: 0.6, color: "sigC", track: false };
+for (let k = 0; k < 8; k++) { const x0 = R2(SA[0] + (SA[3] - SA[0]) * k / 8), x1 = R2(SA[0] + (SA[3] - SA[0]) * (k + 1) / 8);
+  actions[`sA${k}`] = { type: "flow", ...(k === 0 ? { _說明: "一般材料：同速前進，光點沿路一段段變小（每段約 ×0.78，示意）" } : {}), layer: "sLaneA", path: [[x0, 1.04, LA], [x1, 1.04, LA]], n: 1, size: R2(0.26 * 0.78 ** k), shape: "dot", rate: 0.6, color: k < 6 ? "sigC" : "sigW", track: false, phase: R2(k / 8) };
+  actions[`sB${k}`] = { type: "flow", ...(k === 0 ? { _說明: "低損耗：同速，光點只稍微變小（到終點約剩八成，示意）" } : {}), layer: "sLaneB", path: [[x0, 1.04, LB], [x1, 1.04, LB]], n: 1, size: R2(0.26 * 0.97 ** k), shape: "dot", rate: 0.6, color: "sigC", track: false, phase: R2(k / 8) }; }
 actions.sRxBGlow = { type: "pulse", _說明: "低損耗那道的接收燈亮", parts: ["sbRxLed"], color: "lampG", glow: 0.9, freq: 1.2, halo: 0 };
 actions.sSrvLed = { type: "pulse", parts: ["ssLed"], color: "lampG", glow: 0.7, freq: 2.0, halo: 0 };
-actions.nCuSpin = { type: "rotate", _說明: "銅箔捲、玻纖布捲慢慢轉（下一集主角）", parts: ["ncRoll"], axis: [1, 0, 0], pivot: [NX - 3, 2.1, -0.6], rps: 0.15, rampSpin: true };
-actions.nGlSpin = { type: "rotate", parts: ["ngRoll"], axis: [1, 0, 0], pivot: [NX + 3, 2.1, -0.6], rps: 0.15, rampSpin: true };
+actions.nCuSpin = { type: "rotate", _說明: "銅箔捲、玻纖布捲慢慢轉（下一集主角）", parts: ["ncRoll", "ncRing", "ncRing2"], axis: [1, 0, 0], pivot: [NX - 3, 2.1, -0.6], rps: 0.15, rampSpin: true };
+actions.nGlSpin = { type: "rotate", parts: ["ngRoll", "ngWv", "ngRingE", "ngRingE2"], axis: [1, 0, 0], pivot: [NX + 3, 2.1, -0.6], rps: 0.15, rampSpin: true };
 
 // 標註點
 Object.assign(anchors, {
   kBoardA: A("kPCB", [3.6, 1.06, 2.2], 150, -100), kChipA: A("kPCB", [1.2, 1.36, 1.2], 150, -100),
   kCuTA: A("kCuT", [3.8, R2(KTOP + 0.08), 2.6], 150, -100), kPPA: A("kPP1", [-3.8, R2(0.85 + KCU + 1.5 * KPP), 3.2], -150, -100), kCuBA: A("kCuB", [3.8, 0.93, 3.2], 150, 100), kCookieA: A("kCookie", [CKX, 1.53, 0.6], 150, -100),
-  gWarpA: A("gWarp", [gx(2), GY, gz(GN - 1)], -150, -100), gFilA: A("gFil", [R2(gx(GN - 1) + 0.25), R2(GY + 0.5), R2(gz(GN - 1) + 2.0)], 150, -100), gRollA: A("gRoll", [GX + 2, 2.75, -5.6], 150, -100),
+  gWarpA: A("gWarp", [gx(2), GY, gz(GN - 1)], -150, -100), gFilA: A("gFil", [R2(GX + 1.1), R2(GY + 1.2), R2(gz(GN - 1) + 2.4)], 150, -100), gRollA: A("gRoll", [GX + 2, 2.75, -5.6], 150, -100),
   rTankA: A("rFrame", [RX - 1.8, 1.45, 1.3], -150, 100), rSqzA: A("rFrame", [RX + 0.4, 2.95, 1.3], -150, -100), rOvenA: A("rFrame", [RX + 4.6, 4.3, 1.5], 150, -100), rPPA: A("rPP5", [RX + 9.6, 1.42, 1.2], 150, -100),
   hPPA: A("hPP2", [HX0 + 2.8, R2((HSY.hPP2[0] + HSY.hPP2[1]) / 2), 1.5], 150, -100), hCuA: A("hCuT", [HX0 - 2.8, R2(HSY.hCuT[1]), 1.5], -150, -100), hTopA: A("hTop", [HX0 + 3.2, 5.5, 1.8], 150, -100),
   hBleedA: A("hBleed", [HX0 + 2.9, 2.33, 1.4], 150, 100), hCoreA: A("hCore", [HX0 - 2.8, 2.33, 1.5], -150, 100),
