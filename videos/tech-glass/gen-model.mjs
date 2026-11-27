@@ -116,7 +116,7 @@ const idsOf = (layer) => parts.filter((q) => q.layer === layer).map((q) => q.id)
 const SPIRAL = (a0, cx, y, r0, r1, turns = 1.1) => Array.from({ length: 12 }, (_, i) => { const u = i / 11, [x, z] = pol(a0 + u * 360 * turns, r0 + (r1 - r0) * u); return [R2(x + cx), y, z]; });
 
 // ── 貼圖：國旗、台積電 LOGO（原檔）、沒有原檔可用的公司用白底深色字名牌、電阻率表頭 ──
-const TEX = ["flag:TW", "flag:US", "flag:KR", "logo:intel", "logo:samsung", "text:absolics=Absolics|SKC 子公司", "text:unimicron=欣興電子|送樣中", "text:innolux=群創光電|送樣中", "text:m26=2026|現在", "text:m27=2027|最快", "text:m28=2028 以後|多數", "text:goal=量產|預計", "text:ccl=銅箔基板|下一集", "text:unk=尚未確定|截至 2026/11/27"];
+const TEX = ["flag:TW", "flag:US", "flag:KR", "logo:intel", "logo:samsung", "text:absolics=Absolics|SKC 子公司", "text:unimicron=欣興電子|送樣中", "text:innolux=群創光電|送樣中", "text:m26=2026|現在", "text:m27=2027|最快", "text:m28=2028 以後|多數", "text:goal=量產|預計", "text:ccl=銅箔基板|下一集", "text:unk=尚未確定|截至 2026/11/28"];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-glass", ...TEX], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stdout, r.stderr); process.exit(1); } }
 const SIGN = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
 const TEXMAT = (name) => { materials[`t_${name}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/${name}.png` }; return `t_${name}`; };
@@ -251,7 +251,7 @@ for (const [x0, x1, z0, z1] of [[-4.5, 4.5, 2.46, 2.5], [-4.5, 4.5, -2.5, -2.46]
 TZR.forEach((z, r) => { LAY(`tMod${r}`, [9, 0.5, TX, 1.5]); P({ id: `tModL${r}`, layer: `tMod${r}`, shape: "cyl", size: [0.035, R2(TG1 - TG0)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TXS.map((x) => [x, 0, z]), mat: "modDot" }); });
 LAY("tHole", [9, 0.5, TX, 1.5]); P({ id: "tHoleC", layer: "tHole", shape: "cyl", size: [0.16, R2(TG1 - TG0 + 0.01)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "hole" });
 LAY("tCuW", [9, 0.6, TX, 1.5]); P({ id: "tCuWall", layer: "tCuW", shape: "tube", size: [0.17, 0.12, R2(TG1 - TG0 + 0.01)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cu" });
-LAY("tNo", [2, 0.6, TXS[3] - 0.6, TG1 + 0.3]); P({ id: "tNoX", layer: "tNo", shape: "box", size: [0.5, 0.05, 0.02], pos: [TXS[3], R2(TG1 + 0.35), 2.56], at: [[0, 0, 0]], rot: [0, 0, 45], mat: "lampR" }); P({ id: "tNoX2", layer: "tNo", shape: "box", size: [0.5, 0.05, 0.02], pos: [TXS[3], R2(TG1 + 0.35), 2.56], rot: [0, 0, -45], mat: "lampR" });
+LAY("tNo", [2, 0.6, TXS[3] - 0.6, TG1 + 0.3]); P({ id: "tNoX", layer: "tNo", shape: "box", size: [0.9, 0.09, 0.02], pos: [TXS[3], R2(TG1 + 0.55), 2.56], at: [[0, 0, 0]], rot: [0, 0, 45], mat: "lampR" }); P({ id: "tNoX2", layer: "tNo", shape: "box", size: [0.9, 0.09, 0.02], pos: [TXS[3], R2(TG1 + 0.55), 2.56], rot: [0, 0, -45], mat: "lampR" });
 P({ id: "tNoPad", layer: "tNo", shape: "box", size: [1.0, 0.03, 0.3], pos: [R2(TXS[3] - 0.7), R2(TG1 + 0.015), 2.35], mat: "cu" });
 LAY("tCu", [9, 0.6, TX, 1.5]); P({ id: "tCuC", layer: "tCu", shape: "cyl", size: [0.17, R2(TG1 - TG0 + 0.02)], rot: V, pos: [0, R2((TG0 + TG1) / 2), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cu" });
 P({ id: "tCuPadT", layer: "tCu", shape: "cyl", size: [0.22, 0.012], rot: V, pos: [0, R2(TG1 + 0.006), 0], at: TZR.flatMap((z) => TXS.map((x) => [x, 0, z])), mat: "cuB" });
@@ -311,8 +311,18 @@ const FAB = (id, x, z, w, d, h, logo, logoW) => { LAY(id, [w + 1, h + 1, x, h / 
 FAB("cIntel", CX - 6.4, -2.5, 5.2, 3, 3.2, "sign-intel", 2.0);
 FAB("cSem", CX, -2.5, 5.2, 3, 3.2, "sign-samsung", 2.4);
 FAB("cAbs", CX + 6.4, -2.5, 5.2, 3, 3.2, "sign-absolics", 2.4);
+// 英特爾：屋頂排氣管架（彎頭＋管夾）
+PIPE("cIntelEx", "cIntel", [[CX - 8.4, 3.35, -2.0], [CX - 8.4, 4.2, -2.0], [CX - 4.6, 4.2, -2.0], [CX - 4.6, 3.35, -2.0]], 0.12, "pipeW"); CLAMPS("cIntelExC", "cIntel", [[CX - 8.4, 4.2, -2.0], [CX - 4.6, 4.2, -2.0]], 0.12, 0.8);
+P({ id: "cIntelExS", layer: "cIntel", shape: "box", size: [0.08, 0.85, 0.08], pos: [0, 3.77, -2.0], at: [[CX - 7.2, 0, 0], [CX - 5.8, 0, 0]], mat: "steel2" });
+// 三星電機：側面管線橋（接到旁邊的公用棟）
+BOX("cSemBr", "cSem", CX + 2.6, CX + 3.6, 2.2, 2.6, -2.8, -2.2, "steel2"); P({ id: "cSemBrP", layer: "cSem", shape: "cyl", size: [0.08, 1.0], rot: HX, pos: [CX + 3.1, 0, -2.5], at: [[0, 2.3, -0.15], [0, 2.3, 0.15], [0, 2.5, 0]], mat: "pipeW" });
+VC("cSemBrL", "cSem", 0.08, 0, 2.2, "steel2", { x: CX + 3.5, z: -2.5 }); BOX("cSemTank", "cSem", CX - 2.4, CX - 1.0, 3.35, 4.1, -3.4, -2.6, "steel2");
+// Absolics：側面裝卸碼頭（捲門＋月台）
+BOX("cAbsDock", "cAbs", CX + 4.2, CX + 6.0, 0, 0.5, -1.0, -0.2, "band"); BOX("cAbsRoll", "cAbs", CX + 4.4, CX + 5.8, 0.5, 1.9, -1.0, -0.96, "dark");
+P({ id: "cAbsRollL", layer: "cAbs", shape: "box", size: [1.4, 0.03, 0.02], pos: [CX + 5.1, 0, -0.95], at: Array.from({ length: 7 }, (_, i) => [0, R2(0.6 + i * 0.2), 0]), mat: "steel2" });
+BOX("cAbsCan", "cAbs", CX + 4.2, CX + 6.0, 1.95, 2.05, -1.0, -0.3, "roof");
 LAY("cfIntel", [1.6, 5, CX - 4.4, 2.5]); FLAGPOLE("cfIntelP", "cfIntel", "US", CX - 4.4, -0.4, 4.4, 1.0);
-LAY("cfSem", [1.6, 5, CX - 1.6, 2.5]); FLAGPOLE("cfSemP", "cfSem", "KR", CX - 1.6, -0.4, 4.4, 1.2);
+LAY("cfSem", [1.6, 5, CX - 2.9, 2.5]); FLAGPOLE("cfSemP", "cfSem", "KR", CX - 2.9, -0.4, 4.4, 1.0);
 LAY("cfAbs", [3, 5, CX + 4.9, 2.5]); FLAGPOLE("cfAbsK", "cfAbs", "KR", CX + 4.2, -0.4, 4.4, 1.0); FLAGPOLE("cfAbsU", "cfAbs", "US", CX + 5.6, -0.4, 3.6, 1.0);
 const LAB = (id, x, logo) => { LAY(id, [4, 2.4, x, 1.2]);
   BOX(`${id}B`, id, x - 2, x + 2, 0.12, 2.0, 2.2, 4.2, "panel2"); BOX(`${id}Roof`, id, x - 2.1, x + 2.1, 2.0, 2.12, 2.1, 4.3, "roof");
@@ -335,7 +345,7 @@ BOX("qCartB", "qCart", QX - 9.2, QX - 4.8, 0.55, 0.8, -1.2, 1.2, "steel2"); P({ 
 BOX("qCartG", "qCart", QX - 8.8, QX - 5.2, 0.8, 1.15, -1.0, 1.0, "glassCore"); P({ id: "qCartTgv", layer: "qCart", shape: "tube", size: [0.07, 0.045, 0.35], rot: V, pos: [0, 0.975, 0], at: Array.from({ length: 24 }, (_, i) => [R2(QX - 8.5 + (i % 8) * 0.43), 0, R2(-0.6 + Math.floor(i / 8) * 0.6)]), mat: "cuB" });
 VC("qCartPostL", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: -0.9 }); VC("qCartPostR", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: 0.9 }); ZC("qCartBar", "qCart", 0.06, -1.0, 1.0, QX - 9.1, 1.9, "rubber");
 // 量產目標旗（念「一延再延」時往後挪兩次）
-LAY("qGoal", [1.6, 4.4, QX + 0.6, 2.2]); VC("qGoalP", "qGoal", 0.06, 0, 4.4, "steel2", { x: QX + 0.4, z: 0 }); VC("qGoalB", "qGoal", 0.25, 0, 0.12, "dark", { x: QX + 0.4, z: 0 }); PLATE("qGoalS", "qGoal", "sign-goal", 1.4, QX + 1.15, 3.95, 0.02);
+LAY("qGoal", [3, 5.4, QX + 1.8, 2.7]); VC("qGoalP", "qGoal", 0.08, 0, 5.4, "steel2", { x: QX + 0.4, z: 0 }); VC("qGoalB", "qGoal", 0.3, 0, 0.14, "dark", { x: QX + 0.4, z: 0 }); PLATE("qGoalS", "qGoal", "sign-goal", 2.8, QX + 1.9, 4.6, 0.02);
 LAY("qTest", [3.4, 3.4, QX + 3.2, 1.7]);
 BOX("qTestB", "qTest", QX + 1.6, QX + 4.8, 0, 3.2, 1.4, 3.6, "panel"); BOX("qTestWin", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 3.6, 3.63, "window"); BOX("qTestIn", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 2.0, 2.04, "dark");
 P({ id: "qTestRack", layer: "qTest", shape: "box", size: [1.8, 0.04, 1.2], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.6, 0], [0, 2.1, 0]], mat: "steel2" }); P({ id: "qTestPanel", layer: "qTest", shape: "box", size: [1.4, 0.06, 0.9], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.65, 0], [0, 2.15, 0]], mat: "glassCore" });
@@ -345,13 +355,16 @@ BOX("qTestHandle", "qTest", QX + 3.7, QX + 3.8, 0.9, 1.0, 3.6, 3.75, "steel"); P
 P({ id: "qTestVent", layer: "qTest", shape: "box", size: [0.02, 0.06, 1.6], pos: [R2(QX + 4.81), 0, 2.5], at: Array.from({ length: 8 }, (_, i) => [0, R2(0.4 + i * 0.12), 0]), mat: "dark" });
 SPH("qTestStop", "qTest", 0.13, QX + 4.4, 0.8, 3.64, "lampR"); VC("qTestPort", "qTest", 0.12, 3.2, 3.4, "dark", { x: QX + 2.0, z: 2.0 });
 BOX("qTestScreen", "qTest", QX + 4.15, QX + 4.65, 1.4, 2.1, 3.6, 3.63, "screen");
-LAY("qUnk", [3.2, 2, QX + 7.6, 1.2]); VC("qUnkP", "qUnk", 0.06, 0, 1.0, "steel2", { x: QX + 7.6, z: 2.4 }); BOX("qUnkBg", "qUnk", QX + 5.8, QX + 9.4, 1.0, 2.0, 2.4, 2.44, "panel"); PLATE("qUnkS", "qUnk", "sign-unk", 3.4, QX + 7.6, 1.5, 2.45);
+LAY("qUnk", [3, 2, QX + 6.4, 1.2]); VC("qUnkP", "qUnk", 0.06, 0, 1.0, "steel2", { x: QX + 6.4, z: 4.0 }); BOX("qUnkBg", "qUnk", QX + 4.9, QX + 7.9, 1.0, 2.0, 4.0, 4.04, "panel"); PLATE("qUnkS", "qUnk", "sign-unk", 2.9, QX + 6.4, 1.5, 4.05);
 
 // ═════ 站 N：下一集（銅箔基板：銅箔／浸樹脂玻纖布／銅箔，疊成一疊）═════
 const NX = 150;
 LAY("nBase", [12, 0.6, NX, 0.3]); BOX("nPl", "nBase", NX - 6, NX + 6, 0, 0.6, -4, 4, "band");
 LAY("nStack", [10, 0.8, NX, 1.0]);
 for (let i = 0; i < 4; i++) { const y = R2(0.6 + i * 0.22); BOX(`nCuB${i}`, "nStack", NX - 5, NX + 5, y, R2(y + 0.03), -3.5, 3.5, "cu"); BOX(`nPp${i}`, "nStack", NX - 5, NX + 5, R2(y + 0.03), R2(y + 0.17), -3.5, 3.5, "core"); BOX(`nCuT${i}`, "nStack", NX - 5, NX + 5, R2(y + 0.17), R2(y + 0.2), -3.5, 3.5, "cu"); }
+for (let i = 0; i < 4; i++) WEAVE(`nWv${i}`, "nStack", NX - 4.95, NX + 4.95, R2(0.6 + i * 0.22 + 0.1), 3.514, 0.2);
+P({ id: "nTopBrush", layer: "nTop", shape: "box", size: [9.8, 0.004, 0.03], pos: [NX, 2.383, 0], at: Array.from({ length: 22 }, (_, i) => [0, 0, R2(-3.3 + i * 0.31)]), mat: "steel" });
+WEAVE("nTopWv", "nTop", NX - 4.95, NX + 4.95, 2.02, 3.514, 0.2);
 P({ id: "nFib", layer: "nStack", shape: "cyl", size: [0.035, 0.02], pos: [0, 0, 3.51], at: Array.from({ length: 160 }, (_, i) => [R2(NX - 4.9 + (i % 40) * 0.25), R2(0.7 + Math.floor(i / 40) * 0.22), 0]), mat: "fiber" });
 LAY("nTop", [10, 0.6, NX, 2.0]);
 BOX("nTopCuB", "nTop", NX - 5, NX + 5, 1.7, 1.73, -3.5, 3.5, "cu"); BOX("nTopPp", "nTop", NX - 5, NX + 5, 1.95, 2.09, -3.5, 3.5, "core"); BOX("nTopCuT", "nTop", NX - 5, NX + 5, 2.35, 2.38, -3.5, 3.5, "cuB");
@@ -397,7 +410,7 @@ Object.assign(anchors, {
   qCart: A("qCart", [QX - 7, 0.75, 0], -120, -110), qTest: A("qTest", [QX + 3.2, 3.2, 2.5], 130, -110), qP27: A("qP27", [QX, 3.5, -1.42], 120, -100),
   tGalvo: A("tHead", [TX + 0.7, 5.3, 0.6], 150, -90), tBarrel: A("tHeadB", [TX + 0.28, 4.0, 0.2], 150, 0), tLens: A("tHeadL", [TX + 0.3, 3.36, 0.2], 150, 80), tNo: A("tNo", [TXS[3], TG1 + 0.35, 2.56], -140, -110),
   tDrillH: A("tDrill", [CPX + 0.55, CPY + 2.6, CPZ + 0.45], 140, -100), kB2: A("kB2", [KX + 4.6, R2(ky0 + 2 * BU + 0.1), 3.5], 150, 90), kBalls: A("kBalls", [KX + 3.0, 0.6, 4.5], 150, 100), kT2: A("kT2", [KX + 4.6, R2(kc1 + BU + 0.1), 3.5], 150, -90),
-  qGoal: A("qGoal", [QX + 1.15, 3.95, 0.02], 120, -100), qUnk: A("qUnk", [QX + 7.6, 1.5, 2.45], -120, -100),
+  qGoal: A("qGoal", [QX + 1.9, 4.6, 0.02], 120, -100), qUnk: A("qUnk", [QX + 6.4, 1.5, 4.05], -120, -100),
   nStack: A("nTop", [NX + 3.5, 2.38, 2.0], 140, -110),
 });
 

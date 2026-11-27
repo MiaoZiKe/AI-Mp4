@@ -28,7 +28,7 @@ S = [
  [("ins", "不導電"), ("conn", "接通"), ("hole", "穿孔"), ("cu", "鍍銅"), ("window", "玻璃窗"), ("brittle", "玻璃脆"), ("crack", "就裂")], ["穿孔", "鍍銅", "裂"], ["LPKF（LIDE）；MDPI Micromachines 2023；示意"], 0.3),
 ("s6", "payoff", "英特爾、三星電機都在做，還有一家南韓公司在美國蓋了專廠，台灣也有廠商在送樣。",
  ["英特爾、三星電機", "都在做", "還有一家南韓公司", "在美國蓋了專廠", "台灣也有廠商", "在送樣"], ["Intel and Samsung Electro-Mechanics", "are both working on it.", "A South Korean company", "built a dedicated plant in the US,", "and Taiwanese makers", "are sending samples."],
- [("intel", "英特爾"), ("sem", "三星電機"), ("kr", "南韓"), ("us", "美國"), ("tw", "台灣"), ("sample", "送樣")], ["英特爾", "三星電機", "送樣"], [f"Intel；科技新報；SK；TrendForce；截至 {ASOF}"], 0.3),
+ [("intel", "英特爾"), ("sem", "三星電機"), ("kr", "南韓"), ("us", "美國"), ("tw", "台灣"), ("sample", "送樣")], ["英特爾", "三星電機", "送樣"], [f"Intel；科技新報；集邦；數位時代；截至 {ASOF}"], 0.3),
 ("s7", "payoff", "可是量產一延再延，多數說最快二零二七年以後，截至十一月底還沒確定。",
  ["可是量產", "一延再延", "多數說最快", "2027 年以後", "截至十一月底", "還沒確定"], ["But mass production", "keeps slipping.", "Most say the earliest", "is 2027 or later;", "as of late November,", "nothing is confirmed."],
  [("mass", "量產"), ("delay", "一延再延"), ("most", "多數"), ("early", "最快"), ("asof", "截至"), ("unk", "還沒確定")], ["量產", "一延再延", "還沒確定"], [f"TrendForce；科技新報；分析預期，截至 {ASOF}"], 0.3),
@@ -150,7 +150,7 @@ for l in ("tFrame", "tTank"): vis(l, [(T0, "s5:window+16")], 1)
 for l in ("tHead", "tHeadB", "tHeadL"): vis(l, [(T0, "s5:window+16")], 1); vis("tChips", [("s5:brittle+6", FAR)], 1)
 VIS += [mv("tCoupL", "s5:crack-2", FAR, 8, dx=-0.18), mv("tCoupR", "s5:crack-2", FAR, 8, dx=0.18)]
 # ── 站 C（s6）：念到才落下（英特爾＋美國旗、三星電機＋南韓旗、南韓公司的美國廠、台灣兩家＋台灣旗）；送樣箱往前送 ──
-drop("cIntel", "s6:intel-8", 5.0, 14); drop("cfIntel", "s6:intel-2", 5.0, 14)
+drop("cIntel", "s6:intel-8", 2.5, 14); drop("cfIntel", "s6:intel-2", 2.5, 14)
 drop("cSem", "s6:sem-8", 5.0, 14); drop("cfSem", "s6:sem-2", 5.0, 14)
 drop("cAbs", "s6:kr-8", 5.0, 14); drop("cfAbs", "s6:us-6", 5.0, 14)
 drop("cUni", "s6:tw-8", 4.0, 14); drop("cInno", "s6:tw-4", 4.0, 14); drop("cfTw", "s6:tw", 4.0, 14)
@@ -186,7 +186,7 @@ P["s2"] = {"zoom": [{"to": "micro", "at": "start-8", "dur": 1}],
  "shot": [shot(CC, X["KX"], 0.2, 40, 14, 1), shot("swap+30", X["KX"], 0.4, 34, 14, 24)],
  "labels": [lab("kChip", "晶片（中介層＋HBM）", "Chip: interposer + HBM", "blue", "core-21", "core+24"), lab("kT2", "上下增層（絕緣膜＋銅線）", "Build-up layers, top and bottom", "blue", "core+8", "core+58"),
             lab("kCore", "樹脂芯板（玻纖布＋樹脂）", "Resin core: glass cloth + resin", "amber", "cloth-4", "gs-2"), lab("kBalls", "錫球", "Solder balls", "blue", "gs-2", "gs+48"),
-            lab("kGlass", "玻璃芯板（穿孔孔壁鍍銅）", "Glass core, copper-lined vias", "blue", "swap+2", "end")],
+            lab("kGlass", "玻璃芯板（穿孔鍍銅）", "Glass core, copper-lined vias", "blue", "swap+2", "end")],
  "overlay": [card("s2", "glass-swap", "芯板換成一片玻璃", "示意", {"core": "core", "cloth": "cloth", "resin": "resin", "gs": "gs", "swap": "swap"})]}
 P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "shot": [shot(CC, X["WX"] - 2.6, -0.6, 17, 26, 1)],
@@ -208,16 +208,16 @@ P["s5"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
             lab("tCrack", "直接鑽：玻璃裂", "Drilling cracks it", "amber", "window+36", "end", xy=[780, 990])],
  "overlay": [card("s5", "glass-tgv", "玻璃穿孔（TGV）", "示意，不標孔徑", {"ins": "ins", "conn": "conn", "hole": "hole", "cu": "cu", "window": "window", "crack": "crack"})]}
 P["s6"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["CX"], -1.0, 52, 30, 1)],
+ "shot": [shot(CC, X["CX"] - 0.4, -0.6, 50, 34, 1)],
  "labels": [lab("cUni", "台灣廠商：送樣", "Taiwan makers: sampling", "amber", "tw-2", "end")],
  "overlay": [card("s6", "glass-co", "誰在做玻璃基板", f"公司說法、媒體報導；截至 {ASOF}", {"intel": "intel", "sem": "sem", "kr": "kr", "us": "us", "tw": "tw", "sample": "sample"}, h=400, y=990)]}
 P["s7"] = {"zoom": [{"to": "co", "at": SC("s7"), "dur": 1}],
- "shot": [shot(SC("s7"), X["QX"] + 0.5, -0.4, 48, 20, 1)],
+ "shot": [shot(SC("s7"), X["QX"] - 1.2, 0.4, 60, 22, 1)],
  "run": [run(a, b, c, 6) for i, (b, c) in enumerate([("start", "start+50"), ("start+50", "start+100"), ("start+100", "start+150"), ("start+150", "s8:start")]) for a in (("qHot", "qLampHot") if i % 2 == 0 else ("qCold", "qLampCold"))],
  "labels": [lab("qTest", "可靠性測試（延後原因之一）", "Reliability tests (a reported cause)", "blue", "mass+2", "early+6", xy=[560, 990]), lab("qGoal", "量產目標往後挪", "Target keeps slipping", "amber", "delay", "early+8", xy=[560, 400]), lab("qUnk", "截至 11/28 還沒確定", "Unconfirmed as of 11/28", "amber", "unk-4", "end")],
  "overlay": [card("s7", "glass-road", "量產一延再延", f"分析預期；截至 {ASOF} 尚未確定", {"mass": "mass", "delay": "delay", "most": "most", "early": "early", "unk": "unk"})]}
 P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["NX"] + 1.5, -0.6, 52, 26, 1), shot("start", X["NX"] + 1.5, -0.6, 56, 28, 120)],
+ "shot": [shot(CC, X["NX"] + 1.6, -0.2, 42, 26, 1), shot("start", X["NX"] + 1.6, -0.2, 46, 28, 120)],
  "labels": [lab("nStack", "銅箔基板（下一集）", "Copper-clad laminate (next)", "blue", "ccl-2", "end")],
  "overlay": [card("s8", "glass-next", "下一集：銅箔基板", f"截至 {ASOF}", {"now": "now", "next": "next", "ccl": "ccl", "kw": "kw"})]}
 for sid in EXTN:
