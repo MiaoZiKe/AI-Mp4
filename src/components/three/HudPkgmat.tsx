@@ -239,7 +239,7 @@ const Uf: React.FC<P> = ({ o, f, k }) => {
         <Sep x={RX - 26} />
         <Row x={RX} y={CT + 48} t="縫邊點底部填充膠" c={H.text2} a={uf} />
         <Row x={RX} y={CT + 108} t="毛細作用：自己吸進去" c={H.amber} a={te} />
-        <Row x={RX} y={CT + 168} t="乾了黏成一塊" c={BLUE} a={gl} />
+        <Row x={RX} y={CT + 168} t="硬了黏成一塊" c={BLUE} a={gl} />
         <Row x={RX} y={CT + 228} t="力量分散，不保證不裂" c={OK} a={sp} />
       </svg>
     </Card>
