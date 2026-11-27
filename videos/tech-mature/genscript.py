@@ -117,8 +117,8 @@ drop("dW8", "s4:w8-6", 2.0, 12); drop("dW12", "s4:w12-20", 2.0, 12)
 drop("fFlag", "s5:tw-6", 3.0, 12); drop("fUmc", "s5:umc-8", 2.0, 14); drop("fVis", "s6:vis-8", 2.0, 14); drop("fPsmc", "s6:psmc-8", 2.0, 14)
 drop("fProd", "s5:strong-6", 2.0, 12)
 # ── 站 C（s7–s8）：國旗念「中國」；新廠一座座冒出（s7 念「中國在大擴產」起 3 座，s8 念「新廠」「夜市」「好多攤」再 6 座）；價格柱念「價格」往下沉 ──
-drop("cFlag", "s7:cn-6", 3.0, 12)
-for i, at in enumerate(["s7:start-6", "s7:start-6", "s7:start-6", "s7:cn+4", "s7:cn+14", "s7:cn+24", "s8:fab", "s8:stall", "s8:many"]): drop(f"cFab{i}", at, 4.0, 12, 0.08)
+drop("cFlag", "s7:cn-6", 1.0, 10)
+for i, at in enumerate(["s7:cn+4", "s7:cn+14", "s7:cn+24", "s8:fab", "s8:stall", "s8:many"]): drop(f"cFab{i + 3}", at, 4.0, 12, 0.08)
 drop("cPrice", "s8:fab-4", 3.0, 12)
 drop("cSign", "s7:tf", 2.0, 12)
 VIS.append(mv("cPrice", "s8:price-2", FAR, 30, dy=-3.2))
@@ -141,7 +141,7 @@ P["s2"] = {"zoom": [{"to": "board", "at": "start-8", "dur": 1}],
  "labels": [lab("kPmic", "電源管理晶片", "Power-management IC", "amber", "mature-2", "end"), lab("kMos", "功率元件", "Power devices", "amber", "mature+2", "end")],
  "overlay": [card("s2", "mature-dish", "成熟製程：28 奈米以上", "示意", {"no": "no", "n28": "n28", "dish": "dish", "daily": "daily"})]}
 P["s3"] = {"zoom": [{"to": "device", "at": CC, "dur": 1}, {"to": "board", "at": "board-2", "dur": 1}],
- "shot": [shot(CC, PPX + 1.0, 3.0, 44, 14, 1, yaw=0.0), shot("tap+14", PPX + 2.2, 2.8, 40, 14, 30), shot("board-2", KX - 0.5, 0.5, 36, 52, 1)],
+ "shot": [shot(CC, PPX + 1.0, 3.0, 44, 14, 1, yaw=0.0), shot("tap+14", PPX + 0.8, 2.8, 45, 14, 30), shot("board-2", KX - 0.5, 0.5, 36, 52, 1)],
  "run": [run("pGateOn", "tap+14", "board-2", 4), run("pChanOn", "tap+18", "board-2", 4), run("pCur", "tap+20", "board-2", 6), run("pPkgCur", "tap+20", "board-2", 6),
          run("kPowIn", "board-2", "s4:start", 6), run("kPowSoc", "board+4", "s4:start", 6), run("kPowMem", "board+10", "s4:start", 6), run("kPowDisp", "split-6", "s4:start", 6)],
  "labels": [lab("pDrain", "汲極金屬＋N+ 基板", "Drain metal + N+ substrate", "blue", "start+6", "elec+12"),
@@ -151,10 +151,10 @@ P["s3"] = {"zoom": [{"to": "device", "at": CC, "dur": 1}, {"to": "board", "at": 
             lab("kPmic", "電源管理晶片", "Power-management IC", "amber", "board-2", "end")],
  "overlay": [card("s3", "mature-power", "晶片管電：開關與分配", "示意，不標電壓", {"elec": "elec", "tap": "tap", "big": "big", "board": "board", "split": "split"})]}
 P["s4"] = {"zoom": [{"to": "panel", "at": CC, "dur": 1}],
- "shot": [shot(CC, DX - 1.0, -1.2, 32, 56, 1), shot("w8+6", DX + 9.8, 0.0, 34, 40, 30)],
+ "shot": [shot(CC, DX - 1.0, -1.2, 32, 56, 1), shot("w8+4", DX + 10.2, 0.0, 39, 40, 18)],
  "run": [run("dFpcSig", "ddi-4", "s5:start", 6), run("dSig", "pixel-6", "s5:start", 6)],
  "labels": [lab("dDdi", "驅動晶片（貼在玻璃上）", "Driver IC on glass", "amber", "ddi-2", "w8+4"),
-            lab("dW8", "8 吋（200 mm）", "8-inch (200 mm)", "blue", "w8+6", "end", xy=[330, 470]), lab("dW12", "12 吋（300 mm）", "12-inch (300 mm)", "blue", "w12-16", "end", xy=[750, 330])],
+            lab("dW8", "8 吋（200 mm）", "8-inch (200 mm)", "blue", "w8+6", "end", xy=[300, 300]), lab("dW12", "12 吋（300 mm）", "12-inch (300 mm)", "blue", "w12-16", "end", xy=[740, 470])],
  "overlay": [card("s4", "mature-ddi", "驅動晶片點亮螢幕", "示意", {"ddi": "ddi", "pixel": "pixel", "w8": "w8", "w12": "w12"})]}
 P["s5"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
  "shot": [shot(CC, FX + 0.3, -1.8, 48, 26, 1), shot("strong", FX, -1.8, 47, 27, 40)],
@@ -164,14 +164,14 @@ P["s6"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
  "shot": [shot("start", FX, -1.8, 48, 28, 60)],
  "labels": []}
 P["s7"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, CX - 2.6, 0.0, 46, 28, 1), shot("top", CX - 2.4, 0.0, 44, 30, 40)],
+ "shot": [shot(CC, CX - 3.0, 0.0, 34, 30, 1), shot("top", CX - 3.0, 0.0, 33, 32, 40)],
  "labels": [],
  "overlay": [card("s7", "mature-cn", "中國成熟製程擴產", "分析預期（TrendForce 預估）", {"cn": "cn", "tf": "tf", "quarter": "quarter"})]}
 P["s8"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, CX - 2.4, 0.0, 46, 30, 1), shot("shift+4", TX - 2.6, 1.0, 42, 18, 1)],
+ "shot": [shot(CC, CX - 2.8, 0.0, 34, 32, 1), shot("shift+4", TX - 2.6, 1.0, 42, 18, 1)],
  "run": [run("tInvCur", "car-2", "s9:start", 6), run("tPsuCur", "ai-2", "s9:start", 6), run("tLeds", "shift", "s9:start", 6), run("tFanSpin", "ai-4", "s9:start", 6)],
- "labels": [lab("cPrice", "價格被壓低", "Prices pushed down", "amber", "price-4", "shift+4"), lab("tInv", "逆變器的功率模組", "Inverter power modules", "amber", "car-2", "end"),
-            lab("tPsu", "AI 伺服器電源", "AI server power supplies", "amber", "ai-2", "end")],
+ "labels": [lab("cPrice", "價格被壓低", "Prices pushed down", "amber", "price-4", "shift+4"), lab("tInv", "逆變器的功率模組", "Inverter power modules", "amber", "car-2", "end", xy=[560, 470]),
+            lab("tPsu", "AI 伺服器電源", "AI server power supplies", "amber", "ai-2", "end", xy=[560, 300])],
  "overlay": [card("s8", "mature-market", "新廠變多，台廠轉向", f"分析預期；截至 {ASOF}", {"stall": "stall", "price": "price", "car": "car", "ai": "ai"})]}
 P["s9"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
  "shot": [shot(CC, NX, 1.4, 38, 18, 1), shot("start", NX, 1.4, 40, 18, 120)],

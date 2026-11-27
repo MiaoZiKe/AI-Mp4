@@ -321,7 +321,7 @@ P({ id: "fProdFoupH", layer: "fProd", shape: "box", size: [0.5, 0.1, 0.2], pos: 
 
 // ═════ 站 C：中國擴產（國旗；九座新廠依序冒出＝夜市一下開很多攤；右邊價格柱往下沉）═════
 const CX = 160;
-LAY("cFlag", [2, 4, CX - 9.6, 2]); FLAGPOLE("cFlagP", "cFlag", "CN", CX - 9.6, -1.0, 4.2, 1.2);
+LAY("cFlag", [2, 4, CX - 9.6, 2]); FLAGPOLE("cFlagP", "cFlag", "CN", CX - 9.0, -4.2, 4.2, 1.2);
 const NEW = [];
 for (let i = 0; i < 9; i++) { const id = `cFab${i}`, x = R2(CX - 7.5 + (i % 3) * 3.6), z = R2(-3.2 + Math.floor(i / 3) * 3.0), h = R2(1.6 + (i % 2) * 0.4); NEW.push(id);
   LAY(id, [3, R2(h + 0.6), x, R2(h / 2)]);
@@ -336,11 +336,11 @@ for (let i = 0; i < 9; i++) { const id = `cFab${i}`, x = R2(CX - 7.5 + (i % 3) *
   PIPE(`${id}Gp`, id, [[R2(x + 1.55), 1.0, R2(z - 0.15)], [R2(x + 1.55), 1.3, R2(z - 0.15)], [R2(x + 1.3), 1.3, R2(z - 0.15)]], 0.05, "pipeW"); }
 LAY("cSign", [3, 1.5, CX - 3.9, 4.6]); PLATE("cSignP", "cSign", "sign-cnfab", 2.8, CX - 3.9, 4.6, -4.6);
 // 價格柱：底座＋紅色柱＋白色價格牌；往下沉＝價格被壓低（地板蓋住下半）
-LAY("cPrice", [2, 6, CX + 4.4, 3]);
-BOX("cPriceBase", "floor", CX + 3.5, CX + 5.3, 0, 0.1, -0.9, 0.9, "dark");
-BOX("cPriceCol", "cPrice", CX + 3.9, CX + 4.9, 0.1, 5.2, -0.5, 0.5, "price", { bevel: 0.04 });
-BOX("cPriceTag", "cPrice", CX + 3.6, CX + 5.2, 4.4, 5.0, 0.5, 0.56, "priceTag");
-P({ id: "cPriceTick", layer: "cPrice", shape: "box", size: [0.5, 0.04, 0.04], pos: [0, 0, 0.52], at: Array.from({ length: 8 }, (_, i) => [R2(CX + 4.4), R2(0.6 + i * 0.5), 0]), mat: "priceTag" });
+LAY("cPrice", [2, 6, CX + 3.2, 3]);
+BOX("cPriceBase", "floor", CX + 2.3, CX + 4.1, 0, 0.1, -0.9, 0.9, "dark");
+BOX("cPriceCol", "cPrice", CX + 2.7, CX + 3.7, 0.1, 5.2, -0.5, 0.5, "price", { bevel: 0.04 });
+BOX("cPriceTag", "cPrice", CX + 2.4, CX + 4.0, 4.4, 5.0, 0.5, 0.56, "priceTag");
+P({ id: "cPriceTick", layer: "cPrice", shape: "box", size: [0.5, 0.04, 0.04], pos: [0, 0, 0.52], at: Array.from({ length: 8 }, (_, i) => [R2(CX + 3.2), R2(0.6 + i * 0.5), 0]), mat: "priceTag" });
 
 // ═════ 站 T：轉向（左：電動車，底盤逆變器的功率模組；右：AI 伺服器機櫃，電源供應器）═════
 const TX = 200;
@@ -400,7 +400,7 @@ Object.assign(actions, {
   pGateOn: { type: "pulse", _說明: "閘極加電壓（水龍頭把手轉開）", parts: ["pGatePoly", "pLegG", "pGateBus"], color: "polyC", glow: 1.0, steady: true, halo: 0.4 },
   pChanOn: { type: "pulse", parts: ["pChanS"], color: "eDot", glow: 1.0, steady: true, halo: 0.3 },
   pCur: { type: "flow", _說明: "電流由下面汲極往上，經漂移層、貼著溝槽側壁的通道、N+ 源極，到上面源極金屬（傳統電流方向）", layer: "pChan",
-    path: [[R2(GXS[0] + 0.33), 0.35, CZ1 + 0.06], [R2(GXS[0] + 0.33), 5.0, CZ1 + 0.06]], n: 6, lanes: 3, laneDir: [1, 0, 0], laneGap: 2.1, size: 0.13, shape: "dot", rate: 0.8, color: "eDot", track: false, free: true },
+    path: [[R2(GXS[1] + 0.33), 0.35, CZ1 + 0.06], [R2(GXS[1] + 0.33), 5.0, CZ1 + 0.06]], n: 6, lanes: 3, laneDir: [1, 0, 0], laneGap: 2.1, size: 0.13, shape: "dot", rate: 0.8, color: "eDot", track: false, free: true },
   pPkgCur: { type: "flow", _說明: "封裝外：電流從 D 腳進、S 腳出", layer: "pPkg", path: [[PPX - 5.0, 1.0, 5.0], [PPX - 5.0, 3.0, 4.0], [PPX - 4.25, 3.0, 4.0], [PPX - 4.25, 1.0, 5.0]], n: 4, size: 0.12, shape: "dot", rate: 0.7, color: "powC", track: false, free: true },
   dSig: { type: "flow", _說明: "驅動 IC 把每一行要的亮度送上去（逐列掃描點亮）", layer: "dDdi", path: [[DX - 4.66, DPY + 0.12, 2.75], [DX - 4.66, DPY + 0.12, -3.5]], n: 2, lanes: PXN, laneDir: [1, 0, 0], laneGap: PS, size: 0.07, shape: "dot", rate: 0.9, color: "ledB", track: false, free: true },
   dFpcSig: { type: "flow", _說明: "主機板經軟板送畫面資料進驅動 IC", layer: "dDdi", path: [[DX - 1.0, DPY + 0.03, 5.5], [DX - 1.0, DPY + 0.03, 3.3]], n: 3, lanes: 4, laneDir: [1, 0, 0], laneGap: 0.36, size: 0.07, shape: "dot", rate: 0.8, color: "ledB", track: false, free: true },
@@ -423,7 +423,7 @@ Object.assign(anchors, {
   dDdi: A("dDdi", [DX - 1.0, DPY + 0.24, 3.0], 140, 100), dPanel: A("dRow4", [DX - 4.5, DPY + 0.1, -1.0], -140, -100), dW8: A("dW8", [DX + 7.0, 0.7, 2.6], -120, 100), dW12: A("dW12", [DX + 12.6, 0.7, 3.6], 120, 100),
   fUmc: A("fUmc", [FX - 3.4, 4.4, 4.7], -100, -110), fVis: A("fVis", [FX + 3.4, 3.6, 1.1], 100, -110), fPsmc: A("fPsmc", [FX - 1.6, 4.0, -3.7], -100, -110),
   fProd: A("fProd", [FX - 3.6, 0.4, 5.6], -120, 100), fProdTo: A("fProd", [FX + 5.3, 0.6, 1.1], 110, 100),
-  cFab4: A("cFab4", [CX - 3.9, 2.0, -0.2], -120, -110), cPrice: A("cPrice", [CX + 4.4, 4.7, 0.56], 120, -100), cFlag: A("cFlag", [CX - 10.4, 3.8, 0], -100, -90),
+  cFab4: A("cFab4", [CX - 3.9, 2.0, -0.2], -120, -110), cPrice: A("cPrice", [CX + 3.2, 4.7, 0.56], -120, -100), cFlag: A("cFlag", [CX - 10.4, 3.8, 0], -100, -90),
   tInv: A("tInv", [TX - 5.2, 1.45, 3.2], -130, 110), tPsu: A("tPsu", [RX + 0.6, 5.3, 1.3], 130, -100), tCar: A("tCar", [TX - 5.0, 2.4, 0.5], -120, -110), tRack: A("tRack", [RX, 3.0, 1.3], 130, 60),
   nDimm: A("nDimm", [NX + 1.0, 2.3, 0.2], 140, -110),
 });
