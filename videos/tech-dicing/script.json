@@ -440,32 +440,32 @@
       "at": "s3:start",
       "until": "s3:hoop+16",
       "dur": 8,
-      "dx": 0.778,
-      "dz": 0.778
+      "dx": 1.556,
+      "dz": 1.556
      },
      {
       "layer": "clamp1",
       "at": "s3:start",
       "until": "s3:hoop+16",
       "dur": 8,
-      "dx": -0.778,
-      "dz": 0.778
+      "dx": -1.556,
+      "dz": 1.556
      },
      {
       "layer": "clamp2",
       "at": "s3:start",
       "until": "s3:hoop+16",
       "dur": 8,
-      "dx": -0.778,
-      "dz": -0.778
+      "dx": -1.556,
+      "dz": -1.556
      },
      {
       "layer": "clamp3",
       "at": "s3:start",
       "until": "s3:hoop+16",
       "dur": 8,
-      "dx": 0.778,
-      "dz": -0.778
+      "dx": 1.556,
+      "dz": -1.556
      },
      {
       "layer": "cover",
@@ -1061,62 +1061,69 @@
       "dy": 1.5
      },
      {
-      "layer": "tK0",
-      "at": "s1:start-40",
-      "until": "s8:stack-24",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tK0",
-      "at": "s1:start-40",
-      "until": "s8:stack-24",
-      "dur": 16,
-      "dy": 6.0,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
-     },
-     {
-      "layer": "tK1",
-      "at": "s1:start-40",
-      "until": "s8:stack-14",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tK1",
-      "at": "s1:start-40",
-      "until": "s8:stack-14",
-      "dur": 16,
-      "dy": 6.0,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
-     },
-     {
-      "layer": "tK2",
-      "at": "s1:start-40",
-      "until": "s8:stack-4",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "tK2",
-      "at": "s1:start-40",
-      "until": "s8:stack-4",
-      "dur": 16,
-      "dy": 6.0,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
-     },
-     {
       "layer": "tALidL",
-      "at": "s8:stack+6",
+      "at": "s8:start",
       "until": "s13:start+400",
-      "dur": 8,
-      "dy": 2.0
+      "dur": 10,
+      "dy": 2.2
+     },
+     {
+      "layer": "tBLidL",
+      "at": "s8:start",
+      "until": "s8:hair+2",
+      "dur": 10,
+      "dy": 2.2
+     },
+     {
+      "layer": "tK0",
+      "at": "s1:start-40",
+      "until": "s8:stack-24",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tK0",
+      "at": "s1:start-40",
+      "until": "s8:stack-24",
+      "dur": 16,
+      "dy": 4.5,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "tK1",
+      "at": "s1:start-40",
+      "until": "s8:stack-14",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tK1",
+      "at": "s1:start-40",
+      "until": "s8:stack-14",
+      "dur": 16,
+      "dy": 4.5,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "tK2",
+      "at": "s1:start-40",
+      "until": "s8:stack-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tK2",
+      "at": "s1:start-40",
+      "until": "s8:stack-4",
+      "dur": 16,
+      "dy": 4.5,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
      },
      {
       "layer": "tBad",
@@ -1137,7 +1144,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+0",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1154,7 +1161,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+6",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1171,7 +1178,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+12",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1188,7 +1195,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+18",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1205,7 +1212,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+24",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1222,7 +1229,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+30",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1239,7 +1246,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+36",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1256,7 +1263,7 @@
       "at": "s1:start-40",
       "until": "s8:mm+42",
       "dur": 12,
-      "dy": 5.0,
+      "dy": 4.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -1824,90 +1831,6 @@
       "dur": 1
      },
      {
-      "layer": "cover",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cover",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "chuck",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "chuck",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp0",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp0",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp1",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp1",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp2",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp2",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp3",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "clamp3",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
       "layer": "cBlock",
       "at": "s1:start-40",
       "until": "s5:voice-6",
@@ -2014,20 +1937,6 @@
      },
      {
       "layer": "cBlade",
-      "at": "s6:voice-1",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cNoz",
-      "at": "s1:start-40",
-      "until": "s5:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cNoz",
       "at": "s6:voice-1",
       "until": "s13:start+400",
       "opacity": 0,
@@ -3613,9 +3522,9 @@
      }
     ]
    },
-   "durationSec": 6.0,
-   "holdSec": 2.1,
-   "pauseAfter": 2.1
+   "durationSec": 4.5,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
   },
   {
    "id": "s2",
@@ -3668,17 +3577,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 60.0,
-      "y": 7.0,
-      "d": 76,
-      "elev": 26
+      "y": 8.4,
+      "d": 78,
+      "elev": 24
      },
      {
       "at": "saw+14",
       "dur": 40,
       "x": 60.0,
-      "y": 7.0,
-      "d": 70,
-      "elev": 26
+      "y": 8.0,
+      "d": 72,
+      "elev": 24
      }
     ],
     "run": [
@@ -3749,10 +3658,10 @@
      }
     ]
    },
-   "durationSec": 6.2,
-   "holdSec": 2.2,
+   "durationSec": 4.6,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.2
+   "pauseAfter": 0.6
   },
   {
    "id": "s3",
@@ -3840,15 +3749,6 @@
       "at": "frame",
       "until": "frame+46",
       "cut": true
-     },
-     {
-      "part": "chuck",
-      "text": "卡盤（真空吸住）",
-      "en": "Vacuum chuck",
-      "color": "blue",
-      "at": "hoop+16",
-      "until": "hoop+62",
-      "cut": true
      }
     ],
     "overlay": [
@@ -3879,10 +3779,10 @@
      }
     ]
    },
-   "durationSec": 6.5,
-   "holdSec": 2.5,
+   "durationSec": 4.6,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.5
+   "pauseAfter": 0.6
   },
   {
    "id": "s4",
@@ -3928,16 +3828,16 @@
       "dur": 1,
       "x": 0.4,
       "y": 9.82,
-      "d": 52,
+      "d": 58,
       "elev": 6,
       "yaw": -0.75
      },
      {
       "at": "hair",
       "dur": 40,
-      "x": 0.2,
+      "x": 0.4,
       "y": 9.62,
-      "d": 49,
+      "d": 58,
       "elev": 6
      },
      {
@@ -3995,8 +3895,8 @@
       "text": "鑽石刀片",
       "en": "Diamond blade",
       "color": "amber",
-      "at": "voice+45",
-      "until": "voice+91",
+      "at": "blade-8",
+      "until": "blade+38",
       "cut": true
      },
      {
@@ -4004,8 +3904,8 @@
       "text": "法蘭（夾住刀片）",
       "en": "Flanges",
       "color": "blue",
-      "at": "voice+93",
-      "until": "voice+136",
+      "at": "blade+40",
+      "until": "tile-4",
       "cut": true
      },
      {
@@ -4013,8 +3913,8 @@
       "text": "純水沖刀口",
       "en": "Water on the cut",
       "color": "blue",
-      "at": "tile+4",
-      "until": "tile+50",
+      "at": "tile+2",
+      "until": "tile+38",
       "cut": true
      }
     ],
@@ -4049,10 +3949,10 @@
      }
     ]
    },
-   "durationSec": 8.0,
-   "holdSec": 2.7,
+   "durationSec": 5.9,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.7
+   "pauseAfter": 0.6
   },
   {
    "id": "s5",
@@ -4095,8 +3995,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 123.0,
-      "y": 4.6,
-      "d": 80,
+      "y": 2.4,
+      "d": 82,
       "elev": 12,
       "yaw": 0.35
      }
@@ -4143,7 +4043,7 @@
       "en": "Thin: backside chipping",
       "color": "amber",
       "at": "chip-6",
-      "until": "chip+40",
+      "until": "chip+30",
       "cut": true
      }
     ],
@@ -4172,10 +4072,10 @@
      }
     ]
    },
-   "durationSec": 5.0,
-   "holdSec": 2.2,
+   "durationSec": 3.4,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.2
+   "pauseAfter": 0.6
   },
   {
    "id": "s6",
@@ -4254,7 +4154,7 @@
       "en": "Hidden modified layer",
       "color": "amber",
       "at": "crack-4",
-      "until": "crack+42",
+      "until": "crack+30",
       "cut": true
      }
     ],
@@ -4286,10 +4186,10 @@
      }
     ]
    },
-   "durationSec": 7.2,
-   "holdSec": 2.3,
+   "durationSec": 5.5,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.3
+   "pauseAfter": 0.6
   },
   {
    "id": "s7",
@@ -4398,10 +4298,10 @@
      }
     ]
    },
-   "durationSec": 6.6,
-   "holdSec": 2.6,
+   "durationSec": 4.6,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.6
+   "pauseAfter": 0.6
   },
   {
    "id": "s8",
@@ -4453,7 +4353,7 @@
       "at": "voice-4",
       "dur": 1,
       "x": 300.0,
-      "y": 0.2,
+      "y": -0.8,
       "d": 66,
       "elev": 12
      }
@@ -4474,8 +4374,12 @@
       "en": "Thinned: it fits",
       "color": "blue",
       "at": "hair",
-      "until": "hair+46",
-      "cut": true
+      "until": "hair+40",
+      "cut": true,
+      "xy": [
+       790,
+       330
+      ]
      }
     ],
     "overlay": [
@@ -4509,10 +4413,10 @@
      }
     ]
    },
-   "durationSec": 7.6,
-   "holdSec": 2.1,
+   "durationSec": 6.1,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.1
+   "pauseAfter": 0.6
   },
   {
    "id": "s9",
@@ -4656,7 +4560,7 @@
       "en": "Fine wheel",
       "color": "blue",
       "at": "coarse+8",
-      "until": "coarse+54",
+      "until": "fine+30",
       "cut": true
      }
     ],
@@ -4694,10 +4598,10 @@
      }
     ]
    },
-   "durationSec": 6.6,
-   "holdSec": 2.4,
+   "durationSec": 4.8,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.4
+   "pauseAfter": 0.6
   },
   {
    "id": "s10",
@@ -4749,9 +4653,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 440.0,
-      "y": 2.3,
-      "d": 56,
-      "elev": 16
+      "y": 2.5,
+      "d": 66,
+      "elev": 26
      },
      {
       "at": "lift-2",
@@ -4857,10 +4761,10 @@
      }
     ]
    },
-   "durationSec": 7.4,
-   "holdSec": 2.1,
+   "durationSec": 5.9,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.1
+   "pauseAfter": 0.6
   },
   {
    "id": "s11",
@@ -4912,8 +4816,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 530,
-      "y": -2.8,
-      "d": 66,
+      "y": -3.4,
+      "d": 80,
       "elev": 10
      }
     ],
@@ -4948,10 +4852,10 @@
      }
     ]
    },
-   "durationSec": 7.2,
-   "holdSec": 1.4,
+   "durationSec": 6.6,
+   "holdSec": 0.6,
    "headSec": 0.2,
-   "pauseAfter": 1.4
+   "pauseAfter": 0.6
   },
   {
    "id": "s12",
@@ -5072,8 +4976,8 @@
      }
     ]
    },
-   "durationSec": 7.4,
-   "holdSec": 1.6,
+   "durationSec": 6.4,
+   "holdSec": 0.6,
    "headSec": 0.2
   },
   {

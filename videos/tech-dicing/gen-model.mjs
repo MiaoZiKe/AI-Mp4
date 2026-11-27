@@ -140,7 +140,7 @@ BOX("camArm", "spindle", -5.4, -1.4, BCY + 2.6, BCY + 3.2, ZC0 - 0.3, ZC0 + 0.3,
 LAY("chuck", [20, 2, 0, 7]);
 VT("thTable", "chuck", 9.6, 8.9, YT, YT + 0.5, "dark"); P({ id: "thTick", layer: "chuck", shape: "box", size: [0.12, 0.08, 0.5], pos: [0, YT + 0.52, 0], at: RING(36, 9.25), mat: "steel2" });
 VC("ckBase", "chuck", 8.9, YT, YC - 0.4, "steel2"); VC("ckCer", "chuck", 8.2, YC - 0.4, YC - 0.02, "ceramic"); VT("ckRim", "chuck", 8.9, 8.2, YC - 0.4, YC - 0.05, "steel");
-const CLAMPS = RING(4, 10.4, 45).map(([x, , z], i) => { LAY(`clamp${i}`, [1.4, 0.8, x, YC]); BOX(`ckClamp${i}`, `clamp${i}`, x - 0.55, x + 0.55, YC - 0.35, YC + 0.32, z - 0.7, z + 0.7, "dark"); BOX(`ckClampPad${i}`, `clamp${i}`, R2(x - 0.3), R2(x + 0.3), YC + 0.32, YC + 0.4, R2(z - 0.4), R2(z + 0.4), "rubber"); return { id: `clamp${i}`, x, z }; });
+const CLAMPS = RING(4, 10.4, 45).map(([x, , z], i) => { LAY(`clamp${i}`, [1.4, 0.8, x, YC]); BOX(`ckClamp${i}`, `clamp${i}`, x - 0.8, x + 0.8, YC - 0.35, YC + 0.42, z - 0.9, z + 0.9, "dark"); BOX(`ckClampArm${i}`, `clamp${i}`, R2(x - 0.25), R2(x + 0.25), YC + 0.42, YC + 0.9, R2(z - 0.25), R2(z + 0.25), "lampY"); BOX(`ckClampPad${i}`, `clamp${i}`, R2(x - 0.3), R2(x + 0.3), YC + 0.32, YC + 0.4, R2(z - 0.4), R2(z + 0.4), "rubber"); return { id: `clamp${i}`, x, z }; });
 // 鐵框＋膠膜＋晶圓（晶片格線、缺口）
 LAY("frame", [24, 0.4, 0, YF1]);
 VT("frRing", "frame", 11.4, 9.7, YF0, YF1, "frame"); P({ id: "frNotch", layer: "frame", shape: "box", size: [0.9, 0.2, 0.5], pos: [0, YF1 - 0.08, 0], at: [[-11.2, 0, 0], [11.2, 0, 0]], mat: "dark" });
@@ -196,7 +196,10 @@ ZC("cbDisc", "cBlade", CBR - 0.2, CBZ - 0.12, CBZ + 0.12, CBX, CBY0, "blade"); Z
 ZC("cbHub", "cBlade", 2.4, CBZ + 0.13, CBZ + 0.6, CBX, CBY0, "hub"); ZC("cbFl", "cBlade", 1.8, CBZ + 0.6, CBZ + 1.0, CBX, CBY0, "steel"); BOX("cbMark", "cBlade", CBX - 0.15, CBX + 0.15, CBY0 + 1.5, CBY0 + 2.3, CBZ + 0.6, CBZ + 0.66, "mark");
 P({ id: "cbGrit", layer: "cBlade", shape: "sphere", size: [0.09], pos: [CBX, CBY0, CBZ + 0.12], at: Array.from({ length: 40 }, (_, i) => { const [x, y] = pol(i * 9, CBR - 0.1); return [x, y, 0]; }), mat: "dia" });
 ZC("cbShaft", "cBlade", 0.7, CBZ + 1.0, CBZ + 3.2, CBX, CBY0, "steel2");
-LAY("cNoz", [6, 3, CBX, CBY0]); PIPE("cNz", "cNoz", [[CBX - 7.0, CBY0 + 1.6, CBZ], [CBX - 4.4, CBY0 + 1.6, CBZ], [CBX - 3.2, 7.2, CBZ]], 0.18, "steel"); SPH("cNzTip", "cNoz", 0.26, CBX - 3.2, 7.2, CBZ, "gold");
+BOX("cbCover", "cBlade", CBX - 5.2, CBX + 5.2, CBY0 + 0.9, CBY0 + 5.3, CBZ - 0.5, CBZ - 0.38, "panel2"); BOX("cbCoverTop", "cBlade", CBX - 5.2, CBX + 5.2, CBY0 + 5.1, CBY0 + 5.4, CBZ - 0.5, CBZ + 1.2, "panel2");
+BOX("cbCoverL", "cBlade", CBX - 5.3, CBX - 5.1, CBY0 + 0.9, CBY0 + 5.4, CBZ - 0.5, CBZ + 1.2, "panel2"); BOX("cbCoverR", "cBlade", CBX + 5.1, CBX + 5.3, CBY0 + 0.9, CBY0 + 5.4, CBZ - 0.5, CBZ + 1.2, "panel2");
+BOX("cbCoverWin", "cBlade", CBX - 5.1, CBX + 5.1, CBY0 + 0.9, CBY0 + 5.1, CBZ + 1.1, CBZ + 1.2, "window"); BOX("cbCoverLab", "cBlade", CBX - 1.4, CBX + 1.4, CBY0 + 3.6, CBY0 + 4.4, CBZ + 1.2, CBZ + 1.24, "warnY");
+PIPE("cbNz", "cBlade", [[CBX - 5.0, CBY0 + 4.8, CBZ + 0.6], [CBX - 5.0, CBY0 + 1.0, CBZ + 0.6], [CBX - 3.0, CTY + 0.75, CBZ + 0.6]], 0.16, "steel");
 
 // ═════ 站 L：雷射隱形切割（x 180；晶圓剖面半透明，看得到內部）═════
 const LX = 180, LW0 = 5.4, LW1 = 8.6, LFY = 7.0;
@@ -268,7 +271,7 @@ const GPOS = [[0, GOFF], [GOFF, 0], [0, -GOFF], [-GOFF, 0]];          // 前（�
 GPOS.forEach(([dx, dz], i) => { VC(`gtCk${i}`, "gTable", GCR, GY + 0.5, GY + 0.95, "steel", { x: GX + dx, z: dz }); VC(`gtCer${i}`, "gTable", GCR - 0.3, GY + 0.95, GY + 1.0, "ceramic", { x: GX + dx, z: dz }); });
 // 晶圓（倒扣、正面貼 BG 膠帶）：前站剛放下的那片（G0，三層矽：磨一層藏一層）＋後站細磨那片（G2）
 const gWafer = (nm, dx, dz, n) => { LAY(`${nm}Tape`, [7, 0.1, GX + dx, GY + 1.03]); VC(`${nm}TapeD`, `${nm}Tape`, GWR, GY + 1.0, GY + 1.06, "bgTape", { x: GX + dx, z: dz });
-  for (let k = 0; k < n; k++) { LAY(`${nm}S${k}`, [7, 0.15, GX + dx, GY + 1.1 + k * 0.16]); VC(`${nm}S${k}D`, `${nm}S${k}`, GWR - 0.02, R2(GY + 1.06 + k * 0.16), R2(GY + 1.22 + k * 0.16), k === 0 ? "siTop" : "si", { x: GX + dx, z: dz }); } };
+  for (let k = 0; k < n; k++) { LAY(`${nm}S${k}`, [7, 0.15, GX + dx, GY + 1.1 + k * 0.16]); VC(`${nm}S${k}D`, `${nm}S${k}`, GWR - 0.02, R2(GY + 1.06 + k * 0.16), R2(GY + 1.22 + k * 0.16), "si", { x: GX + dx, z: dz }); } };
 gWafer("g0", GPOS[0][0], GPOS[0][1], 4); gWafer("g2", GPOS[2][0], GPOS[2][1], 2);
 // 翻面中的那片（正面＝電路面朝上、貼 BG 膠帶 → 翻 180 度，膠帶朝下）
 LAY("gFlip", [7, 1, GX, GY + 7]); VC("gfSi", "gFlip", GWR, GY + 6.6, GY + 7.2, "si", { x: GX, z: GOFF }); VC("gfTape", "gFlip", GWR, GY + 7.2, GY + 7.28, "bgTape", { x: GX, z: GOFF });
@@ -301,7 +304,7 @@ const VPIL = [-7.5, -4.5, -1.5, 1.5, 4.5, 7.5];
 P({ id: "vPilLiner", layer: "vBlock", shape: "cyl", size: [0.56, R2(VTOP + 0.02 - VCI)], rot: V, pos: [VX, R2((VTOP + 0.02 + VCI) / 2), 3.02], at: VPIL.map((x) => [x, 0, 0]), mat: "liner" });
 P({ id: "vPil", layer: "vBlock", shape: "cyl", size: [0.5, R2(VTOP + 0.03 - VCI)], rot: V, pos: [VX, R2((VTOP + 0.03 + VCI) / 2), 3.12], at: VPIL.map((x) => [x, 0, 0]), mat: "copper" });
 for (let k = 0; k < 3; k++) { LAY(`vS${k}`, [20, 0.8, VX, VS[k] + 0.4]); BOX(`vS${k}B`, `vS${k}`, VX - 10, VX + 10, VS[k], VS[k + 1], -3, 3, k === 2 ? "siTop" : "si"); }
-LAY("vTip", [20, 0.3, VX, VTOP]); P({ id: "vTipG", layer: "vTip", shape: "cyl", size: [0.5, 0.06], rot: V, pos: [VX, VTOP + 0.02, 0], at: VPIL.flatMap((x) => [[x, 0, -1.5], [x, 0, 0], [x, 0, 1.5]]), mat: "copper" });
+LAY("vTip", [20, 0.3, VX, VTOP]); P({ id: "vTipG", layer: "vTip", shape: "cyl", size: [0.5, 0.06], rot: V, pos: [VX, VTOP + 0.02, 0], at: VPIL.map((x) => [x, 0, 3.12]), mat: "copper" });
 LAY("vWheel", [10, 3, VX, 14]); BOX("vwBody", "vWheel", VX - 6, VX + 6, 13.4, 14.6, -3.4, 3.4, "wheel");
 P({ id: "vwSeg", layer: "vWheel", shape: "box", size: [1.1, 0.5, 6.6], pos: [VX, 13.15, 0], at: [-5, -3, -1, 1, 3, 5].map((x) => [x, 0, 0]), mat: "seg" });
 const V2X = 470, V2T = 1.3, V2B = 0.22, V2N = 4, V2Y0 = 2.0;
@@ -352,8 +355,8 @@ actions.sawDust = { type: "flow", _說明: "矽屑（灰點）隨水被甩出", 
 actions.xSawSpin = { type: "rotate", _說明: "粗齒鋸片轉動（鋸片平面＝走道方向）", parts: idsOf("xSaw"), axis: [0, 0, 1], pivot: [XX, XSY, 0], rps: 0.7, rampSpin: true };
 actions.xChipFly = { type: "flow", _說明: "鋸子一碰，脆的矽爆出碎片往外飛（受重力）", layer: "xBlock", path: [[XX, XTOP + 0.5, 0.8], [XX - 1.2, XTOP + 3.2, 2.6], [XX - 2.4, XTOP + 0.9, 4.0]], n: 5, size: 0.24, shape: "dot", rate: 0.8, color: "chipC", track: false, free: true, jitter: 0.5, accel: true };
 actions.xChipFly2 = { type: "flow", layer: "xBlock", path: [[XX, XTOP + 0.5, 0.8], [XX + 3.4, XTOP + 3.0, 1.4], [XX + 6.8, XTOP + 0.7, 2.0]], n: 5, size: 0.24, shape: "dot", rate: 0.75, color: "chipC", track: false, free: true, jitter: 0.5, accel: true };
-actions.cBladeSpin = { type: "rotate", _說明: "刀片轉向＝刀口底部往 +x，水與矽屑往右甩", parts: idsOf("cBlade"), axis: [0, 0, 1], pivot: [CBX, CBY0, 0], rps: 2.0, rampSpin: true };
-actions.cWater = { type: "flow", _說明: "噴嘴從左邊對刀口噴水，被刀口帶往右甩出", layer: "cNoz", path: [[CBX - 3.2, 7.2, CBZ], [CBX - 0.6, CTY + 0.45, CBZ + 0.4], [CBX + 2.8, CTY + 1.8, CBZ + 0.7], [CBX + 5.4, CTY + 0.35, CBZ + 0.9]], n: 10, size: 0.16, shape: "dot", rate: 0.9, color: "waterC", track: false, free: true, jitter: 0.15 };
+actions.cBladeSpin = { type: "rotate", _說明: "刀片轉向＝刀口底部往 +x，水與矽屑往右甩（刀蓋、噴嘴不轉）", parts: idsOf("cBlade").filter((i) => !/Cover|Nz/.test(i)), axis: [0, 0, 1], pivot: [CBX, CBY0, 0], rps: 2.0, rampSpin: true };
+actions.cWater = { type: "flow", _說明: "噴嘴從左邊對刀口噴水，被刀口帶往右甩出", layer: "cBlade", path: [[CBX - 3.0, CTY + 0.75, CBZ + 0.6], [CBX - 0.6, CTY + 0.45, CBZ + 0.5], [CBX + 2.8, CTY + 1.8, CBZ + 0.7], [CBX + 5.4, CTY + 0.35, CBZ + 0.9]], n: 10, size: 0.16, shape: "dot", rate: 0.9, color: "waterC", track: false, free: true, jitter: 0.15 };
 actions.cDust = { type: "flow", layer: "cBlade", path: [[CBX + 0.3, CTY + 0.35, CBZ + 0.5], [CBX + 2.6, CTY + 1.4, CBZ + 0.8], [CBX + 4.8, CTY + 0.2, CBZ + 1.0]], n: 6, size: 0.12, shape: "dot", rate: 0.7, color: "chipC", track: false, free: true, jitter: 0.2 };
 actions.cScarGlow = { type: "pulse", parts: ["cScar"], color: "badC", glow: 0.9, freq: 1.2, halo: 0 };
 actions.lPulse = { type: "pulse", _說明: "雷射脈衝閃動（焦點在晶圓中間）", parts: ["lhFocus", "lhBeam"], color: "laserC", glow: 1, freq: 3.0, halo: 0 };

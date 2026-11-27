@@ -47,6 +47,7 @@ S = [
  ["晶片切好了", "電怎麼接出來？", "下一集", "看封裝打線", "留言切割", "拿完整資料"], ["The chips are cut.", "How does the signal get out?", "Next episode:", "packaging and wire bonding.", "Comment \"dicing\"", "for the full notes."],
  [("done", "切好了"), ("next", "下一集"), ("wire", "打線"), ("kw", "留言切割")], ["打線", "切割"], ["示意動畫，不是量測"], 7.4, 0.2, 1.2),
 ]
+HOLD = 0.6          # 念完後只有畫面的秒數（＋下一幕 headSec 0.2～0.3 ≤ 1.0）
 def TTS(t):
     t = t.replace("矽", "細")
     for a, b in [("上一集", "前一集"), ("量測", "測量")]:
@@ -58,7 +59,9 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     for z in zh: assert len(re.sub(r"[ ，。？]", "", z)) <= 11, (sid, z)
     for z in zh[:-1]: assert len(re.sub(r"[ ，。？]", "", z)) >= 3, ("字幕短語 <3 字會被併入下一段、英文對位跑掉", sid, z)
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(max(tail, dur - 0.2 - head - nch / 5.2), 1)
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar))
+    # Andy 第 39 條（11-27 晚）：旁白之間的無聲 ≤1.0 秒＝本幕 holdSec＋下一幕 headSec；運作動畫在念的期間做完。幕長由念稿長度算（表上的幕長只當上限參考）
+    hold = HOLD; dur = round(0.2 + head + nch / 5.2 + hold, 1)
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -128,7 +131,7 @@ VIS += [mv("wafer", "s3:start+4", "s3:hoop+14", 18, dy=4.2), mv("tape", "s3:tape
 VIS += [mv(f"kerf{k}", "s3:start+4", "s3:hoop+14", 18, dy=4.2) for k in range(6)]
 VIS += [mv(l, "s3:start-6", "s4:start+2", 12, dy=6.5) for l in SPG]          # 主軸先抬高到晶圓升起的高度之上（不穿模），再分開框架組
 for c in MODEL["info"]["CLAMPS"]:                                                   # 夾爪：分開前先張開，組回最後一步合上
-    VIS.append(mv(c["id"], "s3:start", "s3:hoop+16", 8, dx=round(c["x"] / 10.4 * 1.1, 3), dz=round(c["z"] / 10.4 * 1.1, 3)))
+    VIS.append(mv(c["id"], "s3:start", "s3:hoop+16", 8, dx=round(c["x"] / 10.4 * 2.2, 3), dz=round(c["z"] / 10.4 * 2.2, 3)))
 # ── s4 爆炸分解②：刀蓋往上、螺帽／法蘭／刀片沿主軸 z 拉開 → 組回 → 起轉 → 噴水 ──
 VIS += [mv("cover", "s4:start+2", "s4:rpm-12", 16, dy=4.2)]
 VIS += [mv("nut", "s4:hair-8", "s4:rpm-8", 18, dz=6.4), mv("flangeF", "s4:hair-8", "s4:rpm-6", 18, dz=4.6), mv("blade", "s4:hair-8", "s4:rpm-4", 18, dz=2.8), mv("flangeR", "s4:hair-8", "s4:rpm-2", 18, dz=1.2)]
@@ -153,10 +156,10 @@ VIS += [mv("eLift", "s7:exp", FAR, 30, dy=1.5), mv("eTape", "s7:exp", FAR, 30, d
 vis("eSkirt", [("s7:exp+18", FAR)], 2)
 for d in INFO["EDIE"]: VIS.append(mv(d["id"], "s7:exp", FAR, 30, dx=round(d["x"] * EK, 3), dz=round(d["z"] * EK, 3), dy=1.5))
 # ── 站 T：厚晶片疊三層爆框、薄晶片疊八層剛好 ──
-for k in range(3): drop(f"tK{k}", f"s8:stack-{24 - k * 10}", 6.0)
-VIS += [mv("tALidL", "s8:stack+6", FAR, 8, dy=2.0)]                              # 第三層厚晶片把上蓋頂開（不穿過）
+VIS += [mv("tALidL", "s8:start", FAR, 10, dy=2.2), mv("tBLidL", "s8:start", "s8:hair+2", 10, dy=2.2)]   # 兩個框先掀蓋；薄晶片疊完蓋回去，厚的第三層凸出來、蓋不回去
+for k in range(3): drop(f"tK{k}", f"s8:stack-{24 - k * 10}", 4.5)
 vis("tBad", [("s8:stack+12", FAR)], 1)
-for k in range(8): drop(f"tN{k}", f"s8:mm+{k * 6}", 5.0, 12)
+for k in range(8): drop(f"tN{k}", f"s8:mm+{k * 6}", 4.0, 12)
 vis("tOk", [("s8:hair+4", FAR)], 1)
 # ── 站 G：晶圓翻面落到卡盤 → 轉盤轉一格 → 粗磨（三層依序磨掉）→ 細磨 ──
 vis("gFlip", [(T0, "s9:flip+22")], 1)
@@ -177,9 +180,9 @@ vis("kWire", [("s12:wire-6", FAR)], 2)
 def W(k): return f"s{k}:voice-6"
 def E(k): return f"s{k}:voice-1"
 STA = {"A": (lambda l: l in ("spindle", "flangeR", "blade", "flangeF", "nut", "cover", "chuck", "frame", "tape", "wafer") or l.startswith("kerf") or l.startswith("clamp"), [(T0, E(2)), (W(3), E(5))]),
-       "X": (lambda l: l.startswith("x"), [(W(2), E(3))]), "C": (lambda l: l.startswith("c"), [(W(5), E(6))]), "L": (lambda l: l.startswith("l"), [(W(6), E(7))]),
-       "E": (lambda l: l.startswith("e"), [(W(7), E(8))]), "T": (lambda l: l.startswith("t") and l != "tape", [(W(8), E(9))]), "G": (lambda l: l.startswith("g"), [(W(9), E(10))]),
-       "V": (lambda l: l.startswith("v"), [(W(10), E(11))]), "P": (lambda l: l.startswith("p"), [(W(11), E(12))]), "K": (lambda l: l.startswith("k") and not l.startswith("kerf"), [(W(12), FAR)])}
+       "X": (lambda l: re.match(r"^x[A-Z0-9]", l) is not None, [(W(2), E(3))]), "C": (lambda l: re.match(r"^c[A-Z0-9]", l) is not None, [(W(5), E(6))]), "L": (lambda l: re.match(r"^l[A-Z0-9]", l) is not None, [(W(6), E(7))]),
+       "E": (lambda l: re.match(r"^e[A-Z0-9]", l) is not None, [(W(7), E(8))]), "T": (lambda l: re.match(r"^t[A-Z0-9]", l) is not None, [(W(8), E(9))]), "G": (lambda l: re.match(r"^g[A-Z0-9]", l) is not None, [(W(9), E(10))]),
+       "V": (lambda l: re.match(r"^v[A-Z0-9]", l) is not None, [(W(10), E(11))]), "P": (lambda l: re.match(r"^p[A-Z0-9]", l) is not None, [(W(11), E(12))]), "K": (lambda l: re.match(r"^k[A-Z0-9]", l) is not None, [(W(12), FAR)])}
 for nm, (pred, wins) in STA.items():
     for l in LAYERS:
         if pred(l):
@@ -199,7 +202,7 @@ P["s1"] = {"shot": [shot("start-30", AX, AY, 109, 30, 1, yaw=0.0), shot("start",
  "run": [run("tableFeed", "start-30", "s2:start+6", 8), run("bladeSpin", "start-30", "s2:start+6", 8), run("water", "start-30", "s2:start+6", 4), run("water2", "start-30", "s2:start+6", 4), run("sawDust", "start-30", "s2:start+6", 4)],
  "overlay": [sec("dc-hook", "start", nxt("s1"), "系列 3・第 1 集", "示意，非實際比例", {"q": "q", "prev": "prev", "done": "done"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-8", "dur": 1}, {"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 60.0, 7.0, 76, 26, 1), shot("saw+14", 60.0, 7.0, 70, 26, 40)],
+ "shot": [shot(CC, 60.0, 8.4, 78, 24, 1), shot("saw+14", 60.0, 8.0, 72, 24, 40)],
  "run": [run("xSawSpin", "start-6", FAR, 8), run("xChipFly", "saw+12", "saw+60", 4), run("xChipFly2", "saw+14", "saw+60", 4)],
  "labels": [lab("xcrack", "脆：一碰就裂", "Brittle: it cracks", "amber", "hard-2", "hard+44"),
             lab("street", "走道很窄", "Narrow street", "blue", "street", "street+46")],
@@ -208,27 +211,26 @@ P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "shot": [shot(CC, 0.0, 7.4, 90, 26, 1, yaw=0.0), shot("frame", 0.0, 7.2, 92, 24, 40)],
  "labels": [lab("wafer", "晶圓", "Wafer", "blue", "start+8", "tape-6"),
             lab("tape", "膠膜", "Dicing tape", "amber", "tape-4", "tape+42"),
-            lab("frame", "鐵框", "Steel frame", "blue", "frame", "frame+46"),
-            lab("chuck", "卡盤（真空吸住）", "Vacuum chuck", "blue", "hoop+16", "hoop+62")],
+            lab("frame", "鐵框", "Steel frame", "blue", "frame", "frame+46")],
  "overlay": [card("s3", "dc-hoop", "繃好的刺繡布", "示意", {"tape": "tape", "frame": "frame", "hoop": "hoop"})]}
-P["s4"] = {"shot": [shot(CC, 0.4, INFO["BCY"] - 0.6, 52, 6, 1, yaw=-0.75), shot("hair", 0.2, INFO["BCY"] - 0.8, 49, 6, 40), shot("rpm+12", 1.0, INFO["BCY"] - 1.4, 56, 8, 24, yaw=-0.35)],
+P["s4"] = {"shot": [shot(CC, 0.4, INFO["BCY"] - 0.6, 58, 6, 1, yaw=-0.75), shot("hair", 0.4, INFO["BCY"] - 0.8, 58, 6, 40), shot("rpm+12", 1.0, INFO["BCY"] - 1.4, 56, 8, 24, yaw=-0.35)],
  "run": [run("bladeSpin", "rpm+8", FAR, 30), run("water", "tile-6", FAR, 6), run("water2", "tile-6", FAR, 6), run("sawDust", "tile", FAR, 6)],
  "labels": [lab("cover", "刀蓋與噴嘴", "Blade cover & nozzles", "blue", C, "voice+43", xy=[740, 340]),
-            lab("blade", "鑽石刀片", "Diamond blade", "amber", "voice+45", "voice+91"),
-            lab("flange", "法蘭（夾住刀片）", "Flanges", "blue", "voice+93", "voice+136"),
-            lab("nozzle", "純水沖刀口", "Water on the cut", "blue", "tile+4", "tile+50")],
+            lab("blade", "鑽石刀片", "Diamond blade", "amber", "blade-8", "blade+38"),
+            lab("flange", "法蘭（夾住刀片）", "Flanges", "blue", "blade+40", "tile-4"),
+            lab("nozzle", "純水沖刀口", "Water on the cut", "blue", "tile+2", "tile+38")],
  "overlay": [card("s4", "dc-blade", "淋水切磁磚", "DISCO 官方規格：最高 60,000 min⁻¹", {"hair": "hair", "blade": "blade", "rpm": "rpm", "tile": "tile"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 123.0, 4.6, 80, 12, 1, yaw=0.0)],
+ "shot": [shot(CC, 123.0, 2.4, 82, 12, 1, yaw=0.0)],
  "run": [run("cBladeSpin", "start-6", FAR, 8), run("cWater", "start", FAR, 6), run("cDust", "thin+6", FAR, 6), run("cScarGlow", "thin+12", FAR, 8)],
  "labels": [lab("cThick", "厚：切口整齊", "Thick: clean edge", "blue", C, "chip-10"),
-            lab("cChip", "薄：背面崩角", "Thin: backside chipping", "amber", "chip-6", "chip+40")],
+            lab("cChip", "薄：背面崩角", "Thin: backside chipping", "amber", "chip-6", "chip+30")],
  "overlay": [card("s5", "dc-chip", "越薄越容易崩角", "示意", {"thin": "thin", "chip": "chip"})]}
 P["s6"] = {"shot": [shot(CC, 180.0, 10.0, 86, 14, 1)],
  "run": [run("lPulse", "sd-4", FAR, 4)],
  "labels": [lab("lHead", "雷射頭", "Laser head", "blue", "sd", "inside-6"),
             lab("lFocus", "焦點在晶圓裡面", "Focus inside the wafer", "amber", "inside-4", "crack-6"),
-            lab("lDot", "改質層＝看不見的裂痕", "Hidden modified layer", "amber", "crack-4", "crack+42")],
+            lab("lDot", "改質層＝看不見的裂痕", "Hidden modified layer", "amber", "crack-4", "crack+30")],
  "overlay": [card("s6", "dc-stealth", "雷射隱形切割", "示意（Hamamatsu／DISCO 原理）", {"sd": "sd", "inside": "inside", "crack": "crack"})]}
 P["s7"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "shot": [shot(CC, 240.0, 0.8, 81, 44, 1)],
@@ -237,9 +239,9 @@ P["s7"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
             lab("eDie", "晶片沿裂痕分開", "Chips separate", "amber", "split", "split+46")],
  "overlay": [card("s7", "dc-expand", "像掰巧克力", "示意", {"exp": "exp", "split": "split", "choc": "choc"})]}
 P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 300.0, 0.2, 66, 12, 1)],
+ "shot": [shot(CC, 300.0, -0.8, 66, 12, 1)],
  "labels": [lab("tThick", "太厚：疊不進去", "Too thick: won't fit", "amber", "stack+14", "mm-4"),
-            lab("tThin", "磨薄：放得進", "Thinned: it fits", "blue", "hair", "hair+46")],
+            lab("tThin", "磨薄：放得進", "Thinned: it fits", "blue", "hair", "hair+40", xy=[790, 330])],
  "overlay": [card("s8", "dc-thin", "為什麼要磨薄", "示意（片中只說量級）", {"why": "why", "stack": "stack", "mm": "mm", "hair": "hair"})]}
 GX = INFO["GX"]
 P["s9"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
@@ -248,16 +250,16 @@ P["s9"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
          run("gZ2Spin", "coarse", FAR, 10), run("gW2Spin", "coarse", FAR, 10), run("gFine", "fine", FAR, 6)],
  "labels": [lab("gTape", "保護膠帶（貼正面）", "Protective tape", "blue", "tape-4", "flip+20"),
             lab("gWheel1", "粗磨砂輪", "Coarse wheel", "amber", "wheel", "coarse+6"),
-            lab("gWheel2", "細磨砂輪", "Fine wheel", "blue", "coarse+8", "coarse+54")],
+            lab("gWheel2", "細磨砂輪", "Fine wheel", "blue", "coarse+8", "fine+30")],
  "overlay": [card("s9", "dc-grind", "先粗後細", "示意（DISCO 研磨機原理）", {"tape": "tape", "flip": "flip", "wheel": "wheel", "coarse": "coarse", "fine": "fine"}, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 440.0, 2.3, 56, 16, 1), shot("lift-2", 470.0, 1.4, 50, 14, 1)],
+ "shot": [shot(CC, 440.0, 2.5, 66, 26, 1), shot("lift-2", 470.0, 1.4, 50, 14, 1)],
  "run": [run("vWheelRub", "start-4", "cu-6", 4), run("vDust", "start", "cu-6", 4), run("vTipGlow", "cu-10", FAR, 8)] + [run(f"v2Cur{i}", "lift", FAR, 4) for i in range(4)],
  "labels": [lab("vPil", "銅柱（矽穿孔）", "Copper via (TSV)", "amber", "cu", "tsv+30"),
             lab("v2Pil", "電流直通每一層", "Straight through every layer", "blue", "lift+4", "lift+50")],
  "overlay": [card("s10", "dc-tsv", "像電梯井", "示意", {"cu": "cu", "tsv": "tsv", "lift": "lift", "thru": "thru"})]}
 P["s11"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["PX"], -2.8, 66, 10, 1)],
+ "shot": [shot(CC, INFO["PX"], -3.4, 80, 10, 1)],
  "overlay": [card("s11", "dc-co", "切割與薄化：相關公司", "公開資訊；截至 2026/11/27", {"jp": "jp", "tw": "tw", "btl": "btl", "psi": "psi"}, h=392, y=1000)]}
 P["s12"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "shot": [shot(CC, INFO["KX"], -3.4, 50, 36, 1)],
