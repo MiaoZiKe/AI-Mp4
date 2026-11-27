@@ -1,0 +1,1643 @@
+{
+ "slug": "tech-abf",
+ "prevEpisode": "3-6：先進封裝設備",
+ "title": "ABF 膜（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "先進封裝",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指；本支無聲版，不送 TTS（配音由頻道負責人統一做）"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "pkg",
+    "label": "AI 晶片載板剖面（示意）",
+    "en": "SUBSTRATE CROSS-SECTION",
+    "field": "20 mm",
+    "ruler": "5 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "micro",
+    "label": "增層放大剖面（示意）",
+    "en": "BUILD-UP LAYERS",
+    "field": "100 µm",
+    "ruler": "20 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "equip",
+    "label": "載板製程設備（示意）",
+    "en": "SUBSTRATE PROCESS TOOLS",
+    "field": "2 m",
+    "ruler": "50 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "增層膜供應商（示意）",
+    "en": "FILM SUPPLIERS",
+    "field": "50 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "ABF 載板（下一集）",
+    "en": "ABF SUBSTRATE PANEL",
+    "field": "50 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "ABF 膜",
+   "載板裡的絕緣膜"
+  ],
+  "sub": "味之素做的膜，在隔什麼？",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "載板裡的絕緣膜，到底在隔什麼？前一集說，訊號要靠載板拉出去。",
+   "tts": "載板裡的絕緣膜，到底在隔什麼？前一集說，訊號要靠載板拉出去。",
+   "subtitle": {
+    "zh": "載板裡的絕緣膜\n到底在隔什麼？\n前一集說\n訊號要靠載板\n拉出去",
+    "en": "The insulating film in a substrate: | what does it separate? | Last episode: | signals rely on the substrate | to get out."
+   },
+   "keywords": [
+    "絕緣膜",
+    "隔什麼",
+    "載板"
+   ],
+   "cues": [
+    {
+     "id": "film",
+     "text": "絕緣膜"
+    },
+    {
+     "id": "q",
+     "text": "隔什麼"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "sig",
+     "text": "訊號"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：訊號要靠載板拉出去",
+     "title": "絕緣膜隔什麼？",
+     "size": 116,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "pkg",
+      "at": "start-30",
+      "dur": 1
+     },
+     {
+      "to": "pkg",
+      "at": "q+8",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": -0.4,
+      "d": 40,
+      "elev": 24
+     },
+     {
+      "at": "start",
+      "dur": 80,
+      "x": 0,
+      "y": -0.4,
+      "d": 38.5,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "kChip",
+      "at": "s1:sig+4",
+      "until": "s2:bld",
+      "dur": 18,
+      "dy": 1.2
+     },
+     {
+      "layer": "kBalls",
+      "at": "s2:bld-24",
+      "until": "s9:done+0",
+      "dur": 20,
+      "dy": 0.3
+     },
+     {
+      "layer": "kSMb",
+      "at": "s2:bld-22",
+      "until": "s9:done+2",
+      "dur": 20,
+      "dy": 0.45
+     },
+     {
+      "layer": "kB4",
+      "at": "s2:bld-20",
+      "until": "s9:done+4",
+      "dur": 20,
+      "dy": 0.6
+     },
+     {
+      "layer": "kB3",
+      "at": "s2:bld-18",
+      "until": "s9:done+6",
+      "dur": 20,
+      "dy": 1.2
+     },
+     {
+      "layer": "kB2",
+      "at": "s2:bld-16",
+      "until": "s9:done+8",
+      "dur": 20,
+      "dy": 1.8
+     },
+     {
+      "layer": "kB1",
+      "at": "s2:bld-14",
+      "until": "s9:done+10",
+      "dur": 20,
+      "dy": 2.4
+     },
+     {
+      "layer": "kCore",
+      "at": "s2:bld-12",
+      "until": "s9:done+12",
+      "dur": 20,
+      "dy": 3.0
+     },
+     {
+      "layer": "kT1",
+      "at": "s2:bld-10",
+      "until": "s9:done+14",
+      "dur": 20,
+      "dy": 3.6
+     },
+     {
+      "layer": "kT2",
+      "at": "s2:bld-8",
+      "until": "s9:done+16",
+      "dur": 20,
+      "dy": 4.2
+     },
+     {
+      "layer": "kT3",
+      "at": "s2:bld-6",
+      "until": "s9:done+18",
+      "dur": 20,
+      "dy": 4.8
+     },
+     {
+      "layer": "kT4",
+      "at": "s2:bld-4",
+      "until": "s9:done+20",
+      "dur": 20,
+      "dy": 5.4
+     },
+     {
+      "layer": "kSMt",
+      "at": "s2:bld-2",
+      "until": "s9:done+22",
+      "dur": 20,
+      "dy": 6.0
+     },
+     {
+      "layer": "kChip",
+      "at": "s2:bld-0",
+      "until": "s9:done+24",
+      "dur": 20,
+      "dy": 6.8
+     },
+     {
+      "layer": "lResin",
+      "at": "s1:start-40",
+      "until": "s3:thin",
+      "dur": 22,
+      "dx": -5.5
+     },
+     {
+      "layer": "lPet",
+      "at": "s1:start-40",
+      "until": "s3:thin",
+      "dur": 22,
+      "dx": -5.5
+     },
+     {
+      "layer": "lCover",
+      "at": "s1:start-40",
+      "until": "s3:thin",
+      "dur": 22,
+      "dx": -5.5
+     },
+     {
+      "layer": "lCover",
+      "at": "s3:stick+24",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "lTop",
+      "at": "s3:press-6",
+      "until": "s3:end-2",
+      "dur": 16,
+      "dy": -3.1
+     },
+     {
+      "layer": "lCured",
+      "at": "s1:start-40",
+      "until": "s3:heat+14",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lResin",
+      "at": "s3:heat+14",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "lPet",
+      "at": "s3:end+22",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dHead",
+      "at": "s1:start-40",
+      "until": "s4:hole-8",
+      "dur": 12,
+      "dx": -2.5
+     },
+     {
+      "layer": "dHead",
+      "at": "s4:lift-8",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 2.5
+     },
+     {
+      "layer": "dBeamL",
+      "at": "s1:start-40",
+      "until": "s4:hole-8",
+      "dur": 12,
+      "dx": -2.5
+     },
+     {
+      "layer": "dBeamL",
+      "at": "s4:lift-8",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 2.5
+     },
+     {
+      "layer": "dBeamL",
+      "at": "s1:start-40",
+      "until": "s4:laser",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBeamL",
+      "at": "s4:laser+16",
+      "until": "s4:hole+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBeamL",
+      "at": "s4:hole+20",
+      "until": "s4:lift+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBeamL",
+      "at": "s4:lift+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dHole0",
+      "at": "s1:start-40",
+      "until": "s4:laser+10",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dHole1",
+      "at": "s1:start-40",
+      "until": "s4:hole+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dHole2",
+      "at": "s1:start-40",
+      "until": "s4:lift+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "sSeed",
+      "at": "s1:start-40",
+      "until": "s5:seed-16",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sSeed",
+      "at": "s5:wash+8",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sResist",
+      "at": "s1:start-40",
+      "until": "s5:line-24",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sResist",
+      "at": "s5:wash-10",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sPlate1",
+      "at": "s1:start-40",
+      "until": "s5:thick-10",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "sPlate1",
+      "at": "s5:thick+12",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "sPlate2",
+      "at": "s1:start-40",
+      "until": "s5:thick+12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "sPlate2",
+      "at": "s5:wash+8",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "sThin",
+      "at": "s1:start-40",
+      "until": "s5:wash+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "sKeep",
+      "at": "s1:start-40",
+      "until": "s5:wash+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "j1",
+      "at": "s7:start-6",
+      "until": "s8:jh-12",
+      "opacity": 0.3,
+      "dur": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "kSig",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:bld-20"
+     },
+     {
+      "id": "kSig2",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:bld-20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "kSig",
+      "text": "訊號沿載板裡的線拉出去",
+      "en": "Signals routed out through the substrate",
+      "color": "amber",
+      "at": "sig-4",
+      "until": "sig+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 7 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "film": {
+        "at": "film"
+       },
+       "q": {
+        "at": "q"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "sig": {
+        "at": "sig"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "holdSec": 0.8,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "載板像一棟大樓，每層樓都走滿銅線。層和層中間，要鋪一層絕緣膜隔開。",
+   "tts": "載板像一棟大樓，每層樓都走滿銅線。層和層中間，要鋪一層絕緣膜隔開。",
+   "subtitle": {
+    "zh": "載板像一棟大樓\n每層樓都走滿銅線\n層和層中間\n要鋪一層絕緣膜\n隔開",
+    "en": "A substrate is like a building: | every floor is full of copper lines. | Between the floors, | a layer of insulating film | keeps them apart."
+   },
+   "keywords": [
+    "大樓",
+    "銅線",
+    "絕緣膜"
+   ],
+   "cues": [
+    {
+     "id": "bld",
+     "text": "大樓"
+    },
+    {
+     "id": "cu",
+     "text": "銅線"
+    },
+    {
+     "id": "mid",
+     "text": "中間"
+    },
+    {
+     "id": "film",
+     "text": "絕緣膜"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Polymer Innovation Blog（增層膜剖面）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pkg",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "micro",
+      "at": "film-8",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0,
+      "y": -0.4,
+      "d": 40,
+      "elev": 24
+     },
+     {
+      "at": "bld",
+      "dur": 30,
+      "x": 0,
+      "y": 2.0,
+      "d": 46,
+      "elev": 14
+     },
+     {
+      "at": "film-8",
+      "dur": 1,
+      "x": 30,
+      "y": 3.4,
+      "d": 40,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "mSig",
+      "at": "film-8",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "kT4",
+      "text": "每一層樓＝增層",
+      "en": "Each floor = a build-up layer",
+      "color": "blue",
+      "at": "bld+10",
+      "until": "bld+55",
+      "cut": true
+     },
+     {
+      "part": "kTr",
+      "text": "銅線",
+      "en": "Copper lines",
+      "color": "amber",
+      "at": "cu+9",
+      "until": "cu+54",
+      "cut": true
+     },
+     {
+      "part": "mAbf",
+      "text": "絕緣膜（ABF）",
+      "en": "Insulating film (ABF)",
+      "color": "amber",
+      "at": "film-4",
+      "until": "film+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-floor",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "載板像一棟大樓",
+      "tag": "示意",
+      "t": {
+       "bld": {
+        "at": "bld"
+       },
+       "cu": {
+        "at": "cu"
+       },
+       "mid": {
+        "at": "mid"
+       },
+       "film": {
+        "at": "film"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.78,
+   "holdSec": 0.8,
+   "headSec": 0.2,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "這層膜很薄，像貼保鮮膜一樣一張張貼，壓平之後再加熱變硬。",
+   "tts": "這層膜很薄，像貼保鮮膜一樣一張張貼，壓平之後再加熱變硬。",
+   "subtitle": {
+    "zh": "這層膜很薄\n像貼保鮮膜一樣\n一張張貼\n壓平之後\n再加熱變硬",
+    "en": "This film is thin, | applied like cling wrap, | sheet by sheet, | pressed flat, | then heated until it hardens."
+   },
+   "keywords": [
+    "保鮮膜",
+    "壓平",
+    "加熱變硬"
+   ],
+   "cues": [
+    {
+     "id": "thin",
+     "text": "很薄"
+    },
+    {
+     "id": "wrap",
+     "text": "保鮮膜"
+    },
+    {
+     "id": "stick",
+     "text": "一張張貼"
+    },
+    {
+     "id": "press",
+     "text": "壓平"
+    },
+    {
+     "id": "heat",
+     "text": "加熱"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Polymer Innovation Blog、USPTO 7893542；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "equip",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 59.0,
+      "y": 1.4,
+      "d": 42,
+      "elev": 28
+     },
+     {
+      "at": "press-10",
+      "dur": 20,
+      "x": 61.0,
+      "y": 2.2,
+      "d": 28,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "lPeelCover",
+      "at": "stick",
+      "ramp": 14,
+      "until": "s4:voice-4"
+     },
+     {
+      "id": "lVacFlow",
+      "at": "press-6",
+      "ramp": 6,
+      "until": "heat+20"
+     },
+     {
+      "id": "lHeatGlow",
+      "at": "heat-4",
+      "ramp": 6,
+      "until": "s4:voice-4"
+     },
+     {
+      "id": "lPeelPet",
+      "at": "end+2",
+      "ramp": 14,
+      "until": "s4:voice-4"
+     },
+     {
+      "id": "lOvFanSpin",
+      "at": "start-4",
+      "ramp": 10,
+      "until": "s4:voice-4"
+     },
+     {
+      "id": "lOvHot",
+      "at": "start-4",
+      "ramp": 6,
+      "until": "s4:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "lRoll",
+      "text": "ABF 膜捲（三層）",
+      "en": "ABF film roll (3 layers)",
+      "color": "blue",
+      "at": "thin-6",
+      "until": "thin+39",
+      "cut": true
+     },
+     {
+      "part": "lTop",
+      "text": "真空壓膜機：壓平",
+      "en": "Vacuum laminator",
+      "color": "amber",
+      "at": "press-37",
+      "until": "press+8",
+      "cut": true
+     },
+     {
+      "part": "lCured",
+      "text": "加熱變硬（固化）",
+      "en": "Cured by heat",
+      "color": "amber",
+      "at": "heat-6",
+      "until": "heat+39",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-lam",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像貼保鮮膜：貼、壓、烤",
+      "tag": "示意（不標溫度）",
+      "t": {
+       "thin": {
+        "at": "thin"
+       },
+       "wrap": {
+        "at": "wrap"
+       },
+       "stick": {
+        "at": "stick"
+       },
+       "press": {
+        "at": "press"
+       },
+       "heat": {
+        "at": "heat"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.01,
+   "holdSec": 0.8,
+   "headSec": 0.2,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "接著用雷射在膜面打出小洞，像電梯井，讓兩層銅線接通。",
+   "tts": "接著用雷射在膜面打出小洞，像電梯井，讓兩層銅線接通。",
+   "subtitle": {
+    "zh": "接著用雷射\n在膜面打出小洞\n像電梯井\n讓兩層銅線接通",
+    "en": "Next, a laser | drills tiny holes in the film, | like elevator shafts, | linking two copper layers."
+   },
+   "keywords": [
+    "雷射",
+    "小洞",
+    "電梯井"
+   ],
+   "cues": [
+    {
+     "id": "laser",
+     "text": "雷射"
+    },
+    {
+     "id": "hole",
+     "text": "小洞"
+    },
+    {
+     "id": "lift",
+     "text": "電梯井"
+    },
+    {
+     "id": "conn",
+     "text": "接通"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Polymer Innovation Blog（雷射微孔）；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "equip",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90,
+      "y": 1.2,
+      "d": 27,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "dPlume0",
+      "at": "laser+4",
+      "ramp": 4,
+      "until": "laser+40"
+     },
+     {
+      "id": "dPlume1",
+      "at": "hole+8",
+      "ramp": 4,
+      "until": "hole+44"
+     },
+     {
+      "id": "dPlume2",
+      "at": "lift+8",
+      "ramp": 4,
+      "until": "lift+44"
+     },
+     {
+      "id": "dLaserPulse",
+      "at": "laser",
+      "ramp": 4,
+      "until": "s5:voice-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dHead",
+      "text": "雷射頭：光收斂到膜面",
+      "en": "Laser head, focused",
+      "color": "blue",
+      "at": "laser-2",
+      "until": "laser+43",
+      "cut": true
+     },
+     {
+      "part": "dHole",
+      "text": "小洞＝電梯井",
+      "en": "Microvia = elevator shaft",
+      "color": "amber",
+      "at": "hole+3",
+      "until": "hole+48",
+      "cut": true
+     },
+     {
+      "part": "dPad",
+      "text": "孔底停在銅墊：兩層接通",
+      "en": "Stops on the copper pad",
+      "color": "blue",
+      "at": "conn-17",
+      "until": "conn+28",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-via",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "雷射打孔，像電梯井",
+      "tag": "示意",
+      "t": {
+       "laser": {
+        "at": "laser"
+       },
+       "hole": {
+        "at": "hole"
+       },
+       "lift": {
+        "at": "lift"
+       },
+       "conn": {
+        "at": "conn"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.62,
+   "holdSec": 0.8,
+   "headSec": 0.2,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "再鍍一層很薄的銅當草稿，只把要走線的地方鍍厚，最後把多的草稿洗掉。",
+   "tts": "再鍍一層很薄的銅當草稿，只把要走線的地方鍍厚，最後把多的草稿洗掉。",
+   "subtitle": {
+    "zh": "再鍍一層很薄的銅\n當草稿\n只把要走線的地方鍍厚\n最後把多的草稿\n洗掉",
+    "en": "Then a very thin copper layer | goes on as a draft; | only the line areas are plated thick, | and finally the extra draft | is washed away."
+   },
+   "keywords": [
+    "草稿",
+    "鍍厚",
+    "洗掉"
+   ],
+   "cues": [
+    {
+     "id": "seed",
+     "text": "很薄的銅"
+    },
+    {
+     "id": "draft",
+     "text": "草稿"
+    },
+    {
+     "id": "line",
+     "text": "要走線"
+    },
+    {
+     "id": "thick",
+     "text": "鍍厚"
+    },
+    {
+     "id": "wash",
+     "text": "洗掉"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "iConnect007（Dow 半加成法論文）、IPC 部落格；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 122.4,
+      "y": 1.0,
+      "d": 40,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "sSeedRain",
+      "at": "seed-24",
+      "ramp": 4,
+      "until": "seed+10"
+     },
+     {
+      "id": "sIonsDown",
+      "at": "thick-12",
+      "ramp": 4,
+      "until": "thick+30"
+     },
+     {
+      "id": "sIons",
+      "at": "thick-12",
+      "ramp": 6,
+      "until": "s6:voice-4"
+     },
+     {
+      "id": "sEtch",
+      "at": "wash",
+      "ramp": 4,
+      "until": "wash+24"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sSeed",
+      "text": "很薄的銅＝草稿",
+      "en": "Thin seed copper = draft",
+      "color": "blue",
+      "at": "seed-14",
+      "until": "seed+31",
+      "cut": true
+     },
+     {
+      "part": "sResist",
+      "text": "光阻蓋住不走線的地方",
+      "en": "Resist covers the rest",
+      "color": "blue",
+      "at": "line-21",
+      "until": "line+24",
+      "cut": true
+     },
+     {
+      "part": "sPlate",
+      "text": "只在開口鍍厚",
+      "en": "Plated thick in openings",
+      "color": "amber",
+      "at": "thick-9",
+      "until": "thick+36",
+      "cut": true
+     },
+     {
+      "part": "sEtch",
+      "text": "多的薄銅洗掉",
+      "en": "Extra seed etched away",
+      "color": "amber",
+      "at": "wash-16",
+      "until": "wash+29",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-sap",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "先打草稿，再描粗，再擦掉",
+      "tag": "示意（不標線寬）",
+      "t": {
+       "seed": {
+        "at": "seed"
+       },
+       "draft": {
+        "at": "draft"
+       },
+       "line": {
+        "at": "line"
+       },
+       "thick": {
+        "at": "thick"
+       },
+       "wash": {
+        "at": "wash"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.97,
+   "holdSec": 0.8,
+   "headSec": 0.2,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "人工智慧晶片要拉出的線太多，載板得疊到十幾層，膜也越用越多。",
+   "tts": "人工智慧晶片要拉出的線太多，載板得疊到十幾層，膜也越用越多。",
+   "subtitle": {
+    "zh": "人工智慧晶片\n要拉出的線太多\n載板得疊到十幾層\n膜也越用越多",
+    "en": "AI chips | need far too many lines out, | so substrates stack to over ten layers, | using more and more film."
+   },
+   "keywords": [
+    "人工智慧",
+    "十幾層",
+    "越用越多"
+   ],
+   "cues": [
+    {
+     "id": "ai",
+     "text": "人工智慧"
+    },
+    {
+     "id": "many",
+     "text": "太多"
+    },
+    {
+     "id": "ten",
+     "text": "十幾層"
+    },
+    {
+     "id": "more",
+     "text": "越用越多"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科技新報 2026/5/30、Tom's Hardware 2026；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pkg",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 148.8,
+      "y": 0.2,
+      "d": 58,
+      "elev": 22
+     }
+    ],
+    "labels": [
+     {
+      "part": "aSmall",
+      "text": "一般處理器載板",
+      "en": "Ordinary CPU substrate",
+      "color": "blue",
+      "at": "ai-2",
+      "until": "ai+43",
+      "cut": true
+     },
+     {
+      "part": "aBig",
+      "text": "AI 晶片載板：十幾層",
+      "en": "AI chip substrate: 10+ layers",
+      "color": "amber",
+      "at": "ten-4",
+      "until": "ten+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-layers",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "載板疊到十幾層",
+      "tag": "報導（科技新報 2026/5/30）",
+      "t": {
+       "ai": {
+        "at": "ai"
+       },
+       "many": {
+        "at": "many"
+       },
+       "ten": {
+        "at": "ten"
+       },
+       "more": {
+        "at": "more"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.39,
+   "holdSec": 0.8,
+   "headSec": 0.2,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "做這層膜的，是日本賣味精的味之素，從做味精的化學研究延伸出來。",
+   "tts": "做這層膜的，是日本賣味精的味之素，從做味精的化學研究延伸出來。",
+   "subtitle": {
+    "zh": "做這層膜的\n是日本賣味精的\n味之素\n從做味精的\n化學研究延伸出來",
+    "en": "The film is made by | Japan's MSG maker, | Ajinomoto, | growing out of | its seasoning chemistry research."
+   },
+   "keywords": [
+    "味之素",
+    "味精",
+    "化學研究"
+   ],
+   "cues": [
+    {
+     "id": "make",
+     "text": "做這層膜"
+    },
+    {
+     "id": "jp",
+     "text": "日本"
+    },
+    {
+     "id": "aji",
+     "text": "味之素"
+    },
+    {
+     "id": "chem",
+     "text": "化學研究"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "味之素官方新聞室、日本半導體歷史館；截至 2026/11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 176.0,
+      "y": 1.0,
+      "d": 36,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "j0",
+      "text": "味之素（日本）",
+      "en": "Ajinomoto (Japan)",
+      "color": "amber",
+      "at": "aji-4",
+      "until": "aji+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-aji",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "做這層膜的：味之素",
+      "tag": "官方新聞室；截至 2026/11/27",
+      "t": {
+       "make": {
+        "at": "make"
+       },
+       "jp": {
+        "at": "jp"
+       },
+       "aji": {
+        "at": "aji"
+       },
+       "chem": {
+        "at": "chem"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.58,
+   "holdSec": 0.8,
+   "headSec": 0.2,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "高階晶片用的這種膜，超過九成五來自味之素。台灣有晶化科技，在做自己的膜。",
+   "tts": "高階晶片用的這種膜，超過九成五來自味之素。台灣有晶化科技，在做自己的膜。",
+   "subtitle": {
+    "zh": "高階晶片用的這種膜\n超過九成五\n來自味之素\n台灣有晶化科技\n在做自己的膜",
+    "en": "For high-end chips, | over 95 percent of this film | comes from Ajinomoto. | In Taiwan, a local company | makes its own film."
+   },
+   "keywords": [
+    "九成五",
+    "味之素",
+    "晶化科技"
+   ],
+   "cues": [
+    {
+     "id": "high",
+     "text": "高階晶片"
+    },
+    {
+     "id": "share",
+     "text": "九成五"
+    },
+    {
+     "id": "aji",
+     "text": "來自味之素"
+    },
+    {
+     "id": "jh",
+     "text": "晶化科技"
+    },
+    {
+     "id": "own",
+     "text": "自己的膜"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce 引日經、科技新報、經濟日報"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 180.6,
+      "y": 0.4,
+      "d": 52,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "j1",
+      "text": "晶化科技（台灣）",
+      "en": "Taiwan film maker",
+      "color": "blue",
+      "at": "jh-4",
+      "until": "jh+41",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-share",
+      "at": "voice-3",
+      "until": "s9:voice",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "超過九成五來自味之素",
+      "tag": "報導；截至 2026/11/27",
+      "t": {
+       "high": {
+        "at": "high"
+       },
+       "share": {
+        "at": "share"
+       },
+       "aji": {
+        "at": "aji"
+       },
+       "jh": {
+        "at": "jh"
+       },
+       "own": {
+        "at": "own"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.42,
+   "holdSec": 0.87,
+   "headSec": 0.2,
+   "pauseAfter": 0.87
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "膜鋪好了，整塊載板怎麼做出來？下一集，看味之素膜做成的載板。留言 A B F，拿完整資料。",
+   "tts": "膜鋪好了，整塊載板怎麼做出來？下一集，看味之素膜做成的載板。留言 A B F，拿完整資料。",
+   "subtitle": {
+    "zh": "膜鋪好了\n整塊載板怎麼做出來？\n下一集\n看味之素膜做成的載板\n留言 ABF\n拿完整資料",
+    "en": "The film is in place. | How is the whole substrate made? | Next episode: | substrates made with this film. | Comment \"ABF\" | for the full notes."
+   },
+   "keywords": [
+    "下一集",
+    "載板",
+    "ABF"
+   ],
+   "cues": [
+    {
+     "id": "done",
+     "text": "膜鋪好了"
+    },
+    {
+     "id": "how",
+     "text": "怎麼做出來"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pkg",
+      "at": "voice-1",
+      "dur": 1
+     },
+     {
+      "to": "next",
+      "at": "next-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-1",
+      "dur": 1,
+      "x": 0,
+      "y": 2.0,
+      "d": 46,
+      "elev": 14
+     },
+     {
+      "at": "done+30",
+      "dur": 24,
+      "x": 0,
+      "y": -0.4,
+      "d": 40,
+      "elev": 24
+     },
+     {
+      "at": "next-6",
+      "dur": 1,
+      "x": 210,
+      "y": -0.2,
+      "d": 32,
+      "elev": 40
+     }
+    ],
+    "labels": [
+     {
+      "part": "nPanel",
+      "text": "ABF 載板（下一集）",
+      "en": "ABF substrate (next)",
+      "color": "amber",
+      "at": "next+2",
+      "until": "next+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "abf-next",
+      "at": "voice",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：ABF 載板",
+      "t": {
+       "done": {
+        "at": "done"
+       },
+       "how": {
+        "at": "how"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.99,
+   "holdSec": 0.87
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "ABF 載板",
+     "trail": [
+      "整塊載板怎麼做出來"
+     ],
+     "comment": "ABF",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

@@ -64,6 +64,7 @@ import { FanoutSection } from "./HudFanout";
 import { Probe1Section } from "./HudProbe1";
 import { PkgmatSection } from "./HudPkgmat";
 import { UtilitySection } from "./HudUtility";
+import { AbfSection } from "./HudAbf";
 import { GasSection } from "./HudGas";
 import { TwequipSection } from "./HudTwequip";
 import { EpiSection } from "./HudEpi";
@@ -756,6 +757,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("probe2-")) return <Probe2Section o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-probe2（HudProbe2.tsx）
   if (String((o as any).kind ?? "").startsWith("fc-")) return <FlipchipSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-flipchip（HudFlipchip.tsx）
   if (String((o as any).kind ?? "").startsWith("util-")) return <UtilitySection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-utility（HudUtility.tsx）
+  if (String((o as any).kind ?? "").startsWith("abf-")) return <AbfSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-abf（HudAbf.tsx）
   if (String((o as any).kind ?? "").startsWith("dc-")) return <DicingSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-dicing（HudDicing.tsx）
   if (String((o as any).kind ?? "").startsWith("target-")) return <TargetSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-target（HudTarget.tsx）
   if (String((o as any).kind ?? "").startsWith("twequip-")) return <TwequipSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-twequip（HudTwequip.tsx）
