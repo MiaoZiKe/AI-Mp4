@@ -192,7 +192,7 @@ P["s7"] = {"zoom": [{"to": "loss", "at": CC, "dur": 1}],
 P["s8"] = {"run": [run("sB", "low+10", "s9:start", 4), run("sRxBGlow", "low+30", "s9:start", 6)],
  "labels": [lab("sLaneBA", "低損耗樹脂", "Low-loss resin", "blue", "low", "low+45"),
             lab("sRxBA", "到終點幾乎不減", "Arrives almost intact", "amber", "tenth+2", "tenth+47")],
- "overlay": [card("s8", "ccl-track", "低損耗：吃掉的只剩約十分之一", "介電損耗；依材料與頻率而異", {"low": "low", "tenth": "tenth", "track": "track"})]}
+ "overlay": [card("s8", "ccl-track", "低損耗：吃掉的只剩約十分之一", "推算；依材料與頻率而異", {"low": "low", "tenth": "tenth", "track": "track"})]}
 # 第 40 條：三家公司 → 卡片完整顯示 ≥ 1.2×3＋1.5＝5.1 秒；不夠就把卡片與 s9 鏡頭延到 s10 開頭（照 tech-pad r7／tech-pkgmat r2），延長幀數依 timeline.json 自動算
 _tl = {x["id"]: x for x in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]} if os.path.exists(os.path.join(HERE, "timeline.json")) else {}
 if "s9" in _tl and "s10" in _tl:
