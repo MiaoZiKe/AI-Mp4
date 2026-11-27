@@ -52,7 +52,8 @@ const out = [];
 let prevEnd = 0, prevGap = 0;
 for (const [i, s] of script.scenes.entries()) {
   if (s.silent === true && s.durationSec > 0 && i === script.scenes.length - 1) { // 無旁白的最後一幕（片尾卡）：排法照 align.mjs 的 buildV2
-    const p = out[i - 1], startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE);
+    // 片尾卡起點＝max(上一幕收聲 − EXIT, 上一幕收聲 + 上一幕 holdSec)；沒寫 holdSec 與以前相同
+    const p = out[i - 1], pHold = Math.max(0, Math.round(Number(script.scenes.find((x) => x.id === p.id)?.holdSec ?? 0) * FPS)), startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE, pHold ? p.voiceEndFrame + pHold : 0);
     out.push({ id: s.id, audio: null, audioFrame: startFrame, audioSec: 0, headSilSec: 0, tailSilSec: 0, startFrame, durationFrames: Math.max(MIN_SCENE_F, Math.round(s.durationSec * FPS)), transitionFrames: TRANS,
       transition: { type: "fade", frames: TRANS, exit: [0, 5], enter: [3, 8] }, voiceStartFrame: startFrame + TRANS, voiceEndFrame: startFrame + TRANS, stillFrame: 0, silent: true,
       subtitleWindow: null, sourceWindow: [startFrame + Math.ceil(TRANS / 2), 0], lines: [], keywords: [], isEnd: true, cues: [], sub: "", provider: "estimate", syllables: 0, words: [], charTimes: [] });
@@ -67,6 +68,8 @@ for (const [i, s] of script.scenes.entries()) {
   if (R) { const tt = mapTimes([...clean(sub)], R.units); for (let k = 0; k < charTimes.length; k++) charTimes[k] = +Math.max(0, tt[k] - R.vs).toFixed(3); }
   const vs = R ? R.vs : prevEnd + prevGap, ve = vs + dur;
   prevEnd = ve; prevGap = typeof s.pauseAfter === "number" && s.pauseAfter > 0 ? s.pauseAfter : GAP;
+  // 錄音沒念到的估算幕也認 holdSec：與下一幕人聲間隔＝max(原間隔, 本幕 holdSec + 下一幕 headSec)（沒寫的片不變；有錄音的幕 vs 取真時間，不受影響）
+  if (typeof s.holdSec === "number" && s.holdSec > 0) prevGap = Math.max(prevGap, s.holdSec + (script.scenes[i + 1]?.headSec ?? 0));
   const audioFrame = Math.round(vs * FPS), voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
   const p = out[i - 1];
   // cutDelayF（script.json 該幕）：這一鏡的畫面比預設晚幾幀才換進來（前一鏡最後一個標籤需要多停一下時用；聲音不動）

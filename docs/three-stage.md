@@ -375,10 +375,10 @@ python3 scripts/three/sfx-styles.py plot <旁白.wav> out/<slug>/sfx-ABC.png A=<
 ## 十四、念完留白 `holdSec`／`headSec`（2026/11/27 Andy 規範 27：少講多停；選用，沒寫的片完全不變）
 - **script.json 每幕可寫**：`headSec`＝開口前只有畫面的秒數；`holdSec`＝本幕念完後只有畫面的秒數（關鍵畫面念完要留 ≥1.2 秒；非爆炸幕上限 2.0 秒）。`genscript.py` 用「整幕秒數 DUR − HEAD − 字數÷4.7」算出 holdSec。
 - **無聲估計**：`scripts/three/silent-timeline.mjs` 依這兩欄位排：人聲區間＝[headSec, 幕長 − holdSec]，cue 只在人聲區間內平均分配。
-- **有 AI Studio 整篇配音（tts-take → align）**：`scripts/align.mjs` 在 v3 take 模式下，若該幕有 `holdSec`，兩幕人聲間隔＝max(原始間隔, 本幕 holdSec ＋ 下一幕 headSec)（不受 `ALIGN_GAP_MAX` 限制；補的是靜音，不加速不移調）；本幕提早 `headSec` 秒進場。沒寫 holdSec 的片：行為與以前完全相同。
+- **有 AI Studio 整篇配音（tts-take → align）**：`scripts/align.mjs` 在 v3 模式下，該幕有 `holdSec`（>0）時，兩幕人聲間隔＝max(原始間隔, 本幕 holdSec ＋ 下一幕 headSec)（不受 `ALIGN_GAP_MAX` 限制；補的是靜音，不加速不移調）；「下一幕」用下一幕的 id 去 script.scenes 找 headSec，不靠陣列索引。下一幕轉場起點＝max(上一幕起點＋MIN_SCENE_F, 下一幕開口 − max(TRANS, headSec 幀), 上一幕收聲 − EXIT_AFTER_VOICE)，所以 headSec 也讓本幕提早進場。**片尾卡（silent 最後一幕）起點＝max(上一幕收聲 − EXIT_AFTER_VOICE, 上一幕收聲 ＋ 上一幕 holdSec)**，片尾卡前一幕的 holdSec 因此生效。沒寫 holdSec／headSec 的片：輸出與以前逐位元相同（2026/11/27 用 tech-tel 前後比對）。
 - **有使用者錄音（一幕一段，recording-timeline，影片時間＝錄音時間）**：錄音本身不會有那麼長的停頓，所以多一個選用步驟先補靜音：
   1. `node scripts/three/pad-recording.mjs <slug> audio/<slug>/take.wav <涵蓋幕數>`：強制對齊（本機、不花請求）量出各幕人聲 → 在每段靜音正中間補足 holdSec＋下一幕 headSec 的差額 → 輸出 `take-padded.wav`，並寫 `videos/<slug>/pad-recording.json`（每幕補幾秒、新的人聲區間）。`--bounds <json>` 可直接給 `[{vs,ve},…]`（跳過對齊，測試用）。
-  2. `node scripts/dossier/recording-timeline.mjs <slug> audio/<slug>/take-padded.wav <涵蓋幕數>`（已認 `headSec`：本幕提早 headSec 秒進場）。
+  2. `node scripts/dossier/recording-timeline.mjs <slug> audio/<slug>/take-padded.wav <涵蓋幕數>`（已認 `headSec`：本幕提早 headSec 秒進場；錄音沒念到的估算幕，與下一幕人聲間隔＝max(原間隔, 本幕 holdSec＋下一幕 headSec)；片尾卡起點同上＝max(收聲 − EXIT, 收聲＋上一幕 holdSec)）。
   3. 之後照原流程渲染，旁白合成用補好的檔。
 - 驗證：合成 10 秒正弦波＋三幕假邊界，補完 15.80 秒＝原 10 秒＋補的 5.80 秒（s1＋1.14、s2＋4.2、s3＋0.46），與公式相符。
 - 第一支使用：`videos/tech-twequip/`（無聲估計總長 84.9 秒；爆炸幕 s2／s6／s8 的 holdSec 較長，這三幕錄音末尾請留白或交給 pad-recording 補）。

@@ -100,7 +100,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     if i < len(S) - 1: sc["pauseAfter"] = 0.6
     scenes.append(sc)
 # 時長與留白（Andy 11-27 第 27 條）：DUR＝整幕秒數；HEAD＝開口前只有畫面；念完後的留白＝DUR − HEAD − 字數/4.7（只有畫面，演出關鍵動作）
-DUR = {"s1": 4.3, "s2": 12.2, "s3": 5.9, "s4": 6.4, "s5": 6.8, "s6": 8.3, "s7": 6.7, "s8": 10.0, "s9": 6.0, "s10": 5.2, "s11": 4.2, "s12": 5.7}   # 無聲估計總長 ≤85 秒（協調者 11-27）
+DUR = {"s1": 4.6, "s2": 12.2, "s3": 5.9, "s4": 6.4, "s5": 6.8, "s6": 8.3, "s7": 6.7, "s8": 11.6, "s9": 6.0, "s10": 5.2, "s11": 4.5, "s12": 5.98}   # 無聲估計總長 ≤85 秒（協調者 11-27）
 HEAD = {"s1": 0, "s2": 1.5, "s3": 0.4, "s4": 0.3, "s5": 0.2, "s6": 0.8, "s7": 0.3, "s8": 0.8, "s9": 0.3, "s10": 0.3, "s11": 0.3, "s12": 0.3}
 RATE = 4.7   # 念稿估計速度（字／秒）；重配後以實際錄音為準
 for sc in scenes:
@@ -130,7 +130,7 @@ def shot(at, x, y, d, elev, dur=30, yaw=None):
 def hid(lay, a, b, dur=10, o=0): return {"layer": lay, "at": a, "until": b, "opacity": o, "dur": dur}
 def mv(lay, a, b, dur=22, **kw):
     d = {"layer": lay, "at": a, "until": b, "dur": dur}; d.update(kw); return d
-def sec(kind, at, until, title, tag, t=None, y=1040, h=360, **kw):
+def sec(kind, at, until, title, tag, t=None, y=1040, h=356, **kw):
     d = {"type": "section", "kind": kind, "at": at, "until": until, "x": 64, "y": y, "w": 952, "h": h, "avoid": False, "title": title, "tag": tag}
     if t is not None: d["t"] = {k: {"at": v} for k, v in t.items()}
     d.update(kw); return d
@@ -181,7 +181,7 @@ def unwrap(keys):
             if j in v: v[j] = round(v[j] - sh, 2)
     return keys
 keys4 = unwrap(keys4)
-TS = 0.65   # 取放節奏縮到 0.75 倍：念稿變短後，手臂動作和旁白對得上（幾何不變，只是同一條路徑走得快一點）
+TS = 0.75   # 取放節奏 0.75 倍（r5：載片退出與轉向放回 0.75；r4 曾縮到 0.65）；幾何不變，只是同一條路徑走得快一點
 def SC(n): return int(round(n * TS))
 _last = -1
 for kk in keys4:
@@ -237,13 +237,15 @@ EXP6 = [mv("c1NzA", st6(4), X6B, 20, dy=4.8, dx=1.6), mv("c1Nz", st6(4), X6B, 20
         mv("c1Chuck", st6(108), X6B, 20, dy=3.0), mv("wfC", st6(108), X6B, 20, dy=3.0)]                                # 7c：吸盤（載著晶圓）與底下的馬達分開
 # ═════════ s8 化學液櫃（規格第 8 步）：門滑開 → 液櫃向 +X 拉開、內部儲桶／泵／濾芯／加熱／閥島由下往上依序垂直排開（一次一張標籤）→ 組回 → 藥液沿管路流 → 鏡頭到電控箱、門打開（第 9 步） ═════════
 def st8(n): return f"s8:start+{n}"
-S8 = dict(door=0, pull=10, spread=22, back=166, eb=254)
-EB_B = st8(S8["back"])
-EB = lambda n: st8(S8["eb"] + n)       # 電控箱段的時間（相對幕首的固定幀；不靠念稿，因為念完才演）
-CAB8 = [mv("ccDoor", st8(S8["door"] + 4), FAR, 18, dz=8), hid("ccDoor", st8(S8["door"] + 14), FAR, 8),
-        *[mv(l, st8(S8["pull"]), EB_B, 18, dx=3.0) for l in CABL],
-        mv("ccPump", st8(S8["spread"]), EB_B, 18, dy=2.2), mv("ccFilter", st8(S8["spread"] + 8), EB_B, 18, dy=4.4), mv("ccHeater", st8(S8["spread"] + 16), EB_B, 18, dy=6.6), mv("ccValve", st8(S8["spread"] + 24), EB_B, 18, dy=8.8),
-        hid("ccPipe", st8(S8["spread"]), EB_B, 10, 0.12), hid("cc", st8(S8["spread"] - 8), EB_B, 10, 0.16)]
+# r5：爆炸、標籤、組回、起流全部綁念稿 cue 或收聲（end），不用固定幀——有錄音後各幀跟著實際念到的位置走（見 README r5）
+BACK8 = "s8:end+6"                      # 組回：念完才開始（收聲後 6 幀）；18 幀組完＝end+24
+FL0, FL1 = "s8:end+62", "s8:end+116"    # 組完後先靜止 38 幀（1.27 秒），鏡頭在這段推近管路；再起流 54 幀（1.8 秒）
+EB = lambda n: f"s8:end+{142 + n}"      # 電控箱段（流動結束後鏡頭轉到電控箱）
+EB_B = BACK8
+CAB8 = [mv("ccDoor", st8(4), FAR, 18, dz=8), hid("ccDoor", st8(14), FAR, 8),
+        *[mv(l, st8(10), EB_B, 18, dx=3.0) for l in CABL],
+        mv("ccPump", "s8:pump-4", EB_B, 18, dy=2.2), mv("ccFilter", "s8:pump+2", EB_B, 18, dy=4.4), mv("ccHeater", "s8:pump+10", EB_B, 18, dy=6.6), mv("ccValve", "s8:mix-4", EB_B, 18, dy=8.8),
+        hid("ccPipe", "s8:pump-4", EB_B, 10, 0.12), hid("cc", "s8:pump-12", EB_B, 10, 0.16)]
 # ═════════ s9 批次酸槽：卡匣一槽一槽浸泡（拖車沿導軌走、桿子伸縮、卡匣下降再升起） ═════════
 BB = []
 t0 = "s9:start+62"
@@ -273,8 +275,8 @@ for l in ALL:
         out_ = i != 99 and l not in FSETS[i]
         if out_ and run_ is None: run_ = i
         if not out_ and run_ is not None:
-            a = "s1:start-40" if run_ == 1 else (f"s{run_}:start+6" if run_ in (8, 9, 10) else f"s{run_}:start+2")
-            b = FAR if i == 99 else (f"s{i}:start-6" if i in (8, 9, 10) else f"s{i}:start+14")
+            a = "s1:start-40" if run_ == 1 else ("s9:start-8" if run_ == 9 else (f"s{run_}:start+6" if run_ in (8, 10) else f"s{run_}:start+2"))
+            b = FAR if i == 99 else ("s9:start-10" if i == 9 else (f"s{i}:start-6" if i in (8, 10) else f"s{i}:start+14"))
             FOCUS.append(hid(l, a, b, 10)); run_ = None
 # ═════════ 近景視窗：一段時間內只留特寫主角，其他層藏起來（主素材框才會小、鏡頭才能貼近而不被讀數帶或卡片蓋住） ═════════
 def CLOSE(keep, a, b, dur=8): return [hid(l, a, b, dur) for l in ALL if l not in keep]
@@ -284,7 +286,7 @@ CL8 = {"ebox", "ebDoor", "ebIn"}
 CL9 = {"bbT0", "bbT1", "bbCass"}
 CL8b = CL8 | G_BB
 CL9_BB = {l for l in G_BB if l in CL9}
-WIN = (CLOSE(CL3, "s3:door-14", "s4:start") + CLOSE(CL4, "s4:start", k4(80)) + CLOSE(CL8b, EB(-24), "s9:start+6")
+WIN = (CLOSE(CL3 | CL4, "s3:door-14", k4(80)) + [hid(l, "s4:start-6", k4(80), 6) for l in sorted(CL3 - CL4)] + CLOSE(CL8b, EB(-24), "s9:start-8")
        + CLOSE(CL9 | (set(ALL) - G_BB), "s9:start+40", "s10:start-6") + [hid(l, "s9:start+40", FAR, 8) for l in G_BB if l not in CL9])
 # ═════════ 各幕 props ═════════
 def lab_(part, text, en, color, at, until, **kw): return lab(part, text, en, color, at, until, **kw)
@@ -313,7 +315,7 @@ P["s4"] = {"shot": [shot("start", -10.6, 9.6, 32, 34, 30), shot("start+44", -7, 
  "run": [run("alnLaser", k4(97), k4(128), 4), run("alnSpin", k4(98), k4(122), 8), run("zSpin", k4(18), k4(36), 8), run("zSpin", k4(130), k4(146), 8)],
  "labels": [lab_("blade", "雙刀：上刀載片、下刀空刀", "Dual blade: upper carries, lower empty", "blue", "start+6", "start+51"),
             lab_("aln", "預對準器：找缺口", "Pre-aligner", "amber", "start+60", "start+105"),
-            lab_("chuck", "吸盤＋邊緣抓取銷", "Chuck & edge-grip pins", "blue", "start+146", "start+191")],
+            lab_("chuck", "旋轉吸盤＋抓取銷", "Spin chuck & edge-grip pins", "blue", "start+146", "start+191")],
  "overlay": [sec("twequip-arm", "start+2", "s5:start-5", "手臂直線伸入、雙刀快換", "示意（專利範例）", {"arm": "arm", "lift": "lift", "align": "align", "put": "put"})]}
 P["s5"] = {"shot": [shot("start", CX1, 8.8, 40, 40, 30, yaw=0.05)],
  "run": [run("c1Air", "start", FAR, 8), run("cupHot", "stream", "s7:dry", 8), run("spinLo", "spin", "s7:start", 12), run("nzSwing", "nz+22", "s5:film+60", 8),
@@ -334,14 +336,15 @@ P["s7"] = {"shot": [shot("start", CX1, 7.3, 36, 52, 30)],
  "run": [run("spinHi", "dry", FAR, 14), run("c1Air", "start", FAR, 4), run("ipSweep", "expand", FAR, 52), run("n2Glow", "expand-8", "expand+70", 4), run("ipaGlow", "expand-8", "expand+70", 4), run("nzPark", "start", FAR, 1)] + [run(f"dw{k}", "dry", "ipa-8", 6) for k in range(3)] + [run(f"dp{k}", "ipa", "mark+20", 6) for k in range(3)] + [run(f"fling{k}", "dry", "expand", 6) for k in range(6)],
  "labels": [lab_("ip", "異丙醇（IPA）臂：跟著乾區走", "IPA arm follows the dry front", "amber", "start+36", "start+81")],
  "overlay": [sec("twequip-dry", "start+24", "s8:start-5", "甩乾：乾區由中心向外", "示意", {"dry": "dry", "expand": "expand", "ipa": "ipa", "mark": "mark"})]}
-P["s8"] = {"shot": [shot("start", 22.5, 9.5, 128, 20, 30, yaw=0.05), shot(EB(-24), 12.2, 4.4, 40, 14, 26)],
- "run": [run("chemFlow", st8(188), EB(-26), 8), run("chemFlow2", st8(194), EB(-26), 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", EB(-6), "s9:start", 22), run("ebBlink", EB(0), "s9:start", 6)],
- "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "start+28", "start+73"),
-            lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "start+77", "start+122"),
-            lab_("mix", "混合閥島", "Mixing valve island", "blue", "start+126", "start+171"),
+P["s8"] = {"shot": [shot("start", 22.5, 9.5, 128, 20, 30, yaw=0.05), shot("end+22", 20.6, 11.5, 66, 17, 30), shot(EB(-24), 12.2, 4.4, 40, 14, 26)],
+ "capNote": [{"at": EB(-26), "until": "s9:voice-3", "zh": "電控箱：控制整套動作", "en": "Electrical cabinet: runs the whole sequence"}],
+ "run": [run("chemFlow", FL0, FL1, 8), run("chemFlow2", add(FL0, 6), FL1, 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", EB(-6), "s9:start", 22), run("ebBlink", EB(0), "s9:start", 6)],
+ "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "tank-2", "pump-2"),
+            lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "pump-2", "mix-2"),
+            lab_("mix", "混合閥島", "Mixing valve island", "blue", "mix-2", "end+4"),
             lab_("eb", "電控箱（門打開）", "Electrical cabinet", "amber", EB(-4), EB(41))],
  "overlay": [sec("twequip-chem", "start+24", "s9:start-5", "藥液怎麼送進腔", "示意（配比不標數字）", {"tank": "tank", "pump": "pump", "mix": "mix", "eb": EB(0)})]}
-P["s9"] = {"shot": [shot("start", 45, 5.2, 105, 24, 24, yaw=-0.05), shot("start+46", TKX_C, -0.5, 50, 30, 30)],
+P["s9"] = {"shot": [shot("start-10", 45, 5.2, 105, 24, 22, yaw=-0.05), shot("start+46", TKX_C, -0.5, 50, 30, 30)],
  "run": [run(f"bbOver{i}", "start", FAR, 6) for i in range(2)] + [run("bbIpa", "start", FAR, 6), run("bbDrip", "start+92", FAR, 6)],
  "labels": [lab_("bb", "批次酸槽（卡匣浸泡）", "Batch wet bench", "amber", "start+8", "start+53"),
             lab_("bbweir", "溢流堰＋外槽", "Overflow weir & trough", "blue", "start+72", "start+117"),

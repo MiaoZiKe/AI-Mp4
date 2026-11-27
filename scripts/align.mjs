@@ -148,7 +148,9 @@ function buildV2(cs) {
   for (const [i, c] of cs.entries()) {
     if (c.silent) { // v3：無旁白的最後一幕（片尾卡）
       const p = out[i - 1];
-      const startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE);
+      // 片尾卡起點＝max(上一幕收聲 − EXIT, 上一幕收聲 + 上一幕 holdSec)：片尾卡前一幕的 holdSec 才會生效（沒寫 holdSec 的片：與以前相同）
+      const psc = script.scenes.find((x) => x.id === p.id), pHold = V3 && typeof psc?.holdSec === "number" && psc.holdSec > 0 ? Math.round(psc.holdSec * FPS) : 0;
+      const startFrame = Math.max(p.startFrame + MIN_SCENE_F, p.voiceEndFrame - EXIT_AFTER_VOICE, pHold ? p.voiceEndFrame + pHold : 0);
       out.push({ id: c.id, audio: null, audioFrame: startFrame, audioSec: 0, headSilSec: 0, tailSilSec: 0, startFrame, durationFrames: Math.max(MIN_SCENE_F, Math.round(c.durationSec * FPS)),
         transitionFrames: TRANS, transition: { type: "fade", frames: TRANS, ...TRANSITIONS.fade }, voiceStartFrame: startFrame + TRANS, voiceEndFrame: startFrame + TRANS, stillFrame: 0, silent: true, // 沒有人聲：兩個值都放在轉場結束那一幀，讀的人不會拿到 null
         subtitleWindow: null, sourceWindow: [startFrame + Math.ceil(TRANS / 2), 0], lines: [], keywords: [], isEnd: true, cues: [], sub: "" });
@@ -169,7 +171,7 @@ function buildV2(cs) {
     if (V3 && typeof c.gapAfter === "number") prevGap = Math.max(Math.min(c.gapAfter, GAP_MAX), pause); // 原始錄音的間隔
     // 選用（script.json 該幕有 holdSec 才生效；沒寫的片不變）：幕長＝人聲＋holdSec——本幕人聲後補靜音，使「本幕念完只有畫面」≥ holdSec，
     // 加上下一幕 headSec（開口前只有畫面）；補的是靜音，不加速不移調。上限不受 GAP_MAX 限制。見 docs/three-stage.md「念完留白 holdSec」
-    if (V3 && typeof sc?.holdSec === "number" && sc.holdSec > 0) prevGap = Math.max(prevGap, sc.holdSec + (script.scenes[i + 1]?.headSec ?? 0));
+    if (V3 && typeof sc?.holdSec === "number" && sc.holdSec > 0) prevGap = Math.max(prevGap, sc.holdSec + (script.scenes.find((x) => x.id === cs[i + 1]?.id)?.headSec ?? 0));
     const voiceStartFrame = Math.floor(vs * FPS), voiceEndFrame = Math.ceil(ve * FPS);
     const ttype = TRANSITIONS[sc?.transition] ? sc.transition : "fade";
     const transition = i === 0 ? null : { type: ttype, frames: TRANS, ...TRANSITIONS[ttype], ...(ttype === "carry" && sc?.carry ? { carry: sc.carry } : {}) };
