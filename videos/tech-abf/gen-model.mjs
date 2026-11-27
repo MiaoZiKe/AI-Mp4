@@ -70,7 +70,7 @@ Object.assign(materials, {
   cu: M("std", "cuC", { rough: 0.3, metal: 0.9, env: 0.8 }), cuB: M("std", "cuBrightC", { rough: 0.25, metal: 0.9, env: 0.9, emissive: "cuBrightC", ei: 0.15 }),
   core: M("std", "coreC", { rough: 0.7, metal: 0, env: 0.15 }), fiber: M("std", "fiberC", { rough: 0.6, metal: 0, env: 0.2 }), sm: M("std", "smC", { rough: 0.4, metal: 0.05, env: 0.4 }),
   resist: M("std", "resistC", { rough: 0.5, metal: 0, env: 0.3 }), pet: M("phys", "petC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.45, env: 0.7 }), cover: M("phys", "coverC", { rough: 0.1, metal: 0, clearcoat: 1, opacity: 0.6, env: 0.6 }),
-  laser: M("std", "laserC", { emissive: "laserC", ei: 1.2, rough: 1, metal: 0, opacity: 0.55 }), laserDot: glowM("laserC", 0.95, 1.2), plumeDot: glowM("plumeC2", 0.8, 0.2),
+  laser: M("std", "laserC", { emissive: "laserC", ei: 1.4, rough: 1, metal: 0, opacity: 0.8 }), laserDot: glowM("laserC", 0.95, 1.2), plumeDot: glowM("plumeC2", 0.8, 0.2),
   hbm: M("std", "hbmC", { rough: 0.4, metal: 0.5, env: 0.5 }), die2: M("std", "dieC2", { rough: 0.3, metal: 0.6, env: 0.7 }), inter: M("std", "interC", { rough: 0.35, metal: 0.6, env: 0.6 }),
   solder: M("std", "solderC", { rough: 0.25, metal: 0.95, env: 0.9 }), ionDot2: glowM("ionC2", 0.95, 0.8), heater: M("std", "heaterC", { emissive: "heaterC", ei: 0.5, rough: 0.5, metal: 0 }),
   etchDot: glowM("etchC", 0.9, 0.6), sigDot: glowM("powC", 0.95, 1.0), hole: M("std", "rubber", { rough: 1, metal: 0 }),
@@ -263,7 +263,7 @@ BOX("dGalvo", "dHead", DX - 0.7, DX + 0.7, 4.6, 5.9, -0.6, 0.6, "dark"); BOX("dG
 VC("dBarrel", "dHead", 0.28, 3.4, 4.6, "steel2", { x: DX }); VC("dLens", "dHead", 0.22, 3.3, 3.42, "quartz", { x: DX }); VT("dLensRing", "dHead", 0.3, 0.22, 3.3, 3.42, "dark", { x: DX });
 SPH("dLed", "dHead", 0.06, DX + 0.5, 5.7, 0.62, "lampG");
 BOX("dHood", "dHead", DX - 0.9, DX + 0.9, 2.6, 2.8, -0.9, 0.2, "steel"); PIPE("dDuct", "dHead", [[DX - 0.6, 2.8, -0.6], [DX - 0.6, 3.6, -0.6], [DX - 0.6, 3.6, -1.6]], 0.14, "steel2");
-LAY("dBeamL", [0.5, 2, DX, 2.4]); P({ id: "dCone", layer: "dBeamL", shape: "cone", size: [0.2, 0.025, 1.7], rot: V, pos: [DX, R2(DY + 0.85), 0], mat: "laser" });
+LAY("dBeamL", [0.5, 2, DX, 2.4]); P({ id: "dCone", layer: "dBeamL", shape: "cone", size: [0.3, 0.04, 1.7], rot: V, pos: [DX, R2(DY + 0.85), 0], mat: "laser" });
 
 // ═════ 站 S：半加成法剖面（薄銅草稿→光阻→只在開口鍍厚→去光阻→洗掉多的薄銅）＋電鍍槽小插圖 ═════
 const SX = 120, SZ = 1.5, SY = 2.0;
