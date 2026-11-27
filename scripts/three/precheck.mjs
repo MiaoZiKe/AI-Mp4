@@ -104,7 +104,7 @@ for (const s of scenes) {
   const chk = (what, tok) => { const f = resolve(tok, s.id); if (f != null && f > r.end + 4 && f < range.get(next.id).end - 12) add("error", "S5", s.id, `${what} 的 until「${tok}」比本幕結束晚 ${f - r.end} 幀（舊卡殘留進 ${next.id} 但沒撐滿整幕；有意跨幕就把 until 設到下一幕結束，否則淡出要在下一幕起點前收完）`, r.end); };
   // cut 疊層（1 幀就位、1 幀收走）的 until 若不晚於下一幕的字幕窗起點（voiceStartFrame−3）＝和上一幕字幕同一幀收走，不算殘留
   const capNext = tl.get(next.id)?.voiceStartFrame != null ? tl.get(next.id).voiceStartFrame : null;
-  for (const o of p.overlay ?? []) { const f = resolve(o.until, s.id); if (o.cut && f != null && capNext != null && f <= capNext) continue; chk(`疊層 ${o.kind ?? o.type}`, o.until); }
+  for (const o of p.overlay ?? []) { const f = resolve(o.until, s.id); if (o.cut && f != null && capNext != null && f <= capNext) continue; if (o.carry) continue; /* carry：有意跨幕（Andy 第 40 條，公司卡念完後延到下一幕開頭補滿秒數） */ chk(`疊層 ${o.kind ?? o.type}`, o.until); }
   for (const l of p.labels ?? []) chk(`標籤「${l.text}」`, l.until);
   if (p.hook?.until) chk("鉤子大字", p.hook.until);
 }
