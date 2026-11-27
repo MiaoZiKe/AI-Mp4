@@ -11,8 +11,8 @@ MODEL = json.load(open(os.path.join(HERE, "model.json")))
 INFO = MODEL["info"]
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources, 無聲幕長秒, 開口前只有畫面秒, 念完後最少只有畫面秒)
 S = [
-("s1", "hook", "誰來把晶圓真正磨平？前一集，研磨液把表面準備好了。",
- ["誰來把晶圓", "真正磨平？", "前一集", "研磨液把表面", "準備好了"], ["Who really", "flattens the wafer?", "Last episode:", "slurry prepped", "the surface."],
+("s1", "hook", "誰來把晶圓真正磨平？前一集，研磨液準備好了，還缺一塊墊子。",
+ ["誰來把晶圓", "真正磨平？", "前一集", "研磨液準備好了", "還缺一塊墊子"], ["Who really", "flattens the wafer?", "Last episode:", "the slurry is ready,", "still missing a pad."],
  [("q", "磨平"), ("prev", "前一集")], ["誰來", "磨平", "研磨液"], ["示意動畫，不是量測"], 6.0, 0.0, 1.2),
 ("s2", "mechanism", "答案是研磨墊，一塊有彈性的塑膠圓墊，鋪在會旋轉的圓台。",
  ["答案是研磨墊", "一塊有彈性的", "塑膠圓墊", "鋪在會旋轉的", "圓台"], ["The answer: the pad,", "a springy", "plastic round mat,", "laid on a", "rotating platen."],
