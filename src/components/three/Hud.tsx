@@ -52,6 +52,7 @@ import { KlaSection } from "./HudKla";
 import { TargetSection } from "./HudTarget";
 import { PrecursorSection } from "./HudPrecursor";
 import { ChemSection } from "./HudChem";
+import { WirebondSection } from "./HudWirebond";
 import { PadSection } from "./HudPad";
 import { CleanroomSection } from "./HudCleanroom";
 import { Probe2Section } from "./HudProbe2";
@@ -740,6 +741,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("gas-")) return <GasSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-gas（HudGas.tsx）
   if (String((o as any).kind ?? "").startsWith("precursor-")) return <PrecursorSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-precursor（HudPrecursor.tsx）
   if (String((o as any).kind ?? "").startsWith("chem-")) return <ChemSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-chem（HudChem.tsx）
+  if (String((o as any).kind ?? "").startsWith("wb-")) return <WirebondSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-wirebond（HudWirebond.tsx）
   if (String((o as any).kind ?? "").startsWith("parts-")) return <PartsSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-parts（HudParts.tsx）
   if (String((o as any).kind ?? "").startsWith("pad-")) return <PadSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-pad（HudPad.tsx）
   if (String((o as any).kind ?? "").startsWith("cr-")) return <CleanroomSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-cleanroom（HudCleanroom.tsx）
