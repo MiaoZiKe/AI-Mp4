@@ -171,7 +171,14 @@
      },
      {
       "layer": "bDrill",
-      "at": "s3:drill+26",
+      "at": "s3:drill+14",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dy": 9.0
+     },
+     {
+      "layer": "bDrill",
+      "at": "s3:drill+28",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 1
@@ -241,7 +248,7 @@
      },
      {
       "layer": "bResinBump",
-      "at": "s3:base-4",
+      "at": "s3:base-9",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 1
@@ -255,7 +262,7 @@
      },
      {
       "layer": "bBlade",
-      "at": "s3:base+8",
+      "at": "s3:base+14",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 1
@@ -266,6 +273,13 @@
       "until": "s11:start+400",
       "dur": 18,
       "dx": 6.4
+     },
+     {
+      "layer": "bBlade",
+      "at": "s3:base+2",
+      "until": "s11:start+400",
+      "dur": 10,
+      "dx": 14.0
      },
      {
       "layer": "bCap",
@@ -487,16 +501,30 @@
      {
       "layer": "bLaserT",
       "at": "s1:start-40",
-      "until": "s5:voice-3",
+      "until": "s5:start",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "bLaserB",
       "at": "s1:start-40",
-      "until": "s5:voice-3",
+      "until": "s5:start",
       "opacity": 0,
       "dur": 1
+     },
+     {
+      "layer": "bLaserT",
+      "at": "s1:start-40",
+      "until": "s5:start",
+      "dur": 10,
+      "dy": 7.0
+     },
+     {
+      "layer": "bLaserB",
+      "at": "s1:start-40",
+      "until": "s5:start",
+      "dur": 10,
+      "dy": -7.0
      },
      {
       "layer": "bBeamT",
@@ -765,6 +793,13 @@
       "dur": 1
      },
      {
+      "layer": "fChip",
+      "at": "s8:heat",
+      "until": "s11:start+400",
+      "dur": 24,
+      "dy": 0.18
+     },
+     {
       "layer": "eFail",
       "at": "s1:start-40",
       "until": "s7:fail-4",
@@ -984,20 +1019,6 @@
       "dur": 1
      },
      {
-      "layer": "bBase",
-      "at": "s1:start-40",
-      "until": "s3:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "bBase",
-      "at": "s6:voice-1",
-      "until": "s11:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
       "layer": "bCore",
       "at": "s1:start-40",
       "until": "s3:voice-6",
@@ -1160,20 +1181,6 @@
      },
      {
       "layer": "bCap",
-      "at": "s6:voice-1",
-      "until": "s11:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "bDrill",
-      "at": "s1:start-40",
-      "until": "s3:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "bDrill",
       "at": "s6:voice-1",
       "until": "s11:start+400",
       "opacity": 0,
@@ -1432,20 +1439,6 @@
       "dur": 1
      },
      {
-      "layer": "bLaserT",
-      "at": "s1:start-40",
-      "until": "s3:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "bLaserT",
-      "at": "s6:voice-1",
-      "until": "s11:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
       "layer": "bBeamT",
       "at": "s1:start-40",
       "until": "s3:voice-6",
@@ -1454,20 +1447,6 @@
      },
      {
       "layer": "bBeamT",
-      "at": "s6:voice-1",
-      "until": "s11:start+400",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "bLaserB",
-      "at": "s1:start-40",
-      "until": "s3:voice-6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "bLaserB",
       "at": "s6:voice-1",
       "until": "s11:start+400",
       "opacity": 0,
@@ -2251,8 +2230,8 @@
       "at": "chip",
       "dur": 30,
       "x": 0.0,
-      "y": 0.4,
-      "d": 56,
+      "y": -1.6,
+      "d": 46,
       "elev": 16
      }
     ],
@@ -2375,9 +2354,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 60,
-      "y": 3.4,
-      "d": 54,
+      "y": 4.6,
+      "d": 46,
       "elev": 16
+     },
+     {
+      "at": "plate-6",
+      "dur": 16,
+      "x": 60,
+      "y": 3.9,
+      "d": 24,
+      "elev": 12
      }
     ],
     "run": [
@@ -2413,12 +2400,12 @@
       "text": "孔壁鍍銅、樹脂塞平",
       "en": "Plated hole, resin-filled",
       "color": "blue",
-      "at": "plate",
+      "at": "drill+28",
       "until": "base+30",
       "cut": true,
       "xy": [
-       730,
-       360
+       400,
+       330
       ]
      }
     ],
@@ -2504,9 +2491,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 60,
-      "y": 3.0,
-      "d": 54,
-      "elev": 14
+      "y": 3.9,
+      "d": 30,
+      "elev": 12
      }
     ],
     "labels": [
@@ -2598,10 +2585,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 61.0,
-      "y": 3.4,
-      "d": 56,
-      "elev": 14
+      "x": 62.0,
+      "y": 4.0,
+      "d": 40,
+      "elev": 12
      }
     ],
     "run": [
@@ -2621,12 +2608,16 @@
     "labels": [
      {
       "part": "via",
-      "text": "雷射打洞→銅填滿（停在下一層銅）",
+      "text": "雷射打洞，銅填滿",
       "en": "Laser via, filled with copper",
       "color": "amber",
       "at": "hole-4",
       "until": "link+30",
-      "cut": true
+      "cut": true,
+      "xy": [
+       400,
+       330
+      ]
      }
     ],
     "overlay": [
@@ -2710,8 +2701,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 119.5,
-      "y": -5.6,
-      "d": 74,
+      "y": -7.6,
+      "d": 64,
       "elev": 42
      }
     ],
@@ -2831,8 +2822,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 180,
-      "y": 2.2,
-      "d": 56,
+      "y": 1.2,
+      "d": 54,
       "elev": 12
      }
     ],
@@ -2946,9 +2937,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 240,
-      "y": 1.2,
-      "d": 50,
-      "elev": 16
+      "y": 0.2,
+      "d": 40,
+      "elev": 26
+     },
+     {
+      "at": "heat-10",
+      "dur": 22,
+      "x": 240,
+      "y": -0.6,
+      "d": 54,
+      "elev": 26
      }
     ],
     "run": [

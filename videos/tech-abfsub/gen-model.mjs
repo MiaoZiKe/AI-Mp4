@@ -125,7 +125,7 @@ LAY("chipGlow", [5, 0.4, 0, CHY0 + CHH]); BOX("chGlow", "chipGlow", -2.2, 2.2, C
 
 // ═════ 站 B：剖面（x 60；半剖：前切面 z＝0 正好切過貫通孔與盲孔）：核心板（玻纖＋樹脂＋兩面銅箔）、鑽孔、孔壁鍍銅（由薄到厚）、樹脂由孔口往下灌、刮平；兩面增層：壓膜→雷射打盲孔（孔底停在下一層銅墊）→銅填滿→下一層，疊孔對準 ═════
 const BX = 60, BW = 22, BD = 3.2, BZ0 = -BD, BZ1 = 0, BC0 = 4.0, BC1 = 6.0, BF = 0.16, BL = 0.62, BN = 3, HOX = BX, HR = 0.55, WT0 = 0.04, WT1 = 0.13;
-LAY("bBase", [26, 1, BX, 0.4]); BOX("bFoot", "bBase", BX - 12, BX + 12, 0, 0.3, BZ0 - 0.6, BZ1 + 0.6, "steel2");
+LAY("bBase", [26, 1, BX, 0.4], true); BOX("bFoot", "bBase", BX - 12, BX + 12, 0, 0.3, BZ0 - 0.6, BZ1 + 0.6, "steel2");
 P({ id: "bPost", layer: "bBase", shape: "box", size: [0.7, R2(BC0 - BF - BN * BL - 0.3), 0.7], pos: [BX, R2((0.3 + BC0 - BF - BN * BL) / 2), R2(BZ0 / 2)], at: [[-10.4, 0, 0], [10.4, 0, 0]], mat: "dark" });
 const ZB = (id, layer, x0, x1, y0, y1, mat) => BOX(id, layer, x0, x1, y0, y1, BZ0, BZ1, mat);
 const fiberStripes = (pre, layer, x0, x1) => { for (let k = 0; k < 5; k++) { const y = R2(BC0 + 0.25 + k * 0.38); BOX(`${pre}${k}`, layer, x0, x1, y, y + 0.12, BZ1, BZ1 + 0.02, "fiber"); } };
@@ -151,7 +151,7 @@ LAY("bBlade", [3, 1, HOX - 3, BC1 + 0.6]); BOX("bBladeB", "bBlade", HOX - 3.4, H
 LAY("bCap", [2, 0.2, HOX, BC1 + BF]); ZB("bCapT", "bCap", HOX - HR - 0.3, HOX + HR + 0.3, BC1 + BF, BC1 + BF + 0.06, "copper"); ZB("bCapB", "bCap", HOX - HR - 0.3, HOX + HR + 0.3, BC0 - BF - 0.06, BC0 - BF, "copper");
 // 鑽針（主軸＋夾頭＋斜向螺旋槽鑽頭；鑽頭直徑比孔小）
 const DRY = 7.0, DBR = 0.4;
-LAY("bDrill", [2, 6, HOX, 9]);
+LAY("bDrill", [2, 6, HOX, 9], true);
 VC("bdBit", "bDrill", DBR, DRY, DRY + 2.8, "steel2", { x: HOX, z: -0.4 });
 P({ id: "bdFlute", layer: "bDrill", shape: "box", size: [0.84, 0.08, 0.1], pos: [HOX, DRY + 0.3, -0.4], at: Array.from({ length: 7 }, (_, i) => [0, i * 0.38, 0]), rot: [0, 0, 25], mat: "dark" });
 VC("bdTip", "bDrill", 0.16, DRY - 0.22, DRY, "steel", { x: HOX, z: -0.4 }); VC("bdChuck", "bDrill", 0.8, DRY + 2.8, DRY + 3.6, "dark", { x: HOX, z: -0.4 }); VC("bdSpindle", "bDrill", 1.2, DRY + 3.6, DRY + 5.0, "panel2", { x: HOX, z: -0.4 });
@@ -176,9 +176,9 @@ for (let k = 0; k < BN; k++) for (const side of ["t", "b"]) {
 ZB("bPadCoreT", "bCore", VX - 0.75, VX + 0.75, BC1, BC1 + BF + 0.01, "cuBright"); ZB("bPadCoreB", "bCore", VX - 0.75, VX + 0.75, BC0 - BF - 0.01, BC0, "cuBright");
 // 雷射頭：上面一支、下面一支（兩面各自打孔）；光錐尖端落在第 1 層膜面，每打完一層頭往外退一層（genscript 用 shift 移）
 const LT = BLY.filter((q) => q.side === "t")[0].y, LB = BLY.filter((q) => q.side === "b")[0].y;
-LAY("bLaserT", [3, 5, VX, LT + 4]); VC("bltBody", "bLaserT", 0.9, LT + 2.4, LT + 5.2, "panel2", { x: VX }); VC("bltLens", "bLaserT", 0.55, LT + 2.1, LT + 2.4, "dark", { x: VX }); VT("bltBand", "bLaserT", 0.95, 0.85, LT + 4.2, LT + 4.45, "lampR", { x: VX });
+LAY("bLaserT", [3, 5, VX, LT + 4], true); VC("bltBody", "bLaserT", 0.9, LT + 2.4, LT + 5.2, "panel2", { x: VX }); VC("bltLens", "bLaserT", 0.55, LT + 2.1, LT + 2.4, "dark", { x: VX }); VT("bltBand", "bLaserT", 0.95, 0.85, LT + 4.2, LT + 4.45, "lampR", { x: VX });
 LAY("bBeamT", [1, 2, VX, LT + 1]); P({ id: "bltBeam", layer: "bBeamT", shape: "cone", size: [0.06, 0.4, 2.1], rot: [90, 0, 0], pos: [VX, R2(LT + 1.05), 0], mat: "laser" });
-LAY("bLaserB", [3, 5, VX, LB - 4]); VC("blbBody", "bLaserB", 0.9, LB - 5.2, LB - 2.4, "panel2", { x: VX }); VC("blbLens", "bLaserB", 0.55, LB - 2.4, LB - 2.1, "dark", { x: VX }); VT("blbBand", "bLaserB", 0.95, 0.85, LB - 4.45, LB - 4.2, "lampR", { x: VX });
+LAY("bLaserB", [3, 5, VX, LB - 4], true); VC("blbBody", "bLaserB", 0.9, LB - 5.2, LB - 2.4, "panel2", { x: VX }); VC("blbLens", "bLaserB", 0.55, LB - 2.4, LB - 2.1, "dark", { x: VX }); VT("blbBand", "bLaserB", 0.95, 0.85, LB - 4.45, LB - 4.2, "lampR", { x: VX });
 LAY("bBeamB", [1, 2, VX, LB - 1]); P({ id: "blbBeam", layer: "bBeamB", shape: "cone", size: [0.4, 0.06, 2.1], rot: [90, 0, 0], pos: [VX, R2(LB - 1.05), 0], mat: "laser" });
 
 // ═════ 站 D：大小對照（x 120）：一般晶片的小載板 vs 人工智慧晶片的大載板＋10 cm 尺標 ═════

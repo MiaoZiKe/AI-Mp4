@@ -94,10 +94,11 @@ def sec(kind, at, until, title, tag, t=None, y=1066, h=330, **kw):
     d.update(kw); return d
 
 LAYERS = [l["id"] for l in MODEL["layers"] if not l.get("bg")]
+ALL_LAYERS = [l["id"] for l in MODEL["layers"]]   # bg 層（機具、底座）也能用 vis 控制出現
 VIS = []
 def vis(lay, wins, dur=3):
     """依「可見區間」清單產生隱藏：區間之外全藏。a＝T0 表示一開始就看得到；b＝FAR 表示一直看到片尾"""
-    assert lay in LAYERS, lay
+    assert lay in ALL_LAYERS, lay
     prev = T0
     for a, b in wins:
         if a != T0: VIS.append(hid(lay, prev, a, dur))
@@ -117,13 +118,13 @@ def card(sid, kind, title, tag, t=None, **kw):
 # ── 站 A（s1、s2）：s2 爆炸分解：晶片往上、載板往上、錫球與主機板留著 → 組回 ──
 VIS += [mv("chip", "s2:chip-8", "s2:ball+12", 16, dy=2.8), mv("chipGlow", "s2:chip-8", "s2:ball+12", 16, dy=2.8), mv("sub", "s2:mb-8", "s2:ball+8", 16, dy=1.4), mv("bumps", "s2:mb-8", "s2:ball+8", 16, dy=1.4)]
 # ── 站 B（s3～s5）：鑽孔 → 孔壁鍍銅 → 樹脂塞孔 → 刮平；兩面同時貼第 1 層膜；每層：雷射打洞 → 銅長進孔與線路 → 下一層膜 ──
-VIS += [mv("bDrill", "s3:drill-6", "s3:drill+12", 12, dy=-3.4)]                 # 下鑽穿透 → 退刀
-vis("bDrill", [(T0, "s3:drill+26")], 1)
+VIS += [mv("bDrill", "s3:drill-6", "s3:drill+12", 12, dy=-3.4), mv("bDrill", "s3:drill+14", FAR, 12, dy=9.0)]   # 下鑽穿透 → 退刀 → 往上滑出畫面
+vis("bDrill", [(T0, "s3:drill+28")], 1)
 vis("bPlug0", [(T0, "s3:drill+6")], 1); vis("bHole", [("s3:drill+6", FAR)], 1)
 vis("bWall0", [("s3:plate-4", FAR)], 1); vis("bWall1", [("s3:plate+8", FAR)], 1)      # 孔壁銅：先薄後厚
 for k in range(INFO["RS"]): vis(f"bResin{k}", [(f"s3:fill{k * 4 - 6:+d}", FAR)], 1)    # 樹脂由孔口往下灌
-vis("bResinBump", [("s3:fill+8", "s3:base-4")], 1)
-vis("bBlade", [("s3:base-16", "s3:base+8")], 1); VIS += [mv("bBlade", "s3:base-16", FAR, 18, dx=6.4)]   # 刮刀由左往右掃過
+vis("bResinBump", [("s3:fill+8", "s3:base-9")], 1)
+vis("bBlade", [("s3:base-16", "s3:base+14")], 1); VIS += [mv("bBlade", "s3:base-16", FAR, 18, dx=6.4), mv("bBlade", "s3:base+2", FAR, 10, dx=14.0)]   # 刮刀由左往右掃過 → 往右滑出
 vis("bCap", [("s3:base-4", FAR)], 1)
 def press(lay, at, dy):
     """膜壓合：在看不見時先停在外側，at 那一幀出現、往板子壓過去（不淡入、不靠重力）"""
@@ -136,7 +137,8 @@ for k in range(3):
         press(f"bF{k}{side}", FILM[k], 1.0 if side == "t" else -1.0)
         vis(f"bH{k}{side}", [(HOLE[k], FILL[k])], 1)
         vis(f"bV{k}{side}", [(FILL[k], FAR)], 1)
-vis("bLaserT", [("s5:voice-3", FAR)], 1); vis("bLaserB", [("s5:voice-3", FAR)], 1)
+vis("bLaserT", [("s5:start", FAR)], 1); vis("bLaserB", [("s5:start", FAR)], 1)        # 換幕那一幀在畫面外，滑進來
+VIS += [mv("bLaserT", T0, "s5:start", 10, dy=7.0), mv("bLaserB", T0, "s5:start", 10, dy=-7.0)]
 BEAM = {0: ("s5:hole-8", "s5:hole-2"), 1: ("s5:cu+6", "s5:cu+12"), 2: ("s5:link+0", "s5:link+6")}   # 光束只在打孔那幾幀
 vis("bBeamT", list(BEAM.values()), 1)
 vis("bBeamB", list(BEAM.values()), 1)
@@ -152,6 +154,7 @@ for k in range(EN):
     if k == EBAD: vis(f"eOk{k}", [("s7:err-4", FAR)], 1)
     elif i < BAD_RING: vis(f"eOk{k}", [(f"s7:twenty{i * 5 - 12:+d}", FAR)], 1)
     else: vis(f"eOk{k}", [], 1)
+VIS += [mv("fChip", "s8:heat", FAR, 24, dy=0.18)]                                  # 晶片跟著板子中段一起抬
 vis("eFail", [("s7:fail-4", FAR)], 3); vis("eX", [("s7:fail", FAR)], 2)
 # ── 站 F（s8）：受熱發橘，各段往上翹（離中心越遠翹越高＝拋物線） ──
 FNS = INFO["FNS"]                                                                    # 同一塊板：受熱後 24 幀內由綠漸變到橘、彎曲從 0 長到最彎
@@ -195,32 +198,32 @@ P["s1"] = {"shot": [shot("start-30", 0.0, 0.2, 64, 34, 1, yaw=0.0), shot("start"
  "run": [run("chipGlow", "start-30", "s2:start+6", 8)],
  "overlay": [sec("abs-hook", "start", nxt("s1"), "系列 3・第 8 集", "示意，非實際比例", {"q": "q", "prev": "prev", "film": "film"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-8", "dur": 1}],
- "shot": [shot(CC, 0.0, 0.0, 56, 18, 1), shot("chip", 0.0, 0.4, 56, 16, 30)],
+ "shot": [shot(CC, 0.0, 0.0, 56, 18, 1), shot("chip", 0.0, -1.6, 46, 16, 30)],
  "labels": [lab("chip", "晶片", "Chip", "blue", C, "chip+30"), lab("sub", "載板（頂面接細密凸塊）", "Substrate: fine bumps on top", "amber", "chip+32", "fine+24"), lab("balls", "大顆錫球，焊到主機板", "Big solder balls to the board", "blue", "fine+26", "ball+28")],
  "overlay": [card("s2", "abs-role", "晶片底下的轉接板", "示意", {"chip": "chip", "mb": "mb", "fine": "fine", "ball": "ball"})]}
 BX = INFO["BX"]
 P["s3"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, BX, 3.4, 54, 16, 1)],
+ "shot": [shot(CC, BX, 4.6, 46, 16, 1), shot("plate-6", BX, 3.9, 24, 12, 16)],
  "run": [run("drillSpin", "drill-14", "drill+20", 8), run("drillChips", "drill-4", "drill+20", 4)],
- "labels": [lab("core", "核心板（玻纖＋樹脂）", "Core: glass fiber + resin", "amber", C, "plate-2", xy=[380, 300]), lab("resin", "孔壁鍍銅、樹脂塞平", "Plated hole, resin-filled", "blue", "plate", "base+30", xy=[730, 360])],
+ "labels": [lab("core", "核心板（玻纖＋樹脂）", "Core: glass fiber + resin", "amber", C, "plate-2", xy=[380, 300]), lab("resin", "孔壁鍍銅、樹脂塞平", "Plated hole, resin-filled", "blue", "drill+28", "base+30", xy=[400, 330])],
  "overlay": [card("s3", "abs-core", "先打好地基", "示意（不標孔徑）", {"core": "core", "drill": "drill", "plate": "plate", "fill": "fill", "base": "base"})]}
-P["s4"] = {"shot": [shot(CC, BX, 3.0, 54, 14, 1)],
+P["s4"] = {"shot": [shot(CC, BX, 3.9, 30, 12, 1)],
  "labels": [lab("filmT", "兩面同時貼膜", "Film on both sides", "amber", "out-4", "warp+20")],
  "overlay": [card("s4", "abs-sym", "兩邊一樣厚才不翹", "示意", {"two": "two", "out": "out", "even": "even", "warp": "warp"})]}
-P["s5"] = {"shot": [shot(CC, BX + 1.0, 3.4, 56, 14, 1)],
+P["s5"] = {"shot": [shot(CC, BX + 2.0, 4.0, 40, 12, 1)],
  "run": [run("laserPulseT", "hole-8", "link+8", 4), run("laserPulseB", "hole-8", "link+8", 4)],
- "labels": [lab("via", "雷射打洞→銅填滿（停在下一層銅）", "Laser via, filled with copper", "amber", "hole-4", "link+30")],
+ "labels": [lab("via", "雷射打洞，銅填滿", "Laser via, filled with copper", "amber", "hole-4", "link+30", xy=[400, 330])],
  "overlay": [card("s5", "abs-layer", "一層三步", "示意（細節見前一集）", {"film": "film", "hole": "hole", "cu": "cu", "link": "link"})]}
 P["s6"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["DX"] - 0.5, -5.6, 74, 42, 1)],
+ "shot": [shot(CC, INFO["DX"] - 0.5, -7.6, 64, 42, 1)],
  "labels": [lab("dSmall", "一般晶片的載板", "A typical substrate", "blue", C, "ai+44"), lab("dBig", "人工智慧晶片的載板", "AI chip substrate", "amber", "ai+46", "ten-2"), lab("dRuler", "接近十公分", "Nearly 10 cm", "amber", "ten", "ten+46")],
  "overlay": [card("s6", "abs-size", "接近十公分見方", "Ibiden 路線圖、Counterpoint；示意", {"ai": "ai", "pins": "pins", "ten": "ten"})]}
 P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["EX"], 2.2, 56, 12, 1)],
+ "shot": [shot(CC, INFO["EX"], 1.2, 54, 12, 1)],
  "run": [run("failPulse", "fail", FAR, 8)],
  "labels": [lab("eStack", "兩面加起來二十多層", "20+ layers, both sides", "blue", "twenty", "err-6"), lab("eBad", "一層出錯", "One layer fails", "amber", "err-4", "fail+36")],
  "overlay": [card("s7", "abs-yield", "像闖關", "示意，非實際良率", {"twenty": "twenty", "more": "more", "err": "err", "game": "game", "fail": "fail"})]}
-P["s8"] = {"shot": [shot(CC, INFO["FX"], 1.2, 50, 16, 1)],
+P["s8"] = {"shot": [shot(CC, INFO["FX"], 0.2, 40, 26, 1), shot("heat-10", INFO["FX"], -0.6, 54, 26, 22)],
  "run": [run("heatGlow", "heat-4", FAR, 8)],
  "labels": [lab("fWarp", "受熱翹起（示意）", "Warps when heated", "amber", "heat", "cookie+20")],
  "overlay": [card("s8", "abs-warp", "像烤過頭的餅乾", "示意（不標翹曲量）", {"big": "big", "layers": "layers", "heat": "heat", "cookie": "cookie"})]}
