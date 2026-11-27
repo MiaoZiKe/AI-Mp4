@@ -158,7 +158,7 @@ for k, b in enumerate(["s2:each+22", "s2:each+54", "s2:each+86"]):
     if k < 2: VIS += [mv(l, off(b, 25), FAR, 6, dx=0.19) for l in XY]
 VIS.append(mv("aZ", "s3:down-8", "s4:start+20", 10, dy=0.75))
 VIS.append(mv("aZ", "s9:send-14", "s10:start+20", 10, dy=0.75))
-VIS += [hid(l, "s9:send-14", "s10:start", 8, 0.25) for l in ("aBase", "aRail", "aMan", "aTester")]
+VIS += [hid(l, "s9:send-14", "s10:voice-4", 8, 0.25) for l in ("aBase", "aRail", "aMan", "aTester")]  # 換幕硬切那一幀才恢復（實際錄音時間軸）
 
 # ── 站 W：測試位置框沿一列步進、壞晶片打墨點（s10）──
 WS = INFO["WSTEPS"]; WP = INFO["WP"]
@@ -175,9 +175,9 @@ for l, cue in [("kcDie", "s7:cant"), ("kvDie", "s7:vert"), ("kmDie", "s7:mems")]
     VIS.append(mv(l, off(cue, 4), off(cue, 22), 8, dy=0.12, spring={"tau": 4, "period": 10}))
 
 # 近景時畫面外的層調淡（看不到，只讓版面檢查的主素材框只算畫面裡的東西）
-VIS += [hid(l, "s3:card+20", "s4:start", 1, 0.25) for l in ("aBase", "aRail", "aMan", "aTester", "aCable")]
+VIS += [hid(l, "s3:card+20", "s4:voice-4", 1, 0.25) for l in ("aBase", "aRail", "aMan", "aTester", "aCable")]
 VIS += [hid(l, "s4:start-12", "s5:voice", 10, 0.25) for l in ("eDock", "eScrew", "eStiff")] + [hid("ePCB", "s4:start-12", "s5:voice", 10, 0.28)]
-VIS += [hid("nST", "s6:start-2", "s7:start", 1, 0.25)]
+VIS += [hid("nST", "s6:start-2", "s7:voice-4", 1, 0.25)]
 # ═════ 各幕 ═════
 AO = (2.0, 3.2, 80, 14)          # 站 A 全景（看向 x, y, 距離, 仰角）
 AT = (1.2, 7.9, 30, 3)           # 站 A 測試時推近腔體（測試頭、探針卡、吸盤頂著）
@@ -219,8 +219,8 @@ P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
 P["s6"] = {"shot": [S_(CC, NC, 1)],
  "run": [run("nDebris", "scrub+8", "scrub+44", 4), run("nCurrent", "on", "s7:start", 6), run("nGlowOk", "on", "s7:start", 6)],
  "labels": [lab("nOxA", "氧化膜（不導電）", "Oxide film: insulating", "blue", "ox", "ox+46"),
-            lab("nScrA", "刮開處露出金屬", "Scrubbed: bare metal", "amber", "scrub+24", "scrub+69"),
-            lab("nOnA", "接通", "Contact made", "blue", "on-12", "on+33")],
+            lab("nScrA", "刮開處露出金屬", "Scrubbed: bare metal", "amber", "scrub+18", "scrub+63"),
+            lab("nOnA", "接通", "Contact made", "blue", "on-15", "on+30")],
  "overlay": [card("s6", "probe1-scrub", "像用指甲刮掉生鏽處", "示意（不標刮痕尺寸）", {"ox": "ox", "insul": "insul", "scrub": "scrub", "nail": "nail", "on": "on"})]}
 P["s7"] = {"zoom": [{"to": "types", "at": CC, "dur": 1}],
  "shot": [S_(CC, KV, 1)],
@@ -232,9 +232,9 @@ P["s7"] = {"zoom": [{"to": "types", "at": CC, "dur": 1}],
 P["s8"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
  "shot": [S_(CC, EO, 1), S_("card8+40", EC, 1)],
  "run": [run("etHiPulse", off(C3, -2), "s9:start", 4)],
- "labels": [lab("ePCBA", "上半部：主板、加固板、彈簧針板", "Top: PCB, stiffener, interposer", "amber", C1, off(C1, 45), xy=[540, 985]),
-            lab("eNdlA", "探針：好幾萬根（報導）", "Probes: tens of thousands", "blue", "many", "many+45", xy=[540, 985]),
-            lab("eTipA", "針尖高低不一（示意放大）", "Uneven tip heights", "amber", "many+47", "many+92", xy=[540, 985])],
+ "labels": [lab("ePCBA", "上半部：主板、加固板、彈簧針板", "Top: PCB, stiffener, interposer", "amber", off(C1, -3), off(C1, 42), xy=[540, 985]),
+            lab("eNdlA", "探針：好幾萬根（報導）", "Probes: tens of thousands", "blue", "many+3", "many+48", xy=[540, 985]),
+            lab("eTipA", "針尖高低不一（示意放大）", "Uneven tip heights", "amber", "many+50", "many+95", xy=[540, 985])],
  "overlay": [card("s8", "probe1-count", "針越多，越難壓平", "數位時代報導；示意", {"card8": "card8", "many": "many", "more": "more", "flat": "flat"})]}
 P["s9"] = {"zoom": [{"to": "prober", "at": CC, "dur": 1}],
  "shot": [S_(CC, AO, 1), S_("send-14", AT, 24)],
