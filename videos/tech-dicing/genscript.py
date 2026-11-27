@@ -156,10 +156,11 @@ VIS += [mv("eLift", "s7:exp", FAR, 30, dy=1.5), mv("eTape", "s7:exp", FAR, 30, d
 vis("eSkirt", [("s7:exp+18", FAR)], 2)
 for d in INFO["EDIE"]: VIS.append(mv(d["id"], "s7:exp", FAR, 30, dx=round(d["x"] * EK, 3), dz=round(d["z"] * EK, 3), dy=1.5))
 # ── 站 T：厚晶片疊三層爆框、薄晶片疊八層剛好 ──
-VIS += [mv("tALidL", "s8:start", FAR, 10, dy=2.2), mv("tBLidL", "s8:start", "s8:hair+2", 10, dy=2.2)]   # 兩個框先掀蓋；薄晶片疊完蓋回去，厚的第三層凸出來、蓋不回去
-for k in range(3): drop(f"tK{k}", f"s8:stack-{24 - k * 10}", 4.5)
+# 兩個框的上蓋先往後滑開（離開晶片落下的路徑）；薄晶片疊完蓋回去；厚的第三層凸出框外，上蓋滑回來被頂住、架在凸出的晶片上（蓋不下去）
+VIS += [mv("tALidL", "s8:start", "s8:stack+16", 10, dz=-6.6), mv("tALidL", "s8:stack+6", FAR, 6, dy=1.86), mv("tBLidL", "s8:start", "s8:hair+4", 10, dz=-6.6)]
+for k in range(3): drop(f"tK{k}", f"s8:stack-{24 - k * 10}", 1.0, 10)
 vis("tBad", [("s8:stack+12", FAR)], 1)
-for k in range(8): drop(f"tN{k}", f"s8:mm+{k * 6}", 4.0, 12)
+for k in range(8): drop(f"tN{k}", f"s8:mm+{k * 6}", 3.0, 12)
 vis("tOk", [("s8:hair+4", FAR)], 1)
 # ── 站 G：晶圓翻面落到卡盤 → 轉盤轉一格 → 粗磨（三層依序磨掉）→ 細磨 ──
 vis("gFlip", [(T0, "s9:flip+22")], 1)
@@ -170,7 +171,7 @@ vis("g0S3", [("s9:flip+22", "s9:wheel+14")], 2); vis("g0S2", [("s9:flip+22", "s9
 # ── 站 V：背面矽一層層磨掉 → 銅柱露頭；V2：四層堆疊 ──
 vis("vS2", [(T0, "s10:start+2")], 2); vis("vS1", [(T0, "s10:start+20")], 2); vis("vS0", [(T0, "s10:cu-12")], 2)
 vis("vTip", [("s10:cu-12", FAR)], 2)
-VIS += [mv("vWheel", t, FAR, 8, dy=-0.8) for t in ("s10:start+2", "s10:start+20", "s10:cu-12")] + [mv("vWheel", "s10:cu-6", FAR, 14, dy=4.6)]   # 砂輪跟著矽面往下進給，最後抬起
+VIS += [mv("vWheel", t, FAR, 8, dy=-0.8) for t in ("s10:start+2", "s10:start+20", "s10:cu-12")] + [mv("vWheel", "s10:cu-6", FAR, 14, dy=3.4)]   # 砂輪跟著矽面往下進給，最後抬起
 # ── 站 P：三只紙箱念到才落下 ──
 drop("p0", "s11:jp-8", 3.0, 12); drop("p1", "s11:btl-8", 3.0, 12); drop("p2", "s11:psi-8", 3.0, 12)
 # ── 站 K：金線虛線念到「打線」才出現 ──
@@ -215,7 +216,7 @@ P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "overlay": [card("s3", "dc-hoop", "繃好的刺繡布", "示意", {"tape": "tape", "frame": "frame", "hoop": "hoop"})]}
 P["s4"] = {"shot": [shot(CC, 0.4, INFO["BCY"] - 0.6, 58, 6, 1, yaw=-0.75), shot("hair", 0.4, INFO["BCY"] - 0.8, 58, 6, 40), shot("rpm+12", 1.0, INFO["BCY"] - 1.4, 56, 8, 24, yaw=-0.35)],
  "run": [run("bladeSpin", "rpm+8", FAR, 30), run("water", "tile-6", FAR, 6), run("water2", "tile-6", FAR, 6), run("sawDust", "tile", FAR, 6)],
- "labels": [lab("cover", "刀蓋與噴嘴", "Blade cover & nozzles", "blue", C, "voice+43", xy=[740, 340]),
+ "labels": [lab("cover", "刀蓋與噴嘴", "Blade cover & nozzles", "blue", C, "blade-12", xy=[740, 340]),
             lab("blade", "鑽石刀片", "Diamond blade", "amber", "blade-8", "blade+38"),
             lab("flange", "法蘭（夾住刀片）", "Flanges", "blue", "blade+40", "tile-4"),
             lab("nozzle", "純水沖刀口", "Water on the cut", "blue", "tile+2", "tile+38")],
@@ -253,13 +254,13 @@ P["s9"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
             lab("gWheel2", "細磨砂輪", "Fine wheel", "blue", "coarse+8", "fine+30")],
  "overlay": [card("s9", "dc-grind", "先粗後細", "示意（DISCO 研磨機原理）", {"tape": "tape", "flip": "flip", "wheel": "wheel", "coarse": "coarse", "fine": "fine"}, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, 440.0, 2.5, 66, 26, 1), shot("lift-2", 470.0, 1.4, 50, 14, 1)],
+ "shot": [shot(CC, 440.0, 2.5, 66, 26, 1), shot("lift-2", 470.0, 0.6, 50, 14, 1)],
  "run": [run("vWheelRub", "start-4", "cu-6", 4), run("vDust", "start", "cu-6", 4), run("vTipGlow", "cu-10", FAR, 8)] + [run(f"v2Cur{i}", "lift", FAR, 4) for i in range(4)],
  "labels": [lab("vPil", "銅柱（矽穿孔）", "Copper via (TSV)", "amber", "cu", "tsv+30"),
             lab("v2Pil", "電流直通每一層", "Straight through every layer", "blue", "lift+4", "lift+50")],
  "overlay": [card("s10", "dc-tsv", "像電梯井", "示意", {"cu": "cu", "tsv": "tsv", "lift": "lift", "thru": "thru"})]}
 P["s11"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["PX"], -3.4, 80, 10, 1)],
+ "shot": [shot(CC, INFO["PX"], -1.4, 74, 10, 1)],
  "overlay": [card("s11", "dc-co", "切割與薄化：相關公司", "公開資訊；截至 2026/11/27", {"jp": "jp", "tw": "tw", "btl": "btl", "psi": "psi"}, h=392, y=1000)]}
 P["s12"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "shot": [shot(CC, INFO["KX"], -3.4, 50, 36, 1)],

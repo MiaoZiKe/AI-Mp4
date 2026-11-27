@@ -321,7 +321,7 @@ const V2TOP = R2(V2Y0 + V2B + V2N * (V2T + V2B));
 const SIGNS = [["dcdisco", "DISCO|迪思科"], ["dcbtl", "鈦昇|8027"], ["dcphoe", "昇陽半導體|8028"]];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-dicing", ...SIGNS.map(([id, t]) => `text:${id}=${t}`)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
 SIGNS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
-const PX = 530, PBW = 6.4, PBH = 5.6;
+const PX = 530, PBW = 6.4, PBH = 8.4;
 LAY("pPallet", [24, 1.2, PX, 0.5]); BOX("ppDeck", "pPallet", PX - 12, PX + 12, 0.6, 1.0, -4, 4, "cartonD");
 P({ id: "ppFoot", layer: "pPallet", shape: "box", size: [1.6, 0.6, 7.6], pos: [PX, 0.3, 0], at: [[-10.6, 0, 0], [0, 0, 0], [10.6, 0, 0]], mat: "dark" });
 P({ id: "ppSlat", layer: "pPallet", shape: "box", size: [23.6, 0.06, 0.5], pos: [PX, 1.03, 0], at: [[0, 0, -3], [0, 0, -1], [0, 0, 1], [0, 0, 3]], mat: "seam" });
@@ -329,8 +329,8 @@ const PCOL = ["badGlow", "okGlow", "warnY"];
 SIGNS.forEach(([id], i) => { const cx = PX + (i - 1) * 7.6, ly = `p${i}`; LAY(ly, [PBW, PBH, cx, 1 + PBH / 2]);
   BOX(`${ly}Box`, ly, cx - PBW / 2, cx + PBW / 2, 1.0, 1.0 + PBH, -3.2, 3.2, "carton"); BOX(`${ly}Lid`, ly, cx - PBW / 2 - 0.05, cx + PBW / 2 + 0.05, 1.0 + PBH - 0.5, 1.0 + PBH, -3.25, 3.25, "cartonD");
   BOX(`${ly}TapeS`, ly, cx - 0.5, cx + 0.5, 1.0 + PBH, 1.0 + PBH + 0.02, -3.25, 3.25, "seam"); BOX(`${ly}Band`, ly, cx - PBW / 2 - 0.02, cx + PBW / 2 + 0.02, 1.2, 1.7, 3.2, 3.24, PCOL[i]);
-  P({ id: `${ly}Sign`, layer: ly, shape: "plane", size: [5.2, 2.6], pos: [cx, 4.1, 3.23], mat: `t_${id}`, uv01: true });
-  BOX(`${ly}Fragile`, ly, cx + 1.6, cx + 2.7, 1.9, 2.6, 3.2, 3.24, "warnY"); });
+  P({ id: `${ly}Sign`, layer: ly, shape: "plane", size: [5.2, 2.6], pos: [cx, R2(1.0 + PBH * 0.58), 3.23], mat: `t_${id}`, uv01: true });
+  BOX(`${ly}Fragile`, ly, cx + 1.6, cx + 2.7, 1.9, 2.6, 3.2, 3.24, "warnY"); BOX(`${ly}Arrow`, ly, cx - 2.7, cx - 1.9, 2.0, 3.0, 3.2, 3.24, "dark"); });
 
 // ═════ 站 K：下一集預告（x 590）：一顆切好的晶片放在基板，焊墊亮、金線虛線預告 ═════
 const KX = 590;
@@ -340,7 +340,7 @@ LAY("kDie", [9, 1, KX, 2]); BOX("kdSi", "kDie", KX - 4.6, KX + 4.6, 1.4, 2.4, -3
 P({ id: "kdPad", layer: "kDie", shape: "box", size: [0.5, 0.06, 0.5], pos: [KX, 2.5, 0], at: [...[-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].map((x) => [x * 0.95, 0, -3.1]), ...[-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].map((x) => [x * 0.95, 0, 3.1])], mat: "pad" });
 LAY("kWire", [10, 2, KX, 3]);
 const KWP = [];
-for (const side of [-1, 1]) [-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].forEach((x, i) => { const a = [x * 0.95, 2.53, side * 3.1], b = [x, 1.5, side * 5.0], c = [x * 0.97, 4.1, side * 3.8];
+for (const side of [1]) [-4.2, -2.8, -1.4, 0, 1.4, 2.8, 4.2].forEach((x, i) => { const a = [x * 0.95, 2.53, side * 3.1], b = [x, 1.5, side * 5.0], c = [x * 0.97, 4.1, side * 3.8];
   const pts = Array.from({ length: 22 }, (_, k) => { const t = k / 21, u = 1 - t; return [R2(u * u * a[0] + 2 * u * t * c[0] + t * t * b[0]), R2(u * u * a[1] + 2 * u * t * c[1] + t * t * b[1]), R2(u * u * a[2] + 2 * u * t * c[2] + t * t * b[2])]; });
   P({ id: `kW${side > 0 ? "F" : "B"}${i}`, layer: "kWire", shape: "sphere", size: [0.075], pos: [KX, 0, 0], at: pts, mat: "wire" }); if (side > 0) KWP.push(pts[7]); });
 
@@ -388,7 +388,7 @@ Object.assign(anchors, {
   tThick: A("tK2", [TX - 6, TB + TUB + 2 * (THK + TUB) + THK, 2.4], -150, -100), tThin: A("tN7", [TX + 6, TB + TUB + 7 * (THN + TUB) + THN, 2.4], 150, -100), tBox: A("tBBox", [TX + 9.9, TB + TH, 3.1], 150, -100),
   gTape: A("gFlip", [GX + GWR, GY + 7.24, GOFF + 0.4], 150, -90), gWheel1: A("gZ1", [Z1X + GWR, GWY + 1.2, Z1Z], 150, -90), gWheel2: A("gZ2", [Z2X + GWR, GWY + 1.2, Z2Z], 150, -90), gProbe: A("gProbe", [GX + GOFF - 1.2, GWY + 2.2, 2.4], -150, -90),
   vPil: A("vBlock", [VX + 4.5, 8.0, 3.1], 150, 100), vTip: A("vTip", [VX + 1.5, VTOP + 0.1, 1.5], 150, -90), v2Pil: A("v2L3", [V2X + 4.5, V2TOP - 0.6, 2.9], 150, -90),
-  p0: A("p0", [PX - 7.6, 4.1, 3.3], -150, -90), p1: A("p1", [PX, 4.1, 3.3], 150, -90), p2: A("p2", [PX + 7.6, 4.1, 3.3], 150, -90),
+  p0: A("p0", [PX - 7.6, 5.9, 3.3], -150, -90), p1: A("p1", [PX, 5.9, 3.3], 150, -90), p2: A("p2", [PX + 7.6, 5.9, 3.3], 150, -90),
   kPad: A("kDie", [KX + 4.0, 2.5, 3.1], 150, -90), kWire: A("kWire", [R2(KX + KWP[2][0]), KWP[2][1], KWP[2][2]], -150, -90),
 });
 
