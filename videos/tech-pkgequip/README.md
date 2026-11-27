@@ -7,7 +7,7 @@
 - 第 39 條：每幕念完留白 0.85 秒，9 個人聲間隔 1.00 秒（量法：timeline.json 下一幕 voiceStartFrame − 本幕 voiceEndFrame），>1 秒無聲 0 個。第 40 條：s8 公司卡（3 家）無聲估計 7.2 秒、最後一家（志聖）念到換卡 2.2 秒；genscript 會依時間軸自動補延長。
 - 檢查（晚於最後一次改 script.json）：precheck 0／0、validate 0 error（112 warning）、layout-check 0 error、card-overlap 0／0、kinematics 0、flow-check 0。
 ## 風險
-1. KR 國旗：Brand.tsx 沒有 KR，已向頻道負責人請示；未加前 2D 卡顯示文字「KR」。
+1. KR 國旗：已經頻道負責人同意加進 Brand.tsx FLAGS（只加這一筆），卦位已抽格確認。
 2. 三家 LOGO 未抓到原檔，用文字名牌。
 3. 「誤差比頭髮細得多」依廠商規格（±1 µm）與頭髮直徑通識，不上數字。
 4. HBM：「一層一層壓好」涵蓋 TC-NCF 與 MR-MUF。

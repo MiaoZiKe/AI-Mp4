@@ -84,6 +84,17 @@ export const FLAGS: Record<string, FlagDef> = {
     for (let i = 0; i < 24; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 12, r = i % 2 ? 16 : 30; pts.push(`${(60 + r * Math.cos(a)).toFixed(2)},${(40 + r * Math.sin(a)).toFixed(2)}`); }
     return <><rect width={240} height={160} fill="#FE0000" /><rect width={120} height={80} fill="#000095" /><polygon points={pts.join(" ")} fill="#FFFFFF" /><circle cx={60} cy={40} r={17} fill="#000095" /><circle cx={60} cy={40} r={15} fill="#FFFFFF" /></>;
   } },
+  // 大韓民國：2:3 白地；太極直徑＝旗高 1/2（紅 #CD2E3A 在上、藍 #0047A0 在下，分界沿左上—右下對角線，紅頭在左）；四卦在對角線上、離太極 1/4 直徑，
+  //   每畫長＝直徑 1/2、粗＝直徑 1/12、間隔＝直徑 1/24、斷畫中缺＝直徑 1/24；乾☰左上、坤☷右下、坎☵右上、離☲左下（國旗法施行令）。2026/11/27 tech-pkgequip
+  KR: { name: "韓國", w: 3, h: 2, draw: () => {
+    const D = 1, R = D / 2, th = (Math.atan2(2, 3) * 180) / Math.PI, bw = D / 12, gp = D / 24, L = D / 2, dist = R + D / 4 + D / 6;
+    const tri = (key: string, ux: number, uy: number, bars: boolean[]) => { const n = Math.hypot(ux, uy), cx = 1.5 + (dist * ux) / n, cy = 1 + (dist * uy) / n, ang = (Math.atan2(uy, ux) * 180) / Math.PI + 90;
+      return <g key={key} transform={`translate(${cx} ${cy}) rotate(${ang})`}>{bars.map((solid, i) => { const y = (i - 1) * (bw + gp) - bw / 2;
+        return solid ? <rect key={i} x={-L / 2} y={y} width={L} height={bw} fill="#000000" /> : <g key={i}><rect x={-L / 2} y={y} width={L / 2 - gp / 2} height={bw} fill="#000000" /><rect x={gp / 2} y={y} width={L / 2 - gp / 2} height={bw} fill="#000000" /></g>; })}</g>; };
+    return <><rect width={3} height={2} fill="#FFFFFF" />
+      <g transform={`translate(1.5 1) rotate(${th})`}><circle r={R} fill="#0047A0" /><path d={`M${-R} 0 A${R} ${R} 0 0 1 ${R} 0 A${R / 2} ${R / 2} 0 0 0 0 0 A${R / 2} ${R / 2} 0 0 1 ${-R} 0 Z`} fill="#CD2E3A" /></g>
+      {tri("qian", -3, -2, [true, true, true])}{tri("kun", 3, 2, [false, false, false])}{tri("kan", 3, -2, [false, true, false])}{tri("li", -3, 2, [true, false, true])}</>;
+  } },
   // 美國：10:19、13 道紅白條、藍區寬 0.76、高 7 條；紅 #B22234、藍 #3C3B6E（美國國務院色）；50 星
   US: { name: "美國", w: 1.9, h: 1, draw: () => {
     const sh = 1 / 13, st: React.ReactNode[] = [];
