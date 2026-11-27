@@ -162,7 +162,7 @@ P["s3"] = {"zoom": [{"to": "tool", "at": "start-2", "dur": 1}, {"to": "micro", "
  "shot": [shot("start-2", AX, 1.4, 38, 42, 1), shot("sand-6", 18.0, 1.0, 37, 31, 1)],
  "run": [run("wGlow0", "sand-4", "bump+58", 8), run("wGlow1", "bump+58", "bump+102", 8), run("wRub", "sand-4", FAR, 8), run("wDebris", "sand", FAR, 6), run("wSlurry", "sand", FAR, 6)],
  "labels": [lab("wafer", "晶圓（倒扣）", "Wafer, face down", "blue", "flip", "flip+46"),
-            lab("bump", "凸處：壓力大", "High spot: more pressure", "amber", "sand-8", "sand+37"),
+            lab("bump", "凸處壓力大", "High spot", "amber", "sand-8", "sand+37", xy=[300, 306]),
             lab("wpad", "墊子", "Pad", "blue", "bump+24", "bump+70")],
  "overlay": [sec("pad-grind", "start+16", "s4:start-5", "砂紙磨木板：凸的先磨", "示意（不標壓力數字）", {"sand": "sand", "bump": "bump", "off": "off"})]}
 P["s4"] = {"zoom": [{"to": "micro", "at": "start-4", "dur": 1}],
