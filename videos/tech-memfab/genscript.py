@@ -117,25 +117,26 @@ vis("bBits", [(T0, "s2:off+4")], 4); vis("bPwr", [(T0, "s2:off")], 2); vis("bPwr
 # ── 站 C：s4 念到「開關」電荷流進電容、存了 1 的電容亮；「每一格」框出一個單元 ──
 vis("cChg", [("s4:sw+10", FAR)], 8); vis("cCell", [("s4:cell-2", "s4:chop")], 4)
 # ── 站 D：s5 一層層落下（16 對，示意三百多層）→ 三段由上往下鑽孔 → 填入儲存層＋通道（吸管） ──
-for k in range(INFO["DN"]): drop(f"dL{k}", f"s5:voice+{2 + 3 * k}", dy=0.9, dur=6, bounce=0.02)
-vis("dStair", [("s5:n300+12", FAR)], 6)
-for s in range(3): vis(f"dHole{s}", [(f"s5:drill+{2 + 9 * s}", FAR)], 6)
+for k in range(INFO["DN"]): vis(f"dL{k}", [(f"s5:voice+{2 + 3 * k}", FAR)], 4)   # 一層層長上去（沉積），不是掉下來
+vis("dStair", [("s5:voice+52", FAR)], 6)
+for s in range(3): vis(f"dHole{s}", [(f"s5:drill+{2 + 9 * s}", FAR)], 4)
 vis("dFill", [("s5:straw-6", FAR)], 8)
 drop("dStraw", "s5:straw-8", dy=1.4, dur=10, bounce=0.03); VIS.append(hid("dStraw", "s5:straw+40", FAR, 6))
 # ── 站 N：s9 念到「電動車」閃電亮；念到「撐不住」矽晶圓裂開 ──
-vis("nBolt", [("s9:ev-2", FAR)], 4); vis("nCrack", [("s9:si+2", FAR)], 3)
+vis("nBolt", [("s9:ev-2", FAR)], 4); vis("nCrack", [("s9:si-2", FAR)], 3)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 AV = (0.0, -1.6, 30, 42)
-BV1 = (INFO["BX"] - 3.6, -1.2, 30, 40)
-BV2 = (INFO["BX"] + 5.0, -1.2, 30, 38)
+BW = (INFO["BX"], -1.0, 46, 44)
+BV1 = (INFO["BX"] - 2.0, -0.4, 32, 20)
+BV2 = (INFO["BX"], -2.0, 44, 50)
 CV = (INFO["CX"], 0.3, 33, 22)
 DV = (INFO["DX"], 0.2, 33, 20)
 EV = (INFO["EX"], 0.2, 52, 16)
 FV = (150.0, -0.6, 42, 12)
 GV = (180.0, -0.6, 42, 12)
-HV = (INFO["HX"] - 0.4, -0.4, 46, 16)
-NV = (INFO["NX"], -0.8, 34, 10)
+HV = (INFO["HX"] - 0.6, -0.4, 50, 16)
+NV = (INFO["NX"], -0.6, 40, 10)
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
 P["s1"] = {"shot": [S_("start-30", AV, 1, yaw=0.0)], "shift": VIS,
@@ -143,33 +144,33 @@ P["s1"] = {"shot": [S_("start-30", AV, 1, yaw=0.0)], "shift": VIS,
  "labels": [lab("aDieA", "一格＝一顆記憶體晶粒", "Each square = one memory die", "amber", "fab-2", "fab+43")],
  "overlay": [sec("memfab-hook", "start", nxt("s1"), "中游補充篇・M2", "示意", {"prev": "prev", "q": "q", "fab": "fab"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "kinds", "at": CC, "dur": 1}],
- "shot": [S_(CC, BV1, 1)],
- "run": [run("bBitGlow", "start-10", "s3:start", 4), run("aSpin", "start-30", "start", 1)],
+ "shot": [S_(CC, BW, 1), S_("desk-8", BV1, 26)],
+ "run": [run("bBitGlow", "start-10", "s3:start", 4), run("aSpin", "start-30", "start", 1), run("bSsdGlow", "start-10", "off", 4), run("bSsdSteady", "off", "s4:start", 4)],
  "labels": [lab("bDimmA", "動態記憶體（DRAM）模組", "DRAM module", "blue", "desk-4", "desk+41")],
  "overlay": [card("s2", "memfab-desk", "動態記憶體：像書桌", "示意", {"three": "three", "desk": "desk", "off": "off"})]}
 P["s3"] = {"shot": [S_(CC, BV2, 1)],
- "run": [run("bSsdGlow", "start-10", "s4:start", 6), run("bNorGlow", "boot-4", "s4:start", 6), run("bBoot", "boot-2", "s4:start", 4)],
+ "run": [run("bNorGlow", "boot-4", "s4:start", 6), run("bBoot", "boot-2", "s4:start", 4)],
  "labels": [lab("bSsdA", "儲存型快閃（NAND）：固態硬碟", "NAND flash: SSD", "amber", "ware-4", "ware+41"),
             lab("bNorA", "編碼型快閃（NOR）：開機晶片", "NOR flash: boot chip", "blue", "note-4", "note+41")],
  "overlay": [card("s3", "memfab-flash", "快閃記憶體：斷電也不消失", "示意", {"flash": "flash", "ware": "ware", "keep": "keep", "note": "note", "boot": "boot"}, h=392, y=1000)]}
 P["s4"] = {"zoom": [{"to": "dram", "at": CC, "dur": 1}],
  "shot": [S_(CC, CV, 1)],
- "run": [run("cFill", "sw-2", "cap+10", 4), run("cLeak", "sw+12", "s5:start", 8)],
+ "run": [run("cWLGlow", "sw-4", "sw+26", 4), run("cFill", "sw+4", "cap+6", 4), run("cLeak", "cap+6", "s5:start", 6)],
  "labels": [lab("cCellA", "一格：開關＋電容", "One cell: transistor + capacitor", "amber", "cell", "cell+45"),
-            lab("cCapA", "電容：又細又高", "Tall, thin capacitors", "blue", "cap-2", "cap+43"),
-            lab("cWLA", "開關的閘（字元線）", "Gates (word lines)", "amber", "chop", "chop+40")],
+            lab("cCapA", "電容：又細又高", "Tall, thin capacitors", "blue", "cap+4", "cap+49"),
+            lab("cWLA", "開關（字元線）", "Switch gate (word line)", "amber", "sw", "sw+45")],
  "overlay": [card("s4", "memfab-cell", "動態記憶體：一格＝開關＋電容", "示意（放大，不按比例）", {"cell": "cell", "sw": "sw", "cap": "cap", "chop": "chop"})]}
 P["s5"] = {"zoom": [{"to": "nand", "at": CC, "dur": 1}],
  "shot": [S_(CC, DV, 1)],
- "run": [run("dEtch", "drill-2", "straw-8", 4)],
+ "run": [run("dEtch0", "drill-2", "drill+11", 3), run("dEtch1", "drill+11", "drill+20", 3), run("dEtch2", "drill+20", "straw-8", 3)],
  "labels": [lab("dStackA", "導體層／絕緣層交錯", "Alternating conductor / oxide", "amber", "n300-2", "n300+43"),
             lab("dHoleA", "由上往下鑽深孔", "Deep holes etched down", "blue", "drill", "drill+45"),
             lab("dFillA", "填入儲存層＋通道", "Charge-trap layer + channel", "amber", "straw", "straw+30")],
  "overlay": [card("s5", "memfab-nand", "儲存型快閃：疊層再鑽孔", "示意（畫 16 對，實際三百多層）", {"stack": "stack", "n300": "n300", "drill": "drill", "straw": "straw"})]}
 P["s6"] = {"zoom": [{"to": "idm", "at": CC, "dur": 1}, {"to": "global", "at": "sam-4", "dur": 1}],
  "shot": [S_(CC, EV, 1), S_("sam-6", FV, 1)],
- "run": [run("eOffGlow", "idm-4", "sam", 6), run("eHand", "idm+6", "sam", 4), run("eFabGlow", "make-4", "sam", 6), run("eFan", "start-10", "sam", 10), run("fNod", "sam", "s7:start", 6)],
- "labels": [lab("eOffA", "設計", "Design", "blue", "idm-2", "make+20"), lab("eFbA", "製造（晶圓廠）", "Manufacturing (fab)", "amber", "make-2", "sam-8", xy=[640, 330])],
+ "run": [run("eOffGlow", "idm-4", "sam", 6), run("eHand", "idm+6", "sam", 4), run("eFabGlow", "make-4", "sam", 6), run("eFan0", "start-10", "sam", 10), run("eFan1", "start-10", "sam", 10), run("eFan2", "start-10", "sam", 10), run("eFan3", "start-10", "sam", 10), run("fNod", "sam", "s7:start", 6)],
+ "labels": [lab("eOffA", "設計", "Design", "blue", "idm-2", "sam-12"), lab("eFbA", "製造（晶圓廠）", "Manufacturing (fab)", "amber", "make-2", "sam-8", xy=[640, 330])],
  "overlay": [card("s6", "memfab-idm", "大廠：自己設計、自己製造", "TrendForce 2026 Q2",
                   {"spec": "spec", "idm": "idm", "make": "make", "sam": "sam", "sk": "sk", "mu": "mu", "tf": "tf", "n90": "n90"}, h=392, y=1000)]}
 P["s7"] = {"zoom": [{"to": "tw", "at": CC, "dur": 1}],
@@ -177,14 +178,14 @@ P["s7"] = {"zoom": [{"to": "tw", "at": CC, "dur": 1}],
  "overlay": [card("s7", "memfab-tw", "台灣：利基型記憶體", "媒體報導；截至 2026/11/28", {"niche": "niche", "spec": "spec", "nanya": "nanya", "wb": "wb", "mx": "mx"}, h=392, y=1000)]}
 P["s8"] = {"zoom": [{"to": "mu", "at": CC, "dur": 1}],
  "shot": [S_(CC, HV, 1)],
- "run": [run("hTsvGlow", "hbm-4", "s9:start", 6)],
+ "run": [run("hTsvGlow", "hbm-4", "s9:start", 6), run("hFan0", "start-10", "s9:start", 10), run("hFan1", "start-10", "s9:start", 10)],
  "labels": [lab("hFabA", "美光台灣晶圓廠（示意）", "Micron Taiwan fab (illustrative)", "blue", "mu", "ty+30"),
             lab("hHbmA", "高頻寬記憶體：一疊十二層", "HBM: 12-high stack", "amber", "hbm-4", "hbm+41")],
  "overlay": [card("s8", "memfab-mu", "美光在台灣", "公司與媒體報導；截至 2026/11/28", {"mu": "mu", "tc": "tc", "ty": "ty", "hbm": "hbm"})]}
 P["s9"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],
  "shot": [S_(CC, NV, 1)],
- "run": [run("nBoltGlow", "ev", "s10:start", 6)],
- "labels": [lab("nSiA", "矽晶圓：耐壓不夠", "Silicon: not enough", "amber", "si-2", "si+40"),
+ "run": [run("nBoltGlow", "ev", "s10:start", 6), run("nArc", "si-2", "s10:start", 3)],
+ "labels": [lab("nSiA", "耐壓不夠（示意）", "Breaks down at high voltage", "amber", "si-2", "si+40"),
             lab("nSiCA", "碳化矽", "Silicon carbide", "blue", "sic-2", "sic+43", xy=[400, 330]), lab("nGaNA", "氮化鎵", "Gallium nitride", "blue", "sic+50", "sic+95", xy=[760, 330])],
  "overlay": [sec("memfab-next", C, "s10:start", "下一集：碳化矽與氮化鎵", "留言「記憶體廠」", {"ev": "ev", "si": "si", "next": "next", "sic": "sic", "kw": "kw"}, cut=True)]}
 for sc in scenes:

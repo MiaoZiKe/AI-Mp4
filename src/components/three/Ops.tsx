@@ -293,7 +293,8 @@ export const partFxAt = (list: [string, ActionDef][] | undefined, s: State3D, pa
       if (d.pivots || d.chain || (d.pivot && d.pivot.length > 2)) fx.hier = true;
     } else if (d.type === "pulse") {
       // steady＝不閃，穩定亮著（強度只跟著進出場 ramp；例如電壓維持在高的那段時間）
-      const beat = d.steady ? 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);
+      // 2026/11/28 tech-memfab：saw＝鋸齒（慢慢變暗、一下補滿；例如電容漏電後刷新）
+      const beat = d.steady ? 1 : (d as any).saw ? 1 - (((d.freq ?? 2) * op.t) % 1 + 1) % 1 : 0.5 + 0.5 * Math.sin(Math.PI * 2 * (d.freq ?? 2) * op.t - Math.PI / 2);
       fx.glow = Math.max(fx.glow, (d.glow ?? 0.8) * Math.min(1, op.g) * (0.35 + 0.65 * beat)); fx.color = d.color ?? null;
     }
   }

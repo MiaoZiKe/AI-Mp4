@@ -33,6 +33,7 @@ export const LOGOS: Record<string, LogoSpec> = {
   // 2026-11-28 tech-memfab：Wikimedia Commons 原檔（未改色）
   skhynix: { file: "logos/skhynix.svg", w: 28.452518, h: 15.028476, name: "SK 海力士 SK hynix", source: "https://commons.wikimedia.org/wiki/File:SK_Hynix.svg" },
   micron: { file: "logos/micron.svg", w: 288, h: 61.704, name: "美光 Micron", source: "https://commons.wikimedia.org/wiki/File:Micron_Technology_logo_2024.svg" },
+  macronix: { file: "logos/macronix.png", w: 960, h: 521, name: "旺宏 Macronix", source: "https://commons.wikimedia.org/wiki/File:Macronix_logo.svg（Commons 960px PNG 轉檔，未改色）" },
   dnp: { file: "logos/dnp.svg", w: 110, h: 33, name: "大日本印刷 DNP", source: "https://www.global.dnp/content/dam/dnp-global/common/img/logo.svg" },
   tekscend: { file: "logos/tekscend.svg", w: 199, h: 32, name: "Tekscend Photomask", source: "https://www.photomask.com/assets/img/common/header_logo.svg" },
   photronics: { file: "logos/photronics.svg", w: 114, h: 134.538, labelH: 90, name: "Photronics", source: "https://www.photronics.com/wp-content/uploads/2018/11/logo.svg" },
