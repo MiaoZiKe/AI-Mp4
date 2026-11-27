@@ -1,11 +1,12 @@
 # tech-pkgequip：先進封裝設備（系列 3 第 6 集；前一集 3-5 扇出型與晶圓級封裝；下一集 3-7 ABF 膜）
-- 狀態（2026/11/27 台北）：r0 無聲完整版，待雙審。**未配音、未送 TTS、未渲染整片**。留言關鍵字「封裝設備」。念稿 `script.md` 248 字，genscript 逐段比對。
+- 狀態（2026/11/27 台北）：r1 無聲完整版（r0 雙審：機台 6.9／物理 7.4，報告 docs/reviews/2026-11-27-pkgequip-*.md），r1 修正後待複審。**未配音、未送 TTS、未渲染整片**。留言關鍵字「封裝設備」。念稿 `script.md` 248 字，genscript 逐段比對。
 - 產生：`python3 videos/tech-pkgequip/genscript.py` → `node scripts/three/silent-timeline.mjs tech-pkgequip` → 再跑一次 genscript。2D 卡 `src/components/three/HudPkgequip.tsx`（pe-*，9 張）；共用檔只動 Hud.tsx（import＋分派各一行）。
 - 9 幕＋片尾；無聲估 60.3 秒。九個站（W 中介層晶圓、L 封裝線、B 覆晶接合機、T 熱壓接合、D 點膠剖面、C 載板與烤箱、A 光學檢測、K 公司、S 載板），細節見 visual-spec.md。
 - 運作動畫（跟旁白同步）：①s3 頂針頂起→翻轉器翻面→接合頭接手→沿龍門移到空位→放下；②s4 熱壓頭一層一層下壓（4 層），加熱器橘光、膠邊擠出；③s5 點膠頭沿邊走、膠滴受重力落下、膠前緣先快後慢推進、兩側膠邊；④s6 滾輪滾過、翹起的兩半依序被壓平、整片送進烤箱；⑤s7 相機頭正弦掃描（折返減速）、紅框標出歪掉與缺膠；⑥s9 封好的晶片落到載板、訊號沿銅線往下。
 - 比喻（都有畫面）：組電腦（s2 五站＋卡）、熨斗燙貼布（s4 熱壓頭＋卡的熨斗）、水滲進磁磚縫（s5 剖面＋卡）、海關驗行李（s7 比對螢幕＋卡）。
 - 第 39 條：每幕念完留白 0.85 秒，9 個人聲間隔 1.00 秒（量法：timeline.json 下一幕 voiceStartFrame − 本幕 voiceEndFrame），>1 秒無聲 0 個。第 40 條：s8 公司卡（3 家）無聲估計 7.2 秒、最後一家（志聖）念到換卡 2.2 秒；genscript 會依時間軸自動補延長。
-- 檢查（晚於最後一次改 script.json）：precheck 0／0、validate 0 error（112 warning）、layout-check 0 error、card-overlap 0／0、kinematics 0、flow-check 0。
+- r1 修正：s3 先近看頂針與翻轉器再拉遠、外殼掀開後淡出、晶片落點改到空位且貼到晶圓面（原本懸空 0.3、透視看起來像後一排）、對位相機往左抽出；s4 加主軸、膠邊、上下外罩、4 次逐層下壓；s5 龍門與膠珠；s6 烤箱開口、滾輪抬起再壓、晶圓兩半翹曲依序壓平；s7 相機蛇行、螢幕顯示比對內容、紅框加粗；s2／s8 各機台頂部特徵不同、s8 鏡頭拉近；各卡加比喻小圖；各幕重算頂端貼齊。
+- 檢查（晚於最後一次改 script.json）：precheck 0／0、validate 0 error（135 warning，都是標籤碰主素材邊緣與英文字幕長度類）、layout-check 0 error、card-overlap 0／0、kinematics 0、flow-check 0。
 ## 風險
 1. KR 國旗：已經頻道負責人同意加進 Brand.tsx FLAGS（只加這一筆），卦位已抽格確認。
 2. 三家 LOGO 未抓到原檔，用文字名牌。

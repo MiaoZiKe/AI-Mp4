@@ -154,17 +154,17 @@
      },
      {
       "layer": "bHood",
-      "at": "s3:voice+22",
+      "at": "s3:voice-3",
       "until": "s10:start+400",
       "opacity": 0,
-      "dur": 10
+      "dur": 18
      },
      {
       "layer": "bCam",
       "at": "s3:align-2",
       "until": "s3:align+40",
       "dur": 14,
-      "dz": 1.6
+      "dx": -1.4
      },
      {
       "layer": "bPick",
@@ -199,7 +199,7 @@
       "at": "s3:flip+24",
       "until": "s10:start+400",
       "dur": 20,
-      "dx": 2.05,
+      "dx": 1.8,
       "dz": -0.2
      },
      {
@@ -207,7 +207,7 @@
       "at": "s3:flip+24",
       "until": "s10:start+400",
       "dur": 20,
-      "dx": 2.05,
+      "dx": 1.8,
       "dz": -0.2
      },
      {
@@ -215,27 +215,27 @@
       "at": "s3:hair-14",
       "until": "s3:hair+8",
       "dur": 12,
-      "dy": -0.9
+      "dy": -1.2
      },
      {
       "layer": "bCarry",
       "at": "s3:hair-14",
       "until": "s10:start+400",
       "dur": 12,
-      "dy": -0.9
+      "dy": -1.2
      },
      {
       "layer": "tCoverL",
       "at": "s4:voice-3",
-      "until": "s4:heat-6",
-      "dur": 16,
+      "until": "s4:tcb-20",
+      "dur": 14,
       "dx": -1.3
      },
      {
       "layer": "tCoverR",
       "at": "s4:voice-3",
-      "until": "s4:heat-6",
-      "dur": 16,
+      "until": "s4:tcb-20",
+      "dur": 14,
       "dx": 1.3
      },
      {
@@ -269,9 +269,10 @@
       "bounce": 0.0,
       "opacity": 0,
       "press": [
-       "tL7"
+       "tL7",
+       "tL6"
       ],
-      "pressAmt": 0.03
+      "pressAmt": 0.08
      },
      {
       "layer": "tHead",
@@ -304,9 +305,10 @@
       "bounce": 0.0,
       "opacity": 0,
       "press": [
-       "tL8"
+       "tL8",
+       "tL7"
       ],
-      "pressAmt": 0.03
+      "pressAmt": 0.08
      },
      {
       "layer": "tHead",
@@ -339,9 +341,10 @@
       "bounce": 0.0,
       "opacity": 0,
       "press": [
-       "tL9"
+       "tL9",
+       "tL8"
       ],
-      "pressAmt": 0.03
+      "pressAmt": 0.08
      },
      {
       "layer": "tHead",
@@ -374,9 +377,10 @@
       "bounce": 0.0,
       "opacity": 0,
       "press": [
-       "tL10"
+       "tL10",
+       "tL9"
       ],
-      "pressAmt": 0.03
+      "pressAmt": 0.08
      },
      {
       "layer": "dHead",
@@ -446,31 +450,140 @@
       "at": "s6:lam-10",
       "until": "s10:start+400",
       "dur": 46,
-      "dx": 6.4
+      "dz": 6.0
+     },
+     {
+      "layer": "cRoller",
+      "at": "s6:flat-2",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dy": 2.6
      },
      {
       "layer": "cCarrier",
-      "at": "s6:flat+6",
+      "at": "s6:flat+10",
       "until": "s10:start+400",
       "dur": 26,
-      "dx": 6.4,
-      "dy": 0.4
+      "dx": 6.4
      },
      {
-      "layer": "cWafL",
-      "at": "s6:flat+6",
+      "layer": "cWafB",
+      "at": "s6:flat+10",
       "until": "s10:start+400",
       "dur": 26,
-      "dx": 6.4,
-      "dy": 0.4
+      "dx": 6.4
      },
      {
-      "layer": "cWafR",
-      "at": "s6:flat+6",
+      "layer": "cWafF",
+      "at": "s6:flat+10",
       "until": "s10:start+400",
       "dur": 26,
-      "dx": 6.4,
-      "dy": 0.4
+      "dx": 6.4
+     },
+     {
+      "layer": "aCam",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "dur": 1,
+      "dz": -1.4
+     },
+     {
+      "layer": "aCam",
+      "at": "s7:voice-3",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dx": 5.2,
+      "dz": 0
+     },
+     {
+      "layer": "aCam",
+      "at": "s7:voice+19",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dx": 0,
+      "dz": 1.1
+     },
+     {
+      "layer": "aCam",
+      "at": "s7:voice+41",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dx": -5.2,
+      "dz": 0
+     },
+     {
+      "layer": "aCam",
+      "at": "s7:voice+63",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dx": 0,
+      "dz": 1.1
+     },
+     {
+      "layer": "aCam",
+      "at": "s7:voice+85",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dx": 5.2,
+      "dz": 0
+     },
+     {
+      "layer": "aCam",
+      "at": "s7:voice+107",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dx": 0,
+      "dz": 1.1
+     },
+     {
+      "layer": "aCam",
+      "at": "s7:voice+129",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dx": -5.2,
+      "dz": 0
+     },
+     {
+      "layer": "dBead0",
+      "at": "s1:start-40",
+      "until": "s5:disp+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBead1",
+      "at": "s1:start-40",
+      "until": "s5:disp+15",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBead2",
+      "at": "s1:start-40",
+      "until": "s5:disp+26",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBead3",
+      "at": "s1:start-40",
+      "until": "s5:disp+37",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBead4",
+      "at": "s1:start-40",
+      "until": "s5:disp+48",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBead5",
+      "at": "s1:start-40",
+      "until": "s5:disp+59",
+      "opacity": 0,
+      "dur": 2
      },
      {
       "layer": "aFlag",
@@ -706,10 +819,18 @@
      {
       "at": "voice-4",
       "dur": 1,
+      "x": 77.0,
+      "y": 2.3,
+      "d": 40.0,
+      "elev": 28
+     },
+     {
+      "at": "flip+24",
+      "dur": 26,
       "x": 78.0,
-      "y": 2.58,
-      "d": 49.5,
-      "elev": 22
+      "y": 2.21,
+      "d": 48.5,
+      "elev": 30
      }
     ],
     "run": [
@@ -744,12 +865,12 @@
       "text": "接合機（外殼掀開）",
       "en": "Flip-chip bonder",
       "color": "blue",
-      "at": "voice-2",
-      "until": "voice+44",
+      "at": "voice+8",
+      "until": "voice+50",
       "cut": true,
       "xy": [
-       390,
-       962
+       400,
+       430
       ]
      },
      {
@@ -996,9 +1117,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 142.0,
-      "y": 1.45,
-      "d": 41.0,
-      "elev": 10
+      "y": 1.92,
+      "d": 43.0,
+      "elev": 24
      }
     ],
     "run": [
@@ -1121,10 +1242,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 170.2,
-      "y": -0.26,
-      "d": 54.0,
-      "elev": 22
+      "x": 171.2,
+      "y": 0.78,
+      "d": 48.5,
+      "elev": 26
      }
     ],
     "run": [
@@ -1135,14 +1256,14 @@
       "until": "lam+36"
      },
      {
-      "id": "cFlatL",
-      "at": "lam+2",
+      "id": "cFlatB",
+      "at": "lam+6",
       "ramp": 12,
       "until": "s10:start+400"
      },
      {
-      "id": "cFlatR",
-      "at": "lam+22",
+      "id": "cFlatF",
+      "at": "lam+26",
       "ramp": 12,
       "until": "s10:start+400"
      },
@@ -1159,8 +1280,8 @@
       "text": "晶圓貼到玻璃載板",
       "en": "Wafer on a glass carrier",
       "color": "blue",
-      "at": "car-2",
-      "until": "car+44",
+      "at": "voice-2",
+      "until": "voice+44",
       "cut": true
      },
      {
@@ -1168,8 +1289,8 @@
       "text": "壓膜滾輪：翹起的地方被壓平",
       "en": "Laminating roller",
       "color": "amber",
-      "at": "car+48",
-      "until": "car+94",
+      "at": "lam",
+      "until": "lam+46",
       "cut": true
      }
     ],
@@ -1255,18 +1376,12 @@
       "at": "voice-4",
       "dur": 1,
       "x": 208.0,
-      "y": 2.1,
-      "d": 44.0,
-      "elev": 25
+      "y": 1.76,
+      "d": 43.5,
+      "elev": 30
      }
     ],
     "run": [
-     {
-      "id": "aScan",
-      "at": "start",
-      "ramp": 10,
-      "until": "s8:start+4"
-     },
      {
       "id": "aRing",
       "at": "aoi",
@@ -1388,9 +1503,9 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 242.0,
-      "y": -1.08,
-      "d": 53.0,
+      "x": 242.25,
+      "y": 0.84,
+      "d": 43.5,
       "elev": 20
      }
     ],
@@ -1490,8 +1605,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 276.0,
-      "y": -0.75,
-      "d": 41.0,
+      "y": -0.12,
+      "d": 36.0,
       "elev": 14
      }
     ],

@@ -71,6 +71,12 @@ const Line: React.FC<P> = ({ o, f, k }) => {
         <circle cx={34 + u * 880} cy={CT + 196} r={10} fill={BLUE} opacity={st} />
         <line x1={34} y1={CT + 196} x2={914} y2={CT + 196} stroke={H.lineSoft} strokeWidth={3} />
         <Row x={34} y={CT + 252} t="像組電腦：每一步都有專門的機台" c={H.amber} a={pc} />
+        <g opacity={0.3 + 0.7 * pc}>{/* 組電腦小圖：主機板＋CPU＋記憶體條＋顯卡，一件一件裝上 */}
+          <rect x={640} y={CT + 214} width={150} height={56} fill="#3E8E5E" stroke={H.text2} strokeWidth={2} />
+          <rect x={655} y={CT + 222} width={34} height={30} fill={DIE} opacity={st > 0.2 ? 1 : 0.2} />
+          {[0, 1].map((i) => <rect key={i} x={700 + i * 12} y={CT + 220} width={7} height={40} fill="#C8B15A" opacity={st > 0.5 ? 1 : 0.2} />)}
+          <rect x={730} y={CT + 244} width={52} height={14} fill="#46536E" opacity={st > 0.8 ? 1 : 0.2} />
+          <rect x={810} y={CT + 196} width={56} height={74} fill="#E2E8F0" stroke={H.text2} strokeWidth={2} /><rect x={818} y={CT + 204} width={40} height={6} fill={BLUE} /></g>
       </svg>
     </Card>
   );
@@ -135,6 +141,10 @@ const Uf: React.FC<P> = ({ o, f, k }) => {
         <Row x={360} y={CT + 112} t="點膠機沿著邊緣滴膠" c={H.amber} a={dp} />
         <Row x={360} y={CT + 172} t="膠自己鑽進縫裡" c={BLUE} a={wk} />
         <Row x={360} y={CT + 232} t="像水滲進磁磚縫" c={OK} a={tl} />
+        <g opacity={0.3 + 0.7 * tl}>{/* 磁磚縫小圖：水從左邊縫口被吸進縫裡 */}
+          {[0, 1, 2].map((i) => [0, 1].map((j) => <rect key={`${i}${j}`} x={640 + i * 52} y={CT + 160 + j * 52} width={46} height={46} fill="#F3F5F8" stroke={GRY} strokeWidth={2} />))}
+          <rect x={640} y={CT + 206} width={(156) * Math.min(1, wk * 1.1)} height={6} fill="#5FB4FF" /><rect x={686} y={CT + 160} width={6} height={98 * Math.min(1, wk)} fill="#5FB4FF" /><rect x={738} y={CT + 160} width={6} height={98 * Math.max(0, wk - 0.3)} fill="#5FB4FF" />
+          <circle cx={630} cy={CT + 209} r={8} fill="#5FB4FF" /></g>
       </svg>
     </Card>
   );
@@ -176,6 +186,10 @@ const Aoi: React.FC<P> = ({ o, f, k }) => {
         <Row x={360} y={CT + 106} t="拍照，和標準比對" c={BLUE} a={ao} />
         <Row x={360} y={CT + 164} t="揪出歪掉、缺膠" c={RED} a={ng} />
         <Row x={360} y={CT + 222} t="像海關驗行李" c={H.amber} a={cu} />
+        <g opacity={0.3 + 0.7 * cu}>{/* 海關小圖：行李經過 X 光框、可疑物標紅 */}
+          <rect x={620} y={CT + 150} width={170} height={100} fill="none" stroke={H.text2} strokeWidth={4} /><rect x={600} y={CT + 250} width={210} height={10} fill={GRY} />
+          <g transform={`translate(${-30 + 70 * fr(f * 0.008)} 0)`}><rect x={660} y={CT + 196} width={70} height={50} rx={6} fill="#8A6A48" stroke={H.text2} strokeWidth={2} /><rect x={683} y={CT + 186} width={24} height={10} fill="none" stroke={H.text2} strokeWidth={3} />
+            <rect x={690} y={CT + 210} width={18} height={18} fill="none" stroke={RED} strokeWidth={4} opacity={ng} /></g></g>
       </svg>
     </Card>
   );

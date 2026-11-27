@@ -110,15 +110,15 @@ VIS += [mv("wDies", "s1:tool", FAR, 18, dy=-1.15)]
 VIS += [mv("lnFoup", "s2:voice", FAR, 110, dx=17.5)]
 # ── s3 覆晶接合機：①外殼頂蓋與前窗往上掀開 ②對位相機往前抽出 ③組回；運作：頂針頂起→翻轉器翻面→接合頭接手→移到晶圓→放下 ──
 B = INFO
-VIS += [mv("bHood", "s3:voice-3", FAR, 18, dy=3.0), hid("bHood", "s3:voice+22", FAR, 10, 0)]   # 掀開後淡出（講內部時蓋子不擋）
-VIS += [mv("bCam", "s3:align-2", "s3:align+40", 14, dz=1.6)]
+VIS += [mv("bHood", "s3:voice-3", FAR, 18, dy=3.0), hid("bHood", "s3:voice-3", FAR, 18, 0)]   # 掀開後淡出（講內部時蓋子不擋）
+VIS += [mv("bCam", "s3:align-2", "s3:align+40", 14, dx=-1.4)]   # 對位相機往左側抽出（不擋接合頭）
 vis("bPick", [(T0, "s3:flip-6")], 1); vis("bFlipDie", [("s3:flip-6", "s3:flip+22")], 1); vis("bCarry", [("s3:flip+22", FAR)], 1)
 DXH, DZH = round(B["CX"] - 0.45 - B["HX0"], 3), -0.2
 for l in ("bHead", "bCarry"):
     VIS += [mv(l, "s3:flip+24", FAR, 20, dx=DXH, dz=DZH)]
-VIS += [mv("bHead", "s3:hair-14", "s3:hair+8", 12, dy=-0.9), mv("bCarry", "s3:hair-14", FAR, 12, dy=-0.9)]
+VIS += [mv("bHead", "s3:hair-14", "s3:hair+8", 12, dy=-1.2), mv("bCarry", "s3:hair-14", FAR, 12, dy=-1.2)]
 # ── s4 熱壓接合：外罩左右分開（爆炸 2.2-1）→ 組回；疊層先有 8 層，念到「熱壓接合機」起再一層一層壓 4 層（每層：頭下壓、停、抬起） ──
-VIS += [mv("tCoverL", "s4:voice-3", "s4:heat-6", 16, dx=-1.3), mv("tCoverR", "s4:voice-3", "s4:heat-6", 16, dx=1.3)]
+VIS += [mv("tCoverL", "s4:voice-3", "s4:tcb-20", 14, dx=-1.3), mv("tCoverR", "s4:voice-3", "s4:tcb-20", 14, dx=1.3)]
 TOP = lambda k: INFO["LAYY"][k] + 0.06 + 0.16
 THY = INFO["LAYY"][11] + 0.22 + 1.2
 for j, k in enumerate(range(8, 12)):
@@ -126,17 +126,23 @@ for j, k in enumerate(range(8, 12)):
     drop = round(THY - TOP(k), 3)
     for l in ("tHead", "tCoverL", "tCoverR"):
         VIS += [mv(l, t, f"s4:tcb+{j * 24 + 12}", 8, dy=-drop)]
-    VIS += [{"layer": f"tL{k}", "at": T0, "until": t, "dur": 8, "dy": round(drop, 3), "fallIn": True, "bounce": 0.0, "opacity": 0, "press": [f"tL{k - 1}"], "pressAmt": 0.03}]
+    VIS += [{"layer": f"tL{k}", "at": T0, "until": t, "dur": 8, "dy": round(drop, 3), "fallIn": True, "bounce": 0.0, "opacity": 0, "press": [f"tL{k - 1}", f"tL{k - 2}"], "pressAmt": 0.08}]
 # ── s5 點膠：點膠頭沿晶片左緣（z 方向）走；膠前緣由左往右分段推進（先快後慢）；最後右側膠邊 ──
 VIS += [mv("dHead", "s5:disp", FAR, 70, dz=-3.6)]
 UFT = [8, 18, 30, 44, 60, 78]
 for k in range(6): vis(f"dUf{k}", [(f"s5:disp+{UFT[k]}", FAR)], 4)
 vis("dFilL", [("s5:disp+6", FAR)], 4); vis("dFilR", [("s5:disp+84", FAR)], 4)
-# ── s6 載板：滾輪由左往右滾過（翹起的晶圓依序被壓平），再整片送進烤箱 ──
-VIS += [mv("cRoller", "s6:lam-10", FAR, 46, dx=6.4)]
-for l in ("cCarrier", "cWafL", "cWafR"):
-    VIS += [mv(l, "s6:flat+6", FAR, 26, dx=round(INFO["OX"] - INFO["CWX"], 3), dy=0.4)]
-# ── s7 檢測：異常紅框念到「歪掉」才出現 ──
+# ── s6 載板：滾輪由後往前滾過（翹起的後半、前半依序被壓平），滾完抬起讓開，整片沿送料軌從左側入口送進烤箱 ──
+VIS += [mv("cRoller", "s6:lam-10", FAR, 46, dz=6.0), mv("cRoller", "s6:flat-2", FAR, 12, dy=2.6)]
+for l in ("cCarrier", "cWafB", "cWafF"):
+    VIS += [mv(l, "s6:flat+10", FAR, 26, dx=round(INFO["OX"] - INFO["CWX"], 3))]
+# ── s7 檢測：相機頭沿龍門蛇行掃描（一列 → 往前換列 → 反方向一列…，折返減速），異常紅框念到「歪掉」才出現 ──
+VIS += [mv("aCam", T0, FAR, 1, dz=-1.4)]
+for j, (dx, dz) in enumerate([(5.2, 0), (0, 1.1), (-5.2, 0), (0, 1.1), (5.2, 0), (0, 1.1), (-5.2, 0)]):
+    VIS += [mv("aCam", f"s7:voice{-3 + j * 22:+d}", FAR, 20 if dx else 8, dx=dx, dz=dz)]
+# ── s5 點膠：沿邊的膠線一段一段長出來（跟點膠頭同步） ──
+for k in range(6): vis(f"dBead{k}", [(f"s5:disp+{4 + k * 11}", FAR)], 2)
+# ── s7 ──
 vis("aFlag", [("s7:ng-4", FAR)], 2)
 # ── s9 載板：封好的晶片落到載板 ──
 VIS += [{"layer": "sPkg", "at": T0, "until": "s9:done-6", "dur": 14, "dy": 2.5, "fallIn": True, "bounce": 0.04, "opacity": 0, "press": ["sSub"], "pressAmt": 0.03}]
@@ -155,9 +161,9 @@ P["s2"] = {"zoom": [{"to": "room", "at": "voice-18", "dur": 1}, {"to": "room", "
  "labels": [lab("line0", "封裝線：五站", "Packaging line: 5 stations", "blue", "pc", "pc+46")],
  "overlay": [card("s2", "pe-line", "像組電腦：一站一台機台", "示意", {"pc": "pc", "step": "step"})]}
 P["s3"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
- "shot": [shot(CC, 78.0, 2.58, 49.5, 22, 1)],
+ "shot": [shot(CC, 77.0, 2.3, 40.0, 28, 1), shot("flip+24", 78.0, 2.21, 48.5, 30, 26)],   # 先近看頂針與翻轉器（翻面看得清楚），接手後拉遠看移動、對位、放下
  "run": [run("bPinUp", "flip-24", "flip-4", 6), run("bFlipTurn", "flip-4", FAR, 14), run("bSuck", "flip-8", "s4:start+4", 4), run("bCamGlow", "align+2", "align+40", 4)],
- "labels": [lab("bDeck", "接合機（外殼掀開）", "Flip-chip bonder", "blue", "voice-2", "voice+44", xy=[390, 962]),
+ "labels": [lab("bDeck", "接合機（外殼掀開）", "Flip-chip bonder", "blue", "voice+8", "voice+50", xy=[400, 430]),
             lab("bCam", "對位相機", "Alignment camera", "amber", "align", "align+46"),
             lab("bWafer", "放到中介層：誤差比頭髮細", "Placed far finer than a hair", "blue", "hair", "hair+46")],
  "overlay": [card("s3", "pe-flip", "翻面、對位、放下", "示意（不標精度數字）", {"bond": "bond", "flip": "flip", "align": "align", "hair": "hair"})]}
@@ -169,25 +175,25 @@ P["s4"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
             lab("tStack", "記憶體疊層（示意 12 層）", "Memory stack (12 layers)", "blue", "layer+2", "layer+48")],
  "overlay": [card("s4", "pe-tcb", "像熨斗燙貼布：加熱又加壓", "示意（不標溫度、壓力）", {"mem": "mem", "tcb": "tcb", "heat": "heat", "iron": "iron", "ly": "layer"})]}
 P["s5"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
- "shot": [shot(CC, 142.0, 1.45, 41.0, 10, 1)],
+ "shot": [shot(CC, 142.0, 1.92, 43.0, 24, 1)],
  "run": [run("dDrop", "disp", "s6:start+4", 4), run("dWick", "disp+8", "s6:start+4", 6), run("dHot", "start", "s6:start+4", 6)],
  "labels": [lab("dNeedle", "點膠針頭", "Dispensing needle", "amber", "disp", "disp+46"),
             lab("dUf", "膠自己鑽進縫（毛細作用）", "Capillary flow", "blue", "disp+50", "disp+96")],
  "overlay": [card("s5", "pe-uf", "像水滲進磁磚縫", "示意（縫放大）", {"gap": "gap", "disp": "disp", "wick": "wick", "tile": "tile"})]}
 P["s6"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
- "shot": [shot(CC, 170.2, -0.26, 54.0, 22, 1)],
- "run": [run("cRoll", "lam-10", "lam+36", 6), run("cFlatL", "lam+2", FAR, 12), run("cFlatR", "lam+22", FAR, 12), run("cOvenHeat", "flat", "s7:start+4", 6)],
- "labels": [lab("cWafer", "晶圓貼到玻璃載板", "Wafer on a glass carrier", "blue", "car-2", "car+44"),
-            lab("cRoll", "壓膜滾輪：翹起的地方被壓平", "Laminating roller", "amber", "car+48", "car+94")],
+ "shot": [shot(CC, 171.2, 0.78, 48.5, 26, 1)],
+ "run": [run("cRoll", "lam-10", "lam+36", 6), run("cFlatB", "lam+6", FAR, 12), run("cFlatF", "lam+26", FAR, 12), run("cOvenHeat", "flat", "s7:start+4", 6)],
+ "labels": [lab("cWafer", "晶圓貼到玻璃載板", "Wafer on a glass carrier", "blue", "voice-2", "voice+44"),
+            lab("cRoll", "壓膜滾輪：翹起的地方被壓平", "Laminating roller", "amber", "lam", "lam+46")],
  "overlay": [card("s6", "pe-warp", "壓膜、烘烤：讓整片不翹", "示意（不標溫度）", {"car": "car", "lam": "lam", "flat": "flat"})]}
 P["s7"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
- "shot": [shot(CC, 208.0, 2.1, 44.0, 25, 1)],
- "run": [run("aScan", "start", "s8:start+4", 10), run("aRing", "aoi", "s8:start+4", 4), run("aNg", "ng-4", "s8:start+4", 4)],
+ "shot": [shot(CC, 208.0, 1.76, 43.5, 30, 1)],
+ "run": [run("aRing", "aoi", "s8:start+4", 4), run("aNg", "ng-4", "s8:start+4", 4)],
  "labels": [lab("aCam", "相機頭（來回掃描）", "Camera head", "blue", "aoi", "aoi+46"),
             lab("aNg", "歪掉、缺膠（紅框）", "Shifted / missing glue", "amber", "ng+4", "ng+50")],
  "overlay": [card("s7", "pe-aoi", "像海關驗行李：拍照比對", "示意", {"step": "step", "aoi": "aoi", "ng": "ng", "customs": "customs"})]}
 P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, 242.0, -1.08, 53.0, 20, 1)],
+ "shot": [shot(CC, 242.25, 0.84, 43.5, 20, 1)],
  "run": [run("kGlow", "kr", "s9:start+60", 6)],
  "overlay": [card("s8", "pe-co", "先進封裝設備廠", "報導；截至 2026/11/27", {"kr": "kr", "tw": "tw", "ar": "ar", "cs": "cs", "bake": "bake"})]}
 # Andy 第 40 條：公司卡（3 家）完整顯示 ≥5.1 秒；不夠就連同 s8 鏡頭延到 s9 開頭（延長期間 s9 鏡頭不動）。延長幀數依 timeline.json 算
@@ -197,7 +203,7 @@ CO_MIN = 153
 CO_N = max(0, CO_MIN - ((_tl["s9"]["voiceStartFrame"] - 3) - (_tl["s8"]["voiceStartFrame"] - 3))) if "s9" in _tl and "s8" in _tl else 0
 EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
 P["s9"] = {"zoom": [{"to": "room", "at": EXTC, "dur": 1}],
- "shot": [shot(EXTC, 276.0, -0.75, 41.0, 14, 1)],
+ "shot": [shot(EXTC, 276.0, -0.12, 36.0, 14, 1)],
  "run": [run("sSig", "sub", FAR, 6), run("sAbf", "sub+48", FAR, 6)],
  "labels": [lab("sPkg", "封好的晶片放到載板", "Package onto the substrate", "blue", "sub", "sub+46"), lab("sAbf", "載板裡的絕緣膜（下一集）", "Insulating film (next)", "amber", "sub+50", "sub+96")],
  "overlay": ([sec("pe-co", C, EXT, "先進封裝設備廠", "報導；截至 2026/11/27", {"kr": "s8:kr", "tw": "s8:tw", "ar": "s8:ar", "cs": "s8:cs", "bake": "s8:bake"}, cut=True)] if CO_N else [])
