@@ -50,7 +50,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     for e in en: assert len(e) <= 42, (sid, e)
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
     # Andy 第 39 條：念完留白 0.85 秒（＋silent-timeline 開口前 4 幀＝兩幕人聲間隔 1.00 秒）
-    head = 0.0; hold = 0.85
+    head = 0.0; hold = 0.85 if i < len(S) - 1 else 0.65   # 片尾卡前：0.65＋片尾卡淡入 10 幀＝1.0 秒（頻道負責人 11-27）
     nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); dur = max(4.5, round(head + 0.2 + nch / 5.2 + hold, 1))
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
