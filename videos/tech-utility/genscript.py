@@ -58,7 +58,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
     # Andy 第 39 條（11-27 晚）：旁白之間的無聲最多 1 秒 → 念完後只留 1.0 秒；幕長＝開口前＋念稿估時＋1.0（s9 公司卡另照第 40 條檢查）
     nh = S[i + 1][9] if i + 1 < len(S) else 0.0
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(1.0 - nh - (0.13 if sid == "s9" else 0), 2); dur = round(max(4.6, head + nch / 5.2 + 0.2 + hold), 2)
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(1.0 - nh - (0.13 if sid in ("s9", "s10") else 0), 2); dur = round(max(4.6, head + nch / 5.2 + 0.2 + hold), 2)
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
