@@ -1,0 +1,3902 @@
+{
+ "slug": "tech-bt",
+ "prevEpisode": "3-8：ABF 載板",
+ "title": "BT 載板與 T-glass 缺料（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "晶片往下游走",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指第三版（tech-andy-fixes 第 34 條）；本支未配音、不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "手機記憶體封裝（示意）",
+    "en": "MEMORY PACKAGE",
+    "field": "30 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "line",
+    "label": "生產線（示意）",
+    "en": "PRODUCTION LINE",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "micro",
+    "label": "載板剖面放大（示意）",
+    "en": "SUBSTRATE CROSS-SECTION",
+    "field": "1 mm",
+    "ruler": "100 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "供應鏈（示意）",
+    "en": "SUPPLY CHAIN",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "BT 載板",
+   "為什麼缺料？"
+  ],
+  "sub": "玻璃纖維布被搶光",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "便宜的載板長怎樣？前一集說，不是每顆晶片都用得起貴載板。",
+   "tts": "便宜的載板長怎樣？前一集說，不是每顆晶片都用得起貴載板。",
+   "subtitle": {
+    "zh": "便宜的載板\n長怎樣？\n前一集說\n不是每顆晶片\n都用得起貴載板",
+    "en": "What does a cheaper | substrate look like? | Last episode: | not every chip | can afford a pricey one."
+   },
+   "keywords": [
+    "便宜",
+    "載板"
+   ],
+   "cues": [
+    {
+     "id": "cheap",
+     "text": "便宜"
+    },
+    {
+     "id": "look",
+     "text": "長怎樣"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "chip",
+     "text": "晶片"
+    },
+    {
+     "id": "pricey",
+     "text": "貴載板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "中央社 2023/6/2；示意"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：貴的 ABF 載板",
+     "title": "便宜的載板？",
+     "size": 120,
+     "top": 272
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 1.0,
+      "d": 40,
+      "elev": 32
+     },
+     {
+      "at": "start",
+      "dur": 60,
+      "x": 0,
+      "y": 0.6,
+      "d": 32,
+      "elev": 26
+     },
+     {
+      "at": "prev-6",
+      "dur": 40,
+      "x": -1.0,
+      "y": 0.6,
+      "d": 20,
+      "elev": 10
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bCuB",
+      "at": "s1:start-40",
+      "until": "s2:cloth+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCuB",
+      "at": "s1:start-40",
+      "until": "s2:cloth+2",
+      "dur": 10,
+      "dx": -6.5
+     },
+     {
+      "layer": "bPp0",
+      "at": "s1:start-40",
+      "until": "s2:cloth+14",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPp0",
+      "at": "s1:start-40",
+      "until": "s2:cloth+14",
+      "dur": 10,
+      "dx": -6.5
+     },
+     {
+      "layer": "bPp1",
+      "at": "s1:start-40",
+      "until": "s2:resin+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPp1",
+      "at": "s1:start-40",
+      "until": "s2:resin+6",
+      "dur": 10,
+      "dx": -6.5
+     },
+     {
+      "layer": "bCuT",
+      "at": "s1:start-40",
+      "until": "s2:cu-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCuT",
+      "at": "s1:start-40",
+      "until": "s2:cu-2",
+      "dur": 10,
+      "dx": -6.5
+     },
+     {
+      "layer": "bPlaten",
+      "at": "s2:cu+10",
+      "until": "s12:start+400",
+      "dur": 12,
+      "dy": -3.2
+     },
+     {
+      "layer": "cPly0",
+      "at": "s3:rc-6",
+      "until": "s3:hard-6",
+      "dur": 14,
+      "dy": 1.0
+     },
+     {
+      "layer": "cPly1",
+      "at": "s3:rc-3",
+      "until": "s3:hard-4",
+      "dur": 14,
+      "dy": 2.3
+     },
+     {
+      "layer": "cCuT",
+      "at": "s3:rc+0",
+      "until": "s3:hard-2",
+      "dur": 14,
+      "dy": 3.6
+     },
+     {
+      "layer": "dAbfLine",
+      "at": "s1:start-40",
+      "until": "s4:fine-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS0",
+      "at": "s5:much-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS1",
+      "at": "s1:start-40",
+      "until": "s5:much-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS1",
+      "at": "s5:much-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS2",
+      "at": "s1:start-40",
+      "until": "s5:much-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS2",
+      "at": "s5:much+0",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS3",
+      "at": "s1:start-40",
+      "until": "s5:much+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS3",
+      "at": "s5:much+2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS4",
+      "at": "s1:start-40",
+      "until": "s5:much+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS4",
+      "at": "s5:much+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS5",
+      "at": "s1:start-40",
+      "until": "s5:much+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS5",
+      "at": "s5:much+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS6",
+      "at": "s1:start-40",
+      "until": "s5:much+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS6",
+      "at": "s5:much+8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS7",
+      "at": "s1:start-40",
+      "until": "s5:much+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS7",
+      "at": "s5:much+10",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS8",
+      "at": "s1:start-40",
+      "until": "s5:much+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS8",
+      "at": "s5:warp-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS9",
+      "at": "s1:start-40",
+      "until": "s5:warp-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS9",
+      "at": "s5:warp-4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s1:start-40",
+      "until": "s5:warp-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s5:warp-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s1:start-40",
+      "until": "s5:warp-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s5:warp+0",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s1:start-40",
+      "until": "s5:warp+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s5:warp+2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s1:start-40",
+      "until": "s5:warp+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s5:warp+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s1:start-40",
+      "until": "s5:warp+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s5:warp+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s1:start-40",
+      "until": "s5:warp+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s5:warp+8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS16",
+      "at": "s1:start-40",
+      "until": "s5:warp+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eArrC",
+      "at": "s1:start-40",
+      "until": "s5:little-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eArrC",
+      "at": "s5:warp",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eArrS",
+      "at": "s1:start-40",
+      "until": "s5:much-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eArrS",
+      "at": "s5:warp+20",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eOpen",
+      "at": "s1:start-40",
+      "until": "s5:warp+4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fA0",
+      "at": "s6:less-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA1",
+      "at": "s1:start-40",
+      "until": "s6:less-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA1",
+      "at": "s6:less-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA2",
+      "at": "s1:start-40",
+      "until": "s6:less-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA2",
+      "at": "s6:less+2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA3",
+      "at": "s1:start-40",
+      "until": "s6:less+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA3",
+      "at": "s6:less+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA4",
+      "at": "s1:start-40",
+      "until": "s6:less+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA4",
+      "at": "s6:less+10",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA5",
+      "at": "s1:start-40",
+      "until": "s6:less+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA5",
+      "at": "s6:less+14",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA6",
+      "at": "s1:start-40",
+      "until": "s6:less+14",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB0",
+      "at": "s6:less-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB1",
+      "at": "s1:start-40",
+      "until": "s6:less-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB1",
+      "at": "s6:less-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB2",
+      "at": "s1:start-40",
+      "until": "s6:less-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB2",
+      "at": "s6:less+2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB3",
+      "at": "s1:start-40",
+      "until": "s6:less+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB3",
+      "at": "s6:less+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB4",
+      "at": "s1:start-40",
+      "until": "s6:less+6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB4",
+      "at": "s6:less+10",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB5",
+      "at": "s1:start-40",
+      "until": "s6:less+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB5",
+      "at": "s6:less+14",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB6",
+      "at": "s1:start-40",
+      "until": "s6:less+14",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gCart",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gR0",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gR1",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gR2",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gR3",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gR4",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gR5",
+      "at": "s7:cloth-4",
+      "until": "s12:start+400",
+      "dur": 36,
+      "dx": 13.0,
+      "dz": -3.2
+     },
+     {
+      "layer": "gOut",
+      "at": "s1:start-40",
+      "until": "s7:out-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "hP0",
+      "at": "s1:start-40",
+      "until": "s8:jp-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hP0",
+      "at": "s1:start-40",
+      "until": "s8:jp-4",
+      "dur": 14,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "hP1",
+      "at": "s1:start-40",
+      "until": "s8:tg-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hP1",
+      "at": "s1:start-40",
+      "until": "s8:tg-6",
+      "dur": 14,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "iTag0",
+      "at": "s1:start-40",
+      "until": "s9:kin-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag0",
+      "at": "s1:start-40",
+      "until": "s9:kin-8",
+      "dur": 10,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "iTag1",
+      "at": "s1:start-40",
+      "until": "s9:nya-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag1",
+      "at": "s1:start-40",
+      "until": "s9:nya-8",
+      "dur": 10,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "iTag2",
+      "at": "s1:start-40",
+      "until": "s9:uni-8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag2",
+      "at": "s1:start-40",
+      "until": "s9:uni-8",
+      "dur": 10,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "iPhone",
+      "at": "s1:start-40",
+      "until": "s9:phone-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iPhone",
+      "at": "s1:start-40",
+      "until": "s9:phone-6",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "iDimm",
+      "at": "s1:start-40",
+      "until": "s9:mem-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iDimm",
+      "at": "s1:start-40",
+      "until": "s9:mem-6",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "jTop",
+      "at": "s10:core-10",
+      "until": "s10:gs-4",
+      "dur": 12,
+      "dy": 1.8
+     },
+     {
+      "layer": "jDie",
+      "at": "s10:core-10",
+      "until": "s10:gs-4",
+      "dur": 12,
+      "dy": 1.8
+     },
+     {
+      "layer": "jCore",
+      "at": "s10:core+2",
+      "until": "s12:start+400",
+      "dur": 16,
+      "dx": -14.0
+     },
+     {
+      "layer": "jCore",
+      "at": "s10:glass-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jGlass",
+      "at": "s1:start-40",
+      "until": "s10:core+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jGlass",
+      "at": "s1:start-40",
+      "until": "s10:glass-6",
+      "dur": 16,
+      "dx": 14.0
+     },
+     {
+      "layer": "aPcb",
+      "at": "s2:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "aSub",
+      "at": "s2:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "aDie",
+      "at": "s2:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "aMold",
+      "at": "s2:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "aWire",
+      "at": "s2:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "aGlow",
+      "at": "s2:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bFrame",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bFrame",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bRoll",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bRoll",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bGuide",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bGuide",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bDip",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bDip",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bSqA",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bSqA",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bSqB",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bSqB",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bTank",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bTank",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bWeb",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bWeb",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bBead",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bBead",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnifeBody",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnifeBody",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnife",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKnife",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bTable",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bTable",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bOven",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bOven",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPress",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPress",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCuB",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCuB",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPp0",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPp0",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPp1",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPp1",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCuT",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCuT",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPlaten",
+      "at": "s1:start-40",
+      "until": "s2:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bPlaten",
+      "at": "s3:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cStand",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cStand",
+      "at": "s4:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cRc",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cRc",
+      "at": "s4:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cCuB",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cCuB",
+      "at": "s4:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cPly0",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cPly0",
+      "at": "s4:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cPly1",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cPly1",
+      "at": "s4:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cCuT",
+      "at": "s1:start-40",
+      "until": "s3:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cCuT",
+      "at": "s4:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dStand",
+      "at": "s1:start-40",
+      "until": "s4:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dStand",
+      "at": "s5:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dBt",
+      "at": "s1:start-40",
+      "until": "s4:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dBt",
+      "at": "s5:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dBtDie",
+      "at": "s1:start-40",
+      "until": "s4:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dBtDie",
+      "at": "s5:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dAbf",
+      "at": "s1:start-40",
+      "until": "s4:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dAbf",
+      "at": "s5:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dAbfLine",
+      "at": "s1:start-40",
+      "until": "s4:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dAbfLine",
+      "at": "s5:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dAbfDie",
+      "at": "s1:start-40",
+      "until": "s4:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "dAbfDie",
+      "at": "s5:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eHeat",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eHeat",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eMb",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eMb",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS0",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS0",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS1",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS1",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS2",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS2",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS3",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS3",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS4",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS4",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS5",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS5",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS6",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS6",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS7",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS7",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS8",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS8",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS9",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS9",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS10",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS11",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS12",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS13",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS14",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS15",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS16",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eS16",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eArrS",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eArrS",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eArrC",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eArrC",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eOpen",
+      "at": "s1:start-40",
+      "until": "s5:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eOpen",
+      "at": "s6:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fHeat",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fHeat",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA0",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA0",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB0",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB0",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA1",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA1",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB1",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB1",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA2",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA2",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB2",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB2",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA3",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA3",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB3",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB3",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA4",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA4",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB4",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB4",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA5",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA5",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB5",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB5",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA6",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fA6",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB6",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fB6",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fSwA",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fSwA",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fSwB",
+      "at": "s1:start-40",
+      "until": "s6:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fSwB",
+      "at": "s7:voice+13",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gCart",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gCart",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR0",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR0",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR1",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR1",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR2",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR2",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR3",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR3",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR4",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR4",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR5",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gR5",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gBig",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gBig",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gSmall",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gSmall",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gOut",
+      "at": "s1:start-40",
+      "until": "s7:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "gOut",
+      "at": "s8:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hLoom",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hLoom",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hGear",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hGear",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hBeam",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hBeam",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hWarp",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hWarp",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hHeddle0",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hHeddle0",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hHeddle1",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hHeddle1",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hReed",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hReed",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hRapier",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hRapier",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hCloth",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hCloth",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hTake",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hTake",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hP0",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hP0",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hP1",
+      "at": "s1:start-40",
+      "until": "s8:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hP1",
+      "at": "s9:voice+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iPallet",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iPallet",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iBox0",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iBox0",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag0",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag0",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iBox1",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iBox1",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag1",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag1",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iBox2",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iBox2",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag2",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iTag2",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iPhone",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iPhone",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iDimm",
+      "at": "s1:start-40",
+      "until": "s9:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "iDimm",
+      "at": "s10:voice-1",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jStand",
+      "at": "s1:start-40",
+      "until": "s10:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jBot",
+      "at": "s1:start-40",
+      "until": "s10:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jCore",
+      "at": "s1:start-40",
+      "until": "s10:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jGlass",
+      "at": "s1:start-40",
+      "until": "s10:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jTop",
+      "at": "s1:start-40",
+      "until": "s10:voice-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "jDie",
+      "at": "s1:start-40",
+      "until": "s10:voice-6",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "chipGlow",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "wirePulse",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s2:start+6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 9 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "cheap": {
+        "at": "cheap"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "chip": {
+        "at": "chip"
+       },
+       "pricey": {
+        "at": "pricey"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "you",
+   "para": 2,
+   "narration": "這集看 B T 載板，骨架是玻璃纖維布，泡樹脂、壓銅箔。",
+   "tts": "這集看 B T 載板，骨架是玻璃纖維布，泡樹脂、壓銅箔。",
+   "subtitle": {
+    "zh": "這集看 BT 載板\n骨架是玻璃纖維布\n泡樹脂壓銅箔",
+    "en": "This episode: BT substrates. | The skeleton is glass-fiber cloth, | soaked in resin, pressed with copper foil."
+   },
+   "keywords": [
+    "玻璃纖維布",
+    "樹脂",
+    "銅箔"
+   ],
+   "cues": [
+    {
+     "id": "bt",
+     "text": "載板"
+    },
+    {
+     "id": "cloth",
+     "text": "玻璃纖維布"
+    },
+    {
+     "id": "resin",
+     "text": "泡樹脂"
+    },
+    {
+     "id": "cu",
+     "text": "壓銅箔"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "三菱瓦斯化學產品頁；Tom's Hardware；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "line",
+      "at": "start-8",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 57.0,
+      "y": 3.0,
+      "d": 54,
+      "elev": 20
+     },
+     {
+      "at": "cu-12",
+      "dur": 22,
+      "x": 68.5,
+      "y": 3.4,
+      "d": 54,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "rollSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bGuideSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bDipSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bSqASpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bSqBSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "webFlow",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "ovenGlow",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "platenHeat",
+      "at": "cu+10",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "knifeCut",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "beadPulse",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bRoll",
+      "text": "玻璃纖維布捲",
+      "en": "Glass-fiber cloth roll",
+      "color": "blue",
+      "at": "voice-3",
+      "until": "bt+12",
+      "cut": true
+     },
+     {
+      "part": "bTank",
+      "text": "泡樹脂（含浸）",
+      "en": "Resin bath",
+      "color": "amber",
+      "at": "bt+14",
+      "until": "cu-12",
+      "cut": true
+     },
+     {
+      "part": "bPress",
+      "text": "疊銅箔、熱壓",
+      "en": "Copper foil + hot press",
+      "color": "amber",
+      "at": "cu-10",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-make",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "骨架是玻璃纖維布",
+      "tag": "示意",
+      "t": {
+       "bt": {
+        "at": "bt"
+       },
+       "cloth": {
+        "at": "cloth"
+       },
+       "resin": {
+        "at": "resin"
+       },
+       "cu": {
+        "at": "cu"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "像鋼筋混凝土，布當鋼筋、樹脂當水泥，又硬又耐熱。",
+   "tts": "像鋼筋混凝土，布當鋼筋、樹脂當水泥，又硬又耐熱。",
+   "subtitle": {
+    "zh": "像鋼筋混凝土\n布當鋼筋\n樹脂當水泥\n又硬又耐熱",
+    "en": "Like reinforced concrete: | cloth is the rebar, | resin is the cement, | stiff and heat-resistant."
+   },
+   "keywords": [
+    "鋼筋混凝土",
+    "耐熱"
+   ],
+   "cues": [
+    {
+     "id": "rc",
+     "text": "鋼筋混凝土"
+    },
+    {
+     "id": "rebar",
+     "text": "布當鋼筋"
+    },
+    {
+     "id": "cement",
+     "text": "樹脂當水泥"
+    },
+    {
+     "id": "hard",
+     "text": "又硬"
+    },
+    {
+     "id": "heat",
+     "text": "耐熱"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "J-STAGE 1984（BT 樹脂）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 118.8,
+      "y": -0.4,
+      "d": 72,
+      "elev": 20
+     }
+    ],
+    "labels": [
+     {
+      "part": "cCuT",
+      "text": "上銅箔、下銅箔",
+      "en": "Copper foil, top and bottom",
+      "color": "blue",
+      "at": "voice-3",
+      "until": "rebar+6",
+      "cut": true
+     },
+     {
+      "part": "cPly",
+      "text": "預浸材：布＝鋼筋",
+      "en": "Prepreg: cloth = rebar",
+      "color": "amber",
+      "at": "rebar+8",
+      "until": "cement+30",
+      "cut": true
+     },
+     {
+      "part": "cResin",
+      "text": "樹脂＝水泥（包住布）",
+      "en": "Resin = cement",
+      "color": "amber",
+      "at": "cement+32",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-rebar",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像鋼筋混凝土",
+      "tag": "比喻；示意",
+      "t": {
+       "rc": {
+        "at": "rc"
+       },
+       "rebar": {
+        "at": "rebar"
+       },
+       "cement": {
+        "at": "cement"
+       },
+       "hard": {
+        "at": "hard"
+       },
+       "heat": {
+        "at": "heat"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "記憶體和手機晶片多用它；味之素膜沒布，線更細，給人工智慧晶片。",
+   "tts": "記憶體和手機晶片多用它；味之素膜沒布，線更細，給人工智慧晶片。",
+   "subtitle": {
+    "zh": "記憶體和手機晶片\n多用它\n味之素膜沒布\n線更細\n給人工智慧晶片",
+    "en": "Memory and phone chips | mostly use it. | Ajinomoto film has no cloth, | so lines are finer, | for AI chips."
+   },
+   "keywords": [
+    "記憶體",
+    "沒布",
+    "線更細"
+   ],
+   "cues": [
+    {
+     "id": "mem",
+     "text": "記憶體"
+    },
+    {
+     "id": "phone",
+     "text": "手機"
+    },
+    {
+     "id": "abf",
+     "text": "味之素膜"
+    },
+    {
+     "id": "nocloth",
+     "text": "沒布"
+    },
+    {
+     "id": "fine",
+     "text": "線更細"
+    },
+    {
+     "id": "ai",
+     "text": "人工智慧"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "中央社 2023；Polymer Innovation Blog；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 180,
+      "y": -2.4,
+      "d": 76,
+      "elev": 22
+     }
+    ],
+    "labels": [
+     {
+      "part": "dBt",
+      "text": "BT：每層有布、線粗",
+      "en": "BT: cloth in every layer",
+      "color": "amber",
+      "at": "voice-3",
+      "until": "abf-4",
+      "cut": true
+     },
+     {
+      "part": "dAbf",
+      "text": "味之素膜：沒布、線細",
+      "en": "ABF film: no cloth, finer lines",
+      "color": "blue",
+      "at": "abf-2",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-vs",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "BT 和味之素膜差在哪",
+      "tag": "示意（不標線寬）",
+      "t": {
+       "mem": {
+        "at": "mem"
+       },
+       "phone": {
+        "at": "phone"
+       },
+       "abf": {
+        "at": "abf"
+       },
+       "nocloth": {
+        "at": "nocloth"
+       },
+       "fine": {
+        "at": "fine"
+       },
+       "ai": {
+        "at": "ai"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "twist",
+   "para": 5,
+   "narration": "麻煩在布。晶片受熱幾乎不脹，載板脹得多，像兩人三腳不同步，一拉就翹。",
+   "tts": "麻煩在布。晶片受熱幾乎不脹，載板脹得多，像兩人三腳不同步，一拉就翹。",
+   "subtitle": {
+    "zh": "麻煩在布\n晶片受熱幾乎不脹\n載板脹得多\n像兩人三腳不同步\n一拉就翹",
+    "en": "The catch is the cloth. | Heated, the chip barely expands; | the substrate expands a lot, | like a three-legged race out of step: | one pull and it warps."
+   },
+   "keywords": [
+    "受熱",
+    "兩人三腳",
+    "翹"
+   ],
+   "cues": [
+    {
+     "id": "cloth",
+     "text": "麻煩在布"
+    },
+    {
+     "id": "heat",
+     "text": "受熱"
+    },
+    {
+     "id": "little",
+     "text": "幾乎不脹"
+    },
+    {
+     "id": "much",
+     "text": "脹得多"
+    },
+    {
+     "id": "legs",
+     "text": "兩人三腳"
+    },
+    {
+     "id": "warp",
+     "text": "一拉就翹"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiEngineering；ECTC 2015；示意，誇大"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 240,
+      "y": -2.0,
+      "d": 64,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "heatE",
+      "at": "heat-4",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "openPulse",
+      "at": "warp+12",
+      "ramp": 6,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eDie",
+      "text": "晶片：幾乎不脹",
+      "en": "Chip: barely expands",
+      "color": "blue",
+      "at": "heat-6",
+      "until": "much-4",
+      "cut": true
+     },
+     {
+      "part": "eSub",
+      "text": "載板：脹得多",
+      "en": "Substrate: expands more",
+      "color": "amber",
+      "at": "much-2",
+      "until": "warp-6",
+      "cut": true
+     },
+     {
+      "part": "eOpen",
+      "text": "兩端錫球離開焊墊",
+      "en": "Edge balls lift off",
+      "color": "amber",
+      "at": "warp-4",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-cte",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像兩人三腳不同步",
+      "tag": "示意，誇大；數值見出處",
+      "t": {
+       "cloth": {
+        "at": "cloth"
+       },
+       "heat": {
+        "at": "heat"
+       },
+       "little": {
+        "at": "little"
+       },
+       "much": {
+        "at": "much"
+       },
+       "legs": {
+        "at": "legs"
+       },
+       "warp": {
+        "at": "warp"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "低膨脹玻璃布脹得少，能拉住載板；據報導，約九成出自日本日東紡。",
+   "tts": "低膨脹玻璃布脹得少，能拉住載板；據報導，約九成出自日本日東紡。",
+   "subtitle": {
+    "zh": "低膨脹玻璃布\n脹得少\n能拉住載板\n據報導\n約九成出自\n日本日東紡",
+    "en": "Low-expansion glass cloth | expands less | and holds the substrate back. | Reportedly, | about 90% comes from | Japan's Nittobo."
+   },
+   "keywords": [
+    "低膨脹",
+    "九成",
+    "日東紡"
+   ],
+   "cues": [
+    {
+     "id": "tg",
+     "text": "低膨脹玻璃布"
+    },
+    {
+     "id": "less",
+     "text": "脹得少"
+    },
+    {
+     "id": "hold",
+     "text": "拉住"
+    },
+    {
+     "id": "rep",
+     "text": "據報導"
+    },
+    {
+     "id": "ninety",
+     "text": "九成"
+    },
+    {
+     "id": "jp",
+     "text": "日本"
+    },
+    {
+     "id": "nitto",
+     "text": "日東紡"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IBM Research；TrendForce 2026/2/4；媒體報導"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 299.2,
+      "y": -2.0,
+      "d": 66,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "heatF",
+      "at": "tg-4",
+      "ramp": 8,
+      "until": "s7:start+30"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fA",
+      "text": "一般布：翹很多",
+      "en": "Regular cloth: warps a lot",
+      "color": "amber",
+      "at": "less-4",
+      "until": "hold+20",
+      "cut": true
+     },
+     {
+      "part": "fB",
+      "text": "低膨脹布：翹很少",
+      "en": "Low-CTE cloth: warps little",
+      "color": "blue",
+      "at": "hold+22",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-tglass",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "低膨脹玻璃布",
+      "tag": "媒體報導、研調估計",
+      "t": {
+       "tg": {
+        "at": "tg"
+       },
+       "less": {
+        "at": "less"
+       },
+       "hold": {
+        "at": "hold"
+       },
+       "rep": {
+        "at": "rep"
+       },
+       "ninety": {
+        "at": "ninety"
+       },
+       "nitto": {
+        "at": "nitto"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.4,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "人工智慧載板的核心也要這種布，像大店搶光麵粉，小店斷貨。",
+   "tts": "人工智慧載板的核心也要這種布，像大店搶光麵粉，小店斷貨。",
+   "subtitle": {
+    "zh": "人工智慧載板的核心\n也要這種布\n像大店搶光麵粉\n小店斷貨",
+    "en": "AI substrates' cores | need this cloth too, | like a big shop buying up all the flour: | small shops run out."
+   },
+   "keywords": [
+    "核心",
+    "麵粉",
+    "斷貨"
+   ],
+   "cues": [
+    {
+     "id": "ai",
+     "text": "人工智慧載板"
+    },
+    {
+     "id": "core",
+     "text": "核心"
+    },
+    {
+     "id": "cloth",
+     "text": "這種布"
+    },
+    {
+     "id": "big",
+     "text": "大店"
+    },
+    {
+     "id": "flour",
+     "text": "麵粉"
+    },
+    {
+     "id": "small",
+     "text": "小店"
+    },
+    {
+     "id": "out",
+     "text": "斷貨"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "高盛 2025/10；Counterpoint；分析師說法"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice+10",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice+10",
+      "dur": 1,
+      "x": 361.5,
+      "y": 0.0,
+      "d": 84,
+      "elev": 26
+     }
+    ],
+    "labels": [
+     {
+      "part": "gRack",
+      "text": "低膨脹玻璃布捲",
+      "en": "Low-CTE cloth rolls",
+      "color": "blue",
+      "at": "voice+11",
+      "until": "core+6",
+      "cut": true
+     },
+     {
+      "part": "gBig",
+      "text": "人工智慧載板（大店）",
+      "en": "AI substrates (big shop)",
+      "color": "amber",
+      "at": "core+8",
+      "until": "small-6",
+      "cut": true
+     },
+     {
+      "part": "gSmall",
+      "text": "BT 載板（小店）：斷貨",
+      "en": "BT substrates: out of stock",
+      "color": "amber",
+      "at": "small-4",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-tglass",
+      "at": "voice-3",
+      "until": "voice+11",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "低膨脹玻璃布",
+      "tag": "媒體報導、研調估計",
+      "t": {
+       "tg": {
+        "at": "s6:tg"
+       },
+       "less": {
+        "at": "s6:less"
+       },
+       "hold": {
+        "at": "s6:hold"
+       },
+       "rep": {
+        "at": "s6:rep"
+       },
+       "ninety": {
+        "at": "s6:ninety"
+       },
+       "nitto": {
+        "at": "s6:nitto"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "bt-flour",
+      "at": "voice+11",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像大店搶光麵粉",
+      "tag": "分析師普遍認為（高盛 2025/10）",
+      "t": {
+       "ai": {
+        "at": "ai"
+       },
+       "core": {
+        "at": "core"
+       },
+       "big": {
+        "at": "big"
+       },
+       "small": {
+        "at": "small"
+       },
+       "out": {
+        "at": "out"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "日東紡在日本、台灣擴廠，台玻的布也開始出貨。",
+   "tts": "日東紡在日本、台灣擴廠，台玻的布也開始出貨。",
+   "subtitle": {
+    "zh": "日東紡在日本\n台灣擴廠\n台玻的布\n也開始出貨",
+    "en": "Nittobo is expanding in Japan | and Taiwan; | Taiwan Glass's cloth | has started shipping too."
+   },
+   "keywords": [
+    "日東紡",
+    "擴廠",
+    "台玻"
+   ],
+   "cues": [
+    {
+     "id": "nitto",
+     "text": "日東紡"
+    },
+    {
+     "id": "jp",
+     "text": "日本"
+    },
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "expand",
+     "text": "擴廠"
+    },
+    {
+     "id": "tg",
+     "text": "台玻"
+    },
+    {
+     "id": "ship",
+     "text": "出貨"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "日東紡公告；Digitimes 2026/11/6；鉅亨網"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "line",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 422.5,
+      "y": 2.0,
+      "d": 76,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "heddleA",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s9:start+20"
+     },
+     {
+      "id": "heddleB",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s9:start+20"
+     },
+     {
+      "id": "reedBeat",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s9:start+20"
+     },
+     {
+      "id": "rapier",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s9:start+20"
+     },
+     {
+      "id": "beamSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s9:start+20"
+     },
+     {
+      "id": "gearSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s9:start+20"
+     },
+     {
+      "id": "takeSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s9:start+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hLoom",
+      "text": "劍桿織布機（示意）",
+      "en": "Rapier loom (schematic)",
+      "color": "blue",
+      "at": "voice-3",
+      "until": "jp+17",
+      "cut": true
+     },
+     {
+      "part": "hP0",
+      "text": "日東紡擴廠、台玻出貨",
+      "en": "Nittobo expands; Taiwan Glass ships",
+      "color": "amber",
+      "at": "jp+19",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-expand",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "擴廠與新供應商",
+      "tag": "公司說法、媒體報導；截至 2026/11/27",
+      "t": {
+       "nitto": {
+        "at": "nitto"
+       },
+       "jp": {
+        "at": "jp"
+       },
+       "tw": {
+        "at": "tw"
+       },
+       "expand": {
+        "at": "expand"
+       },
+       "tg": {
+        "at": "tg"
+       },
+       "ship": {
+        "at": "ship"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.7,
+   "holdSec": 0.6,
+   "headSec": 0.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "台灣做 B T 載板的有景碩、南電、欣興，手機和記憶體多靠它們。",
+   "tts": "台灣做 B T 載板的有景碩、南電、欣興，手機和記憶體多靠它們。",
+   "subtitle": {
+    "zh": "台灣做 BT 載板的\n有景碩南電欣興\n手機和記憶體\n多靠它們",
+    "en": "Taiwan's BT substrate makers: | Kinsus, Nan Ya PCB, Unimicron. | Phones and memory | rely on them."
+   },
+   "keywords": [
+    "景碩",
+    "南電",
+    "欣興"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "kin",
+     "text": "景碩"
+    },
+    {
+     "id": "nya",
+     "text": "南電"
+    },
+    {
+     "id": "uni",
+     "text": "欣興"
+    },
+    {
+     "id": "phone",
+     "text": "手機"
+    },
+    {
+     "id": "mem",
+     "text": "記憶體"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "經濟日報；旺得富 2026/7/16；截至 11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice+1",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice+1",
+      "dur": 1,
+      "x": 482.0,
+      "y": 1.6,
+      "d": 96,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "screenPhone",
+      "at": "phone",
+      "ramp": 8,
+      "until": "s10:start+30"
+     }
+    ],
+    "labels": [
+     {
+      "part": "iPhone",
+      "text": "手機和記憶體",
+      "en": "Phones and memory",
+      "color": "blue",
+      "at": "phone-4",
+      "until": "end",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-expand",
+      "at": "voice-3",
+      "until": "voice+2",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "擴廠與新供應商",
+      "tag": "公司說法、媒體報導；截至 2026/11/27",
+      "t": {
+       "nitto": {
+        "at": "s8:nitto"
+       },
+       "jp": {
+        "at": "s8:jp"
+       },
+       "tw": {
+        "at": "s8:tw"
+       },
+       "expand": {
+        "at": "s8:expand"
+       },
+       "tg": {
+        "at": "s8:tg"
+       },
+       "ship": {
+        "at": "s8:ship"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "bt-co",
+      "at": "voice+2",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "台灣的 BT 載板廠",
+      "tag": "公開資訊；截至 2026/11/27",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "kin": {
+        "at": "kin"
+       },
+       "nya": {
+        "at": "nya"
+       },
+       "uni": {
+        "at": "uni"
+       },
+       "phone": {
+        "at": "phone"
+       },
+       "mem": {
+        "at": "mem"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.8,
+   "holdSec": 0.6,
+   "headSec": 0.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "布再改還是會脹。下一集，把核心換成整片玻璃，看玻璃基板。",
+   "tts": "布再改還是會脹。下一集，把核心換成整片玻璃，看玻璃基板。",
+   "subtitle": {
+    "zh": "布再改\n還是會脹\n下一集\n把核心換成整片玻璃\n看玻璃基板",
+    "en": "Even improved cloth | still expands. | Next episode: | swap the core for a solid sheet of glass: | glass substrates."
+   },
+   "keywords": [
+    "整片玻璃",
+    "玻璃基板"
+   ],
+   "cues": [
+    {
+     "id": "still",
+     "text": "還是會脹"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "core",
+     "text": "核心"
+    },
+    {
+     "id": "glass",
+     "text": "整片玻璃"
+    },
+    {
+     "id": "gs",
+     "text": "玻璃基板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Intel 2023 新聞稿；IRZ；截至 2026/11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 538.5,
+      "y": -0.6,
+      "d": 62,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "tgvPulse",
+      "at": "gs",
+      "ramp": 8,
+      "until": "s12:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "jCore",
+      "text": "布＋樹脂的核心",
+      "en": "Cloth + resin core",
+      "color": "amber",
+      "at": "still",
+      "until": "glass-8",
+      "cut": true
+     },
+     {
+      "part": "jGlass",
+      "text": "整片玻璃（穿孔銅柱）",
+      "en": "Solid glass core",
+      "color": "blue",
+      "at": "glass-2",
+      "until": "gs+40",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-next",
+      "at": "voice-3",
+      "until": "s11:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：玻璃基板",
+      "tag": "截至 2026/11/27 尚未量產",
+      "t": {
+       "still": {
+        "at": "still"
+       },
+       "next": {
+        "at": "next"
+       },
+       "core": {
+        "at": "core"
+       },
+       "glass": {
+        "at": "glass"
+       },
+       "gs": {
+        "at": "gs"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "你覺得缺料會缺多久？留言 B T，拿完整資料。",
+   "tts": "你覺得缺料會缺多久？留言 B T，拿完整資料。",
+   "subtitle": {
+    "zh": "你覺得缺料\n會缺多久？\n留言 BT\n拿完整資料",
+    "en": "How long do you think | the shortage will last? | Comment \"BT\" | for the full notes."
+   },
+   "keywords": [
+    "缺料",
+    "留言"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "缺多久"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報 2026/10/21；高盛 2025/10"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 540,
+      "y": 0.4,
+      "d": 44,
+      "elev": 24
+     },
+     {
+      "at": "start",
+      "dur": 90,
+      "x": 540,
+      "y": 0.4,
+      "d": 50,
+      "elev": 26
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "bt-cta",
+      "at": "voice-3",
+      "until": "s12:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "換你說",
+      "tag": "截至 2026/11/27 尚未確定何時緩解",
+      "t": {
+       "q": {
+        "at": "q"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.5,
+   "holdSec": 0.6,
+   "headSec": 0.2
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "玻璃基板",
+     "trail": [
+      "把核心換成整片玻璃"
+     ],
+     "comment": "BT",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
