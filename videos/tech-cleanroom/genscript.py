@@ -124,7 +124,7 @@ VIS += [hid(l, "s3:ffu-10", "s3:down-6", 10, 0) for l in ("roof", "roofTop")]
 # s4：拉出一台（爆炸 2.1-3）：風扇箱往上、濾網往下、外框留在原位；切到纖維放大期間組回
 VIS += [mv("oneFan", "s4:voice-3", "s4:maze+30", 20, dy=1.1), mv("oneHepa", "s4:voice-3", "s4:maze+30", 20, dy=-0.8)]
 # s4：高架地板往下分開（爆炸 2.1-4），露出回風層；念完「重新過濾」組回（2.1-5）
-VIS += [mv(l, "s4:floor-2", "s4:again+14", 20, dy=-0.6) for l in ("rFloor", "slab")] + [mv("tools", "s4:floor-2", "s4:again+14", 20, dy=0.5)]   # 機台同時往上 0.5：地板與機台之間拉開約 1.1 的空隙
+VIS += [mv(l, "s4:floor-2", "s4:again+2", 18, dy=-0.6) for l in ("rFloor", "slab")] + [mv("tools", "s4:floor-2", "s4:again+2", 18, dy=0.5)]   # 機台同時往上 0.5：地板與機台之間拉開約 1.1 的空隙
 # s7：靜電電弧只在念「靜電」時出現約 0.7 秒（前後不留白色殘形）
 vis("hSpark", [("s7:static+2", "s7:static+24")], 1)
 # s9：水、氣、電管路依序淡入
@@ -132,9 +132,9 @@ vis("utilW", [("s9:w-4", FAR)], 10); vis("utilG", [("s9:w+10", FAR)], 10); vis("
 # 站 F：攔住的灰塵分三批出現（越積越多）
 vis("fStuck0", [("s4:stick-6", "s4:floor-4")], 4); vis("fStuck1", [("s4:stick+14", "s4:floor-4")], 4); vis("fStuck2", [("s4:stick+34", "s4:floor-4")], 4)
 # 站 P：無塵衣從上方落下套上（連身服 → 頭罩 → 手套 → 鞋套）；頭罩套上後頭髮收掉
-VIS += [hid("person", "s5:suit+36", FAR, 1, 0)]       # 無塵衣全部套好後收掉便服層（避免便服從連身服穿出來）
-for l, k in (("suitBody", 0), ("suitHood", 8), ("suitGlove", 14), ("suitBoot", 20)):
-    VIS += [{"layer": l, "at": T0, "until": f"s5:suit+{k}", "dur": 16, "dy": {"suitBody": 1.6, "suitHood": 1.2, "suitGlove": 2.0, "suitBoot": 2.4}[l], "fallIn": True, "bounce": 0.05, "opacity": 0}]
+VIS += [hid("person", "s5:suit+11", FAR, 1, 0)]       # 無塵衣全部套好後收掉便服層（避免便服從連身服穿出來）
+for l, k in (("suitBody", -6), ("suitHood", -4), ("suitGlove", -2), ("suitBoot", 0)):
+    VIS += [{"layer": l, "at": T0, "until": f"s5:suit{k:+d}" if k else "s5:suit", "dur": 16, "dy": {"suitBody": 1.6, "suitHood": 1.2, "suitGlove": 2.0, "suitBoot": 2.4}[l], "fallIn": True, "bounce": 0.05, "opacity": 0}]
 # 站 B：漢唐模組一開始就在；亞翔、洋基念到時從上方落下
 for l, c in (("bMod0", "uis"), ("bMod1", "lk"), ("bMod2", "yk")):
     VIS += [mv(l, f"s8:{c}-4", f"s8:{c}+8", 8, dy=0.6)]      # 念到哪家，那個模組跳起一下（三個一開始就都在，不留空景）
@@ -180,7 +180,7 @@ P["s5"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
         + [run(f"leak{i}", "hair-4", "s6:start+4", 6) for i in range(6)] + [run("leakGlow", "hair-4", "s6:start+4", 6), run("pDown", "start", "s6:start+4", 6)]
         + [run("walkL", "hair", "s6:start+4", 12, gain=0.6), run("walkR", "hair", "s6:start+4", 12, gain=0.6), run("armL", "hair", "s6:start+4", 12, gain=0.6), run("armR", "hair", "s6:start+4", 12, gain=0.6)],
  "labels": [lab("person", "皮屑、頭髮", "Skin flakes, hair", "amber", "src", "src+46"),
-            lab("suit", "無塵衣", "Cleanroom suit", "blue", "suit+38", "suit+84")],
+            lab("suit", "無塵衣", "Cleanroom suit", "blue", "suit+18", "suit+64")],
  "overlay": [card("s5", "cr-suit", "人是最大的灰塵來源", "示意（供應商估計，不標數字）", {"src": "src", "ppl": "ppl", "suit": "suit", "rain": "rain", "hair": "hair"})]}
 P["s6"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "shot": [shot(CC, 129.0, 0.54, 51, 30, 1)],
