@@ -259,6 +259,7 @@ def main():
     buf, rec = syn.render_cues(table, total, end_t)
     os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
     syn.write_wav(out, buf)
+    syn.write_wav(out + '.impact.wav', syn.LAST_IMPACT)   # 撞擊類分軌（2026-11-27），add-sfx 的 mix 自動讀
     summary = dict(Counter(c['type'] for c in rec))
     json.dump(dict(slug=slug, endCardSec=end_t, count=len(rec), byType=summary, cues=rec), open(cues_path, 'w'), ensure_ascii=False, indent=1)
     print(f'{slug}: {len(rec)} 個音效 {summary}；片尾卡 {end_t}s 起靜音 → {out}')
