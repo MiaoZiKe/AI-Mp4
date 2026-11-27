@@ -48,7 +48,7 @@ export const REPORT_TECH_LINE = "用台灣人平常講話的口音，不特別�
  * 一樣只有一句、沒有人設場景；不寫「小聲、放低、講心事」這類會引出氣音或耳語的描述，只要求平常的音量和聲音。其他 delivery 的輸出不變。 */
 export const PLAIN_LINE = "用台灣人平常講話的口音，不特別捲舌、不兒化，用平常說話的音量和聲音，正常語速、不拖尾音、不用氣音、不演，直接說：";
 /** "tech-b"＝科技頻道「說明 B」（使用者 2026/11/15 決定 Iapetus＋說明 B；和 docs/prompts/tech-*-旁白.txt 交給使用者在 AI Studio 用的那句一字不差）。 */
-export const TECH_B_LINE = "用台灣人平常講話的口音，不兒化，但捲舌音（ㄓㄔㄕㄖ）一定要念清楚、不可念成ㄗㄘㄙ，語氣溫和親切，像在跟一個好奇的朋友解說，問句自然上揚，講到答案時肯定一點，語速稍快、不拖尾音，直接說：";
+export const TECH_B_LINE = "用台灣人平常講話的口音，不兒化，但捲舌音（ㄓㄔㄕㄖ）一定要念清楚、不可念成ㄗㄘㄙ，語氣沉穩專業，像資深的科技解說員在講解，句尾平穩收住、不上揚，講到答案時肯定一點，語速稍快、不拖尾音，直接說：";
 const REPORT_LINES = { "tech-b": TECH_B_LINE, report: REPORT_LINE, "report-lively": REPORT_LIVELY_LINE, "report-tech": REPORT_TECH_LINE, plain: PLAIN_LINE };
 /** 這個 delivery 是不是「只送一句話」的報導類 */
 export const isReport = (profile) => Object.hasOwn(REPORT_LINES, profile?.delivery ?? "");
