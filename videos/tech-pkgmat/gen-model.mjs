@@ -133,7 +133,7 @@ BOX("ppDieCav", "pPress", PX - 0.7, PX + 0.7, 1.58, 1.61, -0.6, 0.6, "dark");
 for (const [x, z] of [[-1.9, -1.3], [1.9, -1.3], [-1.9, 1.3], [1.9, 1.3]]) VC(`ppPost${x}${z}`, "pPress", 0.14, 1.2, 5.0, "steel2", { x: PX + x, z });
 BOX("ppCrown", "pPress", PX - 2.4, PX + 2.4, 5.0, 5.8, -1.6, 1.6, "band"); BOX("ppPlate", "pPress", PX - 1.0, PX + 0.4, 5.3, 5.6, 1.6, 1.65, "gold");
 ZC("ppFly", "pPress", 1.0, -2.25, -1.9, PX, 5.4, "steel"); ZC("ppFlyHub", "pPress", 0.3, -2.35, -1.8, PX, 5.4, "dark"); ZC("ppFlyMark", "pPress", 0.12, -2.28, -2.26, PX + 0.7, 5.4, "mark");
-ZC("ppShaft", "pPress", 0.16, -2.4, 1.7, PX, 5.4, "steel2"); P({ id: "ppBearing", layer: "pPress", shape: "box", size: [0.6, 0.6, 0.3], pos: [PX, 5.4, 0], at: [[0, 0, -1.7], [0, 0, 1.7]], mat: "dark" });
+ZC("ppShaft", "pPress", 0.16, -2.4, 1.7, PX, 5.4, "steel2"); ZC("ppCrank", "pPress", 0.42, 1.15, 1.32, PX, 5.4, "dark"); ZC("ppCrankPin", "pPress", 0.1, 1.32, 1.45, PX + 0.25, 5.4, "steel");   // 前端曲柄（偏心輪）＋曲柄銷，跟飛輪同軸轉，連桿大端套在這裡 P({ id: "ppBearing", layer: "pPress", shape: "box", size: [0.6, 0.6, 0.3], pos: [PX, 5.4, 0], at: [[0, 0, -1.7], [0, 0, 1.7]], mat: "dark" });
 BOX("ppMotorB", "pPress", PX + 1.6, PX + 2.8, 5.8, 6.7, -2.5, -1.6, "dark"); ZC("ppPulley", "pPress", 0.25, -2.25, -1.9, PX + 2.2, 6.25, "steel");
 SEG3("ppBeltT", "pPress", [PX + 2.2, 6.5, -2.08], [PX, 6.4, -2.08], 0.04, "rubber"); SEG3("ppBeltB", "pPress", [PX + 2.2, 6.0, -2.08], [PX + 0.55, 4.55, -2.08], 0.04, "rubber");
  BOX("ppWarn", "pPress", PX + 1.2, PX + 2.2, 0.4, 0.8, 1.8, 1.84, "warnY");
@@ -301,7 +301,7 @@ P({ id: "fcBump", layer: "fChip", shape: "sphere", size: [0.09], pos: [0, 3.36, 
 
 // ═════ 動作 ═════
 actions.lChipGlow = { type: "pulse", _說明: "第 1 幕：光著的晶片（沒有外殼）一閃一閃", parts: ["lChip", "lChipTop"], color: "lampY", glow: 0.6, freq: 1.1, halo: 0 };
-actions.ppFlySpin = { type: "rotate", _說明: "沖壓機飛輪＋曲軸轉（馬達經皮帶帶動，起轉加速）", parts: ["ppFly", "ppFlyHub", "ppFlyMark"], axis: [0, 0, 1], pivot: [PX, 5.4, -2.1], rps: 0.9, rampSpin: true };
+actions.ppFlySpin = { type: "rotate", _說明: "沖壓機飛輪＋曲軸轉（馬達經皮帶帶動，起轉加速）", parts: ["ppFly", "ppFlyHub", "ppFlyMark", "ppCrank", "ppCrankPin"], axis: [0, 0, 1], pivot: [PX, 5.4, -2.1], rps: 0.9, rampSpin: true };
 const spray = (x) => ({ type: "flow", layer: "pEtch", path: [[EXX + x, 2.6, 0], [EXX + x, 1.3, 0]], n: 4, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.5, size: 0.07, shape: "dot", rate: 1.4, color: "waterC", track: false, accel: true, free: true, jitter: 0.05 });
 for (const [i, x] of [-2, -1, 0, 1, 2].entries()) actions[`peSpray${i}`] = { ...spray(x), ...(i === 0 ? { _說明: "蝕刻藥水從噴嘴往下噴（受重力加速）" } : {}), phase: i * 0.2 };
 actions.mHeatGlow = { type: "pulse", _說明: "模具加熱棒發紅（約 175 度，示意）", parts: ["mlHeat", "muHeat"], color: "emcHot", glow: 0.9, freq: 0.8, halo: 0 };

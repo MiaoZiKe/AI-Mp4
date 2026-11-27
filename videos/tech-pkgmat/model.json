@@ -5130,32 +5130,34 @@
    "mat": "steel2"
   },
   {
-   "id": "ppBearing",
+   "id": "ppCrank",
    "layer": "pPress",
-   "shape": "box",
+   "shape": "cyl",
    "size": [
-    0.6,
-    0.6,
-    0.3
+    0.42,
+    0.17
    ],
    "pos": [
     26,
     5.4,
-    0
-   ],
-   "at": [
-    [
-     0,
-     0,
-     -1.7
-    ],
-    [
-     0,
-     0,
-     1.7
-    ]
+    1.235
    ],
    "mat": "dark"
+  },
+  {
+   "id": "ppCrankPin",
+   "layer": "pPress",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.13
+   ],
+   "pos": [
+    26.25,
+    5.4,
+    1.385
+   ],
+   "mat": "steel"
   },
   {
    "id": "ppMotorB",
@@ -17992,7 +17994,9 @@
    "parts": [
     "ppFly",
     "ppFlyHub",
-    "ppFlyMark"
+    "ppFlyMark",
+    "ppCrank",
+    "ppCrankPin"
    ],
    "axis": [
     0,

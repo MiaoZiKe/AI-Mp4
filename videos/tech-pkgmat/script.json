@@ -470,23 +470,23 @@
      },
      {
       "layer": "qPebble",
-      "at": "s6:shell+20",
+      "at": "s6:shell-2",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 4
      },
      {
       "layer": "qBody",
-      "at": "s7:start+2",
-      "until": "s7:start+34",
-      "dur": 10,
+      "at": "s6:shell",
+      "until": "s7:start+46",
+      "dur": 8,
       "dy": 3.4
      },
      {
       "layer": "qChip",
-      "at": "s7:start+14",
-      "until": "s7:start+30",
-      "dur": 10,
+      "at": "s7:start+8",
+      "until": "s7:start+38",
+      "dur": 8,
       "dy": 1.0
      },
      {
@@ -499,7 +499,7 @@
      {
       "layer": "bB0",
       "at": "s1:start-40",
-      "until": "s7:ball+12",
+      "until": "s7:ball+16",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -509,7 +509,7 @@
      {
       "layer": "bB1",
       "at": "s1:start-40",
-      "until": "s7:ball+15",
+      "until": "s7:ball+19",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -519,7 +519,7 @@
      {
       "layer": "bB2",
       "at": "s1:start-40",
-      "until": "s7:ball+18",
+      "until": "s7:ball+22",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -529,7 +529,7 @@
      {
       "layer": "bB3",
       "at": "s1:start-40",
-      "until": "s7:ball+21",
+      "until": "s7:ball+25",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -539,7 +539,7 @@
      {
       "layer": "bB4",
       "at": "s1:start-40",
-      "until": "s7:ball+24",
+      "until": "s7:ball+28",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -549,7 +549,7 @@
      {
       "layer": "bB5",
       "at": "s1:start-40",
-      "until": "s7:ball+27",
+      "until": "s7:ball+31",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -559,7 +559,7 @@
      {
       "layer": "bB6",
       "at": "s1:start-40",
-      "until": "s7:ball+30",
+      "until": "s7:ball+34",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -569,7 +569,7 @@
      {
       "layer": "bB7",
       "at": "s1:start-40",
-      "until": "s7:ball+33",
+      "until": "s7:ball+37",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -1288,12 +1288,25 @@
     ],
     "labels": [
      {
-      "part": "qBodyA",
+      "part": "qDropA",
       "text": "外殼擋住水氣和碰撞",
       "en": "Shell keeps moisture and knocks out",
+      "color": "blue",
+      "at": "wet-8",
+      "until": "wet+37",
+      "cut": true,
+      "xy": [
+       600,
+       330
+      ]
+     },
+     {
+      "part": "qBodyA",
+      "text": "拆開：上半是封裝膠外殼",
+      "en": "Top: mold-compound shell",
       "color": "amber",
-      "at": "wet-4",
-      "until": "wet+41",
+      "at": "shell-17",
+      "until": "shell+28",
       "cut": true,
       "xy": [
        600,
@@ -1389,7 +1402,7 @@
       "elev": 14
      },
      {
-      "at": "ball+4",
+      "at": "ball+8",
       "dur": 1,
       "x": 118.0,
       "y": 0.9,
@@ -1416,11 +1429,11 @@
     "labels": [
      {
       "part": "qChipA",
-      "text": "拆開：晶片、金線、導線架",
-      "en": "Inside: chip, wires, lead frame",
+      "text": "晶片＋金線；導線架留在原位",
+      "en": "Chip & wires; lead frame stays",
       "color": "blue",
-      "at": "s7:start+4",
-      "until": "s7:start+49",
+      "at": "start+11",
+      "until": "start+56",
       "cut": true,
       "xy": [
        600,
@@ -1432,8 +1445,8 @@
       "text": "錫球：零點幾毫米",
       "en": "Solder balls",
       "color": "amber",
-      "at": "ball+6",
-      "until": "ball+51",
+      "at": "ball+8",
+      "until": "ball+53",
       "cut": true
      },
      {
@@ -1441,8 +1454,8 @@
       "text": "焊到電路板",
       "en": "Soldered to the board",
       "color": "blue",
-      "at": "pcb-12",
-      "until": "pcb+33",
+      "at": "pcb-10",
+      "until": "pcb+35",
       "cut": true
      }
     ],

@@ -132,14 +132,15 @@ vis("mCure", [("s5:hard-4", FAR)], 8)   # 念到「越熱越硬」就由褐轉�
 vis("mWire", [(T0, "s5:mold+30")], 4); vis("mWireS", [("s5:mold+30", FAR)], 4)   # 沖線：膠流到時線弧往流動方向偏、留下
 # ── 站 Q：小石子掉下彈開；爆炸（外殼拿開 → 晶片與金線抬起 → 組回）──
 VIS.append({"layer": "qPebble", "at": T0, "until": "s6:hit-10", "dur": 12, "dy": 3.0, "fallIn": True, "bounce": 0.35, "opacity": 0})
-vis("qPebble", [("s6:hit-12", "s6:shell+20")], 4)
+vis("qPebble", [("s6:hit-12", "s6:shell-2")], 4)   # 拆殼前收掉，避免石子懸空
 # 頻道負責人 11/27：s6 念「擋住濕氣和碰撞」時殼保持完整（水滴、石子打在完整的殼上被擋下）；
 # 拆開看內部改到 s7 開頭「腳太多的」，在 s7 旁白期間做完並組回（第 29 條），再切到植球站
-QE1 = "s7:start+2"; QE2 = "s7:start+14"; QAS = "s7:start+34"
-VIS += [mv("qBody", QE1, QAS, 10, dy=3.4), mv("qChip", QE2, off(QAS, -4), 10, dy=1.0)]   # 組回在 start+44 完成，停 0.6 秒才換鏡
+# 機台 r2：從 s6「有了殼」開始拆、跨到 s7 開頭做完；每步位移 8 幀、之後至少停 0.5 秒；一次只亮一張標籤
+QE1 = "s6:shell"; QE2 = "s7:start+8"
+VIS += [mv("qBody", QE1, "s7:start+46", 8, dy=3.4), mv("qChip", QE2, "s7:start+38", 8, dy=1.0)]   # 晶片 932 落回、外殼 948 蓋好，停到 ball+8（965）換鏡
 # ── 站 B：助焊劑點 → 錫球一顆顆落下（重力、小彈）→ 回焊 ──
 vis("bFlux", [("s7:ball-14", FAR)], 4)
-for i in range(8): VIS.append({"layer": f"bB{i}", "at": T0, "until": f"s7:ball+{12 + 3 * i}", "dur": 14, "dy": 2.4, "fallIn": True, "bounce": 0.08, "opacity": 0})
+for i in range(8): VIS.append({"layer": f"bB{i}", "at": T0, "until": f"s7:ball+{16 + 3 * i}", "dur": 14, "dy": 2.4, "fallIn": True, "bounce": 0.08, "opacity": 0})
 # ── 站 T：裂縫兩階段 ──
 vis("tCrack0", [("s8:crack-8", FAR)], 2); vis("tCrack1", [("s8:crack-2", FAR)], 2)
 # ── 站 U：針降下點膠、膠逐格被吸進縫（越往內越慢）、膠角 ──
@@ -196,14 +197,15 @@ P["s5"] = {"shot": [S_(CC, M5, 1)],
 P["s6"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
  "shot": [S_(CC, QV, 1)],
  "run": [run("qRain", "wet-4", "shell-6", 4)],
- "labels": [lab("qBodyA", "外殼擋住水氣和碰撞", "Shell keeps moisture and knocks out", "amber", "wet-4", "wet+41", xy=[600, 330])],
+ "labels": [lab("qDropA", "外殼擋住水氣和碰撞", "Shell keeps moisture and knocks out", "blue", "wet-8", "wet+37", xy=[600, 330]),
+            lab("qBodyA", "拆開：上半是封裝膠外殼", "Top: mold-compound shell", "amber", "shell-17", "shell+28", xy=[600, 330])],
  "overlay": [card("s6", "pkg-shell", "外殼擋什麼", "示意（封裝膠導熱不好，散熱靠金屬）", {"wet": "wet", "hit": "hit", "shell": "shell"})]}
 P["s7"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
- "shot": [S_(CC, QV, 1), S_("ball+4", BJ, 1), S_("pcb-14", BM, 1)],
+ "shot": [S_(CC, QV, 1), S_("ball+8", BJ, 1), S_("pcb-14", BM, 1)],
  "run": [run("bReflow", "mm", "pcb+20", 6)],
- "labels": [lab("qChipA", "拆開：晶片、金線、導線架", "Inside: chip, wires, lead frame", "blue", off(QE1, 2), off(QE1, 47), xy=[600, 330]),
-            lab("bBallA", "錫球：零點幾毫米", "Solder balls", "amber", "ball+6", "ball+51"),
-            lab("bPCBA", "焊到電路板", "Soldered to the board", "blue", "pcb-12", "pcb+33")],
+ "labels": [lab("qChipA", "晶片＋金線；導線架留在原位", "Chip & wires; lead frame stays", "blue", "start+11", "start+56", xy=[600, 330]),
+            lab("bBallA", "錫球：零點幾毫米", "Solder balls", "amber", "ball+8", "ball+53"),
+            lab("bPCBA", "焊到電路板", "Soldered to the board", "blue", "pcb-10", "pcb+35")],
  "overlay": [card("s7", "pkg-ball", "腳太多：底部種錫球", "示意", {"many": "many", "ball": "ball", "mm": "mm", "pcb": "pcb"})]}
 P["s8"] = {"zoom": [{"to": "joint", "at": CC, "dur": 1}],
  "shot": [S_(CC, TV, 1)],
