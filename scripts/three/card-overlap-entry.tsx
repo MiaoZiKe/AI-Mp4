@@ -63,3 +63,14 @@ export const labelShots = (script: any) => {
     return { i, text: pl.l.text, at: pl.l.at, until: pl.l.until, rect: pl.rect, frame: f, html: renderToStaticMarkup(<HudLabels s={s} f={f} max={99} placed={[pl]} enPx={sm(28)} y={plan.base3D} />) };
   });
 };
+
+/** 右下「示意」標籤（HudFrame 畫的 sc.zh／sc.text）的墨跡框概略位置（畫面座標）；示意卡不可壓到它（2026/11/27 tech-precursor 機構複審：ALD 卡加高蓋住標籤上半） */
+export const schematicRect = (script: any) => {
+  const hud = script.hud, sc = hud?.schematic;
+  if (!sc || (!sc.zh && !sc.text)) return null;
+  setHudSkin(script.hudSkin, hud.smallPx);
+  const L = setHudLayout(hud.layout) as any, x1 = L.W - L.X, fs = sm(28), lift = (sc as any).lift ?? 0;
+  const w = Math.max((sc.text ?? "").length * fs * 0.62, (sc.zh ?? "").length * fs);
+  const base = L.BAND_TOP ? L.STAGE_TOP + L.STAGE_H - 16 - lift : L.STAGE_TOP + 14 + 76;
+  return { l: x1 - 24 - w, r: x1 - 24, t: base - fs + 2, b: base + 6 };
+};

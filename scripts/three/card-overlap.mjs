@@ -48,8 +48,9 @@ await build({
   } }],
   banner: { js: "import { createRequire as __cr } from 'module'; const require = __cr(import.meta.url);" },
 });
-const { shots } = await import(pathToFileURL(outfile).href);
+const { shots, schematicRect } = await import(pathToFileURL(outfile).href);
 const list = shots(script, only);
+const schem = schematicRect(script);
 
 // 頁面：每個（疊層, 幀）一格 1080×1920，直向排下去
 const fontsDir = path.join(ROOT, "public", "fonts"), mfp = path.join(fontsDir, "manifest.json");
@@ -69,7 +70,7 @@ await pg.evaluate(async () => { await document.fonts.ready; await new Promise((r
 const fontsOk = await pg.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family).filter((v, i, a) => a.indexOf(v) === i));
 
 const meta = list.map((s) => ({ title: s.title ?? null, tag: s.tag ?? null }));
-const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH, GAP }) => {
+const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH, GAP, schem }) => {
   const res = [];
   const effOp = (el, stop) => { let o = 1; for (let e = el; e && e !== stop; e = e.parentElement) { const cs = getComputedStyle(e); if (cs.display === "none" || cs.visibility === "hidden") return 0; o *= Number(cs.opacity); } return o; };
   const ctx = document.createElement("canvas").getContext("2d");
@@ -120,6 +121,11 @@ const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH, GAP }) => {
       const inInk = (T, x, y, pad) => { if (!T.inv) return x > T.box.l + pad && x < T.box.r - pad && y > T.box.t + pad && y < T.box.b - pad; const q = new DOMPoint(x, y).matrixTransform(T.inv), b = T.lbox; return q.x > b.l + pad && q.x < b.r - pad && q.y > b.t + pad && q.y < b.b - pad; };
       const inkPts = (T) => { const out = []; const b = T.inv ? T.lbox : T.box; for (let u = 0; u <= 4; u++) for (let v = 0; v <= 2; v++) { const x = b.l + 1 + ((b.r - b.l - 2) * u) / 4, y = b.t + 1 + ((b.b - b.t - 2) * v) / 2; if (T.inv) { const q = new DOMPoint(x, y).matrixTransform(T.M); out.push([q.x, q.y]); } else out.push([x, y]); } return out; };
       const push = (level, kind, msg, box) => res.push({ j, level, kind, msg, box: box && rnd(loc(box)) });
+      // (i) 示意卡 vs 右下示意標籤：卡片外框和標籤字框相交（超過 TOL）＝error（2026/11/27）；只算卡片自己的外框，標籤在畫面座標
+      if (schem && effOp(root, scr) >= 0.05) {
+        const sr = { l: schem.l + so.left, r: schem.r + so.left, t: schem.t + so.top, b: schem.b + so.top }, [w, h] = inter(cr, sr);
+        if (w > TOL && h > TOL) push("error", "壓到示意標籤", `示意卡外框（下緣 y${Math.round(cr.b - so.top)}）壓到右下「示意」標籤 ${Math.round(w)}×${Math.round(h)}px（卡下緣要 ≤ y${Math.round(schem.t)}）`, cr);
+      }
       // 被後畫的實心圖形整段蓋掉的字看不到（例如磷原子蓋掉原本那顆矽的「Si」）→ 不算；只蓋掉一部分 → 字被蓋住
       for (let a = texts.length - 1; a >= 0; a--) { const T = texts[a]; if (!T.el.closest("svg")) continue; const pts = inkPts(T), n = pts.filter(([x, y]) => covered(T.el, x, y)).length;
         if (n === pts.length) texts.splice(a, 1); else if (n > 0) push("error", "字被蓋住", `「${T.str}」有一部分被後畫的圖形蓋住`, T.box); }
@@ -221,7 +227,7 @@ const found = await pg.evaluate(({ meta, TOL, NEAR, TOUCH, GAP }) => {
     }
   });
   return res;
-}, { meta, TOL: 2, NEAR: 6, TOUCH: 4, GAP: 4 });
+}, { meta, TOL: 2, NEAR: 6, TOUCH: 4, GAP: 4, schem });
 if (shotDir) {
   fs.mkdirSync(shotDir, { recursive: true });
   for (let j = 0; j < list.length; j++) {
