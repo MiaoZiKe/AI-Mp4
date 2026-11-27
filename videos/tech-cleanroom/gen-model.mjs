@@ -34,7 +34,7 @@ const materials = {
   seam: M("std", "seam", { rough: 0.6, metal: 0.3 }), band: M("std", "band", { rough: 0.4, metal: 0.3, env: 0.4 }),
   steel: M("std", "steel", { rough: 0.35, metal: 0.85, env: 0.5 }), steel2: M("std", "steel2", { rough: 0.3, metal: 0.8, env: 0.6, tex: "brushed", texScale: 2 }),
   dark: M("std", "dark", { rough: 0.5, metal: 0.4, env: 0.3 }), rubber: M("std", "rubber", { rough: 0.9, metal: 0 }),
-  window: M("phys", "glassC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.3, env: 0.6 }),
+  window: M("phys", "glassC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.3, env: 0.6 }), glassD: M("std", "#3E5A80", { rough: 0.15, metal: 0.4, env: 0.9 }),
   lampY: M("std", "lampY", { emissive: "lampY", ei: 0.5, rough: 0.4, metal: 0 }), lampG: M("std", "lampG", { emissive: "lampG", ei: 0.6, rough: 0.4, metal: 0 }),
   lampR: M("std", "lampR", { emissive: "lampR", ei: 0.5, rough: 0.4, metal: 0 }), screen: M("std", "screen", { emissive: "screen", ei: 0.5, rough: 0.3, metal: 0 }),
   warnY: M("std", "warnY", { rough: 0.5, metal: 0, emissive: "warnY", ei: 0.2 }),
@@ -95,9 +95,10 @@ BOX("shSideL", "shell", BX0 - 0.3, BX0, 0, YR, BZ0 - 0.3, BZ1, "wall"); BOX("shS
 BOX("shRoof", "shell", BX0 - 0.4, BX1 + 0.4, YR, YR + 0.4, BZ0 - 0.5, BZ1 + 0.3, "roof"); BOX("shParapet", "shell", BX0 - 0.4, BX1 + 0.4, YR + 0.4, YR + 0.8, BZ1 + 0.1, BZ1 + 0.3, "wallD");
 P({ id: "shSideSeam", layer: "shell", shape: "box", size: [0.06, YR, 0.06], pos: [0, YR / 2, 0], at: [[BX0 - 0.32, 0, -3.1], [BX0 - 0.32, 0, 0], [BX0 - 0.32, 0, 3.1], [BX1 + 0.32, 0, -3.1], [BX1 + 0.32, 0, 0], [BX1 + 0.32, 0, 3.1]], mat: "seam" });
 // 中間樓板（回風層與無塵室之間的格子樓板，梁柱看得見）、空氣室樓板（屋頂下）
-BOX("slabWaffle", "shell", BX0, BX1, 1.35, 1.55, BZ0, BZ1, "conc");
-P({ id: "slabHole", layer: "shell", shape: "box", size: [0.9, 0.22, 0.9], pos: [0, 1.45, 0], at: GXZ(14, 7, 1.5, 1.6, -9.75, -4.8), mat: "hole" });
-P({ id: "slabCol", layer: "shell", shape: "box", size: [0.5, 1.35, 0.5], pos: [0, 0.675, 0], at: [[-7, 0, 4.6], [0, 0, 4.6], [7, 0, 4.6], [-7, 0, -3], [0, 0, -3], [7, 0, -3]], mat: "conc" });
+LAY("slab", [22.4, 0.3, 0, 1.45]);
+BOX("slabWaffle", "slab", BX0, BX1, 1.35, 1.55, BZ0, BZ1, "conc");
+P({ id: "slabHole", layer: "slab", shape: "box", size: [0.9, 0.22, 0.9], pos: [0, 1.45, 0], at: GXZ(14, 7, 1.5, 1.6, -9.75, -4.8), mat: "hole" });
+P({ id: "slabCol", layer: "subfab", shape: "box", size: [0.5, 0.75, 0.5], pos: [0, 0.375, 0], at: [[-7, 0, 4.6], [0, 0, 4.6], [7, 0, 4.6], [-7, 0, -3], [0, 0, -3], [7, 0, -3]], mat: "conc" });
 // 回風豎井（兩側）：從回風層往上到空氣室；靠室內那面是有孔的回風牆，裡面是乾盤管與回風風機（示意）
 for (const [s, x0, x1] of [["L", BX0, -9.6], ["R", 9.6, BX1]]) {
   BOX(`chase${s}Wall`, "shell", s === "L" ? x1 - 0.2 : x0, s === "L" ? x1 : x0 + 0.2, YF, YC, BZ0, BZ1, "wallD");
@@ -113,7 +114,7 @@ for (const [s, x0, x1] of [["L", BX0 - 0.3, 0], ["R", 0, BX1 + 0.3]]) {
   BOX(`fr${s}Wall`, ly, x0, x1, 0, YR, BZ1, BZ1 + 0.3, "wall");
   P({ id: `fr${s}Seam`, layer: ly, shape: "box", size: [0.06, YR, 0.05], pos: [0, YR / 2, BZ1 + 0.32], at: [1, 2, 3, 4].map((i) => [R2(x0 + ((x1 - x0) * i) / 5), 0, 0]), mat: "seam" });
   BOX(`fr${s}Band`, ly, x0, x1, 8.5, 9.4, BZ1 + 0.3, BZ1 + 0.36, "band");
-  BOX(`fr${s}Win`, ly, x0 + 0.5, x1 - 0.5, 3.4, 4.6, BZ1 + 0.3, BZ1 + 0.36, "window");
+  BOX(`fr${s}Win`, ly, x0 + 0.5, x1 - 0.5, 3.4, 4.6, BZ1 + 0.3, BZ1 + 0.36, "glassD");
   P({ id: `fr${s}Mull`, layer: ly, shape: "box", size: [0.08, 1.2, 0.06], pos: [0, 4.0, BZ1 + 0.38], at: [1, 2, 3, 4, 5].map((i) => [R2(x0 + 0.5 + ((x1 - x0 - 1) * i) / 6), 0, 0]), mat: "dark" });
   BOX(`fr${s}Kick`, ly, x0, x1, 0, 0.5, BZ1 + 0.3, BZ1 + 0.4, "wallD");
   BOX(`fr${s}Louver`, ly, s === "L" ? x0 + 1 : x1 - 3.4, s === "L" ? x0 + 3.4 : x1 - 1, 0.9, 2.3, BZ1 + 0.3, BZ1 + 0.36, "dark");
@@ -179,7 +180,14 @@ P({ id: "stringer", layer: "rFloor", shape: "box", size: [19.2, 0.06, 0.06], pos
 LAY("subfab", [22, 1.6, 0, 0.8]);
 P({ id: "sfVane", layer: "subfab", shape: "box", size: [0.06, 1.0, 2.0], pos: [0, 0.6, BZ1 - 1.4], at: [[-10.4, 0, 0], [-10.0, 0, 0], [10.0, 0, 0], [10.4, 0, 0]], rot: [0, 0, 20], mat: "steel2" });
 BOX("sfPad0", "subfab", -8.4, -6.0, 0, 0.3, -5.6, -3.4, "conc"); BOX("sfPad1", "subfab", 2.4, 4.8, 0, 0.3, -5.6, -3.4, "conc");
-BOX("sfPump0", "subfab", -8.0, -6.4, 0.3, 1.2, -5.2, -3.8, "band"); BOX("sfPump1", "subfab", 2.8, 4.4, 0.3, 1.2, -5.2, -3.8, "band");
+BOX("sfPump0", "subfab", -8.0, -6.4, 0.3, 0.72, -5.2, -3.8, "band"); BOX("sfPump1", "subfab", 2.8, 4.4, 0.3, 0.72, -5.2, -3.8, "band");
+for (const [s, x] of [["L", -8.6], ["R", 8.6]]) {
+  BOX(`sfDuct${s}`, "subfab", x - 0.8, x + 0.8, 0.05, 0.72, -5.4, 5.6, "steel2");
+  P({ id: `sfDuctFl${s}`, layer: "subfab", shape: "box", size: [1.75, 0.78, 0.08], pos: [x, 0.385, 0], at: [-4, -1.5, 1, 3.5].map((z) => [0, 0, z]), mat: "steel" });
+  BOX(`sfDuctGr${s}`, "subfab", x - 0.6, x + 0.6, 0.72, 0.74, 3.8, 5.4, "dark");
+  BOX(`sfDuctDoor${s}`, "subfab", x - 0.5, x + 0.1, 0.15, 0.6, 5.6, 5.64, "panel2");
+  ZC(`sfFan${s}`, "subfab", 0.32, 5.64, 5.9, x + 0.45, 0.4, "dark");
+}
 // 天花板格柵（T 型鋼）＋燈條
 LAY("ceil", [20, 0.4, 0, 8.3]);
 P({ id: "tbarX", layer: "ceil", shape: "box", size: [19.4, 0.12, 0.08], pos: [0, YC + 0.06, 0], at: Array.from({ length: 8 }, (_, i) => [0, 0, R2(-5.6 + i * 1.6)]), mat: "steel2" });
@@ -226,7 +234,7 @@ BOX("hepaFrameL", "oneHepa", ONE[0] - 0.7, ONE[0] - 0.62, YC + 0.02, YC + 0.32, 
   P({ id: "hepaPleat", layer: "oneHepa", shape: "poly", size: [1, 1, 1.3], pts: pts.map(([u, v]) => [R2(u), R2(v)]), pos: [ONE[0], YC + 0.17, ONE[1] - 0.64], mat: "hepa" });
   P({ id: "hepaPleatEdge", layer: "oneHepa", shape: "poly", size: [1, 1, 0.02], pts: pts.slice(0, -3).map(([u, v]) => [R2(u), R2(v * 1.02)]).concat([[0.62, -0.13], [-0.62, -0.13]]), pos: [ONE[0], YC + 0.17, ONE[1] + 0.665], mat: "pleat" }); }
 P({ id: "hepaSep", layer: "oneHepa", shape: "box", size: [1.26, 0.02, 0.03], pos: [ONE[0], YC + 0.17, 0], at: [[0, 0, ONE[1] - 0.3], [0, 0, ONE[1] + 0.1], [0, 0, ONE[1] + 0.5]], mat: "pleat" });
-BOX("hepaSeal", "oneHepa", ONE[0] - 0.7, ONE[0] + 0.7, YC + 0.3, YC + 0.34, ONE[1] - 0.7, ONE[1] + 0.7, "rubber");
+for (const [k, x0, x1, z0, z1] of [["F", -0.7, 0.7, 0.62, 0.7], ["B", -0.7, 0.7, -0.7, -0.62], ["L", -0.7, -0.62, -0.7, 0.7], ["R", 0.62, 0.7, -0.7, 0.7]]) BOX(`hepaSeal${k}`, "oneHepa", ONE[0] + x0, ONE[0] + x1, YC + 0.3, YC + 0.34, ONE[1] + z0, ONE[1] + z1, "rubber");
 BOX("hepaTag", "oneHepa", ONE[0] + 0.2, ONE[0] + 0.6, YC + 0.08, YC + 0.24, ONE[1] + 0.69, ONE[1] + 0.71, "white");
 // 地下的水氣電管路（s9 才出現）：水藍、氣灰、電黃
 LAY("utilW", [22, 1, 0, 0.9]); LAY("utilG", [22, 1, 0, 0.7]); LAY("utilP", [22, 1, 0, 1.1]);
@@ -311,14 +319,14 @@ for (const [s, dx] of [["L", -0.38], ["R", 0.38]]) {
 }
 // 無塵衣（連身服、頭罩、口罩與護目鏡、手套、鞋套），各自從上方落下套上
 LAY("suitBody", [3.2, 6, PX, 4.0]); LAY("suitHood", [1.4, 1.6, PX, 7.2]); LAY("suitGlove", [3.2, 0.6, PX, 3.7]); LAY("suitBoot", [1.6, 1.0, PX, 1.4]);
-P({ id: "sTorso", layer: "suitBody", shape: "slab", size: [1.62, 2.42, 0.92], r: 0.36, pos: [PX, 5.6, -0.46], mat: "suit" });
-P({ id: "sHip", layer: "suitBody", shape: "slab", size: [1.48, 0.8, 0.88], r: 0.3, pos: [PX, 4.15, -0.44], mat: "suit" });
-BOX("sZip", "suitBody", PX - 0.03, PX + 0.03, 4.0, 6.7, 0.0, 0.03, "suitS"); BOX("sPocket", "suitBody", PX + 0.25, PX + 0.65, 5.7, 6.15, -0.01, 0.02, "suitS");
+P({ id: "sTorso", layer: "suitBody", shape: "slab", size: [1.72, 2.5, 1.02], r: 0.38, pos: [PX, 5.6, -0.51], mat: "suit" });
+P({ id: "sHip", layer: "suitBody", shape: "slab", size: [1.58, 0.86, 0.98], r: 0.32, pos: [PX, 4.15, -0.49], mat: "suit" });
+BOX("sZip", "suitBody", PX - 0.03, PX + 0.03, 4.0, 6.7, 0.0, 0.04, "suitS"); BOX("sPocket", "suitBody", PX + 0.25, PX + 0.65, 5.7, 6.15, 0.0, 0.03, "suitS");
 VT("sCollar", "suitBody", 0.34, 0.2, 6.55, 6.75, "leak", { x: PX });
 for (const [s, dx] of [["L", -0.38], ["R", 0.38]]) {
-  VC(`sLeg${s}`, "suitBody", 0.32, 1.45, HIP, "suit", { x: PX + dx });
-  VC(`sArmU${s}`, "suitBody", 0.25, 4.85, SH, "suit", { x: PX + dx * 2.25 }); VC(`sArmF${s}`, "suitBody", 0.22, 4.0, 4.9, "suit", { x: PX + dx * 2.25 });
-  VT(`sCuff${s}`, "suitBody", 0.24, 0.15, 3.95, 4.08, "leak", { x: PX + dx * 2.25 }); VT(`sAnkle${s}`, "suitBody", 0.34, 0.25, 1.45, 1.58, "leak", { x: PX + dx });
+  VC(`sLeg${s}`, "suitBody", 0.35, 1.45, HIP + 0.1, "suit", { x: PX + dx });
+  VC(`sArmU${s}`, "suitBody", 0.27, 4.85, SH + 0.05, "suit", { x: PX + dx * 2.25 }); VC(`sArmF${s}`, "suitBody", 0.25, 4.0, 4.9, "suit", { x: PX + dx * 2.25 });
+  VT(`sCuff${s}`, "suitBody", 0.31, 0.2, 4.1, 4.24, "leak", { x: PX + dx * 2.25 }); VT(`sAnkle${s}`, "suitBody", 0.37, 0.25, 1.9, 2.04, "leak", { x: PX + dx });
 }
 P({ id: "sSeam", layer: "suitBody", shape: "box", size: [0.03, 2.3, 0.03], pos: [0, 2.6, 0.33], at: [[PX - 0.38, 0, 0], [PX + 0.38, 0, 0]], mat: "suitS" });
 SPH("hHood", "suitHood", 0.6, PX, 7.38, -0.02, "suit"); VT("hDrape", "suitHood", 0.62, 0.22, 6.6, 6.98, "suit", { x: PX });
@@ -344,8 +352,8 @@ BOX("gCeilC", "gRoom", GX0, GA, GY1, GY1 + 0.25, GZ0, GZ0 + 1.4, "panel2"); BOX(
 for (const [w, x] of [["A", GA], ["B", GB]]) {
   BOX(`gWall${w}a`, "gRoom", x - 0.15, x + 0.15, GY0, GY1, GZ0, -1.1, "wallD"); BOX(`gWall${w}b`, "gRoom", x - 0.15, x + 0.15, GY0, GY1, 1.1, GZ1, "wallD"); BOX(`gWall${w}c`, "gRoom", x - 0.15, x + 0.15, 5.6, GY1, -1.1, 1.1, "wallD");
   BOX(`gFrame${w}`, "gRoom", x - 0.2, x + 0.2, 5.5, 5.62, -1.15, 1.15, "steel"); P({ id: `gJamb${w}`, layer: "gRoom", shape: "box", size: [0.4, 4.7, 0.08], pos: [x, 3.25, 0], at: [[0, 0, -1.14], [0, 0, 1.14]], mat: "steel" });
-  SPH(`gLock${w}G`, "gRoom", 0.12, x + (w === "A" ? -0.25 : 0.25), 6.0, -0.3, "lampG"); SPH(`gLock${w}R`, "gRoom", 0.12, x + (w === "A" ? -0.25 : 0.25), 6.0, 0.3, "lampR");
-  BOX(`gLockBox${w}`, "gRoom", x - 0.32, x + 0.32, 5.8, 6.2, -0.55, 0.55, "dark");
+  SPH(`gLock${w}G`, "gRoom", 0.2, x + (w === "A" ? -0.25 : 0.25), 6.0, -0.3, "lampG"); SPH(`gLock${w}R`, "gRoom", 0.2, x + (w === "A" ? -0.25 : 0.25), 6.0, 0.3, "lampR");
+  BOX(`gLockBox${w}`, "gRoom", x - 0.34, x + 0.34, 5.72, 6.28, -0.6, 0.6, "dark");
 }
 // 門（鉸鏈在 z −1.1；rotate 動作開門）
 LAY("gDoorA", [0.2, 4.6, GA, 3.2]); LAY("gDoorB", [0.2, 4.6, GB, 3.2]);
@@ -369,7 +377,7 @@ for (const [w, x, ang] of GAUGES) {
   P({ id: `gGaugeTick${w}`, layer: "gRoom", shape: "box", size: [0.03, 0.08, 0.02], pos: [x, 4.98, GZ0 + 0.15], mat: "dark" });
 }
 // 傳遞窗（不鏽鋼盒＋玻璃觀察窗，嵌在前室／無塵室隔牆，雙門互鎖）
-BOX("gPass", "gRoom", GB - 0.4, GB + 0.4, 2.4, 3.6, 1.6, 2.8, "steel2"); BOX("gPassWin", "gRoom", GB + 0.4, GB + 0.43, 2.6, 3.4, 1.8, 2.6, "window"); SPH("gPassLed", "gRoom", 0.07, GB + 0.45, 3.5, 2.7, "lampG");
+BOX("gPass", "gRoom", GB - 0.5, GB + 0.5, 2.2, 4.0, 1.4, 3.0, "steel2"); BOX("gPassWin", "gRoom", GB + 0.5, GB + 0.54, 2.5, 3.7, 1.6, 2.8, "glassD"); FRAME("gPassFr", "gRoom", GB + 0.54, GB + 0.58, 2.45, 3.75, 1.55, 0.04, "steel"); SPH("gPassLed", "gRoom", 0.12, GB + 0.58, 3.85, 2.85, "lampG");
 // 走廊外的灰塵（靜態：貼在門縫外側）
 LAY("gDustOut", [3, 4, GA - 1.0, 3]); P({ id: "gDustStuck", layer: "gDustOut", shape: "sphere", size: [0.08], pos: [0, 0, 0], at: Array.from({ length: 14 }, () => [R2(GA - 0.25 - rnd() * 0.5), R2(1.3 + rnd() * 4.0), R2(-1.0 + rnd() * 2.0)]), mat: "dust" });
 
@@ -432,10 +440,10 @@ for (const [k, z, dx] of [[0, 5.0, 0], [1, 3.4, 0.8], [2, 1.8, 0.4]]) {
 actions.airWake = { type: "flow", _說明: "機台頂部後方的小繞流：仍整體往下", layer: "tools", path: [[-1.6, YC - 0.2, -0.2], [-1.6, YF + 4.6, -0.2], [-1.2, YF + 3.9, 0.2], [-1.8, YF + 3.2, 0.1], [-1.4, YF + 1.6, 0.3], [-1.5, YF + 0.1, 0.4]], n: 5, size: 0.12, shape: "dot", rate: 0.24, color: "airD", track: false, free: true, jitter: 0.12 };
 actions.dustDown = { type: "flow", _說明: "灰塵（深色）被氣流往下帶走、在地板孔洞被抽走（大小不一、輕微隨機）", layer: "tools", path: [[0.1, YF + 5.0, 4.4], [0.3, YF + 2.6, 4.5], [0.2, YF - 0.6, 4.4]], n: 2, lanes: 6, phase: -4, laneDir: [1, 0, 0], laneGap: 2.9, size: 0.17, shape: "dot", rate: 0.22, color: "dustC", track: false, free: true, jitter: 0.18 };
 // 回風循環：地板孔洞 → 回風層 → 兩側豎井往上 → 空氣室 → 回到風扇濾網（箭頭＋軌道）
-const LOOP = (s) => [[s * 3.0, YF + 0.3, 5.4], [s * 3.0, 1.0, 5.4], [s * 10.3, 1.0, 5.4], [s * 10.3, 9.4, 5.4], [s * 4.0, 9.6, 5.4], [s * 3.2, YC + 1.0, 5.4]];
-actions.loopL = { type: "flow", _說明: "回風循環（左）：從地板孔洞抽回、往兩側、沿豎井往上、回到空氣室重新過濾", layer: "rFloor", path: LOOP(-1), n: 8, size: 0.16, shape: "arrow", rate: 0.16, color: "airD", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0.03 };
-actions.loopR = { type: "flow", layer: "rFloor", path: LOOP(1), n: 8, size: 0.16, shape: "arrow", rate: 0.16, color: "airD", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0.03 };
-actions.floorSuck = { type: "flow", _說明: "空氣穿過地板孔洞往下", layer: "rFloor", path: [[0.0, YF + 0.9, 4.9], [0.0, 0.9, 4.9]], n: 2, lanes: 9, phase: -4, laneDir: [1, 0, 0], laneGap: 2.1, size: 0.1, shape: "arrow", rate: 0.35, color: "airD", track: false, free: true, jitter: 0.05 };
+const LOOP = (s) => [[s * 3.0, YF + 0.3, 5.8], [s * 3.0, 0.45, 5.8], [s * 10.3, 0.45, 5.8], [s * 10.3, 9.4, 5.8], [s * 4.0, 9.6, 5.8], [s * 3.2, YC + 1.0, 5.8]];
+actions.loopL = { type: "flow", _說明: "回風循環（左）：從地板孔洞抽回、往兩側、沿豎井往上、回到空氣室重新過濾", layer: "subfab", path: LOOP(-1), n: 8, size: 0.16, shape: "arrow", rate: 0.16, color: "airD", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0.03 };
+actions.loopR = { type: "flow", layer: "subfab", path: LOOP(1), n: 8, size: 0.16, shape: "arrow", rate: 0.16, color: "airD", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0.03 };
+actions.floorSuck = { type: "flow", _說明: "空氣穿過地板孔洞往下", layer: "subfab", path: [[0.0, YF + 0.9, 4.9], [0.0, 0.9, 4.9]], n: 2, lanes: 9, phase: -4, laneDir: [1, 0, 0], laneGap: 2.1, size: 0.1, shape: "arrow", rate: 0.35, color: "airD", track: false, free: true, jitter: 0.05 };
 // 站 K：十顆灰塵各自布朗擺動（不同軸、不同頻率）
 DUST10.forEach((_, i) => { actions[`kBrown${i}`] = { type: "vibrate", parts: [`kD${i}`, `kR${i}`], axis: [[1, 0.3, 0], [0, 1, 0.2], [0.4, 0, 1], [1, 1, 0]][i % 4], amp: 0.12, freq: 0.18 + (i % 5) * 0.05 }; });
 actions.kGlow = { type: "pulse", _說明: "十顆灰塵亮起（數得出來）", parts: DUST10.map((_, i) => `kD${i}`), color: "lampY", glow: 1, freq: 0.9, halo: 0 };
@@ -462,7 +470,7 @@ const SHED = [[PX, 7.8, 0.3], [PX - 0.45, 7.4, 0.3], [PX + 0.45, 7.4, 0.3], [PX 
 SHED.forEach(([x, y, z], i) => { const s = x < PX ? -1 : x > PX ? 1 : (i % 2 ? 1 : -1);
   actions[`shed${i}`] = { type: "flow", _說明: i ? undefined : "便服：皮屑、頭髮、衣物纖維從身上散出（走動時更多），被往下的氣流帶走", layer: "person", path: [[x, y, z], [R2(x + s * 0.7), R2(y - 0.3), R2(z + 0.4)], [R2(x + s * 1.3), R2(Math.max(1.1, y - 1.8)), R2(z + 0.6)], [R2(x + s * 1.6), 1.0, R2(z + 0.7)]], n: 5, size: i < 3 ? 0.07 : 0.06, shape: "dot", rate: 0.35 + (i % 4) * 0.05, color: i < 3 ? "hairC" : "dustL", track: false, free: true, jitter: 0.12 };
 });
-const LEAK = [[PX - 0.3, 6.62, 0.3], [PX + 0.3, 6.62, 0.3], [PX - 0.855, 3.96, 0.2], [PX + 0.855, 3.96, 0.2], [PX - 0.38, 1.5, 0.35], [PX + 0.38, 1.5, 0.35]];
+const LEAK = [[PX - 0.3, 6.62, 0.3], [PX + 0.3, 6.62, 0.3], [PX - 0.855, 4.15, 0.3], [PX + 0.855, 4.15, 0.3], [PX - 0.38, 1.97, 0.4], [PX + 0.38, 1.97, 0.4]];
 LEAK.forEach(([x, y, z], i) => { const s = x < PX ? -1 : 1;
   actions[`leak${i}`] = { type: "flow", _說明: i ? undefined : "穿上無塵衣後：只從領口、袖口、褲管少量漏出", layer: "person", path: [[x, y, z], [R2(x + s * 0.5), R2(y - 0.4), R2(z + 0.4)], [R2(x + s * 0.8), R2(Math.max(1.0, y - 1.6)), R2(z + 0.5)]], n: 1, size: 0.06, shape: "dot", rate: 0.3, color: "dustL", track: false, free: true, jitter: 0.08 };
 });
@@ -471,7 +479,7 @@ actions.pDown = { type: "flow", _說明: "頭頂往下的乾淨氣流", layer: "
 // 站 G：開門（繞鉸鏈）、空氣由內往外（無塵室 → 前室 → 走廊，粗箭頭＝壓差大）、外面灰塵被擋回去、風淋噴氣
 actions.doorA = { type: "rotate", _說明: "外門（走廊／前室）繞鉸鏈打開約 75 度，有加減速；until 後關回", parts: idsOf("gDoorA"), axis: [0, 1, 0], pivot: [GA, 0, -1.1], angle: -75 };
 actions.doorB = { type: "rotate", _說明: "內門（前室／無塵室）", parts: idsOf("gDoorB"), axis: [0, 1, 0], pivot: [GB, 0, -1.1], angle: -75 };
-actions.gOutA = { type: "flow", _說明: "門一開：前室的空氣往走廊湧出（壓差大，箭頭粗），進去走廊後散開變慢", layer: "gRoom", path: [[GA + 2.0, 2.8, 0.2], [GA + 0.4, 2.8, 0.2], [GA - 1.0, 2.8, 0.4], [GA - 3.0, 3.1, 1.2]], n: 4, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.1, size: 0.2, shape: "arrow", rate: 0.55, color: "airD", track: false, free: true, jitter: 0.08 };
+actions.gOutA = { type: "flow", _說明: "門一開：前室的空氣往走廊湧出（壓差大，箭頭粗），進去走廊後散開變慢", layer: "gRoom", path: [[GA + 2.0, 2.8, 0.2], [GA + 0.4, 2.8, 0.2], [GA - 1.0, 2.8, 0.4], [GA - 3.0, 3.1, 1.2]], n: 4, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.1, size: 0.32, shape: "arrow", rate: 0.55, color: "airD", track: false, free: true, jitter: 0.08 };
 actions.gOutB = { type: "flow", _說明: "無塵室氣壓最高：空氣再從無塵室流進前室", layer: "gRoom", path: [[GB + 3.0, 2.6, 0.0], [GB + 0.4, 2.6, 0.0], [GB - 1.6, 2.7, 0.2]], n: 3, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.1, size: 0.15, shape: "arrow", rate: 0.45, color: "airC", track: false, free: true, jitter: 0.06 };
 actions.gDustBack = { type: "flow", _說明: "走廊的灰塵靠近門口，被往外的風推回去（進不來）", layer: "gDustOut", path: [[GX0 + 0.6, 2.2, 1.6], [GA - 0.6, 2.4, 0.6], [GA - 0.9, 2.6, 0.5], [GX0 + 1.2, 3.0, 1.8]], n: 5, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.0, size: 0.11, shape: "dot", rate: 0.3, color: "dustC", track: false, free: true, jitter: 0.12 };
 actions.gShower = { type: "flow", _說明: "風淋噴嘴往人身上吹（前室）", layer: "gRoom", path: [[GA + 2.9, 2.6, GZ0 + 0.2], [GA + 2.9, 2.3, GZ0 + 2.2]], n: 3, lanes: 5, phase: -4, laneDir: [1, 0, 0], laneGap: 1.0, size: 0.08, shape: "arrow", rate: 0.9, color: "airC", track: false, free: true, jitter: 0.04 };
@@ -496,7 +504,7 @@ actions.uPowerFlow = { type: "flow", _說明: "電沿黃色線槽送到機台", 
 // 標註點
 Object.assign(anchors, {
   room: A("tools", [-3.4, YF + 3.0, 2.6], -150, -90), ffu: A("ffuFront", [FX[3], YC + 0.17, FZ[6] + 0.7], -150, 110), hepa: A("oneHepa", [ONE[0] - 0.3, YC + 0.15, ONE[1] + 0.72], -170, 110),
-  fanOne: A("oneFan", [ONE[0] + 0.4, YC + 0.88, ONE[1] + 0.3], 160, -90), ret: A("subfab", [-6.0, 0.9, 5.4], -150, -80), floorA: A("rFloor", [3.4, YF, 5.6], 150, 100),
+  fanOne: A("oneFan", [ONE[0] + 0.4, YC + 0.88, ONE[1] + 0.3], 160, -90), ret: A("subfab", [-8.6, 0.72, 4.6], 150, -80), floorA: A("rFloor", [3.4, YF, 5.6], 150, 100),
   plenum: A("shell", [-4.0, 9.4, 5.0], -150, -80), water: A("utilW", [-5.0, 0.55, 5.4], -150, -90), gas: A("utilG", [1.2, 1.0, 3.9], 150, -100), power: A("utilP", [6.0, 1.33, 3.2], 150, -100),
   closet: A("closet", [CX0 + 0.2, CY1 - 0.6, CZ1], -160, -90), dust1: A("kDust", DUST10[3], 160, -100), counter: A("kCounter", [KX + 3.8, 2.9, 0.68], 120, 110),
   fiber: A("fFrame", [FIB[1].x, FIB[1].y + FIB[1].r, FIB[1].z + FIB[1].r], -160, -100), stuck: A("fStuck0", STUCK[0][2] ?? [FXC, 4, 1], 160, -100),

@@ -119,44 +119,45 @@ for l in ("ffuArr", "ffuFront", "oneFrame", "oneFan", "oneHepa"):
 # s4：拉出一台（爆炸 2.1-3）：風扇箱往上、濾網往下、外框留在原位；切到纖維放大期間組回
 VIS += [mv("oneFan", "s4:voice-3", "s4:maze+30", 20, dy=1.1), mv("oneHepa", "s4:voice-3", "s4:maze+30", 20, dy=-0.8)]
 # s4：高架地板往下分開（爆炸 2.1-4），露出回風層；念完「重新過濾」組回（2.1-5）
-VIS += [mv("rFloor", "s4:floor-2", "s4:again+14", 20, dy=-0.9)]
+VIS += [mv(l, "s4:floor-2", "s4:again+14", 20, dy=-0.6) for l in ("rFloor", "slab")]
 # s9：水、氣、電管路依序淡入
 vis("utilW", [("s9:w-4", FAR)], 10); vis("utilG", [("s9:w+10", FAR)], 10); vis("utilP", [("s9:w+24", FAR)], 10)
 # 站 F：攔住的灰塵分三批出現（越積越多）
 vis("fStuck0", [("s4:stick-6", "s4:floor-4")], 4); vis("fStuck1", [("s4:stick+14", "s4:floor-4")], 4); vis("fStuck2", [("s4:stick+34", "s4:floor-4")], 4)
 # 站 P：無塵衣從上方落下套上（連身服 → 頭罩 → 手套 → 鞋套）；頭罩套上後頭髮收掉
+VIS += [hid("person", "s5:suit+40", FAR, 1, 0)]       # 無塵衣全部套好後收掉便服層（避免便服從連身服穿出來）
 for l, k in (("suitBody", 0), ("suitHood", 8), ("suitGlove", 14), ("suitBoot", 20)):
     VIS += [{"layer": l, "at": T0, "until": f"s5:suit+{k}", "dur": 16, "dy": 6.0 if l != "suitBoot" else 5.0, "fallIn": True, "bounce": 0.05, "opacity": 0}]
 # 站 B：漢唐模組一開始就在；亞翔、洋基念到時從上方落下
 for l, c in (("bMod0", "uis"), ("bMod1", "lk"), ("bMod2", "yk")):
     VIS += [mv(l, f"s8:{c}-4", f"s8:{c}+8", 8, dy=0.6)]      # 念到哪家，那個模組跳起一下（三個一開始就都在，不留空景）
 # s4 拉近看單台濾網時，下方與外殼各層暫時收掉（鏡頭只看天花板，主素材框不被畫面外的樓板撐大）；切回全景那一幀放回來
-for l in ("shell", "tools", "rFloor", "subfab", "roofTop"):
+for l in ("shell", "tools", "rFloor", "slab", "subfab", "roofTop"):
     VIS += [hid(l, "s4:voice-4", "s4:floor-7", 1, 0)]
 
 # ═════ 各幕 ═════
 RX, RY, RD, RE = 0.0, 0.28, 67.5, 12      # 站 R 內部剖面（看向、距離、俯角）：整個剖面撐滿寬度，上緣約 y330
 P = {}
 P["s1"] = {"zoom": [{"to": "room", "at": "start", "dur": 1}],
- "shot": [shot("start-30", 0.5, 3.11, 84, 15, 1, yaw=0.0), shot("start", 0.5, 3.11, 80.5, 15, 170)],
+ "shot": [shot("start-30", 0.75, 0.35, 106, 15, 1, yaw=0.0), shot("start", 0.75, 0.35, 102, 15, 170)],
  "shift": VIS,
  "run": [run("ffuLed", "start-30", FAR, 6)],
  "overlay": [sec("cr-hook", "start", nxt("s1"), "系列 2・第 19 集", "示意，非特定廠房", {"room": "room", "clean": "clean", "prev": "prev"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "room", "at": "voice-18", "dur": 1}, {"to": "room", "at": CC, "dur": 1}],   # 第一個 zoom 讓鉤子大字在換幕前退場
- "shot": [shot(CC, 0.5, 3.11, 80.5, 15, 1), shot("cr+4", RX, RY, RD, RE, 30), shot("closet-6", 41.85, 1.63, 32, 14, 1, yaw=0.0), shot("closet", 41.85, 1.63, 30.5, 14, 60)],
+ "shot": [shot(CC, 0.5, 0.95, 81, 15, 1), shot("cr+4", RX, RY, RD, RE, 30), shot("closet-6", 41.85, 1.63, 32, 14, 1, yaw=0.0), shot("closet", 41.85, 1.63, 30.5, 14, 60)],
  "run": [run(f"kBrown{i}", "closet-8", "s3:start+4", 6) for i in range(10)] + [run("kGlow", "ten-2", "s3:start+4", 6), run("kSample", "top", "s3:start+4", 6), run("ffuSpin", "cr+10", "s2:closet-6", 8)],
  "labels": [lab("room", "無塵室", "Cleanroom", "blue", "cr", "closet-8", xy=[300, 320]),
             lab("closet", "一立方公尺（衣櫃大）", "1 cubic meter", "amber", "closet+2", "closet+48"),
             lab("dust1", "灰塵（放大圈）", "Dust (circled)", "blue", "ten", "ten+46")],
  "overlay": [card("s2", "cr-class", "最乾淨那一級", "ISO 14644-1", {"cr": "cr", "top": "top", "closet": "closet", "ten": "ten"})]}
 P["s3"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
- "shot": [shot(CC, RX, RY, RD, RE, 1), shot("ffu-10", 0.0, 3.8, 44.0, 8, 26)],
+ "shot": [shot(CC, RX, RY, RD, RE, 1), shot("ffu-10", 0.0, 3.15, 62.0, 15, 24), shot("down-6", 0.0, 3.8, 44.0, 8, 30)],
  "run": [run("ffuSpin", "ceil-6", "s4:end+60", 10), run("ffuLed", "start", FAR, 6)] + [run(f"airDown{k}", "down", "s4:voice-6", 1) for k in range(3)] + [run(f"airDot{k}", "down+4", "s4:voice-6", 1) for k in range(3)]
         + [run("airWake", "down+10", "s4:voice-6", 1), run("dustDown", "down+6", "s4:voice-6", 1)],
  "labels": [lab("ffu", "風扇濾網（一台台排滿）", "Fan filter units", "amber", "ffu", "ffu+46")],
  "overlay": [card("s3", "cr-fall", "像一道瀑布：往下吹", "示意（不標風速）", {"ceil": "ceil", "ffu": "ffu", "down": "down", "fall": "fall"})]}
 P["s4"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}, {"to": "fiber", "at": "maze+16", "dur": 1}, {"to": "room", "at": "floor-6", "dur": 1}],
- "shot": [shot(CC, -0.8, 7.7, 23.5, 4, 1), shot("voice+2", -0.8, 7.64, 21.5, 4, 30), shot("maze+16", 70.0, 2.41, 35.0, 6, 1, yaw=0.0), shot("floor-6", RX, RY, RD, RE, 1)],
+ "shot": [shot(CC, -0.8, 6.0, 21.5, 22, 1), shot("voice+2", -0.8, 5.9, 19.5, 22, 30), shot("maze+16", 70.0, 2.41, 35.0, 6, 1, yaw=0.0), shot("floor-6", RX, RY, RD, RE, 1)],
  "run": [run("oneSpin", "start", "maze+16", 8), run("ffuSpin", "start", FAR, 6), run("fAir", "maze-6", "floor-4", 6), run("fOut", "maze", "floor-4", 6)]
         + [run(f"fDust{i}", f"maze+{4 + i * 7}", "floor-4", 4) for i in range(6)]
         + [run("floorSuck", "floor+4", "s5:start+4", 6), run("loopL", "floor+10", "s5:start+4", 8), run("loopR", "floor+10", "s5:start+4", 8)]
@@ -190,7 +191,7 @@ P["s7"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
             lab("wafer", "圖案跟著脹縮（放大示意）", "Pattern swells and shrinks", "amber", "exp-4", "exp+42")],
  "overlay": [card("s7", "cr-env", "溫度、濕度都固定", "示意（不標溫濕度數值）", {"temp": "temp", "hum": "hum", "fix": "fix", "exp": "exp", "static": "static"})]}
 P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
- "shot": [shot(CC, 190.0, -1.19, 48.0, 18, 1)],
+ "shot": [shot(CC, 190.0, -1.02, 49.0, 28, 1)],
  "run": [run("bHook", "start", "s9:start+4", 6)],
  "overlay": [card("s8", "cr-co", "無塵室工程公司（台灣）", "報導；截至 2026/11/27", {"tw": "tw", "uis": "uis", "lk": "lk", "yk": "yk", "build": "build"})]}
 P["s9"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
