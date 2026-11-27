@@ -133,7 +133,9 @@ BOX("ppDieCav", "pPress", PX - 0.7, PX + 0.7, 1.58, 1.61, -0.6, 0.6, "dark");
 for (const [x, z] of [[-1.9, -1.3], [1.9, -1.3], [-1.9, 1.3], [1.9, 1.3]]) VC(`ppPost${x}${z}`, "pPress", 0.14, 1.2, 5.0, "steel2", { x: PX + x, z });
 BOX("ppCrown", "pPress", PX - 2.4, PX + 2.4, 5.0, 5.8, -1.6, 1.6, "band"); BOX("ppPlate", "pPress", PX - 1.0, PX + 0.4, 5.3, 5.6, 1.6, 1.65, "gold");
 ZC("ppFly", "pPress", 1.0, -2.25, -1.9, PX, 5.4, "steel"); ZC("ppFlyHub", "pPress", 0.3, -2.35, -1.8, PX, 5.4, "dark"); ZC("ppFlyMark", "pPress", 0.12, -2.28, -2.26, PX + 0.7, 5.4, "mark");
-ZC("ppShaft", "pPress", 0.16, -2.4, 1.7, PX, 5.4, "steel2"); ZC("ppCrank", "pPress", 0.42, 1.15, 1.32, PX, 5.4, "dark"); ZC("ppCrankPin", "pPress", 0.1, 1.32, 1.45, PX + 0.25, 5.4, "steel");   // 前端曲柄（偏心輪）＋曲柄銷，跟飛輪同軸轉，連桿大端套在這裡 P({ id: "ppBearing", layer: "pPress", shape: "box", size: [0.6, 0.6, 0.3], pos: [PX, 5.4, 0], at: [[0, 0, -1.7], [0, 0, 1.7]], mat: "dark" });
+ZC("ppShaft", "pPress", 0.16, -2.4, 1.7, PX, 5.4, "steel2"); ZC("ppCrank", "pPress", 0.42, 1.15, 1.32, PX, 5.4, "dark"); ZC("ppCrankPin", "pPress", 0.1, 1.32, 1.45, PX + 0.25, 5.4, "steel");
+// ↑ 前端曲柄（偏心輪）＋曲柄銷，跟飛輪同軸轉，連桿大端套在這裡
+P({ id: "ppBearing", layer: "pPress", shape: "box", size: [0.6, 0.6, 0.3], pos: [PX, 5.4, 0], at: [[0, 0, -1.7], [0, 0, 1.7]], mat: "dark" });
 BOX("ppMotorB", "pPress", PX + 1.6, PX + 2.8, 5.8, 6.7, -2.5, -1.6, "dark"); ZC("ppPulley", "pPress", 0.25, -2.25, -1.9, PX + 2.2, 6.25, "steel");
 SEG3("ppBeltT", "pPress", [PX + 2.2, 6.5, -2.08], [PX, 6.4, -2.08], 0.04, "rubber"); SEG3("ppBeltB", "pPress", [PX + 2.2, 6.0, -2.08], [PX + 0.55, 4.55, -2.08], 0.04, "rubber");
  BOX("ppWarn", "pPress", PX + 1.2, PX + 2.2, 0.4, 0.8, 1.8, 1.84, "warnY");
