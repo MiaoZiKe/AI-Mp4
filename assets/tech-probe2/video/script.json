@@ -1,0 +1,1892 @@
+{
+ "slug": "tech-probe2",
+ "prevEpisode": "2-21：探針卡-1",
+ "title": "探針卡-2：誰在做（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：依 docs/prompts/tech-旁白金手指.md；本子聊天室不配音、不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "card",
+    "label": "探針卡與探針台（示意）",
+    "en": "PROBE CARD & PROBER",
+    "field": "30 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "map",
+    "label": "探針卡廠（示意位置）",
+    "en": "PROBE CARD MAKERS",
+    "field": "200 m",
+    "ruler": "50 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "micro",
+    "label": "探針放大（示意）",
+    "en": "PROBE CLOSE-UP",
+    "field": "1 cm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "下一個系列（預告）",
+    "en": "NEXT SERIES",
+    "field": "30 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "探針卡",
+   "誰做得出來？"
+  ],
+  "sub": "一張卡好幾萬根針",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "這麼精細的卡，誰做得出來？前一集，一張探針卡有好幾萬根針。",
+   "tts": "這麼精細的卡，誰做得出來？前一集，一張探針卡有好幾萬根針。",
+   "subtitle": {
+    "zh": "這麼精細的卡\n誰做得出來？\n前一集\n一張探針卡\n有好幾萬根針",
+    "en": "A card this precise: | who can make it? | Last episode: | one probe card | holds tens of thousands of needles."
+   },
+   "keywords": [
+    "探針卡",
+    "好幾萬根針"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "誰做得出來"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "card",
+     "text": "探針卡"
+    },
+    {
+     "id": "needle",
+     "text": "好幾萬根針"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：好幾萬根針",
+     "title": "誰做得出來？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 1.6,
+      "y": 2.4,
+      "d": 46,
+      "elev": 28
+     },
+     {
+      "at": "start",
+      "dur": 100,
+      "x": 1.6,
+      "y": 2.4,
+      "d": 44,
+      "elev": 28
+     },
+     {
+      "at": "card-2",
+      "dur": 36,
+      "x": 0.6,
+      "y": 6.5,
+      "d": 40,
+      "elev": 40
+     }
+    ],
+    "shift": [
+     {
+      "layer": "pcb",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "stiff",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "st",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "ugp",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "spc",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "lgp",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "nd",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "ndRow",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "hmap",
+      "at": "s1:card-2",
+      "until": "s8:start+26",
+      "dur": 20,
+      "dy": 4
+     },
+     {
+      "layer": "hmap",
+      "at": "s1:start-40",
+      "until": "s3:more+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "hmap",
+      "at": "s3:pin-8",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "laser",
+      "at": "s1:start-40",
+      "until": "s3:start-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "laser",
+      "at": "s3:pin-8",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "lzRail",
+      "at": "s1:start-40",
+      "until": "s3:start-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "lzRail",
+      "at": "s3:pin-8",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "lgp",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
+      "dur": 16,
+      "dy": 2.7
+     },
+     {
+      "layer": "spc",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
+      "dur": 16,
+      "dy": 1.55
+     },
+     {
+      "layer": "ugp",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
+      "dur": 16,
+      "dy": 0.45
+     },
+     {
+      "layer": "nd",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
+      "dur": 16,
+      "dy": 1.0
+     },
+     {
+      "layer": "ndRow",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
+      "dur": 16,
+      "dy": 1.0
+     },
+     {
+      "layer": "ndRow",
+      "at": "s7:voice+10",
+      "until": "s7:voice+101",
+      "dur": 14,
+      "dy": 1.2,
+      "dx": -2.3
+     },
+     {
+      "layer": "st",
+      "at": "s7:voice+50",
+      "until": "s7:voice+95",
+      "dur": 12,
+      "dx": 3.4,
+      "dy": 0.25
+     },
+     {
+      "layer": "chuck",
+      "at": "s3:start-6",
+      "until": "s3:pin-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chuck",
+      "at": "s7:start-6",
+      "until": "s8:voice-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wafer",
+      "at": "s3:start-6",
+      "until": "s3:pin-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wafer",
+      "at": "s7:start-6",
+      "until": "s8:voice-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chuck",
+      "at": "s8:voice",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": 9.4
+     },
+     {
+      "layer": "wafer",
+      "at": "s8:voice",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": 9.4
+     },
+     {
+      "layer": "dieOk0",
+      "at": "s8:voice",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": 9.4
+     },
+     {
+      "layer": "dieOk1",
+      "at": "s8:voice",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": 9.4
+     },
+     {
+      "layer": "dieOk2",
+      "at": "s8:voice",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": 9.4
+     },
+     {
+      "layer": "dieOk3",
+      "at": "s8:voice",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": 9.4
+     },
+     {
+      "layer": "dieOk0",
+      "at": "s1:start-40",
+      "until": "s8:eq+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dieOk1",
+      "at": "s1:start-40",
+      "until": "s8:mat+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dieOk2",
+      "at": "s1:start-40",
+      "until": "s8:fac+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dieOk3",
+      "at": "s1:start-40",
+      "until": "s8:test+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mSt",
+      "at": "s3:gap-18",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": -1.3
+     },
+     {
+      "layer": "mUg",
+      "at": "s3:gap-18",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": -1.3
+     },
+     {
+      "layer": "mLg",
+      "at": "s3:gap-18",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": -1.3
+     },
+     {
+      "layer": "mNs",
+      "at": "s3:gap-18",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": -1.3
+     },
+     {
+      "layer": "mNb",
+      "at": "s3:gap-18",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": -1.3
+     },
+     {
+      "layer": "mHmap",
+      "at": "s3:gap-18",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": -1.3
+     },
+     {
+      "layer": "mLaser",
+      "at": "s3:pin-2",
+      "until": "s10:start+400",
+      "dur": 40,
+      "dx": 12.8
+     },
+     {
+      "layer": "mLaser",
+      "at": "s1:start-40",
+      "until": "s3:pin-9",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mLaser",
+      "at": "s3:pin+44",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mHmap",
+      "at": "s1:start-40",
+      "until": "s3:pin+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mHmap",
+      "at": "s3:gap+10",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mNb",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mC1",
+      "at": "s1:start-40",
+      "until": "s3:gap+8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mGap",
+      "at": "s1:start-40",
+      "until": "s3:gap+8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "mC2",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTipNew",
+      "at": "s6:wear+6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTipWorn",
+      "at": "s1:start-40",
+      "until": "s6:wear+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTipWorn",
+      "at": "s6:care-2",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wDep",
+      "at": "s1:start-40",
+      "until": "s6:wear+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wDep",
+      "at": "s6:pencil+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTipClean",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wPadL",
+      "at": "s6:wear-4",
+      "until": "s10:start+400",
+      "dur": 10,
+      "dx": -8.0
+     },
+     {
+      "layer": "wSheet",
+      "at": "s1:start-40",
+      "until": "s6:wear-4",
+      "dur": 10,
+      "dx": 8.0
+     },
+     {
+      "layer": "wNdl",
+      "at": "s6:pencil+4",
+      "until": "s6:pencil+28",
+      "dur": 6,
+      "dy": -0.13
+     },
+     {
+      "layer": "wTipWorn",
+      "at": "s6:pencil+4",
+      "until": "s6:pencil+28",
+      "dur": 6,
+      "dy": -0.13
+     },
+     {
+      "layer": "wDep",
+      "at": "s6:pencil+4",
+      "until": "s6:pencil+28",
+      "dur": 6,
+      "dy": -0.13
+     },
+     {
+      "layer": "wTwz",
+      "at": "s1:start-40",
+      "until": "s6:pencil+34",
+      "dur": 8,
+      "dx": 3.0,
+      "dy": 0.2
+     },
+     {
+      "layer": "wTwz",
+      "at": "s6:pencil+36",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": 4.0
+     },
+     {
+      "layer": "wNdl",
+      "at": "s6:pencil+36",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": 4.0
+     },
+     {
+      "layer": "wTipWorn",
+      "at": "s6:pencil+36",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": 4.0
+     },
+     {
+      "layer": "wTwz",
+      "at": "s6:pencil+44",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dx": 3.0
+     },
+     {
+      "layer": "wNdl",
+      "at": "s6:pencil+44",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dx": 3.0
+     },
+     {
+      "layer": "wTipWorn",
+      "at": "s6:pencil+44",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dx": 3.0
+     },
+     {
+      "layer": "wNdl",
+      "at": "s6:care-2",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTwz",
+      "at": "s1:start-40",
+      "until": "s6:pencil+24",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTwz",
+      "at": "s6:care-2",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wNew",
+      "at": "s1:start-40",
+      "until": "s6:care-2",
+      "dur": 6,
+      "dx": -3.0
+     },
+     {
+      "layer": "wTwz2",
+      "at": "s1:start-40",
+      "until": "s6:care-2",
+      "dur": 6,
+      "dx": -3.0
+     },
+     {
+      "layer": "wNew",
+      "at": "s1:start-40",
+      "until": "s6:care+4",
+      "dur": 10,
+      "dy": 4.0
+     },
+     {
+      "layer": "wTwz2",
+      "at": "s1:start-40",
+      "until": "s6:care+4",
+      "dur": 10,
+      "dy": 4.0
+     },
+     {
+      "layer": "wTwz2",
+      "at": "s6:care+16",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dx": -3.0,
+      "dy": 4.0
+     },
+     {
+      "layer": "wNew",
+      "at": "s1:start-40",
+      "until": "s6:care-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTwz2",
+      "at": "s1:start-40",
+      "until": "s6:care-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "wTwz2",
+      "at": "s6:care+26",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     }
+    ],
+    "run": [
+     {
+      "id": "touch",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s1:card-4"
+     },
+     {
+      "id": "testLed",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s1:card"
+     },
+     {
+      "id": "flip",
+      "at": "s1:needle-8",
+      "ramp": 26,
+      "until": "s1:needle-7"
+     }
+    ],
+    "labels": [
+     {
+      "part": "card",
+      "text": "探針卡",
+      "en": "Probe card",
+      "color": "amber",
+      "at": "card",
+      "until": "card+36",
+      "cut": true
+     },
+     {
+      "part": "needleFace",
+      "text": "針面",
+      "en": "Needle side",
+      "color": "blue",
+      "at": "needle+14",
+      "until": "needle+48",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 22 集（收尾）",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       },
+       "needle": {
+        "at": "needle"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.7,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "全球由少數幾家主導。美國的 FormFactor，八成營收都來自探針卡。",
+   "tts": "全球由少數幾家主導。美國的 FormFactor，八成營收都來自探針卡。",
+   "subtitle": {
+    "zh": "全球由少數幾家主導\n美國的\nFormFactor\n八成營收\n都來自探針卡",
+    "en": "A few companies lead worldwide. | In the US, | FormFactor | gets about 80% of revenue | from probe cards."
+   },
+   "keywords": [
+    "少數幾家",
+    "FormFactor",
+    "八成"
+   ],
+   "cues": [
+    {
+     "id": "few",
+     "text": "少數幾家"
+    },
+    {
+     "id": "us",
+     "text": "美國"
+    },
+    {
+     "id": "ff",
+     "text": "FormFactor"
+    },
+    {
+     "id": "pct",
+     "text": "八成營收"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "FormFactor 2025 財報；TrendForce 2026/6"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "map",
+      "at": "start-14",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 33.692,
+      "y": 1.6,
+      "d": 24,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "ffPin",
+      "at": "us-4",
+      "ramp": 8,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "ffFab",
+      "text": "美國探針卡廠",
+      "en": "US probe card maker",
+      "color": "blue",
+      "at": "ff",
+      "until": "ff+48",
+      "cut": true,
+      "flag": "US"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-ff",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "全球少數幾家主導",
+      "tag": "FormFactor 2025 財報；TrendForce",
+      "t": {
+       "few": {
+        "at": "few"
+       },
+       "us": {
+        "at": "us"
+       },
+       "ff": {
+        "at": "ff"
+       },
+       "pct": {
+        "at": "pct"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.3,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "針越多越難。像一次把一萬個圖釘壓進軟木板，高度差一點，就有幾根壓不到。",
+   "tts": "針越多越難。像一次把一萬個圖釘壓進軟木板，高度差一點，就有幾根壓不到。",
+   "subtitle": {
+    "zh": "針越多越難\n像一次把一萬個\n圖釘壓進軟木板\n高度差一點\n就有幾根壓不到",
+    "en": "More needles, more trouble. | Like pressing ten thousand | pins into a corkboard at once: | a tiny height difference, | and some never touch."
+   },
+   "keywords": [
+    "圖釘",
+    "高度差",
+    "壓不到"
+   ],
+   "cues": [
+    {
+     "id": "more",
+     "text": "針越多越難"
+    },
+    {
+     "id": "pin",
+     "text": "圖釘"
+    },
+    {
+     "id": "gap",
+     "text": "高度差"
+    },
+    {
+     "id": "miss",
+     "text": "壓不到"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測（不標針數、針壓）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "card",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "micro",
+      "at": "pin-9",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0.3,
+      "y": 7.3,
+      "d": 28,
+      "elev": 44
+     },
+     {
+      "at": "pin-9",
+      "dur": 1,
+      "x": 120,
+      "y": 3.9,
+      "d": 38,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "lzScan",
+      "at": "start-2",
+      "ramp": 6,
+      "until": "pin-8"
+     },
+     {
+      "id": "hmapGlow",
+      "at": "more+6",
+      "ramp": 6,
+      "until": "pin-8"
+     },
+     {
+      "id": "mOk1",
+      "at": "gap+8",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "mGapP",
+      "at": "gap+8",
+      "ramp": 6,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hmap",
+      "text": "針尖高度圖",
+      "en": "Tip height map",
+      "color": "amber",
+      "at": "more+6",
+      "until": "pin-10",
+      "cut": true
+     },
+     {
+      "part": "mGap",
+      "text": "壓不到",
+      "en": "Not touching",
+      "color": "amber",
+      "at": "gap+12",
+      "until": "miss+30",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-pin",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "一萬個圖釘壓進軟木板",
+      "tag": "示意（不標針數、針壓）",
+      "t": {
+       "more": {
+        "at": "more"
+       },
+       "pin": {
+        "at": "pin"
+       },
+       "gap": {
+        "at": "gap"
+       },
+       "miss": {
+        "at": "miss"
+       },
+       "flex": {
+        "at": "end+40"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "payoff",
+   "para": 4,
+   "narration": "台灣有旺矽。據報導，它的垂直式和懸臂式探針卡，在台廠排第一。",
+   "tts": "台灣有旺細。據報導，它的垂直式和懸臂式探針卡，在台廠排第一。",
+   "subtitle": {
+    "zh": "台灣有旺矽\n據報導\n它的垂直式\n和懸臂式探針卡\n在台廠排第一",
+    "en": "Taiwan has MPI. | Media report | its vertical | and cantilever probe cards | rank first among Taiwan makers."
+   },
+   "keywords": [
+    "旺矽",
+    "垂直式",
+    "懸臂式"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "mpi",
+     "text": "旺矽"
+    },
+    {
+     "id": "rep",
+     "text": "據報導"
+    },
+    {
+     "id": "vert",
+     "text": "垂直式"
+    },
+    {
+     "id": "cant",
+     "text": "懸臂式"
+    },
+    {
+     "id": "first",
+     "text": "排第一"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報、旺得富（公司說法，媒體轉述）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "map",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 78.4,
+      "y": 1.6,
+      "d": 20,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "mpiPin",
+      "at": "tw-4",
+      "ramp": 8,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "mpiFab",
+      "text": "旺矽（新竹）",
+      "en": "MPI, Hsinchu",
+      "color": "amber",
+      "at": "mpi",
+      "until": "mpi+48",
+      "cut": true,
+      "flag": "TW"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-mpi",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣：旺矽 MPI",
+      "tag": "公司說法，媒體轉述",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "mpi": {
+        "at": "mpi"
+       },
+       "rep": {
+        "at": "rep"
+       },
+       "vert": {
+        "at": "vert"
+       },
+       "cant": {
+        "at": "cant"
+       },
+       "first": {
+        "at": "first"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.1,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "payoff",
+   "para": 5,
+   "narration": "還有精測，做探針卡和測試板，客戶多是手機和 AI 晶片大廠。",
+   "tts": "還有精測，做探針卡和測試板，客戶多是手機和 AI 晶片大廠。",
+   "subtitle": {
+    "zh": "還有精測\n做探針卡\n和測試板\n客戶多是手機\n和 AI 晶片大廠",
+    "en": "There's also CHPT, | making probe cards | and test boards; | customers are mostly phone | and AI chip giants."
+   },
+   "keywords": [
+    "精測",
+    "測試板",
+    "AI"
+   ],
+   "cues": [
+    {
+     "id": "chpt",
+     "text": "精測"
+    },
+    {
+     "id": "card",
+     "text": "探針卡"
+    },
+    {
+     "id": "board",
+     "text": "測試板"
+    },
+    {
+     "id": "phone",
+     "text": "手機"
+    },
+    {
+     "id": "ai",
+     "text": "AI"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科技新報、鉅亨網（媒體報導）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "map",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 89.8,
+      "y": 1.4,
+      "d": 21,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "chPin",
+      "at": "chpt-4",
+      "ramp": 8,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "chFab",
+      "text": "精測（平鎮）",
+      "en": "CHPT, Pingzhen",
+      "color": "blue",
+      "at": "chpt",
+      "until": "chpt+48",
+      "cut": true,
+      "flag": "TW"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-chpt",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣：中華精測 CHPT",
+      "tag": "媒體報導",
+      "t": {
+       "chpt": {
+        "at": "chpt"
+       },
+       "card": {
+        "at": "card"
+       },
+       "board": {
+        "at": "board"
+       },
+       "phone": {
+        "at": "phone"
+       },
+       "ai": {
+        "at": "ai"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "holdSec": 0.7,
+   "headSec": 0.2,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "探針卡其實是耗材。針會磨損，像鉛筆越寫越短，要定期保養更換。",
+   "tts": "探針卡其實是耗材。針會磨損，像鉛筆越寫越短，要定期保養更換。",
+   "subtitle": {
+    "zh": "探針卡其實是耗材\n針會磨損\n像鉛筆越寫越短\n要定期保養更換",
+    "en": "A probe card is actually a consumable. | The needles wear down, | like a pencil getting shorter, | so they need regular care and replacement."
+   },
+   "keywords": [
+    "耗材",
+    "磨損",
+    "鉛筆"
+   ],
+   "cues": [
+    {
+     "id": "cons",
+     "text": "耗材"
+    },
+    {
+     "id": "wear",
+     "text": "磨損"
+    },
+    {
+     "id": "pencil",
+     "text": "鉛筆"
+    },
+    {
+     "id": "care",
+     "text": "保養"
+    },
+    {
+     "id": "swap",
+     "text": "更換"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5961728（探針針尖清潔）；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 150,
+      "y": 4.0,
+      "d": 24,
+      "elev": 10
+     },
+     {
+      "at": "wear+4",
+      "dur": 30,
+      "x": 150.3,
+      "y": 3.4,
+      "d": 19,
+      "elev": 10
+     },
+     {
+      "at": "wear+4",
+      "dur": 14,
+      "x": 150.8,
+      "y": 5.0,
+      "d": 30,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "wTouch",
+      "at": "start-4",
+      "ramp": 8,
+      "until": "wear+10"
+     },
+     {
+      "id": "wScrubAct",
+      "at": "start-4",
+      "ramp": 8,
+      "until": "wear+10"
+     },
+     {
+      "id": "wContact",
+      "at": "start-4",
+      "ramp": 8,
+      "until": "wear+10"
+     },
+     {
+      "id": "wPolish",
+      "at": "pencil+4",
+      "ramp": 8,
+      "until": "pencil+28"
+     },
+     {
+      "id": "wDust",
+      "at": "pencil+6",
+      "ramp": 6,
+      "until": "pencil+28"
+     },
+     {
+      "id": "wDust2",
+      "at": "pencil+8",
+      "ramp": 6,
+      "until": "pencil+28"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wTip",
+      "text": "針尖磨耗處",
+      "en": "Tip wear zone",
+      "color": "amber",
+      "at": "cons-16",
+      "until": "cons+29",
+      "cut": true
+     },
+     {
+      "part": "wSheetA",
+      "text": "清針片",
+      "en": "Cleaning sheet",
+      "color": "blue",
+      "at": "wear+6",
+      "until": "pencil+34",
+      "cut": true,
+      "xy": [
+       230,
+       400
+      ]
+     },
+     {
+      "part": "wNewA",
+      "text": "換上新針",
+      "en": "New needle",
+      "color": "amber",
+      "at": "care-2",
+      "until": "care+44",
+      "cut": true,
+      "xy": [
+       800,
+       430
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-wear",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像鉛筆越寫越短",
+      "tag": "示意（不標壽命次數）",
+      "t": {
+       "cons": {
+        "at": "cons"
+       },
+       "wear": {
+        "at": "wear"
+       },
+       "pencil": {
+        "at": "pencil"
+       },
+       "care": {
+        "at": "care"
+       },
+       "swap": {
+        "at": "swap"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "holdSec": 0.85,
+   "headSec": 0.3,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s7",
+   "beat": "twist",
+   "para": 7,
+   "narration": "AI 晶片腳數多、間距小，卡越做越難，台廠正趕過來。",
+   "tts": "AI 晶片腳數多、間距小，卡越做越難，台廠正趕過來。",
+   "subtitle": {
+    "zh": "AI 晶片腳數多\n間距小\n卡越做越難\n台廠正趕過來",
+    "en": "AI chips have many pins | packed close together, | so cards get harder to make, | and Taiwan makers are catching up."
+   },
+   "keywords": [
+    "腳數多",
+    "間距小",
+    "台廠"
+   ],
+   "cues": [
+    {
+     "id": "pins",
+     "text": "腳數多"
+    },
+    {
+     "id": "pitch",
+     "text": "間距小"
+    },
+    {
+     "id": "hard",
+     "text": "越做越難"
+    },
+    {
+     "id": "tw",
+     "text": "台廠"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TrendForce 2026/6（RP260626XO3，研究機構）；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "card",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 1.4,
+      "y": 7.6,
+      "d": 34,
+      "elev": 36
+     }
+    ],
+    "run": [],
+    "labels": [
+     {
+      "part": "lgp",
+      "text": "導板展開・抽出一排針",
+      "en": "Guide plates apart, a row out",
+      "color": "amber",
+      "at": "voice+4",
+      "until": "voice+49",
+      "cut": true
+     },
+     {
+      "part": "st",
+      "text": "空間轉換器",
+      "en": "Space transformer",
+      "color": "blue",
+      "at": "voice+50",
+      "until": "voice+95",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-ai",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "AI 晶片：卡越做越難",
+      "tag": "TrendForce 2026/6",
+      "t": {
+       "pins": {
+        "at": "pins"
+       },
+       "pitch": {
+        "at": "pitch"
+       },
+       "hard": {
+        "at": "hard"
+       },
+       "tw": {
+        "at": "tw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.1,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "設備、材料、廠務、測試，一片晶圓終於做完也測完了。",
+   "tts": "設備、材料、廠務、測試，一片晶圓終於做完也測完了。",
+   "subtitle": {
+    "zh": "設備・材料\n廠務・測試\n一片晶圓\n終於做完也測完了",
+    "en": "Equipment, materials, | facilities, testing: | one wafer | is finally made and tested."
+   },
+   "keywords": [
+    "設備",
+    "廠務",
+    "測完"
+   ],
+   "cues": [
+    {
+     "id": "eq",
+     "text": "設備"
+    },
+    {
+     "id": "mat",
+     "text": "材料"
+    },
+    {
+     "id": "fac",
+     "text": "廠務"
+    },
+    {
+     "id": "test",
+     "text": "測試"
+    },
+    {
+     "id": "done",
+     "text": "做完"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "card",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 3.0,
+      "y": 3.2,
+      "d": 46,
+      "elev": 32
+     },
+     {
+      "at": "done-10",
+      "dur": 34,
+      "x": 8.4,
+      "y": 2.6,
+      "d": 31,
+      "elev": 46
+     }
+    ],
+    "run": [
+     {
+      "id": "flipBack",
+      "at": "start",
+      "ramp": 24,
+      "until": "start+1"
+     },
+     {
+      "id": "testLed",
+      "at": "eq",
+      "ramp": 6,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "probe2",
+      "text": "測完的晶圓",
+      "en": "Tested wafer",
+      "color": "blue",
+      "at": "done",
+      "until": "done+48",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-recap",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2 收尾",
+      "tag": "示意",
+      "t": {
+       "eq": {
+        "at": "eq"
+       },
+       "mat": {
+        "at": "mat"
+       },
+       "fac": {
+        "at": "fac"
+       },
+       "test": {
+        "at": "test"
+       },
+       "done": {
+        "at": "done"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.7,
+   "holdSec": 0.7,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "下一個系列，晶片往下游走。第一集，晶圓切割與薄化。留言探針卡廠，拿完整資料。",
+   "tts": "下一個系列，晶片往下游走。第一集，晶圓切割與薄化。留言探針卡廠，拿完整資料。",
+   "subtitle": {
+    "zh": "下一個系列\n晶片往下游走\n第一集\n晶圓切割與薄化\n留言探針卡廠\n拿完整資料",
+    "en": "Next series: | chips move downstream. | Episode one: | wafer dicing and thinning. | Comment \"probe card makers\" | for the full notes."
+   },
+   "keywords": [
+    "下游",
+    "切割",
+    "探針卡廠"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一個系列"
+    },
+    {
+     "id": "down",
+     "text": "下游"
+    },
+    {
+     "id": "ep",
+     "text": "第一集"
+    },
+    {
+     "id": "dice",
+     "text": "切割"
+    },
+    {
+     "id": "kw",
+     "text": "留言探針卡廠"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 178.5,
+      "y": 1.8,
+      "d": 36,
+      "elev": 44
+     },
+     {
+      "at": "dice-4",
+      "dur": 30,
+      "x": 178.9,
+      "y": 1.9,
+      "d": 30,
+      "elev": 34
+     }
+    ],
+    "run": [
+     {
+      "id": "bladeSpin",
+      "at": "start-4",
+      "ramp": 30,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dFrameA",
+      "text": "貼膜環框",
+      "en": "Tape frame",
+      "color": "amber",
+      "at": "down",
+      "until": "down+46",
+      "cut": true
+     },
+     {
+      "part": "dBladeA",
+      "text": "切割刀",
+      "en": "Dicing blade",
+      "color": "blue",
+      "at": "dice",
+      "until": "dice+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe2-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "系列 3 預告",
+      "t": {
+       "next": {
+        "at": "next"
+       },
+       "down": {
+        "at": "down"
+       },
+       "ep": {
+        "at": "ep"
+       },
+       "dice": {
+        "at": "dice"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.4,
+   "holdSec": 0.8,
+   "headSec": 0.2
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "晶圓切割與薄化",
+     "trail": [
+      "系列 3：晶片往下游走"
+     ],
+     "comment": "探針卡廠",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
