@@ -277,13 +277,13 @@ actions.pExhaust = { type: "flow", _說明: "腔體抽出的氣體：從上方�
 
 // ═════ 站 K：供應商展台（x 180，s8）＝TOTO（日）、台灣精材（台）、翔名（台）；念到才從幽靈變實體 ═════
 const SIGNS = [["toto", "logo:toto"], ["twcm", "text:twcm=台灣精材|3467"], ["feedback", "logo:feedback"]];
-const ETAGS = [["ecer", "text:ecer=陶瓷|表面平整"], ["emet", "text:emet=金屬|被打花"]];
+const ETAGS = [["ecer", "text:ecer=陶瓷"], ["emet", "text:emet=金屬"]];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-parts", "flag:JP", "flag:TW", ...SIGNS.map(([, a]) => a), ...ETAGS.map(([, a]) => a)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
 const SIGNM0 = 0; const SIGNM = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
 ["JP", "TW"].forEach((c) => { materials[`f_${c}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/flag-${c}.png` }; });
 ETAGS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
 // E 站兩塊正面貼字牌（位置已含 EMV 靠攏位移）
-[["ecer", "eCer", 124.2], ["emet", "eMet", 132.2]].forEach(([id, lay, x]) => { const sg = SIGNM[`sign-${id}`], w = 3.4; P({ id: `${id}Tag`, layer: lay, shape: "plane", size: [w, R2(w / sg.aspect)], pos: [x, 2.6, 2.33], uv01: true, shadow: false, mat: `t_${id}` }); });
+[["ecer", "eCer", 124.2], ["emet", "eMet", 132.2]].forEach(([id, lay, x]) => { const sg = SIGNM[`sign-${id}`], w = Math.min(3.4, R2(1.6 * sg.aspect)); P({ id: `${id}Tag`, layer: lay, shape: "plane", size: [w, R2(w / sg.aspect)], pos: [x, 2.6, 2.33], uv01: true, shadow: false, mat: `t_${id}` }); });
 SIGNS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
 BACKDROP("kBack", 169.4, 191.0, 8.5);
 LAY("kBase", [23, 1, 180, 0.5]); BOX("kPl", "kBase", 169.2, 191.2, 0, 0.9, -3.4, 3.4, "band"); BOX("kPlTop", "kBase", 169.2, 191.2, 0.9, 1.0, -3.4, 3.4, "panel2");

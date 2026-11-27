@@ -116,17 +116,17 @@ VIS += [mv("pins", "s3:wafer", "s3:ext+52", 22, dy=1.0), mv("wafer", "s3:wafer",
 vis("bEq", [("s3:ring+64", "s3:ext+40")])
 VIS += [mv("liner", "s5:start+8", "s5:wall+10", 22, dz=3.2)]
 # C 站：更換（夾具與舊環一起抬起、移開；備用新環落到舊環位置）
-def W(n): return f"s6:size{n + 64:+d}"  # 換環流程起點＝size+64（「電漿邊緣偏移」標籤收掉後才熄電漿；Andy 第 39 條幕長縮短，流程壓縮在旁白內做完）
-# ①夾具從右側伸入 ②熄電漿 ③下降吸住舊環 ④抬起 ⑤帶出畫面 ⑥帶新環伸入 ⑦下降放好、停住 ⑧抬起退出 ⑨電漿重新點亮、鞘層變平
+def W(n): return f"s6:size{n + 56:+d}"  # 換環流程起點＝size+56（Andy 第 39 條幕長縮短，流程在旁白內做完）
+# ①夾具伸入 ②熄電漿 ③下降吸住舊環、停 4 幀 ④抬起 ⑤帶出 ⑥帶新環伸入 ⑦下降放好、停 8 幀 ⑧抬起退出 ⑨夾具離開後電漿才重新點亮、鞘層變平
 VIS += [mv("cArm", T0, FAR, 1, dx=7.0, dy=2.0), hid("cArm", T0, W(-2), 1, 0)]
-VIS += [mv("cArm", W(0), FAR, 10, dx=-7.0), mv("cArm", W(10), FAR, 8, dy=-2.0)]
-VIS += [mv(l, W(20), FAR, 8, dy=2.0) for l in ("cArm", "cORing", "cOldCrumb")] + [mv(l, W(28), FAR, 10, dx=7.0) for l in ("cArm", "cORing", "cOldCrumb")]
-VIS += [hid("cORing", W(39), FAR, 1, 0), hid("cOldCrumb", W(39), FAR, 1, 0)]
-VIS += [mv("cNewRing", T0, FAR, 1, dx=7.0, dy=2.0), hid("cNewRing", T0, W(39), 1, 0)]
-VIS += [mv(l, W(40), FAR, 10, dx=-7.0) for l in ("cArm", "cNewRing")] + [mv(l, W(50), FAR, 8, dy=-2.0) for l in ("cArm", "cNewRing")]
-VIS += [mv("cArm", W(62), FAR, 6, dy=2.0), mv("cArm", W(68), FAR, 8, dx=7.0)]
-vis("cPlO0", [(T0, "s6:size+10"), (W(60), FAR)]); vis("cPlO1", [("s6:size+10", W(6))]); vis("cPlO1S", [("s6:size+10", W(6))]); vis("cEdgeLine", [("s6:size+10", W(6))])
-vis("cBrO", [("s6:slow+10", W(20))]); vis("cBrN", [("s6:slow+10", FAR)]); vis("cBrO2", [(W(58), FAR)])
+VIS += [mv("cArm", W(0), FAR, 8, dx=-7.0), mv("cArm", W(8), FAR, 6, dy=-2.0)]
+VIS += [mv(l, W(18), FAR, 6, dy=2.0) for l in ("cArm", "cORing", "cOldCrumb")] + [mv(l, W(24), FAR, 8, dx=7.0) for l in ("cArm", "cORing", "cOldCrumb")]
+VIS += [hid("cORing", W(33), FAR, 1, 0), hid("cOldCrumb", W(33), FAR, 1, 0)]
+VIS += [mv("cNewRing", T0, FAR, 1, dx=7.0, dy=2.0), hid("cNewRing", T0, W(33), 1, 0)]
+VIS += [mv(l, W(34), FAR, 8, dx=-7.0) for l in ("cArm", "cNewRing")] + [mv(l, W(42), FAR, 6, dy=-2.0) for l in ("cArm", "cNewRing")]
+VIS += [mv("cArm", W(56), FAR, 5, dy=2.0), mv("cArm", W(61), FAR, 6, dx=7.0)]
+vis("cPlO0", [(T0, "s6:size+10"), (W(67), FAR)]); vis("cPlO1", [("s6:size+10", W(8))]); vis("cPlO1S", [("s6:size+10", W(8))]); vis("cEdgeLine", [("s6:size+10", W(8))])
+vis("cBrO", [("s6:slow+10", W(18))]); vis("cBrN", [("s6:slow+10", FAR)]); vis("cBrO2", [(W(48), FAR)])
 # K 站：念到才從幽靈變實體
 # K 站：三座展台全程不透明（LOGO、國旗不准半透明）；念到哪家，哪家台面亮一下（kAHot／kBHot／kCHot）
 # R 站：零件與機台
@@ -154,7 +154,7 @@ P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "r
 P["s4"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, SX, 1.1, 19, 16, 1), shot("balloon+4", SX, 1.9, 19, 26, 20), shot("cer+10", SX, 0.1, 16.5, 40, 16)],
  "run": [run("sHeFlow", "balloon+30", "cer+10", 8), run("sHeFlow2", "balloon+30", "cer+10", 8), run("sPlusGlow", "clamp+10", "s4:end+30", 6), run("sMinusGlow", "clamp+10", "s4:end+30", 6), run("sArrowP", "clamp-4", "clamp+40", 4), run("sArrowP", "cer+26", "cer+40", 4), run("sWaterFlow", "balloon+18", "s4:end+30", 8)],
- "labels": [lab("sTopB", "靜電吸盤", "Electrostatic chuck", "amber", "lie-12", "lie+33"), lab("sTop", "陶瓷盤面", "Ceramic face", "amber", "lie+36", "lie+81"), lab("sElecB", "電極（正負兩組）", "Electrodes (+/−)", "blue", "clamp+42", "clamp+87"), lab("sHeA", "氦氣與冷卻", "Helium & cooling", "blue", "balloon+44", "balloon+89")],
+ "labels": [lab("sTopB", "靜電吸盤", "Electrostatic chuck", "amber", "lie-12", "lie+33"), lab("sTop", "陶瓷盤面", "Ceramic face", "amber", "lie+36", "lie+81"), lab("sElecB", "電極（正負兩組）", "Electrodes (+/−)", "blue", "clamp+28", "clamp+73"), lab("sHeA", "氦氣與冷卻", "Helium & cooling", "blue", "balloon+31", "balloon+76")],
  "overlay": [card("s4", "parts-esc", "氣球黏牆：靜電吸附", "示意（施加電壓）", {"lie": "lie", "clamp": "clamp", "balloon": "balloon", "cer": "cer"})]}
 P["s5"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "wall+12", "dur": 1}],
  "shot": [shot(CC, 0.2, 3.4, 36, 24, 1), shot("wall+12", 128.0, 0.3, 26, 22, 1)],
@@ -163,12 +163,12 @@ P["s5"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "w
  "overlay": [card("s5", "parts-liner", "耐電漿、不掉渣", "示意", {"wall": "wall", "resist": "resist", "shed": "shed"})]}
 P["s6"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 63.0, 0.1, 32, 22, 1)],
- "run": [run("cPlPulseN", "start", FAR, 6), run("cPlPulseO", "start", "size+10", 6), run("cPlPulseP", "size+10", W(6), 6), run("cIonN", "start", FAR, 6), run("cIonO", "start", W(6), 6), run("cPlPulseO", W(60), FAR, 6), run("cIonN2", W(62), FAR, 6)],
- "labels": [lab("cOld", "舊環", "Old ring", "amber", "slow", "slow+45"), lab("cPlO", "電漿邊緣偏移", "Plasma edge shifts", "amber", "size+24", "size+69"), lab("cArmA", "夾具放入新環", "Gripper sets new ring", "blue", W(40), W(85))],  # 新環在左、厚度括弧與 2D 卡已標新舊，本幕不另標新環
+ "run": [run("cPlPulseN", "start", FAR, 6), run("cPlPulseO", "start", "size+10", 6), run("cPlPulseP", "size+10", W(8), 6), run("cIonN", "start", FAR, 6), run("cIonO", "start", W(8), 6), run("cPlPulseO", W(67), FAR, 6), run("cIonN2", W(69), FAR, 6)],
+ "labels": [lab("cOld", "舊環", "Old ring", "amber", "slow-2", "slow+43"), lab("cPlO", "電漿邊緣偏移", "Plasma edge shifts", "amber", "size+20", "size+65"), lab("cArmA", "夾具換環", "Gripper swaps ring", "blue", W(20), W(65))],  # 新環在左、厚度括弧與 2D 卡已標新舊，本幕不另標新環
  "overlay": [card("s6", "parts-wear", "尺寸變了，電漿跟著變", "示意（不標壽命時數）", {"slow": "slow", "size": "size", "plasma": "plasma", "swap": "swap"})]}
 P["s7"] = {"zoom": [{"to": "aux", "at": CC, "dur": 1}],
  "shot": [shot(CC, XP - 0.6, 0.0, 25.5, 20, 1)],
- "run": [run("pFan", "start", FAR, 8), run("pExhaust", "start", FAR, 6), run("pPumpHot", "pump-14", "pump+31", 6), run("pValveHot", "valve+12", "valve+57", 6), run("pWheel", "valve", FAR, 8), run("pPowerHot", "power", "power+38", 6)],
+ "run": [run("pFan", "start", FAR, 8), run("pExhaust", "start", FAR, 6), run("pPumpHot", "pump-14", "pump+31", 6), run("pValveHot", "valve+12", "valve+57", 6), run("pWheel", "valve", FAR, 8)],
  "labels": [lab("pPumpA", "真空泵", "Vacuum pump", "blue", "pump-14", "pump+31"), lab("pValveA", "閥門", "Valve", "amber", "valve+12", "valve+57")],
  "overlay": [card("s7", "parts-aux", "週邊也要定期保養", "示意", {"pump": "pump", "valve": "valve", "power": "power", "serv": "serv"})]}
 P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
