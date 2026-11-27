@@ -252,9 +252,9 @@ P({ id: "poolLane", layer: "pool", shape: "box", size: [11.2, 0.05, 0.05], pos: 
 P({ id: "poolFloat", layer: "pool", shape: "sphere", size: [0.14], pos: [X3 - 5.4, 1.15, 0], at: Array.from({ length: 12 }, (_, i) => [i * 0.98, 0, i % 2 ? 1.5 : -1.5]), mat: "warnY" });
 P({ id: "poolLadder", layer: "pool", shape: "tube", size: [0.2, 0.15, 2.0], rot: HX, pos: [X3 + 5.9, 1.9, 0], at: [[0, 0, -0.7], [0, 0, 0.7]], mat: "steel2" }); P({ id: "poolLadRung", layer: "pool", shape: "cyl", size: [0.05, 1.4], pos: [X3 + 5.9, 0, 0], at: [[0, 1.4, 0], [0, 1.9, 0], [0, 2.4, 0]], mat: "steel2" });
 // 一小匙：匙＋一滴紅
-P({ id: "spoonHead", layer: "spoon", shape: "sphere", size: [0.9], scale: [1, 0.35, 0.7], pos: [X3 + 1.6, 6.2, 0], mat: "steel2" });
-BOX("spoonHandle", "spoon", X3 + 2.3, X3 + 6.3, 6.1, 6.4, -0.15, 0.15, "steel2"); P({ id: "spoonDrop", layer: "spoon", shape: "sphere", size: [0.3], pos: [X3 + 1.6, 6.55, 0], mat: "oxid" });
-actions.spoonDrip = { type: "flow", _說明: "一滴紅色雜質從匙尖落進池水（極小一滴）", layer: "spoon", path: [[X3 + 1.6, 5.9, 0], [X3 + 1.6, 1.3, 0]], n: 1, size: 0.14, shape: "liquid", rate: 0.35, color: "oxidC", track: false, accel: true, free: true };
+P({ id: "spoonHead", layer: "spoon", shape: "sphere", size: [0.9], scale: [1, 0.35, 0.7], pos: [X3 + 1.6, 3.9, 0], mat: "steel2" });
+BOX("spoonHandle", "spoon", X3 + 2.3, X3 + 6.3, 3.8, 4.1, -0.15, 0.15, "steel2"); P({ id: "spoonDrop", layer: "spoon", shape: "sphere", size: [0.3], pos: [X3 + 1.6, 4.25, 0], mat: "oxid" });
+actions.spoonDrip = { type: "flow", _說明: "一滴紅色雜質從匙尖落進池水（極小一滴）", layer: "spoon", path: [[X3 + 1.6, 3.6, 0], [X3 + 1.6, 1.3, 0]], n: 1, size: 0.14, shape: "liquid", rate: 0.35, color: "oxidC", track: false, accel: true, free: true };
 actions.poolRipple = { type: "wave", from: { layer: "pool", p: [X3 + 1.6, 1.12, 0] }, dir: [0, 1, 0], reach: 0.1, count: 2, r0: 0.2, spread: 3.2, rate: 0.5, color: "tileC", width: 0.06 };
 // 管：ghost PFA 管體＋液體；點＝金屬離子（紅）極少、藥液分子（淡藍）極多
 const IR = 2.5;
@@ -265,7 +265,7 @@ P({ id: "pipeBand", layer: "pipeI", shape: "tube", size: [IR + 0.3, IR - 0.05, 0
 BOX("pipeStand", "pipeI", XQ - 4.4, XQ - 3.6, 0, 3.4 - IR - 0.2, -0.8, 0.8, "steel"); BOX("pipeStand2", "pipeI", XQ + 3.6, XQ + 4.4, 0, 3.4 - IR - 0.2, -0.8, 0.8, "steel");
 actions.ionsBlue = { type: "flow", _說明: "藥液裡的分子（淡藍，密）隨液體向右流（層流：中間快、靠壁慢，示意）", layer: "pipeI", path: [[XQ - 8, 3.4, 0], [XQ + 8, 3.4, 0]], n: 60, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.7, size: 0.1, shape: "dot", rate: 0.12, color: "cleanC", track: false, jitter: 1.4, free: true, trail: 0 };
 actions.ionsRed = { type: "flow", _說明: "混進去的金屬雜質（紅，只有極少幾顆）", layer: "pipeI", path: [[XQ - 8, 3.7, 0.4], [XQ + 8, 3.7, 0.4]], n: 3, size: 0.2, shape: "dot", rate: 0.12, color: "oxidC", track: false, jitter: 0.9, free: true, rim: "dark" };
-Object.assign(anchors, { dust: A("dustS1", [X1 - 1.4, 12.6, -0.9], 150, -90), drumA: A("drum", [X1 + 2.9, 6.2, 0.5], 150, 90), jugA: A("jugs", [X2 - 8, 3.8, -2.0], -150, -90), jugB: A("jugs", [X2 - 4.4, 3.8, -2.0], 150, -110), jugC: A("jugs", [X2 - 0.8, 3.8, -2.0], 150, -90), pool: A("pool", [X3 - 3.5, 1.2, 3.0], -150, 90), spoon: A("spoon", [X3 + 1.6, 6.5, 0], 150, -90), ionRed: A("pipeI", [XQ + 2, 4.1, 0.6], 150, -100) });
+Object.assign(anchors, { dust: A("dustS1", [X1 - 1.4, 12.6, -0.9], 150, -90), drumA: A("drum", [X1 + 2.9, 6.2, 0.5], 150, 90), jugA: A("jugs", [X2 - 8, 3.8, -2.0], -150, -90), jugB: A("jugs", [X2 - 4.4, 3.8, -2.0], 150, -110), jugC: A("jugs", [X2 - 0.8, 3.8, -2.0], 150, -90), pool: A("pool", [X3 - 3.5, 1.2, 3.0], -150, 90), spoon: A("spoon", [X3 + 1.6, 4.3, 0], 150, -90), ionRed: A("pipeI", [XQ + 2, 4.1, 0.6], 150, -100) });
 
 // ═════ S4：送液主線（儲槽 x0 → 管理櫃 x26 → 管路架 → 閥箱 x58 → 供液櫃 x76 → 使用點過濾器 x94 → 旋轉清洗腔 x110） ═════
 const XT = 0, XC = 26, XV = 58, XD = 76, XP = 94, XS = 110, XW = 128, ZP = -6.5, YR = 11.0, YB = 9.6;
