@@ -169,14 +169,14 @@ P["s3"] = {"shot": [shot("start", -2.5, 4.4, 34, 10, 1, yaw=0.0), shot("start+50
             lab("headspace", "頂部空間", "Headspace", "blue", "open+270", "open+316")],
  "overlay": [sec("precursor-bubbler", "start+20", "s4:start-5", "起泡器怎麼拆", "示意", {"cab": "open", "lid": "open+56", "jack": "open+110", "dip": "open+164", "liq": "open+218", "head": "open+270"})]}
 P["s4"] = {"shot": [shot("start", -4.0, 5.4, 52, 18, 1, yaw=0.0), shot("start+72", 13.0, 3.2, 40, 28, 1), shot("start+124", 9.5, 3.4, 38, 28, 24), shot("start+176", 24.0, 4.8, 40, 30, 1),
-                    shot("start+242", 6.0, 6.0, 120, 26, 1), shot("start+290", 3.5, 4.5, 62, 26, 22)],
- "run": [run("tapeGlow", "start+100", "start+296", 6), run("tapeFlash", "start+300", "start+334", 4), run("mfcLed", "start+300", FAR, 4), run("ledA", "start+200", FAR, 6)],
+                    shot("start+242", 8.0, 3.0, 104, 36, 1), shot("start+290", 5.8, 2.8, 68, 34, 22)],
+ "run": [run("tapeGlowV", "start+170", FAR, 6), run("tapeFlash", "start+312", "start+342", 6), run("tapeOn", "start+342", FAR, 8), run("mfcLed", "start+312", FAR, 6), run("ledA", "start+200", FAR, 6)],
  "labels": [lab("mfc", "載氣流量控制", "Carrier gas MFC", "amber", "start+26", "start+72"),
             lab("hline", "加熱管路", "Heated line", "amber", "start+78", "start+124"),
             lab("pfil", "微粒過濾器", "Particle filter", "blue", "start+128", "start+174"),
             lab("vblock", "脈衝閥", "Pulse valve", "blue", "start+184", "start+228", xy=[200, 330]),
             lab("seat", "閥座", "Valve seat", "amber", "start+228", "start+272")],
- "overlay": [sec("precursor-path", "start+78", "s5:start-5", "送料路徑：一路加熱保溫", "示意", {"gas": "start+26", "pipe": "start+80", "valve": "start+186", "back": BACK})]}
+ "overlay": [sec("precursor-path", "start+78", "s5:start-5", "送料路徑：一路加熱保溫", "示意", {"gas": "start+26", "pipe": "start+80", "valve": "start+186", "back": BACK}, y=1046, h=346)]}
 P["s5"] = {"shot": [shot("start-4", 0.0, 3.2, 38, 10, 1, yaw=0.0)],
  "run": [run(i, "blow-6", "s6:start-4", 8) for i in ("bubA", "bubB", "bubC", "ripple", "carrierIn")] + [run("jackGlow", "start", "s6:start-4", 8), run("liqWarm", "start", "s6:start-4", 8), run("vapLow", "blow-2", "scent-10", 8), run("vapHi", "scent-10", "s6:start-4", 10)],
  "shift": [hid("vshell", "start-2", "s6:start-2", 8, 0.16), hid("jack", "start-2", "s6:start-2", 8, 0.24)],
@@ -201,13 +201,13 @@ P["s8"] = {"shot": [shot("start-4", 58.0, 0.2, 34, 40, 1, yaw=0.0), shot("one-10
             lab("tma", "鋁原料分子", "Precursor molecule", "amber", "paint+2", "one+30"),
             lab("purgeA", "吹淨", "Purge", "blue", "full+34", "full+68"),
             lab("filmA", "多一層薄片", "One more layer", "amber", "atom+30", "s9:start-14")],
- "overlay": [sec("precursor-ald", "start+24", "s9:start-5", "ALD 一圈：刷一層就停", "教學範例：鋁原料與水（示意）", {"paint": "paint", "one": "one", "full": "full", "atom": "atom"}, h=344)]}
+ "overlay": [sec("precursor-ald", "start+24", "s9:start-5", "ALD 一圈：刷一層就停", "教學範例：鋁原料與水（示意）", {"paint": "paint", "one": "one", "full": "full", "atom": "atom"}, y=1046, h=346)]}
 P["s9"] = {"shot": [shot("start-4", 59.6, 0.2, 26, 42, 1, yaw=0.0)],
  "run": [run("impDrop", "atom-18", "bad+30", 4), run("impGlow", "atom+10", "s10:start-6", 8)],
  "labels": [lab("impA", "雜質金屬原子", "Stray metal atom", "amber", "atom+12", "s10:start-14")],
  "overlay": [sec("precursor-purity", "start+24", "s10:start-5", "乾淨有兩把尺", "示意：要求到 ppb 等級", {"clean": "clean", "atom": "atom", "bad": "bad"})]}
 P["s10"] = {"zoom": [{"to": "co", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 40.0, 2.6, 56, 24, 1)],
- "overlay": [sec("precursor-co", "start-4", "s11:start-14", "供應商", "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27", {"few": "few", "de": "de", "fr": "fr", "tw": "tw"}, h=400, y=1000)]}
+ "overlay": [sec("precursor-co", "start-4", "s11:start-14", "供應商", "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27", {"few": "few", "de": "de", "fr": "fr", "tw": "tw"}, h=392, y=1000)]}
 P["s11"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start-4", S1X, S1Y, S1D, 14, 1, yaw=0.0)],
  "run": [run("bubA", "start-8", FAR, 6), run("bubB", "start-8", FAR, 6), run("jackGlow", "start-8", FAR, 6), run("liqWarm", "start-8", FAR, 6), run("vapHi", "start-8", FAR, 6)],
  "overlay": [sec("precursor-next", "start+24", "s12:start-5", "接下來", "下一集：特用氣體", {"next": "next", "gas": "gas", "kw": "kw"})]}

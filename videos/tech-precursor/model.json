@@ -67,6 +67,9 @@
   "jackTan": "#D6B677",
   "jackDark": "#A7844A",
   "hotTape": "#FF8A2B",
+  "tapeColdC": "#6F6150",
+  "jackColdC": "#9A8D77",
+  "flashC": "#FFE08A",
   "sinterC": "#9AA3AF",
   "vapC": "#FF9A3C",
   "crustC": "#EDE6D8",
@@ -621,6 +624,19 @@
   "jackDark": {
    "kind": "std",
    "color": "jackDark",
+   "rough": 0.9,
+   "metal": 0
+  },
+  "jackCold": {
+   "kind": "std",
+   "color": "jackColdC",
+   "rough": 0.95,
+   "metal": 0,
+   "env": 0.1
+  },
+  "tapeCold": {
+   "kind": "std",
+   "color": "tapeColdC",
    "rough": 0.9,
    "metal": 0
   },
@@ -5002,7 +5018,7 @@
    "layer": "mfc",
    "shape": "sphere",
    "size": [
-    0.07
+    0.2
    ],
    "pos": [
     -2.5,
@@ -5333,7 +5349,7 @@
     2.2,
     0
    ],
-   "mat": "jackTan"
+   "mat": "jackCold"
   },
   {
    "id": "hjkTape0",
@@ -5411,7 +5427,7 @@
      0
     ]
    ],
-   "mat": "tape"
+   "mat": "tapeCold"
   },
   {
    "id": "hjkEnd0",
@@ -5549,7 +5565,7 @@
     2.2,
     0
    ],
-   "mat": "jackTan"
+   "mat": "jackCold"
   },
   {
    "id": "hjkTape1",
@@ -5627,7 +5643,7 @@
      0
     ]
    ],
-   "mat": "tape"
+   "mat": "tapeCold"
   },
   {
    "id": "hjkEnd1",
@@ -5765,7 +5781,7 @@
     2.2,
     0
    ],
-   "mat": "jackTan"
+   "mat": "jackCold"
   },
   {
    "id": "hjkTape2",
@@ -5843,7 +5859,7 @@
      0
     ]
    ],
-   "mat": "tape"
+   "mat": "tapeCold"
   },
   {
    "id": "hjkEnd2",
@@ -13771,28 +13787,61 @@
    "steady": true,
    "halo": 0
   },
-  "tapeFlash": {
+  "tapeGlowV": {
    "type": "pulse",
-   "_說明": "組回後加熱帶閃一下（保溫上線）",
+   "_說明": "s4 不含 hjk 加熱帶的常亮（hjk 加熱帶留給 tapeFlash 的閃光，閃前是未加熱的底色）",
    "parts": [
-    "hjkTape0",
-    "hjkTape1",
-    "hjkTape2"
+    "vpOutTape",
+    "vbaseHeat",
+    "vbaseHeat2"
    ],
    "color": "hotC",
    "glow": 1,
-   "freq": 2.2,
+   "steady": true,
+   "halo": 0
+  },
+  "tapeFlash": {
+   "type": "pulse",
+   "_說明": "組回後加熱帶閃一下（保溫上線）：由未加熱底色拉到近白的亮黃，穩定亮約 0.8 秒再回（steady＋ramp 進出）",
+   "parts": [
+    "hjkTape0",
+    "hjkTape1",
+    "hjkTape2",
+    "hjkBody0",
+    "hjkBody1",
+    "hjkBody2"
+   ],
+   "color": "flashC",
+   "glow": 1.5,
+   "steady": true,
+   "halo": 0
+  },
+  "tapeOn": {
+   "type": "pulse",
+   "_說明": "閃光之後加熱帶維持中等亮度（已上線，不再閃）",
+   "parts": [
+    "hjkTape0",
+    "hjkTape1",
+    "hjkTape2",
+    "hjkBody0",
+    "hjkBody1",
+    "hjkBody2"
+   ],
+   "color": "hotTape",
+   "glow": 0.15,
+   "steady": true,
    "halo": 0
   },
   "mfcLed": {
    "type": "pulse",
+   "_說明": "MFC 指示燈亮起：綠色加光暈，亮到片段結束",
    "parts": [
     "mfcLed"
    ],
    "color": "lampG",
-   "glow": 1,
-   "freq": 1.4,
-   "halo": 0
+   "glow": 2,
+   "steady": true,
+   "halo": 2.2
   },
   "bubA": {
    "type": "flow",

@@ -10,7 +10,7 @@ const D2R = Math.PI / 180;
 const pol = (aDeg, r) => [R2(r * Math.cos(aDeg * D2R)), R2(r * Math.sin(aDeg * D2R))]; // (x, z)
 const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
-  glassC: "#BFD3F2", lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", rubber: "#2B2F36", gold: "#C9A24A", knurl: "#5C6678", estop: "#D93A2B",
+  glassC: "#BFD3F2", lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", rubber: "#2B2F36", gold: "#C9A24A", knurl: "#5C6678", estop: "#D93A2B", 
   tgtC: "#D2793F", tgtFaceC: "#F0A066", tgtDarkC: "#8C4A22", solderC: "#E8ECF2", backC: "#B9C2CF", ceramic: "#F1EEE6", copperC: "#C9794A", waterC: "#4DA3FF", waterD: "#2F7FE0",
   magBody: "#2B2F36", magN: "#E0472F", magS: "#2F7FE0", yokeC: "#8D97A8", plasmaC: "#9B7BFF", chuckC: "#D5DCE6", plasmaE: "#C9B8FF", ionC: "#7EC8FF", eleC: "#FFE08A", argonC: "#9FD8FF", hitC: "#FFB45A",
   filmC: "#C47A4E", scanC: "#4FA3FF", fieldC: "#5BE0C0", moltenC: "#FF8A2B", hotC: "#E5602B", pcbC: "#1F6B45", chipC: "#1C1F26", traceC: "#C9A24A", connC: "#2A2D33", elecT: "#7FD0C0", pipeB: "#3E7BD6", pipeR: "#D9534F",
@@ -56,14 +56,14 @@ const grid = (x0, x1, nx, y0, y1, ny, z) => { const o = []; for (let i = 0; i < 
 
 // ═════ 追加色票與材質 ═════
 Object.assign(palette, {
-  liqC: "#5FAEE6", liqTopC: "#E8F4FA", jackTan: "#D6B677", jackDark: "#A7844A", hotTape: "#FF8A2B", sinterC: "#9AA3AF", vapC: "#FF9A3C", crustC: "#EDE6D8", crustOr: "#E8A15C",
+  liqC: "#5FAEE6", liqTopC: "#E8F4FA", jackTan: "#D6B677", jackDark: "#A7844A", hotTape: "#FF8A2B", tapeColdC: "#6F6150", jackColdC: "#9A8D77", flashC: "#FFE08A", sinterC: "#9AA3AF", vapC: "#FF9A3C", crustC: "#EDE6D8", crustOr: "#E8A15C",
   gaugeF: "#F4F1E6", alC: "#F29A4A", meC: "#8A94A3", ohO: "#E5484D", ohH: "#F4F6FA", h2oC: "#3FC1E8", ch4C: "#98A2B3", n2C: "#B8C4D4", filmC2: "#E39A64", subC: "#9DB1D1", subD: "#6C84AC",
   coldPipeC: "#6FA8E0", hotPipeC: "#E06A3A", bubC: "#F6FBFF", warnY: "#F2B632", boxGreen: "#2C6E55", cabC: "#EDEFF3", cabDarkC: "#B4BCC9", brassC: "#C8A24A", rubberC: "#2B2F36", edgeC: "#F4FAFF", coldSlC: "#9CC4E4", hdspC: "#2A7FD6", meshC: "#B9C0CA", siliC: "#C44536", jkBoxC: "#7C8591",
 });
 Object.assign(materials, {
   liq: M("phys", "liqC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.55, env: 0.5 }), liqTop: M("std", "liqTopC", { rough: 0.1, metal: 0.3, opacity: 0.9, env: 0.8 }),
   edge: glowM("edgeC", 0.95, 0.5), coldSleeve: M("std", "coldSlC", { rough: 0.9, metal: 0 }), hdsp: glowM("hdspC", 0.95, 0.7), jackTan: M("std", "jackTan", { rough: 0.95, metal: 0, env: 0.1 }), jackMesh: M("std", "meshC", { rough: 0.55, metal: 0.75, env: 0.5, tex: "brushed", texScale: 7 }), siliR: M("std", "siliC", { rough: 0.85, metal: 0 }), jkBox: M("std", "jkBoxC", { rough: 0.4, metal: 0.6, env: 0.4 }), jackDark: M("std", "jackDark", { rough: 0.9, metal: 0 }),
-  tape: glowM("hotTape", 0.95, 0.5), sinter: M("std", "sinterC", { rough: 1, metal: 0.4, env: 0.2 }), vap: glowM("vapC", 0.9, 0.9), vapBub: glowM("vapC", 0.75, 0.7),
+  jackCold: M("std", "jackColdC", { rough: 0.95, metal: 0, env: 0.1 }), tapeCold: M("std", "tapeColdC", { rough: 0.9, metal: 0 }), tape: glowM("hotTape", 0.95, 0.5), sinter: M("std", "sinterC", { rough: 1, metal: 0.4, env: 0.2 }), vap: glowM("vapC", 0.9, 0.9), vapBub: glowM("vapC", 0.75, 0.7),
   crust: M("std", "crustC", { rough: 0.95, metal: 0 }), crustOr: M("std", "crustOr", { rough: 0.9, metal: 0.1 }), gaugeF: M("std", "gaugeF", { rough: 0.5, metal: 0 }),
   alM: M("std", "alC", { rough: 0.35, metal: 0.3, env: 0.5 }), meM: M("std", "meC", { rough: 0.5, metal: 0.1 }), ohO: M("std", "ohO", { rough: 0.4, metal: 0.1 }), ohH: M("std", "ohH", { rough: 0.4, metal: 0.1 }),
   h2o: glowM("h2oC", 0.95, 0.5), ch4: glowM("ch4C", 0.85, 0.2), n2: glowM("n2C", 0.8, 0.3), bub: glowM("bubC", 0.8, 0.35), filmM: M("std", "filmC2", { rough: 0.3, metal: 0.6, opacity: 0.55, env: 0.6 }),
@@ -219,7 +219,7 @@ BOX("mfcCap", "mfc", -3.5, -2.3, 7.7, 8.4, -0.4, 0.4, "dark");
 P({ id: "mfcConn", layer: "mfc", shape: "cyl", size: [0.16, 0.35], rot: [0, 0, 0], pos: [-2.9, 8.05, 0.55], mat: "steel2" });
 P({ id: "mfcCable", layer: "mfc", shape: "cyl", size: [0.06, 1.0], rot: [0, 0, 0], pos: [-2.9, 8.05, 1.2], mat: "conn" });
 BOX("mfcPlate", "mfc", -3.5, -2.4, 6.98, 7.35, 0.45, 0.5, "gold"); BOX("mfcPlateText", "mfc", -3.3, -2.6, 7.1, 7.25, 0.5, 0.52, "dark");
-SPH("mfcLed", "mfc", 0.07, -2.5, 7.5, 0.48, "lampG");
+SPH("mfcLed", "mfc", 0.2, -2.5, 7.5, 0.48, "lampG");
 P({ id: "mfcSensor", layer: "mfc", shape: "cyl", size: [0.06, 0.9], rot: HX, pos: [-2.9, 7.95, -0.5], mat: "steel2" });
 PIPE("mfcPipe", "mfc", [[-4.0, 7.3, 0], [-3.7, 7.3, 0]], 0.12, "steel");
 PIPE("mfcPipe2", "mfc", [[-2.1, 7.3, 0], [-1.9, 7.3, 0]], 0.12, "steel");
@@ -237,8 +237,8 @@ P({ id: "hpClampBase", layer: "hline", shape: "box", size: [0.2, 0.2, 0.7], pos:
 const SLV = [[7.2, 10.8], [11.6, 15.2], [16.0, 19.6]];
 SLV.forEach(([a, b], i) => {
   LAY(`hjk${i}`, [3.8, 0.9, (a + b) / 2, 2.2]);
-  HXC(`hjkBody${i}`, `hjk${i}`, 0.36, a, b, 2.2, 0, "jackTan");
-  P({ id: `hjkTape${i}`, layer: `hjk${i}`, shape: "tube", size: [0.39, 0.36, 0.07], rot: HX, pos: [a + 0.3, 2.2, 0], at: Array.from({ length: 11 }, (_, j) => [j * 0.3, 0, 0]), mat: "tape" });
+  HXC(`hjkBody${i}`, `hjk${i}`, 0.36, a, b, 2.2, 0, "jackCold");
+  P({ id: `hjkTape${i}`, layer: `hjk${i}`, shape: "tube", size: [0.39, 0.36, 0.07], rot: HX, pos: [a + 0.3, 2.2, 0], at: Array.from({ length: 11 }, (_, j) => [j * 0.3, 0, 0]), mat: "tapeCold" });
   P({ id: `hjkEnd${i}`, layer: `hjk${i}`, shape: "tube", size: [0.4, 0.3, 0.1], rot: HX, pos: [a, 2.2, 0], at: [[0, 0, 0], [b - a, 0, 0]], mat: "jackDark" });
   BOX(`hjkTc${i}`, `hjk${i}`, (a + b) / 2 - 0.2, (a + b) / 2 + 0.2, 2.56, 2.8, -0.2, 0.2, "boxGreen");
   P({ id: `hjkTcWire${i}`, layer: `hjk${i}`, shape: "cyl", size: [0.03, 0.6], rot: HX, pos: [(a + b) / 2 + 0.5, 2.78, 0], mat: "conn" });
@@ -371,8 +371,10 @@ actions.jackGlow = { type: "pulse", _說明: "加熱套亮起（示意，不標�
 actions.liqWarm = { type: "pulse", _說明: "液體被加熱：微微泛暖色（示意）", parts: ["liqBody"], color: "hotC", glow: 0.35, steady: true, halo: 0 };
 actions.tapeGlow = { type: "pulse", parts: ["hjkTape0", "hjkTape1", "hjkTape2", "hcTape", "vpOutTape", "vbaseHeat", "vbaseHeat2"], color: "hotC", glow: 1, steady: true, halo: 0 };
 actions.ledA = { type: "pulse", parts: ["vledA"], color: "lampG", glow: 1, steady: true, halo: 0 };
-actions.tapeFlash = { type: "pulse", _說明: "組回後加熱帶閃一下（保溫上線）", parts: ["hjkTape0", "hjkTape1", "hjkTape2"], color: "hotC", glow: 1, freq: 2.2, halo: 0 };
-actions.mfcLed = { type: "pulse", parts: ["mfcLed"], color: "lampG", glow: 1, freq: 1.4, halo: 0 };
+actions.tapeGlowV = { type: "pulse", _說明: "s4 不含 hjk 加熱帶的常亮（hjk 加熱帶留給 tapeFlash 的閃光，閃前是未加熱的底色）", parts: ["vpOutTape", "vbaseHeat", "vbaseHeat2"], color: "hotC", glow: 1, steady: true, halo: 0 };
+actions.tapeFlash = { type: "pulse", _說明: "組回後加熱帶閃一下（保溫上線）：由未加熱底色拉到近白的亮黃，穩定亮約 0.8 秒再回（steady＋ramp 進出）", parts: ["hjkTape0", "hjkTape1", "hjkTape2", "hjkBody0", "hjkBody1", "hjkBody2"], color: "flashC", glow: 1.5, steady: true, halo: 0 };
+actions.tapeOn = { type: "pulse", _說明: "閃光之後加熱帶維持中等亮度（已上線，不再閃）", parts: ["hjkTape0", "hjkTape1", "hjkTape2", "hjkBody0", "hjkBody1", "hjkBody2"], color: "hotTape", glow: 0.15, steady: true, halo: 0 };
+actions.mfcLed = { type: "pulse", _說明: "MFC 指示燈亮起：綠色加光暈，亮到片段結束", parts: ["mfcLed"], color: "lampG", glow: 2, steady: true, halo: 2.2 };
 // 氣泡：從燒結頭出來（小）→ 上升時先加速、很快趨近終端速度（rise）→ 越往上越帶橘色（吃進蒸氣）→ 到液面破掉；頂部空間的蒸氣比載氣密
 actions.bubA = { type: "flow", _說明: "氣泡（載氣，白）從燒結頭出來上升", layer: "liq", path: [[-0.75, 1.55, 0], [-0.75, 2.45, 0]], n: 4, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.34, size: 0.17, shape: "dot", rate: 0.85, color: "bubC", track: false, rise: true, jitter: 0.18, free: true };
 actions.bubB = { type: "flow", _說明: "氣泡上半段：吃進蒸氣，漸漸變橘（飽和後不再變深）", layer: "liq", path: [[-0.75, 2.45, 0], [-0.75, 3.06, 0]], n: 4, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.34, size: 0.2, shape: "dot", rate: 1.1, color: "vapC", track: false, jitter: 0.18, free: true };

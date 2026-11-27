@@ -2106,37 +2106,43 @@
      {
       "at": "start+242",
       "dur": 1,
-      "x": 6.0,
-      "y": 6.0,
-      "d": 120,
-      "elev": 26
+      "x": 8.0,
+      "y": 3.0,
+      "d": 104,
+      "elev": 36
      },
      {
       "at": "start+290",
       "dur": 22,
-      "x": 3.5,
-      "y": 4.5,
-      "d": 62,
-      "elev": 26
+      "x": 5.8,
+      "y": 2.8,
+      "d": 68,
+      "elev": 34
      }
     ],
     "run": [
      {
-      "id": "tapeGlow",
-      "at": "start+100",
+      "id": "tapeGlowV",
+      "at": "start+170",
       "ramp": 6,
-      "until": "start+296"
+      "until": "s12:start+400"
      },
      {
       "id": "tapeFlash",
-      "at": "start+300",
-      "ramp": 4,
-      "until": "start+334"
+      "at": "start+312",
+      "ramp": 6,
+      "until": "start+342"
+     },
+     {
+      "id": "tapeOn",
+      "at": "start+342",
+      "ramp": 8,
+      "until": "s12:start+400"
      },
      {
       "id": "mfcLed",
-      "at": "start+300",
-      "ramp": 4,
+      "at": "start+312",
+      "ramp": 6,
       "until": "s12:start+400"
      },
      {
@@ -2199,9 +2205,9 @@
       "at": "start+78",
       "until": "s5:start-5",
       "x": 64,
-      "y": 1066,
+      "y": 1046,
       "w": 952,
-      "h": 330,
+      "h": 346,
       "avoid": false,
       "title": "送料路徑：一路加熱保溫",
       "tag": "示意",
@@ -2801,9 +2807,9 @@
       "at": "start+24",
       "until": "s9:start-5",
       "x": 64,
-      "y": 1066,
+      "y": 1046,
       "w": 952,
-      "h": 344,
+      "h": 346,
       "avoid": false,
       "title": "ALD 一圈：刷一層就停",
       "tag": "教學範例：鋁原料與水（示意）",
@@ -2991,7 +2997,7 @@
       "x": 64,
       "y": 1000,
       "w": 952,
-      "h": 400,
+      "h": 392,
       "avoid": false,
       "title": "供應商",
       "tag": "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27",
