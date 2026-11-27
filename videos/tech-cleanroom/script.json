@@ -1893,13 +1893,13 @@
       "id": "bHook",
       "at": "start",
       "ramp": 6,
-      "until": "s9:start+4"
+      "until": "s9:start+60"
      },
      {
       "id": "bGlow",
       "at": "build-2",
       "ramp": 6,
-      "until": "s9:start+4"
+      "until": "s9:start+60"
      }
     ],
     "overlay": [
@@ -1985,13 +1985,13 @@
     "zoom": [
      {
       "to": "room",
-      "at": "voice-4",
+      "at": "voice+14",
       "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "voice+14",
       "dur": 1,
       "x": 0.0,
       "y": 0.28,
@@ -2087,8 +2087,39 @@
     "overlay": [
      {
       "type": "section",
-      "kind": "cr-next",
+      "kind": "cr-co",
       "at": "voice-3",
+      "until": "voice+15",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "無塵室工程公司（台灣）",
+      "tag": "報導；截至 2026/11/27",
+      "t": {
+       "tw": {
+        "at": "s8:tw"
+       },
+       "uis": {
+        "at": "s8:uis"
+       },
+       "lk": {
+        "at": "s8:lk"
+       },
+       "yk": {
+        "at": "s8:yk"
+       },
+       "build": {
+        "at": "s8:build"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "cr-next",
+      "at": "voice+15",
       "until": "s10:start",
       "x": 64,
       "y": 1066,

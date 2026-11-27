@@ -199,14 +199,20 @@ P["s7"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "overlay": [card("s7", "cr-env", "溫度、濕度都固定", "示意（不標溫濕度數值）", {"temp": "temp", "hum": "hum", "fix": "fix", "exp": "exp", "static": "static"})]}
 P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, 190.0, -1.02, 49.0, 28, 1)],
- "run": [run("bHook", "start", "s9:start+4", 6), run("bGlow", "build-2", "s9:start+4", 6)],
+ "run": [run("bHook", "start", "s9:start+60", 6), run("bGlow", "build-2", "s9:start+60", 6)],
  "overlay": [card("s8", "cr-co", "無塵室工程公司（台灣）", "報導；截至 2026/11/27", {"tw": "tw", "uis": "uis", "lk": "lk", "yk": "yk", "build": "build"})]}
-P["s9"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
- "shot": [shot(CC, RX, RY, RD, RE, 1)],
+# Andy 第 40 條＋頻道負責人 11-27 決定：公司卡（3 家）完整顯示 ≥1.2×3＋1.5＝5.1 秒；s8 不夠長時，卡片與 s8 鏡頭延到 s9 開頭（延長期間 s9 鏡頭不動），補足後才切到 s9。
+# 延長幀數依目前 timeline.json 算（配音後重跑本檔自動重算）
+_tl = {x["id"]: x for x in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]} if os.path.exists(os.path.join(HERE, "timeline.json")) else {}
+CO_MIN = 153
+CO_N = max(0, CO_MIN - ((_tl["s9"]["voiceStartFrame"] - 3) - (_tl["s8"]["voiceStartFrame"] - 3))) if "s9" in _tl and "s8" in _tl else 0
+EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
+P["s9"] = {"zoom": [{"to": "room", "at": EXTC, "dur": 1}],
+ "shot": [shot(EXTC, RX, RY, RD, RE, 1)],
  "run": [run("ffuSpin", "start", FAR, 6)] + [run(f"airDown{k}", "start", FAR, 6) for k in range(3)] + [run("loopL", "start", FAR, 6), run("loopR", "start", FAR, 6),
          run("uWaterFlow", "w", FAR, 6), run("uGasFlow", "w+12", FAR, 6), run("uPowerFlow", "w+26", FAR, 6)],
  "labels": [lab("water", "水（超純水）", "Water", "blue", "w", "w+46"), lab("gas", "氣（各種氣體）", "Gas", "blue", "w+48", "w+94"), lab("power", "電", "Power", "amber", "w+96", "w+142")],
- "overlay": [sec("cr-next", C, "s10:start", "接下來", "下一集：廠務的水氣電", {"clean": "clean", "need": "need", "w": "w", "next": "next", "kw": "kw"}, cut=True)]}
+ "overlay": ([sec("cr-co", C, EXT, "無塵室工程公司（台灣）", "報導；截至 2026/11/27", {"tw": "s8:tw", "uis": "s8:uis", "lk": "s8:lk", "yk": "s8:yk", "build": "s8:build"}, cut=True)] if CO_N else []) + [sec("cr-next", EXT, "s10:start", "接下來", "下一集：廠務的水氣電", {"clean": "clean", "need": "need", "w": "w", "next": "next", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
@@ -232,6 +238,7 @@ for s in scenes:
         if w in (s.get("narration") or "") + s["subtitle"]["zh"]: bad.append((s["id"], w))
 n = sum(len(re.sub(r"[，。？！、；：\s]", "", s.get("tts") or "")) for s in scenes)
 tot = sum(s["durationSec"] for s in scenes)
+print("公司卡延到 s9 開頭幀數", CO_N, "（總顯示", CO_MIN, "幀以上）")
 print("念稿字數", n, "問題", bad, "無聲估計片長", round(tot, 1), "秒；各幕", [s["durationSec"] for s in scenes], "hold", [s.get("holdSec") for s in scenes])
 open(os.path.join(HERE, "_tts.txt"), "w").write("\n\n".join(s["tts"] for s in scenes if s.get("tts")))
 # 字幕切段自查（r1 物理審查必改 4）：用 validate.mjs 的 splitPhrases 實際切中文，英文段數必須相同、每段 ≥3 字（「、」會被切開，需要時把整串放進 keywords）
