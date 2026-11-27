@@ -184,11 +184,11 @@ P["s3"] = {"shot": [shot("start-1", X1, 6.0, 52, 18, 1, yaw=0.0), shot("start+2"
 P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 10.2, 48, 8, 20)],
  "run": [run("cHeatOn", "start", "s6:start-2", 6)],
  "labels": [lab("cEfoA", "打火棒放電", "EFO spark", "blue", "spark-6", "spark+39", xy=[820, 980]), lab("cFabA", "小圓球", "Free air ball", "amber", "spark+41", "spark+86")],
- "overlay": [sec("wb-steps", "start+20", "s6:start-8", "打一條線的步驟", "示意", {"s1": "spark", "s2": "s5:press", "s3": "s7:arc", "s4": "s7:foot", "s5": "s7:cut"})]}
+ "overlay": [sec("wb-steps", "start+20", "s6:start-2", "打一條線的步驟", "示意", {"s1": "spark", "s2": "s5:press", "s3": "s7:arc", "s4": "s7:foot", "s5": "s7:cut"})]}
 # ─── s5：壓在焊墊、加熱、超音波 ───
 P["s5"] = {"shot": [shot("start-1", X2 - 0.5, 7.0, 26, 8, 1), shot("press-16", X2 - 1.0, 8.4, 38, 10, 16)],
  "run": [run("cBondHot", "heat", "s6:start-2", 6), run("cUSvib", "us", "rub+30", 4), run("cUSring", "us", "rub+30", 4)],
- "labels": [lab("cBallA", "第一焊點（壓扁的球）", "First bond (ball)", "amber", "press+4", "press+49"), lab("cCapA", "超音波來回搓", "Ultrasonic scrub", "blue", "us-2", "us+43")]}
+ "labels": [lab("cBallA", "第一焊點（壓扁的球）", "First bond (ball)", "amber", "press", "press+45"), lab("cCapA", "超音波來回搓", "Ultrasonic scrub", "blue", "us+2", "us+47")]}
 # ─── s6：焊點剖面：搓掉氧化膜、原子擠進去 ───
 P["s6"] = {"shot": [shot("start-1", X3, 6.0, 44, 14, 1, yaw=0.0), shot("dust-10", X3, 6.0, 36, 16, 30)],
  "run": [run("dScrub", "start", "one+10", 4), run("dOxBreak", "dust-10", "one", 6), run("dOxBreakR", "dust-10", "one", 6), run("dAuDown", "one-6", "s7:start-2", 8), run("dAlUp", "one-6", "s7:start-2", 8),
