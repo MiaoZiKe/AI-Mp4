@@ -137,8 +137,8 @@ vis("mC1", [("s3:gap+8", FAR)]); vis("mGap", [("s3:gap+8", FAR)]); vis("mC2", []
 # →「保養」第二把鑷子夾著新針（尖、亮）從左上斜送進導板孔 → 放開、往左上退出，念完前收完
 vis("wTipNew", [(T0, "s6:wear+6")]); vis("wTipWorn", [("s6:wear+6", "s6:care-2")]); vis("wDep", [("s6:wear+6", "s6:pencil+20")])
 vis("wTipClean", [])
-VIS += [mv("wPadL", "s6:wear+12", FAR, 10, dx=-8.0)]
-VIS += [mv("wSheet", T0, "s6:wear+12", 10, dx=8.0)]
+VIS += [mv("wPadL", "s6:wear-4", FAR, 10, dx=-8.0)]
+VIS += [mv("wSheet", T0, "s6:wear-4", 10, dx=8.0)]   # 清針片在標籤亮之前就滑進來
 VIS += [mv(l, "s6:pencil+4", "s6:pencil+28", 6, dy=-0.13) for l in ("wNdl", "wTipWorn", "wDep")]
 VIS += [mv("wTwz", T0, "s6:pencil+34", 8, dx=3.0, dy=0.2)]
 VIS += [mv(l, "s6:pencil+36", FAR, 8, dy=4.0) for l in ("wTwz", "wNdl", "wTipWorn")] + [mv(l, "s6:pencil+44", FAR, 6, dx=3.0) for l in ("wTwz", "wNdl", "wTipWorn")]   # 先沿孔垂直拔出、出孔後才往右移開
