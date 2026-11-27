@@ -1028,39 +1028,21 @@
     ],
     "labels": [
      {
-      "part": "pDrain",
-      "text": "汲極金屬＋N+ 基板",
-      "en": "Drain metal + N+ substrate",
-      "color": "blue",
-      "at": "start+6",
-      "until": "elec+12",
-      "cut": true
-     },
-     {
       "part": "pDrift",
-      "text": "N− 漂移層＋P 本體",
-      "en": "N− drift layer + P body",
+      "text": "汲極、N+ 基板、N− 漂移層",
+      "en": "Drain, N+ substrate, N− drift layer",
       "color": "blue",
-      "at": "start+8",
-      "until": "elec+12",
+      "at": "start+4",
+      "until": "elec+14",
       "cut": true
      },
      {
       "part": "pGate",
-      "text": "溝槽閘極（多晶矽＋氧化層）",
-      "en": "Trench gate: poly-Si in oxide",
+      "text": "P 本體、溝槽閘極、源極",
+      "en": "P body, trench gate, source",
       "color": "amber",
-      "at": "elec+14",
-      "until": "tap+6",
-      "cut": true
-     },
-     {
-      "part": "pMetal",
-      "text": "源極：N+、金屬、打線",
-      "en": "Source: N+, metal, bond wires",
-      "color": "blue",
       "at": "elec+16",
-      "until": "tap+12",
+      "until": "tap+8",
       "cut": true
      },
      {
@@ -1673,7 +1655,7 @@
       "text": "逆變器的功率模組",
       "en": "Inverter power modules",
       "color": "amber",
-      "at": "car-2",
+      "at": "car+2",
       "until": "end",
       "cut": true,
       "xy": [

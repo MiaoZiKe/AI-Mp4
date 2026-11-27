@@ -2,79 +2,78 @@
  "version": 2,
  "slug": "tech-mature",
  "fps": 30,
- "totalFrames": 2007,
- "totalSec": 66.9,
- "gapSec": 0,
- "transitionFrames": 0,
- "silent": true,
- "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "totalFrames": 1828,
+ "totalSec": 60.93,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
-   "audioFrame": 0,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/tech-mature/01-s1.wav",
+   "audioFrame": 8,
+   "audioSec": 3.28,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 123,
+   "durationFrames": 129,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 0,
-   "voiceEndFrame": 105,
-   "stillFrame": 122,
+   "voiceStartFrame": 9,
+   "voiceEndFrame": 106,
+   "stillFrame": 119,
    "subtitleWindow": [
     0,
     126
    ],
    "sourceWindow": [
     0,
-    123
+    124
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "前一集晶圓測完",
      "start": 0,
      "chars": [
-      0,
-      4,
-      10,
+      8,
+      13,
       17,
       23,
       29,
-      35
+      34,
+      40
      ]
     },
     {
      "text": "每顆晶片",
-     "start": 39,
+     "start": 55,
      "chars": [
-      41,
-      47,
-      54,
-      60
+      58,
+      62,
+      67,
+      72
      ]
     },
     {
      "text": "都要 3 奈米嗎？",
-     "start": 64,
+     "start": 76,
      "chars": [
-      66,
-      72,
-      72,
-      78,
-      78,
-      84,
+      79,
+      82,
+      82,
+      88,
+      88,
       91,
-      97,
-      97
+      95,
+      99,
+      99
      ]
     }
    ],
    "keywords": [
     {
      "text": "3 奈米",
-     "start": 78
+     "start": 88
     },
     {
      "text": "先進",
@@ -85,1151 +84,3586 @@
     {
      "id": "prev",
      "text": "前一集",
-     "frame": 0
+     "frame": 9,
+     "early": 0
     },
     {
      "id": "chip",
      "text": "每顆晶片",
-     "frame": 43
+     "frame": 59,
+     "early": 0
     },
     {
      "id": "nm3",
      "text": "奈米",
-     "frame": 86
+     "frame": 92,
+     "early": 0
     },
     {
      "id": "q",
      "text": "都要",
-     "frame": 68
+     "frame": 80,
+     "early": 0
     }
    ],
+   "hash": "96d91c1814b5-614a646df6",
    "sub": "前一集晶圓測完\n每顆晶片\n都要 3 奈米嗎？",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.866,
+    "minScore": 0.065,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.69,
+      "start": 1.7,
+      "ch": "每",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "前",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.972
+    },
+    {
+     "text": "一",
+     "start": 0.22,
+     "end": 0.28,
+     "score": 0.065
+    },
+    {
+     "text": "集",
+     "start": 0.34,
+     "end": 0.44,
+     "score": 0.991
+    },
+    {
+     "text": "晶",
+     "start": 0.56,
+     "end": 0.72,
+     "score": 0.867
+    },
+    {
+     "text": "圓",
+     "start": 0.74,
+     "end": 0.86,
+     "score": 0.983
+    },
+    {
+     "text": "測",
+     "start": 0.9,
+     "end": 1.02,
+     "score": 0.98
+    },
+    {
+     "text": "完",
+     "start": 1.1,
+     "end": 1.26,
+     "score": 0.997
+    },
+    {
+     "text": "每",
+     "start": 1.7,
+     "end": 1.82,
+     "score": 0.999
+    },
+    {
+     "text": "顆",
+     "start": 1.86,
+     "end": 1.94,
+     "score": 0.996
+    },
+    {
+     "text": "晶",
+     "start": 2.02,
+     "end": 2.16,
+     "score": 0.869
+    },
+    {
+     "text": "片",
+     "start": 2.18,
+     "end": 2.34,
+     "score": 0.99
+    },
+    {
+     "text": "都",
+     "start": 2.4,
+     "end": 2.48,
+     "score": 0.991
+    },
+    {
+     "text": "要",
+     "start": 2.5,
+     "end": 2.62,
+     "score": 0.998
+    },
+    {
+     "text": "三",
+     "start": 2.64,
+     "end": 2.78,
+     "score": 0.121
+    },
+    {
+     "text": "奈",
+     "start": 2.8,
+     "end": 2.9,
+     "score": 0.923
+    },
+    {
+     "text": "米",
+     "start": 2.94,
+     "end": 3,
+     "score": 0.995
+    },
+    {
+     "text": "嗎",
+     "start": 3.08,
+     "end": 3.16,
+     "score": 0.986
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.34,
+    0.56,
+    0.74,
+    0.9,
+    1.1,
+    1.7,
+    1.86,
+    2.02,
+    2.18,
+    2.4,
+    2.5,
+    2.71,
+    2.8,
+    2.94,
+    3.08
+   ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 129,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 123,
-   "durationFrames": 198,
-   "transitionFrames": 0,
-   "transition": null,
+   "audio": "audio/tech-mature/02-s2.wav",
+   "audioFrame": 128,
+   "audioSec": 5.58,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 119,
+   "durationFrames": 202,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
    "voiceStartFrame": 129,
-   "voiceEndFrame": 303,
-   "stillFrame": 320,
+   "voiceEndFrame": 295,
+   "stillFrame": 311,
    "subtitleWindow": [
     126,
-    327
+    318
    ],
    "sourceWindow": [
-    123,
-    321
+    124,
+    316
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "不用，",
      "start": 126,
      "chars": [
       127,
-      133,
-      133
+      131,
+      131
      ]
     },
     {
      "text": "系列一講先進",
-     "start": 137,
+     "start": 144,
      "chars": [
-      139,
       146,
-      152,
+      151,
+      155,
       158,
-      164,
-      171
+      163,
+      168
      ]
     },
     {
      "text": "28 奈米以上",
-     "start": 175,
+     "start": 178,
      "chars": [
-      177,
-      183,
-      183,
-      189,
-      195,
+      180,
+      187,
+      187,
+      194,
+      199,
       202,
-      208
+      207
      ]
     },
     {
      "text": "叫成熟製程",
-     "start": 212,
+     "start": 211,
      "chars": [
-      214,
-      220,
-      226,
-      233,
-      239
+      213,
+      218,
+      225,
+      230,
+      235
      ]
     },
     {
      "text": "像家常菜",
-     "start": 243,
+     "start": 244,
      "chars": [
-      245,
-      251,
-      258,
-      264
+      247,
+      252,
+      257,
+      262
      ]
     },
     {
      "text": "天天少不了",
-     "start": 268,
+     "start": 271,
      "chars": [
-      270,
-      276,
-      282,
-      289,
-      295
+      273,
+      278,
+      283,
+      287,
+      290
      ]
     }
    ],
    "keywords": [
     {
      "text": "成熟製程",
-     "start": 220
+     "start": 218
     },
     {
      "text": "家常菜",
-     "start": 251
+     "start": 252
     }
    ],
    "cues": [
     {
      "id": "no",
      "text": "不用",
-     "frame": 129
+     "frame": 129,
+     "early": 0
     },
     {
      "id": "adv",
      "text": "講先進",
-     "frame": 160
+     "frame": 159,
+     "early": 0
     },
     {
      "id": "n28",
      "text": "奈米以上",
-     "frame": 191
+     "frame": 196,
+     "early": 0
     },
     {
      "id": "mature",
      "text": "成熟製程",
-     "frame": 222
+     "frame": 220,
+     "early": 0
     },
     {
      "id": "dish",
      "text": "家常菜",
-     "frame": 253
+     "frame": 253,
+     "early": 0
     },
     {
      "id": "daily",
      "text": "天天少不了",
-     "frame": 272
+     "frame": 274,
+     "early": 0
     }
    ],
+   "hash": "76a24a5c85de-614a646df6",
    "sub": "不用，系列一講先進\n28 奈米以上\n叫成熟製程\n像家常菜\n天天少不了",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.824,
+    "minScore": 0.002,
+    "onsetMedianMs": 15,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 0.63,
+      "start": 0.66,
+      "ch": "系",
+      "errMs": 30
+     },
+     {
+      "onset": 1.9,
+      "start": 1.9,
+      "ch": "二",
+      "errMs": 0
+     },
+     {
+      "onset": 3.99,
+      "start": 4,
+      "ch": "像",
+      "errMs": 10
+     },
+     {
+      "onset": 4.9,
+      "start": 4.88,
+      "ch": "天",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "不",
+     "start": 0.02,
+     "end": 0.08,
+     "score": 0.998
+    },
+    {
+     "text": "用",
+     "start": 0.14,
+     "end": 0.32,
+     "score": 1
+    },
+    {
+     "text": "系",
+     "start": 0.66,
+     "end": 0.74,
+     "score": 0.997
+    },
+    {
+     "text": "列",
+     "start": 0.8,
+     "end": 0.88,
+     "score": 0.883
+    },
+    {
+     "text": "一",
+     "start": 0.94,
+     "end": 0.98,
+     "score": 0.023
+    },
+    {
+     "text": "講",
+     "start": 1.04,
+     "end": 1.18,
+     "score": 0.959
+    },
+    {
+     "text": "先",
+     "start": 1.2,
+     "end": 1.34,
+     "score": 0.954
+    },
+    {
+     "text": "進",
+     "start": 1.38,
+     "end": 1.54,
+     "score": 1
+    },
+    {
+     "text": "二",
+     "start": 1.9,
+     "end": 1.96,
+     "score": 0.002
+    },
+    {
+     "text": "十",
+     "start": 2.02,
+     "end": 2.1,
+     "score": 0.008
+    },
+    {
+     "text": "八",
+     "start": 2.14,
+     "end": 2.2,
+     "score": 0.084
+    },
+    {
+     "text": "奈",
+     "start": 2.26,
+     "end": 2.36,
+     "score": 0.886
+    },
+    {
+     "text": "米",
+     "start": 2.4,
+     "end": 2.46,
+     "score": 0.993
+    },
+    {
+     "text": "以",
+     "start": 2.52,
+     "end": 2.58,
+     "score": 0.823
+    },
+    {
+     "text": "上",
+     "start": 2.68,
+     "end": 2.84,
+     "score": 0.964
+    },
+    {
+     "text": "叫",
+     "start": 2.88,
+     "end": 3.04,
+     "score": 0.97
+    },
+    {
+     "text": "成",
+     "start": 3.06,
+     "end": 3.24,
+     "score": 0.995
+    },
+    {
+     "text": "熟",
+     "start": 3.28,
+     "end": 3.42,
+     "score": 0.917
+    },
+    {
+     "text": "製",
+     "start": 3.46,
+     "end": 3.54,
+     "score": 0.881
+    },
+    {
+     "text": "程",
+     "start": 3.6,
+     "end": 3.78,
+     "score": 0.974
+    },
+    {
+     "text": "像",
+     "start": 4,
+     "end": 4.16,
+     "score": 0.951
+    },
+    {
+     "text": "家",
+     "start": 4.18,
+     "end": 4.28,
+     "score": 0.999
+    },
+    {
+     "text": "常",
+     "start": 4.34,
+     "end": 4.5,
+     "score": 0.901
+    },
+    {
+     "text": "菜",
+     "start": 4.52,
+     "end": 4.68,
+     "score": 0.998
+    },
+    {
+     "text": "天",
+     "start": 4.88,
+     "end": 5.04,
+     "score": 0.965
+    },
+    {
+     "text": "天",
+     "start": 5.06,
+     "end": 5.2,
+     "score": 0.996
+    },
+    {
+     "text": "少",
+     "start": 5.22,
+     "end": 5.34,
+     "score": 0.984
+    },
+    {
+     "text": "不",
+     "start": 5.36,
+     "end": 5.4,
+     "score": 0.991
+    },
+    {
+     "text": "了",
+     "start": 5.44,
+     "end": 5.54,
+     "score": 0.811
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.14,
+    0.66,
+    0.8,
+    0.94,
+    1.04,
+    1.2,
+    1.38,
+    1.78,
+    2.02,
+    2.26,
+    2.4,
+    2.52,
+    2.68,
+    2.88,
+    3.06,
+    3.28,
+    3.46,
+    3.6,
+    4,
+    4.18,
+    4.34,
+    4.52,
+    4.88,
+    5.06,
+    5.22,
+    5.36,
+    5.44
+   ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 330,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 321,
-   "durationFrames": 246,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 330,
-   "voiceEndFrame": 549,
-   "stillFrame": 566,
+   "audio": "audio/tech-mature/03-s3.wav",
+   "audioFrame": 320,
+   "audioSec": 6.99,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 311,
+   "durationFrames": 244,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 321,
+   "voiceEndFrame": 529,
+   "stillFrame": 545,
    "subtitleWindow": [
-    327,
-    573
+    318,
+    552
    ],
    "sourceWindow": [
-    321,
-    567
+    316,
+    550
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "因為很多晶片",
-     "start": 327,
+     "start": 318,
      "chars": [
+      319,
+      323,
       328,
-      334,
-      340,
-      346,
-      352,
-      358
+      332,
+      336,
+      341
      ]
     },
     {
      "text": "管的是電",
-     "start": 362,
+     "start": 346,
      "chars": [
-      364,
-      369,
-      375,
-      381
+      348,
+      352,
+      355,
+      359
      ]
     },
     {
      "text": "功率元件像水龍頭",
-     "start": 385,
+     "start": 374,
      "chars": [
-      387,
-      393,
-      399,
-      405,
-      411,
-      417,
-      423,
-      429
+      376,
+      381,
+      385,
+      390,
+      397,
+      401,
+      406,
+      410
      ]
     },
     {
      "text": "控制大電流",
-     "start": 433,
+     "start": 419,
      "chars": [
-      435,
-      440,
-      446,
-      452,
-      458
+      421,
+      427,
+      431,
+      436,
+      440
      ]
     },
     {
      "text": "電源管理晶片",
-     "start": 462,
+     "start": 455,
      "chars": [
-      464,
+      457,
+      461,
+      466,
       470,
-      476,
-      482,
-      488,
-      494
+      473,
+      478
      ]
     },
     {
      "text": "像配電盤",
-     "start": 498,
+     "start": 483,
      "chars": [
-      500,
-      506,
-      511,
-      517
+      485,
+      490,
+      494,
+      499
      ]
     },
     {
      "text": "把電分好",
-     "start": 521,
+     "start": 507,
      "chars": [
-      523,
-      529,
-      535,
-      541
+      509,
+      513,
+      518,
+      523
      ]
     }
    ],
    "keywords": [
     {
      "text": "功率元件",
-     "start": 387
+     "start": 376
     },
     {
      "text": "水龍頭",
-     "start": 417
+     "start": 401
     },
     {
      "text": "配電盤",
-     "start": 506
+     "start": 490
     }
    ],
    "cues": [
     {
      "id": "elec",
      "text": "管的是電",
-     "frame": 366
+     "frame": 349,
+     "early": 0
     },
     {
      "id": "pwr",
      "text": "功率元件",
-     "frame": 389
+     "frame": 378,
+     "early": 0
     },
     {
      "id": "tap",
      "text": "水龍頭",
-     "frame": 419
+     "frame": 403,
+     "early": 0
     },
     {
      "id": "big",
      "text": "大電流",
-     "frame": 448
+     "frame": 433,
+     "early": 0
     },
     {
      "id": "pmic",
      "text": "電源管理",
-     "frame": 466
+     "frame": 459,
+     "early": 0
     },
     {
      "id": "board",
      "text": "配電盤",
-     "frame": 508
+     "frame": 492,
+     "early": 0
     },
     {
      "id": "split",
      "text": "把電分好",
-     "frame": 525
+     "frame": 510,
+     "early": 0
     }
    ],
+   "hash": "48dd8294d047-614a646df6",
    "sub": "因為很多晶片\n管的是電\n功率元件像水龍頭\n控制大電流\n電源管理晶片\n像配電盤\n把電分好",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.955,
+    "minScore": 0.498,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.94,
+      "start": 1.92,
+      "ch": "功",
+      "errMs": -20
+     },
+     {
+      "onset": 3.43,
+      "start": 3.42,
+      "ch": "控",
+      "errMs": -10
+     },
+     {
+      "onset": 4.64,
+      "start": 4.62,
+      "ch": "電",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "因",
+     "start": 0.02,
+     "end": 0.12,
+     "score": 0.999
+    },
+    {
+     "text": "為",
+     "start": 0.16,
+     "end": 0.26,
+     "score": 1
+    },
+    {
+     "text": "很",
+     "start": 0.32,
+     "end": 0.42,
+     "score": 1
+    },
+    {
+     "text": "多",
+     "start": 0.46,
+     "end": 0.52,
+     "score": 0.996
+    },
+    {
+     "text": "晶",
+     "start": 0.58,
+     "end": 0.72,
+     "score": 0.889
+    },
+    {
+     "text": "片",
+     "start": 0.74,
+     "end": 0.9,
+     "score": 0.855
+    },
+    {
+     "text": "管",
+     "start": 0.98,
+     "end": 1.1,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 1.12,
+     "end": 1.18,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 1.22,
+     "end": 1.3,
+     "score": 0.942
+    },
+    {
+     "text": "電",
+     "start": 1.34,
+     "end": 1.54,
+     "score": 0.996
+    },
+    {
+     "text": "功",
+     "start": 1.92,
+     "end": 2.06,
+     "score": 0.992
+    },
+    {
+     "text": "率",
+     "start": 2.08,
+     "end": 2.14,
+     "score": 0.498
+    },
+    {
+     "text": "元",
+     "start": 2.2,
+     "end": 2.34,
+     "score": 0.995
+    },
+    {
+     "text": "件",
+     "start": 2.38,
+     "end": 2.52,
+     "score": 0.999
+    },
+    {
+     "text": "像",
+     "start": 2.6,
+     "end": 2.74,
+     "score": 1
+    },
+    {
+     "text": "水",
+     "start": 2.76,
+     "end": 2.88,
+     "score": 0.948
+    },
+    {
+     "text": "龍",
+     "start": 2.9,
+     "end": 3.02,
+     "score": 0.99
+    },
+    {
+     "text": "頭",
+     "start": 3.04,
+     "end": 3.22,
+     "score": 0.995
+    },
+    {
+     "text": "控",
+     "start": 3.42,
+     "end": 3.58,
+     "score": 0.995
+    },
+    {
+     "text": "制",
+     "start": 3.6,
+     "end": 3.68,
+     "score": 0.934
+    },
+    {
+     "text": "大",
+     "start": 3.76,
+     "end": 3.82,
+     "score": 0.998
+    },
+    {
+     "text": "電",
+     "start": 3.9,
+     "end": 4.02,
+     "score": 0.999
+    },
+    {
+     "text": "流",
+     "start": 4.06,
+     "end": 4.22,
+     "score": 0.999
+    },
+    {
+     "text": "電",
+     "start": 4.62,
+     "end": 4.74,
+     "score": 0.978
+    },
+    {
+     "text": "源",
+     "start": 4.76,
+     "end": 4.88,
+     "score": 0.919
+    },
+    {
+     "text": "管",
+     "start": 4.92,
+     "end": 5.04,
+     "score": 0.907
+    },
+    {
+     "text": "理",
+     "start": 5.04,
+     "end": 5.12,
+     "score": 0.993
+    },
+    {
+     "text": "晶",
+     "start": 5.16,
+     "end": 5.3,
+     "score": 0.95
+    },
+    {
+     "text": "片",
+     "start": 5.32,
+     "end": 5.5,
+     "score": 0.849
+    },
+    {
+     "text": "像",
+     "start": 5.56,
+     "end": 5.7,
+     "score": 0.929
+    },
+    {
+     "text": "配",
+     "start": 5.72,
+     "end": 5.84,
+     "score": 0.96
+    },
+    {
+     "text": "電",
+     "start": 5.86,
+     "end": 5.98,
+     "score": 0.929
+    },
+    {
+     "text": "盤",
+     "start": 6,
+     "end": 6.2,
+     "score": 0.999
+    },
+    {
+     "text": "把",
+     "start": 6.34,
+     "end": 6.4,
+     "score": 0.986
+    },
+    {
+     "text": "電",
+     "start": 6.48,
+     "end": 6.6,
+     "score": 0.929
+    },
+    {
+     "text": "分",
+     "start": 6.64,
+     "end": 6.76,
+     "score": 0.998
+    },
+    {
+     "text": "好",
+     "start": 6.82,
+     "end": 6.96,
+     "score": 0.993
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.16,
+    0.32,
+    0.46,
+    0.58,
+    0.74,
+    0.98,
+    1.12,
+    1.22,
+    1.34,
+    1.92,
+    2.08,
+    2.2,
+    2.38,
+    2.6,
+    2.76,
+    2.9,
+    3.04,
+    3.42,
+    3.6,
+    3.76,
+    3.9,
+    4.06,
+    4.62,
+    4.76,
+    4.92,
+    5.04,
+    5.16,
+    5.32,
+    5.56,
+    5.72,
+    5.86,
+    6,
+    6.34,
+    6.48,
+    6.64,
+    6.82
+   ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 576,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 567,
-   "durationFrames": 177,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 576,
-   "voiceEndFrame": 726,
-   "stillFrame": 743,
+   "audio": "audio/tech-mature/04-s4.wav",
+   "audioFrame": 554,
+   "audioSec": 4.39,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 545,
+   "durationFrames": 167,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 555,
+   "voiceEndFrame": 685,
+   "stillFrame": 702,
    "subtitleWindow": [
-    573,
-    750
+    552,
+    709
    ],
    "sourceWindow": [
-    567,
-    744
+    550,
+    707
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "還有驅動晶片",
-     "start": 573,
+     "start": 552,
      "chars": [
-      574,
-      580,
-      586,
-      592,
-      598,
-      604
+      554,
+      557,
+      561,
+      565,
+      569,
+      574
      ]
     },
     {
      "text": "叫螢幕每個小點",
-     "start": 608,
+     "start": 583,
      "chars": [
-      610,
-      616,
-      622,
-      628,
-      634,
-      640,
-      646
+      586,
+      591,
+      596,
+      600,
+      604,
+      607,
+      612
      ]
     },
     {
      "text": "亮起來",
-     "start": 650,
+     "start": 615,
      "chars": [
-      652,
-      658,
-      664
+      617,
+      622,
+      626
      ]
     },
     {
      "text": "多在 8 吋",
-     "start": 668,
+     "start": 637,
      "chars": [
-      670,
-      676,
-      676,
-      682,
-      682,
-      688
+      640,
+      644,
+      644,
+      650,
+      650,
+      653
      ]
     },
     {
      "text": "12 吋廠做",
-     "start": 692,
+     "start": 660,
      "chars": [
-      694,
-      700,
-      700,
-      706,
-      712,
-      718
+      662,
+      665,
+      665,
+      668,
+      673,
+      679
      ]
     }
    ],
    "keywords": [
     {
      "text": "驅動晶片",
-     "start": 586
+     "start": 561
     },
     {
      "text": "8 吋",
-     "start": 682
+     "start": 650
     },
     {
      "text": "12 吋",
-     "start": 694
+     "start": 662
     }
    ],
    "cues": [
     {
      "id": "ddi",
      "text": "驅動晶片",
-     "frame": 588
+     "frame": 562,
+     "early": 0
     },
     {
      "id": "pixel",
      "text": "小點",
-     "frame": 642
+     "frame": 609,
+     "early": 0
     },
     {
      "id": "lit",
      "text": "亮起來",
-     "frame": 654
+     "frame": 618,
+     "early": 0
     },
     {
      "id": "w8",
      "text": "多在",
-     "frame": 672
+     "frame": 641,
+     "early": 0
     },
     {
      "id": "w12",
      "text": "廠做",
-     "frame": 714
+     "frame": 674,
+     "early": 0
     }
    ],
+   "hash": "1429e311ee92-614a646df6",
    "sub": "還有驅動晶片\n叫螢幕每個小點\n亮起來\n多在 8 吋\n12 吋廠做",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.885,
+    "minScore": 0.314,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.12,
+      "start": 1.1,
+      "ch": "叫",
+      "errMs": -20
+     },
+     {
+      "onset": 2.92,
+      "start": 2.9,
+      "ch": "多",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "還",
+     "start": 0.04,
+     "end": 0.12,
+     "score": 0.974
+    },
+    {
+     "text": "有",
+     "start": 0.14,
+     "end": 0.24,
+     "score": 0.92
+    },
+    {
+     "text": "驅",
+     "start": 0.28,
+     "end": 0.38,
+     "score": 0.999
+    },
+    {
+     "text": "動",
+     "start": 0.42,
+     "end": 0.54,
+     "score": 0.962
+    },
+    {
+     "text": "晶",
+     "start": 0.56,
+     "end": 0.7,
+     "score": 0.977
+    },
+    {
+     "text": "片",
+     "start": 0.72,
+     "end": 0.92,
+     "score": 0.957
+    },
+    {
+     "text": "叫",
+     "start": 1.1,
+     "end": 1.26,
+     "score": 0.928
+    },
+    {
+     "text": "螢",
+     "start": 1.28,
+     "end": 1.42,
+     "score": 0.882
+    },
+    {
+     "text": "幕",
+     "start": 1.44,
+     "end": 1.5,
+     "score": 0.661
+    },
+    {
+     "text": "每",
+     "start": 1.58,
+     "end": 1.7,
+     "score": 0.999
+    },
+    {
+     "text": "個",
+     "start": 1.72,
+     "end": 1.78,
+     "score": 0.999
+    },
+    {
+     "text": "小",
+     "start": 1.82,
+     "end": 1.96,
+     "score": 0.999
+    },
+    {
+     "text": "點",
+     "start": 1.98,
+     "end": 2.1,
+     "score": 0.988
+    },
+    {
+     "text": "亮",
+     "start": 2.14,
+     "end": 2.3,
+     "score": 0.993
+    },
+    {
+     "text": "起",
+     "start": 2.32,
+     "end": 2.4,
+     "score": 0.999
+    },
+    {
+     "text": "來",
+     "start": 2.44,
+     "end": 2.58,
+     "score": 0.999
+    },
+    {
+     "text": "多",
+     "start": 2.9,
+     "end": 2.98,
+     "score": 0.982
+    },
+    {
+     "text": "在",
+     "start": 3.04,
+     "end": 3.16,
+     "score": 0.998
+    },
+    {
+     "text": "八",
+     "start": 3.2,
+     "end": 3.26,
+     "score": 0.332
+    },
+    {
+     "text": "吋",
+     "start": 3.36,
+     "end": 3.54,
+     "score": 0.776
+    },
+    {
+     "text": "十",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.314
+    },
+    {
+     "text": "二",
+     "start": 3.74,
+     "end": 3.8,
+     "score": 0.673
+    },
+    {
+     "text": "吋",
+     "start": 3.84,
+     "end": 3.96,
+     "score": 0.88
+    },
+    {
+     "text": "廠",
+     "start": 4,
+     "end": 4.18,
+     "score": 0.94
+    },
+    {
+     "text": "做",
+     "start": 4.2,
+     "end": 4.3,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.14,
+    0.28,
+    0.42,
+    0.56,
+    0.72,
+    1.1,
+    1.28,
+    1.44,
+    1.58,
+    1.72,
+    1.82,
+    1.98,
+    2.14,
+    2.32,
+    2.44,
+    2.9,
+    3.04,
+    3.26,
+    3.36,
+    3.64,
+    3.74,
+    3.84,
+    4,
+    4.2
+   ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 753,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 744,
-   "durationFrames": 240,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 753,
-   "voiceEndFrame": 966,
-   "stillFrame": 983,
+   "audio": "audio/tech-mature/05-s5.wav",
+   "audioFrame": 711,
+   "audioSec": 5.71,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 702,
+   "durationFrames": 205,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 712,
+   "voiceEndFrame": 882,
+   "stillFrame": 897,
    "subtitleWindow": [
-    750,
-    990
+    709,
+    904
    ],
    "sourceWindow": [
-    744,
-    984
+    707,
+    902
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "台灣有三家：",
-     "start": 750,
+     "start": 709,
      "chars": [
-      751,
-      757,
-      763,
-      769,
-      775,
-      775
+      710,
+      716,
+      720,
+      724,
+      729,
+      729
      ]
     },
     {
      "text": "聯電",
-     "start": 779,
+     "start": 743,
      "chars": [
-      781,
-      787
+      745,
+      751
      ]
     },
     {
      "text": "據 TrendForce 統計",
-     "start": 790,
+     "start": 761,
      "chars": [
-      792,
-      792,
-      798,
-      804,
-      810,
-      816,
-      822,
-      828,
-      834,
-      840,
-      846,
-      852,
-      852,
-      858,
-      863
+      764,
+      764,
+      768,
+      770,
+      771,
+      773,
+      774,
+      776,
+      777,
+      779,
+      782,
+      782,
+      782,
+      783,
+      789
      ]
     },
     {
      "text": "是全球第四大代工廠",
-     "start": 867,
+     "start": 793,
      "chars": [
-      869,
-      875,
-      881,
-      887,
-      893,
-      899,
-      905,
-      911,
-      917
+      795,
+      800,
+      806,
+      810,
+      815,
+      819,
+      824,
+      827,
+      831
      ]
     },
     {
      "text": "強項是驅動晶片",
-     "start": 921,
+     "start": 842,
      "chars": [
-      923,
-      929,
-      934,
-      940,
-      946,
-      952,
-      958
+      845,
+      851,
+      857,
+      861,
+      866,
+      870,
+      874
      ]
     }
    ],
    "keywords": [
     {
      "text": "聯電",
-     "start": 781
+     "start": 745
     },
     {
      "text": "第四大",
-     "start": 887
+     "start": 810
     }
    ],
    "cues": [
     {
      "id": "tw",
      "text": "台灣有三家",
-     "frame": 753
+     "frame": 712,
+     "early": 0
     },
     {
      "id": "umc",
      "text": "聯電",
-     "frame": 783
+     "frame": 746,
+     "early": 0
     },
     {
      "id": "fourth",
      "text": "第四大",
-     "frame": 889
+     "frame": 812,
+     "early": 0
     },
     {
      "id": "strong",
      "text": "強項",
-     "frame": 925
+     "frame": 846,
+     "early": 0
     }
    ],
+   "hash": "c0ee452fbf21-614a646df6",
    "sub": "台灣有三家：聯電\n據 TrendForce 統計\n是全球第四大代工廠\n強項是驅動晶片",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.787,
+    "minScore": 0.001,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 1.19,
+      "start": 1.18,
+      "ch": "聯",
+      "errMs": -10
+     },
+     {
+      "onset": 1.82,
+      "start": 1.8,
+      "ch": "據",
+      "errMs": -20
+     },
+     {
+      "onset": 4.52,
+      "start": 4.5,
+      "ch": "強",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "台",
+     "start": 0.02,
+     "end": 0.16,
+     "score": 0.991
+    },
+    {
+     "text": "灣",
+     "start": 0.2,
+     "end": 0.3,
+     "score": 0.993
+    },
+    {
+     "text": "有",
+     "start": 0.34,
+     "end": 0.44,
+     "score": 0.996
+    },
+    {
+     "text": "三",
+     "start": 0.48,
+     "end": 0.62,
+     "score": 0.034
+    },
+    {
+     "text": "家",
+     "start": 0.66,
+     "end": 0.76,
+     "score": 0.985
+    },
+    {
+     "text": "聯",
+     "start": 1.18,
+     "end": 1.34,
+     "score": 0.991
+    },
+    {
+     "text": "電",
+     "start": 1.38,
+     "end": 1.56,
+     "score": 0.999
+    },
+    {
+     "text": "據",
+     "start": 1.8,
+     "end": 1.88,
+     "score": 0.998
+    },
+    {
+     "text": "T",
+     "start": 1.96,
+     "end": 1.98,
+     "score": 0.025
+    },
+    {
+     "text": "r",
+     "start": 2.02,
+     "end": 2.04,
+     "score": 0.001
+    },
+    {
+     "text": "e",
+     "start": 2.06,
+     "end": 2.08,
+     "score": 0.003
+    },
+    {
+     "text": "n",
+     "start": 2.1,
+     "end": 2.12,
+     "score": 0.958
+    },
+    {
+     "text": "d",
+     "start": 2.14,
+     "end": 2.16,
+     "score": 0.068
+    },
+    {
+     "text": "F",
+     "start": 2.2,
+     "end": 2.22,
+     "score": 0.989
+    },
+    {
+     "text": "o",
+     "start": 2.26,
+     "end": 2.28,
+     "score": 0.902
+    },
+    {
+     "text": "r",
+     "start": 2.32,
+     "end": 2.34,
+     "score": 0.891
+    },
+    {
+     "text": "c",
+     "start": 2.4,
+     "end": 2.42,
+     "score": 0.188
+    },
+    {
+     "text": "e",
+     "start": 2.42,
+     "end": 2.44,
+     "score": 0.21
+    },
+    {
+     "text": "統",
+     "start": 2.46,
+     "end": 2.62,
+     "score": 0.984
+    },
+    {
+     "text": "計",
+     "start": 2.64,
+     "end": 2.74,
+     "score": 0.97
+    },
+    {
+     "text": "是",
+     "start": 2.86,
+     "end": 2.94,
+     "score": 0.998
+    },
+    {
+     "text": "全",
+     "start": 3,
+     "end": 3.16,
+     "score": 0.995
+    },
+    {
+     "text": "球",
+     "start": 3.2,
+     "end": 3.32,
+     "score": 0.993
+    },
+    {
+     "text": "第",
+     "start": 3.36,
+     "end": 3.42,
+     "score": 0.507
+    },
+    {
+     "text": "四",
+     "start": 3.52,
+     "end": 3.6,
+     "score": 0.944
+    },
+    {
+     "text": "大",
+     "start": 3.66,
+     "end": 3.72,
+     "score": 0.995
+    },
+    {
+     "text": "代",
+     "start": 3.8,
+     "end": 3.9,
+     "score": 0.997
+    },
+    {
+     "text": "工",
+     "start": 3.92,
+     "end": 4.04,
+     "score": 0.925
+    },
+    {
+     "text": "廠",
+     "start": 4.06,
+     "end": 4.24,
+     "score": 0.928
+    },
+    {
+     "text": "強",
+     "start": 4.5,
+     "end": 4.7,
+     "score": 0.98
+    },
+    {
+     "text": "項",
+     "start": 4.72,
+     "end": 4.9,
+     "score": 0.982
+    },
+    {
+     "text": "是",
+     "start": 4.92,
+     "end": 5,
+     "score": 0.998
+    },
+    {
+     "text": "驅",
+     "start": 5.04,
+     "end": 5.14,
+     "score": 0.999
+    },
+    {
+     "text": "動",
+     "start": 5.2,
+     "end": 5.32,
+     "score": 0.953
+    },
+    {
+     "text": "晶",
+     "start": 5.34,
+     "end": 5.46,
+     "score": 0.981
+    },
+    {
+     "text": "片",
+     "start": 5.48,
+     "end": 5.66,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.2,
+    0.34,
+    0.48,
+    0.66,
+    1.18,
+    1.38,
+    1.8,
+    1.96,
+    2.02,
+    2.06,
+    2.1,
+    2.14,
+    2.2,
+    2.26,
+    2.32,
+    2.4,
+    2.42,
+    2.46,
+    2.64,
+    2.86,
+    3,
+    3.2,
+    3.36,
+    3.52,
+    3.66,
+    3.8,
+    3.92,
+    4.06,
+    4.5,
+    4.72,
+    4.92,
+    5.04,
+    5.2,
+    5.34,
+    5.48
+   ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 993,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 984,
-   "durationFrames": 222,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 993,
-   "voiceEndFrame": 1188,
-   "stillFrame": 1205,
+   "audio": "audio/tech-mature/06-s6.wav",
+   "audioFrame": 906,
+   "audioSec": 6.31,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 897,
+   "durationFrames": 224,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 907,
+   "voiceEndFrame": 1095,
+   "stillFrame": 1111,
    "subtitleWindow": [
-    990,
-    1212
+    904,
+    1118
    ],
    "sourceWindow": [
-    984,
-    1206
+    902,
+    1116
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "世界先進",
-     "start": 990,
+     "start": 904,
      "chars": [
-      991,
-      997,
-      1003,
-      1009
+      907,
+      911,
+      915,
+      920
      ]
     },
     {
      "text": "台積電也持股",
-     "start": 1013,
+     "start": 928,
      "chars": [
-      1015,
-      1021,
-      1026,
-      1032,
-      1038,
-      1044
+      930,
+      935,
+      939,
+      944,
+      948,
+      953
      ]
     },
     {
      "text": "主力是功率和電源晶片",
-     "start": 1048,
+     "start": 965,
      "chars": [
-      1050,
-      1056,
-      1062,
-      1068,
-      1074,
-      1080,
-      1086,
-      1091,
-      1097,
-      1103
+      967,
+      971,
+      976,
+      980,
+      985,
+      990,
+      995,
+      999,
+      1003,
+      1008
      ]
     },
     {
      "text": "力積電",
-     "start": 1107,
+     "start": 1022,
      "chars": [
-      1109,
-      1115,
-      1121
+      1024,
+      1028,
+      1032
      ]
     },
     {
      "text": "除了記憶體",
-     "start": 1125,
+     "start": 1042,
      "chars": [
-      1127,
-      1133,
-      1139,
-      1145,
-      1151
+      1044,
+      1048,
+      1051,
+      1055,
+      1059
      ]
     },
     {
      "text": "也幫人代工",
-     "start": 1154,
+     "start": 1066,
      "chars": [
-      1156,
-      1162,
-      1168,
-      1174,
-      1180
+      1068,
+      1073,
+      1077,
+      1082,
+      1087
      ]
     }
    ],
    "keywords": [
     {
      "text": "世界先進",
-     "start": 991
+     "start": 907
     },
     {
      "text": "力積電",
-     "start": 1109
+     "start": 1024
     }
    ],
    "cues": [
     {
      "id": "vis",
      "text": "世界先進",
-     "frame": 993
+     "frame": 908,
+     "early": 0
     },
     {
      "id": "tsmc",
      "text": "台積電",
-     "frame": 1017
+     "frame": 932,
+     "early": 0
     },
     {
      "id": "power",
      "text": "功率",
-     "frame": 1070
+     "frame": 982,
+     "early": 0
     },
     {
      "id": "psmc",
      "text": "力積電",
-     "frame": 1111
+     "frame": 1025,
+     "early": 0
     },
     {
      "id": "mem",
      "text": "記憶體",
-     "frame": 1141
+     "frame": 1052,
+     "early": 0
     },
     {
      "id": "fd",
      "text": "代工",
-     "frame": 1176
+     "frame": 1083,
+     "early": 0
     }
    ],
+   "hash": "2e233fd27a9f-614a646df6",
    "sub": "世界先進\n台積電也持股\n主力是功率和電源晶片\n力積電\n除了記憶體\n也幫人代工",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.946,
+    "minScore": 0.116,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.87,
+      "start": 0.86,
+      "ch": "台",
+      "errMs": -10
+     },
+     {
+      "onset": 2.1,
+      "start": 2.08,
+      "ch": "主",
+      "errMs": -20
+     },
+     {
+      "onset": 4,
+      "start": 3.98,
+      "ch": "力",
+      "errMs": -20
+     },
+     {
+      "onset": 4.65,
+      "start": 4.64,
+      "ch": "除",
+      "errMs": -10
+     },
+     {
+      "onset": 5.48,
+      "start": 5.46,
+      "ch": "也",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "世",
+     "start": 0.08,
+     "end": 0.16,
+     "score": 0.995
+    },
+    {
+     "text": "界",
+     "start": 0.22,
+     "end": 0.3,
+     "score": 0.886
+    },
+    {
+     "text": "先",
+     "start": 0.36,
+     "end": 0.48,
+     "score": 0.989
+    },
+    {
+     "text": "進",
+     "start": 0.52,
+     "end": 0.66,
+     "score": 0.999
+    },
+    {
+     "text": "台",
+     "start": 0.86,
+     "end": 1,
+     "score": 0.984
+    },
+    {
+     "text": "積",
+     "start": 1.02,
+     "end": 1.1,
+     "score": 0.994
+    },
+    {
+     "text": "電",
+     "start": 1.16,
+     "end": 1.28,
+     "score": 0.999
+    },
+    {
+     "text": "也",
+     "start": 1.32,
+     "end": 1.38,
+     "score": 0.999
+    },
+    {
+     "text": "持",
+     "start": 1.46,
+     "end": 1.56,
+     "score": 0.985
+    },
+    {
+     "text": "股",
+     "start": 1.62,
+     "end": 1.7,
+     "score": 0.999
+    },
+    {
+     "text": "主",
+     "start": 2.08,
+     "end": 2.16,
+     "score": 0.901
+    },
+    {
+     "text": "力",
+     "start": 2.22,
+     "end": 2.3,
+     "score": 0.998
+    },
+    {
+     "text": "是",
+     "start": 2.38,
+     "end": 2.46,
+     "score": 0.998
+    },
+    {
+     "text": "功",
+     "start": 2.52,
+     "end": 2.66,
+     "score": 0.992
+    },
+    {
+     "text": "率",
+     "start": 2.68,
+     "end": 2.74,
+     "score": 0.499
+    },
+    {
+     "text": "和",
+     "start": 2.84,
+     "end": 2.92,
+     "score": 1
+    },
+    {
+     "text": "電",
+     "start": 3,
+     "end": 3.12,
+     "score": 0.999
+    },
+    {
+     "text": "源",
+     "start": 3.14,
+     "end": 3.26,
+     "score": 0.996
+    },
+    {
+     "text": "晶",
+     "start": 3.28,
+     "end": 3.42,
+     "score": 0.979
+    },
+    {
+     "text": "片",
+     "start": 3.44,
+     "end": 3.64,
+     "score": 0.998
+    },
+    {
+     "text": "力",
+     "start": 3.98,
+     "end": 4.06,
+     "score": 0.996
+    },
+    {
+     "text": "積",
+     "start": 4.12,
+     "end": 4.2,
+     "score": 0.997
+    },
+    {
+     "text": "電",
+     "start": 4.26,
+     "end": 4.44,
+     "score": 0.999
+    },
+    {
+     "text": "除",
+     "start": 4.64,
+     "end": 4.74,
+     "score": 0.945
+    },
+    {
+     "text": "了",
+     "start": 4.78,
+     "end": 4.84,
+     "score": 0.997
+    },
+    {
+     "text": "記",
+     "start": 4.88,
+     "end": 4.96,
+     "score": 0.994
+    },
+    {
+     "text": "憶",
+     "start": 5.02,
+     "end": 5.08,
+     "score": 0.116
+    },
+    {
+     "text": "體",
+     "start": 5.14,
+     "end": 5.26,
+     "score": 0.995
+    },
+    {
+     "text": "也",
+     "start": 5.46,
+     "end": 5.54,
+     "score": 1
+    },
+    {
+     "text": "幫",
+     "start": 5.62,
+     "end": 5.74,
+     "score": 0.999
+    },
+    {
+     "text": "人",
+     "start": 5.76,
+     "end": 5.88,
+     "score": 1
+    },
+    {
+     "text": "代",
+     "start": 5.9,
+     "end": 6.04,
+     "score": 0.999
+    },
+    {
+     "text": "工",
+     "start": 6.08,
+     "end": 6.24,
+     "score": 0.997
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.22,
+    0.36,
+    0.52,
+    0.86,
+    1.02,
+    1.16,
+    1.32,
+    1.46,
+    1.62,
+    2.08,
+    2.22,
+    2.38,
+    2.52,
+    2.68,
+    2.84,
+    3,
+    3.14,
+    3.28,
+    3.44,
+    3.98,
+    4.12,
+    4.26,
+    4.64,
+    4.78,
+    4.88,
+    5.02,
+    5.14,
+    5.46,
+    5.62,
+    5.76,
+    5.9,
+    6.08
+   ]
   },
   {
    "id": "s7",
-   "audio": null,
-   "audioFrame": 1215,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1206,
-   "durationFrames": 252,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1215,
-   "voiceEndFrame": 1440,
-   "stillFrame": 1457,
+   "audio": "audio/tech-mature/07-s7.wav",
+   "audioFrame": 1120,
+   "audioSec": 5.72,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1111,
+   "durationFrames": 207,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1121,
+   "voiceEndFrame": 1291,
+   "stillFrame": 1308,
    "subtitleWindow": [
-    1212,
-    1464
+    1118,
+    1315
    ],
    "sourceWindow": [
-    1206,
-    1458
+    1116,
+    1313
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "但中國在大擴產",
-     "start": 1212,
+     "start": 1118,
      "chars": [
-      1213,
-      1219,
-      1225,
-      1231,
-      1237,
-      1243,
-      1249
+      1119,
+      1124,
+      1129,
+      1134,
+      1138,
+      1143,
+      1148
      ]
     },
     {
      "text": "據 TrendForce 預估",
-     "start": 1252,
+     "start": 1159,
      "chars": [
-      1254,
-      1254,
-      1260,
-      1266,
-      1272,
-      1278,
-      1284,
-      1290,
-      1296,
-      1302,
-      1308,
-      1314,
-      1314,
-      1320,
-      1326
+      1161,
+      1161,
+      1166,
+      1167,
+      1168,
+      1170,
+      1171,
+      1173,
+      1175,
+      1176,
+      1179,
+      1180,
+      1180,
+      1182,
+      1186
      ]
     },
     {
      "text": "前十大成熟產能裡",
-     "start": 1329,
+     "start": 1196,
      "chars": [
-      1331,
-      1337,
-      1343,
-      1349,
-      1355,
-      1361,
-      1367,
-      1373
+      1198,
+      1204,
+      1209,
+      1214,
+      1219,
+      1223,
+      1228,
+      1232
      ]
     },
     {
      "text": "中國廠將超過",
-     "start": 1377,
+     "start": 1239,
      "chars": [
-      1379,
-      1385,
-      1391,
-      1397,
-      1402,
-      1408
+      1242,
+      1246,
+      1251,
+      1257,
+      1262,
+      1267
      ]
     },
     {
      "text": "四分之一",
-     "start": 1412,
+     "start": 1270,
      "chars": [
-      1414,
-      1420,
-      1426,
-      1432
+      1272,
+      1276,
+      1280,
+      1284
      ]
     }
    ],
    "keywords": [
     {
      "text": "中國",
-     "start": 1219
+     "start": 1124
     },
     {
      "text": "四分之一",
-     "start": 1414
+     "start": 1272
     }
    ],
    "cues": [
     {
      "id": "cn",
      "text": "中國在大擴產",
-     "frame": 1221
+     "frame": 1125,
+     "early": 0
     },
     {
      "id": "tf",
      "text": "TrendForce",
-     "frame": 1262
+     "frame": 1167,
+     "early": 0
     },
     {
      "id": "top",
      "text": "前十大",
-     "frame": 1333
+     "frame": 1200,
+     "early": 0
     },
     {
      "id": "over",
      "text": "將超過",
-     "frame": 1399
+     "frame": 1259,
+     "early": 0
     },
     {
      "id": "quarter",
      "text": "四分之一",
-     "frame": 1416
+     "frame": 1274,
+     "early": 0
     }
    ],
+   "hash": "225b984feea2-614a646df6",
    "sub": "但中國在大擴產\n據 TrendForce 預估\n前十大成熟產能裡\n中國廠將超過\n四分之一",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.758,
+    "minScore": 0,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.45,
+      "start": 1.42,
+      "ch": "據",
+      "errMs": -30
+     },
+     {
+      "onset": 2.66,
+      "start": 2.66,
+      "ch": "前",
+      "errMs": 0
+     },
+     {
+      "onset": 4.12,
+      "start": 4.1,
+      "ch": "中",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "但",
+     "start": 0.02,
+     "end": 0.14,
+     "score": 0.999
+    },
+    {
+     "text": "中",
+     "start": 0.18,
+     "end": 0.32,
+     "score": 0.981
+    },
+    {
+     "text": "國",
+     "start": 0.34,
+     "end": 0.44,
+     "score": 0.907
+    },
+    {
+     "text": "在",
+     "start": 0.5,
+     "end": 0.62,
+     "score": 0.999
+    },
+    {
+     "text": "大",
+     "start": 0.66,
+     "end": 0.74,
+     "score": 0.997
+    },
+    {
+     "text": "擴",
+     "start": 0.82,
+     "end": 0.92,
+     "score": 0.996
+    },
+    {
+     "text": "產",
+     "start": 0.98,
+     "end": 1.16,
+     "score": 0.972
+    },
+    {
+     "text": "據",
+     "start": 1.42,
+     "end": 1.5,
+     "score": 0.992
+    },
+    {
+     "text": "T",
+     "start": 1.58,
+     "end": 1.6,
+     "score": 0
+    },
+    {
+     "text": "r",
+     "start": 1.62,
+     "end": 1.64,
+     "score": 0
+    },
+    {
+     "text": "e",
+     "start": 1.64,
+     "end": 1.66,
+     "score": 0
+    },
+    {
+     "text": "n",
+     "start": 1.7,
+     "end": 1.72,
+     "score": 0.992
+    },
+    {
+     "text": "d",
+     "start": 1.74,
+     "end": 1.76,
+     "score": 0.994
+    },
+    {
+     "text": "F",
+     "start": 1.82,
+     "end": 1.84,
+     "score": 0.976
+    },
+    {
+     "text": "o",
+     "start": 1.88,
+     "end": 1.9,
+     "score": 0.912
+    },
+    {
+     "text": "r",
+     "start": 1.92,
+     "end": 1.94,
+     "score": 0.021
+    },
+    {
+     "text": "c",
+     "start": 2,
+     "end": 2.02,
+     "score": 0.002
+    },
+    {
+     "text": "e",
+     "start": 2.04,
+     "end": 2.06,
+     "score": 0.001
+    },
+    {
+     "text": "預",
+     "start": 2.1,
+     "end": 2.16,
+     "score": 0.966
+    },
+    {
+     "text": "估",
+     "start": 2.24,
+     "end": 2.32,
+     "score": 0.998
+    },
+    {
+     "text": "前",
+     "start": 2.66,
+     "end": 2.82,
+     "score": 0.892
+    },
+    {
+     "text": "十",
+     "start": 2.86,
+     "end": 2.94,
+     "score": 0.677
+    },
+    {
+     "text": "大",
+     "start": 3,
+     "end": 3.08,
+     "score": 0.988
+    },
+    {
+     "text": "成",
+     "start": 3.18,
+     "end": 3.32,
+     "score": 0.977
+    },
+    {
+     "text": "熟",
+     "start": 3.34,
+     "end": 3.44,
+     "score": 0.997
+    },
+    {
+     "text": "產",
+     "start": 3.48,
+     "end": 3.6,
+     "score": 0.99
+    },
+    {
+     "text": "能",
+     "start": 3.64,
+     "end": 3.76,
+     "score": 0.963
+    },
+    {
+     "text": "裡",
+     "start": 3.78,
+     "end": 3.84,
+     "score": 0.998
+    },
+    {
+     "text": "中",
+     "start": 4.1,
+     "end": 4.24,
+     "score": 0.992
+    },
+    {
+     "text": "國",
+     "start": 4.26,
+     "end": 4.34,
+     "score": 0.994
+    },
+    {
+     "text": "廠",
+     "start": 4.4,
+     "end": 4.58,
+     "score": 0.965
+    },
+    {
+     "text": "將",
+     "start": 4.62,
+     "end": 4.76,
+     "score": 0.99
+    },
+    {
+     "text": "超",
+     "start": 4.78,
+     "end": 4.92,
+     "score": 0.979
+    },
+    {
+     "text": "過",
+     "start": 4.94,
+     "end": 5.02,
+     "score": 0.89
+    },
+    {
+     "text": "四",
+     "start": 5.12,
+     "end": 5.18,
+     "score": 0.057
+    },
+    {
+     "text": "分",
+     "start": 5.24,
+     "end": 5.34,
+     "score": 0.783
+    },
+    {
+     "text": "之",
+     "start": 5.38,
+     "end": 5.46,
+     "score": 0.877
+    },
+    {
+     "text": "一",
+     "start": 5.52,
+     "end": 5.58,
+     "score": 0.079
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.18,
+    0.34,
+    0.5,
+    0.66,
+    0.82,
+    0.98,
+    1.42,
+    1.58,
+    1.62,
+    1.64,
+    1.7,
+    1.74,
+    1.82,
+    1.88,
+    1.92,
+    2,
+    2.04,
+    2.1,
+    2.24,
+    2.66,
+    2.86,
+    3,
+    3.18,
+    3.34,
+    3.48,
+    3.64,
+    3.78,
+    4.1,
+    4.26,
+    4.4,
+    4.62,
+    4.78,
+    4.94,
+    5.12,
+    5.24,
+    5.38,
+    5.52
+   ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1467,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1458,
-   "durationFrames": 240,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1467,
-   "voiceEndFrame": 1680,
-   "stillFrame": 1697,
+   "audio": "audio/tech-mature/08-s8.wav",
+   "audioFrame": 1317,
+   "audioSec": 6.61,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1308,
+   "durationFrames": 232,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1318,
+   "voiceEndFrame": 1515,
+   "stillFrame": 1530,
    "subtitleWindow": [
-    1464,
-    1704
+    1315,
+    1537
    ],
    "sourceWindow": [
-    1458,
-    1698
+    1313,
+    1535
    ],
+   "pauseAfter": 0.6,
    "lines": [
     {
      "text": "新廠一直蓋",
-     "start": 1464,
+     "start": 1315,
      "chars": [
-      1465,
-      1471,
-      1477,
-      1482,
-      1488
+      1318,
+      1323,
+      1329,
+      1332,
+      1335
      ]
     },
     {
      "text": "像夜市開滿攤",
-     "start": 1492,
+     "start": 1345,
      "chars": [
-      1494,
-      1500,
-      1505,
-      1511,
-      1517,
-      1523
+      1347,
+      1353,
+      1357,
+      1362,
+      1367,
+      1372
      ]
     },
     {
      "text": "價格被壓低",
-     "start": 1526,
+     "start": 1383,
      "chars": [
-      1528,
-      1534,
-      1540,
-      1546,
-      1551
+      1385,
+      1391,
+      1395,
+      1398,
+      1404
      ]
     },
     {
      "text": "所以台廠轉向",
-     "start": 1555,
+     "start": 1417,
      "chars": [
-      1557,
-      1563,
-      1569,
-      1574,
-      1580,
-      1586
+      1419,
+      1422,
+      1425,
+      1430,
+      1436,
+      1441
      ]
     },
     {
      "text": "車用・AI 伺服器電源",
-     "start": 1590,
+     "start": 1444,
      "chars": [
-      1592,
-      1597,
-      1603,
-      1609,
-      1615,
-      1615,
-      1620,
-      1626,
-      1632,
-      1638,
-      1643
+      1446,
+      1452,
+      1460,
+      1462,
+      1466,
+      1466,
+      1470,
+      1473,
+      1477,
+      1482,
+      1486
      ]
     },
     {
      "text": "較難的晶片",
-     "start": 1647,
+     "start": 1489,
      "chars": [
-      1649,
-      1655,
-      1661,
-      1666,
-      1672
+      1491,
+      1496,
+      1500,
+      1502,
+      1507
      ]
     }
    ],
    "keywords": [
     {
      "text": "夜市",
-     "start": 1500
+     "start": 1353
     },
     {
      "text": "價格",
-     "start": 1528
+     "start": 1385
     },
     {
      "text": "車用",
-     "start": 1592
+     "start": 1446
     }
    ],
    "cues": [
     {
      "id": "fab",
      "text": "新廠",
-     "frame": 1467
+     "frame": 1319,
+     "early": 0
     },
     {
      "id": "stall",
      "text": "夜市",
-     "frame": 1502
+     "frame": 1354,
+     "early": 0
     },
     {
      "id": "many",
      "text": "開滿攤",
-     "frame": 1513
+     "frame": 1364,
+     "early": 0
     },
     {
      "id": "price",
      "text": "價格",
-     "frame": 1530
+     "frame": 1387,
+     "early": 0
     },
     {
      "id": "shift",
      "text": "台廠轉向",
-     "frame": 1571
+     "frame": 1427,
+     "early": 0
     },
     {
      "id": "car",
      "text": "車用",
-     "frame": 1594
+     "frame": 1448,
+     "early": 0
     },
     {
      "id": "ai",
      "text": "AI",
-     "frame": 1611
+     "frame": 1463,
+     "early": 0
     },
     {
      "id": "hard",
      "text": "較難",
-     "frame": 1651
+     "frame": 1492,
+     "early": 0
     }
    ],
+   "hash": "4b423a533499-614a646df6",
    "sub": "新廠一直蓋\n像夜市開滿攤\n價格被壓低\n所以台廠轉向\n車用・AI 伺服器電源\n較難的晶片",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.911,
+    "minScore": 0.278,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 40,
+    "onsetCheck": [
+     {
+      "onset": 1.04,
+      "start": 1.06,
+      "ch": "像",
+      "errMs": 20
+     },
+     {
+      "onset": 2.34,
+      "start": 2.32,
+      "ch": "價",
+      "errMs": -20
+     },
+     {
+      "onset": 3.4,
+      "start": 3.44,
+      "ch": "所",
+      "errMs": 40
+     },
+     {
+      "onset": 4.87,
+      "start": 4.88,
+      "ch": "A",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "新",
+     "start": 0.08,
+     "end": 0.2,
+     "score": 1
+    },
+    {
+     "text": "廠",
+     "start": 0.24,
+     "end": 0.42,
+     "score": 0.963
+    },
+    {
+     "text": "一",
+     "start": 0.44,
+     "end": 0.5,
+     "score": 0.278
+    },
+    {
+     "text": "直",
+     "start": 0.56,
+     "end": 0.64,
+     "score": 0.994
+    },
+    {
+     "text": "蓋",
+     "start": 0.66,
+     "end": 0.82,
+     "score": 0.666
+    },
+    {
+     "text": "像",
+     "start": 1.06,
+     "end": 1.22,
+     "score": 0.912
+    },
+    {
+     "text": "夜",
+     "start": 1.24,
+     "end": 1.32,
+     "score": 0.998
+    },
+    {
+     "text": "市",
+     "start": 1.4,
+     "end": 1.48,
+     "score": 0.981
+    },
+    {
+     "text": "開",
+     "start": 1.56,
+     "end": 1.68,
+     "score": 0.932
+    },
+    {
+     "text": "滿",
+     "start": 1.72,
+     "end": 1.82,
+     "score": 0.992
+    },
+    {
+     "text": "攤",
+     "start": 1.88,
+     "end": 2.06,
+     "score": 0.886
+    },
+    {
+     "text": "價",
+     "start": 2.32,
+     "end": 2.42,
+     "score": 0.999
+    },
+    {
+     "text": "格",
+     "start": 2.5,
+     "end": 2.58,
+     "score": 0.999
+    },
+    {
+     "text": "被",
+     "start": 2.64,
+     "end": 2.74,
+     "score": 0.993
+    },
+    {
+     "text": "壓",
+     "start": 2.76,
+     "end": 2.84,
+     "score": 0.999
+    },
+    {
+     "text": "低",
+     "start": 2.94,
+     "end": 3.02,
+     "score": 0.897
+    },
+    {
+     "text": "所",
+     "start": 3.44,
+     "end": 3.52,
+     "score": 0.979
+    },
+    {
+     "text": "以",
+     "start": 3.56,
+     "end": 3.6,
+     "score": 0.998
+    },
+    {
+     "text": "台",
+     "start": 3.66,
+     "end": 3.78,
+     "score": 0.993
+    },
+    {
+     "text": "廠",
+     "start": 3.82,
+     "end": 3.98,
+     "score": 0.96
+    },
+    {
+     "text": "轉",
+     "start": 4,
+     "end": 4.12,
+     "score": 0.953
+    },
+    {
+     "text": "向",
+     "start": 4.18,
+     "end": 4.32,
+     "score": 0.998
+    },
+    {
+     "text": "車",
+     "start": 4.36,
+     "end": 4.48,
+     "score": 0.994
+    },
+    {
+     "text": "用",
+     "start": 4.54,
+     "end": 4.72,
+     "score": 1
+    },
+    {
+     "text": "A",
+     "start": 4.88,
+     "end": 4.94,
+     "score": 0.394
+    },
+    {
+     "text": "I",
+     "start": 5,
+     "end": 5.08,
+     "score": 0.865
+    },
+    {
+     "text": "伺",
+     "start": 5.14,
+     "end": 5.22,
+     "score": 0.348
+    },
+    {
+     "text": "服",
+     "start": 5.26,
+     "end": 5.32,
+     "score": 0.984
+    },
+    {
+     "text": "器",
+     "start": 5.38,
+     "end": 5.46,
+     "score": 0.994
+    },
+    {
+     "text": "電",
+     "start": 5.54,
+     "end": 5.64,
+     "score": 0.994
+    },
+    {
+     "text": "源",
+     "start": 5.68,
+     "end": 5.8,
+     "score": 0.994
+    },
+    {
+     "text": "較",
+     "start": 5.84,
+     "end": 5.98,
+     "score": 0.999
+    },
+    {
+     "text": "難",
+     "start": 6,
+     "end": 6.1,
+     "score": 0.991
+    },
+    {
+     "text": "的",
+     "start": 6.14,
+     "end": 6.18,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 6.22,
+     "end": 6.36,
+     "score": 0.969
+    },
+    {
+     "text": "片",
+     "start": 6.38,
+     "end": 6.56,
+     "score": 0.912
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.24,
+    0.44,
+    0.56,
+    0.66,
+    1.06,
+    1.24,
+    1.4,
+    1.56,
+    1.72,
+    1.88,
+    2.32,
+    2.5,
+    2.64,
+    2.76,
+    2.94,
+    3.44,
+    3.56,
+    3.66,
+    3.82,
+    4,
+    4.18,
+    4.36,
+    4.54,
+    4.8,
+    4.88,
+    5,
+    5.14,
+    5.26,
+    5.38,
+    5.54,
+    5.68,
+    5.84,
+    6,
+    6.14,
+    6.22,
+    6.38
+   ]
   },
   {
    "id": "s9",
-   "audio": null,
-   "audioFrame": 1707,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1698,
-   "durationFrames": 213,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1707,
-   "voiceEndFrame": 1893,
-   "stillFrame": 1910,
+   "audio": "audio/tech-mature/09-s9.wav",
+   "audioFrame": 1539,
+   "audioSec": 5.86,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1530,
+   "durationFrames": 212,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1540,
+   "voiceEndFrame": 1714,
+   "stillFrame": 1732,
    "subtitleWindow": [
-    1704,
-    1912
+    1537,
+    1742
    ],
    "sourceWindow": [
-    1698,
-    1911
+    1535,
+    1737
    ],
    "lines": [
     {
      "text": "成熟製程拚品項",
-     "start": 1704,
+     "start": 1537,
      "chars": [
-      1705,
-      1711,
-      1717,
-      1723,
-      1729,
-      1735,
-      1741
+      1539,
+      1544,
+      1549,
+      1553,
+      1559,
+      1564,
+      1570
      ]
     },
     {
      "text": "下一集看更拚量的",
-     "start": 1745,
+     "start": 1581,
      "chars": [
-      1747,
-      1753,
-      1759,
-      1765,
-      1771,
-      1777,
-      1783,
-      1789
+      1583,
+      1587,
+      1591,
+      1596,
+      1601,
+      1606,
+      1611,
+      1616
      ]
     },
     {
      "text": "記憶體製造",
-     "start": 1793,
+     "start": 1617,
      "chars": [
-      1795,
-      1801,
-      1807,
-      1813,
-      1819
+      1619,
+      1623,
+      1627,
+      1632,
+      1636
      ]
     },
     {
      "text": "留言「成熟製程」",
-     "start": 1823,
+     "start": 1652,
      "chars": [
-      1825,
-      1831,
-      1831,
-      1837,
-      1843,
-      1849,
-      1855,
-      1855
+      1655,
+      1659,
+      1659,
+      1665,
+      1671,
+      1675,
+      1679,
+      1679
      ]
     },
     {
      "text": "拿完整資料",
-     "start": 1859,
+     "start": 1687,
      "chars": [
-      1861,
-      1867,
-      1873,
-      1879,
-      1885
+      1689,
+      1694,
+      1699,
+      1704,
+      1708
      ]
     }
    ],
    "keywords": [
     {
      "text": "記憶體",
-     "start": 1795
+     "start": 1619
     },
     {
      "text": "成熟製程",
-     "start": 1705
+     "start": 1539
     }
    ],
    "cues": [
     {
      "id": "item",
      "text": "拚品項",
-     "frame": 1731
+     "frame": 1561,
+     "early": 0
     },
     {
      "id": "next",
      "text": "下一集",
-     "frame": 1749
+     "frame": 1585,
+     "early": 0
     },
     {
      "id": "mem",
      "text": "記憶體製造",
-     "frame": 1797
+     "frame": 1621,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "留言",
-     "frame": 1827
+     "frame": 1656,
+     "early": 0
     }
    ],
+   "hash": "8b9f20232a44-614a646df6",
    "sub": "成熟製程拚品項\n下一集看更拚量的\n記憶體製造\n留言「成熟製程」\n拿完整資料",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.918,
+    "minScore": 0.076,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.49,
+      "start": 1.52,
+      "ch": "下",
+      "errMs": 30
+     },
+     {
+      "onset": 3.91,
+      "start": 3.9,
+      "ch": "留",
+      "errMs": -10
+     },
+     {
+      "onset": 5.08,
+      "start": 5.06,
+      "ch": "拿",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "成",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.899
+    },
+    {
+     "text": "熟",
+     "start": 0.22,
+     "end": 0.34,
+     "score": 0.999
+    },
+    {
+     "text": "製",
+     "start": 0.38,
+     "end": 0.46,
+     "score": 0.996
+    },
+    {
+     "text": "程",
+     "start": 0.52,
+     "end": 0.68,
+     "score": 0.988
+    },
+    {
+     "text": "拚",
+     "start": 0.72,
+     "end": 0.84,
+     "score": 0.666
+    },
+    {
+     "text": "品",
+     "start": 0.88,
+     "end": 1.02,
+     "score": 0.999
+    },
+    {
+     "text": "項",
+     "start": 1.08,
+     "end": 1.26,
+     "score": 0.996
+    },
+    {
+     "text": "下",
+     "start": 1.52,
+     "end": 1.62,
+     "score": 1
+    },
+    {
+     "text": "一",
+     "start": 1.66,
+     "end": 1.72,
+     "score": 0.076
+    },
+    {
+     "text": "集",
+     "start": 1.78,
+     "end": 1.86,
+     "score": 0.998
+    },
+    {
+     "text": "看",
+     "start": 1.94,
+     "end": 2.08,
+     "score": 1
+    },
+    {
+     "text": "更",
+     "start": 2.12,
+     "end": 2.26,
+     "score": 0.993
+    },
+    {
+     "text": "拚",
+     "start": 2.28,
+     "end": 2.42,
+     "score": 0.641
+    },
+    {
+     "text": "量",
+     "start": 2.46,
+     "end": 2.6,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 2.62,
+     "end": 2.66,
+     "score": 0.998
+    },
+    {
+     "text": "記",
+     "start": 2.72,
+     "end": 2.8,
+     "score": 0.993
+    },
+    {
+     "text": "憶",
+     "start": 2.86,
+     "end": 2.92,
+     "score": 0.577
+    },
+    {
+     "text": "體",
+     "start": 2.98,
+     "end": 3.06,
+     "score": 0.995
+    },
+    {
+     "text": "製",
+     "start": 3.14,
+     "end": 3.22,
+     "score": 0.946
+    },
+    {
+     "text": "造",
+     "start": 3.28,
+     "end": 3.44,
+     "score": 0.997
+    },
+    {
+     "text": "留",
+     "start": 3.9,
+     "end": 4.02,
+     "score": 0.994
+    },
+    {
+     "text": "言",
+     "start": 4.06,
+     "end": 4.18,
+     "score": 0.994
+    },
+    {
+     "text": "成",
+     "start": 4.24,
+     "end": 4.4,
+     "score": 0.955
+    },
+    {
+     "text": "熟",
+     "start": 4.44,
+     "end": 4.54,
+     "score": 0.999
+    },
+    {
+     "text": "製",
+     "start": 4.58,
+     "end": 4.66,
+     "score": 0.923
+    },
+    {
+     "text": "程",
+     "start": 4.72,
+     "end": 4.9,
+     "score": 0.947
+    },
+    {
+     "text": "拿",
+     "start": 5.06,
+     "end": 5.14,
+     "score": 0.999
+    },
+    {
+     "text": "完",
+     "start": 5.22,
+     "end": 5.34,
+     "score": 0.998
+    },
+    {
+     "text": "整",
+     "start": 5.38,
+     "end": 5.52,
+     "score": 0.965
+    },
+    {
+     "text": "資",
+     "start": 5.56,
+     "end": 5.64,
+     "score": 0.994
+    },
+    {
+     "text": "料",
+     "start": 5.68,
+     "end": 5.82,
+     "score": 0.948
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.38,
+    0.52,
+    0.72,
+    0.88,
+    1.08,
+    1.52,
+    1.66,
+    1.78,
+    1.94,
+    2.12,
+    2.28,
+    2.46,
+    2.62,
+    2.72,
+    2.86,
+    2.98,
+    3.14,
+    3.28,
+    3.9,
+    4.06,
+    4.24,
+    4.44,
+    4.58,
+    4.72,
+    5.06,
+    5.22,
+    5.38,
+    5.56,
+    5.68
+   ]
   },
   {
    "id": "s10",
    "audio": null,
-   "audioFrame": 1915,
+   "audioFrame": 1732,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1911,
+   "startFrame": 1732,
    "durationFrames": 96,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1915,
-   "voiceEndFrame": 1997,
-   "stillFrame": 1995,
-   "subtitleWindow": [
-    1912,
-    2007
-   ],
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1742,
+   "voiceEndFrame": 1742,
+   "stillFrame": 1816,
+   "silent": true,
+   "subtitleWindow": null,
    "sourceWindow": [
-    1911,
-    2007
+    1737,
+    1828
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": "",
-   "silentEstimate": true
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-mature/voice.wav",
+  "lufsIn": -18.98,
+  "lufs": -16,
+  "sec": 60.933
+ }
 }
