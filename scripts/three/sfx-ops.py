@@ -206,7 +206,7 @@ def merge(ev):
                 cur = dict(e)
         if cur: out.append(cur)
     for e in out:
-        if e['kind'] == 'hiss':
+        if e['kind'] == 'hiss' and e['t1'] - e['t0'] >= 1.5:
             rest.append(dict(kind='valve', t0=e['t0'], t1=0, src=e['src'] + ':開閥'))
             rest.append(dict(kind='valve', t0=e['t1'], t1=0, src=e['src'] + ':關閥'))
     # 同一類瞬間聲（clunk／slide／valve）0.25 s 內只留一個（多層同時動＝一聲）
@@ -219,6 +219,23 @@ def merge(ev):
             continue
         keep.append(e)
     return out + keep
+
+
+# 2026-11-27 Andy（特用氣體 69 個音效）：「音效有點太多變成有點雜音，不用那麼多」→ 疏化：
+#   瞬間聲（撞擊、閥門、滑動、呼嘯）任兩個至少隔 TRANSIENT_GAP 秒，衝突時留重要的（clunk > valve > thump > whoosh > slide）；
+#   持續聲短於 BED_MIN 秒不放；hiss 的開關閥 click 只在 hiss ≥ 1.5 秒時加（在 merge 裡）。目標約每 2.5 秒一個音效。
+TRANSIENT_GAP = float(os.environ.get('SFX_TRANSIENT_GAP', 1.8))
+BED_MIN = float(os.environ.get('SFX_BED_MIN', 0.8))
+PRIO = {'clunk': 5, 'valve': 4, 'thump': 4, 'servo': 3, 'whoosh': 2, 'slide': 1}
+
+def thin(ev):
+    beds = [e for e in ev if e['kind'] not in PRIO]
+    beds = [e for e in beds if (e.get('t1') or e['t0']) - e['t0'] >= BED_MIN]
+    tr = sorted([e for e in ev if e['kind'] in PRIO], key=lambda z: (-PRIO[z['kind']], -z.get('strength', 1.0), z['t0']))
+    kept = []
+    for e in tr:
+        if all(abs(e['t0'] - k['t0']) >= TRANSIENT_GAP for k in kept): kept.append(e)
+    return beds + kept
 
 
 def pan_of(name):
@@ -249,7 +266,7 @@ def main():
     out = a[a.index('--out') + 1] if '--out' in a else os.path.join(root, 'out', f'{slug}.sfx.wav')
     cues_path = a[a.index('--cues') + 1] if '--cues' in a else os.path.join(root, 'out', slug, 'sfx-cues.json')
     ev, end_t, tl = collect(slug, root)
-    ev = merge(ev)
+    ev = thin(merge(ev))
     total = tl.total / tl.fps + 0.5
     table = to_cues(ev, end_t)
     tpath = os.path.join(os.path.dirname(cues_path), 'sfx-table.json')
