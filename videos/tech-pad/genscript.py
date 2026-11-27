@@ -115,18 +115,18 @@ SO = 18                      # s7（r4）：T 站只到「磨薄」後 16 幀，
 def SW(n): return f"s7:thin+{n + SO}"
 BACKHEAD = "s2:platen+4"    # 研磨頭回到墊子正上方（r2 拿掉顯微段，組回提前）
 RT = ["s6:comb+8", "s6:comb+26", "s6:comb+44"]     # 三塊陸地依序變回尖齒的時刻（修整頭離開那一塊的時候）
-vis("newPad", [(SW(50), FAR)])
+vis("newPad", [(SW(48), FAR)])
 vis("roller", [(SW(64), SW(96))])
 vis("strand0", [(SW(4), SW(10))]); vis("strand1", [(SW(10), SW(16))]); vis("strand2", [(SW(16), SW(30))])
 VIS += [hid("film", SW(-2), FAR, 6)]
 OLD = ["oPadAdh", "oPadSub", "oPadTop"]
-VIS += [mv(l, SW(30), FAR, 18, dx=-17.0, throw=3.2) for l in OLD] + [hid(l, SW(48), FAR, 4, 0) for l in OLD]
+VIS += [mv(l, SW(30), FAR, 18, dx=-8.5, throw=2.0) for l in OLD] + [hid(l, SW(48), FAR, 4, 0) for l in OLD]
 for l in OLD: vis(l, [("s7:start-2", SW(48))])
 VIS += [hid(l, "s7:start-2", FAR, 2, 0) for l in ("padAdh", "padSub", "padTop")]
 VIS += [mv("head", "s7:thin+2", FAR, 12, dx=6.3)]
 VIS += [mv(l, "s7:thin+2", FAR, 12, dx=-2.5, dz=-4.5) for l in ("cond", "condPost")]   # r4：換墊前修整器整組往後退開（不和撕起的舊墊、落下的新墊相撞）       # 換墊前研磨頭先移開（T 站畫面中，看不到）
 VIS += [mv("roller", T0, FAR, 1, dz=-4.4), mv("roller", SW(66), SW(92), 26, dz=8.8)]
-VIS += [{"layer": "newPad", "at": T0, "until": SW(50), "dur": 14, "dy": 7.0, "fallIn": True, "bounce": 0.07, "opacity": 0}]
+VIS += [{"layer": "newPad", "at": T0, "until": SW(48), "dur": 14, "dy": 4.6, "fallIn": True, "bounce": 0.07, "opacity": 0}]
 # ── s2 爆炸分解（5 步：研磨頭移開 → 墊子掀起 → 三層分開 → 研磨層局部放大 → 組回）──
 VIS += [mv("head", "s2:start+4", BACKHEAD, 26, dx=6.3)]
 VIS += [mv(l, "s2:pad", "s2:platen+6", 22, dy=2.4) for l in ("padAdh", "padSub", "padTop")]
@@ -206,7 +206,7 @@ P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}, {"to": "tool", "at": SW
  "run": [run("padPeel", SW(0), SW(26), 18), run("rollerSpin", SW(66), SW(92), 4)],
  "labels": [lab("tOld", "舊墊薄、新墊厚", "Old: thin / New: thick", "amber", "voice-2", SW(-4)),
             lab("padOld", "舊墊", "Old pad", "amber", SW(0), SW(46)),
-            lab("padNew", "新墊", "New pad", "blue", SW(52), SW(96), xy=[230, 330])],
+            lab("padNew", "新墊", "New pad", "blue", SW(48), SW(96), xy=[230, 330])],
  "overlay": [card("s7", "pad-wear", "磨薄就換，機台停下來", "示意（不標壽命時數）", {"thin": "thin", "swap": "swap", "stop": "stop"})]}
 P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 74.0, 1.6, 37, 30, 1), shot("tough-6", 90.0, 1.6, 37, 30, 30)],

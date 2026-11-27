@@ -355,7 +355,7 @@ Object.assign(anchors, {
   bump: A("wB0", [16.3, 1.9, 1.65], -60, 190), valley: A("wOx0", [13.2, 2.9, 1.65], -150, -100), wpad: A("wPad", [23.3, 1.6, 2.0], 150, 100),
   pore: A("mLand1", [38.35, 2.81, MZ], 150, -90), groove: A("mSlurry", [36.25, 2.3, MZ], -150, 100), asp: A("mAF1", [38.6, 3.3, 1.0], 150, -100), glaze: A("mAG1", [38.6, 3.04, 1.2], 150, -100),
   tool: A("mTool", [TX, 4.2, 0.5], -150, -80), grain: A("mTool", [R2(TX + 0.6), 3.07, 1.5], 150, 100),
-  padOld: A("oPadTop", [2.4, Y_TOP - 0.1, 3.0], 150, -110), padNew: A("platen", [-4.2, 2.0, 0.8], -230, -110), tOld: A("tOld", [55.9, 2.0, 1.8], -150, 90), tNew: A("tNew", [60.1, 3.0, 1.8], 150, -90),
+  padOld: A("oPadTop", [2.4, Y_TOP - 0.1, 3.0], 150, -110), padNew: A("newPad", [-2.6, Y_TOP + 0.02, 2.4], -230, -110), tOld: A("tOld", [55.9, 2.0, 1.8], -150, 90), tNew: A("tNew", [60.1, 3.0, 1.8], 150, -90),
   softL: A("softPad", [74, 2.0, 2.0], -150, 100), hardL: A("hardPad", [90, 1.85, 2.0], 150, 100), scratchL: A("hardScratch", [91.4, 2.32, 1.65], 150, -100),
   nPadA: A("nPad", [NPX - 1.2, 1.45, NPZ + 1.0], -150, -90), nDiscA: A("nDisc", [NDX, 1.5, NDZ + 1.5], -150, 100), nQzA: A("nQuartz", [NQX + 1.5, 3.0, NQZ + 1.2], 150, -90),
 });
