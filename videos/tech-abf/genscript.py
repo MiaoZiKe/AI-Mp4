@@ -143,11 +143,11 @@ for i, (l, d) in enumerate(zip(KLAY, KDY)):                                     
     VIS.append(mv(l, f"s2:bld-{(len(KLAY) - 1 - i) * 2}", f"{DN}+{i}", 12, dy=d))
 # ── 站 L：膜從膜捲滑到芯板 → 撕保護膜 → 壓板下降壓平（抽真空、加熱）→ 變硬（顏色變深）→ 壓板抬起 → 撕承載膜 ──
 for l in ("lResin", "lPet", "lCover"): VIS.append(mv(l, T0, "s3:thin", 22, dx=-5.5))
-vis("lCover", [(T0, "s3:stick+24")], 4)
-VIS += [mv("lTop", "s3:press-6", "s3:end-2", 16, dy=-3.1)]
-vis("lCured", [("s3:heat+14", FAR)], 10)
-VIS += [hid("lResin", "s3:heat+14", FAR, 10, 0)]
-vis("lPet", [(T0, "s3:end+22")], 4)
+vis("lCover", [(T0, "s3:wrap+10")], 4)
+VIS += [mv("lTop", "s3:press-10", "s3:heat-26", 10, dy=-3.1)]
+vis("lCured", [])
+VIS += [mv(l, T0, FAR, 1, dx=17.0, dz=1.2) for l in ("lOven", "lOvFan")]   # 烘烤爐放到壓膜機右邊（不被膜捲擋住）
+vis("lPet", [(T0, "s3:heat-6")], 4)
 # ── 站 D：雷射頭三個孔位（左→中→右），光錐只在打孔那幾幀出現，孔在打完後出現 ──
 for l in ("dHead", "dBeamL"):
     VIS += [mv(l, T0, "s4:hole-8", 12, dx=-2.5), mv(l, "s4:lift-8", FAR, 12, dx=2.5)]
@@ -168,7 +168,7 @@ KL1 = (KX, 2.0, 46, 14)            # 站 K 爆炸後
 MLc = (MX, 2.4, 38, 10)
 LLc = (LX - 1.0, 1.4, 42, 28)
 DLc = (DX, 2.0, 32, 18)
-SLc = (SX + 1.6, 0.6, 29, 18)
+SLc = (SX + 1.6, -0.2, 29, 18)
 ALc = (AX - 0.6, -0.4, 50, 22)
 JLc0 = (JX - 4.0, 1.0, 36, 14)
 JLc1 = (JX + 0.4, -0.4, 58, 14)
@@ -181,22 +181,22 @@ P["s1"] = {"zoom": [{"to": "pkg", "at": "start-30", "dur": 1}, {"to": "pkg", "at
  "run": [run("kSig", "start-30", "s2:bld-20", 6), run("kSig2", "start-30", "s2:bld-20", 6)],
  "labels": seq("s1", [("kSig", "訊號沿載板裡的線拉出去", "Signals routed out through the substrate", "amber", "sig", 4)]),
  "overlay": [sec("abf-hook", "start", nxt("s1"), "系列 3・第 7 集", "示意，非實際比例", {"film": "film", "q": "q", "prev": "prev", "sig": "sig"}, cut=True)]}
-k2 = seq("s2", [("kT4", "每一層樓＝增層", "Each floor = a build-up layer", "blue", "bld", -10), ("kTr", "銅線", "Copper lines", "amber", "cu", 2), ("mAbf", "絕緣膜（ABF）", "Insulating film (ABF)", "amber", "film", 4)])
+k2 = seq("s2", [("kT4", "每一層樓＝增層", "Each floor = a build-up layer", "blue", "bld", -10, [720, 960]), ("kTr", "銅線", "Copper lines", "amber", "cu", 2), ("mAbf", "絕緣膜（ABF）", "Insulating film (ABF)", "amber", "film", 4)])
 P["s2"] = {"zoom": [{"to": "pkg", "at": CC, "dur": 1}, {"to": "micro", "at": "film-8", "dur": 1}],
- "shot": [S_(CC, KL0), shot("bld", KL1[0], KL1[1], KL1[2], KL1[3], 30), S_("film-8", MLc)],
+ "shot": [S_(CC, KL0), shot("bld-26", KL1[0], KL1[1], KL1[2], KL1[3], 22), S_("film-8", MLc)],
  "run": [run("mSig", "film-8", "s3:voice-4", 6)],
  "labels": k2,
  "overlay": [card("s2", "abf-floor", "載板像一棟大樓", "示意", {"bld": "bld", "cu": "cu", "mid": "mid", "film": "film"})]}
 P["s3"] = {"zoom": [{"to": "equip", "at": CC, "dur": 1}],
- "shot": [S_(CC, LLc), shot("press-10", LX + 2.0, 2.2, 33, 12, 20)],
- "run": [run("lPeelCover", "stick", "s4:voice-4", 14), run("lVacFlow", "press-6", "heat+20", 6), run("lHeatGlow", "heat-4", "s4:voice-4", 6), run("lPeelPet", "end+2", "s4:voice-4", 14),
+ "shot": [S_(CC, LLc), shot("press-10", LX + 2.0, 1.4, 33, 12, 20), shot("heat-18", LX + 10.0, 1.8, 26, 16, 12)],
+ "run": [run("lPeelCover", "thin", "s4:voice-4", 14), run("lVacFlow", "press-10", "heat-26", 6), run("lHeatGlow", "press-4", "heat-26", 6), run("lPeelPet", "heat-22", "s4:voice-4", 10),
          run("lOvFanSpin", "start-4", "s4:voice-4", 10), run("lOvHot", "start-4", "s4:voice-4", 6)],
- "labels": seq("s3", [("lRoll", "ABF 膜捲（三層）", "ABF film roll (3 layers)", "blue", "thin", 6), ("lTop", "真空壓膜機：壓平", "Vacuum laminator", "amber", "press", 37), ("lCured", "加熱變硬（固化）", "Cured by heat", "amber", "heat", 6)]),
+ "labels": seq("s3", [("lRoll", "ABF 膜捲（三層）", "ABF film roll (3 layers)", "blue", "thin", 6), ("lTop", "真空壓膜機：壓平", "Vacuum laminator", "amber", "press", 37), ("lCured", "烘烤爐：加熱變硬", "Oven cure hardens it", "amber", "heat", 6)]),
  "overlay": [card("s3", "abf-lam", "像貼保鮮膜：貼、壓、烤", "示意（不標溫度）", {"thin": "thin", "wrap": "wrap", "stick": "stick", "press": "press", "heat": "heat"})]}
 P["s4"] = {"zoom": [{"to": "equip", "at": CC, "dur": 1}],
  "shot": [S_(CC, DLc)],
  "run": [run("dPlume0", "laser+4", "laser+40", 4), run("dPlume1", "hole+8", "hole+44", 4), run("dPlume2", "lift+8", "lift+44", 4), run("dLaserPulse", "laser", "lift+20", 4)],
- "labels": seq("s4", [("dHead", "雷射頭：光收斂到膜面", "Laser head, focused", "blue", "laser", 2), ("dHole", "小洞＝電梯井", "Microvia = elevator shaft", "amber", "hole", 3), ("dPad", "孔底停在銅墊：兩層接通", "Stops on the copper pad", "blue", "conn", 20)]),
+ "labels": seq("s4", [("dHead", "雷射頭：光收斂到膜面", "Laser head, focused", "blue", "laser", 2), ("dHole", "小洞＝電梯井", "Microvia = elevator shaft", "amber", "hole", 3), ("dPad", "孔底停在銅墊（之後鍍銅才接通）", "Stops on the copper pad", "blue", "conn", 20)]),
  "overlay": [card("s4", "abf-via", "雷射打孔，像電梯井", "示意", {"laser": "laser", "hole": "hole", "lift": "lift", "conn": "conn"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [S_(CC, SLc)],
@@ -205,7 +205,7 @@ P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "overlay": [card("s5", "abf-sap", "先打草稿，再描粗，再擦掉", "示意（不標線寬）", {"seed": "seed", "draft": "draft", "line": "line", "thick": "thick", "wash": "wash"})]}
 P["s6"] = {"zoom": [{"to": "pkg", "at": CC, "dur": 1}],
  "shot": [S_(CC, ALc)],
- "labels": seq("s6", [("aSmall", "一般處理器載板", "Ordinary CPU substrate", "blue", "ai", 2), ("aBig", "AI 晶片載板：十幾層", "AI chip substrate: 10+ layers", "amber", "ten", 4)]),
+ "labels": seq("s6", [("aSmall", "一般處理器載板", "Ordinary CPU substrate", "blue", "many", 4), ("aBig", "AI 晶片載板：十幾層", "AI chip substrate: 10+ layers", "amber", "ten", 4)]),
  "overlay": [card("s6", "abf-layers", "載板疊到十幾層", "報導（科技新報 2026/5/30）", {"ai": "ai", "many": "many", "ten": "ten", "more": "more"})]}
 P["s7"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, JLc0)],

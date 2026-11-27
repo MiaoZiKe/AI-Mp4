@@ -294,35 +294,44 @@
      },
      {
       "layer": "lCover",
-      "at": "s3:stick+24",
+      "at": "s3:wrap+10",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 4
      },
      {
       "layer": "lTop",
-      "at": "s3:press-6",
-      "until": "s3:end-2",
-      "dur": 16,
+      "at": "s3:press-10",
+      "until": "s3:heat-26",
+      "dur": 10,
       "dy": -3.1
      },
      {
       "layer": "lCured",
       "at": "s1:start-40",
-      "until": "s3:heat+14",
-      "opacity": 0,
-      "dur": 10
-     },
-     {
-      "layer": "lResin",
-      "at": "s3:heat+14",
       "until": "s10:start+400",
       "opacity": 0,
-      "dur": 10
+      "dur": 3
+     },
+     {
+      "layer": "lOven",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "dur": 1,
+      "dx": 17.0,
+      "dz": 1.2
+     },
+     {
+      "layer": "lOvFan",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "dur": 1,
+      "dx": 17.0,
+      "dz": 1.2
      },
      {
       "layer": "lPet",
-      "at": "s3:end+22",
+      "at": "s3:heat-6",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 4
@@ -602,8 +611,8 @@
       "elev": 24
      },
      {
-      "at": "bld",
-      "dur": 30,
+      "at": "bld-26",
+      "dur": 22,
       "x": 0,
       "y": 2.0,
       "d": 46,
@@ -634,7 +643,11 @@
       "color": "blue",
       "at": "bld+10",
       "until": "bld+55",
-      "cut": true
+      "cut": true,
+      "xy": [
+       720,
+       960
+      ]
      },
      {
       "part": "kTr",
@@ -753,34 +766,42 @@
       "at": "press-10",
       "dur": 20,
       "x": 62.0,
-      "y": 2.2,
+      "y": 1.4,
       "d": 33,
       "elev": 12
+     },
+     {
+      "at": "heat-18",
+      "dur": 12,
+      "x": 70.0,
+      "y": 1.8,
+      "d": 26,
+      "elev": 16
      }
     ],
     "run": [
      {
       "id": "lPeelCover",
-      "at": "stick",
+      "at": "thin",
       "ramp": 14,
       "until": "s4:voice-4"
      },
      {
       "id": "lVacFlow",
-      "at": "press-6",
+      "at": "press-10",
       "ramp": 6,
-      "until": "heat+20"
+      "until": "heat-26"
      },
      {
       "id": "lHeatGlow",
-      "at": "heat-4",
+      "at": "press-4",
       "ramp": 6,
-      "until": "s4:voice-4"
+      "until": "heat-26"
      },
      {
       "id": "lPeelPet",
-      "at": "end+2",
-      "ramp": 14,
+      "at": "heat-22",
+      "ramp": 10,
       "until": "s4:voice-4"
      },
      {
@@ -817,8 +838,8 @@
      },
      {
       "part": "lCured",
-      "text": "加熱變硬（固化）",
-      "en": "Cured by heat",
+      "text": "烘烤爐：加熱變硬",
+      "en": "Oven cure hardens it",
       "color": "amber",
       "at": "heat-6",
       "until": "heat+39",
@@ -966,7 +987,7 @@
      },
      {
       "part": "dPad",
-      "text": "孔底停在銅墊：兩層接通",
+      "text": "孔底停在銅墊（之後鍍銅才接通）",
       "en": "Stops on the copper pad",
       "color": "blue",
       "at": "conn-17",
@@ -1064,7 +1085,7 @@
       "at": "voice-4",
       "dur": 1,
       "x": 121.6,
-      "y": 0.6,
+      "y": -0.2,
       "d": 29,
       "elev": 18
      }
@@ -1233,8 +1254,8 @@
       "text": "一般處理器載板",
       "en": "Ordinary CPU substrate",
       "color": "blue",
-      "at": "ai-2",
-      "until": "ai+43",
+      "at": "many-4",
+      "until": "many+41",
       "cut": true
      },
      {
@@ -1242,8 +1263,8 @@
       "text": "AI 晶片載板：十幾層",
       "en": "AI chip substrate: 10+ layers",
       "color": "amber",
-      "at": "ten-4",
-      "until": "ten+41",
+      "at": "ten+1",
+      "until": "ten+46",
       "cut": true
      }
     ],
