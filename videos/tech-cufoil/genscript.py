@@ -138,8 +138,8 @@ EV = (33.4, 1.4, 48, 10); EV2 = EV     # 不推近：推近時機台下半出框
 FV = (70.0, 2.2, 15, 8)
 RV = (104.0, 4.3, 13, 8); RV2 = (104.0, 2.9, 19, 8)   # s5 念到「低粗糙度」往下移到低粗糙度那片
 GV = (150.0, 1.0, 46, 12)
-WV = (192.6, 0.4, 34, 58)
-XV = (230.6, 0.4, 34, 58)
+WV = (192.6, 2.4, 30, 86)
+XV = (230.6, 2.4, 30, 86)
 KV = (268.0, 0.5, 44, 12)
 NV = (306.4, -0.2, 46, 18)
 if os.environ.get("VIEWS"): globals().update({k: tuple(v) for k, v in json.loads(os.environ["VIEWS"]).items()})   # 開發用：調鏡頭
@@ -157,7 +157,7 @@ P["s2"] = {"zoom": [{"to": "drum", "at": CC, "dur": 1}],
  "labels": [lab("eRectA", "整流器：送直流電", "Rectifier (DC)", "blue", "voice+4", "voice+16"),
             lab("eDrum", "鈦滾筒＝陰極", "Titanium drum = cathode", "amber", "voice+24", "voice+38"),
             lab("eAnode", "弧形陽極，泡在硫酸銅藥水", "Arc anode in copper sulfate", "amber", "voice+46", "grow+8"),
-            lab("eDrum", "銅長在滾筒上，越轉越厚", "Copper grows thicker on the drum", "amber", "grow+12", "peel-2", xy=[560, 250]),
+            lab("eDrum", "銅在藥水裡越長越厚", "Copper thickens in the solution", "amber", "grow+12", "peel-2", xy=[560, 250]),
             lab("eRoll", "撕下銅箔、捲起來", "Peel and wind the foil", "amber", "peel+2", "peel+47")],
  "overlay": [card("s2", "cuf-drum", "電解銅箔：長在滾筒，再撕下來", "示意（電鍍，不是加熱）", {"plate": "plate", "grow": "grow", "peel": "peel", "crepe": "crepe"})]}
 P["s3"] = {"zoom": [{"to": "foil", "at": CC, "dur": 1}],

@@ -164,12 +164,12 @@ ZC("edHub", "eDrum", 0.9, 2.52, 2.6, EX, ECY, "copper"); ZC("edHubIn", "eDrum", 
 ZC("edShaft", "eDrum", 0.35, -3.8, 3.0, EX, ECY, "steel");
 LAY("eFrame", [10, 6, EX, 3.5]);
 BOX("efPostB", "eFrame", EX - 0.5, EX + 0.5, 0, ECY - 0.4, -3.9, -3.3, "panel2"); BOX("efBrgB", "eFrame", EX - 0.7, EX + 0.7, ECY - 0.6, ECY + 0.6, -3.9, -3.3, "dark");
-BOX("efBrgF", "eFrame", EX - 0.5, EX + 0.5, ECY - 0.5, ECY + 0.5, 3.0, 3.6, "dark"); BOX("efPostF", "eFrame", EX - 0.25, EX + 0.25, 0, ECY - 0.5, 3.2, 3.5, "panel2");
+BOX("efBrgF", "eFrame", EX - 0.5, EX + 0.5, ECY - 0.5, ECY + 0.5, 3.0, 3.6, "dark");
 BOX("efMotor", "eFrame", EX - 0.8, EX + 0.8, ECY - 0.8, ECY + 0.8, -5.0, -3.9, "dark"); BOX("efMotorL", "eFrame", EX - 0.3, EX + 0.3, ECY + 0.8, ECY + 1.0, -4.8, -4.1, "lampG");
 // 從藥水出來到頂端這一段：銅一路長在滾筒上（左上半圈，滾筒順時針轉）
 LAY("eCuArc", [3.5, 4.5, EX - 2, ECY + 1.5]);
-// 液面出來（約 192°）到頂端（90°）：越往上銅越厚（示意放大），半徑大過端蓋，正面看得到
-for (let k = 0; k < 9; k++) { const a = (90 + 8 + k * 12) * D2R, t = R2(0.2 - 0.018 * k); P({ id: `eArc${k}`, layer: "eCuArc", shape: "box", size: [0.7, t, 5.0], pos: [R2(EX + (ER + 0.09 + t / 2) * Math.cos(a)), R2(ECY + (ER + 0.09 + t / 2) * Math.sin(a)), 0], rot: [0, 0, R2(a / D2R + 90)], mat: "cuShiny" }); }
+// 液面出來（約 192°）到頂端（90°）：銅在藥水裡長厚，出液面後厚度不變（示意放大），半徑大過端蓋，正面看得到
+for (let k = 0; k < 9; k++) { const a = (90 + 8 + k * 12) * D2R, t = 0.16; P({ id: `eArc${k}`, layer: "eCuArc", shape: "box", size: [0.7, t, 5.0], pos: [R2(EX + (ER + 0.09 + t / 2) * Math.cos(a)), R2(ECY + (ER + 0.09 + t / 2) * Math.sin(a)), 0], rot: [0, 0, R2(a / D2R + 90)], mat: "cuShiny" }); }
 // 剝下來的銅箔：滾筒頂端 → 導輥 → 收卷
 const EGX = EX + 4.6, EGY = ECY + ER - 0.35, EWX = EX + 6.4, EWY = 2.6, EWR = 1.2;
 LAY("eFoil", [8, 5, EX + 4, ECY + 1]);
@@ -275,7 +275,7 @@ const LAMINA = (pre, cx, round = true) => {
   LAY(`${pre}Trace`, [12.4, 0.3, cx, WT + 0.08]);
   BOX(`${pre}tA`, `${pre}Trace`, cx - 6.2, cx + 6.2, WT, WT + 0.14, TZA - 0.16, TZA + 0.16, "copper"); BOX(`${pre}tB`, `${pre}Trace`, cx - 6.2, cx + 6.2, WT, WT + 0.14, TZB - 0.16, TZB + 0.16, "copper");
   P({ id: `${pre}tPad`, layer: `${pre}Trace`, shape: "box", size: [0.4, 0.16, 0.4], pos: [0, WT + 0.08, 0], at: [[cx - 6.0, 0, TZA], [cx - 6.0, 0, TZB], [cx + 6.0, 0, TZA], [cx + 6.0, 0, TZB]], mat: "copper" });
-  P({ id: `${pre}LampA`, layer: `${pre}Trace`, shape: "sphere", size: [0.24], pos: [cx + 7.2, WT + 0.5, TZA], mat: "steel2" }); P({ id: `${pre}LampB`, layer: `${pre}Trace`, shape: "sphere", size: [0.24], pos: [cx + 7.2, WT + 0.5, TZB], mat: "steel2" });
+  P({ id: `${pre}LampA`, layer: `${pre}Trace`, shape: "sphere", size: [0.24], pos: [cx + 5.2, WT + 0.45, TZA], mat: "steel2" }); P({ id: `${pre}LampB`, layer: `${pre}Trace`, shape: "sphere", size: [0.24], pos: [cx + 5.2, WT + 0.45, TZB], mat: "steel2" });
   P({ id: `${pre}tChipL`, layer: `${pre}Trace`, shape: "box", size: [0.8, 0.35, 1.6], pos: [cx - 6.6, WT + 0.18, 0.4], mat: "dark" }); P({ id: `${pre}tChipR`, layer: `${pre}Trace`, shape: "box", size: [0.8, 0.35, 1.6], pos: [cx + 6.6, WT + 0.18, 0.4], mat: "dark" });
 };
 LAMINA("w", WX0);
@@ -351,7 +351,7 @@ actions.eFoil = { type: "flow", _說明: "銅箔沿滾筒頂端被撕下來、�
 actions.eAnode = { type: "pulse", _說明: "通電：陽極亮", parts: Array.from({ length: 9 }, (_, k) => `eAn${k}`), color: "ionC", glow: 0.7, freq: 0.8, halo: 0 };
 actions.fNodPop = { type: "vibrate", _說明: "小銅瘤長出來（往上長）", parts: ["fnN0", "fnN1", "fnN2"], axis: [0, 1, 0], amp: 0.4, freq: 0.5, grow: true };
 actions.fShiny = { type: "pulse", _說明: "光面反光", parts: ["ffShiny"], color: "edgeC", glow: 0.8, freq: 1.0, halo: 0 };
-actions.rSigR = { type: "flow", _說明: "高頻訊號擠在表面，沿著凹凸繞路：路徑長、沿路損耗大（光點越走越小越淡）；水平速度和平道一樣", keep: 0.94, bounces: Array.from({ length: 20 }, (_, i) => 4 * i + 3), lossFloor: 0.25, layer: "rRough", path: (() => { const lo = RRT + 0.03, hi = RRT + RH + 0.03, p = []; for (let i = 0; i < 20; i++) { const x0 = R2(RX - 6 + i * RP), x1 = R2(x0 + RP / 2), x2 = R2(x0 + RP); p.push([x0, lo, 0.64], [x0, hi, 0.64], [x1, hi, 0.64], [x1, lo, 0.64]); if (i === 19) p.push([x2, lo, 0.64]); } return p; })(), n: 9, size: 0.12, shape: "dot", rate: 0.055, color: "sigC", track: true, band: 0.04, bandO: 0.35, free: true, jitter: 0 };
+actions.rSigR = { type: "flow", _說明: "高頻訊號擠在表面，沿著凹凸繞路：路徑長、沿路損耗大（光點越走越小越淡）；水平速度和平道一樣", keep: 0.94, bounces: Array.from({ length: 20 }, (_, i) => 4 * i + 3), lossFloor: 0.25, layer: "rRough", path: (() => { const lo = RRT + 0.03, hi = RRT + RH + 0.03, p = []; for (let i = 0; i < 20; i++) { const x0 = R2(RX - 6 + i * RP), x1 = R2(x0 + RP / 2), x2 = R2(x0 + RP); p.push([x0, lo, 0.64], [x0, hi, 0.64], [x1, hi, 0.64], [x1, lo, 0.64]); if (i === 19) p.push([x2, lo, 0.64]); } return p; })(), n: 9, size: 0.12, shape: "dot", rate: 0.11, color: "sigC", track: true, band: 0.04, bandO: 0.35, free: true, jitter: 0 };
 actions.rSkin = { type: "pulse", _說明: "表面那一層亮（集膚效應）", parts: ["rsBandTop", "rsBandLow", "rsBandV"], color: "sigC", glow: 0.9, freq: 1.0, halo: 0 };
 actions.rSigS = { type: "flow", _說明: "表面平：訊號走直線，沿路幾乎不減（損耗小）", keep: 0.985, bounces: [1, 2, 3, 4, 5, 6, 7, 8, 9], lossFloor: 0.25, layer: "rSmooth", path: Array.from({ length: 11 }, (_, i) => [R2(RX - 6 + i * 1.2), RST + 0.03, 0.64]), n: 9, size: 0.12, shape: "dot", rate: 0.11, color: "sigC", track: true, band: 0.04, bandO: 0.35, free: true, jitter: 0 };
 actions.rLift = { type: "rotate", _說明: "低粗糙度：銅瘤小、抓不牢，樹脂右端翹起一角", parts: idsOf("rGlueEdge"), axis: [0, 0, 1], pivot: [RX + 3.6, RST, 0], angle: 9, hold: true };
