@@ -202,15 +202,15 @@ const Warp: React.FC<P> = ({ o, f, k }) => {
   );
 };
 
-// ── abs-co：台灣欣興、南電、景碩；日本揖斐電；新光電氣 2025/6/6 已下市 ──
+// ── abs-co：只列念到的三家（欣興、南電、景碩）；日本揖斐電等放 research.md ──
 const Co: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 392, uni = on(f, T(o, "uni")), nya = on(f, T(o, "nya")), kin = on(f, T(o, "kin")), jp = on(f, T(o, "jp"));
-  const rows: [string, string, string, number][] = [["TW", "欣興 3037", "ABF 載板大廠", uni], ["TW", "南電 8046", "ABF、BT 載板（台塑集團）", nya], ["TW", "景碩 3189", "ABF、BT 載板（和碩集團）", kin], ["JP", "揖斐電 4062", "日本大廠；新光電氣 2025/6 已下市", jp]];
+  const W = o.w ?? 952, Hh = o.h ?? 392, uni = on(f, T(o, "uni")), nya = on(f, T(o, "nya")), kin = on(f, T(o, "kin"));
+  const rows: [string, string, string, number][] = [["TW", "欣興 3037", "ABF 載板大廠", uni], ["TW", "南電 8046", "ABF、BT 載板（台塑集團）", nya], ["TW", "景碩 3189", "ABF、BT 載板（和碩集團）", kin]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {rows.map(([c, n, s, a], i) => <g key={n}><FlagBox code={c} x={30} y={CT + 22 + i * 74} a={a} /><NamePlate x={98} y={CT + 16 + i * 74} w={300} h={50} t={n} a={a} px={32} />
-          <text x={418} y={CT + 52 + i * 74} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * a}>{s}</text></g>)}
+        {rows.map(([c, n, s, a], i) => <g key={n}><FlagBox code={c} x={30} y={CT + 30 + i * 96} a={a} /><NamePlate x={98} y={CT + 24 + i * 96} w={300} h={50} t={n} a={a} px={32} />
+          <text x={418} y={CT + 60 + i * 96} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * a}>{s}</text></g>)}
       </svg>
     </Card>
   );

@@ -159,12 +159,12 @@ vis("fB0", [(T0, "s8:heat")], 1); vis("fB1", [("s8:heat", "s8:heat+8")], 1); vis
 drop("g0", "s9:uni-8", 3.0, 12); drop("g1", "s9:nya-8", 3.0, 12); drop("g2", "s9:kin-8", 3.0, 12)
 # ── 站 H（s10）：金線念到「另一種」才出現 ──
 vis("hWire", [("s10:other-4", FAR)], 2)
-# 第 40 條：公司卡（4 家：欣興、南電、景碩、揖斐電）完整顯示 ≥1.2×4＋1.5＝6.3 秒（189 幀），念完最後一家後 ≥1.0 秒；s9 不夠長時卡片與 s9 鏡頭延到 s10 開頭（延長期間 s10 鏡頭不動）。延長幀數依 timeline.json 自動算。
+# 第 40 條：公司卡只列念到的 3 家（欣興、南電、景碩；負責人 11/27 決定）完整顯示 ≥1.2×3＋1.5＝5.1 秒（153 幀），念完最後一家後 ≥1.0 秒；s9 不夠長時卡片與 s9 鏡頭延到 s10 開頭（延長期間 s10 鏡頭不動）。延長幀數依 timeline.json 自動算。
 _tl = {x["id"]: x for x in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]} if os.path.exists(os.path.join(HERE, "timeline.json")) else {}
 if "s9" in _tl and "s10" in _tl:
     _c0, _c1 = _tl["s9"]["voiceStartFrame"] - 3, _tl["s10"]["voiceStartFrame"] - 3
     _kin = next((c["frame"] for c in _tl["s9"]["cues"] if c["id"] == "kin"), _c0)
-    CO_N = max(0, 195 - (_c1 - _c0), (_kin + 12 + 30) - _c1)   # 189 幀＋6 幀餘裕
+    CO_N = max(0, 159 - (_c1 - _c0), (_kin + 12 + 30) - _c1)   # 153 幀＋6 幀餘裕
 else:
     CO_N = 0
 EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
@@ -223,12 +223,12 @@ P["s8"] = {"shot": [shot(CC, INFO["FX"], 1.2, 50, 16, 1)],
  "overlay": [card("s8", "abs-warp", "像烤過頭的餅乾", "示意（不標翹曲量）", {"big": "big", "layers": "layers", "heat": "heat", "cookie": "cookie"})]}
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, INFO["PX"], -2.6, 78, 10, 1)],
- "overlay": [card("s9", "abs-co", "ABF 載板：相關公司", "公開資訊；截至 2026/11/27", {"tw": "tw", "uni": "uni", "nya": "nya", "kin": "kin", "jp": "jp"}, h=392, y=1000)]}
+ "overlay": [card("s9", "abs-co", "ABF 載板：相關公司", "公開資訊；截至 2026/11/27", {"tw": "tw", "uni": "uni", "nya": "nya", "kin": "kin"}, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "tool", "at": EXTC, "dur": 1}],
  "shot": [shot(EXTC, INFO["HX2"], -2.4, 30, 34, 1)],
  "run": [run("wirePulse", "other", FAR, 8)],
  "labels": [lab("hSub", "另一種常見的載板（下一集）", "Another common substrate (next)", "blue", "other", "kw+30")],
- "overlay": ([sec("abs-co", C, EXT, "ABF 載板：相關公司", "公開資訊；截至 2026/11/27", {"tw": "s9:tw", "uni": "s9:uni", "nya": "s9:nya", "kin": "s9:kin", "jp": "s9:jp"}, h=392, y=1000, cut=True)] if CO_N else []) + [sec("abs-next", EXT, "s11:start", "接下來", "下一集：BT 載板", {"cost": "cost", "next": "next", "other": "other", "kw": "kw"}, cut=True)]}
+ "overlay": ([sec("abs-co", C, EXT, "ABF 載板：相關公司", "公開資訊；截至 2026/11/27", {"tw": "s9:tw", "uni": "s9:uni", "nya": "s9:nya", "kin": "s9:kin"}, h=392, y=1000, cut=True)] if CO_N else []) + [sec("abs-next", EXT, "s11:start", "接下來", "下一集：BT 載板", {"cost": "cost", "next": "next", "other": "other", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
