@@ -298,22 +298,21 @@ P["s1"] = {"shot": [shot("start-30", 5, 8.5, 175, 22, 1), shot("start", 5, 8.5, 
          run("pumpBeat", "s8:pump", "s8:mix", 6)],
  "overlay": [sec("twequip-hook", "q", "s2:start-5", "系列 2 第 12 集", "示意，非實際比例", {"prev": "prev", "q": "q", "tw": "tw"})]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start", 2.5, 9.5, 170, 30, 30, yaw=0.1)],
- "labels": [lab_("ffu", "頂部風扇濾網（FFU）", "Fan filter unit", "blue", "start+36", "start+81"),
-            lab_("lp", "裝載端＋晶圓盒", "Load ports & wafer pods", "amber", "start+88", "start+133"),
-            lab_("armCol", "搬運手臂（雙刀）", "Dual-blade robot", "blue", "start+140", "start+185"),
-            lab_("chamber", "清洗腔（單片旋轉）", "Single-wafer chamber", "amber", "start+192", "start+237")],   # 一次一張、每張 45 幀；預對準器與交接口兩張拿掉（放不下）
+ "labels": [lab_("ffu", "頂部風扇濾網（FFU）", "Fan filter unit", "blue", "start+34", "start+79"),
+            lab_("lp", "裝載端＋晶圓盒", "Load ports & wafer pods", "amber", "start+84", "start+129"),
+            lab_("armCol", "搬運手臂（雙刀）", "Dual-blade robot", "blue", "start+134", "start+179"),
+            lab_("chamber", "清洗腔（單片旋轉）", "Single-wafer chamber", "amber", "start+184", "start+229")],   # 一次一張、每張 45 幀；預對準器與交接口兩張拿掉（放不下）
  "overlay": [sec("twequip-tour", "start+24", "s3:start-5", "拆開清洗機", "示意（非弘塑／辛耘實機）", {"open": "open", "efem": "efem", "chamber": "chamber", "cab": "start+206"})]}
 P["s3"] = {"shot": [shot("start", -9.5, 10.6, 98, 30, 30, yaw=-0.1), shot("start+52", FX + 1.05, 9.2, 36, 30, 30)],
  "run": [run("ffuAir", "fan-4", "s4:start", 8), run("ffuAir2", "fan-4", "s4:start", 8), run("ffuAir3", "fan-4", "s4:start", 8), run("mapBeam", "map-2", "s4:start-4", 4)],
- "labels": [lab_("ffu", "頂部風扇濾網（FFU）", "Fan filter unit", "blue", "start+3", "start+48"),
-            lab_("door", "裝載端取門器＋晶圓盒", "Load port & wafer pod", "amber", "start+51", "start+96"),
-            lab_("map", "映射感測：數每一槽", "Wafer mapping sensor", "blue", "start+98", "start+143")],
+ "labels": [lab_("ffu", "頂部風扇濾網（FFU）", "Fan filter unit", "blue", "start+8", "start+53"),
+            lab_("door", "裝載端取門器＋晶圓盒", "Load port & wafer pod", "amber", "start+57", "start+102")],   # 映射感測那張拿掉（放不下 3 張×45 幀；感測器由 mapBeam 光束與卡片「數每槽」交代）,
  "overlay": [sec("twequip-foup", "start+2", "s4:start-5", "晶圓盒開門與映射", "示意（片數、片距為示意）", {"fan": "fan", "door": "door", "map": "map", "slot": "slot"})]}
 P["s4"] = {"shot": [shot("start", -10.6, 9.6, 32, 34, 30), shot("start+44", -7, 6.8, 72, 32, 22)], "kin": [KIN4],
  "run": [run("alnLaser", k4(97), k4(128), 4), run("alnSpin", k4(98), k4(122), 8), run("zSpin", k4(18), k4(36), 8), run("zSpin", k4(130), k4(146), 8)],
- "labels": [lab_("blade", "雙刀：上刀載片、下刀空刀", "Dual blade: upper carries, lower empty", "blue", "start+8", "start+53"),
-            lab_("aln", "預對準器：找缺口", "Pre-aligner", "amber", "start+56", "start+101"),
-            lab_("chuck", "旋轉吸盤＋抓取銷", "Spin chuck & edge-grip pins", "blue", "start+104", "start+149")],
+ "labels": [lab_("blade", "雙刀：上刀載片、下刀空刀", "Dual blade: upper carries, lower empty", "blue", "start+4", "start+49"),
+            lab_("aln", "預對準器：找缺口", "Pre-aligner", "amber", "start+54", "start+99"),
+            lab_("chuck", "旋轉吸盤＋抓取銷", "Spin chuck & edge-grip pins", "blue", "start+103", "start+148")],
  "overlay": [sec("twequip-arm", "start+2", "s5:start-5", "手臂直線伸入、雙刀快換", "示意（專利範例）", {"arm": "arm", "lift": "lift", "align": "align", "put": "put"})]}
 P["s5"] = {"shot": [shot("start", CX1, 8.8, 40, 40, 30, yaw=0.05)],
  "run": [run("c1Air", "start", FAR, 8), run("cupHot", "stream", "s7:dry", 8), run("spinLo", "spin", "s7:start", 12), run("nzSwing", "nz+22", "s5:film+60", 8),
@@ -349,9 +348,9 @@ P["s10"] = {"shot": [shot("start-16", 5, 8.5, 160, 22, 28, yaw=-0.2)],
  "overlay": [sec("twequip-who", "start+24", "s11:start-5", "台灣廠負責哪一段", "媒體報導；不列市占數字", {"front": "front", "foreign": "foreign", "tw": "tw", "back": "back"})]}
 P["s11"] = {"shot": [shot("start-26", 5, 8.5, 150, 24, 20, yaw=-0.3)],   # 公司卡期間鏡頭不動（Andy 第 40 條）：鏡頭在卡片出現前就位
  
- "overlay": [sec("twequip-co", "gptc-6", "s12:start+36", "台灣設備與載具廠", "機台外觀為示意，非其實機", {"gptc": "gptc", "sci": "sci", "gdg": "gdg"})]}
-P["s12"] = {"shot": [shot("start+38", 5, 8.5, 150, 26, 40)],   # 公司卡延長到本幕 start+36，延長期間鏡頭不動
- "overlay": [sec("twequip-next", "start+44", "s13:start-14", "接下來", "下一集：2-13", {"next": "next", "kw": "kw"})]}
+ "overlay": [sec("twequip-co", "gptc-6", "s12:start+40", "台灣設備與載具廠", "機台外觀為示意，非其實機", {"gptc": "gptc", "sci": "sci", "gdg": "gdg"}, carry=True)]}
+P["s12"] = {"shot": [shot("start+42", 5, 8.5, 150, 26, 40)],   # 公司卡延長到本幕 start+40，延長期間鏡頭不動
+ "overlay": [sec("twequip-next", "start+48", "s13:start-14", "接下來", "下一集：2-13", {"next": "next", "kw": "kw"})]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 

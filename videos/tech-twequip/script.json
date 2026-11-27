@@ -2845,21 +2845,7 @@
       "dur": 8
      },
      {
-      "layer": "bbLid",
-      "at": "s9:start+40",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "bbT4",
-      "at": "s9:start+40",
-      "until": "s13:start+400",
-      "opacity": 0,
-      "dur": 8
-     },
-     {
-      "layer": "bbCar",
+      "layer": "bb",
       "at": "s9:start+40",
       "until": "s13:start+400",
       "opacity": 0,
@@ -2873,14 +2859,14 @@
       "dur": 8
      },
      {
-      "layer": "bbT2",
+      "layer": "bbRod",
       "at": "s9:start+40",
       "until": "s13:start+400",
       "opacity": 0,
       "dur": 8
      },
      {
-      "layer": "bbRod",
+      "layer": "bbLid",
       "at": "s9:start+40",
       "until": "s13:start+400",
       "opacity": 0,
@@ -2894,7 +2880,14 @@
       "dur": 8
      },
      {
-      "layer": "bb",
+      "layer": "bbT2",
+      "at": "s9:start+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbCar",
       "at": "s9:start+40",
       "until": "s13:start+400",
       "opacity": 0,
@@ -2902,6 +2895,13 @@
      },
      {
       "layer": "bbT3",
+      "at": "s9:start+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbT4",
       "at": "s9:start+40",
       "until": "s13:start+400",
       "opacity": 0,
@@ -3056,32 +3056,32 @@
       "text": "頂部風扇濾網（FFU）",
       "en": "Fan filter unit",
       "color": "blue",
-      "at": "start+36",
-      "until": "start+81"
+      "at": "start+34",
+      "until": "start+79"
      },
      {
       "part": "lp",
       "text": "裝載端＋晶圓盒",
       "en": "Load ports & wafer pods",
       "color": "amber",
-      "at": "start+88",
-      "until": "start+133"
+      "at": "start+84",
+      "until": "start+129"
      },
      {
       "part": "armCol",
       "text": "搬運手臂（雙刀）",
       "en": "Dual-blade robot",
       "color": "blue",
-      "at": "start+140",
-      "until": "start+185"
+      "at": "start+134",
+      "until": "start+179"
      },
      {
       "part": "chamber",
       "text": "清洗腔（單片旋轉）",
       "en": "Single-wafer chamber",
       "color": "amber",
-      "at": "start+192",
-      "until": "start+237"
+      "at": "start+184",
+      "until": "start+229"
      }
     ],
     "overlay": [
@@ -3212,24 +3212,16 @@
       "text": "頂部風扇濾網（FFU）",
       "en": "Fan filter unit",
       "color": "blue",
-      "at": "start+3",
-      "until": "start+48"
+      "at": "start+8",
+      "until": "start+53"
      },
      {
       "part": "door",
       "text": "裝載端取門器＋晶圓盒",
       "en": "Load port & wafer pod",
       "color": "amber",
-      "at": "start+51",
-      "until": "start+96"
-     },
-     {
-      "part": "map",
-      "text": "映射感測：數每一槽",
-      "en": "Wafer mapping sensor",
-      "color": "blue",
-      "at": "start+98",
-      "until": "start+143"
+      "at": "start+57",
+      "until": "start+102"
      }
     ],
     "overlay": [
@@ -3608,24 +3600,24 @@
       "text": "雙刀：上刀載片、下刀空刀",
       "en": "Dual blade: upper carries, lower empty",
       "color": "blue",
-      "at": "start+8",
-      "until": "start+53"
+      "at": "start+4",
+      "until": "start+49"
      },
      {
       "part": "aln",
       "text": "預對準器：找缺口",
       "en": "Pre-aligner",
       "color": "amber",
-      "at": "start+56",
-      "until": "start+101"
+      "at": "start+54",
+      "until": "start+99"
      },
      {
       "part": "chuck",
       "text": "旋轉吸盤＋抓取銷",
       "en": "Spin chuck & edge-grip pins",
       "color": "blue",
-      "at": "start+104",
-      "until": "start+149"
+      "at": "start+103",
+      "until": "start+148"
      }
     ],
     "overlay": [
@@ -4652,7 +4644,7 @@
       "type": "section",
       "kind": "twequip-co",
       "at": "gptc-6",
-      "until": "s12:start+36",
+      "until": "s12:start+40",
       "x": 64,
       "y": 1040,
       "w": 952,
@@ -4670,7 +4662,8 @@
        "gdg": {
         "at": "gdg"
        }
-      }
+      },
+      "carry": true
      }
     ]
    },
@@ -4710,7 +4703,7 @@
    "props": {
     "shot": [
      {
-      "at": "start+38",
+      "at": "start+42",
       "dur": 40,
       "x": 5,
       "y": 8.5,
@@ -4722,7 +4715,7 @@
      {
       "type": "section",
       "kind": "twequip-next",
-      "at": "start+44",
+      "at": "start+48",
       "until": "s13:start-14",
       "x": 64,
       "y": 1040,

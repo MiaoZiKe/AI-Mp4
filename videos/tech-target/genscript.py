@@ -258,7 +258,7 @@ P["s11"] = {"zoom": [{"to": "co", "at": "start+4", "dur": 1}], "shot": [shot("st
  "labels": [lab("rkJX", "JX 金屬", "Japan", "amber", "jx-2", "us-6", flag="JP"),
             lab("rkSol", "Solstice", "United States", "blue", "us-2", "tw-10", flag="US"),
             lab("rkSolar", "光洋科 1785", "Taiwan", "amber", "tw-8", "s12:start+22", flag="TW")],
- "overlay": [sec("target-co", "start+24", "s12:start+22", "做靶材的公司", "技術新報、公司新聞稿、公司資料", {"jx": "jx", "sixty": "sixty", "us": "us", "tw": "tw"}, h=356, y=1040)]}
+ "overlay": [sec("target-co", "start+24", "s12:start+22", "做靶材的公司", "技術新報、公司新聞稿、公司資料", {"jx": "jx", "sixty": "sixty", "us": "us", "tw": "tw"}, h=356, y=1040, carry=True)]}
 # Andy 第 40 條：公司卡延到下一幕開頭（念完光洋科後 ≥1.0 秒才換幕）；延長期間（start+24 前）s12 鏡頭、層級不動
 P["s12"] = {"zoom": [{"to": "tool", "at": "start+24", "dur": 1}], "shot": [shot("start+24", 0.4, 4.4, 74, 24, 1, yaw=-0.2)],
  "run": [run(f"gas{i}", "gas", FAR, 8) for i in range(4)],

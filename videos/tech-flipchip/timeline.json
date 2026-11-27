@@ -2,201 +2,437 @@
  "version": 2,
  "slug": "tech-flipchip",
  "fps": 30,
- "totalFrames": 1950,
- "totalSec": 65,
- "gapSec": 0,
- "transitionFrames": 0,
- "silent": true,
- "_說明": "無聲時間軸（scripts/three/silent-timeline.mjs 依 durationSec 估算，字平均排開）；有配音後 tts-take → align 會覆蓋",
+ "totalFrames": 1875,
+ "totalSec": 62.5,
+ "gapSec": 0.15,
+ "transitionFrames": 10,
  "scenes": [
   {
    "id": "s1",
-   "audio": null,
-   "audioFrame": 0,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
+   "audio": "audio/tech-flipchip/01-s1.wav",
+   "audioFrame": 8,
+   "audioSec": 4.96,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
    "startFrame": 0,
-   "durationFrames": 183,
+   "durationFrames": 182,
    "transitionFrames": 0,
    "transition": null,
-   "voiceStartFrame": 0,
-   "voiceEndFrame": 162,
-   "stillFrame": 182,
+   "voiceStartFrame": 9,
+   "voiceEndFrame": 156,
+   "stillFrame": 172,
    "subtitleWindow": [
     0,
-    186
+    179
    ],
    "sourceWindow": [
     0,
-    183
+    177
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "腳不夠用",
      "start": 0,
      "chars": [
-      0,
-      4,
-      10,
-      16
+      8,
+      14,
+      17,
+      22
      ]
     },
     {
      "text": "晶片的電怎麼接出去？",
-     "start": 20,
+     "start": 32,
      "chars": [
-      22,
-      28,
       34,
-      40,
+      39,
+      43,
       46,
-      52,
-      58,
+      51,
+      54,
+      56,
+      60,
       64,
-      70,
-      70
+      64
      ]
     },
     {
      "text": "前一集",
-     "start": 74,
+     "start": 81,
      "chars": [
-      76,
-      82,
-      88
+      83,
+      89,
+      92
      ]
     },
     {
      "text": "看完封裝材料",
-     "start": 92,
+     "start": 94,
      "chars": [
-      94,
+      96,
       100,
-      106,
-      112,
-      118,
-      124
+      104,
+      108,
+      113,
+      118
      ]
     },
     {
      "text": "這集看覆晶",
-     "start": 128,
+     "start": 127,
      "chars": [
-      130,
-      136,
-      142,
-      148,
-      154
+      129,
+      134,
+      138,
+      143,
+      148
      ]
     }
    ],
    "keywords": [
     {
      "text": "腳不夠用",
-     "start": 0
+     "start": 8
     },
     {
      "text": "覆晶",
-     "start": 148
+     "start": 143
     }
    ],
    "cues": [
     {
      "id": "q",
      "text": "接出去",
-     "frame": 60
+     "frame": 58,
+     "early": 0
     },
     {
      "id": "prev",
      "text": "前一集",
-     "frame": 78
+     "frame": 85,
+     "early": 0
     },
     {
      "id": "fc",
      "text": "覆晶",
-     "frame": 150
+     "frame": 144,
+     "early": 0
     }
    ],
+   "hash": "8bc2d881767d-730a52d761",
    "sub": "腳不夠用\n晶片的電怎麼接出去？\n前一集\n看完封裝材料\n這集看覆晶",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.948,
+    "minScore": 0.13,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 0.93,
+      "start": 0.92,
+      "ch": "晶",
+      "errMs": -10
+     },
+     {
+      "onset": 2.58,
+      "start": 2.56,
+      "ch": "前",
+      "errMs": -20
+     },
+     {
+      "onset": 4.09,
+      "start": 4.08,
+      "ch": "這",
+      "errMs": -10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "腳",
+     "start": 0.04,
+     "end": 0.2,
+     "score": 0.989
+    },
+    {
+     "text": "不",
+     "start": 0.24,
+     "end": 0.3,
+     "score": 0.956
+    },
+    {
+     "text": "夠",
+     "start": 0.34,
+     "end": 0.46,
+     "score": 0.999
+    },
+    {
+     "text": "用",
+     "start": 0.5,
+     "end": 0.66,
+     "score": 1
+    },
+    {
+     "text": "晶",
+     "start": 0.92,
+     "end": 1.06,
+     "score": 0.985
+    },
+    {
+     "text": "片",
+     "start": 1.08,
+     "end": 1.2,
+     "score": 0.997
+    },
+    {
+     "text": "的",
+     "start": 1.22,
+     "end": 1.28,
+     "score": 0.996
+    },
+    {
+     "text": "電",
+     "start": 1.32,
+     "end": 1.44,
+     "score": 1
+    },
+    {
+     "text": "怎",
+     "start": 1.48,
+     "end": 1.56,
+     "score": 0.915
+    },
+    {
+     "text": "麼",
+     "start": 1.58,
+     "end": 1.62,
+     "score": 0.998
+    },
+    {
+     "text": "接",
+     "start": 1.66,
+     "end": 1.74,
+     "score": 0.942
+    },
+    {
+     "text": "出",
+     "start": 1.78,
+     "end": 1.86,
+     "score": 0.989
+    },
+    {
+     "text": "去",
+     "start": 1.92,
+     "end": 2.04,
+     "score": 0.991
+    },
+    {
+     "text": "前",
+     "start": 2.56,
+     "end": 2.72,
+     "score": 0.993
+    },
+    {
+     "text": "一",
+     "start": 2.74,
+     "end": 2.78,
+     "score": 0.13
+    },
+    {
+     "text": "集",
+     "start": 2.84,
+     "end": 2.92,
+     "score": 0.999
+    },
+    {
+     "text": "看",
+     "start": 2.98,
+     "end": 3.1,
+     "score": 0.996
+    },
+    {
+     "text": "完",
+     "start": 3.12,
+     "end": 3.22,
+     "score": 0.998
+    },
+    {
+     "text": "封",
+     "start": 3.24,
+     "end": 3.36,
+     "score": 0.999
+    },
+    {
+     "text": "裝",
+     "start": 3.38,
+     "end": 3.52,
+     "score": 0.873
+    },
+    {
+     "text": "材",
+     "start": 3.54,
+     "end": 3.66,
+     "score": 0.998
+    },
+    {
+     "text": "料",
+     "start": 3.7,
+     "end": 3.88,
+     "score": 0.992
+    },
+    {
+     "text": "這",
+     "start": 4.08,
+     "end": 4.16,
+     "score": 0.97
+    },
+    {
+     "text": "集",
+     "start": 4.24,
+     "end": 4.32,
+     "score": 0.999
+    },
+    {
+     "text": "看",
+     "start": 4.38,
+     "end": 4.5,
+     "score": 0.999
+    },
+    {
+     "text": "覆",
+     "start": 4.54,
+     "end": 4.62,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 4.7,
+     "end": 4.88,
+     "score": 0.902
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.24,
+    0.34,
+    0.5,
+    0.92,
+    1.08,
+    1.22,
+    1.32,
+    1.48,
+    1.58,
+    1.66,
+    1.78,
+    1.92,
+    2.56,
+    2.74,
+    2.84,
+    2.98,
+    3.12,
+    3.24,
+    3.38,
+    3.54,
+    3.7,
+    4.08,
+    4.24,
+    4.38,
+    4.54,
+    4.7
+   ]
   },
   {
    "id": "s2",
-   "audio": null,
-   "audioFrame": 189,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 183,
-   "durationFrames": 171,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 189,
-   "voiceEndFrame": 333,
-   "stillFrame": 353,
+   "audio": "audio/tech-flipchip/02-s2.wav",
+   "audioFrame": 181,
+   "audioSec": 4.95,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 172,
+   "durationFrames": 184,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 182,
+   "voiceEndFrame": 329,
+   "stillFrame": 346,
    "subtitleWindow": [
-    186,
-    357
+    179,
+    353
    ],
    "sourceWindow": [
-    183,
-    354
+    177,
+    351
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "覆晶就是把晶片翻過來",
-     "start": 186,
+     "start": 179,
      "chars": [
-      187,
-      193,
+      181,
+      186,
+      195,
       199,
-      205,
+      203,
+      207,
       211,
       217,
-      223,
-      229,
-      235,
-      241
+      222,
+      227
      ]
     },
     {
      "text": "正面朝下",
-     "start": 245,
+     "start": 237,
      "chars": [
-      247,
-      253,
-      259,
-      265
+      240,
+      245,
+      250,
+      256
      ]
     },
     {
      "text": "像蓋印章",
-     "start": 269,
+     "start": 267,
      "chars": [
-      271,
+      270,
       277,
-      283,
-      289
+      282,
+      287
      ]
     },
     {
      "text": "一次壓到載板",
-     "start": 293,
+     "start": 297,
      "chars": [
-      295,
-      301,
-      307,
+      299,
+      303,
+      309,
       313,
-      319,
-      325
+      318,
+      322
      ]
     }
    ],
    "keywords": [
     {
      "text": "翻過來",
-     "start": 229
+     "start": 217
     },
     {
      "text": "蓋印章",
@@ -204,1060 +440,3123 @@
     },
     {
      "text": "載板",
-     "start": 319
+     "start": 318
     }
    ],
    "cues": [
     {
      "id": "fcw",
      "text": "覆晶",
-     "frame": 189
+     "frame": 182,
+     "early": 0
     },
     {
      "id": "flip",
      "text": "翻過來",
-     "frame": 231
+     "frame": 219,
+     "early": 0
     },
     {
      "id": "down",
      "text": "正面朝下",
-     "frame": 249
+     "frame": 241,
+     "early": 0
     },
     {
      "id": "stamp",
      "text": "蓋印章",
-     "frame": 279
+     "frame": 278,
+     "early": 0
     },
     {
      "id": "press",
      "text": "壓到載板",
-     "frame": 309
+     "frame": 311,
+     "early": 0
     }
    ],
+   "hash": "19751e252dfc-730a52d761",
    "sub": "覆晶就是把晶片翻過來\n正面朝下\n像蓋印章\n一次壓到載板",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.961,
+    "minScore": 0.609,
+    "onsetMedianMs": 20,
+    "onsetMaxMs": 20,
+    "onsetCheck": [
+     {
+      "onset": 2.02,
+      "start": 2,
+      "ch": "正",
+      "errMs": -20
+     },
+     {
+      "onset": 2.99,
+      "start": 3,
+      "ch": "像",
+      "errMs": 10
+     },
+     {
+      "onset": 4,
+      "start": 3.98,
+      "ch": "一",
+      "errMs": -20
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "覆",
+     "start": 0.04,
+     "end": 0.14,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 0.2,
+     "end": 0.38,
+     "score": 0.832
+    },
+    {
+     "text": "就",
+     "start": 0.52,
+     "end": 0.64,
+     "score": 0.996
+    },
+    {
+     "text": "是",
+     "start": 0.66,
+     "end": 0.74,
+     "score": 0.884
+    },
+    {
+     "text": "把",
+     "start": 0.78,
+     "end": 0.84,
+     "score": 0.953
+    },
+    {
+     "text": "晶",
+     "start": 0.9,
+     "end": 1.04,
+     "score": 0.962
+    },
+    {
+     "text": "片",
+     "start": 1.06,
+     "end": 1.22,
+     "score": 0.996
+    },
+    {
+     "text": "翻",
+     "start": 1.26,
+     "end": 1.38,
+     "score": 0.996
+    },
+    {
+     "text": "過",
+     "start": 1.42,
+     "end": 1.52,
+     "score": 0.985
+    },
+    {
+     "text": "來",
+     "start": 1.58,
+     "end": 1.74,
+     "score": 0.999
+    },
+    {
+     "text": "正",
+     "start": 2,
+     "end": 2.16,
+     "score": 0.966
+    },
+    {
+     "text": "面",
+     "start": 2.18,
+     "end": 2.32,
+     "score": 0.992
+    },
+    {
+     "text": "朝",
+     "start": 2.36,
+     "end": 2.52,
+     "score": 0.985
+    },
+    {
+     "text": "下",
+     "start": 2.56,
+     "end": 2.66,
+     "score": 1
+    },
+    {
+     "text": "像",
+     "start": 3,
+     "end": 3.2,
+     "score": 0.967
+    },
+    {
+     "text": "蓋",
+     "start": 3.24,
+     "end": 3.38,
+     "score": 0.999
+    },
+    {
+     "text": "印",
+     "start": 3.4,
+     "end": 3.52,
+     "score": 0.999
+    },
+    {
+     "text": "章",
+     "start": 3.58,
+     "end": 3.76,
+     "score": 0.957
+    },
+    {
+     "text": "一",
+     "start": 3.98,
+     "end": 4.04,
+     "score": 0.609
+    },
+    {
+     "text": "次",
+     "start": 4.12,
+     "end": 4.24,
+     "score": 0.998
+    },
+    {
+     "text": "壓",
+     "start": 4.32,
+     "end": 4.38,
+     "score": 0.999
+    },
+    {
+     "text": "到",
+     "start": 4.46,
+     "end": 4.58,
+     "score": 0.998
+    },
+    {
+     "text": "載",
+     "start": 4.6,
+     "end": 4.72,
+     "score": 0.999
+    },
+    {
+     "text": "板",
+     "start": 4.76,
+     "end": 4.9,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.52,
+    0.66,
+    0.78,
+    0.9,
+    1.06,
+    1.26,
+    1.42,
+    1.58,
+    2,
+    2.18,
+    2.36,
+    2.56,
+    3,
+    3.24,
+    3.4,
+    3.58,
+    3.98,
+    4.12,
+    4.32,
+    4.46,
+    4.6,
+    4.76
+   ]
   },
   {
    "id": "s3",
-   "audio": null,
-   "audioFrame": 360,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 354,
-   "durationFrames": 165,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 360,
-   "voiceEndFrame": 498,
-   "stillFrame": 518,
+   "audio": "audio/tech-flipchip/03-s3.wav",
+   "audioFrame": 355,
+   "audioSec": 4.72,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 346,
+   "durationFrames": 179,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 356,
+   "voiceEndFrame": 496,
+   "stillFrame": 515,
    "subtitleWindow": [
-    357,
-    525
+    353,
+    522
    ],
    "sourceWindow": [
-    354,
-    519
+    351,
+    520
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "打線只能排在",
-     "start": 357,
+     "start": 353,
      "chars": [
-      358,
-      364,
+      354,
+      360,
+      367,
       370,
-      376,
-      382,
-      388
+      374,
+      378
      ]
     },
     {
      "text": "邊緣一圈",
-     "start": 392,
+     "start": 380,
      "chars": [
-      394,
-      400,
-      406,
-      412
+      382,
+      387,
+      392,
+      395
      ]
     },
     {
      "text": "覆晶整面都是接點",
-     "start": 416,
+     "start": 410,
      "chars": [
+      412,
       418,
-      424,
+      425,
       430,
       436,
-      442,
-      448,
-      454,
-      460
+      440,
+      444,
+      448
      ]
     },
     {
      "text": "腳多路也短",
-     "start": 464,
+     "start": 460,
      "chars": [
-      466,
-      472,
-      478,
-      484,
-      490
+      462,
+      469,
+      480,
+      485,
+      489
      ]
     }
    ],
    "keywords": [
     {
      "text": "邊緣一圈",
-     "start": 394
+     "start": 382
     },
     {
      "text": "整面",
-     "start": 430
+     "start": 425
     },
     {
      "text": "路也短",
-     "start": 478
+     "start": 480
     }
    ],
    "cues": [
     {
      "id": "wb",
      "text": "打線",
-     "frame": 360
+     "frame": 356,
+     "early": 0
     },
     {
      "id": "edge",
      "text": "邊緣一圈",
-     "frame": 396
+     "frame": 384,
+     "early": 0
     },
     {
      "id": "full",
      "text": "整面",
-     "frame": 432
+     "frame": 426,
+     "early": 0
     },
     {
      "id": "short",
      "text": "路也短",
-     "frame": 480
+     "frame": 481,
+     "early": 0
     }
    ],
+   "hash": "e472b36b3561-730a52d761",
    "sub": "打線只能排在\n邊緣一圈\n覆晶整面都是接點\n腳多路也短",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.93,
+    "minScore": 0.093,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.95,
+      "start": 1.96,
+      "ch": "覆",
+      "errMs": 10
+     },
+     {
+      "onset": 3.62,
+      "start": 3.62,
+      "ch": "腳",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "打",
+     "start": 0.02,
+     "end": 0.1,
+     "score": 0.999
+    },
+    {
+     "text": "線",
+     "start": 0.22,
+     "end": 0.38,
+     "score": 0.999
+    },
+    {
+     "text": "只",
+     "start": 0.44,
+     "end": 0.52,
+     "score": 0.979
+    },
+    {
+     "text": "能",
+     "start": 0.56,
+     "end": 0.66,
+     "score": 0.915
+    },
+    {
+     "text": "排",
+     "start": 0.68,
+     "end": 0.8,
+     "score": 0.988
+    },
+    {
+     "text": "在",
+     "start": 0.82,
+     "end": 0.94,
+     "score": 0.998
+    },
+    {
+     "text": "邊",
+     "start": 0.96,
+     "end": 1.1,
+     "score": 0.919
+    },
+    {
+     "text": "緣",
+     "start": 1.12,
+     "end": 1.24,
+     "score": 0.916
+    },
+    {
+     "text": "一",
+     "start": 1.28,
+     "end": 1.34,
+     "score": 0.093
+    },
+    {
+     "text": "圈",
+     "start": 1.4,
+     "end": 1.6,
+     "score": 0.974
+    },
+    {
+     "text": "覆",
+     "start": 1.96,
+     "end": 2.06,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 2.14,
+     "end": 2.3,
+     "score": 0.84
+    },
+    {
+     "text": "整",
+     "start": 2.38,
+     "end": 2.54,
+     "score": 0.997
+    },
+    {
+     "text": "面",
+     "start": 2.56,
+     "end": 2.7,
+     "score": 0.999
+    },
+    {
+     "text": "都",
+     "start": 2.74,
+     "end": 2.84,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 2.88,
+     "end": 2.94,
+     "score": 0.998
+    },
+    {
+     "text": "接",
+     "start": 3,
+     "end": 3.1,
+     "score": 0.996
+    },
+    {
+     "text": "點",
+     "start": 3.16,
+     "end": 3.34,
+     "score": 0.999
+    },
+    {
+     "text": "腳",
+     "start": 3.62,
+     "end": 3.8,
+     "score": 0.998
+    },
+    {
+     "text": "多",
+     "start": 3.86,
+     "end": 3.96,
+     "score": 0.885
+    },
+    {
+     "text": "路",
+     "start": 4.2,
+     "end": 4.3,
+     "score": 0.996
+    },
+    {
+     "text": "也",
+     "start": 4.38,
+     "end": 4.44,
+     "score": 0.998
+    },
+    {
+     "text": "短",
+     "start": 4.52,
+     "end": 4.66,
+     "score": 0.908
+    }
+   ],
+   "charTimes": [
+    0.02,
+    0.22,
+    0.44,
+    0.56,
+    0.68,
+    0.82,
+    0.96,
+    1.12,
+    1.28,
+    1.4,
+    1.96,
+    2.14,
+    2.38,
+    2.56,
+    2.74,
+    2.88,
+    3,
+    3.16,
+    3.62,
+    3.86,
+    4.2,
+    4.38,
+    4.52
+   ]
   },
   {
    "id": "s4",
-   "audio": null,
-   "audioFrame": 528,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 519,
-   "durationFrames": 135,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 528,
-   "voiceEndFrame": 632,
-   "stillFrame": 653,
+   "audio": "audio/tech-flipchip/04-s4.wav",
+   "audioFrame": 524,
+   "audioSec": 3.21,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 515,
+   "durationFrames": 132,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 525,
+   "voiceEndFrame": 620,
+   "stillFrame": 637,
    "subtitleWindow": [
-    525,
-    657
+    522,
+    644
    ],
    "sourceWindow": [
-    519,
-    654
+    520,
+    642
    ],
+   "pauseAfter": 0.73,
    "lines": [
     {
      "text": "晶片背面朝外",
-     "start": 525,
+     "start": 522,
      "chars": [
-      526,
-      532,
+      524,
+      529,
+      533,
       538,
-      544,
-      550,
-      557
+      543,
+      548
      ]
     },
     {
      "text": "沒有線擋著",
-     "start": 561,
+     "start": 558,
      "chars": [
+      560,
       563,
-      569,
-      575,
-      581,
-      587
+      568,
+      573,
+      579
      ]
     },
     {
      "text": "直接貼散熱蓋",
-     "start": 591,
+     "start": 588,
      "chars": [
-      593,
-      599,
-      606,
-      612,
-      618,
-      624
+      590,
+      594,
+      598,
+      603,
+      608,
+      613
      ]
     }
    ],
    "keywords": [
     {
      "text": "背面",
-     "start": 538
+     "start": 533
     },
     {
      "text": "散熱蓋",
-     "start": 612
+     "start": 603
     }
    ],
    "cues": [
     {
      "id": "back",
      "text": "背面朝外",
-     "frame": 540
+     "frame": 535,
+     "early": 0
     },
     {
      "id": "nowire",
      "text": "沒有線",
-     "frame": 565
+     "frame": 561,
+     "early": 0
     },
     {
      "id": "lid",
      "text": "散熱蓋",
-     "frame": 614
+     "frame": 604,
+     "early": 0
     }
    ],
+   "hash": "e388bf4b4ed6-730a52d761",
    "sub": "晶片背面朝外\n沒有線擋著\n直接貼散熱蓋",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.962,
+    "minScore": 0.639,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.25,
+      "start": 1.24,
+      "ch": "沒",
+      "errMs": -10
+     },
+     {
+      "onset": 2.24,
+      "start": 2.24,
+      "ch": "直",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "晶",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.978
+    },
+    {
+     "text": "片",
+     "start": 0.2,
+     "end": 0.34,
+     "score": 0.997
+    },
+    {
+     "text": "背",
+     "start": 0.36,
+     "end": 0.46,
+     "score": 0.998
+    },
+    {
+     "text": "面",
+     "start": 0.5,
+     "end": 0.64,
+     "score": 0.999
+    },
+    {
+     "text": "朝",
+     "start": 0.68,
+     "end": 0.84,
+     "score": 0.972
+    },
+    {
+     "text": "外",
+     "start": 0.86,
+     "end": 1.02,
+     "score": 0.998
+    },
+    {
+     "text": "沒",
+     "start": 1.24,
+     "end": 1.34,
+     "score": 0.999
+    },
+    {
+     "text": "有",
+     "start": 1.36,
+     "end": 1.46,
+     "score": 1
+    },
+    {
+     "text": "線",
+     "start": 1.5,
+     "end": 1.64,
+     "score": 0.998
+    },
+    {
+     "text": "擋",
+     "start": 1.68,
+     "end": 1.84,
+     "score": 0.989
+    },
+    {
+     "text": "著",
+     "start": 1.88,
+     "end": 1.98,
+     "score": 0.639
+    },
+    {
+     "text": "直",
+     "start": 2.24,
+     "end": 2.32,
+     "score": 0.989
+    },
+    {
+     "text": "接",
+     "start": 2.38,
+     "end": 2.46,
+     "score": 0.993
+    },
+    {
+     "text": "貼",
+     "start": 2.52,
+     "end": 2.62,
+     "score": 0.962
+    },
+    {
+     "text": "散",
+     "start": 2.68,
+     "end": 2.82,
+     "score": 0.892
+    },
+    {
+     "text": "熱",
+     "start": 2.86,
+     "end": 2.92,
+     "score": 0.994
+    },
+    {
+     "text": "蓋",
+     "start": 3,
+     "end": 3.16,
+     "score": 0.964
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.2,
+    0.36,
+    0.5,
+    0.68,
+    0.86,
+    1.24,
+    1.36,
+    1.5,
+    1.68,
+    1.88,
+    2.24,
+    2.38,
+    2.52,
+    2.68,
+    2.86,
+    3
+   ]
   },
   {
    "id": "s5",
-   "audio": null,
-   "audioFrame": 660,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 654,
-   "durationFrames": 183,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 660,
-   "voiceEndFrame": 816,
-   "stillFrame": 836,
+   "audio": "audio/tech-flipchip/05-s5.wav",
+   "audioFrame": 646,
+   "audioSec": 5.18,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 637,
+   "durationFrames": 190,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 647,
+   "voiceEndFrame": 801,
+   "stillFrame": 817,
    "subtitleWindow": [
-    657,
-    840
+    644,
+    824
    ],
    "sourceWindow": [
-    654,
-    837
+    642,
+    822
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "接點是小凸塊",
-     "start": 657,
+     "start": 644,
      "chars": [
-      658,
-      664,
-      670,
-      676,
-      682,
-      688
+      646,
+      651,
+      657,
+      661,
+      666,
+      670
      ]
     },
     {
      "text": "晶圓還沒切",
-     "start": 692,
+     "start": 683,
      "chars": [
+      685,
+      689,
       694,
-      700,
-      706,
-      712,
-      718
+      698,
+      702
      ]
     },
     {
      "text": "就先做好",
-     "start": 722,
+     "start": 706,
      "chars": [
-      724,
-      730,
-      736,
-      742
+      708,
+      712,
+      718,
+      723
      ]
     },
     {
      "text": "電鍍銅柱",
-     "start": 746,
+     "start": 734,
      "chars": [
-      748,
-      754,
-      760,
-      766
+      736,
+      741,
+      745,
+      752
      ]
     },
     {
      "text": "頂端戴一頂錫帽",
-     "start": 770,
+     "start": 761,
      "chars": [
-      772,
-      778,
-      784,
-      790,
-      796,
-      802,
-      808
+      763,
+      768,
+      775,
+      779,
+      782,
+      788,
+      793
      ]
     }
    ],
    "keywords": [
     {
      "text": "小凸塊",
-     "start": 676
+     "start": 661
     },
     {
      "text": "銅柱",
-     "start": 760
+     "start": 745
     },
     {
      "text": "錫帽",
-     "start": 802
+     "start": 788
     }
    ],
    "cues": [
     {
      "id": "bump",
      "text": "小凸塊",
-     "frame": 678
+     "frame": 662,
+     "early": 0
     },
     {
      "id": "wafer",
      "text": "晶圓還沒切",
-     "frame": 696
+     "frame": 686,
+     "early": 0
     },
     {
      "id": "cu",
      "text": "電鍍銅柱",
-     "frame": 750
+     "frame": 737,
+     "early": 0
     },
     {
      "id": "sn",
      "text": "錫帽",
-     "frame": 804
+     "frame": 789,
+     "early": 0
     }
    ],
+   "hash": "9aadffc82744-730a52d761",
    "sub": "接點是小凸塊\n晶圓還沒切\n就先做好\n電鍍銅柱\n頂端戴一頂錫帽",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.935,
+    "minScore": 0.018,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 1.34,
+      "start": 1.34,
+      "ch": "晶",
+      "errMs": 0
+     },
+     {
+      "onset": 3.07,
+      "start": 3.04,
+      "ch": "電",
+      "errMs": -30
+     },
+     {
+      "onset": 3.97,
+      "start": 3.94,
+      "ch": "頂",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "接",
+     "start": 0.04,
+     "end": 0.16,
+     "score": 0.991
+    },
+    {
+     "text": "點",
+     "start": 0.22,
+     "end": 0.36,
+     "score": 0.999
+    },
+    {
+     "text": "是",
+     "start": 0.42,
+     "end": 0.48,
+     "score": 0.993
+    },
+    {
+     "text": "小",
+     "start": 0.54,
+     "end": 0.68,
+     "score": 0.998
+    },
+    {
+     "text": "凸",
+     "start": 0.72,
+     "end": 0.8,
+     "score": 0.998
+    },
+    {
+     "text": "塊",
+     "start": 0.86,
+     "end": 1.04,
+     "score": 0.967
+    },
+    {
+     "text": "晶",
+     "start": 1.34,
+     "end": 1.46,
+     "score": 0.884
+    },
+    {
+     "text": "圓",
+     "start": 1.48,
+     "end": 1.62,
+     "score": 0.888
+    },
+    {
+     "text": "還",
+     "start": 1.64,
+     "end": 1.74,
+     "score": 0.997
+    },
+    {
+     "text": "沒",
+     "start": 1.78,
+     "end": 1.88,
+     "score": 0.994
+    },
+    {
+     "text": "切",
+     "start": 1.92,
+     "end": 2.04,
+     "score": 0.9
+    },
+    {
+     "text": "就",
+     "start": 2.12,
+     "end": 2.24,
+     "score": 0.998
+    },
+    {
+     "text": "先",
+     "start": 2.26,
+     "end": 2.4,
+     "score": 0.996
+    },
+    {
+     "text": "做",
+     "start": 2.44,
+     "end": 2.52,
+     "score": 0.998
+    },
+    {
+     "text": "好",
+     "start": 2.62,
+     "end": 2.8,
+     "score": 0.998
+    },
+    {
+     "text": "電",
+     "start": 3.04,
+     "end": 3.18,
+     "score": 0.999
+    },
+    {
+     "text": "鍍",
+     "start": 3.22,
+     "end": 3.28,
+     "score": 0.997
+    },
+    {
+     "text": "銅",
+     "start": 3.36,
+     "end": 3.54,
+     "score": 0.922
+    },
+    {
+     "text": "柱",
+     "start": 3.58,
+     "end": 3.68,
+     "score": 0.954
+    },
+    {
+     "text": "頂",
+     "start": 3.94,
+     "end": 4.1,
+     "score": 0.991
+    },
+    {
+     "text": "端",
+     "start": 4.12,
+     "end": 4.28,
+     "score": 0.965
+    },
+    {
+     "text": "戴",
+     "start": 4.34,
+     "end": 4.46,
+     "score": 0.984
+    },
+    {
+     "text": "一",
+     "start": 4.48,
+     "end": 4.52,
+     "score": 0.018
+    },
+    {
+     "text": "頂",
+     "start": 4.58,
+     "end": 4.72,
+     "score": 0.879
+    },
+    {
+     "text": "錫",
+     "start": 4.78,
+     "end": 4.88,
+     "score": 0.999
+    },
+    {
+     "text": "帽",
+     "start": 4.96,
+     "end": 5.12,
+     "score": 0.994
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.22,
+    0.42,
+    0.54,
+    0.72,
+    0.86,
+    1.34,
+    1.48,
+    1.64,
+    1.78,
+    1.92,
+    2.12,
+    2.26,
+    2.44,
+    2.62,
+    3.04,
+    3.22,
+    3.36,
+    3.58,
+    3.94,
+    4.12,
+    4.34,
+    4.48,
+    4.58,
+    4.78,
+    4.96
+   ]
   },
   {
    "id": "s6",
-   "audio": null,
-   "audioFrame": 843,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 837,
+   "audio": "audio/tech-flipchip/06-s6.wav",
+   "audioFrame": 826,
+   "audioSec": 4.98,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 817,
    "durationFrames": 183,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 843,
-   "voiceEndFrame": 999,
-   "stillFrame": 1019,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 827,
+   "voiceEndFrame": 975,
+   "stillFrame": 990,
    "subtitleWindow": [
-    840,
-    1023
+    824,
+    997
    ],
    "sourceWindow": [
-    837,
-    1020
+    822,
+    995
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "放到載板加熱",
-     "start": 840,
+     "start": 824,
      "chars": [
-      841,
-      847,
-      853,
-      859,
-      865,
-      871
+      826,
+      830,
+      834,
+      838,
+      842,
+      849
      ]
     },
     {
      "text": "錫一熔化",
-     "start": 875,
+     "start": 861,
      "chars": [
-      877,
-      883,
-      889,
-      895
+      864,
+      868,
+      873,
+      878
      ]
     },
     {
      "text": "表面張力",
-     "start": 899,
+     "start": 888,
      "chars": [
-      901,
-      907,
-      913,
-      919
+      890,
+      895,
+      900,
+      904
      ]
     },
     {
      "text": "就像水珠",
-     "start": 923,
+     "start": 908,
      "chars": [
-      925,
-      931,
-      937,
-      943
+      910,
+      913,
+      918,
+      924
      ]
     },
     {
      "text": "把放歪的晶片拉正",
-     "start": 947,
+     "start": 933,
      "chars": [
-      949,
-      955,
-      961,
-      967,
-      973,
-      979,
-      985,
-      991
+      935,
+      940,
+      945,
+      950,
+      953,
+      958,
+      963,
+      968
      ]
     }
    ],
    "keywords": [
     {
      "text": "熔化",
-     "start": 889
+     "start": 873
     },
     {
      "text": "表面張力",
-     "start": 901
+     "start": 890
     },
     {
      "text": "拉正",
-     "start": 985
+     "start": 963
     }
    ],
    "cues": [
     {
      "id": "place",
      "text": "放到載板",
-     "frame": 843
+     "frame": 827,
+     "early": 0
     },
     {
      "id": "melt",
      "text": "熔化",
-     "frame": 891
+     "frame": 874,
+     "early": 0
     },
     {
      "id": "tension",
      "text": "表面張力",
-     "frame": 903
+     "frame": 891,
+     "early": 0
     },
     {
      "id": "drop",
      "text": "水珠",
-     "frame": 939
+     "frame": 920,
+     "early": 0
     },
     {
      "id": "align",
      "text": "拉正",
-     "frame": 987
+     "frame": 964,
+     "early": 0
     }
    ],
+   "hash": "880d46208815-730a52d761",
    "sub": "放到載板加熱\n錫一熔化\n表面張力\n就像水珠\n把放歪的晶片拉正",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.966,
+    "minScore": 0.706,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 70,
+    "onsetCheck": [
+     {
+      "onset": 1.23,
+      "start": 1.3,
+      "ch": "錫",
+      "errMs": 70
+     },
+     {
+      "onset": 2.2,
+      "start": 2.18,
+      "ch": "表",
+      "errMs": -20
+     },
+     {
+      "onset": 3.71,
+      "start": 3.68,
+      "ch": "把",
+      "errMs": -30
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "放",
+     "start": 0.04,
+     "end": 0.18,
+     "score": 0.984
+    },
+    {
+     "text": "到",
+     "start": 0.18,
+     "end": 0.3,
+     "score": 0.998
+    },
+    {
+     "text": "載",
+     "start": 0.32,
+     "end": 0.44,
+     "score": 0.935
+    },
+    {
+     "text": "板",
+     "start": 0.46,
+     "end": 0.56,
+     "score": 0.997
+    },
+    {
+     "text": "加",
+     "start": 0.6,
+     "end": 0.7,
+     "score": 0.999
+    },
+    {
+     "text": "熱",
+     "start": 0.8,
+     "end": 0.9,
+     "score": 0.997
+    },
+    {
+     "text": "錫",
+     "start": 1.3,
+     "end": 1.4,
+     "score": 0.998
+    },
+    {
+     "text": "一",
+     "start": 1.46,
+     "end": 1.52,
+     "score": 0.855
+    },
+    {
+     "text": "熔",
+     "start": 1.6,
+     "end": 1.74,
+     "score": 0.706
+    },
+    {
+     "text": "化",
+     "start": 1.78,
+     "end": 1.88,
+     "score": 1
+    },
+    {
+     "text": "表",
+     "start": 2.18,
+     "end": 2.32,
+     "score": 0.999
+    },
+    {
+     "text": "面",
+     "start": 2.34,
+     "end": 2.46,
+     "score": 0.947
+    },
+    {
+     "text": "張",
+     "start": 2.5,
+     "end": 2.64,
+     "score": 0.987
+    },
+    {
+     "text": "力",
+     "start": 2.66,
+     "end": 2.74,
+     "score": 0.996
+    },
+    {
+     "text": "就",
+     "start": 2.84,
+     "end": 2.94,
+     "score": 0.915
+    },
+    {
+     "text": "像",
+     "start": 2.96,
+     "end": 3.1,
+     "score": 0.995
+    },
+    {
+     "text": "水",
+     "start": 3.12,
+     "end": 3.26,
+     "score": 0.988
+    },
+    {
+     "text": "珠",
+     "start": 3.32,
+     "end": 3.42,
+     "score": 0.979
+    },
+    {
+     "text": "把",
+     "start": 3.68,
+     "end": 3.76,
+     "score": 0.996
+    },
+    {
+     "text": "放",
+     "start": 3.86,
+     "end": 4,
+     "score": 0.993
+    },
+    {
+     "text": "歪",
+     "start": 4.02,
+     "end": 4.14,
+     "score": 0.998
+    },
+    {
+     "text": "的",
+     "start": 4.18,
+     "end": 4.22,
+     "score": 0.997
+    },
+    {
+     "text": "晶",
+     "start": 4.28,
+     "end": 4.4,
+     "score": 0.919
+    },
+    {
+     "text": "片",
+     "start": 4.44,
+     "end": 4.58,
+     "score": 0.997
+    },
+    {
+     "text": "拉",
+     "start": 4.6,
+     "end": 4.68,
+     "score": 0.991
+    },
+    {
+     "text": "正",
+     "start": 4.78,
+     "end": 4.94,
+     "score": 0.955
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.32,
+    0.46,
+    0.6,
+    0.8,
+    1.3,
+    1.46,
+    1.6,
+    1.78,
+    2.18,
+    2.34,
+    2.5,
+    2.66,
+    2.84,
+    2.96,
+    3.12,
+    3.32,
+    3.68,
+    3.86,
+    4.02,
+    4.18,
+    4.28,
+    4.44,
+    4.6,
+    4.78
+   ]
   },
   {
    "id": "s7",
-   "audio": null,
-   "audioFrame": 1026,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1020,
-   "durationFrames": 147,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1026,
-   "voiceEndFrame": 1146,
-   "stillFrame": 1166,
+   "audio": "audio/tech-flipchip/07-s7.wav",
+   "audioFrame": 999,
+   "audioSec": 3.58,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 990,
+   "durationFrames": 142,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1000,
+   "voiceEndFrame": 1106,
+   "stillFrame": 1122,
    "subtitleWindow": [
-    1023,
-    1170
+    997,
+    1129
    ],
    "sourceWindow": [
-    1020,
-    1167
+    995,
+    1127
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "可是晶片和載板",
-     "start": 1023,
+     "start": 997,
      "chars": [
-      1024,
-      1030,
-      1036,
-      1042,
-      1048,
-      1054,
-      1060
+      999,
+      1002,
+      1006,
+      1010,
+      1015,
+      1020,
+      1025
      ]
     },
     {
      "text": "熱脹冷縮差五倍",
-     "start": 1064,
+     "start": 1028,
      "chars": [
-      1066,
-      1072,
-      1078,
-      1084,
-      1090,
-      1096,
-      1102
+      1031,
+      1035,
+      1040,
+      1046,
+      1051,
+      1057,
+      1062
      ]
     },
     {
      "text": "焊點會被扭壞",
-     "start": 1106,
+     "start": 1072,
      "chars": [
-      1108,
-      1114,
-      1120,
-      1126,
-      1132,
-      1138
+      1074,
+      1079,
+      1084,
+      1088,
+      1092,
+      1098
      ]
     }
    ],
    "keywords": [
     {
      "text": "熱脹冷縮",
-     "start": 1066
+     "start": 1031
     },
     {
      "text": "五倍",
-     "start": 1096
+     "start": 1057
     },
     {
      "text": "扭壞",
-     "start": 1132
+     "start": 1092
     }
    ],
    "cues": [
     {
      "id": "but",
      "text": "可是",
-     "frame": 1026
+     "frame": 1000,
+     "early": 0
     },
     {
      "id": "cte",
      "text": "熱脹冷縮",
-     "frame": 1068
+     "frame": 1032,
+     "early": 0
     },
     {
      "id": "x5",
      "text": "五倍",
-     "frame": 1098
+     "frame": 1058,
+     "early": 0
     },
     {
      "id": "crack",
      "text": "扭壞",
-     "frame": 1134
+     "frame": 1093,
+     "early": 0
     }
    ],
+   "hash": "42837b7db74c-730a52d761",
    "sub": "可是晶片和載板\n熱脹冷縮差五倍\n焊點會被扭壞",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.92,
+    "minScore": 0.499,
+    "onsetMedianMs": 10,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 2.55,
+      "start": 2.56,
+      "ch": "焊",
+      "errMs": 10
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "可",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 1
+    },
+    {
+     "text": "是",
+     "start": 0.16,
+     "end": 0.24,
+     "score": 0.989
+    },
+    {
+     "text": "晶",
+     "start": 0.28,
+     "end": 0.42,
+     "score": 0.936
+    },
+    {
+     "text": "片",
+     "start": 0.42,
+     "end": 0.56,
+     "score": 0.97
+    },
+    {
+     "text": "和",
+     "start": 0.6,
+     "end": 0.66,
+     "score": 0.499
+    },
+    {
+     "text": "載",
+     "start": 0.76,
+     "end": 0.88,
+     "score": 0.997
+    },
+    {
+     "text": "板",
+     "start": 0.9,
+     "end": 1.04,
+     "score": 0.997
+    },
+    {
+     "text": "熱",
+     "start": 1.1,
+     "end": 1.18,
+     "score": 0.997
+    },
+    {
+     "text": "脹",
+     "start": 1.26,
+     "end": 1.4,
+     "score": 0.941
+    },
+    {
+     "text": "冷",
+     "start": 1.42,
+     "end": 1.56,
+     "score": 0.902
+    },
+    {
+     "text": "縮",
+     "start": 1.6,
+     "end": 1.7,
+     "score": 0.966
+    },
+    {
+     "text": "差",
+     "start": 1.78,
+     "end": 1.88,
+     "score": 0.933
+    },
+    {
+     "text": "五",
+     "start": 1.98,
+     "end": 2.06,
+     "score": 0.788
+    },
+    {
+     "text": "倍",
+     "start": 2.14,
+     "end": 2.28,
+     "score": 0.719
+    },
+    {
+     "text": "焊",
+     "start": 2.56,
+     "end": 2.68,
+     "score": 0.998
+    },
+    {
+     "text": "點",
+     "start": 2.72,
+     "end": 2.86,
+     "score": 0.979
+    },
+    {
+     "text": "會",
+     "start": 2.88,
+     "end": 3,
+     "score": 0.993
+    },
+    {
+     "text": "被",
+     "start": 3.02,
+     "end": 3.1,
+     "score": 0.997
+    },
+    {
+     "text": "扭",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 0.806
+    },
+    {
+     "text": "壞",
+     "start": 3.34,
+     "end": 3.5,
+     "score": 0.987
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.16,
+    0.28,
+    0.42,
+    0.6,
+    0.76,
+    0.9,
+    1.1,
+    1.26,
+    1.42,
+    1.6,
+    1.78,
+    1.98,
+    2.14,
+    2.56,
+    2.72,
+    2.88,
+    3.02,
+    3.14,
+    3.34
+   ]
   },
   {
    "id": "s8",
-   "audio": null,
-   "audioFrame": 1173,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1167,
-   "durationFrames": 171,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1173,
-   "voiceEndFrame": 1317,
-   "stillFrame": 1337,
+   "audio": "audio/tech-flipchip/08-s8.wav",
+   "audioFrame": 1131,
+   "audioSec": 4.84,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1122,
+   "durationFrames": 180,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1132,
+   "voiceEndFrame": 1275,
+   "stillFrame": 1292,
    "subtitleWindow": [
-    1170,
-    1341
+    1129,
+    1299
    ],
    "sourceWindow": [
-    1167,
-    1338
+    1127,
+    1297
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "所以沿邊緣點膠",
-     "start": 1170,
+     "start": 1129,
      "chars": [
-      1171,
-      1177,
-      1183,
-      1189,
-      1195,
-      1201,
-      1207
+      1132,
+      1136,
+      1140,
+      1145,
+      1150,
+      1155,
+      1161
      ]
     },
     {
      "text": "膠像紙巾吸水",
-     "start": 1211,
+     "start": 1173,
      "chars": [
-      1213,
-      1219,
-      1225,
-      1231,
-      1237,
-      1243
+      1175,
+      1180,
+      1186,
+      1190,
+      1196,
+      1202
      ]
     },
     {
      "text": "滲進縫裡",
-     "start": 1247,
+     "start": 1205,
      "chars": [
-      1249,
-      1255,
-      1261,
-      1267
+      1208,
+      1212,
+      1217,
+      1223
      ]
     },
     {
      "text": "再烤硬",
-     "start": 1271,
+     "start": 1233,
      "chars": [
-      1273,
-      1279,
-      1285
+      1235,
+      1241,
+      1247
      ]
     },
     {
      "text": "護住焊點",
-     "start": 1289,
+     "start": 1252,
      "chars": [
-      1291,
-      1297,
-      1303,
-      1309
+      1254,
+      1259,
+      1263,
+      1269
      ]
     }
    ],
    "keywords": [
     {
      "text": "點膠",
-     "start": 1201
+     "start": 1155
     },
     {
      "text": "紙巾吸水",
-     "start": 1225
+     "start": 1186
     },
     {
      "text": "烤硬",
-     "start": 1279
+     "start": 1241
     }
    ],
    "cues": [
     {
      "id": "edge",
      "text": "沿邊緣點膠",
-     "frame": 1185
+     "frame": 1141,
+     "early": 0
     },
     {
      "id": "wick",
      "text": "紙巾吸水",
-     "frame": 1227
+     "frame": 1187,
+     "early": 0
     },
     {
      "id": "gap",
      "text": "滲進縫裡",
-     "frame": 1251
+     "frame": 1209,
+     "early": 0
     },
     {
      "id": "bake",
      "text": "烤硬",
-     "frame": 1281
+     "frame": 1242,
+     "early": 0
     },
     {
      "id": "guard",
      "text": "護住焊點",
-     "frame": 1293
+     "frame": 1255,
+     "early": 0
     }
    ],
+   "hash": "6da30ad21221-730a52d761",
    "sub": "所以沿邊緣點膠\n膠像紙巾吸水\n滲進縫裡\n再烤硬\n護住焊點",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.97,
+    "minScore": 0.817,
+    "onsetMedianMs": 5,
+    "onsetMaxMs": 10,
+    "onsetCheck": [
+     {
+      "onset": 1.53,
+      "start": 1.52,
+      "ch": "膠",
+      "errMs": -10
+     },
+     {
+      "onset": 3.52,
+      "start": 3.52,
+      "ch": "再",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "所",
+     "start": 0.08,
+     "end": 0.18,
+     "score": 0.982
+    },
+    {
+     "text": "以",
+     "start": 0.22,
+     "end": 0.28,
+     "score": 0.995
+    },
+    {
+     "text": "沿",
+     "start": 0.34,
+     "end": 0.48,
+     "score": 0.999
+    },
+    {
+     "text": "邊",
+     "start": 0.52,
+     "end": 0.66,
+     "score": 0.978
+    },
+    {
+     "text": "緣",
+     "start": 0.68,
+     "end": 0.82,
+     "score": 0.998
+    },
+    {
+     "text": "點",
+     "start": 0.86,
+     "end": 1,
+     "score": 0.999
+    },
+    {
+     "text": "膠",
+     "start": 1.06,
+     "end": 1.26,
+     "score": 0.998
+    },
+    {
+     "text": "膠",
+     "start": 1.52,
+     "end": 1.66,
+     "score": 0.999
+    },
+    {
+     "text": "像",
+     "start": 1.68,
+     "end": 1.86,
+     "score": 0.931
+    },
+    {
+     "text": "紙",
+     "start": 1.88,
+     "end": 1.96,
+     "score": 0.92
+    },
+    {
+     "text": "巾",
+     "start": 2.02,
+     "end": 2.14,
+     "score": 1
+    },
+    {
+     "text": "吸",
+     "start": 2.22,
+     "end": 2.3,
+     "score": 0.999
+    },
+    {
+     "text": "水",
+     "start": 2.4,
+     "end": 2.52,
+     "score": 0.945
+    },
+    {
+     "text": "滲",
+     "start": 2.6,
+     "end": 2.72,
+     "score": 0.977
+    },
+    {
+     "text": "進",
+     "start": 2.76,
+     "end": 2.88,
+     "score": 0.989
+    },
+    {
+     "text": "縫",
+     "start": 2.92,
+     "end": 3.08,
+     "score": 0.914
+    },
+    {
+     "text": "裡",
+     "start": 3.12,
+     "end": 3.2,
+     "score": 0.996
+    },
+    {
+     "text": "再",
+     "start": 3.52,
+     "end": 3.66,
+     "score": 1
+    },
+    {
+     "text": "烤",
+     "start": 3.7,
+     "end": 3.88,
+     "score": 0.999
+    },
+    {
+     "text": "硬",
+     "start": 3.92,
+     "end": 4.08,
+     "score": 0.817
+    },
+    {
+     "text": "護",
+     "start": 4.14,
+     "end": 4.24,
+     "score": 0.998
+    },
+    {
+     "text": "住",
+     "start": 4.3,
+     "end": 4.38,
+     "score": 0.86
+    },
+    {
+     "text": "焊",
+     "start": 4.46,
+     "end": 4.6,
+     "score": 0.997
+    },
+    {
+     "text": "點",
+     "start": 4.64,
+     "end": 4.8,
+     "score": 0.998
+    }
+   ],
+   "charTimes": [
+    0.08,
+    0.22,
+    0.34,
+    0.52,
+    0.68,
+    0.86,
+    1.06,
+    1.52,
+    1.68,
+    1.88,
+    2.02,
+    2.22,
+    2.4,
+    2.6,
+    2.76,
+    2.92,
+    3.12,
+    3.52,
+    3.7,
+    3.92,
+    4.14,
+    4.3,
+    4.46,
+    4.64
+   ]
   },
   {
    "id": "s9",
-   "audio": null,
-   "audioFrame": 1344,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1338,
-   "durationFrames": 171,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1344,
-   "voiceEndFrame": 1483,
-   "stillFrame": 1508,
+   "audio": "audio/tech-flipchip/09-s9.wav",
+   "audioFrame": 1301,
+   "audioSec": 3.93,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1292,
+   "durationFrames": 152,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1302,
+   "voiceEndFrame": 1418,
+   "stillFrame": 1434,
    "subtitleWindow": [
-    1341,
-    1510
+    1299,
+    1441
    ],
    "sourceWindow": [
-    1338,
-    1509
+    1297,
+    1439
    ],
+   "pauseAfter": 0.87,
    "lines": [
     {
      "text": "封裝大廠有",
-     "start": 1341,
+     "start": 1299,
      "chars": [
-      1342,
-      1348,
-      1354,
-      1359,
-      1365
+      1301,
+      1305,
+      1310,
+      1314,
+      1321
      ]
     },
     {
      "text": "日月光・安靠",
-     "start": 1369,
+     "start": 1324,
      "chars": [
-      1371,
-      1377,
-      1383,
-      1388,
-      1394,
-      1400
+      1327,
+      1330,
+      1334,
+      1342,
+      1345,
+      1350
      ]
     },
     {
      "text": "覆晶接合機有",
-     "start": 1404,
+     "start": 1362,
      "chars": [
-      1406,
-      1412,
-      1417,
-      1423,
-      1429,
-      1435
+      1364,
+      1369,
+      1373,
+      1378,
+      1383,
+      1390
      ]
     },
     {
      "text": "荷蘭的 Besi",
-     "start": 1438,
+     "start": 1392,
      "chars": [
-      1440,
-      1446,
-      1452,
-      1452,
-      1458,
-      1464,
-      1469,
-      1475
+      1394,
+      1399,
+      1403,
+      1403,
+      1406,
+      1408,
+      1412,
+      1414
      ]
     }
    ],
    "keywords": [
     {
      "text": "日月光",
-     "start": 1371
+     "start": 1327
     },
     {
      "text": "安靠",
-     "start": 1394
+     "start": 1345
     },
     {
      "text": "Besi",
-     "start": 1458
+     "start": 1406
     }
    ],
    "cues": [
     {
      "id": "big",
      "text": "封裝大廠",
-     "frame": 1344
+     "frame": 1302,
+     "early": 0
     },
     {
      "id": "ase",
      "text": "日月光",
-     "frame": 1373
+     "frame": 1328,
+     "early": 0
     },
     {
      "id": "amk",
      "text": "安靠",
-     "frame": 1396
+     "frame": 1347,
+     "early": 0
     },
     {
      "id": "fcb",
      "text": "覆晶接合機",
-     "frame": 1408
+     "frame": 1366,
+     "early": 0
     },
     {
      "id": "besi",
      "text": "Besi",
-     "frame": 1460
+     "frame": 1407,
+     "early": 0
     }
    ],
+   "hash": "8fdee1916043-730a52d761",
    "sub": "封裝大廠有\n日月光・安靠\n覆晶接合機有\n荷蘭的 Besi",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.904,
+    "minScore": 0.017,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 2.16,
+      "start": 2.16,
+      "ch": "覆",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "封",
+     "start": 0.04,
+     "end": 0.16,
+     "score": 0.952
+    },
+    {
+     "text": "裝",
+     "start": 0.18,
+     "end": 0.32,
+     "score": 0.98
+    },
+    {
+     "text": "大",
+     "start": 0.34,
+     "end": 0.4,
+     "score": 0.999
+    },
+    {
+     "text": "廠",
+     "start": 0.48,
+     "end": 0.68,
+     "score": 0.983
+    },
+    {
+     "text": "有",
+     "start": 0.72,
+     "end": 0.84,
+     "score": 0.922
+    },
+    {
+     "text": "日",
+     "start": 0.9,
+     "end": 0.96,
+     "score": 0.996
+    },
+    {
+     "text": "月",
+     "start": 1.02,
+     "end": 1.1,
+     "score": 0.898
+    },
+    {
+     "text": "光",
+     "start": 1.16,
+     "end": 1.34,
+     "score": 0.999
+    },
+    {
+     "text": "安",
+     "start": 1.52,
+     "end": 1.6,
+     "score": 0.998
+    },
+    {
+     "text": "靠",
+     "start": 1.68,
+     "end": 1.86,
+     "score": 0.997
+    },
+    {
+     "text": "覆",
+     "start": 2.16,
+     "end": 2.24,
+     "score": 0.998
+    },
+    {
+     "text": "晶",
+     "start": 2.3,
+     "end": 2.44,
+     "score": 0.932
+    },
+    {
+     "text": "接",
+     "start": 2.46,
+     "end": 2.56,
+     "score": 0.993
+    },
+    {
+     "text": "合",
+     "start": 2.62,
+     "end": 2.7,
+     "score": 0.999
+    },
+    {
+     "text": "機",
+     "start": 2.78,
+     "end": 2.88,
+     "score": 0.999
+    },
+    {
+     "text": "有",
+     "start": 3,
+     "end": 3.12,
+     "score": 0.997
+    },
+    {
+     "text": "荷",
+     "start": 3.16,
+     "end": 3.24,
+     "score": 0.999
+    },
+    {
+     "text": "蘭",
+     "start": 3.32,
+     "end": 3.44,
+     "score": 0.96
+    },
+    {
+     "text": "的",
+     "start": 3.46,
+     "end": 3.52,
+     "score": 0.994
+    },
+    {
+     "text": "B",
+     "start": 3.54,
+     "end": 3.56,
+     "score": 0.986
+    },
+    {
+     "text": "e",
+     "start": 3.6,
+     "end": 3.62,
+     "score": 0.017
+    },
+    {
+     "text": "s",
+     "start": 3.74,
+     "end": 3.76,
+     "score": 0.213
+    },
+    {
+     "text": "i",
+     "start": 3.82,
+     "end": 3.84,
+     "score": 0.98
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.34,
+    0.48,
+    0.72,
+    0.9,
+    1.02,
+    1.16,
+    1.43,
+    1.52,
+    1.68,
+    2.16,
+    2.3,
+    2.46,
+    2.62,
+    2.78,
+    3,
+    3.16,
+    3.32,
+    3.46,
+    3.54,
+    3.6,
+    3.74,
+    3.82
+   ]
   },
   {
    "id": "s10",
-   "audio": null,
-   "audioFrame": 1513,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1509,
-   "durationFrames": 201,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1513,
-   "voiceEndFrame": 1689,
-   "stillFrame": 1709,
+   "audio": "audio/tech-flipchip/10-s10.wav",
+   "audioFrame": 1443,
+   "audioSec": 6.3,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1434,
+   "durationFrames": 223,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1444,
+   "voiceEndFrame": 1631,
+   "stillFrame": 1647,
    "subtitleWindow": [
-    1510,
-    1713
+    1441,
+    1654
    ],
    "sourceWindow": [
-    1509,
-    1710
+    1439,
+    1652
    ],
+   "pauseAfter": 0.7,
    "lines": [
     {
      "text": "覆晶還得靠載板拉線",
-     "start": 1510,
+     "start": 1441,
      "chars": [
-      1511,
-      1517,
-      1523,
-      1529,
-      1534,
-      1540,
-      1546,
-      1552,
-      1558
+      1443,
+      1448,
+      1454,
+      1459,
+      1462,
+      1467,
+      1472,
+      1477,
+      1482
      ]
     },
     {
      "text": "下一集",
-     "start": 1562,
+     "start": 1508,
      "chars": [
-      1564,
-      1570,
-      1576
+      1510,
+      1515,
+      1518
      ]
     },
     {
      "text": "把線直接做在晶圓",
-     "start": 1579,
+     "start": 1528,
      "chars": [
-      1581,
-      1587,
-      1593,
-      1599,
-      1605,
-      1611,
-      1617,
-      1622
+      1530,
+      1536,
+      1541,
+      1545,
+      1550,
+      1554,
+      1558,
+      1563
      ]
     },
     {
      "text": "看扇出型",
-     "start": 1626,
+     "start": 1574,
      "chars": [
-      1628,
-      1634,
-      1640,
-      1646
+      1576,
+      1582,
+      1587,
+      1592
      ]
     },
     {
      "text": "與晶圓級封裝",
-     "start": 1650,
+     "start": 1597,
      "chars": [
-      1652,
-      1658,
-      1664,
-      1669,
-      1675,
-      1681
+      1599,
+      1604,
+      1608,
+      1613,
+      1617,
+      1622
      ]
     }
    ],
    "keywords": [
     {
      "text": "載板",
-     "start": 1540
+     "start": 1467
     },
     {
      "text": "扇出型",
-     "start": 1634
+     "start": 1582
     }
    ],
    "cues": [
     {
      "id": "sub",
      "text": "載板拉線",
-     "frame": 1542
+     "frame": 1469,
+     "early": 0
     },
     {
      "id": "next",
      "text": "下一集",
-     "frame": 1566
+     "frame": 1511,
+     "early": 0
     },
     {
      "id": "rdl",
      "text": "直接做在晶圓",
-     "frame": 1595
+     "frame": 1543,
+     "early": 0
     },
     {
      "id": "fo",
      "text": "扇出型",
-     "frame": 1636
+     "frame": 1583,
+     "early": 0
     }
    ],
+   "hash": "47149091ecf8-730a52d761",
    "sub": "覆晶還得靠載板拉線\n下一集\n把線直接做在晶圓\n看扇出型\n與晶圓級封裝",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.945,
+    "minScore": 0.332,
+    "onsetMedianMs": 30,
+    "onsetMaxMs": 30,
+    "onsetCheck": [
+     {
+      "onset": 2.25,
+      "start": 2.28,
+      "ch": "下",
+      "errMs": 30
+     },
+     {
+      "onset": 2.99,
+      "start": 2.96,
+      "ch": "把",
+      "errMs": -30
+     },
+     {
+      "onset": 4.48,
+      "start": 4.48,
+      "ch": "看",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "覆",
+     "start": 0.06,
+     "end": 0.14,
+     "score": 0.996
+    },
+    {
+     "text": "晶",
+     "start": 0.2,
+     "end": 0.36,
+     "score": 0.775
+    },
+    {
+     "text": "還",
+     "start": 0.42,
+     "end": 0.54,
+     "score": 0.999
+    },
+    {
+     "text": "得",
+     "start": 0.58,
+     "end": 0.62,
+     "score": 0.995
+    },
+    {
+     "text": "靠",
+     "start": 0.7,
+     "end": 0.84,
+     "score": 0.999
+    },
+    {
+     "text": "載",
+     "start": 0.86,
+     "end": 1,
+     "score": 0.994
+    },
+    {
+     "text": "板",
+     "start": 1.02,
+     "end": 1.14,
+     "score": 0.996
+    },
+    {
+     "text": "拉",
+     "start": 1.18,
+     "end": 1.26,
+     "score": 0.926
+    },
+    {
+     "text": "線",
+     "start": 1.36,
+     "end": 1.54,
+     "score": 0.999
+    },
+    {
+     "text": "下",
+     "start": 2.28,
+     "end": 2.38,
+     "score": 0.999
+    },
+    {
+     "text": "一",
+     "start": 2.44,
+     "end": 2.5,
+     "score": 0.332
+    },
+    {
+     "text": "集",
+     "start": 2.56,
+     "end": 2.66,
+     "score": 0.997
+    },
+    {
+     "text": "把",
+     "start": 2.96,
+     "end": 3.04,
+     "score": 0.993
+    },
+    {
+     "text": "線",
+     "start": 3.14,
+     "end": 3.28,
+     "score": 0.993
+    },
+    {
+     "text": "直",
+     "start": 3.32,
+     "end": 3.4,
+     "score": 0.957
+    },
+    {
+     "text": "接",
+     "start": 3.46,
+     "end": 3.54,
+     "score": 0.999
+    },
+    {
+     "text": "做",
+     "start": 3.62,
+     "end": 3.7,
+     "score": 0.994
+    },
+    {
+     "text": "在",
+     "start": 3.74,
+     "end": 3.86,
+     "score": 0.999
+    },
+    {
+     "text": "晶",
+     "start": 3.88,
+     "end": 4.02,
+     "score": 0.943
+    },
+    {
+     "text": "圓",
+     "start": 4.06,
+     "end": 4.22,
+     "score": 0.994
+    },
+    {
+     "text": "看",
+     "start": 4.48,
+     "end": 4.62,
+     "score": 1
+    },
+    {
+     "text": "扇",
+     "start": 4.68,
+     "end": 4.82,
+     "score": 0.999
+    },
+    {
+     "text": "出",
+     "start": 4.86,
+     "end": 4.94,
+     "score": 0.89
+    },
+    {
+     "text": "型",
+     "start": 5.02,
+     "end": 5.2,
+     "score": 0.861
+    },
+    {
+     "text": "與",
+     "start": 5.24,
+     "end": 5.3,
+     "score": 0.991
+    },
+    {
+     "text": "晶",
+     "start": 5.4,
+     "end": 5.54,
+     "score": 0.809
+    },
+    {
+     "text": "圓",
+     "start": 5.54,
+     "end": 5.68,
+     "score": 0.992
+    },
+    {
+     "text": "級",
+     "start": 5.72,
+     "end": 5.8,
+     "score": 1
+    },
+    {
+     "text": "封",
+     "start": 5.86,
+     "end": 6,
+     "score": 0.95
+    },
+    {
+     "text": "裝",
+     "start": 6.02,
+     "end": 6.22,
+     "score": 0.985
+    }
+   ],
+   "charTimes": [
+    0.06,
+    0.2,
+    0.42,
+    0.58,
+    0.7,
+    0.86,
+    1.02,
+    1.18,
+    1.36,
+    2.28,
+    2.44,
+    2.56,
+    2.96,
+    3.14,
+    3.32,
+    3.46,
+    3.62,
+    3.74,
+    3.88,
+    4.06,
+    4.48,
+    4.68,
+    4.86,
+    5.02,
+    5.24,
+    5.4,
+    5.54,
+    5.72,
+    5.86,
+    6.02
+   ]
   },
   {
    "id": "s11",
-   "audio": null,
-   "audioFrame": 1716,
-   "audioSec": 0,
-   "headSilSec": 0,
-   "tailSilSec": 0,
-   "startFrame": 1710,
-   "durationFrames": 144,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1716,
-   "voiceEndFrame": 1833,
-   "stillFrame": 1853,
+   "audio": "audio/tech-flipchip/11-s11.wav",
+   "audioFrame": 1656,
+   "audioSec": 3.41,
+   "headSilSec": 0.04,
+   "tailSilSec": 0.04,
+   "startFrame": 1647,
+   "durationFrames": 142,
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1657,
+   "voiceEndFrame": 1758,
+   "stillFrame": 1779,
    "subtitleWindow": [
-    1713,
-    1855
+    1654,
+    1789
    ],
    "sourceWindow": [
-    1710,
-    1854
+    1652,
+    1784
    ],
    "lines": [
     {
      "text": "你手機的晶片",
-     "start": 1713,
+     "start": 1654,
      "chars": [
-      1714,
-      1720,
-      1726,
-      1732,
-      1739,
-      1745
+      1656,
+      1660,
+      1665,
+      1668,
+      1671,
+      1675
      ]
     },
     {
      "text": "是哪一種？",
-     "start": 1749,
+     "start": 1679,
      "chars": [
-      1751,
-      1757,
-      1763,
-      1769,
-      1769
+      1682,
+      1685,
+      1689,
+      1692,
+      1692
      ]
     },
     {
      "text": "留言覆晶",
-     "start": 1774,
+     "start": 1703,
      "chars": [
-      1776,
-      1782,
-      1788,
-      1794
+      1706,
+      1711,
+      1716,
+      1721
      ]
     },
     {
      "text": "拿完整資料",
-     "start": 1798,
+     "start": 1729,
      "chars": [
-      1800,
-      1806,
-      1813,
-      1819,
-      1825
+      1731,
+      1736,
+      1741,
+      1746,
+      1751
      ]
     }
    ],
    "keywords": [
     {
      "text": "手機",
-     "start": 1720
+     "start": 1660
     },
     {
      "text": "覆晶",
-     "start": 1788
+     "start": 1716
     }
    ],
    "cues": [
     {
      "id": "phone",
      "text": "手機",
-     "frame": 1722
+     "frame": 1661,
+     "early": 0
     },
     {
      "id": "kw",
      "text": "留言覆晶",
-     "frame": 1778
+     "frame": 1707,
+     "early": 0
     }
    ],
+   "hash": "e16ff322645e-730a52d761",
    "sub": "你手機的晶片\n是哪一種？\n留言覆晶\n拿完整資料",
-   "silentEstimate": true
+   "provider": "ctc-fa",
+   "cer": null,
+   "fa": {
+    "confidence": 0.926,
+    "minScore": 0.005,
+    "onsetMedianMs": 0,
+    "onsetMaxMs": 0,
+    "onsetCheck": [
+     {
+      "onset": 1.7,
+      "start": 1.7,
+      "ch": "留",
+      "errMs": 0
+     }
+    ]
+   },
+   "transcript": "",
+   "words": [
+    {
+     "text": "你",
+     "start": 0.04,
+     "end": 0.1,
+     "score": 0.995
+    },
+    {
+     "text": "手",
+     "start": 0.18,
+     "end": 0.32,
+     "score": 0.998
+    },
+    {
+     "text": "機",
+     "start": 0.34,
+     "end": 0.4,
+     "score": 0.999
+    },
+    {
+     "text": "的",
+     "start": 0.46,
+     "end": 0.5,
+     "score": 0.997
+    },
+    {
+     "text": "晶",
+     "start": 0.56,
+     "end": 0.68,
+     "score": 0.962
+    },
+    {
+     "text": "片",
+     "start": 0.7,
+     "end": 0.84,
+     "score": 0.994
+    },
+    {
+     "text": "是",
+     "start": 0.9,
+     "end": 0.98,
+     "score": 0.99
+    },
+    {
+     "text": "哪",
+     "start": 1.02,
+     "end": 1.08,
+     "score": 0.997
+    },
+    {
+     "text": "一",
+     "start": 1.14,
+     "end": 1.18,
+     "score": 0.005
+    },
+    {
+     "text": "種",
+     "start": 1.24,
+     "end": 1.42,
+     "score": 0.972
+    },
+    {
+     "text": "留",
+     "start": 1.7,
+     "end": 1.84,
+     "score": 0.991
+    },
+    {
+     "text": "言",
+     "start": 1.88,
+     "end": 2,
+     "score": 0.955
+    },
+    {
+     "text": "覆",
+     "start": 2.04,
+     "end": 2.12,
+     "score": 0.995
+    },
+    {
+     "text": "晶",
+     "start": 2.2,
+     "end": 2.38,
+     "score": 0.879
+    },
+    {
+     "text": "拿",
+     "start": 2.54,
+     "end": 2.62,
+     "score": 0.998
+    },
+    {
+     "text": "完",
+     "start": 2.72,
+     "end": 2.84,
+     "score": 0.999
+    },
+    {
+     "text": "整",
+     "start": 2.88,
+     "end": 3.02,
+     "score": 0.92
+    },
+    {
+     "text": "資",
+     "start": 3.06,
+     "end": 3.14,
+     "score": 0.959
+    },
+    {
+     "text": "料",
+     "start": 3.2,
+     "end": 3.36,
+     "score": 0.992
+    }
+   ],
+   "charTimes": [
+    0.04,
+    0.18,
+    0.34,
+    0.46,
+    0.56,
+    0.7,
+    0.9,
+    1.02,
+    1.14,
+    1.24,
+    1.7,
+    1.88,
+    2.04,
+    2.2,
+    2.54,
+    2.72,
+    2.88,
+    3.06,
+    3.2
+   ]
   },
   {
    "id": "s12",
    "audio": null,
-   "audioFrame": 1858,
+   "audioFrame": 1779,
    "audioSec": 0,
    "headSilSec": 0,
    "tailSilSec": 0,
-   "startFrame": 1854,
+   "startFrame": 1779,
    "durationFrames": 96,
-   "transitionFrames": 0,
-   "transition": null,
-   "voiceStartFrame": 1858,
-   "voiceEndFrame": 1940,
-   "stillFrame": 1938,
-   "subtitleWindow": [
-    1855,
-    1950
-   ],
+   "transitionFrames": 10,
+   "transition": {
+    "type": "fade",
+    "frames": 10,
+    "exit": [
+     0,
+     5
+    ],
+    "enter": [
+     3,
+     8
+    ]
+   },
+   "voiceStartFrame": 1789,
+   "voiceEndFrame": 1789,
+   "stillFrame": 1863,
+   "silent": true,
+   "subtitleWindow": null,
    "sourceWindow": [
-    1854,
-    1950
+    1784,
+    1875
    ],
    "lines": [],
    "keywords": [],
    "cues": [],
-   "sub": "",
-   "silentEstimate": true
+   "sub": ""
   }
- ]
+ ],
+ "voice": {
+  "file": "audio/tech-flipchip/voice.wav",
+  "lufsIn": -14.07,
+  "lufs": -16,
+  "sec": 62.5
+ }
 }
