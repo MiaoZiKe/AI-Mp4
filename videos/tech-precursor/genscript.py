@@ -206,7 +206,7 @@ P["s9"] = {"shot": [shot("start-4", 59.6, 0.2, 26, 42, 1, yaw=0.0)],
  "run": [run("impDrop", "atom-18", "bad+30", 4), run("impGlow", "atom+10", "s10:start-6", 8)],
  "labels": [lab("impA", "雜質金屬原子", "Stray metal atom", "amber", "atom+12", "s10:start-14")],
  "overlay": [sec("precursor-purity", "start+24", "s10:start-5", "乾淨有兩把尺", "示意：要求到 ppb 等級", {"clean": "clean", "atom": "atom", "bad": "bad"})]}
-P["s10"] = {"zoom": [{"to": "co", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 40.0, -0.4, 45, 38, 1)],
+P["s10"] = {"zoom": [{"to": "co", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 40.0, -1.8, 41, 38, 1)],
  "overlay": [sec("precursor-co", "start-4", "s11:start-14", "供應商", "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27", {"few": "few", "de": "de", "fr": "fr", "tw": "tw"}, h=392, y=1000)]}
 P["s11"] = {"zoom": [{"to": "tool", "at": "start", "dur": 1}], "shot": [shot("start", S1X, S1Y, S1D, 14, 1, yaw=0.0)],
  "run": [run("bubA", "start-2", FAR, 6), run("bubB", "start-2", FAR, 6), run("jackGlow", "start-2", FAR, 6), run("liqWarm", "start-2", FAR, 6), run("vapHi", "start-2", FAR, 6)],
