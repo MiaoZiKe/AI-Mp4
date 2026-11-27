@@ -114,6 +114,11 @@ BOX("prBridge", "prober", -5.75, 5.75, 3.72, 4.05, -5.05, -4.15, "panel");
 VT("prRing", "prober", 5.55, 4.72, 3.44, 3.6, "dark"); VT("prRingIn", "prober", 4.78, 4.66, 3.42, 3.56, "steel2");
 P({ id: "prRingBolt", layer: "prober", shape: "cyl", size: [0.07, 0.05], rot: V, pos: [0, 3.62, 0], at: RING(16, 5.15, 11), mat: "steel" });
 P({ id: "prRingArm", layer: "prober", shape: "box", size: [0.7, 0.16, 1.3], pos: [0, 3.52, -4.6], at: [[-4.2, 0, 0.6], [4.2, 0, 0.6]], mat: "dark" });
+// 機台上方看得到的辨識件：右後方三色信號燈塔、左前方操作螢幕（懸臂架）＋鍵盤托盤
+VC("prTowerPole", "prober", 0.09, 4.05, 5.0, "steel2", { x: 5.3, z: -4.6 });
+[["lampR", 5.0], ["lampY", 5.32], ["lampG", 5.64]].forEach(([mt, y], i) => VC(`prTower${i}`, "prober", 0.2, y, y + 0.3, mt, { x: 5.3, z: -4.6 })); VC("prTowerCap", "prober", 0.21, 5.94, 6.02, "dark", { x: 5.3, z: -4.6 });
+VC("prMonPole", "prober", 0.08, 1.6, 4.3, "steel2", { x: -6.2, z: 3.8 }); BOX("prMonArm", "prober", -6.25, -5.2, 4.2, 4.35, 3.75, 3.95, "steel2");
+P({ id: "prMon", layer: "prober", shape: "box", size: [1.7, 1.1, 0.1], pos: [-4.7, 4.55, 4.0], rot: [-12, 20, 0], mat: "dark" }); P({ id: "prMonScr", layer: "prober", shape: "box", size: [1.5, 0.9, 0.02], pos: [-4.67, 4.55, 4.06], rot: [-12, 20, 0], mat: "screen" });
 // 載台＋吸盤＋晶圓（會上下接觸：touch）
 LAY("chuck", [7, 0.8, 0, 1.9]);
 BOX("ckStage", "chuck", -3.7, 3.7, 1.84, 1.98, -3.7, 3.7, "steel2");
@@ -192,6 +197,10 @@ const CARD = ["pcb", "stiff", "st", "ugp", "spc", "lgp", "nd", "ndRow", "hmap"];
 const flipY = (y) => R2(2 * YC - y);        // 翻面後的高度（未加抬升）
 LAY("laser", [0.3, 2.2, 0, 9.2]);
 const LZY = R2(2 * YC - Y_TIP + LIFT + 0.08);   // 翻面、抬高後的針尖再高一點
+// 雷射量測頭掛在後方橫樑上：立柱＋橫臂（跟著量測頭沿 x 掃），橫樑導軌固定
+LAY("lzRail", [12, 1, 0, 11.4]); BOX("lzRailB", "lzRail", -5.75, 5.75, LZY + 2.95, LZY + 3.35, -5.05, -4.45, "panel"); BOX("lzRailT", "lzRail", -5.6, 5.6, LZY + 2.85, LZY + 2.95, -4.9, -4.6, "steel2");
+P({ id: "lzRailPost", layer: "lzRail", shape: "box", size: [0.7, R2(LZY + 3.35 - 4.05), 0.6], pos: [0, R2((LZY + 3.35 + 4.05) / 2), -4.75], at: [[-5.4, 0, 0], [5.4, 0, 0]], mat: "panel" });
+BOX("lzArm", "laser", -0.22, 0.22, LZY + 2.05, LZY + 2.35, -4.7, -0.3, "steel2"); BOX("lzCar", "laser", -0.5, 0.5, LZY + 2.35, LZY + 2.85, -5.0, -4.4, "dark"); BOX("lzCable", "laser", -0.06, 0.06, LZY + 2.35, LZY + 2.42, -4.3, -0.5, "black");
 BOX("lzLine", "laser", -0.03, 0.03, LZY, LZY + 0.03, -1.5, 1.5, "laser"); BOX("lzHead", "laser", -0.35, 0.35, LZY + 1.7, LZY + 2.1, -0.45, 0.45, "dark"); BOX("lzWin", "laser", -0.18, 0.18, LZY + 1.65, LZY + 1.72, -0.3, 0.3, "laser");
 P({ id: "lzFan", layer: "laser", shape: "box", size: [0.03, 1.62, 0.03], pos: [0, R2(LZY + 0.84), 0], at: [-1.4, -0.7, 0, 0.7, 1.4].map((z) => [0, 0, z]), mat: "laser" });   // 雷射光幕（示意：幾道細光線）
 
@@ -293,8 +302,10 @@ const mNeedle = (pre, lay, bow, dyTip) => {
     const y1 = MY_LG1, y2 = MY_UG0;            // 彎弧段在兩片導板之間
     P({ id: `${pre}Lo${i}`, layer: lay, shape: "cyl", size: [0.09, R2(y1 + 0.05 - tip - 0.25)], rot: V, pos: [x, R2((tip + 0.25 + y1 + 0.05) / 2), 0], mat: "needle" });
     P({ id: `${pre}Tip${i}`, layer: lay, shape: "cone", size: [0.015, 0.09, 0.25], rot: V, pos: [x, R2(tip + 0.125), 0], mat: "tip" });
-    const segs = 4; for (let k = 0; k < segs; k++) { const ya = y1 + ((y2 - y1) * k) / segs, yb = y1 + ((y2 - y1) * (k + 1)) / segs, xa = x + b * Math.sin((Math.PI * k) / segs), xb = x + b * Math.sin((Math.PI * (k + 1)) / segs);
-      const t = Math.atan2(xb - xa, yb - ya) / D2R; P({ id: `${pre}Bw${i}_${k}`, layer: lay, shape: "cyl", size: [0.09, R2(Math.hypot(xb - xa, yb - ya) + 0.02)], rot: [90, R2(-t), 0], pos: [R2((xa + xb) / 2), R2((ya + yb) / 2), 0], mat: "needle" }); }
+    // 彎弧段：10 小段＋每個接點一顆同半徑小球（接成一整根連續的弧，不會像斷成幾截）；彎的方向全部一致（同一側）
+    const segs = 10, jt = []; for (let k = 0; k < segs; k++) { const ya = y1 + ((y2 - y1) * k) / segs, yb = y1 + ((y2 - y1) * (k + 1)) / segs, xa = x + b * Math.sin((Math.PI * k) / segs), xb = x + b * Math.sin((Math.PI * (k + 1)) / segs);
+      const t = Math.atan2(xb - xa, yb - ya) / D2R; P({ id: `${pre}Bw${i}_${k}`, layer: lay, shape: "box", size: [0.16, R2(Math.hypot(xb - xa, yb - ya) + 0.04), 0.16], rot: [0, 0, R2(-t)], pos: [R2((xa + xb) / 2), R2((ya + yb) / 2), 0], mat: "needle" }); /* 只繞 z 轉（單軸，不受尤拉角順序影響） */ jt.push([R2(xa), R2(ya), 0]); }
+    jt.push([x, y2, 0]); P({ id: `${pre}Jt${i}`, layer: lay, shape: "sphere", size: [0.09], pos: [0, 0, 0], at: jt, mat: "needle" });
     P({ id: `${pre}Hi${i}`, layer: lay, shape: "cyl", size: [0.09, R2(top - y2 + 0.02)], rot: V, pos: [x, R2((y2 + top) / 2), 0], mat: "needle" });
   }
 };
@@ -332,8 +343,8 @@ LAY("wNdl", [1, 8, WX, 6]); wNeedleBody("wN", "wNdl", R2(WTIP + 0.93));
 LAY("wTipNew", [1, 1.2, WX, 3.0]); P({ id: "wTipNewC", layer: "wTipNew", shape: "cone", size: [0.03, 0.3, 0.95], rot: V, pos: [WX, R2(WTIP + 0.475), WZ], mat: "tip" });
 LAY("wTipWorn", [1, 1.2, WX, 3.2]); P({ id: "wTipWornC", layer: "wTipWorn", shape: "cone", size: [0.17, 0.3, 0.62], rot: V, pos: [WX, R2(WTIP + 0.33 + 0.31), WZ], mat: "needle" });
 VC("wTipWornF", "wTipWorn", 0.17, WTIP + 0.31, WTIP + 0.34, "dark", { x: WX, z: WZ });
-LAY("wDep", [1, 0.6, WX, 3.0]); P({ id: "wDepB", layer: "wDep", shape: "sphere", size: [0.09], pos: [WX, 0, WZ], at: RING(9, 0.2, 10).map(([x, , z], i) => [x, R2(WTIP + 0.36 + (i % 3) * 0.07), z]).concat([[0, WTIP + 0.3, 0], [0.08, WTIP + 0.3, 0.06]]), mat: "dep" });
-VT("wDepRing", "wDep", 0.27, 0.15, WTIP + 0.34, WTIP + 0.5, "dep", { x: WX, z: WZ });
+LAY("wDep", [1, 0.6, WX, 3.0]); P({ id: "wDepB", layer: "wDep", shape: "sphere", size: [0.045], pos: [WX, 0, WZ], at: RING(9, 0.19, 10).map(([x, , z], i) => [x, R2(WTIP + 0.36 + (i % 3) * 0.07), z]).concat([[0, WTIP + 0.3, 0], [0.08, WTIP + 0.3, 0.06]]), mat: "dep" });
+VT("wDepRing", "wDep", 0.21, 0.16, WTIP + 0.33, WTIP + 0.43, "dep", { x: WX, z: WZ });
 LAY("wTipClean", [1, 1.2, WX, 3.2]); P({ id: "wTipCleanC", layer: "wTipClean", shape: "cone", size: [0.11, 0.3, 0.68], rot: V, pos: [WX, R2(WTIP + 0.27 + 0.34), WZ], mat: "tip" });
 // 新針（換針後從上方落下），與舊針同形
 LAY("wNew", [1, 8, WX, 6]); wNeedleBody("wNw", "wNew", R2(WTIP + 0.93)); P({ id: "wNewTip", layer: "wNew", shape: "cone", size: [0.03, 0.3, 0.95], rot: V, pos: [WX, R2(WTIP + 0.475), WZ], mat: "tip" });
@@ -351,6 +362,12 @@ P({ id: "wTwB", layer: "wTwz", shape: "box", size: [2.8, 0.14, 0.12], pos: [R2(W
 P({ id: "wTwGrip", layer: "wTwz", shape: "box", size: [0.8, 0.3, 0.86], pos: [R2(WX + 2.75), 7.8, 0], rot: [0, 0, 12], mat: "rubber" });
 P({ id: "wTwTip", layer: "wTwz", shape: "box", size: [0.12, 0.2, 0.1], pos: [R2(WX + 0.32), 7.28, 0], at: [[0, 0, 0.3], [0, 0, -0.3]], mat: "dark" });
 
+// 第二把鑷子（夾著新針放進導板孔）
+LAY("wTwz2", [3, 2, WX + 1.5, 7.6]);
+P({ id: "wTw2A", layer: "wTwz2", shape: "box", size: [2.8, 0.14, 0.12], pos: [R2(WX + 1.65), 7.55, 0.34], rot: [0, 0, 12], mat: "steel2" });
+P({ id: "wTw2B", layer: "wTwz2", shape: "box", size: [2.8, 0.14, 0.12], pos: [R2(WX + 1.65), 7.55, -0.34], rot: [0, 0, 12], mat: "steel2" });
+P({ id: "wTw2Grip", layer: "wTwz2", shape: "box", size: [0.8, 0.3, 0.86], pos: [R2(WX + 2.75), 7.8, 0], rot: [0, 0, 12], mat: "rubber" });
+P({ id: "wTw2Tip", layer: "wTwz2", shape: "box", size: [0.12, 0.2, 0.1], pos: [R2(WX + 0.32), 7.28, 0], at: [[0, 0, 0.3], [0, 0, -0.3]], mat: "dark" });
 // ═════ 站 D：下一系列預告＝貼在藍色膠膜、金屬環框上的測完晶圓＋切割刀（不轉到切割，只預告）═════
 const DX = 178;
 LAY("dBase", [12, 1, DX, 0.5], true); BOX("dPl", "dBase", DX - 5.8, DX + 5.8, 0, 0.9, -5.6, 5.6, "band"); BOX("dPlTop", "dBase", DX - 5.8, DX + 5.8, 0.9, 1.0, -5.6, 5.6, "panel2");
