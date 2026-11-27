@@ -21,7 +21,7 @@ S = [
  [("core", "核心板"), ("drill", "鑽穿"), ("plate", "鍍銅"), ("fill", "補平"), ("base", "地基")], ["核心板", "鑽穿", "地基"], ["USPTO 8877565、9578755（核心鑽孔、鍍銅、塞孔）；示意"], 6, 0.3, 0.6),
 ("s4", "mechanism", "接著兩面同時往外蓋，兩邊一樣厚，板子才不容易翹。",
  ["接著兩面", "同時往外蓋", "兩邊一樣厚", "板子才不容易翹"], ["Then both sides", "build outward together,", "equally thick on each side,", "so the board won't warp."],
- [("two", "兩面"), ("out", "往外蓋"), ("even", "一樣厚"), ("warp", "不會翹")], ["兩面", "一樣厚", "不會翹"], ["iNEMI 大尺寸載板翹曲專題；USPTO 6969674；示意"], 5, 0.3, 0.6),
+ [("two", "兩面"), ("out", "往外蓋"), ("even", "一樣厚"), ("warp", "不容易翹")], ["兩面", "一樣厚", "不會翹"], ["iNEMI 大尺寸載板翹曲專題；USPTO 6969674；示意"], 5, 0.3, 0.6),
 ("s5", "mechanism", "每一層都重複貼膜、打洞、鍍銅，一層接通一層。",
  ["每一層都重複", "貼膜打洞鍍銅", "一層接通一層"], ["Every layer repeats:", "laminate film, drill, plate copper,", "each layer linked to the next."],
  [("film", "貼膜"), ("hole", "打洞"), ("cu", "鍍銅"), ("link", "接通")], ["貼膜", "打洞", "鍍銅"], ["MKS ESI Geode A 規格；旭化成 LDI 乾膜；示意動畫，不是量測"], 5, 0.3, 0.6),
