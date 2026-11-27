@@ -125,7 +125,7 @@ const Water: React.FC<P> = ({ o, f, k }) => {
         <text x={30} y={CT + 206} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * dy}>每天（換算，約數）</text>
         <Sep x={352} />
         <Row x={378} y={CT + 52} t="2024 全年用水 1.29 億立方公尺" c={BLUE} a={dy} />
-        <Row x={378} y={CT + 112} t="÷365 天，含全公司全廠" c={H.text2} a={dy} />
+        <Row x={378} y={CT + 112} t="÷365 天；全部用水，不只超純水" c={H.text2} a={dy} />
         <Row x={378} y={CT + 164} t="約 140 座標準泳池" c={OK} a={nm} />
         {Array.from({ length: 14 }, (_, i) => <rect key={i} x={404 + i * 36} y={CT + 182} width={30} height={22} fill={i < Math.round(14 * nm) ? WAT : "#E9EEF4"} stroke={H.text2} strokeWidth={1.5} />)}
         <text x={404} y={CT + 246} style={zh(30, H.text2, 700)} opacity={0.4 + 0.6 * nm}>一格＝10 座（每座 2,500 立方公尺）</text>
@@ -194,7 +194,7 @@ const Power: React.FC<P> = ({ o, f, k }) => {
         <Sep x={340} />
         <Row x={366} y={CT + 52} t="2024 約占全台用電 9%" c={ORG} a={on1} />
         <Row x={366} y={CT + 112} t="2025 推算約一成（報導）" c={H.text2} a={on1} />
-        <Row x={366} y={CT + 172} t="先進廠：超過一半在空調、冷卻" c={BLUE} a={ts} />
+        <Row x={366} y={CT + 172} t="先進廠：超過一半在空調、冷卻等" c={BLUE} a={ts} />
         <text x={390} y={CT + 222} style={zh(30, H.text2, 700)} opacity={0.4 + 0.6 * ts}>（報導，以先進製程廠為例）</text>
         <rect x={390} y={CT + 240} width={520} height={26} fill="#E9EEF4" stroke={H.text2} strokeWidth={2} opacity={0.4 + 0.6 * ts} />
         <rect x={390} y={CT + 240} width={520 * 0.461 * ts} height={26} fill={GRY} /><rect x={390 + 520 * 0.461} y={CT + 240} width={520 * 0.539 * ts} height={26} fill={BLUE} />

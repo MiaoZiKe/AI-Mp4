@@ -24,7 +24,7 @@ const palette = {
   cableO: "#E8862B", powC: "#FFD34D", battC: "#2E3440", battG: "#3FD07A", porcC: "#8A4B2E", transC: "#6F8197", upsC: "#4A5468",
   aluC: "#C8CED8", lnC: "#F4F7FA", frostC: "#FFFFFF", n2C: "#7FE3E8", liqC: "#3A7BD5", soilC: "#B7946A", markY: "#F2B632", warnY: "#F2B632",
   chillC: "#3B8FE0", condC: "#E8743B", plumeC: "#FFFFFF", heatC: "#E5602B", pcbC: "#2F7A4A", ceramC: "#E8E2D4", siC: "#5E6B82", dieC: "#8D9BB5", padAu: "#D8B04A", needleC: "#D9DEE6",
-  roofC: "#B9C2CF", grateC: "#9AA6B8", ffuC: "#F7FAFF", towerC: "#DCE3EC", markC: "#E8613C", insulC: "#D5DBE3", soilD: "#8B6B45",
+  roofC: "#B9C2CF", grateC: "#9AA6B8", ffuC: "#F7FAFF", towerC: "#DCE3EC", markC: "#E8613C", insulC: "#D5DBE3", soilD: "#8B6B45", tankC: "#B9C9D8",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const glowM = (c, op, ei = 1) => M("std", c, { emissive: c, ei, opacity: op, rough: 1, metal: 0 });
@@ -60,6 +60,7 @@ const materials = {
   pcb: M("std", "pcbC", { rough: 0.5, metal: 0.1 }), ceram: M("std", "ceramC", { rough: 0.5, metal: 0 }), si: M("std", "siC", { rough: 0.35, metal: 0.55, env: 0.7 }),
   die: M("std", "dieC", { rough: 0.3, metal: 0.5, env: 0.7 }), padAu: M("std", "padAu", { rough: 0.3, metal: 0.9, env: 0.8 }), needle: M("std", "needleC", { rough: 0.2, metal: 0.95, env: 0.9 }),
   roof: M("std", "roofC", { rough: 0.7, metal: 0.1 }), grate: M("std", "grateC", { rough: 0.5, metal: 0.6, env: 0.4 }), ffu: M("std", "ffuC", { rough: 0.4, metal: 0, emissive: "ffuC", ei: 0.15 }),
+  tankP: M("std", "tankC", { rough: 0.45, metal: 0.35, env: 0.45 }),
   tower: M("std", "towerC", { rough: 0.6, metal: 0.05, env: 0.25 }), mark: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }),
   warnY: M("std", "warnY", { rough: 0.5, metal: 0, emissive: "warnY", ei: 0.2 }), airDot: glowM("upwC", 0.85, 0.5), edge: glowM("ffuC", 0.95, 0.5),
 };
@@ -193,7 +194,8 @@ LAY("fClean", [17, 3.7, FX, 6.2]);
 for (let i = 0; i < 4; i++) { const x0 = FX - 7.2 + i * 3.7; BOX(`fT${i}`, "fClean", x0, x0 + 2.8, 4.4, 6.5, -2.4, 0.2, "panel");
   BOX(`fTb${i}`, "fClean", x0, x0 + 2.8, 4.4, 4.62, -2.4, 0.2, "band"); BOX(`fTw${i}`, "fClean", x0 + 0.4, x0 + 1.7, 5.2, 6.1, 0.2, 0.23, "window"); BOX(`fTs${i}`, "fClean", x0 + 2.0, x0 + 2.55, 5.6, 6.0, 0.2, 0.24, "screen");
   BOX(`fTlp${i}`, "fClean", x0 + 0.3, x0 + 1.8, 4.62, 5.0, 0.2, 0.9, "steel2"); VC(`fTlt${i}`, "fClean", 0.07, 6.5, 7.0, "steel", { x: x0 + 2.5, z: -0.2 }); SPH(`fTlg${i}`, "fClean", 0.1, x0 + 2.5, 7.0, -0.2, "lampG");
-  for (let k = 0; k < 4; k++) BOX(`fTv${i}_${k}`, "fClean", x0 + 2.0, x0 + 2.6, 4.8 + k * 0.1, 4.84 + k * 0.1, 0.2, 0.23, "dark"); }
+  for (let k = 0; k < 4; k++) BOX(`fTv${i}_${k}`, "fClean", x0 + 2.0, x0 + 2.6, 4.8 + k * 0.1, 4.84 + k * 0.1, 0.2, 0.23, "dark");   BOX(`fTfoup${i}`, "fClean", x0 + 0.45, x0 + 1.05, 5.0, 5.4, 0.3, 0.8, "panel2"); BOX(`fTfoup2${i}`, "fClean", x0 + 1.15, x0 + 1.75, 5.0, 5.4, 0.3, 0.8, "panel2");
+  P({ id: `fTseam${i}`, layer: "fClean", shape: "box", size: [0.03, 1.8, 0.02], pos: [0, 5.55, 0.21], at: [[x0 + 1.85, 0, 0], [x0 + 0.25, 0, 0]], mat: "seam" }); BOX(`fTplate${i}`, "fClean", x0 + 2.05, x0 + 2.5, 5.15, 5.35, 0.2, 0.23, "gold"); }
 BOX("fFfu", "fClean", FX - 8.1, FX + 8.1, 7.7, 8.0, -4.0, 4.0, "panel2");
 P({ id: "fFfuPanel", layer: "fClean", shape: "box", size: [1.0, 0.04, 1.0], pos: [0, 7.68, 0], at: [-7, -5.5, -4, -2.5, -1, 0.5, 2, 3.5, 5, 6.5].flatMap((dx) => [-3, -1.5, 0, 1.5, 3].map((dz) => [FX + dx + 0.25, 0, dz])), mat: "ffu" });
 BOX("fRail", "fClean", FX - 8.0, FX + 8.0, 7.25, 7.38, 1.9, 2.15, "steel2"); BOX("fCarrier", "fClean", FX - 2.4, FX - 1.6, 6.75, 7.25, 1.75, 2.3, "panel2");
@@ -296,7 +298,9 @@ for (let i = 0; i < 3; i++) { const x = LX - 1.8 + i * 3.0; PIPE(`lDrop${i}`, "l
   VC(`lPou${i}`, "lLoop", 0.14, 1.85, 2.15, "steel2", { x, z: -3.3 }); ZC(`lPouV${i}`, "lLoop", 0.1, -3.25, -3.0, x, 1.6, "lampG"); }
 LAY("lTools", [10, 2.4, LX + 1.2, 1.4]);
 for (let i = 0; i < 3; i++) { const x = LX - 1.8 + i * 3.0; BOX(`lT${i}`, "lTools", x - 1.2, x + 1.2, 0.3, 2.7, -4.5, -3.5, "panel"); BOX(`lTw${i}`, "lTools", x - 0.9, x + 0.2, 1.4, 2.4, -3.5, -3.47, "window");
-  BOX(`lTs${i}`, "lTools", x + 0.4, x + 0.95, 1.9, 2.3, -3.5, -3.46, "screen"); BOX(`lTb${i}`, "lTools", x - 1.2, x + 1.2, 0.3, 0.5, -4.5, -3.5, "band"); SPH(`lTl${i}`, "lTools", 0.08, x + 1.0, 2.55, -3.48, "lampG"); }
+  BOX(`lTs${i}`, "lTools", x + 0.4, x + 0.95, 1.9, 2.3, -3.5, -3.46, "screen"); BOX(`lTb${i}`, "lTools", x - 1.2, x + 1.2, 0.3, 0.5, -4.5, -3.5, "band"); SPH(`lTl${i}`, "lTools", 0.08, x + 1.0, 2.55, -3.48, "lampG");   BOX(`lTlp${i}`, "lTools", x - 1.0, x - 0.1, 0.5, 1.15, -3.5, -3.0, "steel2"); BOX(`lTfoup${i}`, "lTools", x - 0.9, x - 0.2, 1.15, 1.6, -3.45, -3.05, "panel2"); BOX(`lTfh${i}`, "lTools", x - 0.7, x - 0.4, 1.6, 1.66, -3.3, -3.2, "dark");
+  VC(`lTpole${i}`, "lTools", 0.04, 2.7, 3.1, "steel", { x: x + 0.95, z: -4.0 }); VC(`lTr${i}`, "lTools", 0.08, 3.1, 3.22, "lampOff", { x: x + 0.95, z: -4.0 }); VC(`lTy${i}`, "lTools", 0.08, 3.22, 3.34, "lampY", { x: x + 0.95, z: -4.0 }); VC(`lTg${i}`, "lTools", 0.08, 3.34, 3.46, "lampG", { x: x + 0.95, z: -4.0 });
+  P({ id: `lTseam${i}`, layer: "lTools", shape: "box", size: [0.03, 2.3, 0.02], pos: [0, 1.5, -3.49], at: [[x - 0.05, 0, 0], [x + 0.3, 0, 0]], mat: "seam" }); P({ id: `lTscrew${i}`, layer: "lTools", shape: "cyl", size: [0.03, 0.02], pos: [0, 0, -3.49], at: [[x - 1.1, 2.6, 0], [x + 1.1, 2.6, 0], [x - 1.1, 0.6, 0], [x + 1.1, 0.6, 0]], mat: "steel" }); }
 // 回流閥（手輪）與電阻率表
 LAY("lValve", [1.2, 1.2, LX - 4.2, YL]);
 VC("lRvBody", "lValve", 0.24, YL - 0.25, YL + 0.25, "steel2", { x: LX - 3.2, z: -2.6 }); VC("lRvStem", "lValve", 0.04, YL + 0.25, YL + 0.7, "steel", { x: LX - 3.2, z: -2.6 });
@@ -319,10 +323,10 @@ P({ id: "tBSeam", layer: "tBldg", shape: "box", size: [0.05, 6.3, 0.04], pos: [0
 BOX("tBDoor", "tBldg", TX - 0.8, TX + 0.8, 0.12, 1.5, 2.4, 2.46, "dark"); BOX("tBCanopy", "tBldg", TX - 1.4, TX + 1.4, 1.6, 1.72, 2.4, 3.2, "steel2");
 for (let i = 0; i < 5; i++) BOX(`tBLv${i}`, "tBldg", TX + 2.4, TX + 5.2, 0.4 + i * 0.2, 0.48 + i * 0.2, 2.4, 2.48, "seam");
 BOX("tSignBg", "tBldg", TX - 4.6, TX - 1.4, 2.9, 4.0, 2.44, 2.47, "panel"); PLATE("tSign", "tBldg", "sign-tsmc", 1.3, TX - 3.0, 3.45, 2.48);
-FLAGPOLE("tFlag", "tBldg", "TW", TX + 6.8, 3.4, 6.4, 1.6);
+FLAGPOLE("tFlag", "tBldg", "TW", TX + 6.8, 3.4, 6.4, 1.6); FLAGPOLE("tFlag2", "tBldg", "TW", TX - 5.7, 3.4, 6.0, 1.5);
 // 原水槽：兩座大槽（爬梯、頂欄、液位計、人孔、銘板），進水管從左邊進來
 LAY("tTank", [7, 4.5, TX - 9.0, 2.2]);
-for (const [i, x, z] of [[0, TX - 10.6, -1.4], [1, TX - 7.6, 0.6]]) { VC(`tTk${i}`, "tTank", 1.35, 0.12, 4.3, "steelCut", { x, z }); VC(`tTkW${i}`, "tTank", 1.28, 0.14, 3.2, "water", { x, z });
+for (const [i, x, z] of [[0, TX - 10.6, -1.4], [1, TX - 7.6, 0.6]]) { VC(`tTk${i}`, "tTank", 1.35, 0.12, 4.3, "tankP", { x, z }); VC(`tTkLv${i}`, "tTank", 0.06, 0.4, 4.0, "window", { x: x - 0.95, z: z + 0.95 }); VC(`tTkLvW${i}`, "tTank", 0.04, 0.4, 3.2, "pipeBlue", { x: x - 0.95, z: z + 0.95 });
   VC(`tTkTop${i}`, "tTank", 1.4, 4.3, 4.42, "steel2", { x, z }); VT(`tTkRail${i}`, "tTank", 1.4, 1.36, 4.42, 4.8, "warnY", { x, z });
   P({ id: `tTkHoop${i}`, layer: "tTank", shape: "tube", size: [1.38, 1.35, 0.05], rot: V, pos: [x, 0, z], at: [[0, 1.2, 0], [0, 2.4, 0], [0, 3.6, 0]], mat: "steel" });
   BOX(`tTkLad${i}`, "tTank", x + 1.36, x + 1.42, 0.12, 4.8, z - 0.25, z + 0.25, "dark"); P({ id: `tTkRung${i}`, layer: "tTank", shape: "box", size: [0.06, 0.04, 0.5], pos: [x + 1.4, 0, z], at: Array.from({ length: 14 }, (_, k) => [0, 0.4 + k * 0.32, 0]), mat: "steel" });
@@ -375,9 +379,9 @@ for (let i = 0; i < 4; i++) { const x0 = EX - 3.6 + i * 1.1; BOX(`eSg${i}`, "eSw
   BOX(`eSgH${i}`, "eSwg", x0 + 0.85, x0 + 0.92, 1.0, 1.5, 0.13, 0.18, "steel"); BOX(`eSgM${i}`, "eSwg", x0 + 0.1, x0 + 0.95, 2.3, 2.36, 0.1, 0.14, "cable");
   P({ id: `eSgL${i}`, layer: "eSwg", shape: "sphere", size: [0.045], pos: [x0 + 0.25, 2.45, 0.12], at: [[0, 0, 0], [0.18, 0, 0], [0.36, 0, 0]], mat: i === 3 ? "lampY" : "lampG" });
   BOX(`eSgP${i}`, "eSwg", x0 + 0.2, x0 + 0.6, 0.5, 0.7, 0.13, 0.15, "gold"); for (let k = 0; k < 3; k++) BOX(`eSgV${i}_${k}`, "eSwg", x0 + 0.2, x0 + 0.7, 0.85 + k * 0.08, 0.88 + k * 0.08, 0.13, 0.15, "dark"); }
-ZC("eVm", "eSwg", 0.26, 0.13, 0.17, EX - 2.0, 1.75, "panel"); VT("eVmRim", "eSwg", 0.29, 0.25, 0.13, 0.19, "dark", { rot: [0, 0, 0], pos: [EX - 2.0, 1.75, 0.16] });
-P({ id: "eVmTick", layer: "eSwg", shape: "box", size: [0.02, 0.06, 0.02], pos: [0, 0, 0.18], at: [-50, -25, 0, 25, 50].map((a) => [R2(EX - 2.0 + 0.2 * Math.sin(a * D2R)), R2(1.75 + 0.2 * Math.cos(a * D2R)), 0]), mat: "dark" });
-LAY("eNeedle", [0.4, 0.4, EX - 2.0, 1.75]); BOX("eNdl", "eNeedle", EX - 2.012, EX - 1.988, 1.75, 1.95, 0.185, 0.2, "estop");
+ZC("eVm", "eSwg", 0.42, 0.13, 0.17, EX - 2.0, 1.75, "panel"); P({ id: "eVmRim", layer: "eSwg", shape: "tube", size: [0.46, 0.41, 0.06], pos: [EX - 2.0, 1.75, 0.17], mat: "dark" }); P({ id: "eVmRed", layer: "eSwg", shape: "box", size: [0.16, 0.05, 0.01], pos: [EX - 2.24, 1.96, 0.18], rot: [0, 0, 35], mat: "lampR" });
+P({ id: "eVmTick", layer: "eSwg", shape: "box", size: [0.02, 0.06, 0.02], pos: [0, 0, 0.18], at: [-50, -25, 0, 25, 50].map((a) => [R2(EX - 2.0 + 0.33 * Math.sin(a * D2R)), R2(1.75 + 0.33 * Math.cos(a * D2R)), 0]), mat: "dark" });
+LAY("eNeedle", [0.6, 0.6, EX - 2.0, 1.75]); BOX("eNdl", "eNeedle", EX - 2.02, EX - 1.98, 1.75, 2.08, 0.185, 0.2, "estop"); ZC("eNdlHub", "eNeedle", 0.05, 0.18, 0.21, EX - 2.0, 1.75, "dark");
 // 敏感機台：機殼、視窗、螢幕、裝載口、燈塔（綠＝正常、紅＝當機）
 LAY("eTool", [3, 3, EX + 4.0, 1.5]);
 BOX("eTl", "eTool", EX + 2.6, EX + 5.4, 0.25, 2.5, -1.4, 0.6, "panel"); BOX("eTlB", "eTool", EX + 2.6, EX + 5.4, 0.25, 0.45, -1.4, 0.6, "band");
@@ -449,6 +453,9 @@ BOX("gVmb", "gFab", GX + 6.4, GX + 7.6, 0.25, 2.7, -1.9, -0.9, "panel"); BOX("gV
 P({ id: "gVmbG", layer: "gFab", shape: "cyl", size: [0.09, 0.04], pos: [GX + 6.75, 1.1, -0.86], at: [[0, 0, 0], [0.3, 0, 0], [0.6, 0, 0]], mat: "steel2" });
 P({ id: "gVmbTag", layer: "gFab", shape: "box", size: [0.2, 0.08, 0.02], pos: [GX + 6.75, 0.8, -0.86], at: [[0, 0, 0], [0.3, 0, 0], [0.6, 0, 0]], mat: "pipeGreen" });
 P({ id: "gVmbVal", layer: "gFab", shape: "box", size: [0.1, 0.18, 0.1], pos: [GX + 6.75, 2.0, -1.1], at: [[0, 0, 0], [0.3, 0, 0], [0.6, 0, 0]], mat: "steel" });
+VC("gVmbPur", "gFab", 0.12, 1.5, 2.35, "steel2", { x: GX + 7.25, z: -1.15 }); VC("gVmbPurC", "gFab", 0.14, 2.35, 2.42, "dark", { x: GX + 7.25, z: -1.15 });
+P({ id: "gVmbReg", layer: "gFab", shape: "sphere", size: [0.1], pos: [GX + 6.75, 2.3, -1.1], at: [[0, 0, 0], [0.3, 0, 0]], mat: "steel" }); P({ id: "gVmbFace", layer: "gFab", shape: "cyl", size: [0.07, 0.02], pos: [GX + 6.75, 1.1, -0.83], at: [[0, 0, 0], [0.3, 0, 0], [0.6, 0, 0]], mat: "panel" });
+P({ id: "gVmbHandle", layer: "gFab", shape: "box", size: [0.2, 0.05, 0.05], pos: [GX + 6.75, 1.95, -0.95], at: [[0, 0, 0], [0.3, 0, 0], [0.6, 0, 0]], mat: "estop" }); BOX("gVmbPlate", "gFab", GX + 6.5, GX + 7.0, 0.4, 0.6, -0.9, -0.87, "gold"); BOX("gVmbWarn", "gFab", GX + 7.05, GX + 7.45, 0.4, 0.65, -0.9, -0.87, "warnY");
 LAY("gLeak", [0.3, 0.3, GX + 7.45, 2.6]); SPH("gLeakL", "gLeak", 0.08, GX + 7.45, 2.6, -0.85, "lampG");
 BOX("gTl", "gFab", GX + 8.3, GX + 10.6, 0.25, 2.5, -2.2, 0.2, "panel"); BOX("gTlB", "gFab", GX + 8.3, GX + 10.6, 0.25, 0.45, -2.2, 0.2, "band");
 BOX("gTlW", "gFab", GX + 8.6, GX + 9.7, 1.2, 2.2, 0.2, 0.23, "window"); BOX("gTlS", "gFab", GX + 9.9, GX + 10.4, 1.6, 2.1, 0.2, 0.24, "screen"); SPH("gTlL", "gFab", 0.08, GX + 10.4, 2.62, -0.2, "lampG");
@@ -473,21 +480,22 @@ for (let i = 0; i < 3; i++) { const x = VX - 9.5 + i * 1.1; VC(`v0T${i}`, "v0", 
 for (let r = 0; r < 3; r++) HXC(`v0Ro${r}`, "v0", 0.18, VX - 6.4, VX - 4.6, 0.8 + r * 0.45, -1.6, "ro");
 BOX("v0Ctl", "v0", VX - 6.4, VX - 5.3, 0.35, 2.0, -0.4, 0.2, "panel"); BOX("v0CtlS", "v0", VX - 6.25, VX - 5.45, 1.4, 1.8, 0.2, 0.23, "screen"); HXC("v0P", "v0", 0.1, VX - 10, VX - 4.6, 0.6, -0.8, "pipeW");
 BOX("v0SignBg", "v0", VX - 9.6, VX - 6.6, 0.12, 1.35, 1.0, 1.1, "panel"); PLATE("v0Sign", "v0", "sign-organo", 2.6, VX - 8.1, 0.75, 1.12);
-FLAGPOLE("v0Flag", "v0", "JP", VX - 5.2, 1.8, 4.6, 1.3);
+LAY("vF0", [1.6, 4.8, VX - 5.2, 2.4]); FLAGPOLE("v0Flag", "vF0", "JP", VX - 5.2, 1.8, 4.6, 1.3);
 // v1 聯華林德：高冷箱＋液氮槽＋空壓機房（矩形冷箱）
 LAY("v1", [6, 7, VX, 3.5]);
 BOX("v1Cb", "v1", VX - 2.4, VX - 0.8, 0.12, 6.8, -2.8, -1.2, "alu"); P({ id: "v1CbRib", layer: "v1", shape: "box", size: [1.7, 0.06, 0.06], pos: [VX - 1.6, 0, -1.18], at: [1.5, 3, 4.5, 6].map((y) => [0, y, 0]), mat: "steel" });
+BOX("v1Lad", "v1", VX - 0.78, VX - 0.72, 0.12, 6.8, -2.2, -1.8, "dark"); P({ id: "v1Rung", layer: "v1", shape: "box", size: [0.06, 0.04, 0.4], pos: [VX - 0.74, 0, -2.0], at: Array.from({ length: 20 }, (_, k) => [0, 0.4 + k * 0.32, 0]), mat: "steel" }); BOX("v1Plate", "v1", VX - 2.0, VX - 1.2, 1.0, 1.4, -1.18, -1.15, "gold"); PIPE("v1P", "v1", [[VX - 0.8, 1.2, -1.6], [VX - 0.05, 1.2, -1.6]], 0.1, "insul", { jmat: "insul" });
 VC("v1Ln", "v1", 0.65, 0.8, 4.2, "ln", { x: VX + 0.6, z: -1.6 }); SPH("v1LnT", "v1", 0.65, VX + 0.6, 4.2, -1.6, "ln"); P({ id: "v1LnLeg", layer: "v1", shape: "box", size: [0.1, 0.7, 0.1], pos: [0, 0.47, 0], at: RING(4, 0.58, 45, VX + 0.6, -1.6), mat: "steel" });
 BOX("v1Comp", "v1", VX + 1.6, VX + 3.0, 0.12, 1.8, -2.8, -1.0, "panel"); for (let k = 0; k < 4; k++) BOX(`v1CompV${k}`, "v1", VX + 1.7, VX + 2.9, 0.4 + k * 0.25, 0.48 + k * 0.25, -1.0, -0.97, "seam");
 BOX("v1SignBg", "v1", VX - 2.6, VX + 0.2, 0.12, 1.35, 1.0, 1.1, "panel"); PLATE("v1Sign", "v1", "sign-lienhwa", 2.4, VX - 1.2, 0.75, 1.12);
-FLAGPOLE("v1Flag", "v1", "TW", VX + 1.5, 1.8, 4.6, 1.3);
+LAY("vF1", [1.6, 4.8, VX + 1.5, 2.4]); FLAGPOLE("v1Flag", "vF1", "TW", VX + 1.5, 1.8, 4.6, 1.3);
 // v2 三福氣體：雙塔＋球形儲槽（外型與 v1 不同）
 LAY("v2", [6, 6, VX + 7.2, 3]);
 for (const [i, x] of [[0, VX + 4.6], [1, VX + 5.6]]) { VC(`v2Col${i}`, "v2", 0.38, 0.12, 5.6 - i * 0.8, "alu", { x, z: -2.0 }); SPH(`v2ColT${i}`, "v2", 0.38, x, 5.6 - i * 0.8, -2.0, "alu"); P({ id: `v2Ring${i}`, layer: "v2", shape: "tube", size: [0.41, 0.38, 0.05], rot: V, pos: [x, 0, -2.0], at: [1, 2, 3, 4].map((y) => [0, y, 0]), mat: "steel" }); }
 SPH("v2Sph", "v2", 1.1, VX + 7.9, 2.0, -1.6, "ln"); P({ id: "v2SphLeg", layer: "v2", shape: "box", size: [0.1, 1.5, 0.1], pos: [0, 0.85, 0], at: RING(5, 0.95, 0, VX + 7.9, -1.6), mat: "steel" });
 VT("v2SphBelt", "v2", 1.12, 1.08, 1.95, 2.05, "steel", { x: VX + 7.9, z: -1.6 }); HXC("v2P", "v2", 0.1, VX + 4.6, VX + 7.9, 0.8, -1.0, "steel2");
 BOX("v2SignBg", "v2", VX + 4.4, VX + 7.2, 0.12, 1.35, 1.0, 1.1, "panel"); PLATE("v2Sign", "v2", "sign-sanfu", 2.4, VX + 5.8, 0.75, 1.12);
-FLAGPOLE("v2Flag", "v2", "TW", VX + 9.4, 1.8, 4.6, 1.3);
+LAY("vF2", [1.6, 4.8, VX + 9.4, 2.4]); FLAGPOLE("v2Flag", "vF2", "TW", VX + 9.4, 1.8, 4.6, 1.3);
 
 // ═════ 站 P：探針卡預告（晶圓台＋晶圓＋晶粒；上方探針卡：電路板、元件、加強環、陶瓷針座、針陣；測試頭）═════
 const PX = 235;
@@ -525,17 +533,17 @@ actions.fERise = { type: "flow", layer: "fSubE", path: [[FX + 0.6, 2.6, 1.0], [F
 // W 超純水製造：原水沿後排流進來；雜質（橘）被逆滲透膜擋下、濃水（較少）沿排放管走掉；淡水（亮藍）轉到前排；離子（紅）被樹脂抓住；紫外線徑向發散；顆粒（褐）被超過濾擋下
 actions.wFeed = { type: "flow", _說明: "原水（略黃）沿後排進水管流向逆滲透", layer: "wPipe", path: W_IN, n: 9, size: 0.1, shape: "dot", rate: 0.16, color: "rawC", track: false, free: true, jitter: 0.04 };
 actions.wImp = { type: "flow", _說明: "雜質（橘）跟著原水進逆滲透膜殼，留在膜殼這一側", layer: "wPipe", path: [[WX - 8.6, 0.63, ZB + 1.0], [WX - 1.0, 0.63, ZB + 1.0], [WX - 1.0, 1.0, ZB + 0.35]], n: 5, size: 0.075, shape: "dot", rate: 0.17, color: "impC", track: false, free: true, jitter: 0.05 };
-actions.wConc = { type: "flow", _說明: "濃水（被擋下的雜質）沿膜殼外側流向排放口：流量比淡水小", layer: "wRO", path: [[WX + 1.42, 2.0, ZB - 0.4], [WX + 1.42, 2.0, ZB - 1.3], [WX + 1.42, 0.42, ZB - 1.3], [WX + 4.0, 0.42, ZB - 1.3]], n: 3, size: 0.07, shape: "dot", rate: 0.3, color: "impC", track: false, free: true };
-actions.wPerm = { type: "flow", _說明: "淡水（亮藍）繞到前排，一路流到儲槽", layer: "wPipe", path: W_PERM, n: 16, size: 0.1, shape: "dot", rate: 0.065, color: "upwC", track: false, free: true, jitter: 0.03 };
+actions.wConc = { type: "flow", _說明: "濃水（被擋下的雜質）沿膜殼外側流向排放口：流量比淡水小", layer: "wRO", path: [[WX + 1.42, 2.0, ZB - 0.4], [WX + 1.42, 2.0, ZB - 1.3], [WX + 1.42, 0.42, ZB - 1.3], [WX + 4.0, 0.42, ZB - 1.3]], n: 2, size: 0.07, shape: "dot", rate: 0.3, color: "impC", track: false, free: true };
+actions.wPerm = { type: "flow", _說明: "淡水（亮藍）繞到前排，一路流到儲槽", layer: "wPipe", path: W_PERM, n: 30, size: 0.13, shape: "dot", rate: 0.065, color: "upwC", track: false, free: true, jitter: 0.03 };
 actions.wIon = { type: "flow", _說明: "離子（紅）流進混床罐，被樹脂珠抓住、不再出來", layer: "wPipe", path: [[WX + 6.6, 0.63, ZF - 0.95], [WX + 5.4, 0.63, ZF - 0.95], [WX + 5.4, 0.63, ZF - 0.4], [WX + 5.4, 1.4, ZF + 0.6]], n: 4, size: 0.07, shape: "dot", rate: 0.3, color: "ionC", track: false, free: true };
 actions.wBeadGlow = { type: "pulse", _說明: "樹脂珠抓到離子時閃一下", parts: ["wBeadA"], color: "ionC", glow: 0.6, freq: 1.4, halo: 0 };
 actions.wUvGlow = { type: "pulse", parts: ["wUvLamp"], color: "uvC", glow: 1.0, freq: 2.2, halo: 0.6 };
-actions.wUvRay = { type: "wave", _說明: "紫外線從燈管往四周發散（越遠越淡）", from: { layer: "wUV", p: [WX + 1.7, 1.2, ZF] }, dir: [1, 0, 0], reach: 0.1, count: 3, r0: 0.12, spread: 0.45, rate: 1.1, color: "uvC", width: 0.04 };
+for (const [k, dx] of [["", 0.8], ["2", 1.4], ["3", 2.0], ["4", 2.6]]) actions[`wUvRay${k}`] = { type: "wave", _說明: "紫外線沿整支燈管往四周一圈圈發散（越遠越淡）", from: { layer: "wUV", p: [R2(WX + dx), 1.2, ZF] }, dir: [1, 0, 0], reach: 0.1, count: 3, r0: 0.14, spread: 0.5, rate: 1.1, color: "uvC", width: 0.05 };
 actions.wOrg = { type: "flow", _說明: "細顆粒（褐）被超過濾擋在模組外側", layer: "wPipe", path: [[WX + 0.6, 0.63, ZF - 0.95], [WX - 1.9, 0.63, ZF - 0.95], [WX - 1.9, 0.63, ZF - 0.4], [WX - 1.9, 1.3, ZF - 0.4]], n: 3, size: 0.065, shape: "dot", rate: 0.3, color: "orgC", track: false, free: true };
 actions.wHp = { type: "vibrate", parts: ["wHpMotor", "wHpFin"], axis: [0, 1, 0], amp: 0.008, freq: 9 };
 // L 循環：迴路泵（風扇罩標記看得到在轉）、主管一直流、死水支管裡細菌長出來（脈動）
 actions.lPumpSpin = { type: "rotate", parts: ["lFanMarkB"], axis: [0, 0, 1], pivot: [LX - 2.75, 0.85, 0], rps: 2.2, rampSpin: true };
-actions.lFlow = { type: "flow", _說明: "超純水在環狀主管裡一直循環（回到儲槽再出去）", layer: "lLoop", path: L_LOOP, n: 20, size: 0.1, shape: "dot", rate: 0.055, color: "upwC", track: false, free: true, jitter: 0.03 };
+actions.lFlow = { type: "flow", _說明: "超純水在環狀主管裡一直循環（回到儲槽再出去）", layer: "lLoop", path: L_LOOP, n: 30, size: 0.1, shape: "dot", rate: 0.055, color: "upwC", track: false, free: true, jitter: 0.03 };
 actions.lBactGrow = { type: "pulse", _說明: "死水支管：細菌（綠）冒出來", parts: ["lBactC"], color: "bactC", glow: 0.9, freq: 1.2, halo: 0.3 };
 actions.lDrip = { type: "flow", _說明: "用水點把超純水送進機台", layer: "lLoop", path: [[LX - 1.8, YL, -2.6], [LX - 1.8, YL, -3.3], [LX - 1.8, 2.2, -3.3]], n: 2, lanes: 3, laneDir: [1, 0, 0], laneGap: 3.0, size: 0.07, shape: "dot", rate: 0.7, color: "upwC", track: false, free: true };
 // T 廠房：原水進槽；冷卻塔風扇起轉、白色水氣上升；冷卻水（橘）把熱帶到塔頂；冰水（藍）送進廠房；冷凝器發熱
@@ -558,8 +566,8 @@ actions.eTransHum = { type: "vibrate", parts: ["eFin"], axis: [1, 0, 0], amp: 0.
 // G 氣體：蒸餾塔內冷氣上升、液體下流（逆向交換）；氮氣在管線裡壓力輸送（中心快、管壁慢）；汽化器結霜白霧；洩漏偵測燈閃
 actions.gVapUp = { type: "flow", _說明: "蒸餾塔：冷的氣體往上升", layer: "gAsu", path: [[GX - 8.75, 0.9, -0.95], [GX - 8.75, 6.6, -0.95]], n: 9, size: 0.07, shape: "dot", rate: 0.13, color: "n2C", track: false, free: true, jitter: 0.06 };
 actions.gLiqDown = { type: "flow", _說明: "蒸餾塔：液體沿塔盤往下流（和氣體逆向接觸）", layer: "gAsu", path: [[GX - 9.05, 6.6, -0.95], [GX - 9.05, 0.9, -0.95]], n: 8, size: 0.08, shape: "dot", rate: 0.1, color: "liqC", track: false, free: true, jitter: 0.04 };
-actions.gN2c = { type: "flow", _說明: "氮氣在管裡被壓力推著走：中心快", layer: "gPipe", path: G_N2, n: 22, size: 0.075, shape: "dot", rate: 0.07, color: "n2C", track: false, free: true, jitter: 0.02 };
-actions.gN2w = { type: "flow", _說明: "貼著管壁的較慢", layer: "gPipe", path: G_N2, n: 14, lanes: 2, laneDir: [0, 1, 0], laneGap: 0.16, size: 0.05, shape: "dot", rate: 0.04, color: "n2C", track: false, free: true, jitter: 0.01 };
+actions.gN2c = { type: "flow", _說明: "氮氣在管裡被壓力推著走：中心快", layer: "gPipe", path: G_N2, n: 22, size: 0.09, shape: "dot", rate: 0.09, color: "n2C", track: false, free: true, jitter: 0.02 };
+actions.gN2w = { type: "flow", _說明: "貼著管壁的較慢", layer: "gPipe", path: G_N2, n: 14, lanes: 2, laneDir: [0, 1, 0], laneGap: 0.17, size: 0.05, shape: "dot", rate: 0.03, color: "n2C", track: false, free: true, jitter: 0.01 };
 actions.gN2t = { type: "flow", layer: "gPipe", path: G_TL, n: 4, size: 0.06, shape: "dot", rate: 0.45, color: "n2C", track: false, free: true };
 actions.gMist = { type: "flow", _說明: "汽化器底部結霜、冒出白霧（往下、往旁邊散）", layer: "gVap", path: [[GX - 2.6, 1.2, 1.6], [GX - 2.4, 0.7, 2.2], [GX - 2.0, 0.4, 2.9]], n: 6, lanes: 2, laneDir: [1, 0, 0], laneGap: 0.8, size: 0.18, shape: "dot", rate: 0.3, color: "plumeC", track: false, free: true, jitter: 0.25 };
 actions.gLeakBlink = { type: "pulse", parts: ["gLeakL"], color: "lampG", glow: 0.9, freq: 1.2, halo: 0.4 };
@@ -575,8 +583,8 @@ Object.assign(anchors, {
   lLoop: A("lLoop", [LX + 4.5, YL, 1.15], 120, 110), lDead: A("lBact", [LX + 3.0, YL, 2.4], 140, -110), lValve: A("lValve", [LX - 3.2, YL + 0.7, -2.6], -130, -110), lPump: A("lPump", [LX - 3.0, 1.1, 1.3], -130, 110),
   tTank: A("tTank", [TX - 7.6, 3.6, 1.95], -120, -110), tSign: A("tBldg", [TX - 3.0, 3.9, 2.48], 120, -110), tTower: A("tTower", [TX + 1.8, 8.2, -0.34], 140, -100), tCw: A("tTower", [TX + 6.4, 4.6, 0.6], 120, -60), tChill: A("tChill", [TX + 8.5, 1.85, -0.2], 120, 100),
   eTrans: A("eTrans", [EX - 6.0, 2.0, 1.2], -130, -120), eSwg: A("eSwg", [EX - 2.0, 1.75, 0.2], 110, -140), eTool: A("eLampR", [EX + 5.1, 3.45, 0.42], 120, -100), eUps: A("eUPS", [EX - 1.9, 2.2, UZ + 0.53], -130, -120),
-  eBatt: A("eUPS", [EX + 2.5, 1.6, UZ + 0.36], 130, -130), eGrid: A("eCable", [EX - 7.5, 0.3, 2.2], -100, -150),
-  gN2: A("gPipe", [GX + 1.0, 2.25, 2.45], 120, -110), gAsu: A("gAsu", [GX - 8.9, 4.5, -0.4], 130, -110), gPipeU: A("gGround", [GX + 1.5, 0.6, 1.65], 120, 110), gVmb: A("gFab", [GX + 7.0, 2.2, -0.86], -140, -120), gTool: A("gFab", [GX + 9.4, 2.5, 0.2], 120, -110),
+  eBatt: A("eUPS", [EX + 2.25, 0.85, UZ + 0.36], 130, -130), eGrid: A("eCable", [EX - 7.5, 0.3, 2.2], -100, -150),
+  gN2: A("gPipe", [GX + 1.0, 2.25, 2.45], 120, -110), gAsu: A("gAsu", [GX - 8.9, 4.5, -0.4], 130, -110), gPipeU: A("gPipe", [GX + 1.5, 0.6, 1.78], 120, 110), gVmb: A("gFab", [GX + 7.0, 2.2, -0.86], -140, -120), gTool: A("gFab", [GX + 9.4, 2.5, 0.2], 120, -110),
   v0: A("v0", [VX - 8.1, 2.6, -1.6], -110, -120), v1: A("v1", [VX - 1.6, 5.0, -1.18], 120, -110), v2: A("v2", [VX + 7.9, 3.1, -1.6], 120, -100),
   pCard: A("pCard", [PX + 2.2, 2.5, 1.5], 130, -110), pNeedle: A("pCard", [PX + 0.6, 2.05, 0.3], 140, 120),
 });

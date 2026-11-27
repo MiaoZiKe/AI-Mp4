@@ -180,16 +180,8 @@
       "at": "prev-4",
       "dur": 1,
       "x": 0,
-      "y": 1.2,
-      "d": 54,
-      "elev": 14
-     },
-     {
-      "at": "prev+6",
-      "dur": 40,
-      "x": 0,
       "y": 2.6,
-      "d": 66,
+      "d": 76,
       "elev": 12
      }
     ],
@@ -197,51 +189,51 @@
      {
       "layer": "fFacade",
       "at": "s1:prev-2",
-      "until": "s10:ready+34",
+      "until": "s10:ready+6",
       "opacity": 0,
       "dur": 12
      },
      {
       "layer": "fRoof",
       "at": "s1:prev-2",
-      "until": "s10:ready+22",
-      "dur": 22,
-      "dy": 4.4
+      "until": "s10:ready-2",
+      "dur": 20,
+      "dy": 5.6
      },
      {
       "layer": "fFan",
       "at": "s1:prev-2",
-      "until": "s10:ready+22",
-      "dur": 22,
-      "dy": 4.4
+      "until": "s10:ready-2",
+      "dur": 20,
+      "dy": 5.6
      },
      {
       "layer": "fClean",
       "at": "s1:prev+8",
-      "until": "s10:ready+14",
-      "dur": 22,
-      "dy": 2.8
+      "until": "s10:ready-8",
+      "dur": 20,
+      "dy": 3.8
      },
      {
       "layer": "fPlen",
       "at": "s1:end+4",
-      "until": "s10:ready+8",
-      "dur": 22,
-      "dy": 1.4
+      "until": "s10:ready-14",
+      "dur": 20,
+      "dy": 2.0
      },
      {
       "layer": "fSubW",
       "at": "s2:start+2",
-      "until": "s10:ready",
-      "dur": 22,
-      "dx": -1.6
+      "until": "s10:ready-20",
+      "dur": 20,
+      "dx": -2.6
      },
      {
       "layer": "fSubG",
       "at": "s2:start+2",
-      "until": "s10:ready",
-      "dur": 22,
-      "dx": 1.6
+      "until": "s10:ready-20",
+      "dur": 20,
+      "dx": 2.6
      },
      {
       "layer": "gGround",
@@ -314,7 +306,28 @@
       "dur": 2
      },
      {
+      "layer": "eLights",
+      "at": "s5:sag+2",
+      "until": "s5:sag+26",
+      "opacity": 0.1,
+      "dur": 3
+     },
+     {
+      "layer": "eLights",
+      "at": "s6:mains+2",
+      "until": "s6:mains+26",
+      "opacity": 0.1,
+      "dur": 3
+     },
+     {
       "layer": "v0",
+      "at": "s1:start-40",
+      "until": "s11:start+400",
+      "dur": 1,
+      "dx": 1.4
+     },
+     {
+      "layer": "vF0",
       "at": "s1:start-40",
       "until": "s11:start+400",
       "dur": 1,
@@ -328,23 +341,30 @@
       "dx": -1.2
      },
      {
+      "layer": "vF2",
+      "at": "s1:start-40",
+      "until": "s11:start+400",
+      "dur": 1,
+      "dx": -1.2
+     },
+     {
       "layer": "v0",
       "at": "s9:start-6",
-      "until": "s9:org-4",
+      "until": "s9:org-12",
       "opacity": 0.3,
       "dur": 6
      },
      {
       "layer": "v1",
       "at": "s9:start-6",
-      "until": "s9:lh-4",
+      "until": "s9:lh-12",
       "opacity": 0.3,
       "dur": 6
      },
      {
       "layer": "v2",
       "at": "s9:start-6",
-      "until": "s9:sf-4",
+      "until": "s9:sf-12",
       "opacity": 0.3,
       "dur": 6
      },
@@ -562,7 +582,7 @@
       "dur": 1,
       "x": 0,
       "y": 2.6,
-      "d": 66,
+      "d": 76,
       "elev": 12
      },
      {
@@ -582,11 +602,19 @@
       "elev": 38
      },
      {
-      "at": "mem",
-      "dur": 40,
-      "x": 41.6,
-      "y": 0.5,
-      "d": 33,
+      "at": "mem-8",
+      "dur": 12,
+      "x": 38.8,
+      "y": -0.3,
+      "d": 27,
+      "elev": 34
+     },
+     {
+      "at": "resin+22",
+      "dur": 30,
+      "x": 41.8,
+      "y": -0.3,
+      "d": 30,
       "elev": 34
      }
     ],
@@ -600,29 +628,29 @@
      },
      {
       "layer": "wRO",
-      "at": "mem-4",
-      "until": "mem+42",
+      "at": "mem+6",
+      "until": "mem+52",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wIX",
-      "at": "resin+26",
-      "until": "resin+72",
+      "at": "resin+36",
+      "until": "resin+82",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wUV",
-      "at": "catch+26",
-      "until": "catch+72",
+      "at": "catch+36",
+      "until": "catch+82",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wUF",
-      "at": "catch+26",
-      "until": "catch+72",
+      "at": "catch+36",
+      "until": "catch+82",
       "dur": 12,
       "dy": 1.1
      }
@@ -678,31 +706,49 @@
      },
      {
       "id": "wIon",
-      "at": "resin+26",
+      "at": "resin+36",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wBeadGlow",
-      "at": "resin+26",
+      "at": "resin+36",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvGlow",
-      "at": "catch+26",
+      "at": "catch+36",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvRay",
-      "at": "catch+26",
+      "at": "catch+36",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wUvRay2",
+      "at": "catch+36",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wUvRay3",
+      "at": "catch+36",
+      "ramp": 6,
+      "until": "s3:voice-4"
+     },
+     {
+      "id": "wUvRay4",
+      "at": "catch+36",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wOrg",
-      "at": "catch+26",
+      "at": "catch+36",
       "ramp": 6,
       "until": "s3:voice-4"
      }
@@ -731,8 +777,8 @@
       "text": "濾網：逆滲透膜",
       "en": "Filter: RO membranes",
       "color": "amber",
-      "at": "mem-4",
-      "until": "mem+42",
+      "at": "mem+6",
+      "until": "mem+52",
       "cut": true
      },
      {
@@ -740,8 +786,8 @@
       "text": "樹脂：離子交換",
       "en": "Resin: ion exchange",
       "color": "amber",
-      "at": "resin+26",
-      "until": "resin+72",
+      "at": "resin+36",
+      "until": "resin+82",
       "cut": true
      },
      {
@@ -749,8 +795,8 @@
       "text": "紫外線＋超過濾",
       "en": "UV + ultrafiltration",
       "color": "blue",
-      "at": "catch+26",
-      "until": "catch+72",
+      "at": "catch+36",
+      "until": "catch+82",
       "cut": true
      }
     ],
@@ -827,7 +873,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "示意動畫，不是量測"
+    "USPTO 9702124（死水支管）；示意動畫，不是量測"
    ],
    "props": {
     "zoom": [
@@ -849,9 +895,9 @@
      {
       "at": "stop-6",
       "dur": 30,
-      "x": 72.2,
-      "y": 0.8,
-      "d": 26,
+      "x": 70.6,
+      "y": 0.2,
+      "d": 31,
       "elev": 36
      }
     ],
@@ -1123,18 +1169,26 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 134.0,
-      "y": 0.9,
-      "d": 33,
+      "x": 133.0,
+      "y": -0.4,
+      "d": 40,
       "elev": 26
      },
      {
-      "at": "tool-4",
+      "at": "sag-10",
+      "dur": 14,
+      "x": 135.6,
+      "y": 0.6,
+      "d": 27,
+      "elev": 20
+     },
+     {
+      "at": "half",
       "dur": 30,
-      "x": 136.6,
-      "y": 1.2,
-      "d": 29,
-      "elev": 24
+      "x": 133.0,
+      "y": -0.4,
+      "d": 40,
+      "elev": 26
      }
     ],
     "run": [
@@ -1152,7 +1206,7 @@
      },
      {
       "id": "eHvFlow",
-      "at": "sag+16",
+      "at": "sag+28",
       "ramp": 6,
       "until": "s6:mains"
      },
@@ -1164,15 +1218,9 @@
      },
      {
       "id": "eSag",
-      "at": "sag",
-      "ramp": 4,
-      "until": "sag+14"
-     },
-     {
-      "id": "eFlicker",
-      "at": "sag",
-      "ramp": 3,
-      "until": "sag+14"
+      "at": "sag+2",
+      "ramp": 5,
+      "until": "sag+26"
      },
      {
       "id": "eRedBlink",
@@ -1318,53 +1366,47 @@
       "at": "voice-4",
       "dur": 1,
       "x": 135.4,
-      "y": 0.9,
-      "d": 34,
+      "y": -0.2,
+      "d": 36,
       "elev": 28
      },
      {
       "at": "laptop",
       "dur": 40,
       "x": 136.6,
-      "y": 1.0,
-      "d": 31,
+      "y": -0.1,
+      "d": 33,
       "elev": 28
      }
     ],
     "run": [
      {
       "id": "eSag",
-      "at": "mains",
-      "ramp": 4,
-      "until": "mains+14"
-     },
-     {
-      "id": "eFlicker",
-      "at": "mains",
-      "ramp": 3,
-      "until": "mains+14"
+      "at": "mains+2",
+      "ramp": 5,
+      "until": "mains+26"
      },
      {
       "id": "eBatt",
       "at": "mains-2",
       "ramp": 4,
-      "until": "s7:voice-4"
+      "until": "mains+44"
      },
      {
       "id": "eUpsGlow",
       "at": "mains",
       "ramp": 6,
-      "until": "s7:voice-4"
+      "until": "mains+44"
      },
      {
       "id": "eHvFlow",
-      "at": "mains+16",
+      "at": "mains+28",
       "ramp": 6,
       "until": "s7:voice-4"
      },
      {
       "id": "eLvFlow",
-      "at": "mains+16",
+      "at": "mains+28",
       "ramp": 6,
       "until": "s7:voice-4"
      },
@@ -1486,16 +1528,16 @@
       "at": "voice-4",
       "dur": 1,
       "x": 103.8,
-      "y": 4.2,
-      "d": 44,
+      "y": 4.6,
+      "d": 46,
       "elev": 16
      },
      {
       "at": "one",
       "dur": 50,
       "x": 104.39999999999999,
-      "y": 4.5,
-      "d": 39,
+      "y": 4.8999999999999995,
+      "d": 41,
       "elev": 16
      }
     ],
@@ -1657,23 +1699,31 @@
       "at": "voice-4",
       "dur": 1,
       "x": 165.4,
-      "y": 2.2,
+      "y": 1.2,
       "d": 40,
       "elev": 18
      },
      {
-      "at": "out-6",
-      "dur": 40,
-      "x": 169.0,
-      "y": 1.8,
+      "at": "pipe-6",
+      "dur": 20,
+      "x": 170.8,
+      "y": 0.2,
+      "d": 30,
+      "elev": 16
+     },
+     {
+      "at": "out+12",
+      "dur": 16,
+      "x": 168.0,
+      "y": 0.8,
       "d": 46,
       "elev": 18
      },
      {
-      "at": "tool",
-      "dur": 40,
+      "at": "tap",
+      "dur": 34,
       "x": 175.0,
-      "y": 1.2,
+      "y": 0.2,
       "d": 38,
       "elev": 18
      }
@@ -1733,21 +1783,21 @@
       "cut": true
      },
      {
+      "part": "gPipeU",
+      "text": "地下管線：壓力推著走",
+      "en": "Underground pipeline",
+      "color": "amber",
+      "at": "pipe-2",
+      "until": "pipe+44",
+      "cut": true
+     },
+     {
       "part": "gAsu",
       "text": "空氣分離廠（廠外）",
       "en": "Air separation plant",
       "color": "blue",
-      "at": "out-8",
-      "until": "out+38",
-      "cut": true
-     },
-     {
-      "part": "gPipeU",
-      "text": "地下管線",
-      "en": "Underground pipeline",
-      "color": "amber",
-      "at": "tool+16",
-      "until": "tool+62",
+      "at": "out+28",
+      "until": "out+74",
       "cut": true
      },
      {
@@ -1755,8 +1805,8 @@
       "text": "閥箱：分給每台機台",
       "en": "Valve box to each tool",
       "color": "blue",
-      "at": "tap+34",
-      "until": "tap+80",
+      "at": "tap+24",
+      "until": "tap+70",
       "cut": true
      }
     ],
@@ -1810,7 +1860,7 @@
    "tts": "水有日本的 Organo，氣有聯華林德和三福氣體。",
    "subtitle": {
     "zh": "水有日本的 Organo\n氣有聯華林德\n和三福氣體",
-    "en": "For water, Japan's Organo; | for gas, Linde LienHwa | and San Fu Gas."
+    "en": "For water, Japan's Organo; | for gas, Linde LienHwa | and Air Products San Fu."
    },
    "keywords": [
     "Organo",
@@ -1853,7 +1903,7 @@
       "dur": 1,
       "x": 205.2,
       "y": -0.6,
-      "d": 40,
+      "d": 48,
       "elev": 16
      }
     ],
@@ -1968,7 +2018,7 @@
      },
      {
       "to": "probe",
-      "at": "how-4",
+      "at": "probe-24",
       "dur": 1
      }
     ],
@@ -1978,30 +2028,30 @@
       "dur": 1,
       "x": 0,
       "y": 2.6,
-      "d": 66,
+      "d": 76,
       "elev": 12
      },
      {
-      "at": "ready+6",
-      "dur": 40,
+      "at": "ready+30",
+      "dur": 30,
       "x": 0,
-      "y": 0.4,
-      "d": 56,
+      "y": 1.2,
+      "d": 54,
       "elev": 14
      },
      {
-      "at": "how-4",
+      "at": "probe-24",
       "dur": 1,
       "x": 235,
-      "y": 1.2,
+      "y": 0.6,
       "d": 20,
       "elev": 12
      },
      {
-      "at": "probe-6",
+      "at": "probe+10",
       "dur": 40,
       "x": 235,
-      "y": 1.2,
+      "y": 0.6,
       "d": 16,
       "elev": 10
      }
@@ -2011,19 +2061,19 @@
       "id": "fAir",
       "at": "start-4",
       "ramp": 8,
-      "until": "how-4"
+      "until": "probe-24"
      },
      {
       "id": "fFanSpin",
       "at": "start-4",
       "ramp": 10,
-      "until": "how-4"
+      "until": "probe-24"
      },
      {
       "id": "fFanSpin2",
       "at": "start-4",
       "ramp": 10,
-      "until": "how-4"
+      "until": "probe-24"
      },
      {
       "id": "pTest",
