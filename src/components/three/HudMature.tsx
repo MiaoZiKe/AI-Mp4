@@ -68,8 +68,8 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
     {[[52, CT + 40], [52, CT + 130], [250, CT + 40], [250, CT + 130]].map(([x, y], i) => <Chip key={i} x={x} y={y} w={34} h={34} pins={3} a={0.45 + 0.55 * q} />)}
     <text x={170} y={CT + 232} textAnchor="middle" style={zh(28, H.text2, 800)}>其他晶片呢？</text>
     <Sep x={334} />
-    <Row x={360} y={CT + 56} t="系列一：代工拚三奈米" c={H.text2} a={pv} />
-    <Row x={360} y={CT + 122} t="先進製程＝最尖端" c={BLUE} a={nm} />
+    <Row x={360} y={CT + 56} t="前一集：晶圓測完" c={H.text2} a={pv} />
+    <Row x={360} y={CT + 122} t="系列一：代工拚三奈米" c={BLUE} a={nm} />
     <Row x={360} y={CT + 188} t="每顆晶片都要這麼先進？" c={H.amber} a={q} />
   </Sv></Card>);
 };
@@ -144,9 +144,9 @@ const Ddi: React.FC<P> = ({ o, f, k }) => {
 const Tw: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 400, tw = on(f, T(o, "tw")), u = on(f, T(o, "umc")), v = on(f, T(o, "vis")), p = on(f, T(o, "psmc"));
   const rows: { logo?: string; lh?: number; name: string; code: string; s1: string; s2: string; a: number }[] = [
-    { logo: "umc", lh: 32, name: "聯電", code: "2303", s1: "全球第四大代工廠", s2: "2Q26 市占 3.9%｜強項：驅動晶片", a: u },
-    { logo: "vis", lh: 46, name: "世界先進", code: "5347", s1: "台積電也持股", s2: "功率、電源晶片｜8 吋廠為主", a: v },
-    { name: "力積電", code: "6770", s1: "記憶體起家", s2: "也幫人代工（本集只談代工）", a: p },
+    { logo: "umc", lh: 32, name: "聯電", code: "2303", s1: "TrendForce：全球第四大代工廠", s2: "2Q26 市占 3.9%｜強項：驅動晶片", a: u },
+    { logo: "vis", lh: 46, name: "世界先進", code: "5347", s1: "台積電也持股", s2: "主力：功率、電源晶片｜8 吋廠為主", a: v },
+    { logo: "psmc", lh: 30, name: "力積電", code: "6770", s1: "記憶體＋邏輯代工", s2: "本集只談代工身分", a: p },
   ];
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     {rows.map((r, i) => { const y = CT + 8 + i * 106; return (<g key={r.name}>
@@ -170,8 +170,8 @@ const Cn: React.FC<P> = ({ o, f, k }) => {
     <FlagBox code="CN" x={356} y={CT + 14} a={cn} />
     <text x={424} y={CT + 44} style={zh(30, H.text, 900)} opacity={0.4 + 0.6 * cn}>中國在大擴產</text>
     <Row x={360} y={CT + 116} t="前十大成熟製程產能" c={H.text2} a={tf} />
-    <Row x={360} y={CT + 176} t="中國廠超過四分之一" c={RED} a={q} />
-    <text x={360} y={CT + 232} style={zh(24, H.text2, 800)} opacity={0.4 + 0.6 * tf}>TrendForce 估計（2025 年底，分析預期）</text>
+    <Row x={360} y={CT + 176} t="中國廠將超過四分之一" c={RED} a={q} />
+    <text x={360} y={CT + 232} style={zh(24, H.text2, 800)} opacity={0.4 + 0.6 * tf}>TrendForce 預估（2025 年底，分析預期）</text>
   </Sv></Card>);
 };
 // ── mature-market：新廠一座座蓋（夜市攤位變多）→ 價格壓低 → 台廠轉向車用、AI 伺服器電源 ──

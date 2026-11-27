@@ -15,6 +15,7 @@ export type LogoSpec = { file: string; w: number; h: number; name: string; sourc
 export const LOGOS: Record<string, LogoSpec> = {
   // 2026/11/28 tech-mature（中游補充篇 M1）：Commons 原檔，未重畫、未改色（UMC＝原檔 SVG；世界先進＝Commons 自己轉出的 960px PNG，upload 伺服器限流抓不到 SVG）
   umc: { file: "logos/umc.svg", w: 814.96063, h: 184.60629, name: "聯電 UMC", source: "https://commons.wikimedia.org/wiki/File:UMC-Logo.svg" },
+  psmc: { file: "logos/psmc.png", w: 960, h: 240, name: "力積電 PSMC", source: "https://commons.wikimedia.org/wiki/File:PSMC_logo.svg（Commons 自己轉出的 960px PNG）" },
   vis: { file: "logos/vis.png", w: 960, h: 539, name: "世界先進 VIS", source: "https://commons.wikimedia.org/wiki/File:Vanguard_International_Semiconductor_logo.svg" },
   // 2026-11-24 Andy 在②聊天室提供原圖（官方 LOGO 截圖；白底只裁邊、SK Siltron 灰底換白，未改色）
   globalwafers: { file: "logos/globalwafers.png", w: 488, h: 112, name: "環球晶 GlobalWafers", source: "Andy 11-24 提供（②聊天室）", bg: "#FFFFFF" },

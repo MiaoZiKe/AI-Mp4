@@ -11,9 +11,9 @@ INFO = MODEL["info"]
 ASOF = "2026/11/28"
 # (id, beat, 念稿（＝script.md 原文）, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources, 開口前只有畫面秒)；字幕可用阿拉伯數字，念稿用中文數字
 S = [
-("s1", "hook", "上一集晶圓測完。每顆晶片都要三奈米嗎？",
- ["上一集晶圓測完", "每顆晶片", "都要 3 奈米嗎？"], ["Last episode, the wafer was fully tested.", "Does every chip", "need 3 nm?"],
- [("prev", "上一集"), ("chip", "每顆晶片"), ("nm3", "奈米"), ("q", "都要")], ["3 奈米", "先進"], ["示意，非特定手機"], 0.0),
+("s1", "hook", "前一集晶圓測完。每顆晶片都要三奈米嗎？",
+ ["前一集晶圓測完", "每顆晶片", "都要 3 奈米嗎？"], ["Last episode, the wafer was fully tested.", "Does every chip", "need 3 nm?"],
+ [("prev", "前一集"), ("chip", "每顆晶片"), ("nm3", "奈米"), ("q", "都要")], ["3 奈米", "先進"], ["示意，非特定手機"], 0.0),
 ("s2", "you", "不用。系列一講先進，二十八奈米以上叫成熟製程，像家常菜，天天少不了。",
  ["不用，系列一講先進", "28 奈米以上", "叫成熟製程", "像家常菜", "天天少不了"], ["No. Series one covered advanced nodes;", "28 nm and above", "is called a mature process,", "like home cooking:", "you need it every day."],
  [("no", "不用"), ("adv", "講先進"), ("n28", "奈米以上"), ("mature", "成熟製程"), ("dish", "家常菜"), ("daily", "天天少不了")], ["成熟製程", "家常菜"], ["TrendForce（28 奈米以上口徑）；示意"], 0.2),
@@ -23,18 +23,18 @@ S = [
 ("s4", "mechanism", "還有驅動晶片，叫螢幕每個小點亮起來。多在八吋、十二吋廠做。",
  ["還有驅動晶片", "叫螢幕每個小點", "亮起來", "多在 8 吋", "12 吋廠做"], ["And driver chips", "tell every tiny dot on the screen", "to light up.", "They're mostly made in 8-inch", "and 12-inch fabs."],
  [("ddi", "驅動晶片"), ("pixel", "小點"), ("lit", "亮起來"), ("w8", "多在"), ("w12", "廠做")], ["驅動晶片", "8 吋", "12 吋"], ["Evertiq 2026/5、TrendForce（轉述）；示意"], 0.3),
-("s5", "payoff", "台灣有三家。聯電，全球第四大代工廠，強項是驅動晶片。",
- ["台灣有三家：聯電", "全球第四大代工廠", "強項是驅動晶片"], ["Taiwan has three. First, UMC:", "the world's No. 4 foundry,", "strong in driver chips."],
+("s5", "payoff", "台灣有三家。聯電，據 TrendForce 統計是全球第四大代工廠，強項是驅動晶片。",
+ ["台灣有三家：聯電", "據 TrendForce 統計", "是全球第四大代工廠", "強項是驅動晶片"], ["Taiwan has three. First, UMC:", "per TrendForce,", "the world's No. 4 foundry,", "strong in driver chips."],
  [("tw", "台灣有三家"), ("umc", "聯電"), ("fourth", "第四大"), ("strong", "強項")], ["聯電", "第四大"], ["TrendForce 2026/9/9（2Q26 排名）；數位時代 2026/4"], 0.3),
-("s6", "payoff", "世界先進，台積電也持股，專做功率和電源晶片。力積電，記憶體起家，也幫人代工。",
- ["世界先進", "台積電也持股", "專做功率和電源晶片", "力積電", "記憶體起家", "也幫人代工"], ["Vanguard (VIS),", "partly owned by TSMC,", "focuses on power chips.", "Powerchip (PSMC)", "started in memory", "and also makes chips for others."],
- [("vis", "世界先進"), ("tsmc", "台積電"), ("power", "功率"), ("psmc", "力積電"), ("mem", "記憶體"), ("fd", "代工")], ["世界先進", "力積電"], ["中央社 2024/10；鏡週刊 2026/10；自由財經"], 0.3),
-("s7", "twist", "但中國在大擴產。據 TrendForce 估計，前十大成熟產能裡，中國廠已超過四分之一。",
- ["但中國在大擴產", "據 TrendForce 估計", "前十大成熟產能裡", "中國廠已超過", "四分之一"], ["But China is expanding fast.", "TrendForce estimates", "that of the top ten's mature capacity,", "Chinese fabs already hold", "over a quarter."],
- [("cn", "中國在大擴產"), ("tf", "TrendForce"), ("top", "前十大"), ("over", "已超過"), ("quarter", "四分之一")], ["中國", "四分之一"], [f"TrendForce（分析預期：2025 年底超過 25%）；科技新報"], 0.3),
-("s8", "twist", "新廠一座座蓋，像夜市一下開好多攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
- ["新廠一座座蓋", "像夜市一下", "開好多攤", "價格被壓低", "所以台廠轉向", "車用、AI 伺服器電源", "較難的晶片"], ["New fabs keep going up,", "like a night market", "suddenly full of stalls,", "so prices get pushed down.", "So Taiwan fabs are shifting", "to cars and AI server power:", "the harder chips."],
- [("fab", "新廠"), ("stall", "夜市"), ("many", "好多攤"), ("price", "價格"), ("shift", "台廠轉向"), ("car", "車用"), ("ai", "AI"), ("hard", "較難")], ["夜市", "價格", "車用"], [f"TrendForce、Evertiq（分析預期）；截至 {ASOF}"], 0.3),
+("s6", "payoff", "世界先進，台積電也持股，主力是功率和電源晶片。力積電，除了記憶體，也幫人代工。",
+ ["世界先進", "台積電也持股", "主力是功率和電源晶片", "力積電", "除了記憶體", "也幫人代工"], ["Vanguard (VIS),", "partly owned by TSMC,", "mainly makes power chips.", "Powerchip (PSMC):", "besides memory,", "it also makes chips for others."],
+ [("vis", "世界先進"), ("tsmc", "台積電"), ("power", "功率"), ("psmc", "力積電"), ("mem", "記憶體"), ("fd", "代工")], ["世界先進", "力積電"], ["中央社；鏡週刊；科技新報 2026/7；聯合報"], 0.3),
+("s7", "twist", "但中國在大擴產。據 TrendForce 預估，前十大成熟產能裡，中國廠將超過四分之一。",
+ ["但中國在大擴產", "據 TrendForce 預估", "前十大成熟產能裡", "中國廠將超過", "四分之一"], ["But China is expanding fast.", "TrendForce projects", "that of the top ten's mature capacity,", "Chinese fabs will hold", "over a quarter."],
+ [("cn", "中國在大擴產"), ("tf", "TrendForce"), ("top", "前十大"), ("over", "將超過"), ("quarter", "四分之一")], ["中國", "四分之一"], [f"TrendForce（分析預期：2025 年底超過 25%）；科技新報"], 0.3),
+("s8", "twist", "新廠一直蓋，像夜市開滿攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
+ ["新廠一直蓋", "像夜市開滿攤", "價格被壓低", "所以台廠轉向", "車用・AI 伺服器電源", "較難的晶片"], ["New fabs keep going up,", "like a night market full of stalls,", "so prices get pushed down.", "So Taiwan fabs are shifting", "to cars and AI server power:", "the harder chips."],
+ [("fab", "新廠"), ("stall", "夜市"), ("many", "開滿攤"), ("price", "價格"), ("shift", "台廠轉向"), ("car", "車用"), ("ai", "AI"), ("hard", "較難")], ["夜市", "價格", "車用"], [f"TrendForce、Evertiq（分析預期）；截至 {ASOF}"], 0.3),
 ("s9", "cta", "成熟製程拚品項，下一集看更拚量的記憶體製造。留言成熟製程，拿完整資料。",
  ["成熟製程拚品項", "下一集看更拚量的", "記憶體製造", "留言「成熟製程」", "拿完整資料"], ["Mature nodes compete on variety;", "next, a chip that competes on volume:", "memory manufacturing.", "Comment \"mature process\"", "for the full notes."],
  [("item", "拚品項"), ("next", "下一集"), ("mem", "記憶體製造"), ("kw", "留言")], ["記憶體", "成熟製程"], [f"截至 {ASOF}；示意"], 0.3),
@@ -108,17 +108,18 @@ X = INFO
 vis("kGlow", [("s1:nm3-4", "s3:start")], 2)
 # ── 站 P（s3 前半）：剖面念「管的是電」往上下分開、逐層標名 → 念「水龍頭」合回 → 念「大電流」閘極亮、通道亮、電流由下往上 ──
 PL = ["pDrain", "pSub", "pDrift", "pBody", "pGate", "pSrcN", "pMetal", "pWire"]
-for i, l in enumerate(PL): VIS.append(mv(l, f"s3:elec{-4 + 2 * i:+d}", "s3:tap-4", 14, dy=round(0.45 * i, 2)))
-vis("pChan", [("s3:tap+6", "s4:start")], 2)
+for i, l in enumerate(PL): VIS.append(mv(l, f"s3:start{2 + 2 * i:+d}", "s3:tap+12", 12, dy=round(0.55 * i, 2)))
+vis("pChan", [("s3:tap+20", "s4:start")], 2)
 # ── 站 D（s4）：驅動 IC 念到後逐列點亮（每列晚 3 幀）；晶圓念「多在」落下 8 吋、「廠做」落下 12 吋 ──
 for r in range(X["PYN"]): vis(f"dRow{r}", [(f"s4:pixel{-6 + 3 * r:+d}", FAR)], 1)
 drop("dW8", "s4:w8-6", 2.0, 12); drop("dW12", "s4:w12-20", 2.0, 12)
 # ── 站 F（s5–s6）：國旗念「台灣」；聯電、世界先進、力積電念到才落下；廠前產品樣本跟著落下 ──
-drop("fFlag", "s5:tw-6", 3.0, 12); drop("fUmc", "s5:umc-8", 6.0, 16); drop("fVis", "s6:vis-8", 6.0, 16); drop("fPsmc", "s6:psmc-8", 6.0, 16)
+drop("fFlag", "s5:tw-6", 3.0, 12); drop("fUmc", "s5:umc-8", 2.0, 14); drop("fVis", "s6:vis-8", 2.0, 14); drop("fPsmc", "s6:psmc-8", 2.0, 14)
 drop("fProd", "s5:strong-6", 2.0, 12)
 # ── 站 C（s7–s8）：國旗念「中國」；新廠一座座冒出（s7 念「中國在大擴產」起 3 座，s8 念「新廠」「夜市」「好多攤」再 6 座）；價格柱念「價格」往下沉 ──
 drop("cFlag", "s7:cn-6", 3.0, 12)
-for i, at in enumerate(["s7:cn+4", "s7:cn+14", "s7:cn+24", "s8:fab-2", "s8:fab+8", "s8:stall", "s8:stall+10", "s8:many-4", "s8:many+6"]): drop(f"cFab{i}", at, 4.0, 12, 0.08)
+for i, at in enumerate(["s7:start-6", "s7:start-6", "s7:start-6", "s7:cn+4", "s7:cn+14", "s7:cn+24", "s8:fab", "s8:stall", "s8:many"]): drop(f"cFab{i}", at, 4.0, 12, 0.08)
+drop("cPrice", "s8:fab-4", 3.0, 12)
 drop("cSign", "s7:tf", 2.0, 12)
 VIS.append(mv("cPrice", "s8:price-2", FAR, 30, dy=-3.2))
 # ── 站 T（s8 後半）：車與機櫃念「台廠轉向」才出現；逆變器電流念「車用」、電源供應器念「AI」──
@@ -139,33 +140,35 @@ P["s2"] = {"zoom": [{"to": "board", "at": "start-8", "dur": 1}],
  "run": [run("kMat", "mature-4", "s3:start", 6), run("kAdv", "start", "mature-4", 4)],
  "labels": [lab("kPmic", "電源管理晶片", "Power-management IC", "amber", "mature-2", "end"), lab("kMos", "功率元件", "Power devices", "amber", "mature+2", "end")],
  "overlay": [card("s2", "mature-dish", "成熟製程：28 奈米以上", "示意", {"no": "no", "n28": "n28", "dish": "dish", "daily": "daily"})]}
-P["s3"] = {"zoom": [{"to": "device", "at": CC, "dur": 1}, {"to": "board", "at": "pmic+12", "dur": 1}],
- "shot": [shot(CC, PPX + 0.5, 2.6, 54, 14, 1, yaw=0.0), shot("tap+6", PPX + 2.5, 2.6, 46, 14, 30), shot("pmic+12", KX + 1.5, 0.5, 34, 52, 1)],
- "run": [run("pGateOn", "tap+2", "pmic+12", 4), run("pChanOn", "tap+6", "pmic+12", 4), run("pCur", "big-4", "pmic+12", 6), run("pPkgCur", "big-4", "pmic+12", 6),
-         run("kPowIn", "pmic+12", "s4:start", 6), run("kPowSoc", "board-2", "s4:start", 6), run("kPowMem", "board+4", "s4:start", 6), run("kPowDisp", "split-6", "s4:start", 6)],
- "labels": [lab("pDrift", "漂移層：擋高電壓", "Drift layer blocks high voltage", "blue", "elec-2", "tap-9"),
-            lab("pGate", "閘極＝把手，一開電就往上", "Gate = handle: on, current flows up", "amber", "tap", "pmic+12"),
-            lab("kPmic", "電源管理晶片", "Power-management IC", "amber", "pmic+14", "end")],
+P["s3"] = {"zoom": [{"to": "device", "at": CC, "dur": 1}, {"to": "board", "at": "board-2", "dur": 1}],
+ "shot": [shot(CC, PPX + 1.0, 3.0, 44, 14, 1, yaw=0.0), shot("tap+14", PPX + 2.2, 2.8, 40, 14, 30), shot("board-2", KX - 0.5, 0.5, 36, 52, 1)],
+ "run": [run("pGateOn", "tap+14", "board-2", 4), run("pChanOn", "tap+18", "board-2", 4), run("pCur", "tap+20", "board-2", 6), run("pPkgCur", "tap+20", "board-2", 6),
+         run("kPowIn", "board-2", "s4:start", 6), run("kPowSoc", "board+4", "s4:start", 6), run("kPowMem", "board+10", "s4:start", 6), run("kPowDisp", "split-6", "s4:start", 6)],
+ "labels": [lab("pDrain", "汲極金屬＋N+ 基板", "Drain metal + N+ substrate", "blue", "start+6", "elec+12"),
+            lab("pDrift", "N− 漂移層＋P 本體", "N− drift layer + P body", "blue", "start+8", "elec+12"),
+            lab("pGate", "溝槽閘極（多晶矽＋氧化層）", "Trench gate: poly-Si in oxide", "amber", "elec+14", "tap+6"), lab("pMetal", "源極：N+、金屬、打線", "Source: N+, metal, bond wires", "blue", "elec+16", "tap+12"),
+            lab("pChan", "閘極＝把手：通道打開，電流往上", "Gate = handle: channel opens, current flows up", "amber", "tap+16", "board-2"),
+            lab("kPmic", "電源管理晶片", "Power-management IC", "amber", "board-2", "end")],
  "overlay": [card("s3", "mature-power", "晶片管電：開關與分配", "示意，不標電壓", {"elec": "elec", "tap": "tap", "big": "big", "board": "board", "split": "split"})]}
 P["s4"] = {"zoom": [{"to": "panel", "at": CC, "dur": 1}],
- "shot": [shot(CC, DX - 1.0, -1.2, 32, 56, 1), shot("w8+6", DX + 9.8, 0.6, 30, 40, 30)],
+ "shot": [shot(CC, DX - 1.0, -1.2, 32, 56, 1), shot("w8+6", DX + 9.8, 0.0, 34, 40, 30)],
  "run": [run("dFpcSig", "ddi-4", "s5:start", 6), run("dSig", "pixel-6", "s5:start", 6)],
  "labels": [lab("dDdi", "驅動晶片（貼在玻璃上）", "Driver IC on glass", "amber", "ddi-2", "w8+4"),
-            lab("dW8", "8 吋（200 mm）", "8-inch (200 mm)", "blue", "w8+6", "end", xy=[330, 392]), lab("dW12", "12 吋（300 mm）", "12-inch (300 mm)", "blue", "w12-16", "end", xy=[750, 240])],
+            lab("dW8", "8 吋（200 mm）", "8-inch (200 mm)", "blue", "w8+6", "end", xy=[330, 470]), lab("dW12", "12 吋（300 mm）", "12-inch (300 mm)", "blue", "w12-16", "end", xy=[750, 330])],
  "overlay": [card("s4", "mature-ddi", "驅動晶片點亮螢幕", "示意", {"ddi": "ddi", "pixel": "pixel", "w8": "w8", "w12": "w12"})]}
 P["s5"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, FX - 1.5, -1.0, 60, 14, 1), shot("strong", FX - 1.0, -1.0, 62, 14, 40)],
+ "shot": [shot(CC, FX + 0.3, -1.8, 48, 26, 1), shot("strong", FX, -1.8, 47, 27, 40)],
  "labels": [lab("fProd", "驅動晶片", "Driver ICs", "amber", "strong", "end")],
  "overlay": [card("s5", "mature-tw", "台灣三家成熟製程代工", f"公司公布、研究機構、媒體；截至 {ASOF}", {"tw": "tw", "umc": "umc", "vis": "s6:vis", "psmc": "s6:psmc"}, until="s7:voice-3", h=400, y=990)]}
 P["s6"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot("start", FX - 0.5, -1.0, 62, 14, 60)],
+ "shot": [shot("start", FX, -1.8, 48, 28, 60)],
  "labels": []}
 P["s7"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, CX - 3.0, 0.4, 52, 28, 1), shot("top", CX - 2.0, 0.4, 50, 30, 40)],
- "labels": [lab("cFlag", "中國", "China", "amber", "cn", "end")],
- "overlay": [card("s7", "mature-cn", "中國成熟製程擴產", "分析預期（TrendForce）", {"cn": "cn", "tf": "tf", "quarter": "quarter"})]}
+ "shot": [shot(CC, CX - 2.6, 0.0, 46, 28, 1), shot("top", CX - 2.4, 0.0, 44, 30, 40)],
+ "labels": [],
+ "overlay": [card("s7", "mature-cn", "中國成熟製程擴產", "分析預期（TrendForce 預估）", {"cn": "cn", "tf": "tf", "quarter": "quarter"})]}
 P["s8"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [shot(CC, CX - 1.5, 0.4, 52, 30, 1), shot("shift+4", TX - 3.0, 1.2, 42, 16, 1)],
+ "shot": [shot(CC, CX - 2.4, 0.0, 46, 30, 1), shot("shift+4", TX - 2.6, 1.0, 42, 18, 1)],
  "run": [run("tInvCur", "car-2", "s9:start", 6), run("tPsuCur", "ai-2", "s9:start", 6), run("tLeds", "shift", "s9:start", 6), run("tFanSpin", "ai-4", "s9:start", 6)],
  "labels": [lab("cPrice", "價格被壓低", "Prices pushed down", "amber", "price-4", "shift+4"), lab("tInv", "逆變器的功率模組", "Inverter power modules", "amber", "car-2", "end"),
             lab("tPsu", "AI 伺服器電源", "AI server power supplies", "amber", "ai-2", "end")],

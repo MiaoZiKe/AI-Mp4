@@ -102,10 +102,10 @@
    "id": "s1",
    "beat": "hook",
    "para": 1,
-   "narration": "上一集晶圓測完。每顆晶片都要三奈米嗎？",
-   "tts": "上一集晶圓測完。每顆晶片都要三奈米嗎？",
+   "narration": "前一集晶圓測完。每顆晶片都要三奈米嗎？",
+   "tts": "前一集晶圓測完。每顆晶片都要三奈米嗎？",
    "subtitle": {
-    "zh": "上一集晶圓測完\n每顆晶片\n都要 3 奈米嗎？",
+    "zh": "前一集晶圓測完\n每顆晶片\n都要 3 奈米嗎？",
     "en": "Last episode, the wafer was fully tested. | Does every chip | need 3 nm?"
    },
    "keywords": [
@@ -115,7 +115,7 @@
    "cues": [
     {
      "id": "prev",
-     "text": "上一集"
+     "text": "前一集"
     },
     {
      "id": "chip",
@@ -184,64 +184,64 @@
      },
      {
       "layer": "pDrain",
-      "at": "s3:elec-4",
-      "until": "s3:tap-4",
-      "dur": 14,
+      "at": "s3:start+2",
+      "until": "s3:tap+12",
+      "dur": 12,
       "dy": 0.0
      },
      {
       "layer": "pSub",
-      "at": "s3:elec-2",
-      "until": "s3:tap-4",
-      "dur": 14,
-      "dy": 0.45
+      "at": "s3:start+4",
+      "until": "s3:tap+12",
+      "dur": 12,
+      "dy": 0.55
      },
      {
       "layer": "pDrift",
-      "at": "s3:elec+0",
-      "until": "s3:tap-4",
-      "dur": 14,
-      "dy": 0.9
+      "at": "s3:start+6",
+      "until": "s3:tap+12",
+      "dur": 12,
+      "dy": 1.1
      },
      {
       "layer": "pBody",
-      "at": "s3:elec+2",
-      "until": "s3:tap-4",
-      "dur": 14,
-      "dy": 1.35
+      "at": "s3:start+8",
+      "until": "s3:tap+12",
+      "dur": 12,
+      "dy": 1.65
      },
      {
       "layer": "pGate",
-      "at": "s3:elec+4",
-      "until": "s3:tap-4",
-      "dur": 14,
-      "dy": 1.8
+      "at": "s3:start+10",
+      "until": "s3:tap+12",
+      "dur": 12,
+      "dy": 2.2
      },
      {
       "layer": "pSrcN",
-      "at": "s3:elec+6",
-      "until": "s3:tap-4",
-      "dur": 14,
-      "dy": 2.25
+      "at": "s3:start+12",
+      "until": "s3:tap+12",
+      "dur": 12,
+      "dy": 2.75
      },
      {
       "layer": "pMetal",
-      "at": "s3:elec+8",
-      "until": "s3:tap-4",
-      "dur": 14,
-      "dy": 2.7
+      "at": "s3:start+14",
+      "until": "s3:tap+12",
+      "dur": 12,
+      "dy": 3.3
      },
      {
       "layer": "pWire",
-      "at": "s3:elec+10",
-      "until": "s3:tap-4",
-      "dur": 14,
-      "dy": 3.15
+      "at": "s3:start+16",
+      "until": "s3:tap+12",
+      "dur": 12,
+      "dy": 3.85
      },
      {
       "layer": "pChan",
       "at": "s1:start-40",
-      "until": "s3:tap+6",
+      "until": "s3:tap+20",
       "opacity": 0,
       "dur": 2
      },
@@ -377,8 +377,8 @@
       "layer": "fUmc",
       "at": "s1:start-40",
       "until": "s5:umc-8",
-      "dur": 16,
-      "dy": 6.0,
+      "dur": 14,
+      "dy": 2.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -394,8 +394,8 @@
       "layer": "fVis",
       "at": "s1:start-40",
       "until": "s6:vis-8",
-      "dur": 16,
-      "dy": 6.0,
+      "dur": 14,
+      "dy": 2.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -411,8 +411,8 @@
       "layer": "fPsmc",
       "at": "s1:start-40",
       "until": "s6:psmc-8",
-      "dur": 16,
-      "dy": 6.0,
+      "dur": 14,
+      "dy": 2.0,
       "fallIn": true,
       "bounce": 0.06,
       "opacity": 0
@@ -454,13 +454,64 @@
      {
       "layer": "cFab0",
       "at": "s1:start-40",
-      "until": "s7:cn+4",
+      "until": "s7:start-6",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "cFab0",
       "at": "s1:start-40",
+      "until": "s7:start-6",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab1",
+      "at": "s1:start-40",
+      "until": "s7:start-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab1",
+      "at": "s1:start-40",
+      "until": "s7:start-6",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab2",
+      "at": "s1:start-40",
+      "until": "s7:start-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab2",
+      "at": "s1:start-40",
+      "until": "s7:start-6",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab3",
+      "at": "s1:start-40",
+      "until": "s7:cn+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab3",
+      "at": "s1:start-40",
       "until": "s7:cn+4",
       "dur": 12,
       "dy": 4.0,
@@ -469,67 +520,16 @@
       "opacity": 0
      },
      {
-      "layer": "cFab1",
+      "layer": "cFab4",
       "at": "s1:start-40",
       "until": "s7:cn+14",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "cFab1",
+      "layer": "cFab4",
       "at": "s1:start-40",
       "until": "s7:cn+14",
-      "dur": 12,
-      "dy": 4.0,
-      "fallIn": true,
-      "bounce": 0.08,
-      "opacity": 0
-     },
-     {
-      "layer": "cFab2",
-      "at": "s1:start-40",
-      "until": "s7:cn+24",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cFab2",
-      "at": "s1:start-40",
-      "until": "s7:cn+24",
-      "dur": 12,
-      "dy": 4.0,
-      "fallIn": true,
-      "bounce": 0.08,
-      "opacity": 0
-     },
-     {
-      "layer": "cFab3",
-      "at": "s1:start-40",
-      "until": "s8:fab-2",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cFab3",
-      "at": "s1:start-40",
-      "until": "s8:fab-2",
-      "dur": 12,
-      "dy": 4.0,
-      "fallIn": true,
-      "bounce": 0.08,
-      "opacity": 0
-     },
-     {
-      "layer": "cFab4",
-      "at": "s1:start-40",
-      "until": "s8:fab+8",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cFab4",
-      "at": "s1:start-40",
-      "until": "s8:fab+8",
       "dur": 12,
       "dy": 4.0,
       "fallIn": true,
@@ -539,13 +539,47 @@
      {
       "layer": "cFab5",
       "at": "s1:start-40",
-      "until": "s8:stall",
+      "until": "s7:cn+24",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "cFab5",
       "at": "s1:start-40",
+      "until": "s7:cn+24",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab6",
+      "at": "s1:start-40",
+      "until": "s8:fab",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab6",
+      "at": "s1:start-40",
+      "until": "s8:fab",
+      "dur": 12,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "cFab7",
+      "at": "s1:start-40",
+      "until": "s8:stall",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cFab7",
+      "at": "s1:start-40",
       "until": "s8:stall",
       "dur": 12,
       "dy": 4.0,
@@ -554,16 +588,16 @@
       "opacity": 0
      },
      {
-      "layer": "cFab6",
+      "layer": "cFab8",
       "at": "s1:start-40",
-      "until": "s8:stall+10",
+      "until": "s8:many",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "cFab6",
+      "layer": "cFab8",
       "at": "s1:start-40",
-      "until": "s8:stall+10",
+      "until": "s8:many",
       "dur": 12,
       "dy": 4.0,
       "fallIn": true,
@@ -571,37 +605,20 @@
       "opacity": 0
      },
      {
-      "layer": "cFab7",
+      "layer": "cPrice",
       "at": "s1:start-40",
-      "until": "s8:many-4",
+      "until": "s8:fab-4",
       "opacity": 0,
       "dur": 1
      },
      {
-      "layer": "cFab7",
+      "layer": "cPrice",
       "at": "s1:start-40",
-      "until": "s8:many-4",
+      "until": "s8:fab-4",
       "dur": 12,
-      "dy": 4.0,
+      "dy": 3.0,
       "fallIn": true,
-      "bounce": 0.08,
-      "opacity": 0
-     },
-     {
-      "layer": "cFab8",
-      "at": "s1:start-40",
-      "until": "s8:many+6",
-      "opacity": 0,
-      "dur": 1
-     },
-     {
-      "layer": "cFab8",
-      "at": "s1:start-40",
-      "until": "s8:many+6",
-      "dur": 12,
-      "dy": 4.0,
-      "fallIn": true,
-      "bounce": 0.08,
+      "bounce": 0.06,
       "opacity": 0
      },
      {
@@ -980,7 +997,7 @@
      },
      {
       "to": "board",
-      "at": "pmic+12",
+      "at": "board-2",
       "dur": 1
      }
     ],
@@ -988,68 +1005,68 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 40.5,
-      "y": 2.6,
-      "d": 54,
+      "x": 41.0,
+      "y": 3.0,
+      "d": 44,
       "elev": 14
      },
      {
-      "at": "tap+6",
+      "at": "tap+14",
       "dur": 30,
-      "x": 42.5,
-      "y": 2.6,
-      "d": 46,
+      "x": 42.2,
+      "y": 2.8,
+      "d": 40,
       "elev": 14
      },
      {
-      "at": "pmic+12",
+      "at": "board-2",
       "dur": 1,
-      "x": 1.5,
+      "x": -0.5,
       "y": 0.5,
-      "d": 34,
+      "d": 36,
       "elev": 52
      }
     ],
     "run": [
      {
       "id": "pGateOn",
-      "at": "tap+2",
+      "at": "tap+14",
       "ramp": 4,
-      "until": "pmic+12"
+      "until": "board-2"
      },
      {
       "id": "pChanOn",
-      "at": "tap+6",
+      "at": "tap+18",
       "ramp": 4,
-      "until": "pmic+12"
+      "until": "board-2"
      },
      {
       "id": "pCur",
-      "at": "big-4",
+      "at": "tap+20",
       "ramp": 6,
-      "until": "pmic+12"
+      "until": "board-2"
      },
      {
       "id": "pPkgCur",
-      "at": "big-4",
+      "at": "tap+20",
       "ramp": 6,
-      "until": "pmic+12"
+      "until": "board-2"
      },
      {
       "id": "kPowIn",
-      "at": "pmic+12",
-      "ramp": 6,
-      "until": "s4:start"
-     },
-     {
-      "id": "kPowSoc",
       "at": "board-2",
       "ramp": 6,
       "until": "s4:start"
      },
      {
-      "id": "kPowMem",
+      "id": "kPowSoc",
       "at": "board+4",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "kPowMem",
+      "at": "board+10",
       "ramp": 6,
       "until": "s4:start"
      },
@@ -1062,21 +1079,48 @@
     ],
     "labels": [
      {
-      "part": "pDrift",
-      "text": "漂移層：擋高電壓",
-      "en": "Drift layer blocks high voltage",
+      "part": "pDrain",
+      "text": "汲極金屬＋N+ 基板",
+      "en": "Drain metal + N+ substrate",
       "color": "blue",
-      "at": "elec-2",
-      "until": "tap-9",
+      "at": "start+6",
+      "until": "elec+12",
+      "cut": true
+     },
+     {
+      "part": "pDrift",
+      "text": "N− 漂移層＋P 本體",
+      "en": "N− drift layer + P body",
+      "color": "blue",
+      "at": "start+8",
+      "until": "elec+12",
       "cut": true
      },
      {
       "part": "pGate",
-      "text": "閘極＝把手，一開電就往上",
-      "en": "Gate = handle: on, current flows up",
+      "text": "溝槽閘極（多晶矽＋氧化層）",
+      "en": "Trench gate: poly-Si in oxide",
       "color": "amber",
-      "at": "tap",
-      "until": "pmic+12",
+      "at": "elec+14",
+      "until": "tap+6",
+      "cut": true
+     },
+     {
+      "part": "pMetal",
+      "text": "源極：N+、金屬、打線",
+      "en": "Source: N+, metal, bond wires",
+      "color": "blue",
+      "at": "elec+16",
+      "until": "tap+12",
+      "cut": true
+     },
+     {
+      "part": "pChan",
+      "text": "閘極＝把手：通道打開，電流往上",
+      "en": "Gate = handle: channel opens, current flows up",
+      "color": "amber",
+      "at": "tap+16",
+      "until": "board-2",
       "cut": true
      },
      {
@@ -1084,7 +1128,7 @@
       "text": "電源管理晶片",
       "en": "Power-management IC",
       "color": "amber",
-      "at": "pmic+14",
+      "at": "board-2",
       "until": "end",
       "cut": true
      }
@@ -1190,8 +1234,8 @@
       "at": "w8+6",
       "dur": 30,
       "x": 89.8,
-      "y": 0.6,
-      "d": 30,
+      "y": 0.0,
+      "d": 34,
       "elev": 40
      }
     ],
@@ -1229,7 +1273,7 @@
       "cut": true,
       "xy": [
        330,
-       392
+       470
       ]
      },
      {
@@ -1242,7 +1286,7 @@
       "cut": true,
       "xy": [
        750,
-       240
+       330
       ]
      }
     ],
@@ -1286,11 +1330,11 @@
    "id": "s5",
    "beat": "payoff",
    "para": 5,
-   "narration": "台灣有三家。聯電，全球第四大代工廠，強項是驅動晶片。",
-   "tts": "台灣有三家。聯電，全球第四大代工廠，強項是驅動晶片。",
+   "narration": "台灣有三家。聯電，據 TrendForce 統計是全球第四大代工廠，強項是驅動晶片。",
+   "tts": "台灣有三家。聯電，據 TrendForce 統計是全球第四大代工廠，強項是驅動晶片。",
    "subtitle": {
-    "zh": "台灣有三家：聯電\n全球第四大代工廠\n強項是驅動晶片",
-    "en": "Taiwan has three. First, UMC: | the world's No. 4 foundry, | strong in driver chips."
+    "zh": "台灣有三家：聯電\n據 TrendForce 統計\n是全球第四大代工廠\n強項是驅動晶片",
+    "en": "Taiwan has three. First, UMC: | per TrendForce, | the world's No. 4 foundry, | strong in driver chips."
    },
    "keywords": [
     "聯電",
@@ -1330,18 +1374,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 118.5,
-      "y": -1.0,
-      "d": 60,
-      "elev": 14
+      "x": 120.3,
+      "y": -1.8,
+      "d": 48,
+      "elev": 26
      },
      {
       "at": "strong",
       "dur": 40,
-      "x": 119.0,
-      "y": -1.0,
-      "d": 62,
-      "elev": 14
+      "x": 120,
+      "y": -1.8,
+      "d": 47,
+      "elev": 27
      }
     ],
     "labels": [
@@ -1386,7 +1430,7 @@
      }
     ]
    },
-   "durationSec": 5.3,
+   "durationSec": 8.0,
    "holdSec": 0.6,
    "headSec": 0.3,
    "pauseAfter": 0.6
@@ -1395,11 +1439,11 @@
    "id": "s6",
    "beat": "payoff",
    "para": 6,
-   "narration": "世界先進，台積電也持股，專做功率和電源晶片。力積電，記憶體起家，也幫人代工。",
-   "tts": "世界先進，台積電也持股，專做功率和電源晶片。力積電，記憶體起家，也幫人代工。",
+   "narration": "世界先進，台積電也持股，主力是功率和電源晶片。力積電，除了記憶體，也幫人代工。",
+   "tts": "世界先進，台積電也持股，主力是功率和電源晶片。力積電，除了記憶體，也幫人代工。",
    "subtitle": {
-    "zh": "世界先進\n台積電也持股\n專做功率和電源晶片\n力積電\n記憶體起家\n也幫人代工",
-    "en": "Vanguard (VIS), | partly owned by TSMC, | focuses on power chips. | Powerchip (PSMC) | started in memory | and also makes chips for others."
+    "zh": "世界先進\n台積電也持股\n主力是功率和電源晶片\n力積電\n除了記憶體\n也幫人代工",
+    "en": "Vanguard (VIS), | partly owned by TSMC, | mainly makes power chips. | Powerchip (PSMC): | besides memory, | it also makes chips for others."
    },
    "keywords": [
     "世界先進",
@@ -1433,7 +1477,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "中央社 2024/10；鏡週刊 2026/10；自由財經"
+    "中央社；鏡週刊；科技新報 2026/7；聯合報"
    ],
    "props": {
     "zoom": [
@@ -1447,15 +1491,15 @@
      {
       "at": "start",
       "dur": 60,
-      "x": 119.5,
-      "y": -1.0,
-      "d": 62,
-      "elev": 14
+      "x": 120,
+      "y": -1.8,
+      "d": 48,
+      "elev": 28
      }
     ],
     "labels": []
    },
-   "durationSec": 7.3,
+   "durationSec": 7.4,
    "holdSec": 0.6,
    "headSec": 0.3,
    "pauseAfter": 0.6
@@ -1464,11 +1508,11 @@
    "id": "s7",
    "beat": "twist",
    "para": 7,
-   "narration": "但中國在大擴產。據 TrendForce 估計，前十大成熟產能裡，中國廠已超過四分之一。",
-   "tts": "但中國在大擴產。據 TrendForce 估計，前十大成熟產能裡，中國廠已超過四分之一。",
+   "narration": "但中國在大擴產。據 TrendForce 預估，前十大成熟產能裡，中國廠將超過四分之一。",
+   "tts": "但中國在大擴產。據 TrendForce 預估，前十大成熟產能裡，中國廠將超過四分之一。",
    "subtitle": {
-    "zh": "但中國在大擴產\n據 TrendForce 估計\n前十大成熟產能裡\n中國廠已超過\n四分之一",
-    "en": "But China is expanding fast. | TrendForce estimates | that of the top ten's mature capacity, | Chinese fabs already hold | over a quarter."
+    "zh": "但中國在大擴產\n據 TrendForce 預估\n前十大成熟產能裡\n中國廠將超過\n四分之一",
+    "en": "But China is expanding fast. | TrendForce projects | that of the top ten's mature capacity, | Chinese fabs will hold | over a quarter."
    },
    "keywords": [
     "中國",
@@ -1489,7 +1533,7 @@
     },
     {
      "id": "over",
-     "text": "已超過"
+     "text": "將超過"
     },
     {
      "id": "quarter",
@@ -1512,31 +1556,21 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 157.0,
-      "y": 0.4,
-      "d": 52,
+      "x": 157.4,
+      "y": 0.0,
+      "d": 46,
       "elev": 28
      },
      {
       "at": "top",
       "dur": 40,
-      "x": 158.0,
-      "y": 0.4,
-      "d": 50,
+      "x": 157.6,
+      "y": 0.0,
+      "d": 44,
       "elev": 30
      }
     ],
-    "labels": [
-     {
-      "part": "cFlag",
-      "text": "中國",
-      "en": "China",
-      "color": "amber",
-      "at": "cn",
-      "until": "end",
-      "cut": true
-     }
-    ],
+    "labels": [],
     "overlay": [
      {
       "type": "section",
@@ -1549,7 +1583,7 @@
       "h": 330,
       "avoid": false,
       "title": "中國成熟製程擴產",
-      "tag": "分析預期（TrendForce）",
+      "tag": "分析預期（TrendForce 預估）",
       "t": {
        "cn": {
         "at": "cn"
@@ -1574,11 +1608,11 @@
    "id": "s8",
    "beat": "twist",
    "para": 8,
-   "narration": "新廠一座座蓋，像夜市一下開好多攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
-   "tts": "新廠一座座蓋，像夜市一下開好多攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
+   "narration": "新廠一直蓋，像夜市開滿攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
+   "tts": "新廠一直蓋，像夜市開滿攤，價格被壓低，所以台廠轉向車用、AI 伺服器電源較難的晶片。",
    "subtitle": {
-    "zh": "新廠一座座蓋\n像夜市一下\n開好多攤\n價格被壓低\n所以台廠轉向\n車用、AI 伺服器電源\n較難的晶片",
-    "en": "New fabs keep going up, | like a night market | suddenly full of stalls, | so prices get pushed down. | So Taiwan fabs are shifting | to cars and AI server power: | the harder chips."
+    "zh": "新廠一直蓋\n像夜市開滿攤\n價格被壓低\n所以台廠轉向\n車用・AI 伺服器電源\n較難的晶片",
+    "en": "New fabs keep going up, | like a night market full of stalls, | so prices get pushed down. | So Taiwan fabs are shifting | to cars and AI server power: | the harder chips."
    },
    "keywords": [
     "夜市",
@@ -1596,7 +1630,7 @@
     },
     {
      "id": "many",
-     "text": "好多攤"
+     "text": "開滿攤"
     },
     {
      "id": "price",
@@ -1635,18 +1669,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 158.5,
-      "y": 0.4,
-      "d": 52,
+      "x": 157.6,
+      "y": 0.0,
+      "d": 46,
       "elev": 30
      },
      {
       "at": "shift+4",
       "dur": 1,
-      "x": 197.0,
-      "y": 1.2,
+      "x": 197.4,
+      "y": 1.0,
       "d": 42,
-      "elev": 16
+      "elev": 18
      }
     ],
     "run": [
@@ -1735,7 +1769,7 @@
      }
     ]
    },
-   "durationSec": 8.8,
+   "durationSec": 8.0,
    "holdSec": 0.6,
    "headSec": 0.3,
    "pauseAfter": 0.6

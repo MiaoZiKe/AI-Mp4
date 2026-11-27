@@ -147,7 +147,7 @@ Object.assign(materials, {
 });
 
 // ── 貼圖：國旗、公司 LOGO（Commons 原檔）；力積電抓不到原檔 → 白底文字名牌 ──
-const TEX = ["flag:TW", "flag:CN", "logo:umc", "logo:vis", "text:psmc=力積電|PSMC 6770", "text:cnfab=中國新廠|成熟製程", "text:mem=記憶體|下一集"];
+const TEX = ["flag:TW", "flag:CN", "logo:umc", "logo:vis", "logo:psmc", "text:cnfab=中國新廠|成熟製程", "text:mem=記憶體|下一集"];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-mature", ...TEX], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stdout, r.stderr); process.exit(1); } }
 const SIGN = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
 const TEXMAT = (name) => { materials[`t_${name}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/${name}.png` }; return `t_${name}`; };
@@ -217,30 +217,35 @@ LAY("kRf", [3, 0.4, KX - 4.2, KT + 0.2]);
 BOX("kShield", "kRf", KX - 6.0, KX - 2.6, KT, KT + 0.22, 1.8, 3.8, "shield", { bevel: 0.03 });
 P({ id: "kShieldH", layer: "kRf", shape: "cyl", size: [0.05, 0.01], rot: V, pos: [0, R2(KT + 0.225), 0], at: Array.from({ length: 24 }, (_, i) => [R2(KX - 5.7 + (i % 8) * 0.4), 0, R2(2.2 + Math.floor(i / 8) * 0.6)]), mat: "dark" });
 P({ id: "kSmall", layer: "kRf", shape: "box", size: [0.5, 0.1, 0.5], pos: [0, R2(KT + 0.05), 0], at: [[KX + 2.4, 0, 2.6], [KX + 2.4, 0, 3.6], [KX - 1.4, 0, 3.4], [KX + 1.0, 0, -3.6], [KX - 1.8, 0, -3.4]], mat: "chipBk", bevel: 0.02 });
+// 電源走線（寬銅箔）：電池接頭→MOSFET→電源管理 IC→電感→SoC／記憶體／排線座（配電光點沿這幾條走）
+{ const W = 0.16, y = R2(KT + 0.008), seg = (id, a, b) => { const [x0, z0] = a, [x1, z1] = b; P({ id, layer: "kPcb", shape: "box", size: [R2(Math.abs(x1 - x0) + W), 0.012, R2(Math.abs(z1 - z0) + W)], pos: [R2((x0 + x1) / 2), y, R2((z0 + z1) / 2)], mat: "cuTr" }); };
+  const PW = [[[MX + 0.5, MZ - 1.6], [MX + 0.5, MZ]], [[MX + 0.5, MZ], [PX - 0.9, MZ]], [[PX - 0.9, MZ], [PX - 0.9, PZ]], [[PX + 1.7, PZ + 0.0], [PX + 1.7, PZ + 2.2]], [[PX + 1.7, PZ + 2.2], [KX + 1.6, PZ + 2.2]], [[KX + 1.6, PZ + 2.2], [KX + 1.6, 0]],
+    [[PX + 1.7, PZ - 0.75], [PX + 1.7, -3.6]], [[PX + 1.7, -3.6], [KX - 3.4, -3.6]], [[KX - 3.4, -3.6], [KX - 3.4, -1.3]], [[PX + 1.7, PZ + 1.5], [PX + 1.7, DCZ - 0.4]], [[PX + 1.7, DCZ - 0.4], [DCX, DCZ - 0.4]]];
+  PW.forEach((q, i) => seg(`kPw${i}`, q[0], q[1])); }
 // 發光框（念「三奈米」先進 SoC 藍框；念「成熟製程」其他晶片橘框）
 LAY("kGlow", [16, 0.4, KX, KT + 0.2]);
 P({ id: "kAdvRing", layer: "kGlow", shape: "tube", size: [2.15, 2.0, 0.05], rot: V, pos: [KX, R2(KT + 0.34), 0], mat: "advGlow" });
-P({ id: "kMatRing", layer: "kGlow", shape: "tube", size: [0.95, 0.85, 0.05], rot: V, pos: [0, R2(KT + 0.36), 0], at: [[PX + 0.5, 0, PZ + 0.2], [MX + 0.5, 0, MZ], [DCX, 0, DCZ], [KX - 4.3, 0, 2.8], [KX - 3.4, 0, 0]], mat: "matGlow" });
+P({ id: "kMatRing", layer: "kGlow", shape: "tube", size: [0.95, 0.85, 0.05], rot: V, pos: [0, R2(KT + 0.36), 0], at: [[PX + 0.5, 0, PZ + 0.2], [MX + 0.5, 0, MZ], [KX - 4.3, 0, 2.8]], mat: "matGlow" });
 
 // ═════ 站 P：功率 MOSFET（左：TO-247 封裝鎖在散熱片上；右：垂直溝槽 MOSFET 剖面，可爆炸分層）═════
 const PPX = 40;
-LAY("pHs", [6, 3, PPX - 5, 1.5]);
-BOX("pHsBase", "pHs", PPX - 8, PPX - 2, 0, 0.5, -2.5, 1.5, "alu");
-P({ id: "pHsFin", layer: "pHs", shape: "box", size: [0.14, 2.4, 4.0], pos: [0, 1.7, -0.5], at: Array.from({ length: 13 }, (_, i) => [R2(PPX - 7.8 + i * 0.47), 0, 0]), mat: "alu" });
-LAY("pPkg", [3, 4, PPX - 5, 3.4]);
-BOX("pPkgBody", "pPkg", PPX - 6.2, PPX - 3.8, 2.9, 3.25, 0.2, 3.2, "chipBk", { bevel: 0.05 });
-BOX("pPkgTab", "pPkg", PPX - 6.2, PPX - 3.8, 2.9, 3.0, -0.9, 0.2, "steel2");
-P({ id: "pPkgHole", layer: "pPkg", shape: "tube", size: [0.3, 0.16, 0.12], rot: V, pos: [PPX - 5, 2.95, -0.35], mat: "dark" });
-P({ id: "pPkgScrew", layer: "pPkg", shape: "cyl", size: [0.2, 0.3], rot: V, pos: [PPX - 5, 3.1, -0.35], mat: "steel" });
-P({ id: "pLeg", layer: "pPkg", shape: "box", size: [0.16, 0.08, 1.8], pos: [0, 3.0, 4.1], at: [[PPX - 5.75, 0, 0], [PPX - 5.0, 0, 0], [PPX - 4.25, 0, 0]], mat: "needle" });
-P({ id: "pLegBend", layer: "pPkg", shape: "box", size: [0.16, 1.4, 0.08], pos: [0, 2.3, 5.0], at: [[PPX - 5.75, 0, 0], [PPX - 5.0, 0, 0], [PPX - 4.25, 0, 0]], mat: "needle" });
-P({ id: "pPkgMark", layer: "pPkg", shape: "cyl", size: [0.12, 0.01], rot: V, pos: [PPX - 5.8, 3.26, 2.8], mat: "dieLn" });
+LAY("pHs", [5, 3, PPX - 3.1, 1.5]);
+BOX("pHsBase", "pHs", PPX - 5.6, PPX - 0.6, 0, 0.5, -2.5, 1.5, "alu");
+P({ id: "pHsFin", layer: "pHs", shape: "box", size: [0.14, 2.4, 4.0], pos: [0, 1.7, -0.5], at: Array.from({ length: 11 }, (_, i) => [R2(PPX - 5.45 + i * 0.47), 0, 0]), mat: "alu" });
+LAY("pPkg", [3, 4, PPX - 3.1, 3.0]);
+BOX("pPkgBody", "pPkg", PPX - 4.3, PPX - 1.9, 2.9, 3.25, 0.2, 3.2, "chipBk", { bevel: 0.05 });
+BOX("pPkgTab", "pPkg", PPX - 4.3, PPX - 1.9, 2.9, 3.0, -0.9, 0.2, "steel2");
+P({ id: "pPkgHole", layer: "pPkg", shape: "tube", size: [0.3, 0.16, 0.12], rot: V, pos: [PPX - 3.1, 2.95, -0.35], mat: "dark" });
+P({ id: "pPkgScrew", layer: "pPkg", shape: "cyl", size: [0.2, 0.3], rot: V, pos: [PPX - 3.1, 3.1, -0.35], mat: "steel" });
+P({ id: "pLeg", layer: "pPkg", shape: "box", size: [0.16, 0.08, 1.8], pos: [0, 3.0, 4.1], at: [[PPX - 3.85, 0, 0], [PPX - 3.1, 0, 0], [PPX - 2.35, 0, 0]], mat: "needle" });
+P({ id: "pLegBend", layer: "pPkg", shape: "box", size: [0.16, 1.4, 0.08], pos: [0, 2.3, 5.0], at: [[PPX - 3.85, 0, 0], [PPX - 3.1, 0, 0], [PPX - 2.35, 0, 0]], mat: "needle" });
+P({ id: "pPkgMark", layer: "pPkg", shape: "cyl", size: [0.12, 0.01], rot: V, pos: [PPX - 3.9, 3.26, 2.8], mat: "dieLn" });
 // 腳的名牌：G（閘極＝水龍頭把手）、D（汲極）、S（源極）—— 用顏色帽區分
-P({ id: "pLegG", layer: "pPkg", shape: "box", size: [0.24, 0.24, 0.24], pos: [PPX - 5.75, 1.55, 5.0], mat: "poly" });
-P({ id: "pLegD", layer: "pPkg", shape: "box", size: [0.24, 0.24, 0.24], pos: [PPX - 5.0, 1.55, 5.0], mat: "drainM" });
-P({ id: "pLegS", layer: "pPkg", shape: "box", size: [0.24, 0.24, 0.24], pos: [PPX - 4.25, 1.55, 5.0], mat: "al" });
+P({ id: "pLegG", layer: "pPkg", shape: "box", size: [0.24, 0.24, 0.24], pos: [PPX - 3.85, 1.55, 5.0], mat: "poly" });
+P({ id: "pLegD", layer: "pPkg", shape: "box", size: [0.24, 0.24, 0.24], pos: [PPX - 3.1, 1.55, 5.0], mat: "drainM" });
+P({ id: "pLegS", layer: "pPkg", shape: "box", size: [0.24, 0.24, 0.24], pos: [PPX - 2.35, 1.55, 5.0], mat: "al" });
 // 剖面（垂直溝槽 MOSFET，示意不按比例）：由下到上 汲極金屬｜N+ 基板｜N− 漂移層｜P 本體｜N+ 源極＋溝槽閘極（氧化層包多晶矽）｜源極金屬
-const CX0 = PPX + 1.0, CX1 = PPX + 8.0, CZ0 = -1.5, CZ1 = 1.5;
+const CX0 = PPX + 0.6, CX1 = PPX + 7.6, CZ0 = -1.5, CZ1 = 1.5;
 const PL = [["pDrain", 0.2, 0.5, "drainM"], ["pSub", 0.5, 1.4, "nplus"], ["pDrift", 1.4, 3.6, "ndrift"], ["pBody", 3.6, 4.3, "pbody"], ["pSrcN", 4.3, 4.6, "nplus"], ["pMetal", 4.75, 5.15, "al"]];
 for (const [id, y0, y1, m] of PL) { LAY(id, [7, R2(y1 - y0), R2((CX0 + CX1) / 2), R2((y0 + y1) / 2)]); BOX(`${id}B`, id, CX0, CX1, y0, y1, CZ0, CZ1, m); }
 // 溝槽閘極：三道溝（氧化層外殼＋多晶矽芯），從上面往下切穿 P 本體到漂移層；源極金屬下面的層間氧化帽
@@ -276,11 +281,11 @@ P({ id: "dFpcTr", layer: "dDdi", shape: "box", size: [0.03, 0.006, 2.2], pos: [0
 const WAF = (id, cx, cz, r) => { LAY(id, [R2(2 * r + 0.4), 1.2, cx, 0.8]);
   VC(`${id}Stand`, id, R2(r * 0.4), 0, 0.5, "stand", { x: cx, z: cz }); VC(`${id}Ring`, id, R2(r + 0.12), 0.5, 0.62, "stand", { x: cx, z: cz });
   VC(`${id}W`, id, r, 0.62, 0.7, "wafer", { x: cx, z: cz }); VC(`${id}Edge`, id, R2(r - 0.05), 0.7, 0.705, "waferHi", { x: cx, z: cz });
-  const g = [], st = 0.36; for (let i = -12; i <= 12; i++) { const x = i * st; if (Math.abs(x) < r - 0.25) g.push([R2(cx + x), 0, cz]); }
-  const gz = []; for (let i = -12; i <= 12; i++) { const z = i * st; if (Math.abs(z) < r - 0.25) gz.push([cx, 0, R2(cz + z)]); }
-  P({ id: `${id}Gx`, layer: id, shape: "box", size: [0.015, 0.006, R2(2 * r - 0.5)], pos: [0, 0.708, 0], at: g, mat: "dieLn" });
-  P({ id: `${id}Gz`, layer: id, shape: "box", size: [R2(2 * r - 0.5), 0.006, 0.015], pos: [0, 0.708, 0], at: gz, mat: "dieLn" });
-  BOX(`${id}Notch`, id, cx - 0.08, cx + 0.08, 0.62, 0.712, R2(cz + r - 0.12), R2(cz + r + 0.01), "notch"); };
+  const st = 0.36, rr = r - 0.12;
+  for (let i = -12; i <= 12; i++) { const d = i * st; if (Math.abs(d) >= rr - 0.05) continue; const h = R2(2 * Math.sqrt(rr * rr - d * d));
+    P({ id: `${id}Gx${i + 12}`, layer: id, shape: "box", size: [0.015, 0.006, h], pos: [R2(cx + d), 0.708, cz], mat: "dieLn" });
+    P({ id: `${id}Gz${i + 12}`, layer: id, shape: "box", size: [h, 0.006, 0.015], pos: [cx, 0.708, R2(cz + d)], mat: "dieLn" }); }
+  BOX(`${id}Notch`, id, cx - 0.16, cx + 0.16, 0.62, 0.712, R2(cz + r - 0.22), R2(cz + r + 0.01), "notch"); };
 WAF("dW8", DX + 7.0, 0.6, 2.0); WAF("dW12", DX + 12.6, 0.6, 3.0);
 
 // ═════ 站 F：台灣三家代工廠（聯電、世界先進、力積電）＋國旗；各有屋頂設備、管線、窗格、裝卸區 ═════
@@ -301,22 +306,22 @@ const FAB = (id, x, z, w, d, h, sign, signW, acc) => { LAY(id, [w + 1, h + 1.5, 
   BOX(`${id}SignBg`, id, x - signW / 2 - 0.15, x + signW / 2 + 0.15, R2(h - 1.45), R2(h - 0.5), z + d / 2, z + d / 2 + 0.04, "panel");
   PLATE(`${id}Sign`, id, sign, signW, x, R2(h - 0.975), R2(z + d / 2 + 0.05)); };
 const vis_ = SIGN["sign-vis"].aspect, umc_ = SIGN["sign-umc"].aspect;
-FAB("fUmc", FX - 5.6, -1.5, 4.8, 3.4, 4.2, "sign-umc", R2(Math.min(3.0, 0.8 * umc_)), "advGlow");
-FAB("fVis", FX, -1.5, 4.6, 3.4, 3.4, "sign-vis", R2(Math.min(2.4, 0.8 * vis_)), "matGlow");
-FAB("fPsmc", FX + 5.6, -1.5, 4.6, 3.4, 3.8, "sign-psmc", 2.2, "priceTag");
-LAY("fFlag", [2, 4, FX - 8.6, 2]); FLAGPOLE("fFlagP", "fFlag", "TW", FX - 8.6, 1.6, 4.2, 1.2);
+FAB("fUmc", FX - 3.4, 3.0, 4.8, 3.4, 4.2, "sign-umc", R2(Math.min(3.0, 0.8 * umc_)), "advGlow");
+FAB("fVis", FX + 3.4, -0.6, 4.6, 3.4, 3.4, "sign-vis", R2(Math.min(2.4, 0.8 * vis_)), "matGlow");
+FAB("fPsmc", FX - 1.6, -5.4, 4.6, 3.4, 3.8, "sign-psmc", R2(Math.min(2.6, 0.8 * SIGN["sign-psmc"].aspect)), "priceTag");
+LAY("fFlag", [2, 4, FX + 0.2, 2]); FLAGPOLE("fFlagP", "fFlag", "TW", FX + 0.2, 6.0, 3.6, 1.2);
 // 廠前產品樣本：聯電＝驅動晶片小條；世界先進＝功率元件（TO 封裝）；力積電＝晶圓盒
 LAY("fProd", [18, 1, FX, 0.5]);
-P({ id: "fProdDdi", layer: "fProd", shape: "box", size: [1.0, 0.12, 0.22], pos: [0, 0.3, 1.6], at: [[FX - 6.3, 0, 0], [FX - 6.3, 0, 0.4], [FX - 4.9, 0, 0], [FX - 4.9, 0, 0.4]], mat: "chipBk" });
-P({ id: "fProdTo", layer: "fProd", shape: "box", size: [0.4, 0.5, 0.14], pos: [0, 0.4, 1.7], at: [[FX - 0.8, 0, 0], [FX - 0.2, 0, 0], [FX + 0.4, 0, 0], [FX + 1.0, 0, 0]], mat: "chipBk" });
-P({ id: "fProdToL", layer: "fProd", shape: "box", size: [0.04, 0.3, 0.04], pos: [0, 0.05, 1.7], at: [-0.8, -0.2, 0.4, 1.0].flatMap((d) => [[R2(FX + d - 0.12), 0, 0], [R2(FX + d), 0, 0], [R2(FX + d + 0.12), 0, 0]]), mat: "needle" });
-P({ id: "fProdFoup", layer: "fProd", shape: "box", size: [1.0, 0.9, 0.9], pos: [0, 0.57, 1.7], at: [[FX + 4.9, 0, 0], [FX + 6.3, 0, 0]], mat: "lampY", bevel: 0.08 });
-P({ id: "fProdFoupH", layer: "fProd", shape: "box", size: [0.5, 0.1, 0.2], pos: [0, 1.07, 1.7], at: [[FX + 4.9, 0, 0], [FX + 6.3, 0, 0]], mat: "dark" });
-P({ id: "fRoad", layer: "floor", shape: "box", size: [24, 0.02, 1.2], pos: [FX, 0.02, 3.4], mat: "band" });
+P({ id: "fProdDdi", layer: "fProd", shape: "box", size: [1.0, 0.12, 0.22], pos: [0, 0.3, 5.4], at: [[FX - 4.3, 0, 0], [FX - 4.3, 0, 0.4], [FX - 2.9, 0, 0], [FX - 2.9, 0, 0.4]], mat: "chipBk" });
+P({ id: "fProdTo", layer: "fProd", shape: "box", size: [0.4, 0.5, 0.14], pos: [0, 0.4, 1.0], at: [[FX + 4.4, 0, 0], [FX + 5.0, 0, 0], [FX + 5.6, 0, 0], [FX + 6.2, 0, 0]], mat: "chipBk" });
+P({ id: "fProdToL", layer: "fProd", shape: "box", size: [0.04, 0.3, 0.04], pos: [0, 0.05, 1.0], at: [4.4, 5.0, 5.6, 6.2].flatMap((d) => [[R2(FX + d - 0.12), 0, 0], [R2(FX + d), 0, 0], [R2(FX + d + 0.12), 0, 0]]), mat: "needle" });
+P({ id: "fProdFoup", layer: "fProd", shape: "box", size: [1.0, 0.9, 0.9], pos: [0, 0.57, -3.2], at: [[FX + 0.6, 0, 0], [FX + 1.9, 0, 0]], mat: "lampY", bevel: 0.08 });
+P({ id: "fProdFoupH", layer: "fProd", shape: "box", size: [0.5, 0.1, 0.2], pos: [0, 1.07, -3.2], at: [[FX + 0.6, 0, 0], [FX + 1.9, 0, 0]], mat: "dark" });
+
 
 // ═════ 站 C：中國擴產（國旗；九座新廠依序冒出＝夜市一下開很多攤；右邊價格柱往下沉）═════
 const CX = 160;
-LAY("cFlag", [2, 4, CX - 11, 2]); FLAGPOLE("cFlagP", "cFlag", "CN", CX - 11, 0, 4.2, 1.2);
+LAY("cFlag", [2, 4, CX - 9.6, 2]); FLAGPOLE("cFlagP", "cFlag", "CN", CX - 9.6, -1.0, 4.2, 1.2);
 const NEW = [];
 for (let i = 0; i < 9; i++) { const id = `cFab${i}`, x = R2(CX - 7.5 + (i % 3) * 3.6), z = R2(-3.2 + Math.floor(i / 3) * 3.0), h = R2(1.6 + (i % 2) * 0.4); NEW.push(id);
   LAY(id, [3, R2(h + 0.6), x, R2(h / 2)]);
@@ -326,14 +331,16 @@ for (let i = 0; i < 9; i++) { const id = `cFab${i}`, x = R2(CX - 7.5 + (i % 3) *
   P({ id: `${id}Win`, layer: id, shape: "box", size: [0.35, 0.3, 0.03], pos: [0, R2(h - 0.75), R2(z + 1.01)], at: [-0.8, -0.27, 0.27, 0.8].map((d) => [R2(x + d), 0, 0]), mat: "glassDark" });
   BOX(`${id}Door`, id, x + 0.4, x + 1.0, 0.12, 0.8, z + 1.0, z + 1.04, "dark");
   VC(`${id}Stack`, id, 0.12, h, R2(h + 0.8), "steel2", { x: R2(x - 0.9), z: R2(z - 0.6) });
-  P({ id: `${id}Hv`, layer: id, shape: "box", size: [0.6, 0.3, 0.5], pos: [R2(x + 0.5), R2(h + 0.25), R2(z - 0.3)], mat: "panel2", bevel: 0.02 }); }
+  P({ id: `${id}Hv`, layer: id, shape: "box", size: [0.6, 0.3, 0.5], pos: [R2(x + 0.5), R2(h + 0.25), R2(z - 0.3)], mat: "panel2", bevel: 0.02 });
+  VC(`${id}Tank`, id, 0.22, 0.12, 1.1, "tankP", { x: R2(x + 1.55), z: R2(z - 0.4) }); SPH(`${id}TankT`, id, 0.22, R2(x + 1.55), 1.1, R2(z - 0.4), "tankP");
+  PIPE(`${id}Gp`, id, [[R2(x + 1.55), 1.0, R2(z - 0.15)], [R2(x + 1.55), 1.3, R2(z - 0.15)], [R2(x + 1.3), 1.3, R2(z - 0.15)]], 0.05, "pipeW"); }
 LAY("cSign", [3, 1.5, CX - 3.9, 4.6]); PLATE("cSignP", "cSign", "sign-cnfab", 2.8, CX - 3.9, 4.6, -4.6);
 // 價格柱：底座＋紅色柱＋白色價格牌；往下沉＝價格被壓低（地板蓋住下半）
-LAY("cPrice", [2, 6, CX + 5.5, 3]);
-BOX("cPriceBase", "floor", CX + 4.6, CX + 6.4, 0, 0.1, -0.9, 0.9, "dark");
-BOX("cPriceCol", "cPrice", CX + 5.0, CX + 6.0, 0.1, 5.2, -0.5, 0.5, "price", { bevel: 0.04 });
-BOX("cPriceTag", "cPrice", CX + 4.7, CX + 6.3, 4.4, 5.0, 0.5, 0.56, "priceTag");
-P({ id: "cPriceTick", layer: "cPrice", shape: "box", size: [0.5, 0.04, 0.04], pos: [0, 0, 0.52], at: Array.from({ length: 8 }, (_, i) => [R2(CX + 5.5), R2(0.6 + i * 0.5), 0]), mat: "priceTag" });
+LAY("cPrice", [2, 6, CX + 4.4, 3]);
+BOX("cPriceBase", "floor", CX + 3.5, CX + 5.3, 0, 0.1, -0.9, 0.9, "dark");
+BOX("cPriceCol", "cPrice", CX + 3.9, CX + 4.9, 0.1, 5.2, -0.5, 0.5, "price", { bevel: 0.04 });
+BOX("cPriceTag", "cPrice", CX + 3.6, CX + 5.2, 4.4, 5.0, 0.5, 0.56, "priceTag");
+P({ id: "cPriceTick", layer: "cPrice", shape: "box", size: [0.5, 0.04, 0.04], pos: [0, 0, 0.52], at: Array.from({ length: 8 }, (_, i) => [R2(CX + 4.4), R2(0.6 + i * 0.5), 0]), mat: "priceTag" });
 
 // ═════ 站 T：轉向（左：電動車，底盤逆變器的功率模組；右：AI 伺服器機櫃，電源供應器）═════
 const TX = 200;
@@ -344,13 +351,19 @@ BOX("tCarWin", "tCar", TX - 7.0, TX - 3.2, 1.6, 2.3, 1.46, 1.48, "carD");
 BOX("tCarWs", "tCar", TX - 3.1, TX - 3.0, 1.6, 2.3, -1.3, 1.3, "carD");
 P({ id: "tTire", layer: "tCar", shape: "cyl", size: [0.55, 0.45], pos: [0, 0.55, 0], at: [[TX - 7.6, 0, 1.45], [TX - 2.8, 0, 1.45], [TX - 7.6, 0, -1.45], [TX - 2.8, 0, -1.45]], mat: "tire" });
 P({ id: "tRim", layer: "tCar", shape: "cyl", size: [0.32, 0.47], pos: [0, 0.55, 0], at: [[TX - 7.6, 0, 1.45], [TX - 2.8, 0, 1.45], [TX - 7.6, 0, -1.45], [TX - 2.8, 0, -1.45]], mat: "rim" });
+P({ id: "tArch", layer: "tCar", shape: "box", size: [1.5, 0.35, 0.06], pos: [0, 1.0, 0], at: [[TX - 7.6, 0, 1.62], [TX - 2.8, 0, 1.62]], mat: "carD" });
+P({ id: "tSeam", layer: "tCar", shape: "box", size: [0.03, 1.4, 0.02], pos: [0, 1.55, 1.62], at: [[TX - 5.1, 0, 0], [TX - 3.4, 0, 0]], mat: "carD" });
+P({ id: "tHandle", layer: "tCar", shape: "box", size: [0.3, 0.06, 0.04], pos: [0, 1.35, 1.63], at: [[TX - 5.5, 0, 0], [TX - 3.8, 0, 0]], mat: "rim" });
+P({ id: "tMirror", layer: "tCar", shape: "box", size: [0.2, 0.18, 0.3], pos: [R2(TX - 3.3), 1.75, 0], at: [[0, 0, 1.7], [0, 0, -1.7]], mat: "carD" });
 P({ id: "tLamp", layer: "tCar", shape: "box", size: [0.06, 0.2, 0.5], pos: [R2(TX - 1.42), 1.15, 0], at: [[0, 0, 1.0], [0, 0, -1.0]], mat: "lampY" });
 // 逆變器（車底；外殼掀開看到 6 顆功率晶片模組）＋高壓線（橘）
 LAY("tInv", [3, 1.2, TX - 5.2, 0.9]);
-BOX("tInvBox", "tInv", TX - 6.4, TX - 4.0, 0.35, 0.75, -0.8, 0.8, "inv", { bevel: 0.04 });
-P({ id: "tInvMod", layer: "tInv", shape: "box", size: [0.5, 0.1, 0.4], pos: [0, 0.8, 0], at: [-0.8, 0, 0.8].flatMap((d) => [[R2(TX - 5.2 + d), 0, -0.3], [R2(TX - 5.2 + d), 0, 0.3]]), mat: "chipBk" });
-P({ id: "tInvTerm", layer: "tInv", shape: "box", size: [0.12, 0.08, 0.12], pos: [0, 0.88, 0], at: [-0.8, 0, 0.8].flatMap((d) => [[R2(TX - 5.2 + d - 0.12), 0, -0.3], [R2(TX - 5.2 + d + 0.12), 0, 0.3]]), mat: "cuTr" });
-PIPE("tHv", "tInv", [[TX - 4.0, 0.55, 0.5], [TX - 2.8, 0.55, 0.5], [TX - 2.8, 0.55, 1.1]], 0.07, "cable", { jmat: "cable" });
+BOX("tInvBox", "tInv", TX - 6.4, TX - 4.0, 0.9, 1.3, 2.4, 4.0, "inv", { bevel: 0.04 });
+P({ id: "tInvMod", layer: "tInv", shape: "box", size: [0.5, 0.1, 0.4], pos: [0, 1.35, 0], at: [-0.8, 0, 0.8].flatMap((d) => [[R2(TX - 5.2 + d), 0, 2.9], [R2(TX - 5.2 + d), 0, 3.5]]), mat: "chipBk" });
+P({ id: "tInvTerm", layer: "tInv", shape: "box", size: [0.12, 0.08, 0.12], pos: [0, 1.43, 0], at: [-0.8, 0, 0.8].flatMap((d) => [[R2(TX - 5.2 + d - 0.12), 0, 2.9], [R2(TX - 5.2 + d + 0.12), 0, 3.5]]), mat: "cuTr" });
+BOX("tInvStand", "tInv", TX - 6.2, TX - 4.2, 0, 0.9, 2.6, 3.8, "stand"); BOX("tInvLid", "tInv", TX - 6.4, TX - 4.0, 1.3, 1.36, 4.0, 4.5, "inv", { rot: [-60, 0, 0] });
+P({ id: "tInvCap", layer: "tInv", shape: "cyl", size: [0.18, 0.4], rot: V, pos: [0, 1.5, 3.95], at: [[TX - 6.0, 0, 0], [TX - 5.6, 0, 0]], mat: "capTan" });
+PIPE("tHv", "tInv", [[TX - 4.0, 1.1, 3.2], [TX - 3.2, 1.1, 3.2], [TX - 3.2, 0.55, 1.7]], 0.07, "cable", { jmat: "cable" });
 // AI 伺服器機櫃（機架＋8 台伺服器＋上面兩台電源供應器，前面有風扇與燈號）
 const RX = TX + 1.6;
 LAY("tRack", [3, 6, RX, 3]);
@@ -380,19 +393,18 @@ const MES = [CX0 + 0.55, CX0 + 2.45, CX0 + 4.55, CX0 + 6.5];
 Object.assign(actions, {
   kAdv: { type: "pulse", _說明: "先進 SoC（三奈米這類）藍框閃", parts: ["kAdvRing"], color: "advC", glow: 1.0, freq: 1.4, halo: 0.4 },
   kMat: { type: "pulse", _說明: "其他晶片（電源、功率、驅動、射頻、記憶體）多半是成熟製程：橘框閃", parts: ["kMatRing"], color: "matC", glow: 1.0, freq: 1.4, halo: 0.4 },
-  kPowIn: { type: "flow", _說明: "配電盤：電池→功率開關→電源管理 IC", layer: "kMos", path: [[MX + 0.5, KT + 0.35, MZ - 1.6], [MX + 0.5, KT + 0.35, MZ], [PX - 0.9, KT + 0.35, MZ], [PX - 0.9, KT + 0.35, PZ]], n: 6, size: 0.12, shape: "dot", rate: 0.7, color: "powC", track: false, free: true },
-  kPowSoc: { type: "flow", _說明: "電源管理 IC→電感→分給 SoC", layer: "kPmic", path: [[PX + 1.7, KT + 0.45, PZ + 0.0], [PX + 1.7, KT + 0.45, PZ + 2.2], [KX + 1.6, KT + 0.45, PZ + 2.2], [KX + 1.6, KT + 0.45, 0]], n: 5, size: 0.11, shape: "dot", rate: 0.7, color: "powC", track: false, free: true },
-  kPowMem: { type: "flow", _說明: "分給記憶體", layer: "kPmic", path: [[PX + 1.7, KT + 0.45, PZ - 0.75], [PX + 1.7, KT + 0.45, -3.6], [KX - 3.4, KT + 0.45, -3.6], [KX - 3.4, KT + 0.45, -1.3]], n: 6, size: 0.11, shape: "dot", rate: 0.7, color: "powC", track: false, free: true },
-  kPowDisp: { type: "flow", _說明: "分給螢幕接頭", layer: "kPmic", path: [[PX + 1.7, KT + 0.45, PZ + 1.5], [PX + 1.7, KT + 0.45, DCZ - 0.4], [DCX, KT + 0.45, DCZ - 0.4]], n: 4, size: 0.11, shape: "dot", rate: 0.7, color: "powC", track: false, free: true },
+  kPowIn: { type: "flow", _說明: "配電盤：電池→功率開關→電源管理 IC", layer: "kMos", path: [[MX + 0.5, KT + 0.12, MZ - 1.6], [MX + 0.5, KT + 0.12, MZ], [PX - 0.9, KT + 0.12, MZ], [PX - 0.9, KT + 0.12, PZ]], n: 6, size: 0.16, shape: "dot", rate: 0.7, color: "heatC", track: false, free: true },
+  kPowSoc: { type: "flow", _說明: "電源管理 IC→電感→分給 SoC", layer: "kPmic", path: [[PX + 1.7, KT + 0.12, PZ + 0.0], [PX + 1.7, KT + 0.12, PZ + 2.2], [KX + 1.6, KT + 0.12, PZ + 2.2], [KX + 1.6, KT + 0.12, 0]], n: 5, size: 0.16, shape: "dot", rate: 0.7, color: "heatC", track: false, free: true },
+  kPowMem: { type: "flow", _說明: "分給記憶體", layer: "kPmic", path: [[PX + 1.7, KT + 0.12, PZ - 0.75], [PX + 1.7, KT + 0.12, -3.6], [KX - 3.4, KT + 0.12, -3.6], [KX - 3.4, KT + 0.12, -1.3]], n: 6, size: 0.16, shape: "dot", rate: 0.7, color: "heatC", track: false, free: true },
+  kPowDisp: { type: "flow", _說明: "分給螢幕接頭", layer: "kPmic", path: [[PX + 1.7, KT + 0.12, PZ + 1.5], [PX + 1.7, KT + 0.12, DCZ - 0.4], [DCX, KT + 0.12, DCZ - 0.4]], n: 4, size: 0.16, shape: "dot", rate: 0.7, color: "heatC", track: false, free: true },
   pGateOn: { type: "pulse", _說明: "閘極加電壓（水龍頭把手轉開）", parts: ["pGatePoly", "pLegG", "pGateBus"], color: "polyC", glow: 1.0, steady: true, halo: 0.4 },
   pChanOn: { type: "pulse", parts: ["pChanS"], color: "eDot", glow: 1.0, steady: true, halo: 0.3 },
-  pCur: { type: "flow", _說明: "電流由下面汲極往上，經漂移層、貼著溝槽側壁的通道，到上面源極（傳統電流方向）", layer: "pChan",
-    path: [[0, 0.35, CZ1 + 0.06], [0, 3.55, CZ1 + 0.06], [0.35, 3.75, CZ1 + 0.06], [0.35, 4.55, CZ1 + 0.06], [0, 4.95, CZ1 + 0.06]].map(([dx, y, z]) => [R2(MES[1] + dx), y, z]),
-    n: 5, lanes: 3, laneDir: [1, 0, 0], laneGap: 2.1, size: 0.13, shape: "dot", rate: 0.8, color: "eDot", track: false, free: true },
+  pCur: { type: "flow", _說明: "電流由下面汲極往上，經漂移層、貼著溝槽側壁的通道、N+ 源極，到上面源極金屬（傳統電流方向）", layer: "pChan",
+    path: [[R2(GXS[0] + 0.33), 0.35, CZ1 + 0.06], [R2(GXS[0] + 0.33), 5.0, CZ1 + 0.06]], n: 6, lanes: 3, laneDir: [1, 0, 0], laneGap: 2.1, size: 0.13, shape: "dot", rate: 0.8, color: "eDot", track: false, free: true },
   pPkgCur: { type: "flow", _說明: "封裝外：電流從 D 腳進、S 腳出", layer: "pPkg", path: [[PPX - 5.0, 1.0, 5.0], [PPX - 5.0, 3.0, 4.0], [PPX - 4.25, 3.0, 4.0], [PPX - 4.25, 1.0, 5.0]], n: 4, size: 0.12, shape: "dot", rate: 0.7, color: "powC", track: false, free: true },
   dSig: { type: "flow", _說明: "驅動 IC 把每一行要的亮度送上去（逐列掃描點亮）", layer: "dDdi", path: [[DX - 4.66, DPY + 0.12, 2.75], [DX - 4.66, DPY + 0.12, -3.5]], n: 2, lanes: PXN, laneDir: [1, 0, 0], laneGap: PS, size: 0.07, shape: "dot", rate: 0.9, color: "ledB", track: false, free: true },
   dFpcSig: { type: "flow", _說明: "主機板經軟板送畫面資料進驅動 IC", layer: "dDdi", path: [[DX - 1.0, DPY + 0.03, 5.5], [DX - 1.0, DPY + 0.03, 3.3]], n: 3, lanes: 4, laneDir: [1, 0, 0], laneGap: 0.36, size: 0.07, shape: "dot", rate: 0.8, color: "ledB", track: false, free: true },
-  tInvCur: { type: "flow", _說明: "電池高壓電經逆變器功率模組送到馬達", layer: "tInv", path: [[TX - 6.4, 0.95, -0.3], [TX - 4.0, 0.95, -0.3], [TX - 4.0, 0.95, 0.5], [TX - 2.8, 0.7, 1.1]], n: 5, size: 0.12, shape: "dot", rate: 0.8, color: "powC", track: false, free: true },
+  tInvCur: { type: "flow", _說明: "電池高壓電經逆變器功率模組送到馬達", layer: "tInv", path: [[TX - 6.0, 1.5, 2.9], [TX - 4.4, 1.5, 2.9], [TX - 4.4, 1.5, 3.5], [TX - 6.0, 1.5, 3.5]], n: 5, size: 0.12, shape: "dot", rate: 0.8, color: "powC", track: false, free: true },
   tPsuCur: { type: "flow", _說明: "電源供應器把電往下分給每台伺服器", layer: "tPsu", path: [[RX - 1.5, 5.0, 1.35], [RX - 1.5, 0.5, 1.35]], n: 6, size: 0.1, shape: "dot", rate: 0.8, color: "powC", track: false, free: true },
   tLeds: { type: "pulse", parts: ["tSledLed", "tPsuLed"], color: "ledB", glow: 1.0, freq: 2.0, halo: 0.2 },
   tFanSpin: { type: "rotate", parts: ["tPsuFan"], axis: [0, 0, 1], rps: 3, rampSpin: true },
@@ -405,13 +417,14 @@ Object.assign(anchors, {
   kSoc: A("kSoc", [KX + 1.3, KT + 0.3, 1.3], 150, -120), kMem: A("kMem", [KX - 3.4, KT + 0.22, 1.2], -150, -110), kPmic: A("kPmic", [PX, KT + 0.16, PZ], 140, -120),
   kInd: A("kPmic", [PX + 1.7, KT + 0.33, PZ + 1.5], 150, 90), kMos: A("kMos", [MX + 0.5, KT + 0.2, MZ], -140, -120), kDisp: A("kDisp", [DCX, KT + 0.2, DCZ], 140, 100), kRf: A("kRf", [KX - 4.3, KT + 0.22, 2.8], -140, 100),
   pPkg: A("pPkg", [PPX - 5.0, 3.25, 1.7], -140, -120), pLegG: A("pPkg", [PPX - 5.75, 1.55, 5.1], -140, 80), pHs: A("pHs", [PPX - 7.6, 2.9, 1.5], -140, -80),
-  pDrain: A("pDrain", [CX1, 0.35, CZ1], 150, 60), pSub: A("pSub", [CX1, 0.95, CZ1], 150, 30), pDrift: A("pDrift", [CX1, 2.5, CZ1], 150, 0), pBody: A("pBody", [CX1, 3.95, CZ1], 150, -20),
-  pGate: A("pGate", [GXS[2], 4.5, CZ1], 150, -90), pMetal: A("pMetal", [CX1, 4.95, CZ1], 150, -60), pChan: A("pChan", [GXS[1] + 0.31, 3.95, CZ1], -150, -60),
+  pDrain: A("pDrain", [CX1, 0.35, CZ1], 150, 40), pSub: A("pSub", [CX1, 0.95, CZ1], 150, 20), pDrift: A("pDrift", [CX1, 2.5, CZ1], 150, 0), pBody: A("pBody", [CX1, 3.95, CZ1], 150, -20),
+  pGate: A("pGate", [GXS[2], 4.5, CZ1], 150, -90), pSrcN: A("pSrcN", [CX1, 4.45, CZ1], 150, -40), pMetal: A("pMetal", [CX1, 4.95, CZ1], 150, -60), pWire: A("pWire", [CX0 + 2.0, 5.9, 0], -150, -80),
+  pChan: A("pChan", [GXS[1] + 0.31, 3.95, CZ1], -150, -60),
   dDdi: A("dDdi", [DX - 1.0, DPY + 0.24, 3.0], 140, 100), dPanel: A("dRow4", [DX - 4.5, DPY + 0.1, -1.0], -140, -100), dW8: A("dW8", [DX + 7.0, 0.7, 2.6], -120, 100), dW12: A("dW12", [DX + 12.6, 0.7, 3.6], 120, 100),
-  fUmc: A("fUmc", [FX - 5.6, 4.4, 0.2], -100, -110), fVis: A("fVis", [FX, 3.6, 0.2], 100, -110), fPsmc: A("fPsmc", [FX + 5.6, 4.0, 0.2], 100, -110),
-  fProd: A("fProd", [FX - 5.6, 0.4, 1.8], -120, 100), fProdTo: A("fProd", [FX + 0.1, 0.6, 1.8], 110, 100),
-  cFab4: A("cFab4", [CX - 3.9, 2.0, -0.2], -120, -110), cPrice: A("cPrice", [CX + 5.5, 4.7, 0.56], 120, -100), cFlag: A("cFlag", [CX - 10.4, 3.8, 0], -100, -90),
-  tInv: A("tInv", [TX - 5.2, 0.85, 0.8], -130, 110), tPsu: A("tPsu", [RX + 0.6, 5.3, 1.3], 130, -100), tCar: A("tCar", [TX - 5.0, 2.4, 0.5], -120, -110), tRack: A("tRack", [RX, 3.0, 1.3], 130, 60),
+  fUmc: A("fUmc", [FX - 3.4, 4.4, 4.7], -100, -110), fVis: A("fVis", [FX + 3.4, 3.6, 1.1], 100, -110), fPsmc: A("fPsmc", [FX - 1.6, 4.0, -3.7], -100, -110),
+  fProd: A("fProd", [FX - 3.6, 0.4, 5.6], -120, 100), fProdTo: A("fProd", [FX + 5.3, 0.6, 1.1], 110, 100),
+  cFab4: A("cFab4", [CX - 3.9, 2.0, -0.2], -120, -110), cPrice: A("cPrice", [CX + 4.4, 4.7, 0.56], 120, -100), cFlag: A("cFlag", [CX - 10.4, 3.8, 0], -100, -90),
+  tInv: A("tInv", [TX - 5.2, 1.45, 3.2], -130, 110), tPsu: A("tPsu", [RX + 0.6, 5.3, 1.3], 130, -100), tCar: A("tCar", [TX - 5.0, 2.4, 0.5], -120, -110), tRack: A("tRack", [RX, 3.0, 1.3], 130, 60),
   nDimm: A("nDimm", [NX + 1.0, 2.3, 0.2], 140, -110),
 });
 
