@@ -132,18 +132,21 @@ BOX("ppBase", "pPress", PX - 2.6, PX + 2.6, 0, 1.2, -1.8, 1.8, "band"); BOX("ppB
 BOX("ppDieCav", "pPress", PX - 0.7, PX + 0.7, 1.58, 1.61, -0.6, 0.6, "dark");
 for (const [x, z] of [[-1.9, -1.3], [1.9, -1.3], [-1.9, 1.3], [1.9, 1.3]]) VC(`ppPost${x}${z}`, "pPress", 0.14, 1.2, 5.0, "steel2", { x: PX + x, z });
 BOX("ppCrown", "pPress", PX - 2.4, PX + 2.4, 5.0, 5.8, -1.6, 1.6, "band"); BOX("ppPlate", "pPress", PX - 1.0, PX + 0.4, 5.3, 5.6, 1.6, 1.65, "gold");
-ZC("ppFly", "pPress", 1.0, 1.65, 2.0, PX + 2.7, 5.4, "steel"); ZC("ppFlyHub", "pPress", 0.3, 1.6, 2.1, PX + 2.7, 5.4, "dark");
-BOX("ppMotor", "pPress", PX - 2.2, PX - 0.8, 5.8, 6.6, -0.8, 0.8, "dark"); BOX("ppWarn", "pPress", PX + 1.2, PX + 2.2, 0.4, 0.8, 1.8, 1.84, "warnY");
+ZC("ppFly", "pPress", 1.0, -2.25, -1.9, PX, 5.4, "steel"); ZC("ppFlyHub", "pPress", 0.3, -2.35, -1.8, PX, 5.4, "dark"); ZC("ppFlyMark", "pPress", 0.12, -2.28, -2.26, PX + 0.7, 5.4, "mark");
+ZC("ppShaft", "pPress", 0.16, -2.4, 1.7, PX, 5.4, "steel2"); P({ id: "ppBearing", layer: "pPress", shape: "box", size: [0.6, 0.6, 0.3], pos: [PX, 5.4, 0], at: [[0, 0, -1.7], [0, 0, 1.7]], mat: "dark" });
+BOX("ppMotorB", "pPress", PX + 1.6, PX + 2.8, 5.8, 6.7, -2.5, -1.6, "dark"); ZC("ppPulley", "pPress", 0.25, -2.25, -1.9, PX + 2.2, 6.25, "steel");
+SEG3("ppBeltT", "pPress", [PX + 2.2, 6.5, -2.08], [PX, 6.4, -2.08], 0.04, "rubber"); SEG3("ppBeltB", "pPress", [PX + 2.2, 6.0, -2.08], [PX + 0.55, 4.55, -2.08], 0.04, "rubber");
+ BOX("ppWarn", "pPress", PX + 1.2, PX + 2.2, 0.4, 0.8, 1.8, 1.84, "warnY");
 for (let i = 0; i < 5; i++) BOX(`ppVent${i}`, "pPress", PX - 2.2, PX - 0.6, 0.3 + i * 0.16, 0.36 + i * 0.16, 1.8, 1.84, "darker");
 SPH("ppLed", "pPress", 0.1, PX - 0.2, 0.9, 1.85, "lampG");
 LAY("pRam", [3.4, 1.8, PX, 3.3]);
-BOX("prSlide", "pRam", PX - 1.75, PX + 1.75, 3.4, 4.2, -1.0, 1.0, "steel2"); BOX("prPunch", "pRam", PX - 0.7, PX + 0.7, 2.4, 3.4, -0.6, 0.6, "steel");
+BOX("prSlide", "pRam", PX - 1.75, PX + 1.75, 3.4, 4.2, -1.0, 1.0, "steel2"); BOX("prRod", "pRam", PX - 0.15, PX + 0.15, 4.2, 5.25, 0.9, 1.1, "steel"); ZC("prBigEnd", "pRam", 0.28, 0.85, 1.15, PX, 5.25, "dark"); BOX("prPunch", "pRam", PX - 0.7, PX + 0.7, 2.4, 3.4, -0.6, 0.6, "steel");
 P({ id: "prTooth", layer: "pRam", shape: "box", size: [0.12, 0.2, 0.9], pos: [PX, 2.3, 0], at: Array.from({ length: 6 }, (_, i) => [R2(-0.55 + i * 0.22), 0, 0]), mat: "darker" });
 P({ id: "prBush", layer: "pRam", shape: "tube", size: [0.25, 0.15, 0.8], rot: V, pos: [PX, 3.8, 0], at: [[-1.9, 0, -1.3], [1.9, 0, -1.3], [-1.9, 0, 1.3], [1.9, 0, 1.3]], mat: "gold" });
 // 銅帶：捲料 → 未沖 → 沖好（梳狀引腳）
-LAY("pStrip", [10, 0.2, PX - 1, 1.62]);
-ZC("psReel", "pStrip", 1.2, -0.9, 0.9, PX - 5.2, 1.9, "cu"); ZC("psReelHub", "pStrip", 0.35, -1.0, 1.0, PX - 5.2, 1.9, "steel"); BOX("psReelStand", "pStrip", PX - 5.5, PX - 4.9, 0, 1.9, -0.15, 0.15, "dark");
-BOX("psRaw", "pStrip", PX - 4.2, PX - 0.7, 1.6, 1.64, -0.8, 0.8, "cu"); SEG("psFeed", "pStrip", [PX - 5.2, 3.1, 0], [PX - 4.2, 1.62, 0], 0.03, "cu");
+LAY("pStrip", [10, 0.2, PX - 1, 1.62]); LAY("pReel", [3, 3, PX - 5.2, 1.9]);
+ZC("psReel", "pReel", 1.2, -0.9, 0.9, PX - 5.2, 1.9, "cu"); ZC("psReelHub", "pReel", 0.35, -1.0, 1.0, PX - 5.2, 1.9, "steel"); BOX("psReelStand", "pReel", PX - 5.5, PX - 4.9, 0, 1.9, -0.15, 0.15, "dark");
+BOX("psRaw", "pStrip", PX - 4.2, PX - 0.7, 1.6, 1.64, -0.8, 0.8, "cu"); SEG("psFeed", "pReel", [PX - 5.2, 3.1, 0], [PX - 4.2, 1.62, 0], 0.03, "cu");
 BOX("psDoneRail", "pStrip", PX + 0.7, PX + 4.8, 1.6, 1.64, -0.8, -0.55, "cu"); BOX("psDoneRail2", "pStrip", PX + 0.7, PX + 4.8, 1.6, 1.64, 0.55, 0.8, "cu");
 P({ id: "psComb", layer: "pStrip", shape: "box", size: [0.12, 0.04, 1.1], pos: [0, 1.62, 0], at: Array.from({ length: 18 }, (_, i) => [R2(PX + 0.9 + i * 0.22), 0, 0]), mat: "cuHi" });
 // 蝕刻線
@@ -165,7 +168,7 @@ LAY("peResist", [5, 0.1, EXX, 1.29]); P({ id: "peRes", layer: "peResist", shape:
 const MX = 60, MZ0 = -1.5, MZ1 = 0;
 const CAV = [[55.6, 58.4], [61.6, 64.4]], CY0 = 1.7, CY1 = 2.5, RY0 = 2.0, RY1 = 2.22;
 LAY("mLow", [12, 2, MX, 1]);
-BOX("mlBase", "mLow", 54, 66, 0, 1.7, MZ0, MZ1, "steel2", {}); BOX("mlTopL", "mLow", 54, 55.6, 1.7, 2.0, MZ0, MZ1, "steel2"); BOX("mlTopM1", "mLow", 58.4, 59.45, 1.7, 2.0, MZ0, MZ1, "steel2");
+BOX("mlBaseL", "mLow", 54, 59.45, 0, 1.7, MZ0, MZ1, "steel2"); BOX("mlBaseR", "mLow", 60.55, 66, 0, 1.7, MZ0, MZ1, "steel2"); BOX("mlBaseBack", "mLow", 59.45, 60.55, 0, 1.7, MZ0, MZ0 + 0.1, "dark"); BOX("mlTopL", "mLow", 54, 55.6, 1.7, 2.0, MZ0, MZ1, "steel2"); BOX("mlTopM1", "mLow", 58.4, 59.45, 1.7, 2.0, MZ0, MZ1, "steel2");
 BOX("mlTopM2", "mLow", 60.55, 61.6, 1.7, 2.0, MZ0, MZ1, "steel2"); BOX("mlTopR", "mLow", 64.4, 66, 1.7, 2.0, MZ0, MZ1, "steel2");
 P({ id: "mlHeat", layer: "mLow", shape: "cyl", size: [0.16, 1.5], pos: [0, 0.7, -0.75], at: [55.2, 57.2, 62.8, 64.8].map((x) => [x, 0, 0]), mat: "heat" });
 BOX("mlPotL", "mLow", 59.45, 59.5, 0.3, 1.7, MZ0, MZ1, "dark"); BOX("mlPotR", "mLow", 60.5, 60.55, 0.3, 1.7, MZ0, MZ1, "dark");
@@ -180,7 +183,7 @@ P({ id: "muPin", layer: "mUp", shape: "cyl", size: [0.08, 1.6], rot: V, pos: [0,
 // 模穴裡的導線架單元（縮小 0.3，晶片＋金線）
 LAY("mUnit", [10, 0.6, MX, 2.1]);
 for (const [i, [a, b]] of CAV.entries()) { const c = (a + b) / 2; BOX(`muLF${i}`, "mUnit", a - 0.02, b + 0.02, 1.97, 2.02, MZ0 + 0.1, MZ1, "cu"); BOX(`muDie${i}`, "mUnit", c - 0.5, c + 0.5, 2.02, 2.14, MZ0 + 0.3, MZ1, "chip");
-  for (const [k, sx] of [[0, -1], [1, 1]]) { SEG(`muW${i}${k}a`, "mUnit", [c + sx * 0.45, 2.14, -0.05], [c + sx * 0.85, 2.38, -0.05], 0.025, "wire"); SEG(`muW${i}${k}b`, "mUnit", [c + sx * 0.85, 2.38, -0.05], [c + sx * 1.25, 2.03, -0.05], 0.025, "wire"); } }
+  for (const [k, sx] of [[0, -1], [1, 1]]) { SEG(`muW${i}${k}a`, "mUnit", [c + sx * 0.45, 2.14, 0.02], [c + sx * 0.85, 2.38, 0.02], 0.03, "wire"); SEG(`muW${i}${k}b`, "mUnit", [c + sx * 0.85, 2.38, 0.02], [c + sx * 1.25, 2.03, 0.02], 0.03, "wire"); } }
 // 料筒裡的料餅（三種高度）與柱塞
 const PELH = [0.7, 0.45, 0.2];
 for (const [k, h] of PELH.entries()) { LAY(`mPel${k}`, [1, 0.8, MX, 1.4]); BOX(`mPel${k}b`, `mPel${k}`, 59.5, 60.5, 1.0, R2(1.0 + h), MZ0 + 0.1, MZ1, k ? "emcSoft" : "emc"); }
@@ -193,6 +196,7 @@ for (const side of [0, 1]) {
   const [a, b] = CAV[side], gate = side ? a : b;
   for (let k = 0; k < 6; k++) { const x0 = gate - dir * (k * 0.467) * -1, x1 = x0 + dir * 0.467; const id = `mC${side}_${k}`; LAY(id, [0.5, 0.8, R2((x0 + x1) / 2), 2.1]); BOX(`${id}b`, id, R2(Math.min(x0, x1)), R2(Math.max(x0, x1)), CY0, CY1, MZ0 + 0.05, MZ1 - 0.01, "emcSoft"); FILL.push(id); }
 }
+LAY("mRup", [1, 0.3, MX, 1.9]); BOX("mRupB", "mRup", 59.5, 60.5, 1.75, 2.0, MZ0 + 0.05, MZ1 - 0.01, "emcSoft");
 LAY("mCure", [10, 0.8, MX, 2.1]);
 for (const [i, [a, b]] of CAV.entries()) BOX(`mCure${i}`, "mCure", a, b, CY0, CY1, MZ0 + 0.04, MZ1 - 0.005, "emc");
 BOX("mCureR", "mCure", 59.5, 60.5, 1.0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc"); BOX("mCureRL", "mCure", 58.4, 59.5, RY0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc"); BOX("mCureRR", "mCure", 60.5, 61.6, RY0, RY1, MZ0 + 0.04, MZ1 - 0.005, "emc");
@@ -209,14 +213,14 @@ materials.edgeLine = glowM("edgeC", 0.95, 0.5);
 // ═════ 站 Q：封好的封裝（QFP，爆炸分解） ═════
 const QX = 90;
 LAY("qBase", [12, 1, QX, 0.4]); BOX("qPlate", "qBase", QX - 6, QX + 6, 0, 0.6, -6, 6, "band"); BOX("qPlateTop", "qBase", QX - 6, QX + 6, 0.6, 0.65, -6, 6, "panel2");
-LAY("qLF", [12, 1.2, QX, 1.4]); LAY("qChip", [3.2, 1.2, QX, 2.2]); LAY("qBody", [8, 1.6, QX, 2.0]);
+LAY("qLF", [12, 1.2, QX, 1.4]); LAY("qChip", [3.2, 1.2, QX, 2.2]); LAY("qBody", [8, 1.6, QX, 2.4]); LAY("qBot", [8, 0.8, QX, 1.3]);
 const QY = 1.6;
 buildUnit("q", QX, QY, 0, 1, { lf: "qLF", chip: "qChip", wire: "qChip", da: "qChip" }, { noBar: true, outer: 5.0 });
 // 鷗翼腳：外引腳在膠體外往下彎
 for (const side of [0, 1, 2, 3]) for (const [k, u] of LEADS.entries()) { const a = side * 90 * D2R, c = Math.cos(a), s = Math.sin(a), X = (r, t) => [QX + c * r - s * t, c * t + s * r];
   const [x1, z1] = X(5.0, u), [x2, z2] = X(5.4, u); SEG3(`qGull${side}_${k}a`, "qLF", [x1, QY + 0.07, z1], [x2, 0.72, z2], 0.08, "cu"); const [x3, z3] = X(5.9, u); SEG3(`qGull${side}_${k}b`, "qLF", [x2, 0.72, z2], [x3, 0.72, z3], 0.08, "cu"); }
-BOX("qbBot", "qBody", QX - 3.9, QX + 3.9, 1.0, QY, -3.9, 3.9, "emc"); BOX("qbTop", "qBody", QX - 3.9, QX + 3.9, QY + 0.15, 3.0, -3.9, 3.9, "emc");
-for (const side of [0, 1, 2, 3]) { const a = side * 90; P({ id: `qbMid${side}`, layer: "qBody", shape: "box", size: [0.5, 0.15, 7.8], pos: [R2(QX + Math.cos(a * D2R) * 3.65), QY + 0.075, R2(Math.sin(a * D2R) * 3.65)], rot: [0, -a, 0], mat: "emc" }); }
+BOX("qbBot", "qBot", QX - 3.9, QX + 3.9, 1.0, QY, -3.9, 3.9, "emc"); BOX("qbTop", "qBody", QX - 3.9, QX + 3.9, QY + 0.15, 3.0, -3.9, 3.9, "emc");
+for (const side of [0, 1, 2, 3]) { const a = side * 90; P({ id: `qbMid${side}`, layer: "qBot", shape: "box", size: [0.5, 0.15, 7.8], pos: [R2(QX + Math.cos(a * D2R) * 3.65), QY + 0.075, R2(Math.sin(a * D2R) * 3.65)], rot: [0, -a, 0], mat: "emc" }); }
 VC("qbDot", "qBody", 0.3, 3.0, 3.015, "darker", { x: QX - 2.9, z: 2.9 }); BOX("qbMark", "qBody", QX - 1.8, QX + 1.8, 3.0, 3.012, -0.5, 0.5, "dark"); BOX("qbMark2", "qBody", QX - 1.2, QX + 1.2, 3.0, 3.012, 0.8, 1.2, "dark");
 P({ id: "qbEject", layer: "qBody", shape: "cyl", size: [0.35, 0.012], rot: V, pos: [QX, 3.006, 0], at: [[2.6, 0, -2.6], [-2.6, 0, -2.6]], mat: "darker" }); BOX("qbGate", "qBody", QX + 3.5, QX + 3.9, 2.0, 2.6, 3.5, 3.9, "darker");
 // 水滴與小石子
@@ -233,22 +237,27 @@ BOX("bpCap", "bPkg", BX - 2.4, BX + 2.4, 0.6, 1.2, -2.4, 2.4, "emc"); BOX("bpSub
 const BG = grid(8, 8, 0.6, 0.6, BX, 0, 0);
 P({ id: "bpPad", layer: "bPkg", shape: "cyl", size: [0.17, 0.02], rot: V, pos: [0, 1.51, 0], at: BG, mat: "padGold" });
 LAY("bFlux", [5, 0.1, BX, 1.53]); P({ id: "bfDot", layer: "bFlux", shape: "cyl", size: [0.2, 0.03], rot: V, pos: [0, 1.535, 0], at: BG, mat: "flux" });
-LAY("bBalls", [5, 0.5, BX, 1.75]); P({ id: "bbBall", layer: "bBalls", shape: "sphere", size: [0.23], pos: [0, 1.75, 0], at: BG, mat: "solder" });
+for (let i = 0; i < 8; i++) { LAY(`bB${i}`, [0.6, 0.5, R2(BX - 2.1 + i * 0.6), 1.7]); P({ id: `bbBall${i}`, layer: `bB${i}`, shape: "sphere", size: [0.18], pos: [0, 1.7, 0], at: grid(1, 8, 0.6, 0.6, R2(BX - 2.1 + i * 0.6), 0, 0), mat: "solder" }); }
 // 右：電路板＋焊好的 BGA（錫球朝下）
 const BX2 = 128;
 LAY("bPCB", [9, 0.4, BX2, 0.5]); BOX("bPcb", "bPCB", BX2 - 4.5, BX2 + 4.5, 0.3, 0.55, -4, 4, "pcb"); BOX("bPcbStand", "bPCB", BX2 - 4.3, BX2 + 4.3, 0, 0.3, -3.6, 3.6, "darker");
 P({ id: "bPcbCap", layer: "bPCB", shape: "box", size: [0.4, 0.2, 0.25], pos: [0, 0.65, 0], at: [[-3.6, 0, -3.2], [-3.0, 0, -3.2], [3.2, 0, 3.2], [3.6, 0, 2.6], [-3.6, 0, 3.0], [3.4, 0, -3.0]].map(([x, y, z]) => [BX2 + x, y, z]), mat: "cap" });
 P({ id: "bPcbChip", layer: "bPCB", shape: "box", size: [1.2, 0.25, 1.2], pos: [0, 0.68, 0], at: [[BX2 - 3.4, 0, 0.6], [BX2 + 3.4, 0, -0.6]], mat: "emc" });
 LAY("bMount", [5.4, 1.4, BX2, 1.2]);
-P({ id: "bmBall", layer: "bMount", shape: "sphere", size: [0.23], scale: [1, 0.85, 1], pos: [0, 0.75, 0], at: grid(8, 8, 0.6, 0.6, BX2, 0, 0), mat: "solder" });
+P({ id: "bmBall", layer: "bMount", shape: "sphere", size: [0.19], scale: [1, 0.85, 1], pos: [0, 0.75, 0], at: grid(8, 8, 0.6, 0.6, BX2, 0, 0), mat: "solder" });
 BOX("bmSub", "bMount", BX2 - 2.6, BX2 + 2.6, 0.95, 1.25, -2.6, 2.6, "sub"); BOX("bmCap", "bMount", BX2 - 2.4, BX2 + 2.4, 1.25, 1.85, -2.4, 2.4, "emc"); VC("bmDot", "bMount", 0.22, 1.85, 1.86, "darker", { x: BX2 - 1.9, z: 1.9 });
 
 // ═════ 站 T／U：錫點剖面（T＝沒填充、熱循環扯裂；U＝底部填充） ═════
 const BALLX = [-4.5, -2.7, -0.9, 0.9, 2.7, 4.5];
 const jointStation = (pre, cx) => {
-  LAY(`${pre}PCB`, [14, 0.9, cx, 1.5]); BOX(`${pre}Pcb`, `${pre}PCB`, cx - 7, cx + 7, 1.0, 1.9, -1.2, 1.2, "pcb"); BOX(`${pre}PcbCore`, `${pre}PCB`, cx - 7, cx + 7, 1.3, 1.6, -1.21, 1.21, "pcbD");
-  P({ id: `${pre}PcbPad`, layer: `${pre}PCB`, shape: "box", size: [1.0, 0.1, 1.6], pos: [0, 1.95, 0], at: BALLX.map((x) => [R2(cx + x), 0, 0]), mat: "cu" });
-  BOX(`${pre}Stand`, `${pre}PCB`, cx - 6.6, cx + 6.6, 0, 1.0, -1.0, 1.0, "darker");
+  // 電路板分三段：中段不動，左右兩段受熱往外伸（離中心越遠位移越大＝錫點剪切越大；段與段重疊 0.5，伸縮時不露縫）
+  LAY(`${pre}Stand`, [13, 1, cx, 0.5]); BOX(`${pre}StandB`, `${pre}Stand`, cx - 6.6, cx + 6.6, 0, 1.0, -1.0, 1.0, "darker"); BOX(`${pre}StandT`, `${pre}Stand`, cx - 6.7, cx + 6.7, 0.95, 1.0, -1.05, 1.05, "steel2");
+  for (const [seg, a, b, dz] of [["c", -1.8, 1.8, 0], ["l", -7, -1.3, 0.01], ["r", 1.3, 7, 0.01]]) {
+    const L = `${pre}PCB${seg}`; LAY(L, [b - a, 0.9, R2(cx + (a + b) / 2), 1.5]);
+    BOX(`${pre}Pcb${seg}`, L, cx + a, cx + b, 1.0, 1.9, -1.2 - dz, 1.2 + dz, "pcb"); BOX(`${pre}PcbCore${seg}`, L, cx + a, cx + b, 1.3, 1.6, -1.21 - dz, 1.21 + dz, "pcbD");
+    const xs = BALLX.filter((x) => (seg === "c" ? Math.abs(x) < 1.3 : seg === "l" ? x < -1.3 : x > 1.3));
+    P({ id: `${pre}PcbPad${seg}`, layer: L, shape: "box", size: [1.0, 0.1, 1.6], pos: [0, 1.95, 0], at: xs.map((x) => [R2(cx + x), 0, 0]), mat: "cu" });
+  }
   LAY(`${pre}Pkg`, [12, 1.6, cx, 3.8]);
   BOX(`${pre}Sub`, `${pre}Pkg`, cx - 6, cx + 6, 3.0, 3.6, -1.2, 1.2, "sub"); P({ id: `${pre}SubPad`, layer: `${pre}Pkg`, shape: "box", size: [1.0, 0.1, 1.6], pos: [0, 2.95, 0], at: BALLX.map((x) => [R2(cx + x), 0, 0]), mat: "cu" });
   BOX(`${pre}Cap`, `${pre}Pkg`, cx - 5.6, cx + 5.6, 3.6, 4.7, -1.2, 1.2, "emc"); BOX(`${pre}Die`, `${pre}Pkg`, cx - 3, cx + 3, 3.7, 4.1, -1.0, 1.21, "chip");
@@ -257,7 +266,8 @@ const jointStation = (pre, cx) => {
 };
 jointStation("t", 150); jointStation("u", 172);
 // T：裂縫（球頂頸部，紅），兩階段
-for (const st of [0, 1]) { LAY(`tCrack${st}`, [12, 0.2, 150, 2.85]); P({ id: `tCr${st}`, layer: `tCrack${st}`, shape: "box", size: [st ? 0.95 : 0.5, 0.06, 1.2], pos: [0, 2.86, 0.1], at: (st ? BALLX : [-4.5, 4.5]).map((x) => [R2(150 + x + (st ? 0 : 0)), 0, 0]), mat: "crack" }); }
+for (const st of [0, 1]) { LAY(`tCrack${st}`, [12, 0.3, 150, 2.85]); const xs = st ? [-4.5, -2.7, 2.7, 4.5] : [-4.5, 4.5];
+  P({ id: `tCr${st}`, layer: `tCrack${st}`, shape: "poly", size: [0.9, 0.22, 2.0], pts: [[-0.45, 0.11], [0.45, 0.04], [0.45, -0.04], [-0.45, -0.11]], pos: [0, 2.83, 0.1], at: xs.map((x) => [R2(150 + x + (x < 0 ? -0.05 : 0.05)), 0, 0]), mat: "crack" }); }
 // U：點膠針、膠的前緣（從右邊往左 6 段）、膠角
 LAY("uNeedle", [1, 3, 178.6, 4.6]); VC("unTip", "uNeedle", 0.06, 2.3, 3.4, "steel", { x: 178.6, z: 0.6 }); VC("unBarrel", "uNeedle", 0.3, 3.4, 6.0, "glass", { x: 178.6, z: 0.6 }); VC("unFluid", "uNeedle", 0.26, 3.4, 5.0, "uf", { x: 178.6, z: 0.6 }); VC("unHub", "uNeedle", 0.34, 3.3, 3.5, "gold", { x: 178.6, z: 0.6 });
 const UFX = [[176, 178.1], [174.3, 176], [172.6, 174.3], [170.9, 172.6], [169.2, 170.9], [166, 169.2]];
@@ -285,24 +295,25 @@ P({ id: "fcBump", layer: "fChip", shape: "sphere", size: [0.09], pos: [0, 3.36, 
 
 // ═════ 動作 ═════
 actions.lChipGlow = { type: "pulse", _說明: "第 1 幕：光著的晶片（沒有外殼）一閃一閃", parts: ["lChip", "lChipTop"], color: "lampY", glow: 0.6, freq: 1.1, halo: 0 };
-actions.ppFlySpin = { type: "rotate", _說明: "沖壓機飛輪轉（起轉加速）", parts: ["ppFly", "ppFlyHub"], axis: [0, 0, 1], pivot: [PX + 2.7, 5.4, 1.8], rps: 0.9, rampSpin: true };
+actions.ppFlySpin = { type: "rotate", _說明: "沖壓機飛輪＋曲軸轉（馬達經皮帶帶動，起轉加速）", parts: ["ppFly", "ppFlyHub", "ppFlyMark"], axis: [0, 0, 1], pivot: [PX, 5.4, -2.1], rps: 0.9, rampSpin: true };
 const spray = (x) => ({ type: "flow", layer: "pEtch", path: [[EXX + x, 2.6, 0], [EXX + x, 1.3, 0]], n: 4, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.5, size: 0.07, shape: "dot", rate: 1.4, color: "waterC", track: false, accel: true, free: true, jitter: 0.05 });
 for (const [i, x] of [-2, -1, 0, 1, 2].entries()) actions[`peSpray${i}`] = { ...spray(x), ...(i === 0 ? { _說明: "蝕刻藥水從噴嘴往下噴（受重力加速）" } : {}), phase: i * 0.2 };
 actions.mHeatGlow = { type: "pulse", _說明: "模具加熱棒發紅（約 175 度，示意）", parts: ["mlHeat", "muHeat"], color: "emcHot", glow: 0.9, freq: 0.8, halo: 0 };
 actions.mPelHot = { type: "pulse", _說明: "料餅在料筒裡受熱變軟", parts: ["mPel0b", "mPel1b", "mPel2b"], color: "emcHot", glow: 0.6, freq: 1.2, halo: 0 };
-actions.mSweep = { type: "vibrate", _說明: "膠流過時把金線往流動方向推（沖線，示意）", parts: idsOf("mUnit").filter((i) => i.startsWith("muW")), axis: [1, 0, 0], amp: 0.025, freq: 3 };
-actions.mCurePulse = { type: "pulse", _說明: "熱固化：越熱越硬", parts: ["mCure0", "mCure1", "mCureR", "mCureRL", "mCureRR"], color: "emcHot", glow: 0.55, freq: 0.9, halo: 0 };
+actions.mSweep = { type: "vibrate", _說明: "膠流過時把金線往流動方向推（沖線，示意放大）", parts: idsOf("mUnit").filter((i) => i.startsWith("muW")), axis: [1, 0, 0], amp: 0.07, freq: 2.2 };
+actions.mCurePulse = { type: "pulse", _說明: "熱固化：模具熱傳進膠裡，膠由褐變黑變硬（微微發熱示意）", parts: ["mCure0", "mCure1", "mCureR", "mCureRL", "mCureRR"], color: "emcHot", glow: 0.18, freq: 0.9, halo: 0 };
 actions.mFlowL = { type: "flow", _說明: "軟化的膠從料筒沿流道往左右模穴流（示意）", layer: "mLow", path: [[60, 1.6, -0.1], [60, 2.1, -0.1], [58.6, 2.1, -0.1], [57.6, 2.1, -0.1]], n: 5, size: 0.07, shape: "dot", rate: 0.6, color: "emcHot", track: false, free: true, jitter: 0.03 };
 actions.mFlowR = { type: "flow", layer: "mLow", path: [[60, 1.6, -0.1], [60, 2.1, -0.1], [61.4, 2.1, -0.1], [62.4, 2.1, -0.1]], n: 5, size: 0.07, shape: "dot", rate: 0.6, color: "emcHot", track: false, free: true, jitter: 0.03 };
 actions.qRain = { type: "flow", _說明: "水滴受重力落到外殼、彈開滑落（不滲進去）", layer: "qBody", path: [[QX - 1.0, 6.0, 0.6], [QX - 1.0, 3.05, 0.6], [QX - 0.4, 3.5, 0.9], [QX + 0.6, 3.05, 1.3], [QX + 1.8, 3.05, 1.6]], n: 4, lanes: 3, laneDir: [1, 0, -1], laneGap: 1.1, size: 0.12, shape: "dot", rate: 0.5, color: "waterC", track: false, accel: true, free: true, jitter: 0.03 };
-actions.bReflow = { type: "pulse", _說明: "回焊：錫球受熱發亮、變圓接合", parts: ["bbBall"], color: "lampY", glow: 0.7, freq: 1.2, halo: 0 };
+actions.bReflow = { type: "pulse", _說明: "回焊：錫球受熱發亮、變圓接合", parts: Array.from({ length: 8 }, (_, i) => `bbBall${i}`), color: "lampY", glow: 0.7, freq: 1.2, halo: 0 };
 // 熱循環：電路板受熱伸長比封裝多 → 錫點被剪成來回擺（頂端固定在封裝、底端跟電路板走）
-actions.tBoard = { type: "vibrate", _說明: "電路板受熱伸縮（相對封裝來回位移，示意放大）", parts: idsOf("tPCB"), axis: [1, 0, 0], amp: 0.22, freq: 0.55 };
-actions.tShear = { type: "rotate", _說明: "錫點頂端固定在封裝、底端被電路板拉著走＝剪切擺動", parts: BALLX.map((_, i) => `tBall${i}`), axis: [0, 0, 1], swing: 11, freq: 0.55, pivots: Object.fromEntries(BALLX.map((x, i) => [`tBall${i}`, [R2(150 + x), 2.95, 0]])) };
-actions.tHot = { type: "pulse", parts: ["tPcb"], color: "emcHot", glow: 0.45, freq: 0.55, halo: 0 };
-actions.uBoard = { type: "vibrate", parts: idsOf("uPCB"), axis: [1, 0, 0], amp: 0.06, freq: 0.55 };
-actions.uShear = { type: "rotate", _說明: "填滿後整片一起扛：錫點只微擺", parts: BALLX.map((_, i) => `uBall${i}`), axis: [0, 0, 1], swing: 3, freq: 0.55, pivots: Object.fromEntries(BALLX.map((x, i) => [`uBall${i}`, [R2(172 + x), 2.95, 0]])) };
-actions.uHot = { type: "pulse", parts: ["uPcb"], color: "emcHot", glow: 0.45, freq: 0.55, halo: 0 };
+const thermal = (pre, cx, amp, deg, hot) => {
+  actions[`${pre}BoardL`] = { type: "vibrate", _說明: "電路板受熱往兩側伸長（左段往左，示意放大）", parts: idsOf(`${pre}PCBl`), axis: [-1, 0, 0], amp, freq: 0.55 };
+  actions[`${pre}BoardR`] = { type: "vibrate", parts: idsOf(`${pre}PCBr`), axis: [1, 0, 0], amp, freq: 0.55 };
+  BALLX.forEach((x, i) => { if (Math.abs(x) < 1.3) return; actions[`${pre}Shear${i}`] = { type: "rotate", _說明: "錫點頂端固定在封裝、底端被電路板拉著走＝剪切", parts: [`${pre}Ball${i}`], axis: [0, 0, 1], swing: x < 0 ? -deg : deg, freq: 0.55, pivot: [R2(cx + x), 2.95, 0] }; });
+  actions[`${pre}Hot`] = { type: "pulse", parts: ["c", "l", "r"].map((g) => `${pre}Pcb${g}`), color: "emcHot", glow: hot, freq: 0.55, halo: 0 };
+};
+thermal("t", 150, 0.32, 17, 0.45); thermal("u", 172, 0.08, 4, 0.45);
 actions.uDrip = { type: "flow", _說明: "膠從針頭流到封裝邊緣的縫口", layer: "uNeedle", path: [[178.6, 2.3, 0.6], [178.4, 2.1, 0.6]], n: 3, size: 0.09, shape: "dot", rate: 1.2, color: "ufC", track: false, accel: true, free: true, jitter: 0.01 };
 actions.uCure = { type: "pulse", _說明: "加熱硬化", parts: UFX.map((_, k) => `uFb${k}`), color: "emcHot", glow: 0.5, freq: 0.9, halo: 0 };
 actions.fFlip = { type: "rotate", _說明: "晶片翻面 180 度（加減速）", parts: idsOf("fChip"), axis: [1, 0, 0], pivot: [FX, 3.15, 0], angle: 180, hold: true };
@@ -313,9 +324,9 @@ Object.assign(anchors, {
   pPunchA: A("pRam", [PX + 0.6, 2.6, 0.6], -150, -100), pStripA: A("pStrip", [PX + 3.2, 1.64, 0.5], 150, 100), pEtchA: A("peResist", [EXX + 0.8, 1.29, 0.8], 150, 100), pSprayA: A("pEtch", [EXX + 1, 2.75, 0], 150, -100),
   mPelletA: A("mPellet", [67.6, 2.1, 0.6], -150, -100), mFillerA: A("mFiller", [71.2, 2.6, 1.1], 150, -100), mPotA: A("mLow", [60, 1.6, 0], -150, 100), mCavA: A("mUnit", [57.0, 2.2, -0.05], -150, -100),
   mHeatA: A("mUp", [62.8, 3.5, 0], 150, -100), mWireA: A("mUnit", [63.85, 2.38, -0.05], 150, -100),
-  qBodyA: A("qBody", [QX + 2.5, 3.0, 2.5], 150, -100), qChipA: A("qChip", [QX + 1.3, 2.0, 1.3], 150, -100), qLFA: A("qLF", [QX + 4.5, 1.7, 1.2], 150, 100), qDropA: A("qBody", [QX - 1.0, 3.05, 0.6], -150, -100),
-  bBallA: A("bBalls", [BX + 1.8, 1.75, 1.8], 150, -100), bPCBA: A("bPCB", [BX2 + 3.8, 0.55, 2.0], 150, 100), bMountA: A("bMount", [BX2 + 2.1, 0.75, 2.1], 150, 100),
-  tBallA: A("tB5", [154.5, 2.45, 0.6], 150, -100), tCrackA: A("tCrack1", [154.5, 2.86, 0.6], 150, -100), tPcbA: A("tPCB", [155.5, 1.9, 1.2], 150, 100),
+  qBodyA: A("qBody", [QX + 2.5, 3.0, 2.5], 150, -100), qBotA: A("qBot", [QX + 3.0, 1.3, 3.9], 150, 100), qChipA: A("qChip", [QX + 1.3, 2.0, 1.3], 150, -100), qLFA: A("qLF", [QX + 4.5, 1.7, 1.2], 150, 100), qDropA: A("qBody", [QX - 1.0, 3.05, 0.6], -150, -100),
+  bBallA: A("bB7", [BX + 2.1, 1.75, 1.8], 150, -100), bPCBA: A("bPCB", [BX2 + 3.8, 0.55, 2.0], 150, 100), bMountA: A("bMount", [BX2 + 2.1, 0.75, 2.1], 150, 100),
+  tBallA: A("tB5", [154.5, 2.45, 0.6], 150, -100), tCrackA: A("tCrack1", [154.5, 2.86, 0.6], 150, -100), tPcbA: A("tPCBr", [155.5, 1.9, 1.2], 150, 100),
   uNeedleA: A("uNeedle", [178.6, 3.0, 0.6], 150, -100), uFillA: A("uF3", [172, 2.0, 1.15], -150, 100), uBallA: A("uB2", [171.1, 2.45, 0.6], -150, -100),
   vA0: A("vP0", [VX - 5, 3.8, 0.3], -150, -100), vA1: A("vP1", [VX + 0.8, 1.67, 0.4], 150, -100), vA2: A("vP2", [VX + 5, 3.3, 0.6], 150, -100),
   fChipA: A("fChip", [FX + 1.1, 3.3, 1.1], 150, -100), fSubA: A("fSub", [FX + 2.6, 0.95, 2.6], 150, 100),

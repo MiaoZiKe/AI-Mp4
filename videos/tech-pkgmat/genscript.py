@@ -15,7 +15,7 @@ S = [
  [("lf", "導線架"), ("cu", "薄薄的銅"), ("leg", "金屬腳")], ["導線架", "銅", "金屬腳"], ["專利 USPTO 9466556、6686651；示意"], 6.0, 0.3, 1.2),
 ("s3", "mechanism", "量大的像餅乾模，一壓成形；腳細的用藥水蝕刻。",
  ["量大的像餅乾模", "一壓成形", "腳細的用藥水蝕刻"], ["In volume, like a cookie cutter:", "one press and it's formed;", "fine leads are etched with chemicals."],
- [("big", "量大"), ("cookie", "餅乾模"), ("press", "一壓"), ("etch", "蝕刻")], ["餅乾模", "一壓成形", "蝕刻"], ["導線架沖壓與蝕刻專利（research #7）；示意動畫"], 6.6, 0.3, 1.5),
+ [("big", "量大"), ("cookie", "餅乾模"), ("press", "一壓"), ("etch", "蝕刻")], ["餅乾模", "一壓成形", "蝕刻"], ["專利 USPTO RE43818、7618845；示意動畫"], 6.6, 0.3, 1.5),
 ("s4", "mechanism", "再灌封裝膠，黑色環氧樹脂，大約八成是細砂。",
  ["再灌封裝膠", "黑色環氧樹脂", "大約八成是細砂"], ["Next, the mold compound:", "black epoxy resin,", "about 80% fine silica sand."],
  [("emc", "封裝膠"), ("epoxy", "環氧樹脂"), ("sand", "八成")], ["封裝膠", "環氧樹脂", "八成"], ["論文 PMC6416563 等（填料約七到九成，依配方而異）"], 5.6, 0.3, 1.3),
@@ -35,7 +35,7 @@ S = [
  ["所以縫裡點", "底部填充膠", "像茶滲進", "兩片玻璃之間", "乾了黏成一塊", "把力量分散開"], ["So into the gap goes", "underfill,", "seeping in like tea", "between two panes of glass,", "curing into one piece", "that spreads the force."],
  [("uf", "底部填充"), ("tea", "茶"), ("glue", "黏成一塊"), ("spread", "分散")], ["底部填充", "茶", "分散"], ["專利 USPTO 5710071、6015722；NASA JPL 報告；示意"], 8.0, 0.3, 1.6),
 ("s10", "payoff", "導線架有長華、界霖，封裝膠有日本住友電木。",
- ["導線架有長華、界霖", "封裝膠有日本住友電木"], ["Lead frames: Taiwan's 6548 and 5285;", "mold compound: Japan's Sumitomo Bakelite."],
+ ["導線架有長華 界霖", "封裝膠有日本住友電木"], ["Lead frames: Taiwan's 6548 and 5285;", "mold compound: Japan's Sumitomo Bakelite."],
  [("lf2", "導線架"), ("cw", "長華"), ("sb", "住友電木")], ["長華", "界霖", "住友電木"], ["證交所簡報、財經媒體；截至 2026/11/27"], 5.4, 0.3, 1.2),
 ("s11", "cta", "晶片若自己長凸塊倒扣，就不用打線。倒過來好在哪？下一集看覆晶。留言錫球，拿完整資料。",
  ["晶片若自己長凸塊", "倒扣就不用打線", "倒過來好在哪？", "下一集看覆晶", "留言錫球", "拿完整資料"], ["If the chip grows its own bumps", "and flips down, no wires are needed.", "Why flip it?", "Next episode: flip chip.", "Comment \"solder ball\"", "for the full notes."],
@@ -50,9 +50,11 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     assert len(zh) == len(en), (sid, len(zh), len(en))
     for z in zh: assert len(re.sub(r"[ ，。？、；]", "", z)) <= 11, (sid, z)
     for z in zh[:-1]: assert len(re.sub(r"[ ，。？、；]", "", z)) >= 3, ("字幕短語 <3 字", sid, z)
-    assert re.sub(r"[，。？、；]", "", "".join(zh)) == re.sub(r"[，。？、；]", "", nar), (sid, "字幕和念稿不同")
+    assert re.sub(r"[ ，。？、；]", "", "".join(zh)) == re.sub(r"[ ，。？、；]", "", nar), (sid, "字幕和念稿不同")
     for c in cues: assert c[1] in nar and c[1] in "".join(zh).replace(" ", ""), (sid, c)
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(max(tail, dur - 0.2 - head - nch / 5.2), 1)
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = 0.85 if sid == "s10" else 0.6
+    if sid == "s11": head = 0.0
+    dur = round(head + nch / 5.2 + 0.2 + hold, 1)  # 第 39 條：念完 0.6 秒換幕；s10 公司卡第 40 條多留 0.4
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -112,7 +114,7 @@ def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
 
 # ── 站 P：沖壓三下（每下：滑塊受重力加速落下、撞擊、回程；銅帶送一格）、蝕刻噴藥、銅片逐格被吃掉 ──
-STROKES = ["s3:press-14", "s3:press+16", "s3:press+46"]
+STROKES = ["s3:press-14", "s3:press+10", "s3:press+34"]
 for t in STROKES:
     VIS.append({"layer": "pRam", "at": t, "until": off(t, 10), "dur": 8, "dy": -0.75, "fallOut": True, "bounce": 0.04, "press": ["pPress"], "pressAmt": 0.02})
     VIS.append(mv("pStrip", off(t, 18), FAR, 8, dx=0.22))
@@ -120,7 +122,8 @@ vis("peSheet0", [(T0, "s3:etch+4")], 1); vis("peSheet1", [("s3:etch+4", "s3:etch
 # ── 站 M：料餅變矮、柱塞往上推、膠從流道到模穴逐格前進，越熱越硬（變黑）──
 FILL = INFO["FILL"]
 vis("mPel0", [(T0, "s5:mold+4")], 1); vis("mPel1", [("s5:mold+4", "s5:mold+26")], 1); vis("mPel2", [("s5:mold+26", FAR)], 1)
-VIS.append(mv("mPlunger", "s5:mold", FAR, 46, dy=0.55))
+for l in ["mPlunger", "mPel0", "mPel1", "mPel2"]: VIS.append(mv(l, "s5:mold", FAR, 46, dy=0.55))  # 料餅跟著柱塞一起往上
+vis("mRup", [("s5:mold+2", FAR)], 1)
 for f in FILL:
     side, k = int(f[2]), int(f[4])
     t = f"s5:mold+{4 + 4 * k}" if f.startswith("mR") else f"s5:mold+{16 + 6 * k}"
@@ -129,13 +132,13 @@ vis("mCure", [("s5:hard", FAR)], 8)
 # ── 站 Q：小石子掉下彈開；爆炸（外殼拿開 → 晶片與金線抬起 → 組回）──
 VIS.append({"layer": "qPebble", "at": T0, "until": "s6:hit-10", "dur": 12, "dy": 3.0, "fallIn": True, "bounce": 0.35, "opacity": 0})
 vis("qPebble", [("s6:hit-12", "s6:shell+20")], 4)
-QE1 = "s6:shell-4"; QE2 = "s6:shell+43"; QAS = "s6:shell+90"
-VIS += [mv("qBody", QE1, QAS, 22, dy=2.4), mv("qChip", QE2, off(QAS, -4), 20, dy=1.1)]
+QE1 = "s6:start+2"; QE2 = "s6:start+49"; QAS = "s6:start+96"   # 第 39 條：爆炸在旁白期間做完並組回（本幕 114 幀，112 幀前全部落回）
+VIS += [mv("qBody", QE1, QAS, 16, dy=3.4), mv("qPebble", QE1, QAS, 16, dy=3.4), mv("qChip", QE2, off(QAS, -4), 16, dy=1.0)]
 # ── 站 B：助焊劑點 → 錫球一顆顆落下（重力、小彈）→ 回焊 ──
 vis("bFlux", [("s7:ball-14", FAR)], 4)
-VIS.append({"layer": "bBalls", "at": T0, "until": "s7:ball", "dur": 14, "dy": 2.4, "fallIn": True, "bounce": 0.08, "opacity": 0})
+for i in range(8): VIS.append({"layer": f"bB{i}", "at": T0, "until": f"s7:ball+{3 * i}", "dur": 14, "dy": 2.4, "fallIn": True, "bounce": 0.08, "opacity": 0})
 # ── 站 T：裂縫兩階段 ──
-vis("tCrack0", [("s8:crack-8", FAR)], 2); vis("tCrack1", [("s8:crack+22", FAR)], 2)
+vis("tCrack0", [("s8:crack-8", FAR)], 2); vis("tCrack1", [("s8:crack-2", FAR)], 2)
 # ── 站 U：針降下點膠、膠逐格被吸進縫（越往內越慢）、膠角 ──
 VIS.append(mv("uNeedle", T0, "s9:uf-12", 14, dy=1.2))
 UT = [6, 14, 24, 36, 50, 66]
@@ -147,32 +150,34 @@ VIS.append(mv("fChip", "s11:flip+20", FAR, 16, dy=-1.95))
 vis("fChip", [(T0, FAR)])
 
 # ═════ 各幕 ═════
-LV = (0.0, -1.6, 64, 40)          # 站 L 導線架俯視斜角（看向 x, y, 距離, 仰角）
+LV0 = (0.0, -1.6, 64, 40)         # 鉤子：模型壓低，讓出上方大字
+LV = (0.0, -2.6, 64, 40)          # 站 L 導線架俯視斜角（看向 x, y, 距離, 仰角）
 PV = (26.6, 1.0, 30, 12)          # 站 P 沖壓機近景
 PE = (36.5, -0.2, 26, 26)         # 站 P 蝕刻線近景
 M4 = (69.2, 0.6, 19, 12)          # 站 M 料餅與填料放大
-M5 = (60.0, 0.9, 33, 3)           # 站 M 模具剖面
-QV = (90.0, 0.2, 42, 22)         # 站 Q 封裝（爆炸）
-BV = (123.2, -1.4, 56, 26)        # 站 B 植球＋焊到電路板
-TV = (150.0, 0.8, 44, 4)          # 站 T 錫點剖面
-UV = (172.0, 0.8, 44, 4)          # 站 U 底部填充剖面
-VV = (196.0, -0.2, 42, 14)        # 站 V 供應商
+M5 = (60.0, 0.9, 28, 3)           # 站 M 模具剖面
+QV = (90.0, 1.4, 42, 14)         # 站 Q 封裝（爆炸）
+BJ = (118.0, 0.9, 22, 30)         # 站 B 植球近景
+BM = (128.0, 0.4, 22, 30)         # 站 B 焊到電路板近景
+TV = (150.0, 1.2, 25, 6)          # 站 T 錫點剖面
+UV = (172.0, 1.2, 25, 6)          # 站 U 底部填充剖面
+VV = (196.0, -1.0, 39, 14)        # 站 V 供應商
 FV = (222.0, -0.2, 24, 18)        # 站 F 覆晶預告
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
-P["s1"] = {"shot": [S_("start-30", LV, 1, yaw=0.0)], "shift": VIS,
+P["s1"] = {"shot": [S_("start-30", LV0, 1, yaw=0.0)], "shift": VIS,
  "run": [run("lChipGlow", "start-30", "s2:start", 6)],
  "overlay": [sec("pkg-hook", "start", nxt("s1"), "系列 3・第 3 集", "示意，放大", {"bare": "bare", "prot": "prot", "prev": "prev", "mat": "mat"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "unit", "at": "start-10", "dur": 1}, {"to": "unit", "at": CC, "dur": 1}],
  "shot": [S_(CC, LV, 1)],
  "labels": [lab("lPadA", "晶片座：晶片坐在這", "Die pad", "blue", "lf", "lf+45"),
-            lab("lLeadA", "金屬腳（引腳）", "Leads", "amber", "leg", "leg+45")],
+            lab("lLeadA", "金屬腳（引腳）", "Leads", "amber", "leg-12", "leg+33")],
  "overlay": [card("s2", "pkg-lf", "導線架：銅做的骨架與腳", "示意（不標尺寸）", {"lf": "lf", "cu": "cu", "leg": "leg"})]}
 P["s3"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}],
- "shot": [S_(CC, PV, 1), S_("etch-14", PE, 1)],
+ "shot": [S_(CC, PV, 1), S_("etch-20", PE, 1)],
  "run": [run("ppFlySpin", "start-30", "s4:start", 10)] + [run(f"peSpray{i}", "etch-8", "etch+30", 4) for i in range(5)],
  "labels": [lab("pPunchA", "沖壓：沖頭一壓就成形", "Stamping", "amber", "cookie", "cookie+45"),
-            lab("pEtchA", "蝕刻：光阻蓋住的留下", "Etching", "blue", "etch", "etch+45")],
+            lab("pEtchA", "蝕刻：光阻蓋住的留下", "Etching", "blue", "etch-18", "etch+27")],
  "overlay": [card("s3", "pkg-make", "兩種做法：沖壓、蝕刻", "示意", {"big": "big", "cookie": "cookie", "press": "press", "etch": "etch"})]}
 P["s4"] = {"zoom": [{"to": "mold", "at": CC, "dur": 1}],
  "shot": [S_(CC, M4, 1)],
@@ -181,35 +186,34 @@ P["s4"] = {"zoom": [{"to": "mold", "at": CC, "dur": 1}],
  "overlay": [card("s4", "pkg-emc", "封裝膠：環氧樹脂＋細砂", "填料約七到九成，依配方而異", {"emc": "emc", "epoxy": "epoxy", "sand": "sand"})]}
 P["s5"] = {"shot": [S_(CC, M5, 1)],
  "run": [run("mHeatGlow", "start-6", "s6:start", 8), run("mPelHot", "soft-6", "mold+30", 6), run("mFlowL", "mold", "mold+50", 6), run("mFlowR", "mold", "mold+50", 6),
-         run("mSweep", "mold+16", "mold+54", 6), run("mCurePulse", "hard", "s6:start", 8)],
+         run("mSweep", "mold+16", "mold+54", 6), run("mCurePulse", "hard", "hard+30", 8)],
  "labels": [lab("mPotA", "料筒：柱塞往上推", "Pot & plunger", "amber", "soft", "soft+45"),
-            lab("mCavA", "模穴（剖開示意）", "Mold cavity (cutaway)", "blue", "mold+16", "mold+61"),
+            lab("mCavA", "模穴（剖開示意）", "Mold cavity (cutaway)", "blue", "pud", "pud+45"),
             lab("mHeatA", "模具加熱，越熱越硬（約 175 度）", "Heat cures it", "amber", "hard", "hard+45")],
  "overlay": [card("s5", "pkg-mold", "轉移成型：像灌布丁", "示意（不標壓力）", {"soft": "soft", "mold": "mold", "pud": "pud", "wrap": "wrap", "hard": "hard"})]}
 P["s6"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
  "shot": [S_(CC, QV, 1)],
  "run": [run("qRain", "wet-4", "shell-6", 4)],
- "labels": [lab("qDropA", "水氣擋在外面", "Moisture stays out", "blue", "wet", "wet+45"),
-            lab("qBodyA", "封裝膠外殼", "Mold-compound shell", "amber", QE1, off(QE1, 45), xy=[720, 960]),
-            lab("qChipA", "裡面：晶片、金線、導線架", "Inside: chip, wires, lead frame", "blue", QE2, off(QE2, 45))],
+ "labels": [lab("qBodyA", "封裝膠外殼", "Mold-compound shell", "amber", off(QE1, 8), off(QE1, 53), xy=[760, 330]),
+            lab("qChipA", "裡面：晶片、金線、導線架", "Inside: chip, wires, lead frame", "blue", off(QE2, 8), off(QE2, 53), xy=[600, 330])],
  "overlay": [card("s6", "pkg-shell", "外殼擋什麼", "示意（封裝膠導熱不好，散熱靠金屬）", {"wet": "wet", "hit": "hit", "shell": "shell"})]}
 P["s7"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
- "shot": [S_(CC, BV, 1)],
+ "shot": [S_(CC, BJ, 1), S_("pcb-14", BM, 1)],
  "run": [run("bReflow", "mm", "pcb+20", 6)],
- "labels": [lab("bBallA", "錫球：零點幾毫米", "Solder balls", "amber", "ball+16", "ball+61"),
-            lab("bPCBA", "焊到電路板", "Soldered to the board", "blue", "pcb", "pcb+45")],
+ "labels": [lab("bBallA", "錫球：零點幾毫米", "Solder balls", "amber", "ball", "ball+45"),
+            lab("bPCBA", "焊到電路板", "Soldered to the board", "blue", "pcb-12", "pcb+33")],
  "overlay": [card("s7", "pkg-ball", "腳太多：底部種錫球", "示意", {"many": "many", "ball": "ball", "mm": "mm", "pcb": "pcb"})]}
 P["s8"] = {"zoom": [{"to": "joint", "at": CC, "dur": 1}],
  "shot": [S_(CC, TV, 1)],
- "run": [run("tBoard", "cte-6", "s9:start", 8), run("tShear", "cte-6", "s9:start", 8), run("tHot", "cte-6", "s9:start", 8)],
+ "run": [run("tBoardL", "cte-6", "s9:start", 8), run("tBoardR", "cte-6", "s9:start", 8), run("tShear0", "cte-6", "s9:start", 8), run("tShear1", "cte-6", "s9:start", 8), run("tShear4", "cte-6", "s9:start", 8), run("tShear5", "cte-6", "s9:start", 8), run("tHot", "cte-6", "s9:start", 8)],
  "labels": [lab("tPcbA", "電路板受熱伸縮得比較多", "Board expands more", "amber", "cte", "cte+45"),
-            lab("tCrackA", "錫點被剪出裂縫", "Joint cracks", "blue", "crack+26", "crack+71")],
+            lab("tCrackA", "錫點被剪出裂縫", "Joint cracks", "blue", "crack-19", "crack+26")],
  "overlay": [card("s8", "pkg-cte", "熱脹冷縮不一樣：錫點被剪", "示意，位移放大", {"cte": "cte", "crack": "crack"})]}
 P["s9"] = {"shot": [S_(CC, UV, 1)],
- "run": [run("uDrip", "uf-6", "uf+70", 4), run("uCure", "glue", "spread", 6), run("uBoard", "spread-6", "s10:start", 8), run("uShear", "spread-6", "s10:start", 8), run("uHot", "spread-6", "s10:start", 8)],
- "labels": [lab("uNeedleA", "點膠針：沿邊點膠", "Dispense needle", "amber", "uf", "uf+45"),
+ "run": [run("uDrip", "uf-6", "uf+70", 4), run("uCure", "glue", "spread", 6), run("uBoardL", "spread-6", "s10:start", 8), run("uBoardR", "spread-6", "s10:start", 8), run("uShear0", "spread-6", "s10:start", 8), run("uShear1", "spread-6", "s10:start", 8), run("uShear4", "spread-6", "s10:start", 8), run("uShear5", "spread-6", "s10:start", 8), run("uHot", "spread-6", "s10:start", 8)],
+ "labels": [lab("uNeedleA", "另一片：沿邊點膠", "Dispense needle", "amber", "uf", "uf+45"),
             lab("uFillA", "毛細作用：自己吸進縫", "Capillary flow", "blue", "uf+47", "uf+92"),
-            lab("uBallA", "錫點只微微擺動", "Joints barely move", "amber", "spread", "spread+45")],
+            lab("uBallA", "錫點只微微擺動", "Joints barely move", "amber", "spread-8", "spread+37")],
  "overlay": [card("s9", "pkg-uf", "底部填充：像茶滲進玻璃縫", "示意（不保證不裂，是分散應力）", {"uf": "uf", "tea": "tea", "glue": "glue", "spread": "spread"})]}
 P["s10"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, VV, 1)],
