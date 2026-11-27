@@ -159,7 +159,7 @@ P["s3"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}, {"to": "micro", "at": "p
  "shot": [shot(CC, 0.3, 7.3, 28, 44, 1), shot("pin-9", INFO["MX"], 4.9, 46, 10, 1)],
  "run": [run("lzScan", "start-2", "pin-8", 6), run("hmapGlow", "more+6", "pin-8", 6), run("mOk1", "gap+8", "end+24", 6), run("mGapP", "gap+8", "end+18", 6), run("mOk2", "end+26", FAR, 6)],
  "labels": [lab("hmap", "針尖高度圖", "Tip height map", "amber", "more+6", "pin-10"),
-            lab("mGap", "壓不到", "Not touching", "amber", "miss", "miss+44"),
+            lab("mGap", "壓不到", "Not touching", "amber", "miss", "miss+45"),
             lab("mNeedle", "超壓：針彎曲", "Overdrive: needles flex", "blue", "miss+46", "miss+90")],
  "overlay": [card("s3", "probe2-pin", "一萬個圖釘壓進軟木板", "示意（不標針數、針壓）", {"more": "more", "pin": "pin", "gap": "gap", "miss": "miss", "flex": "end+26"})]}
 P["s4"] = {"zoom": [{"to": "map", "at": CC, "dur": 1}],
