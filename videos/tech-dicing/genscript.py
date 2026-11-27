@@ -219,7 +219,7 @@ P["s4"] = {"shot": [shot(CC, 0.4, INFO["BCY"] - 0.6, 58, 6, 1, yaw=-0.75), shot(
  "labels": [lab("cover", "刀蓋與噴嘴", "Blade cover & nozzles", "blue", C, "blade-12", xy=[740, 340]),
             lab("blade", "鑽石刀片", "Diamond blade", "amber", "blade-8", "blade+38"),
             lab("flange", "法蘭（夾住刀片）", "Flanges", "blue", "blade+40", "tile-4"),
-            lab("nozzle", "純水沖刀口", "Water on the cut", "blue", "tile+2", "tile+38")],
+            lab("nozzle", "純水沖刀口", "Water on the cut", "blue", "tile+2", "tile+38", xy=[740, 340])],
  "overlay": [card("s4", "dc-blade", "淋水切磁磚", "DISCO 官方規格：最高 60,000 min⁻¹", {"hair": "hair", "blade": "blade", "rpm": "rpm", "tile": "tile"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 123.0, 2.4, 82, 12, 1, yaw=0.0)],
