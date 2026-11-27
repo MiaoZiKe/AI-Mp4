@@ -36,7 +36,7 @@ if [ -n "$TAKE" ]; then
   RAW=public/$RAWREL; ORIG=${RAW%.raw.wav}.raw.orig.wav
   BK=out/old-$SLUG-take; mkdir -p $BK
   for f in "$RAW" "$ORIG"; do [ -f "$f" ] && cp -n "$f" "$BK/$(basename "$f").$(date +%H%M%S)"; done
-  cp "$TAKE" "$ORIG"
+  mkdir -p "$(dirname "$RAW")"; cp "$TAKE" "$ORIG"   # 新片第一次配音時音檔資料夾還不存在
   run "1 atempo $ATEMPO 轉成 raw.wav" ffmpeg -loglevel error -y -i "$ORIG" -filter:a "atempo=$ATEMPO" -ac 1 -c:a pcm_s16le "$RAW"
   echo "  配音換成 $TAKE（atempo $ATEMPO）→ $RAW；舊檔備份在 $BK/"
 fi
