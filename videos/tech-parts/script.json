@@ -278,100 +278,100 @@
      {
       "layer": "sWafer",
       "at": "s4:chuck+10",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 22,
       "dy": 1.5
      },
      {
       "layer": "sTop",
       "at": "s4:chuck+10",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 22,
       "dy": 1.5
      },
      {
       "layer": "sArrows",
       "at": "s4:chuck+10",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 22,
       "dy": 1.5
      },
      {
       "layer": "sWafer",
+      "at": "s4:chuck+10",
+      "until": "s4:cer+64",
+      "dur": 22,
+      "dy": 0.6
+     },
+     {
+      "layer": "sArrows",
+      "at": "s4:chuck+10",
+      "until": "s4:cer+64",
+      "dur": 22,
+      "dy": 0.6
+     },
+     {
+      "layer": "sWafer",
       "at": "s4:balloon",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sTop",
       "at": "s4:balloon",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sArrows",
       "at": "s4:balloon",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sElec",
       "at": "s4:balloon",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sWafer",
       "at": "s4:balloon+18",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sTop",
       "at": "s4:balloon+18",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sArrows",
       "at": "s4:balloon+18",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sElec",
       "at": "s4:balloon+18",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sHe",
       "at": "s4:balloon+18",
-      "until": "s4:cer+40",
+      "until": "s4:cer+64",
       "dur": 20,
       "dy": 0.8
-     },
-     {
-      "layer": "sWafer",
-      "at": "s4:balloon+30",
-      "until": "s4:cer+40",
-      "dur": 16,
-      "dy": 0.7
-     },
-     {
-      "layer": "sArrows",
-      "at": "s4:balloon+30",
-      "until": "s4:cer+40",
-      "dur": 16,
-      "dy": 0.7
      },
      {
       "layer": "sArrows",
@@ -383,13 +383,13 @@
      {
       "layer": "sArrows",
       "at": "s4:clamp+40",
-      "until": "s4:cer+62",
+      "until": "s4:cer+80",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "sArrows",
-      "at": "s4:cer+104",
+      "at": "s4:cer+120",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -397,23 +397,37 @@
      {
       "layer": "pins",
       "at": "s3:wafer",
-      "until": "s3:table-34",
+      "until": "s3:even+18",
       "dur": 22,
       "dy": 1.0
      },
      {
       "layer": "wafer",
       "at": "s3:wafer",
-      "until": "s3:table-34",
+      "until": "s3:even+18",
       "dur": 22,
       "dy": 1.0
      },
      {
       "layer": "ring",
       "at": "s3:ring",
-      "until": "s3:table-30",
+      "until": "s3:even+12",
       "dur": 24,
       "dy": 2.4
+     },
+     {
+      "layer": "bEq",
+      "at": "s1:start-40",
+      "until": "s3:table+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bEq",
+      "at": "s3:even+6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
      },
      {
       "layer": "liner",
@@ -427,93 +441,147 @@
       "at": "s1:start-40",
       "until": "s10:start+400",
       "dur": 1,
-      "dy": 4.0
-     },
-     {
-      "layer": "cArm",
-      "at": "s6:time+6",
-      "until": "s10:start+400",
-      "dur": 26,
-      "dy": -4.0
+      "dx": 11.0,
+      "dy": 2.0
      },
      {
       "layer": "cArm",
       "at": "s1:start-40",
-      "until": "s6:time+2",
+      "until": "s6:time-16",
       "opacity": 0,
-      "dur": 2
+      "dur": 1
      },
      {
       "layer": "cArm",
-      "at": "s6:time+32",
+      "at": "s6:time-14",
       "until": "s10:start+400",
-      "dur": 24,
-      "dy": 3.0
-     },
-     {
-      "layer": "cORing",
-      "at": "s6:time+32",
-      "until": "s10:start+400",
-      "dur": 24,
-      "dy": 3.0
-     },
-     {
-      "layer": "cOldCrumb",
-      "at": "s6:time+32",
-      "until": "s10:start+400",
-      "dur": 24,
-      "dy": 3.0
+      "dur": 14,
+      "dx": -11.0
      },
      {
       "layer": "cArm",
-      "at": "s6:time+64",
+      "at": "s6:time+0",
       "until": "s10:start+400",
-      "dur": 26,
-      "dx": 9.0
+      "dur": 12,
+      "dy": -2.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time+16",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dy": 2.0
      },
      {
       "layer": "cORing",
-      "at": "s6:time+64",
+      "at": "s6:time+16",
       "until": "s10:start+400",
-      "dur": 26,
-      "dx": 9.0,
-      "throw": 1.0
+      "dur": 12,
+      "dy": 2.0
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+64",
+      "at": "s6:time+16",
       "until": "s10:start+400",
-      "dur": 26,
-      "dx": 9.0
+      "dur": 12,
+      "dy": 2.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time+30",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dx": 11.0
      },
      {
       "layer": "cORing",
-      "at": "s6:time+92",
+      "at": "s6:time+30",
       "until": "s10:start+400",
-      "opacity": 0,
-      "dur": 6
+      "dur": 14,
+      "dx": 11.0
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+92",
+      "at": "s6:time+30",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dx": 11.0
+     },
+     {
+      "layer": "cORing",
+      "at": "s6:time+46",
       "until": "s10:start+400",
       "opacity": 0,
-      "dur": 6
+      "dur": 1
+     },
+     {
+      "layer": "cOldCrumb",
+      "at": "s6:time+46",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 1
      },
      {
       "layer": "cNewRing",
       "at": "s1:start-40",
-      "until": "s6:time+86",
-      "dur": 20,
-      "dy": 5.0,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
+      "until": "s10:start+400",
+      "dur": 1,
+      "dx": 11.0,
+      "dy": 2.0
+     },
+     {
+      "layer": "cNewRing",
+      "at": "s1:start-40",
+      "until": "s6:time+46",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time+48",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dx": -11.0
+     },
+     {
+      "layer": "cNewRing",
+      "at": "s6:time+48",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dx": -11.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time+64",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dy": -2.0
+     },
+     {
+      "layer": "cNewRing",
+      "at": "s6:time+64",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dy": -2.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time+80",
+      "until": "s10:start+400",
+      "dur": 10,
+      "dy": 2.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time+92",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 11.0
      },
      {
       "layer": "cPlO0",
       "at": "s6:plasma",
-      "until": "s10:start+400",
+      "until": "s6:time+86",
       "opacity": 0,
       "dur": 3
      },
@@ -525,9 +593,23 @@
       "dur": 3
      },
      {
+      "layer": "cPlO1",
+      "at": "s6:time-18",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
       "layer": "cPlO1S",
       "at": "s1:start-40",
       "until": "s6:plasma",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cPlO1S",
+      "at": "s6:time-18",
+      "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
      },
@@ -539,9 +621,23 @@
       "dur": 3
      },
      {
+      "layer": "cEdgeLine",
+      "at": "s6:time-18",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
       "layer": "cBrO",
       "at": "s1:start-40",
       "until": "s6:slow+10",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cBrO",
+      "at": "s6:time+14",
+      "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
      },
@@ -553,21 +649,11 @@
       "dur": 3
      },
      {
-      "layer": "rParts",
+      "layer": "cBrO2",
       "at": "s1:start-40",
-      "until": "s9:parts-2",
-      "opacity": 0.3,
-      "dur": 4
-     },
-     {
-      "layer": "rTool",
-      "at": "s1:start-40",
-      "until": "s9:mach-2",
-      "dur": 22,
-      "dy": 6.0,
-      "fallIn": true,
-      "bounce": 0.06,
-      "opacity": 0
+      "until": "s6:time+78",
+      "opacity": 0,
+      "dur": 3
      },
      {
       "layer": "rTool",
@@ -807,6 +893,18 @@
       "until": "s10:start+400"
      },
      {
+      "id": "bDrift",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "aDrift",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "reef-2"
+     },
+     {
       "id": "bSparkP",
       "at": "reef-2",
       "ramp": 6,
@@ -955,6 +1053,11 @@
       "to": "micro",
       "at": "table-4",
       "dur": 1
+     },
+     {
+      "to": "tool",
+      "at": "even+6",
+      "dur": 1
      }
     ],
     "shot": [
@@ -973,6 +1076,14 @@
       "y": 1.1,
       "d": 37.8,
       "elev": 22
+     },
+     {
+      "at": "even+6",
+      "dur": 1,
+      "x": 0.2,
+      "y": 2.4,
+      "d": 57.6,
+      "elev": 30
      }
     ],
     "run": [
@@ -995,22 +1106,28 @@
       "until": "s10:start+400"
      },
      {
-      "id": "bField0",
-      "at": "table+6",
-      "ramp": 8,
-      "until": "s10:start+400"
-     },
-     {
-      "id": "bField1",
-      "at": "table+16",
-      "ramp": 8,
+      "id": "bDrift",
+      "at": "table-4",
+      "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "bRingGlow",
-      "at": "even",
+      "at": "ext+10",
       "ramp": 8,
-      "until": "s10:start+400"
+      "until": "even+6"
+     },
+     {
+      "id": "ionA0",
+      "at": "even+40",
+      "ramp": 4,
+      "until": "s4:start"
+     },
+     {
+      "id": "plasmaGlow",
+      "at": "even+40",
+      "ramp": 6,
+      "until": "s4:start"
      }
     ],
     "labels": [
@@ -1019,8 +1136,8 @@
       "text": "晶圓",
       "en": "Wafer",
       "color": "blue",
-      "at": "wafer-4",
-      "until": "wafer+42",
+      "at": "wafer+2",
+      "until": "wafer+47",
       "cut": true
      },
      {
@@ -1028,8 +1145,8 @@
       "text": "邊緣環（石英或矽）",
       "en": "Edge ring (quartz or silicon)",
       "color": "amber",
-      "at": "ring+14",
-      "until": "table-11",
+      "at": "ring+18",
+      "until": "table-7",
       "cut": true
      },
      {
@@ -1135,7 +1252,7 @@
       "x": 96,
       "y": 1.1,
       "d": 34.2,
-      "elev": 26
+      "elev": 16
      },
      {
       "at": "balloon+4",
@@ -1146,8 +1263,8 @@
       "elev": 26
      },
      {
-      "at": "cer+40",
-      "dur": 24,
+      "at": "cer+64",
+      "dur": 22,
       "x": 96,
       "y": 0.1,
       "d": 29.7,
@@ -1159,13 +1276,13 @@
       "id": "sHeFlow",
       "at": "balloon+30",
       "ramp": 8,
-      "until": "cer+40"
+      "until": "cer+64"
      },
      {
       "id": "sHeFlow2",
       "at": "balloon+30",
       "ramp": 8,
-      "until": "cer+40"
+      "until": "cer+64"
      },
      {
       "id": "sPlusGlow",
@@ -1187,52 +1304,25 @@
      },
      {
       "id": "sArrowP",
-      "at": "cer+62",
+      "at": "cer+80",
       "ramp": 4,
-      "until": "cer+104"
+      "until": "cer+120"
      },
      {
       "id": "sWaterFlow",
-      "at": "cer+30",
+      "at": "balloon+18",
       "ramp": 8,
       "until": "s4:end+30"
      }
     ],
     "labels": [
      {
-      "part": "sWafer",
-      "text": "晶圓",
-      "en": "Wafer",
-      "color": "blue",
-      "at": "lie-6",
-      "until": "lie+39",
-      "cut": true
-     },
-     {
-      "part": "sTop",
+      "part": "sTopB",
       "text": "靜電吸盤",
       "en": "Electrostatic chuck",
       "color": "amber",
-      "at": "chuck+30",
-      "until": "chuck+75",
-      "cut": true
-     },
-     {
-      "part": "sElec",
-      "text": "電極",
-      "en": "Electrode",
-      "color": "blue",
-      "at": "clamp+36",
-      "until": "clamp+81",
-      "cut": true
-     },
-     {
-      "part": "sHeA",
-      "text": "氦氣冷卻",
-      "en": "Helium cooling",
-      "color": "blue",
-      "at": "balloon+42",
-      "until": "balloon+87",
+      "at": "lie-12",
+      "until": "lie+33",
       "cut": true
      },
      {
@@ -1240,8 +1330,35 @@
       "text": "陶瓷盤面",
       "en": "Ceramic face",
       "color": "amber",
-      "at": "cer+30",
-      "until": "cer+75",
+      "at": "lie+36",
+      "until": "lie+81",
+      "cut": true
+     },
+     {
+      "part": "sElec",
+      "text": "電極（正負兩組）",
+      "en": "Electrodes (+/−)",
+      "color": "blue",
+      "at": "clamp+28",
+      "until": "clamp+73",
+      "cut": true
+     },
+     {
+      "part": "sHeA",
+      "text": "氦氣冷卻",
+      "en": "Helium cooling",
+      "color": "blue",
+      "at": "balloon+33",
+      "until": "balloon+78",
+      "cut": true
+     },
+     {
+      "part": "sCoolA",
+      "text": "冷卻基座",
+      "en": "Cooling base",
+      "color": "amber",
+      "at": "cer+18",
+      "until": "cer+63",
       "cut": true
      }
     ],
@@ -1277,9 +1394,9 @@
     ]
    },
    "durationSec": 10.0,
-   "holdSec": 3.7,
+   "holdSec": 3.4,
    "headSec": 0.3,
-   "pauseAfter": 3.7
+   "pauseAfter": 3.4
   },
   {
    "id": "s5",
@@ -1340,8 +1457,8 @@
       "at": "resist-4",
       "dur": 1,
       "x": 128.0,
-      "y": 0.0,
-      "d": 59.4,
+      "y": 0.3,
+      "d": 46.8,
       "elev": 22
      }
     ],
@@ -1533,7 +1650,7 @@
       "id": "cPlPulseP",
       "at": "plasma",
       "ramp": 6,
-      "until": "s10:start+400"
+      "until": "s6:time-18"
      },
      {
       "id": "cIonN",
@@ -1545,7 +1662,19 @@
       "id": "cIonO",
       "at": "start",
       "ramp": 6,
-      "until": "time"
+      "until": "s6:time-20"
+     },
+     {
+      "id": "cPlPulseO",
+      "at": "s6:time+86",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "cIonN2",
+      "at": "s6:time+90",
+      "ramp": 6,
+      "until": "s10:start+400"
      }
     ],
     "labels": [
@@ -1563,8 +1692,8 @@
       "text": "舊環",
       "en": "Old ring",
       "color": "amber",
-      "at": "size-1",
-      "until": "size+44",
+      "at": "size-3",
+      "until": "size+42",
       "cut": true
      },
      {
@@ -1572,17 +1701,17 @@
       "text": "電漿邊緣偏移",
       "en": "Plasma edge shifts",
       "color": "amber",
-      "at": "plasma+8",
-      "until": "plasma+53",
+      "at": "plasma+3",
+      "until": "plasma+48",
       "cut": true
      },
      {
       "part": "cArmA",
-      "text": "夾具換環",
-      "en": "Gripper swaps ring",
+      "text": "夾具放入新環",
+      "en": "Gripper sets new ring",
       "color": "blue",
-      "at": "time+23",
-      "until": "time+68",
+      "at": "time+48",
+      "until": "time+93",
       "cut": true
      }
     ],
@@ -1692,15 +1821,15 @@
      },
      {
       "id": "pPumpHot",
-      "at": "pump",
+      "at": "pump-12",
       "ramp": 6,
-      "until": "valve"
+      "until": "pump+32"
      },
      {
       "id": "pValveHot",
-      "at": "valve",
+      "at": "valve+16",
       "ramp": 6,
-      "until": "power"
+      "until": "valve+60"
      },
      {
       "id": "pWheel",
@@ -1710,9 +1839,9 @@
      },
      {
       "id": "pPowerHot",
-      "at": "power",
+      "at": "power+45",
       "ramp": 6,
-      "until": "s8:start"
+      "until": "power+90"
      }
     ],
     "labels": [
@@ -1903,7 +2032,7 @@
    "tts": "零件和機台，都放在一個超乾淨的房間。下一集，看無塵室。留言耗材，拿完整資料。",
    "subtitle": {
     "zh": "零件和機台\n都放在一個\n超乾淨的房間\n下一集\n看無塵室\n留言耗材\n拿完整資料",
-    "en": "Parts and tools | all sit in | an ultra-clean room. | Next episode: | the cleanroom. | Comment \"parts\" | for the full notes."
+    "en": "Parts and tools | all sit in | an ultra-clean room. | Next episode: | the cleanroom. | Comment \"耗材\" (consumables) | for the full notes."
    },
    "keywords": [
     "超乾淨",

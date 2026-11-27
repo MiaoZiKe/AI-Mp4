@@ -100,14 +100,16 @@ const Esc: React.FC<P> = ({ o, f, k }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <rect x={26} y={y0 - 40} width={16} height={130} fill={H.text2} opacity={0.4 + 0.6 * bl} />
         <circle cx={90} cy={y0 + 10} r={32} fill="#F29A9A" stroke={H.text2} strokeWidth={3} opacity={bl} />
-        {[0, 1, 2].map((i) => <circle key={i} cx={76 + i * 14} cy={y0 + 12} r={6} fill={i % 2 ? RED : BLUE} opacity={bl} />)}
+        {[0, 1, 2].map((i) => <circle key={i} cx={76 + i * 14} cy={y0 + 12} r={6} fill={BLUE} opacity={bl} />)}
+        {[0, 1, 2].map((i) => <circle key={`w${i}`} cx={50} cy={y0 - 12 + i * 22} r={5} fill={RED} opacity={bl} />)}
         <rect x={196} y={y0 + 6} width={118} height={10} fill={STEEL} opacity={0.4 + 0.6 * li} />
         <rect x={190} y={y0 + 40} width={130} height={26} fill={CER} stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * ce} /><rect x={190} y={y0 + 70} width={130} height={14} fill="#C47B3E" opacity={0.4 + 0.6 * cl} />
-        {[0, 1, 2, 3].map((i) => <circle key={i} cx={212 + i * 28} cy={y0 + 28} r={6} fill={BLUE} opacity={cl} />)}
-        {[0, 1, 2, 3].map((i) => <circle key={i} cx={212 + i * 28} cy={y0 + 53} r={6} fill={RED} opacity={cl} />)}
+        {[0, 1, 2, 3].map((i) => <circle key={i} cx={212 + i * 28} cy={y0 + 28} r={6} fill={i < 2 ? RED : BLUE} opacity={cl} />)}
+        {[0, 1, 2, 3].map((i) => <circle key={`e${i}`} cx={212 + i * 28} cy={y0 + 53} r={6} fill={i < 2 ? BLUE : RED} opacity={cl} />)}
+        <rect x={254} y={y0 + 70} width={2} height={14} fill={H.text2} opacity={cl} />
         <Sep x={338} />
         <Row x={364} y={CT + 44} t="晶圓躺在吸盤上" c={H.text2} a={li} />
-        <Row x={364} y={CT + 100} t="紅藍電荷：相反互相吸" c={BLUE} a={cl} />
+        <Row x={364} y={CT + 100} t="電極正負兩組，晶圓感應相反電荷" c={BLUE} a={cl} />
         <Row x={364} y={CT + 156} t="像摩擦過的氣球黏牆" c={H.amber} a={bl} />
         <Row x={364} y={CT + 212} t="吸盤表面是陶瓷" c={OK} a={ce} />
       </svg>
@@ -120,11 +122,11 @@ const Liner: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <rect x={30} y={y0 + 40} width={120} height={40} fill={STEEL} stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * wl} />
-        {[0, 1, 2].map((i) => { const u = fr(f * 0.02 + i / 3); return <circle key={i} cx={60 + i * 26 + u * 14} cy={y0 + 34 - u * 50} r={5} fill={H.text} opacity={sh * (1 - u * 0.5)} />; })}
-        <rect x={180} y={y0 + 40} width={120} height={40} fill={STEEL} stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * wl} /><rect x={180} y={y0 + 22} width={120} height={18} fill={CER} stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * rs} />
-        {[0, 1, 2, 3].map((i) => <path key={i} d={`M${200 + i * 28} ${y0 - 24} l0 36`} stroke={ION} strokeWidth={5} opacity={0.4 + 0.6 * rs} />)}
-        <text x={30} y={y0 + 120} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sh}>金屬</text><text x={180} y={y0 + 120} style={zh(30, OK, 900)} opacity={0.4 + 0.6 * rs}>陶瓷內襯</text>
+        <rect x={180} y={y0 + 40} width={120} height={40} fill={STEEL} stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * wl} />
+        {[0, 1, 2].map((i) => { const u = fr(f * 0.02 + i / 3); return <circle key={i} cx={210 + i * 26 + u * 14} cy={y0 + 34 - u * 50} r={5} fill={H.text} opacity={sh * (1 - u * 0.5)} />; })}
+        <rect x={30} y={y0 + 40} width={120} height={40} fill={STEEL} stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * wl} /><rect x={30} y={y0 + 22} width={120} height={18} fill={CER} stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * rs} />
+        {[0, 1, 2, 3].map((i) => <path key={i} d={`M${50 + i * 28} ${y0 - 24} l0 36`} stroke={ION} strokeWidth={5} opacity={0.4 + 0.6 * rs} />)}
+        <text x={30} y={y0 + 120} style={zh(30, OK, 900)} opacity={0.4 + 0.6 * rs}>陶瓷內襯</text><text x={180} y={y0 + 120} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sh}>金屬</text>
         <Sep x={338} />
         <Row x={364} y={CT + 52} t="內壁貼一層陶瓷" c={H.amber} a={wl} />
         <Row x={364} y={CT + 118} t="耐電漿，表面平整" c={BLUE} a={rs} />
@@ -185,7 +187,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
         <g><rect x={92} y={y(2) - 6} width={102} height={66} fill="#FFFFFF" stroke={xm > 0.5 ? H.amber : H.lineSoft} strokeWidth={xm > 0.5 ? 4 : 1.5} /><LogoSvg id="feedback" x={98} y={y(2) - 2} h={58} /></g>
         <text x={210} y={y(2) + 40} style={zh(32, "#1F3A5F", 900)}>翔名 8091</text>
         <text x={442} y={y(2) + 40} style={zh(30, H.text, 800)} opacity={0.4 + 0.6 * xm}>蝕刻、離子佈植耗材</text>
-        <text x={26} y={y(3) + 22} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * Math.max(tw, xm)}>少數幾家，不排名；非靜電吸盤供應名單</text>
+        <text x={26} y={y(3) + 22} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * Math.max(tw, xm)}>不排名；台灣兩家未查到做靜電吸盤</text>
         <path d={twPath(850, 110, 40)} fill={tw > 0.5 || xm > 0.5 ? H.amber : H.lineSoft} opacity={0.5} />
       </svg>
     </Card>

@@ -14,9 +14,10 @@ const pol = (aDeg, r) => [R2(r * Math.cos(aDeg * D2R)), R2(r * Math.sin(aDeg * D
 let seed = 20261127;
 const rnd = () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 const palette = {
+  eqC: "#18A957",
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60", backC: "#2B3650",
   glassC: "#BFD3F2", lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", rubber: "#2B2F36", gold: "#C9A24A", estop: "#D93A2B", cutC: "#6E809C",
-  cerC: "#F2EBDD", cerDC: "#D9CDB4", quartzC: "#DDF0F4", siC: "#4A5468", sicC: "#2E3340", cuC: "#C47B3E", cuDC: "#A9622D", aluC: "#B8C2D2",
+  cerC: "#F2EBDD", cerDC: "#D9CDB4", quartzC: "#DDF0F4", quartzOC: "#B9CDD2", siC: "#7C8798", sicC: "#2E3340", cuC: "#C47B3E", cuDC: "#A9622D", aluC: "#B8C2D2",
   plasmaC: "#8E7CF6", plasmaPC: "#F06FB8", sheathC: "#2B2250", ionC: "#FFD35A", debrisC: "#3B3427", chipC: "#F4F1EA", heC: "#7FD3F5", plusC: "#E5484D", minusC: "#2F7FE0",
   markC: "#E8613C", brassC: "#C8A24A", yellowBr: "#F2B632", hoseB: "#3E7BD6", hoseR: "#D9534F", wallW: "#F4F6FA", pumpC: "#5C7396", cabC: "#EDEFF3", airC: "#9FD8F5", ffuC: "#FFFFFF", amberC: "#F29A4A",
 };
@@ -29,11 +30,11 @@ const materials = {
   dark: M("std", "dark", { rough: 0.5, metal: 0.4, env: 0.3 }), rubber: M("std", "rubber", { rough: 0.9, metal: 0 }), gold: M("std", "gold", { rough: 0.3, metal: 0.9, env: 0.8 }),
   window: M("phys", "glassC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.3, env: 0.6 }), cut: M("std", "cutC", { rough: 0.8, metal: 0.2 }),
   lampY: M("std", "lampY", { emissive: "lampY", ei: 0.4, rough: 0.4, metal: 0 }), lampG: M("std", "lampG", { emissive: "lampG", ei: 0.35, rough: 0.4, metal: 0 }), lampR: M("std", "lampR", { emissive: "lampR", ei: 0.3, rough: 0.4, metal: 0 }), estop: M("std", "estop", { rough: 0.4, metal: 0, emissive: "estop", ei: 0.15 }),
-  cer: M("std", "cerC", { rough: 0.9, metal: 0, env: 0.15 }), cerD: M("std", "cerDC", { rough: 0.95, metal: 0 }), quartz: M("phys", "quartzC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.62, env: 0.8 }), quartzOld: M("phys", "cerDC", { rough: 0.55, metal: 0, opacity: 0.8, env: 0.3 }),
+  cer: M("std", "cerC", { rough: 0.9, metal: 0, env: 0.15 }), cerD: M("std", "cerDC", { rough: 0.95, metal: 0 }), quartz: M("phys", "quartzC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.62, env: 0.8 }), quartzOld: M("phys", "quartzOC", { rough: 0.7, metal: 0, opacity: 0.85, env: 0.3 }),
   si: M("std", "siC", { rough: 0.2, metal: 0.65, env: 0.9 }), sic: M("std", "sicC", { rough: 0.85, metal: 0.2, env: 0.2 }), cu: M("std", "cuC", { rough: 0.3, metal: 0.95, env: 0.8 }), cuD: M("std", "cuDC", { rough: 0.35, metal: 0.95, env: 0.7 }),
   plasma: glowM("plasmaC", 0.4, 1.0), plasmaCore: glowM("plasmaC", 0.34, 1.3), plasmaP: glowM("plasmaPC", 0.42, 1.0), sheath: M("std", "sheathC", { rough: 1, metal: 0, opacity: 0.55 }),
   ion: glowM("ionC", 0.95, 0.9), debris: glowM("debrisC", 0.95, 0.1), chip: glowM("chipC", 0.95, 0.4), he: glowM("heC", 0.95, 0.7), plus: glowM("plusC", 0.95, 0.9), minus: glowM("minusC", 0.95, 0.9), mark: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }),
-  spark: glowM("ionC", 0.9, 1.4), bracket: M("std", "yellowBr", { rough: 0.5, metal: 0, emissive: "yellowBr", ei: 0.35 }), warnY: M("std", "lampY", { rough: 0.5, metal: 0, emissive: "lampY", ei: 0.2 }),
+  eq: glowM("eqC", 0.95, 0.8), spark: glowM("ionC", 0.9, 1.4), bracket: M("std", "yellowBr", { rough: 0.5, metal: 0, emissive: "yellowBr", ei: 0.35 }), warnY: M("std", "lampY", { rough: 0.5, metal: 0, emissive: "lampY", ei: 0.2 }),
   brass: M("std", "brassC", { rough: 0.3, metal: 0.9, env: 0.7 }), hoseB: M("std", "hoseB", { rough: 0.35, metal: 0.3 }), hoseR: M("std", "hoseR", { rough: 0.35, metal: 0.3 }),
   wallW: M("std", "wallW", { rough: 0.6, metal: 0.05, env: 0.3 }), pump: M("std", "pumpC", { rough: 0.45, metal: 0.5, env: 0.5 }), cab: M("std", "cabC", { rough: 0.55, metal: 0.1, env: 0.3 }), screen: M("std", "hoseB", { emissive: "hoseB", ei: 0.5, rough: 0.3, metal: 0 }),
   air: glowM("airC", 0.85, 0.7), ffu: M("std", "ffuC", { emissive: "ffuC", ei: 0.7, rough: 0.5, metal: 0 }), hot: glowM("amberC", 0.9, 0.9), edge: glowM("ffuC", 0.95, 0.6),
@@ -59,6 +60,8 @@ const PIPE = (id, layer, pts, r, mat, o = {}) => {
     if (i > 0) SPH(`${id}J${i}`, layer, r * 1.12, x0, y0, z0, mat);
   }
 };
+// 剖面輪廓亮線（前表面）：每段一根細條，斜段用 z 軸旋轉
+const OUTL = (id, layer, pts, z, mat = "edge", w = 0.06, closed = true) => { const n = pts.length; for (let i = 0; i < (closed ? n : n - 1); i++) { const [x0, y0] = pts[i], [x1, y1] = pts[(i + 1) % n]; const L = Math.hypot(x1 - x0, y1 - y0); if (L < 1e-3) continue; P({ id: `${id}${i}`, layer, shape: "box", size: [R2(L + w), w, 0.03], pos: [R2((x0 + x1) / 2), R2((y0 + y1) / 2), z], rot: [0, 0, R2((Math.atan2(y1 - y0, x1 - x0) * 180) / Math.PI)], mat }); } };
 const idsOf = (layer) => parts.filter((q) => q.layer === layer).map((q) => q.id);
 
 
@@ -69,14 +72,15 @@ P({ id: "floorSeam", layer: "floor", shape: "slab", size: [340, 0.04, 0.1], pos:
 const BACKDROP = (id, x0, x1, y1, zb = -3.2) => { LAY(id, [R2(x1 - x0), y1, R2((x0 + x1) / 2), R2(y1 / 2)], true); BOX(`${id}P`, id, x0, x1, 0.9, y1, zb, R2(zb + 0.12), "back"); };
 
 // ═════ 站 A：蝕刻腔體剖面一角（x 0）。前面整片拿掉露出內部；左右牆前緣是剖面色 ═════
-const Y0 = 0.9, YF = 1.5, WAF_R = 2.25, PUCK_R = 2.1, RG_O = 3.4, RG_I = 2.55, Y_PED = 2.7, Y_ESC = 3.3, Y_RG = 3.55;
+const Y0 = 0.9, YF = 1.5, WAF_R = 2.25, PUCK_R = 2.1, RG_O = 3.4, RG_I = 2.55, Y_PED = 2.7, Y_ESC = 3.3, Y_RG = 3.42;
 LAY("aBase", [19, 1, 0, 0.45]); BOX("aBaseB", "aBase", -9.6, 9.6, 0, 0.8, -6.4, 6.4, "band"); BOX("aBaseT", "aBase", -9.6, 9.6, 0.8, 0.9, -6.4, 6.4, "panel2");
 P({ id: "aBaseScrew", layer: "aBase", shape: "cyl", size: [0.07, 0.04], rot: V, pos: [0, 0.92, 0], at: [[-9.0, 0, -5.8], [9.0, 0, -5.8], [-9.0, 0, 5.8], [9.0, 0, 5.8]], mat: "steel" });
 LAY("chamber", [18, 11, 0, 5.6]);
 BOX("chFloor", "chamber", -8, 8, Y0, YF, -5.2, 5.2, "steel2"); BOX("chBack", "chamber", -8, 8, YF, 8.6, -5.2, -4.7, "steel2");
 BOX("chLeft", "chamber", -8, -7.5, YF, 8.6, -5.2, 5.2, "steel2"); BOX("chRight", "chamber", 7.5, 8, YF, 8.6, -5.2, 5.2, "steel2");
 BOX("chCutL", "chamber", -8, -7.5, YF, 8.6, 5.2, 5.26, "cut"); BOX("chCutR", "chamber", 7.5, 8, YF, 8.6, 5.2, 5.26, "cut"); BOX("chCutF", "chamber", -8, 8, Y0, YF, 5.2, 5.26, "cut");
-BOX("chLid", "chamber", -8.4, 8.4, 8.6, 9.2, -5.4, 5.4, "panel2"); BOX("chLidRim", "chamber", -8.5, 8.5, 9.2, 9.28, -5.5, 5.5, "steel");
+// 蓋板中央開方孔、放介電窗（石英，感應線圈隔著窗把能量送進腔體）
+BOX("chLidL", "chamber", -8.4, -3.5, 8.6, 9.2, -5.4, 5.4, "panel2"); BOX("chLidR", "chamber", 3.5, 8.4, 8.6, 9.2, -5.4, 5.4, "panel2"); BOX("chLidB", "chamber", -3.5, 3.5, 8.6, 9.2, -5.4, -3.5, "panel2"); BOX("chLidF", "chamber", -3.5, 3.5, 8.6, 9.2, 3.5, 5.4, "panel2"); BOX("chLidRim", "chamber", -8.5, 8.5, 9.2, 9.28, -5.5, 5.5, "steel");
 P({ id: "chLidBolt", layer: "chamber", shape: "cyl", size: [0.1, 0.07], rot: V, pos: [0, 9.32, 0], at: [-7.4, -3.7, 0, 3.7, 7.4].flatMap((x) => [-4.7, 4.7].map((z) => [x, 0, z])), mat: "steel" });
 P({ id: "chPortWin", layer: "chamber", shape: "cyl", size: [0.95, 0.1], pos: [-4.5, 5.0, -4.6], mat: "window" });
 P({ id: "chPortFl", layer: "chamber", shape: "tube", size: [1.3, 0.95, 0.3], pos: [-4.5, 5.0, -4.55], mat: "steel" });
@@ -88,11 +92,12 @@ BOX("chGateSlot", "chamber", -7.56, -7.5, 2.6, 3.5, -2.0, 2.0, "dark");
 P({ id: "chGateBolt", layer: "chamber", shape: "cyl", size: [0.07, 0.06], rot: HX, pos: [-9.5, 0, 0], at: [[0, 2.15, -2.4], [0, 2.15, 2.4], [0, 3.75, -2.4], [0, 3.75, 2.4]], mat: "steel" });
 VT("chOring", "chamber", 3.8, 3.64, YF, 1.58, "rubber"); VT("chPortEx", "chamber", 1.1, 0.8, Y0, 1.56, "steel", { x: 5.4, z: 1.2 }); VC("chExHole", "chamber", 0.8, 1.52, 1.57, "dark", { x: 5.4, z: 1.2 });
 P({ id: "chExBolt", layer: "chamber", shape: "cyl", size: [0.07, 0.06], rot: V, pos: [5.4, 1.58, 1.2], at: RING(8, 0.96).map(([x, y, z]) => [x, y, z]), mat: "dark" });
-PIPE("chGas", "chamber", [[-2.2, 9.3, 0], [-2.2, 10.8, 0], [-6.4, 10.8, 0]], 0.2, "steel2"); BOX("chGasValve", "chamber", -5.2, -4.2, 10.4, 11.2, -0.45, 0.45, "panel"); VC("chGasKnob", "chamber", 0.22, 11.2, 11.5, "mark", { x: -4.7 });
+PIPE("chGas", "chamber", [[0, 9.5, 0], [0, 10.8, 0], [-6.4, 10.8, 0]], 0.2, "steel2"); BOX("chGasValve", "chamber", -5.2, -4.2, 10.4, 11.2, -0.45, 0.45, "panel"); VC("chGasKnob", "chamber", 0.22, 11.2, 11.5, "mark", { x: -4.7 });
 for (let i = 0; i < 3; i++) VT(`chCoil${i}`, "chamber", 3.5, 3.3, 9.5 + i * 0.4, 9.65 + i * 0.4, "cu");
 BOX("chCoilLead", "chamber", 3.3, 4.2, 9.5, 9.65, -0.1, 0.1, "cu");
-LAY("topE", [7, 1, 0, 8.2]); VC("teDisc", "topE", 3.4, 7.9, 8.6, "alu"); VT("teRim", "topE", 3.5, 3.25, 8.35, 8.6, "steel");
-P({ id: "teHole", layer: "topE", shape: "cyl", size: [0.06, 0.03], rot: V, pos: [0, 7.89, 0], at: RING(24, 2.9).concat(RING(18, 2.2, 5), RING(12, 1.5, 9), RING(6, 0.8), [[0, 0, 0]]), mat: "dark" });
+LAY("topE", [10, 1.4, 0, 8.6]); VC("teDisc", "topE", 3.45, 8.0, 9.2, "quartz"); VT("teEdge", "topE", 3.46, 3.36, 9.16, 9.22, "edge"); VT("teFlange", "topE", 4.95, 3.45, 9.2, 9.36, "steel"); VT("teSeal", "topE", 3.6, 3.45, 9.36, 9.4, "rubber");
+P({ id: "teBolt", layer: "topE", shape: "cyl", size: [0.09, 0.08], rot: V, pos: [0, 9.42, 0], at: RING(12, 4.2, 15), mat: "steel" }); VC("teInj", "topE", 0.35, 7.8, 9.5, "steel2"); VC("teInjTip", "topE", 0.22, 7.6, 7.8, "dark");
+P({ id: "teHole", layer: "topE", shape: "cyl", size: [0.05, 0.03], rot: V, pos: [0, 7.59, 0], at: RING(6, 0.12), mat: "dark" });
 // 陶瓷內襯（s5 拉開）：背板（開觀察窗）、左板（開閘縫）、右板
 LAY("liner", [16, 7, 0, 4.8]);
 BOX("lnBackL", "liner", -7.5, -5.65, YF, 8.0, -4.7, -4.4, "cer"); BOX("lnBackR", "liner", -3.35, 7.5, YF, 8.0, -4.7, -4.4, "cer"); BOX("lnBackD", "liner", -5.65, -3.35, YF, 4.0, -4.7, -4.4, "cer"); BOX("lnBackU", "liner", -5.65, -3.35, 6.0, 8.0, -4.7, -4.4, "cer");
@@ -110,11 +115,12 @@ LAY("ring", [7, 1, 0, 3.1]); VT("rgBody", "ring", RG_O, RG_I, Y_PED, Y_RG, "quar
 BOX("rgNotch", "ring", 3.15, 3.42, Y_PED + 0.2, Y_RG - 0.06, -0.15, 0.15, "dark");
 LAY("wafer", [4.6, 0.3, 0, 3.4]); VC("wfDisc", "wafer", WAF_R, Y_ESC, Y_ESC + 0.07, "si"); BOX("wfNotch", "wafer", 2.1, 2.3, Y_ESC + 0.005, Y_ESC + 0.075, -0.12, 0.12, "dark");
 // 電漿（輝光＋鞘層暗區）
-LAY("plasma", [7, 4, 0, 5.2]); VC("plHalo", "plasma", 3.2, 3.8, 7.3, "plasma"); VC("plCore", "plasma", 2.1, 4.6, 6.6, "plasmaCore"); VC("plSheath", "plasma", 3.2, Y_RG + 0.05, 3.8, "sheath"); VC("plTop", "plasma", 3.1, 6.6, 7.35, "plasmaCore");
+LAY("plasma", [7, 4, 0, 5.2]); VC("plHalo", "plasma", 3.2, 4.3, 7.3, "plasma"); VC("plCore", "plasma", 2.1, 4.9, 6.6, "plasmaCore"); VC("plSheath", "plasma", 3.2, Y_RG + 0.05, 4.3, "sheath"); VC("plTop", "plasma", 3.1, 6.6, 7.35, "plasmaCore");
 // 離子（受鞘層電場往下加速；離子從輝光落下）
-actions.ionA0 = { type: "flow", _說明: "離子從電漿落向晶圓（受鞘層電場加速）", layer: "plasma", path: [[0, 6.8, 0.4], [0, 3.42, 0.4]], n: 3, lanes: 3, laneDir: [1, 0, 0], laneGap: 1.5, size: 0.1, shape: "dot", rate: 0.9, color: "ionC", trail: 3, trailGap: 0.035, track: false, accel: true, free: true, jitter: 0.04 };
-actions.ionA1 = { type: "flow", layer: "plasma", path: [[2.95, 6.8, 0.2], [2.95, 3.62, 0.2]], n: 3, lanes: 2, laneDir: [0, 0, 1], laneGap: 1.2, size: 0.1, shape: "dot", rate: 0.85, color: "ionC", trail: 3, trailGap: 0.035, track: false, accel: true, free: true, jitter: 0.04 };
-actions.ionA2 = { type: "flow", layer: "plasma", path: [[-2.95, 6.8, 0.2], [-2.95, 3.62, 0.2]], n: 3, lanes: 2, laneDir: [0, 0, 1], laneGap: 1.2, size: 0.1, shape: "dot", rate: 0.8, color: "ionC", trail: 3, trailGap: 0.035, track: false, accel: true, free: true, jitter: 0.04 };
+actions.ionA0 = { type: "flow", _說明: "離子從電漿落向晶圓（受鞘層電場加速）", layer: "plasma", path: [[0, 4.3, 0.4], [0, 3.42, 0.4]], n: 3, lanes: 3, laneDir: [1, 0, 0], laneGap: 1.5, size: 0.1, shape: "dot", rate: 0.9, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.04 };
+actions.ionA1 = { type: "flow", layer: "plasma", path: [[2.95, 4.3, 0.2], [2.95, 3.47, 0.2]], n: 3, lanes: 2, laneDir: [0, 0, 1], laneGap: 1.2, size: 0.1, shape: "dot", rate: 0.85, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.04 };
+actions.ionA2 = { type: "flow", layer: "plasma", path: [[-2.95, 4.3, 0.2], [-2.95, 3.47, 0.2]], n: 3, lanes: 2, laneDir: [0, 0, 1], laneGap: 1.2, size: 0.1, shape: "dot", rate: 0.8, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.04 };
+actions.aDrift = { type: "flow", _說明: "電漿主體裡的離子慢慢亂飄，進到鞘層才被加速", layer: "plasma", path: [[-2.6, 6.2, -1.0], [-0.8, 5.6, 0.8], [1.0, 6.5, -0.6], [2.6, 5.8, 0.9]], n: 8, lanes: 3, laneDir: [0, 1, 0], laneGap: 0.45, size: 0.07, shape: "dot", rate: 0.06, color: "ionC", track: false, free: true, jitter: 0.35 };
 actions.plasmaGlow = { type: "pulse", parts: ["plHalo", "plCore", "plTop"], color: "plasmaC", glow: 0.9, freq: 2.2, halo: 0 };
 actions.liningHot = { type: "pulse", parts: ["lnBackL", "lnBackR", "lnLeftU", "lnRight"], color: "amberC", glow: 0.55, freq: 1.2, halo: 0 };
 actions.ringHot = { type: "pulse", parts: ["rgBody", "rgStep"], color: "amberC", glow: 0.7, freq: 1.5, halo: 0 };
@@ -124,35 +130,40 @@ const BX = 28, BZ = 2.2;
 BACKDROP("bBack", 26.4, 40.6, 8.4);
 LAY("bPlinth", [14.6, 1, 33.4, 0.5]); BOX("bPl", "bPlinth", 26.4, 40.6, 0, 0.9, -3.2, 3.2, "band"); BOX("bPlTop", "bPlinth", 26.4, 40.6, 0.9, 1.0, -3.2, 3.2, "panel2");
 const edgeSec = (pre, ox, o) => { // pW 吸盤寬、lipW 階梯寬、bodyW 環身寬、top 環頂 y
-  const { pW = 3.4, lipW = 1.2, bodyW = 4.6, top = 3.0, worn = false, wear = "quartz", wcol = "quartz" } = o;
+  const { pW = 3.4, lipW = 1.2, bodyW = 4.6, top = 2.6, lipY = 2.85, worn = false, wear = "quartz", wcol = "quartz" } = o;
   const x1 = R2(ox + pW), xl = R2(x1 + 0.05), xb = R2(xl + lipW), xe = R2(xb + bodyW);
   LAY(`${pre}Esc`, [R2(xe - ox + 0.6), 3, R2((ox + xe) / 2), 1.8]);
   BOX(`${pre}Base`, `${pre}Esc`, R2(ox - 0.3), R2(xe + 0.3), 0.9, 1.8, -BZ, BZ, "steel2"); BOX(`${pre}Puck`, `${pre}Esc`, ox, x1, 1.8, 3.0, -BZ, BZ, "cer");
   BOX(`${pre}Seal`, `${pre}Esc`, R2(x1 - 0.18), x1, 3.0, 3.04, -BZ, BZ, "cerD"); BOX(`${pre}He`, `${pre}Esc`, R2(ox + 0.8), R2(ox + 0.88), 2.9, 3.0, -BZ - 0.01, BZ + 0.01, "he");
   LAY(`${pre}Wafer`, [R2(pW + 0.3), 0.3, R2(ox + pW / 2), 3.1]); BOX(`${pre}Wf`, `${pre}Wafer`, R2(ox + 0.2), R2(x1 + 0.2), 3.04, 3.18, -BZ, BZ, "si");
-  const pts = [[xl, 1.8], [xe, 1.8], [xe, top], [xb, top], [xb, 2.95], [xl, 2.95]];
+  const pts = [[xl, 1.8], [xe, 1.8], [xe, top], [xb, top], [xb, lipY], [xl, lipY]];
   if (worn) pts.splice(0, pts.length, [xl, 1.8], [xe, 1.8], [xe, top], [R2(xb + 1.0), top], [xb, 2.55], [xl, 2.55]);
   LAY(`${pre}Ring`, [R2(xe - xl), top - 1.7, R2((xl + xe) / 2), R2((top + 1.8) / 2)]);
   P({ id: `${pre}RingP`, layer: `${pre}Ring`, shape: "poly", size: [1, 1, R2(2 * BZ)], pts: pts.map(([a, b]) => [R2(a), R2(b)]), pos: [0, 0, 0], mat: wcol });
+  OUTL(`${pre}RingO`, `${pre}Ring`, pts, R2(BZ + 0.015), worn ? "seam" : "edge");
+  BOX(`${pre}RingPin`, `${pre}Ring`, R2((xb + xe) / 2 - 0.12), R2((xb + xe) / 2 + 0.12), 1.8, 2.25, R2(BZ - 0.02), R2(BZ + 0.012), "dark"); // 底部定位孔
+  BOX(`${pre}RingCh`, `${pre}Ring`, R2(xe - 0.12), xe, R2(top - 0.12), top, R2(-BZ), R2(BZ + 0.012), worn ? "seam" : "edge"); // 外上緣倒角亮邊
   return { x1, xl, xb, xe };
 };
-const bs = edgeSec("b", BX, { top: 3.0 });
-const SLY = [[3.0, 3.2], [3.2, 3.4], [3.4, 3.6], [3.6, 3.8]];
-SLY.forEach(([a, b], i) => { LAY(`bSl${i}`, [bs.xe - bs.xb, 0.2, R2((bs.xb + bs.xe) / 2), R2((a + b) / 2)]); BOX(`bSlB${i}`, `bSl${i}`, bs.xb, bs.xe, a, b, -BZ, BZ, "quartz"); BOX(`bSlE${i}`, `bSl${i}`, bs.xb, R2(bs.xb + 0.03), a, b, BZ, R2(BZ + 0.02), "edge"); });
-LAY("bPlasma", [13, 4, 33.4, 6.4]); BOX("bPlHalo", "bPlasma", 27.7, 40.2, 4.9, 8.2, -BZ, BZ, "plasma"); BOX("bPlSheath", "bPlasma", 27.7, 40.2, 3.9, 4.9, -BZ, BZ, "sheath"); BOX("bPlTop", "bPlasma", 27.7, 40.2, 7.0, 8.2, -BZ, BZ, "plasmaCore");
+const bs = edgeSec("b", BX, { top: 2.6 });
+const SLY = [[2.6, 2.775], [2.775, 2.95], [2.95, 3.125], [3.125, 3.3]]; // 新環頂面 3.3≈晶圓頂面 3.18；磨完 2.6 低於晶圓
+SLY.forEach(([a, b], i) => { LAY(`bSl${i}`, [bs.xe - bs.xb, 0.2, R2((bs.xb + bs.xe) / 2), R2((a + b) / 2)]); BOX(`bSlB${i}`, `bSl${i}`, bs.xb, bs.xe, a, b, -BZ, BZ, "quartz"); BOX(`bSlE${i}`, `bSl${i}`, bs.xb, R2(bs.xb + 0.06), a, b, BZ, R2(BZ + 0.03), "edge"); BOX(`bSlT${i}`, `bSl${i}`, bs.xb, bs.xe, R2(b - 0.05), b, BZ, R2(BZ + 0.03), "edge"); BOX(`bSlR${i}`, `bSl${i}`, R2(bs.xe - 0.06), bs.xe, a, b, BZ, R2(BZ + 0.03), "edge"); });
+LAY("bPlasma", [13, 4, 33.4, 6.4]); BOX("bPlHalo", "bPlasma", 27.7, 40.2, 4.4, 8.2, -BZ, BZ, "plasma"); BOX("bPlSheath", "bPlasma", 27.7, 40.2, 3.35, 4.4, -BZ, BZ, "sheath"); BOX("bPlTop", "bPlasma", 27.7, 40.2, 7.0, 8.2, -BZ, BZ, "plasmaCore");
 LAY("bGaugeFull", [0.6, 2, 40.1, 2.8]); LAY("bGaugeNow", [0.6, 2, 40.1, 2.4]);
 const gauge = (id, y1) => { BOX(`${id}V`, id, 39.85, 39.95, 1.8, y1, 2.0, 2.1, "bracket"); BOX(`${id}T`, id, 39.6, 40.2, R2(y1 - 0.04), R2(y1 + 0.04), 2.0, 2.1, "bracket"); BOX(`${id}B`, id, 39.6, 40.2, 1.76, 1.84, 2.0, 2.1, "bracket"); };
-for (let k = 0; k < 4; k++) { LAY(`bGauge${k}`, [0.6, 2.2, 40.1, 2.8]); gauge(`bGauge${k}`, R2(3.8 - 0.2 * k)); }
-LAY("bTopLine", [4.6, 0.1, R2((bs.xb + bs.xe) / 2), 3.8]); BOX("bTopLineB", "bTopLine", bs.xb, bs.xe, 3.79, 3.81, 2.15, 2.2, "bracket");
-LAY("bSpark", [4.6, 1, R2((bs.xb + bs.xe) / 2), 3.9]); P({ id: "bSparkD", layer: "bSpark", shape: "sphere", size: [0.12], pos: [0, 3.9, 0], at: [[bs.xb + 0.7, 0, -1.2], [bs.xb + 1.9, 0, 0.3], [bs.xb + 3.1, 0, -0.5], [bs.xb + 3.9, 0, 1.2], [bs.xb + 1.2, 0, 1.4]], mat: "spark" });
-const RX = [R2(bs.xb + 0.6), R2(bs.xb + 1.5), R2(bs.xb + 2.4), R2(bs.xb + 3.3), R2(bs.xb + 4.0)];
-RX.forEach((x, i) => { actions[`bIon${i}`] = { type: "flow", _說明: "離子垂直表面往下加速（鞘層電場），撞到環頂", layer: "bPlasma", path: [[x, 8.0, R2(-1.4 + 0.7 * i)], [x, 3.95, R2(-1.4 + 0.7 * i)]], n: 3, size: 0.1, shape: "dot", rate: 0.8 + 0.05 * i, color: "ionC", trail: 3, trailGap: 0.035, track: false, accel: true, free: true, jitter: 0.02, phase: i * 0.19 }; });
+for (let k = 0; k < 4; k++) { LAY(`bGauge${k}`, [0.6, 2.2, 40.1, 2.8]); gauge(`bGauge${k}`, R2(3.3 - 0.175 * k)); }
+LAY("bTopLine", [4.6, 0.1, R2((bs.xb + bs.xe) / 2), 3.3]); BOX("bTopLineB", "bTopLine", bs.xb, bs.xe, 3.29, 3.31, 2.15, 2.2, "bracket");
+LAY("bSpark", [4.6, 1, R2((bs.xb + bs.xe) / 2), 3.4]); P({ id: "bSparkD", layer: "bSpark", shape: "sphere", size: [0.12], pos: [0, 3.35, 0], at: [[bs.xb + 0.7, 0, -1.2], [bs.xb + 1.9, 0, 0.3], [bs.xb + 3.1, 0, -0.5], [bs.xb + 3.9, 0, 1.2], [bs.xb + 1.2, 0, 1.4]], mat: "spark" });
+const RX = [R2(bs.xb + 0.6), R2(bs.xb + 1.5), R2(bs.xb + 2.4), R2(bs.xb + 3.3), R2(bs.xb + 4.0), 29.4, 30.8];
+RX.forEach((x, i) => { actions[`bIon${i}`] = { type: "flow", _說明: "離子垂直表面往下加速（鞘層電場），撞到環頂", layer: "bPlasma", path: [[x, 4.4, R2(-1.4 + 0.4 * i)], [x, i > 4 ? 3.2 : 3.36, R2(-1.4 + 0.4 * i)]], n: 3, size: 0.1, shape: "dot", rate: 0.8 + 0.05 * i, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.02, phase: i * 0.19 }; });
 actions.bPlGlow = { type: "pulse", parts: ["bPlHalo", "bPlTop"], color: "plasmaC", glow: 0.8, freq: 2.2, halo: 0 };
 actions.bSparkP = { type: "pulse", parts: ["bSparkD"], color: "ionC", glow: 1.0, freq: 6, halo: 0.5 };
-actions.bDebris = { type: "flow", _說明: "被打下的石英碎屑沿表面法線附近往上拋", layer: "bPlasma", path: [[R2(bs.xb + 1.6), 3.9, 0.2], [R2(bs.xb + 1.9), 4.6, 0.4], [R2(bs.xb + 2.2), 5.5, 0.6]], n: 6, size: 0.07, shape: "dot", rate: 0.6, color: "chipC", track: false, free: true, jitter: 0.25 };
-actions.bDebris2 = { type: "flow", layer: "bPlasma", path: [[R2(bs.xb + 3.2), 3.9, -0.6], [R2(bs.xb + 3.5), 4.7, -0.4], [R2(bs.xb + 3.8), 5.6, -0.2]], n: 6, size: 0.07, shape: "dot", rate: 0.55, color: "chipC", track: false, free: true, jitter: 0.25 };
+actions.bDebris = { type: "flow", _說明: "被打下的石英碎屑沿表面法線附近往上拋", layer: "bPlasma", path: [[R2(bs.xb + 1.6), 3.35, 0.2], [R2(bs.xb + 1.9), 4.1, 0.4], [R2(bs.xb + 2.2), 5.0, 0.6]], n: 6, size: 0.07, shape: "dot", rate: 0.6, color: "chipC", track: false, free: true, jitter: 0.25 };
+actions.bDebris2 = { type: "flow", layer: "bPlasma", path: [[R2(bs.xb + 3.2), 3.35, -0.6], [R2(bs.xb + 3.5), 4.2, -0.4], [R2(bs.xb + 3.8), 5.1, -0.2]], n: 6, size: 0.07, shape: "dot", rate: 0.55, color: "chipC", track: false, free: true, jitter: 0.25 };
 // 電場等位線（s3）：沿晶圓＋環連續延伸（y 4.0、4.5）
-[["bField0", 4.2, 0.0], ["bField1", 4.7, 0.0]].forEach(([id, y, ph]) => { actions[id] = { type: "flow", _說明: "電場等位線：越過晶圓邊緣、順著環一路延伸", layer: "bPlasma", path: [[27.9, y, 1.6], [R2(bs.xb - 1.0), y, 1.6], [R2(bs.xb + 1.0), R2(y + 0.05), 1.6], [R2(bs.xe + 0.2), y, 1.6]], n: 10, size: 0.09, shape: "arrow", rate: 0.3, color: "plasmaC", track: true, free: false, phase: ph }; });
+// 電場等位線（s3，靜態、沒有方向）：在鞘層裡、平行於晶圓＋環的表面，越過晶圓邊緣一路延伸（示意）
+LAY("bEq", [13, 1.2, 33.4, 3.9]); [3.55, 3.85, 4.15].forEach((y, k) => OUTL(`bEq${k}_`, "bEq", [[27.9, y], [R2(bs.xe + 0.2), y]], R2(BZ + 0.04), "eq", 0.05, false));
+actions.bDrift = { type: "flow", _說明: "電漿主體裡的離子慢慢亂飄（還沒進鞘層、沒被加速）", layer: "bPlasma", path: [[28.2, 6.6, -1.0], [31.5, 6.0, 0.4], [35.0, 6.8, -0.4], [39.6, 6.2, 0.8]], n: 8, lanes: 3, laneDir: [0, 1, 0], laneGap: 0.6, size: 0.07, shape: "dot", rate: 0.06, color: "ionC", track: false, free: true, jitter: 0.35 };
 actions.bRingGlow = { type: "pulse", parts: ["bRingP"], color: "amberC", glow: 0.6, freq: 1.2, halo: 0 };
 
 // ═════ 站 S：靜電吸盤爆炸站（x 96）＝冷卻基座、氦氣與頂針層、電極層、陶瓷盤面、晶圓；通電後盤面與晶圓出現相反電荷 ═════
@@ -172,63 +183,75 @@ P({ id: "shPin", layer: "sHe", shape: "cyl", size: [0.1, 0.9], rot: V, pos: [SX,
 LAY("sElec", [7, 1, SX, 2.5]); VC("seBase", "sElec", SR, 2.38, 2.44, "dark", { x: SX });
 for (let i = -4; i <= 4; i++) { if (i === 0) continue; const x = i * 0.6 - Math.sign(i) * 0.3, len = 2 * Math.sqrt(2.85 * 2.85 - x * x); BOX(`seS${i}`, "sElec", R2(SX + x - 0.22), R2(SX + x + 0.22), 2.44, 2.54, R2(-len / 2), R2(len / 2), x < 0 ? "cuD" : "cu"); }
 BOX("seBusL", "sElec", R2(SX - 2.7), R2(SX - 0.3), 2.44, 2.54, -2.7, -2.5, "cuD"); BOX("seBusR", "sElec", R2(SX + 0.3), R2(SX + 2.7), 2.44, 2.54, 2.5, 2.7, "cu");
-P({ id: "sePlus", layer: "sElec", shape: "sphere", size: [0.08], pos: [SX, 2.62, 0], at: [-2.1, -1.5, -0.9].flatMap((x) => [-1.2, 0, 1.2].map((z) => [x, 0, z])).concat([2.1, 1.5, 0.9].flatMap((x) => [-1.2, 0, 1.2].map((z) => [x, 0, z]))), mat: "plus" });
+const QPOS = (xs) => xs.flatMap((x) => [-1.2, 0, 1.2].map((z) => [x, 0, z]));
+// 雙極吸盤：右半梳齒接正、左半接負；晶圓底面感應出相反電荷（右半負、左半正）
+P({ id: "sePlus", layer: "sElec", shape: "sphere", size: [0.11], pos: [SX, 2.64, 0], at: QPOS([2.1, 1.5, 0.9]), mat: "plus" }); P({ id: "seMinus", layer: "sElec", shape: "sphere", size: [0.11], pos: [SX, 2.64, 0], at: QPOS([-2.1, -1.5, -0.9]), mat: "minus" });
 LAY("sTop", [7, 1, SX, 2.8]); VC("stDisc", "sTop", SR, 2.54, 3.0, "cer", { x: SX }); VT("stSeal", "sTop", SR, SR - 0.14, 3.0, 3.05, "cerD", { x: SX });
 for (const r of [2.2, 1.4, 0.6]) VT(`stGroove${r * 10}`, "sTop", r + 0.05, r - 0.05, 3.0, 3.014, "dark", { x: SX });
 P({ id: "stHole", layer: "sTop", shape: "cyl", size: [0.12, 0.02], rot: V, pos: [SX, 3.01, 0], at: RING(3, 1.2, 30), mat: "dark" });
 P({ id: "stMesa", layer: "sTop", shape: "cyl", size: [0.07, 0.02], rot: V, pos: [SX, 3.02, 0], at: RING(18, 2.6).concat(RING(12, 1.9, 7), RING(8, 1.0, 11)), mat: "cerD" });
 LAY("sWafer", [7, 1, SX, 3.4]); VC("swDisc", "sWafer", 3.25, 3.04, 3.12, "si", { x: SX }); BOX("swNotch", "sWafer", R2(SX + 3.1), R2(SX + 3.3), 3.045, 3.125, -0.14, 0.14, "dark");
-P({ id: "swMinus", layer: "sWafer", shape: "sphere", size: [0.08], pos: [SX, 2.98, 0], at: [-2.1, -1.5, -0.9].flatMap((x) => [-1.2, 0, 1.2].map((z) => [x, 0, z])).concat([2.1, 1.5, 0.9].flatMap((x) => [-1.2, 0, 1.2].map((z) => [x, 0, z]))), mat: "minus" });
+P({ id: "swMinus", layer: "sWafer", shape: "sphere", size: [0.11], pos: [SX, 2.96, 0], at: QPOS([2.1, 1.5, 0.9]), mat: "minus" }); P({ id: "swPlus", layer: "sWafer", shape: "sphere", size: [0.11], pos: [SX, 2.96, 0], at: QPOS([-2.1, -1.5, -0.9]), mat: "plus" });
 LAY("sArrows", [7, 1.4, SX, 4.0]); P({ id: "saShaft", layer: "sArrows", shape: "cyl", size: [0.09, 0.8], rot: V, pos: [SX, 4.2, 0], at: [[-2.2, 0, 0], [-0.7, 0, 0], [0.8, 0, 0], [2.3, 0, 0]], mat: "mark" });
 P({ id: "saHead", layer: "sArrows", shape: "cone", size: [0.01, 0.26, 0.34], rot: V, pos: [SX, 3.68, 0], at: [[-2.2, 0, 0], [-0.7, 0, 0], [0.8, 0, 0], [2.3, 0, 0]], mat: "mark" });
 actions.sHeFlow = { type: "flow", _說明: "氦氣在晶圓背面環槽內流動、傳走熱（淡藍細點沿環槽）", layer: "sTop", path: RING(13, 2.2).map(([x, , z], i) => [R2(SX + x), 3.03, z]).concat([[R2(SX + 2.2), 3.03, 0]]), n: 10, size: 0.06, shape: "dot", rate: 0.12, color: "heC", track: false, free: true, jitter: 0.04 };
 actions.sHeFlow2 = { type: "flow", layer: "sTop", path: RING(13, 1.4, 20).map(([x, , z]) => [R2(SX + x), 3.03, z]).concat([[R2(SX + 1.4 * Math.cos(20 * D2R)), 3.03, R2(1.4 * Math.sin(20 * D2R))]]), n: 8, size: 0.06, shape: "dot", rate: 0.16, color: "heC", track: false, free: true, jitter: 0.04 };
-actions.sPlusGlow = { type: "pulse", parts: ["sePlus"], color: "plusC", glow: 0.9, freq: 1.6, halo: 0 };
-actions.sMinusGlow = { type: "pulse", parts: ["swMinus"], color: "minusC", glow: 0.9, freq: 1.6, halo: 0 };
+actions.sPlusGlow = { type: "pulse", parts: ["sePlus", "swPlus"], color: "plusC", glow: 0.9, freq: 1.6, halo: 0 };
+actions.sMinusGlow = { type: "pulse", parts: ["swMinus", "seMinus"], color: "minusC", glow: 0.9, freq: 1.6, halo: 0 };
 actions.sArrowP = { type: "pulse", parts: ["saShaft", "saHead"], color: "markC", glow: 0.9, freq: 3, halo: 0 };
 actions.sWaterFlow = { type: "flow", _說明: "冷卻水沿基座環路流動", layer: "sCool", path: RING(13, 2.4).map(([x, , z]) => [R2(SX + x), 2.04, z]), n: 7, size: 0.07, shape: "dot", rate: 0.14, color: "hoseB", track: false, free: true, jitter: 0.03 };
 
 // ═════ 站 C：新舊邊緣環對照＋更換（x 66）＝舊環厚約新環 60%、內緣被打圓；電漿輝光邊緣隨之偏移（藍→粉）；機械夾具換環 ═════
 BACKDROP("cBack", 53.4, 72.6, 8.4);
 LAY("cPlinth", [19.2, 1, 63, 0.5]); BOX("cPl", "cPlinth", 53.4, 72.6, 0, 0.9, -3.2, 3.2, "band"); BOX("cPlTop", "cPlinth", 53.4, 72.6, 0.9, 1.0, -3.2, 3.2, "panel2");
-const cn = edgeSec("cN", 54, { pW: 2.6, lipW: 1.1, bodyW: 3.4, top: 3.8, wcol: "quartz" });
-const co = edgeSec("cO", 63.2, { pW: 2.6, lipW: 1.1, bodyW: 3.4, top: 3.0, worn: true, wcol: "quartzOld" });
+const cn = edgeSec("cN", 54, { pW: 2.6, lipW: 1.1, bodyW: 3.4, top: 3.3, wcol: "quartz" });
+const co = edgeSec("cO", 63.2, { pW: 2.6, lipW: 1.1, bodyW: 3.4, top: 2.6, worn: true, wcol: "quartzOld" });
 LAY("cOldCrumb", [3, 1, R2(co.xb + 1.7), 2.8]); P({ id: "cOldCrumbD", layer: "cOldCrumb", shape: "sphere", size: [0.07], pos: [0, 2.7, 0], at: [[co.xb + 0.8, 0, -1.3], [co.xb + 1.9, 0, 0.4], [co.xb + 2.7, 0, 1.4]], mat: "debris" });
-LAY("cPlN", [8.6, 4, 58, 6.2]); BOX("cPlNHalo", "cPlN", 53.7, 62.3, 4.7, 8.0, -BZ, BZ, "plasma"); BOX("cPlNSheath", "cPlN", 53.7, 62.3, 3.9, 4.7, -BZ, BZ, "sheath");
-LAY("cPlO0", [9, 4, 67.5, 6.2]); BOX("cPlO0Halo", "cPlO0", 63.0, 72.0, 4.7, 8.0, -BZ, BZ, "plasma"); BOX("cPlO0Sheath", "cPlO0", 63.0, 72.0, 3.9, 4.7, -BZ, BZ, "sheath");
-LAY("cPlO1", [9, 4, 67.5, 6.2]); BOX("cPlO1Halo", "cPlO1", 63.0, 72.0, 4.7, 8.0, -BZ, BZ, "plasmaP");
-P({ id: "cPlO1Dip", layer: "cPlO1", shape: "poly", size: [1, 1, R2(2 * BZ)], pts: [[63.0, 3.5], [R2(co.xb - 0.4), 3.5], [R2(co.xb + 0.9), 4.1], [72.0, 4.2], [72.0, 4.9], [63.0, 4.9]], pos: [0, 0, 0], mat: "plasmaP" });
-LAY("cPlO1S", [9, 1, 67.5, 4.1]); P({ id: "cPlO1Sh", layer: "cPlO1S", shape: "poly", size: [1, 1, R2(2 * BZ)], pts: [[63.0, 3.5], [R2(co.xb - 0.4), 3.5], [R2(co.xb + 0.9), 4.1], [72.0, 4.2], [72.0, 4.9], [63.0, 4.9]], pos: [0, 0.02, 0], mat: "sheath" });
-LAY("cEdgeLine", [3, 0.2, 58, 5], false); BOX("cEdgeLineB", "cEdgeLine", co.xb - 1.0, R2(co.xb + 1.0), 4.95, 4.99, 2.15, 2.2, "bracket");
+LAY("cPlN", [8.6, 4, 58, 6.2]); BOX("cPlNHalo", "cPlN", 53.7, 62.3, 4.2, 8.0, -BZ, BZ, "plasma"); BOX("cPlNSheath", "cPlN", 53.7, 62.3, 3.4, 4.2, -BZ, BZ, "sheath");
+LAY("cPlO0", [9, 4, 67.5, 6.2]); BOX("cPlO0Halo", "cPlO0", 63.0, 72.0, 4.2, 8.0, -BZ, BZ, "plasma"); BOX("cPlO0Sheath", "cPlO0", 63.0, 72.0, 3.4, 4.2, -BZ, BZ, "sheath");
+LAY("cPlO1", [9, 4, 67.5, 6.2]); BOX("cPlO1Halo", "cPlO1", 63.0, 72.0, 4.2, 8.0, -BZ, BZ, "plasmaP");
+P({ id: "cPlO1Dip", layer: "cPlO1", shape: "poly", size: [1, 1, R2(2 * BZ)], pts: [[63.0, 3.4], [R2(co.xb - 0.4), 3.4], [R2(co.xb + 0.9), 2.9], [72.0, 2.8], [72.0, 4.2], [63.0, 4.2]], pos: [0, 0, 0], mat: "plasmaP" });
+LAY("cPlO1S", [9, 1, 67.5, 4.1]); P({ id: "cPlO1Sh", layer: "cPlO1S", shape: "poly", size: [1, 1, R2(2 * BZ)], pts: [[63.0, 3.4], [R2(co.xb - 0.4), 3.4], [R2(co.xb + 0.9), 2.9], [72.0, 2.8], [72.0, 4.2], [63.0, 4.2]], pos: [0, 0.02, 0], mat: "sheath" });
+LAY("cEdgeLine", [3, 0.2, 58, 5], false); BOX("cEdgeLineB", "cEdgeLine", co.xb - 1.0, R2(co.xb + 1.0), 3.38, 3.42, 2.15, 2.2, "bracket");
 // 厚度括弧（新 2.0、舊 0.8…黃色）
-LAY("cBrN", [1, 3, 61.7, 2.8]); BOX("cBrNV", "cBrN", 61.65, 61.75, 1.8, 3.8, 2.0, 2.1, "bracket"); BOX("cBrNT", "cBrN", 61.4, 62.0, 3.76, 3.84, 2.0, 2.1, "bracket"); BOX("cBrNB", "cBrN", 61.4, 62.0, 1.76, 1.84, 2.0, 2.1, "bracket");
-LAY("cBrO", [1, 3, 71.3, 2.2]); BOX("cBrOV", "cBrO", 71.25, 71.35, 1.8, 3.0, 2.0, 2.1, "bracket"); BOX("cBrOT", "cBrO", 71.0, 71.6, 2.96, 3.04, 2.0, 2.1, "bracket"); BOX("cBrOB", "cBrO", 71.0, 71.6, 1.76, 1.84, 2.0, 2.1, "bracket");
+LAY("cBrN", [1, 3, 61.7, 2.8]); BOX("cBrNV", "cBrN", 61.65, 61.75, 1.8, 3.3, 2.0, 2.1, "bracket"); BOX("cBrNT", "cBrN", 61.4, 62.0, 3.26, 3.34, 2.0, 2.1, "bracket"); BOX("cBrNB", "cBrN", 61.4, 62.0, 1.76, 1.84, 2.0, 2.1, "bracket");
+LAY("cBrO2", [1, 3, 71.3, 2.6]); BOX("cBrO2V", "cBrO2", 71.25, 71.35, 1.8, 3.3, 2.0, 2.1, "bracket"); BOX("cBrO2T", "cBrO2", 71.0, 71.6, 3.26, 3.34, 2.0, 2.1, "bracket"); BOX("cBrO2B", "cBrO2", 71.0, 71.6, 1.76, 1.84, 2.0, 2.1, "bracket");
+LAY("cBrO", [1, 3, 71.3, 2.2]); BOX("cBrOV", "cBrO", 71.25, 71.35, 1.8, 2.6, 2.0, 2.1, "bracket"); BOX("cBrOT", "cBrO", 71.0, 71.6, 2.56, 2.64, 2.0, 2.1, "bracket"); BOX("cBrOB", "cBrO", 71.0, 71.6, 1.76, 1.84, 2.0, 2.1, "bracket");
 // 更換用夾具（機械手臂末端）：立桿、橫臂、兩爪；與新環（備用環，落到舊環的位置）
 LAY("cArm", [6, 6.2, co.xb + 1.7, 6.3]); const AX = R2(co.xb + 1.7);
 BOX("caMast", "cArm", R2(AX - 0.2), R2(AX + 0.2), 6.4, 9.4, -0.2, 0.2, "panel"); BOX("caHead", "cArm", R2(AX - 0.9), R2(AX + 0.9), 5.9, 6.4, -0.7, 0.7, "dark");
-BOX("caClawL", "cArm", R2(AX - 1.9), R2(AX - 1.6), 3.3, 5.9, -0.5, 0.5, "steel2"); BOX("caClawR", "cArm", R2(AX + 1.6), R2(AX + 1.9), 3.3, 5.9, -0.5, 0.5, "steel2"); BOX("caPadL", "cArm", R2(AX - 1.6), R2(AX - 1.5), 3.4, 3.8, -0.45, 0.45, "rubber"); BOX("caPadR", "cArm", R2(AX + 1.5), R2(AX + 1.6), 3.4, 3.8, -0.45, 0.45, "rubber");
+BOX("caClawL", "cArm", R2(AX - 1.9), R2(AX - 1.6), 2.78, 5.9, -0.5, 0.5, "steel2"); BOX("caClawR", "cArm", R2(AX + 1.3), R2(AX + 1.6), 2.78, 5.9, -0.5, 0.5, "steel2"); BOX("caPadL", "cArm", R2(AX - 1.95), R2(AX - 1.55), 2.62, 2.78, -0.55, 0.55, "rubber"); BOX("caPadR", "cArm", R2(AX + 1.25), R2(AX + 1.65), 2.62, 2.78, -0.55, 0.55, "rubber"); // 末端真空吸墊貼在環頂
+BOX("caCarriage", "cArm", R2(AX - 0.7), R2(AX + 0.7), 8.6, 9.1, -0.5, 0.5, "dark"); P({ id: "caJoint", layer: "cArm", shape: "cyl", size: [0.32, 1.2], pos: [AX, 6.4, 0], mat: "steel" }); P({ id: "caScrew", layer: "cArm", shape: "cyl", size: [0.08, 0.06], pos: [AX, 0, 0.62], at: [[-0.45, 8.75, 0], [0.45, 8.75, 0], [-0.45, 8.95, 0], [0.45, 8.95, 0]], mat: "steel2" }); BOX("caMotor", "cArm", 71.0, 72.2, 8.5, 9.9, -0.6, 0.6, "pump"); PIPE("caCableP", "cArm", [[R2(AX + 0.7), 9.5, 0.35], [71.0, 9.5, 0.35]], 0.09, "rubber");
 BOX("caLed", "cArm", R2(AX + 0.3), R2(AX + 0.6), 6.0, 6.2, 0.7, 0.76, "lampG"); BOX("caArmBar", "cArm", R2(AX - 0.9), 72.0, 9.1, 9.4, -0.3, 0.3, "panel");
 LAY("cNewRing", [R2(co.xe - co.xl), 2, R2((co.xl + co.xe) / 2), 2.8]);
-P({ id: "cNewRingP", layer: "cNewRing", shape: "poly", size: [1, 1, R2(2 * BZ)], pts: [[co.xl, 1.8], [co.xe, 1.8], [co.xe, 3.8], [co.xb, 3.8], [co.xb, 2.95], [co.xl, 2.95]].map(([a, b]) => [R2(a), R2(b)]), pos: [0, 0, 0], mat: "quartz" });
+P({ id: "cNewRingP", layer: "cNewRing", shape: "poly", size: [1, 1, R2(2 * BZ)], pts: [[co.xl, 1.8], [co.xe, 1.8], [co.xe, 3.3], [co.xb, 3.3], [co.xb, 2.85], [co.xl, 2.85]].map(([a, b]) => [R2(a), R2(b)]), pos: [0, 0, 0], mat: "quartz" });
 actions.cPlPulseN = { type: "pulse", parts: ["cPlNHalo"], color: "plasmaC", glow: 0.8, freq: 2.2, halo: 0 }; actions.cPlPulseO = { type: "pulse", parts: ["cPlO0Halo"], color: "plasmaC", glow: 0.8, freq: 2.2, halo: 0 }; actions.cPlPulseP = { type: "pulse", parts: ["cPlO1Halo", "cPlO1Dip"], color: "plasmaPC", glow: 0.9, freq: 2.6, halo: 0 };
-actions.cIonN = { type: "flow", layer: "cPlN", path: [[R2(cn.xb + 1.4), 7.8, 0.2], [R2(cn.xb + 1.4), 3.95, 0.2]], n: 3, lanes: 2, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.09, shape: "dot", rate: 0.9, color: "ionC", trail: 3, trailGap: 0.035, track: false, accel: true, free: true, jitter: 0.03 };
-actions.cIonO = { type: "flow", layer: "cPlO0", path: [[R2(co.xb + 1.4), 7.8, 0.2], [R2(co.xb + 1.4), 3.15, 0.2]], n: 3, lanes: 2, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.09, shape: "dot", rate: 0.9, color: "ionC", trail: 3, trailGap: 0.035, track: false, accel: true, free: true, jitter: 0.03 };
+actions.cIonN = { type: "flow", layer: "cPlN", path: [[R2(cn.xb + 1.4), 4.2, 0.2], [R2(cn.xb + 1.4), 3.36, 0.2]], n: 3, lanes: 2, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.09, shape: "dot", rate: 0.9, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.03 };
+actions.cIonN2 = { type: "flow", _說明: "換上新環、電漿重新點亮後的離子（鞘層變平）", layer: "cPlO0", path: [[R2(co.xb + 1.4), 4.2, 0.2], [R2(co.xb + 1.4), 3.36, 0.2]], n: 3, lanes: 2, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.09, shape: "dot", rate: 0.9, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.03 };
+actions.cIonO = { type: "flow", layer: "cPlO0", path: [[R2(co.xb + 1.4), 4.2, 0.2], [R2(co.xb + 1.4), 2.66, 0.2]], n: 3, lanes: 2, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.09, shape: "dot", rate: 0.9, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.03 };
 
 // ═════ 站 E：陶瓷與金屬表面對照（x 128，s5）＝同樣被離子轟擊；陶瓷平整少掉渣，金屬被打花、碎屑飛出 ═════
 BACKDROP("eBack", 117.4, 138.6, 8.4);
 LAY("ePlinth", [21.4, 1, 128, 0.5]); BOX("ePl", "ePlinth", 117.2, 138.8, 0, 0.9, -3.2, 3.2, "band"); BOX("ePlTop", "ePlinth", 117.2, 138.8, 0.9, 1.0, -3.2, 3.2, "panel2");
-const EY = 3.9;
+const EY = 4.5;
 LAY("eCer", [6, 3.2, 122.2, 2.5]); BOX("ecBlock", "eCer", 119.4, 125.0, 0.9, EY, -2.3, 2.3, "cer"); BOX("ecEdge", "eCer", 119.4, 125.0, EY - 0.04, EY + 0.01, -2.3, 2.3, "cerD");
 P({ id: "ecPit", layer: "eCer", shape: "cyl", size: [0.07, 0.015], rot: V, pos: [0, EY + 0.008, 0], at: [[120.6, 0, -1.2], [123.3, 0, 0.9], [121.8, 0, 1.6]], mat: "cerD" });
 BOX("ecTag", "eCer", 119.5, 121.5, 1.3, 1.9, 2.3, 2.34, "panel");
 LAY("eMet", [6, 3.2, 134.4, 2.5]); BOX("emBlock", "eMet", 131.4, 137.0, 0.9, EY, -2.3, 2.3, "steel2"); BOX("emEdge", "eMet", 131.4, 137.0, EY - 0.04, EY + 0.01, -2.3, 2.3, "steel");
-P({ id: "emPit", layer: "eMet", shape: "cyl", size: [0.16, 0.03], rot: V, pos: [0, EY + 0.01, 0], at: Array.from({ length: 22 }, () => [R2(131.7 + rnd() * 5.0), 0, R2(-2.0 + rnd() * 4.0)]), mat: "dark" });
-P({ id: "emBump", layer: "eMet", shape: "sphere", size: [0.09], pos: [0, EY + 0.03, 0], scale: [1, 0.6, 1], at: Array.from({ length: 30 }, () => [R2(131.7 + rnd() * 5.0), 0, R2(-2.0 + rnd() * 4.0)]), mat: "steel" });
+P({ id: "emPit", layer: "eMet", shape: "cyl", size: [0.24, 0.04], rot: V, pos: [0, EY + 0.01, 0], at: Array.from({ length: 26 }, () => [R2(131.7 + rnd() * 5.0), 0, R2(-2.0 + rnd() * 4.0)]), mat: "dark" });
+P({ id: "emBump", layer: "eMet", shape: "sphere", size: [0.14], pos: [0, EY + 0.03, 0], scale: [1, 0.6, 1], at: Array.from({ length: 30 }, () => [R2(131.7 + rnd() * 5.0), 0, R2(-2.0 + rnd() * 4.0)]), mat: "steel" });
 BOX("emTag", "eMet", 131.5, 133.5, 1.3, 1.9, 2.3, 2.34, "panel");
-LAY("ePlasma", [21, 4, 128, 6.4]); BOX("epHalo", "ePlasma", 118.4, 138.0, 5.1, 8.2, -2.3, 2.3, "plasma"); BOX("epSheath", "ePlasma", 118.4, 138.0, 4.1, 5.1, -2.3, 2.3, "sheath");
-[["eIonC", 122.2], ["eIonM", 134.2]].forEach(([id, x]) => { actions[id] = { type: "flow", _說明: "離子垂直往下加速撞擊表面", layer: "ePlasma", path: [[x, 8.0, 0.2], [x, EY + 0.05, 0.2]], n: 3, lanes: 4, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.1, shape: "dot", rate: 0.85, color: "ionC", trail: 3, trailGap: 0.035, track: false, accel: true, free: true, jitter: 0.03 }; });
+P({ id: "emNotch", layer: "eMet", shape: "box", size: [0.34, 0.22, 0.06], pos: [0, R2(EY - 0.1), 2.29], at: [131.8, 132.5, 133.1, 133.9, 134.6, 135.2, 135.9, 136.6].map((x, i) => [x, R2(-0.08 * (i % 3)), 0]), mat: "dark" }); // 金屬前緣被打出的缺口
+P({ id: "emScar", layer: "eMet", shape: "box", size: [0.5, 0.06, 0.05], pos: [0, 3.6, 2.3], at: [[132.4, 0, 0], [134.1, 0.3, 0], [135.6, -0.2, 0], [133.3, -0.6, 0], [136.2, -0.9, 0]], mat: "dark" });
+LAY("ePlasma", [21, 4, 128, 6.4]); BOX("epHalo", "ePlasma", 120.6, 135.8, 5.7, 8.6, -2.3, 2.3, "plasma"); BOX("epTop", "ePlasma", 120.6, 135.8, 7.6, 8.6, -2.3, 2.3, "plasmaCore"); BOX("epSheath", "ePlasma", 120.6, 135.8, 4.7, 5.7, -2.3, 2.3, "sheath");
+[["eIonC", 122.2], ["eIonM", 134.2]].forEach(([id, x]) => { actions[id] = { type: "flow", _說明: "離子垂直往下加速撞擊表面", layer: "ePlasma", path: [[x, 5.7, 0.2], [x, EY + 0.05, 0.2]], n: 3, lanes: 4, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.1, shape: "dot", rate: 0.85, color: "ionC", trail: 6, trailGap: 0.012, track: false, accel: true, free: true, jitter: 0.03 }; });
 actions.eDebrisM = { type: "flow", _說明: "金屬表面被打下的碎屑：多、往四面飛、會掉在腔內變成微粒", layer: "ePlasma", path: [[134.0, EY + 0.1, 0.4], [134.6, EY + 1.2, 0.7], [135.5, EY + 2.2, 1.0]], n: 8, lanes: 3, laneDir: [1, 0, 0], laneGap: 1.4, size: 0.08, shape: "dot", rate: 0.5, color: "debrisC", track: false, free: true, jitter: 0.5 };
 actions.eBounceC = { type: "flow", _說明: "離子打到陶瓷平整的表面，彈開、幾乎沒有碎屑", layer: "ePlasma", path: [[122.2, EY + 0.05, 0.2], [122.8, EY + 0.6, 0.4], [123.4, EY + 1.4, 0.5]], n: 3, lanes: 2, laneDir: [1, 0, 0], laneGap: 1.6, size: 0.06, shape: "dot", rate: 0.4, color: "ionC", track: false, free: true, jitter: 0.1 };
+// E 站兩塊靠攏（陶瓷右移 2、金屬左移 2），鏡頭才能拉近
+const EMV = { eCer: 2.0, eMet: -2.0 };
+for (const q of parts) if (EMV[q.layer]) q.pos = [R2(q.pos[0] + EMV[q.layer]), q.pos[1], q.pos[2]];
+for (const [id, d] of [["eIonC", 2], ["eBounceC", 2], ["eIonM", -2], ["eDebrisM", -2]]) actions[id].path = actions[id].path.map(([x, y, z]) => [R2(x + d), y, z]);
+for (const l of layers) if (EMV[l.id]) l.outline = [l.outline[0], R2(l.outline[1] + 0.6), R2(l.outline[2] + EMV[l.id]), R2(l.outline[3] + 0.3)];
 actions.eSparkC = { type: "pulse", parts: ["ecEdge"], color: "ionC", glow: 0.35, freq: 3, halo: 0 }; actions.eSparkM = { type: "pulse", parts: ["emEdge", "emPit"], color: "ionC", glow: 0.8, freq: 4, halo: 0 };
 
 // ═════ 站 P：真空泵、閥門、射頻電源（x 150，s7；一次亮一件）═════
@@ -238,7 +261,7 @@ LAY("pPump", [5.6, 4.4, 144.5, 3.0]); BOX("ppBody", "pPump", 142.0, 147.0, 1.0, 
 for (let i = 0; i < 7; i++) BOX(`ppFin${i}`, "pPump", R2(142.2 + i * 0.68), R2(142.5 + i * 0.68), 1.2, 3.3, 1.6, 1.75, "steel2");
 VT("ppInlet", "pPump", 0.6, 0.45, 3.9, 4.7, "steel", { x: 143.3, z: 0.9 }); VT("ppFlange", "pPump", 0.85, 0.45, 4.55, 4.7, "steel2", { x: 143.3, z: 0.9 }); BOX("ppPlate", "pPump", 146.0, 146.9, 1.5, 2.1, 1.6, 1.64, "warnY"); BOX("ppLamp", "pPump", 145.2, 145.5, 3.2, 3.4, 1.6, 1.66, "lampG");
 HXC("ppExhaust", "pPump", 0.3, 147.0, 148.4, 1.8, 0.0, "steel");
-LAY("pValve", [5, 4.4, 151.5, 3.0]); PIPE("pvPipe", "pValve", [[148.4, 1.8, 0], [153.0, 1.8, 0]], 0.3, "steel"); SPH("pvBody", "pValve", 0.7, 151.7, 1.8, 0, "steel2"); VT("pvFlangeL", "pValve", 0.5, 0.3, 1.5, 1.6, "steel2", { x: 149.3, z: 0 }); P({ id: "pvFlA", layer: "pValve", shape: "tube", size: [0.55, 0.3, 0.15], rot: HX, pos: [149.5, 1.8, 0], mat: "steel2" }); P({ id: "pvFlB", layer: "pValve", shape: "tube", size: [0.55, 0.3, 0.15], rot: HX, pos: [153.9, 1.8, 0], mat: "steel2" });
+LAY("pValve", [5, 6.4, 151.5, 3.6]); PIPE("pvPipe", "pValve", [[148.4, 1.8, 0], [153.0, 1.8, 0], [153.0, 6.2, 0]], 0.3, "steel"); VT("pvRiserFl", "pValve", 0.5, 0.3, 6.2, 6.35, "steel2", { x: 153.0 }); VT("pvRiserFl2", "pValve", 0.5, 0.3, 4.0, 4.12, "steel2", { x: 153.0 }); BOX("pvTag", "pValve", 153.4, 154.4, 5.0, 5.5, -0.05, 0.05, "warnY"); /* 往上接到腔體排氣口 */ SPH("pvBody", "pValve", 0.7, 151.7, 1.8, 0, "steel2"); VT("pvFlangeL", "pValve", 0.5, 0.3, 1.5, 1.6, "steel2", { x: 149.3, z: 0 }); P({ id: "pvFlA", layer: "pValve", shape: "tube", size: [0.55, 0.3, 0.15], rot: HX, pos: [149.5, 1.8, 0], mat: "steel2" }); P({ id: "pvFlB", layer: "pValve", shape: "tube", size: [0.55, 0.3, 0.15], rot: HX, pos: [152.4, 1.8, 0], mat: "steel2" });
 VC("pvStem", "pValve", 0.14, 2.3, 4.2, "steel", { x: 151.7 }); VC("pvBonnet", "pValve", 0.38, 2.2, 3.0, "steel2", { x: 151.7 }); VT("pvWheel", "pValve", 0.95, 0.82, 4.2, 4.3, "mark", { x: 151.7 });
 for (let i = 0; i < 3; i++) P({ id: `pvSpoke${i}`, layer: "pValve", shape: "box", size: [1.8, 0.07, 0.1], pos: [151.7, 4.25, 0], rot: [0, i * 60, 0], mat: "mark" });
 VC("pvHub", "pValve", 0.2, 4.1, 4.4, "steel", { x: 151.7 });
@@ -249,12 +272,12 @@ P({ id: "prConn", layer: "pPower", shape: "cyl", size: [0.28, 0.5], rot: [90, 0,
 actions.pPumpHot = { type: "pulse", parts: ["ppBody", "ppTop"], color: "amberC", glow: 0.6, freq: 1.4, halo: 0 }; actions.pValveHot = { type: "pulse", parts: ["pvBody", "pvBonnet"], color: "amberC", glow: 0.6, freq: 1.4, halo: 0 }; actions.pPowerHot = { type: "pulse", parts: ["prBody"], color: "amberC", glow: 0.5, freq: 1.4, halo: 0 };
 actions.pFan = { type: "rotate", _說明: "真空泵風扇", parts: ["ppFan"], axis: [0, 1, 0], pivot: [144.5, 0, 0], rps: 0.9, rampSpin: true };
 actions.pWheel = { type: "rotate", _說明: "閥門手輪轉動", parts: ["pvWheel", "pvSpoke0", "pvSpoke1", "pvSpoke2", "pvHub"], axis: [0, 1, 0], pivot: [151.7, 0, 0], rps: 0.3, rampSpin: true };
-actions.pExhaust = { type: "flow", layer: "pPump", path: [[147.0, 1.8, 0], [148.4, 1.8, 0], [152.4, 1.8, 0], [153.0, 1.8, 0]], n: 8, size: 0.09, shape: "dot", rate: 0.35, color: "heC", track: false, free: true, jitter: 0.06 };
+actions.pExhaust = { type: "flow", _說明: "腔體抽出的氣體：從上方排氣管往下、經過閥門、進泵入口（流向泵）", layer: "pPump", path: [[150.9, 6.1, 0], [150.9, 1.8, 0], [148.4, 1.8, 0], [147.1, 1.8, 0]], n: 9, size: 0.09, shape: "dot", rate: 0.35, color: "seam", track: false, free: true, jitter: 0.06 };
 
 // ═════ 站 K：供應商展台（x 180，s8）＝TOTO（日）、台灣精材（台）、翔名（台）；念到才從幽靈變實體 ═════
 const SIGNS = [["toto", "logo:toto"], ["twcm", "text:twcm=台灣精材|3467"], ["feedback", "logo:feedback"]];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-parts", "flag:JP", "flag:TW", ...SIGNS.map(([, a]) => a)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
-const SIGNM = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
+const SIGNM0 = 0; const SIGNM = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
 ["JP", "TW"].forEach((c) => { materials[`f_${c}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/flag-${c}.png` }; });
 SIGNS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
 BACKDROP("kBack", 169.4, 191.0, 8.5);
@@ -262,7 +285,7 @@ LAY("kBase", [23, 1, 180, 0.5]); BOX("kPl", "kBase", 169.2, 191.2, 0, 0.9, -3.4,
 const KX = [173.8, 180.2, 186.6], KF = ["JP", "TW", "TW"];
 KX.forEach((x, i) => { const id = ["kA", "kB", "kC"][i]; LAY(id, [5.4, 6.8, x, 3.6]);
   BOX(`${id}Ped`, id, R2(x - 2.5), R2(x + 2.5), 1.0, 2.2, -2.2, 2.2, "panel"); BOX(`${id}PedTop`, id, R2(x - 2.55), R2(x + 2.55), 2.2, 2.3, -2.25, 2.25, "steel2");
-  const sg = SIGNM[`sign-${SIGNS[i][0]}`], sw = Math.min(3.6, R2(1.12 * sg.aspect)); P({ id: `${id}Sign`, layer: id, shape: "plane", size: [sw, R2(sw / sg.aspect)], pos: [x, 1.65, 2.23], uv01: true, shadow: false, mat: `t_${SIGNS[i][0]}` });
+  const sg = SIGNM[`sign-${SIGNS[i][0]}`], sw = Math.min(3.6, R2((SIGNS[i][1].startsWith("logo:") ? 1.6 : 1.12) * sg.aspect)); P({ id: `${id}Sign`, layer: id, shape: "plane", size: [sw, R2(sw / sg.aspect)], pos: [x, 1.65, 2.23], uv01: true, shadow: false, mat: `t_${SIGNS[i][0]}` });
   const fg = SIGNM[`flag-${KF[i]}`]; 
   const px = [2.2, 1.6, -1.0][i]; // 旗面錯開、第三面不被畫面右緣切掉
   VC(`${id}Pole`, id, 0.07, 2.3, 7.6, "steel2", { x: R2(x + px), z: -1.8 }); P({ id: `${id}Flag`, layer: id, shape: "plane", size: [2.1, R2(2.1 / fg.aspect)], pos: [R2(x + px + 1.1), 6.8, -1.8], uv01: true, shadow: false, mat: `f_${KF[i]}` }); SPH(`${id}PoleTop`, id, 0.14, R2(x + px), 7.65, -1.8, "gold");
@@ -301,10 +324,10 @@ actions.rFfuPulse = { type: "pulse", parts: ["rFfuLight"], color: "airC", glow: 
 Object.assign(anchors, {
   plasmaA: A("plasma", [0.6, 5.4, 1.4], 150, -90), ringA: A("ring", [2.95, 3.5, 0.9], 150, -100), waferA: A("wafer", [1.5, 3.37, 1.3], -150, -90), escA: A("pedEsc", [1.5, 3.2, 1.4], -150, 100),
   linerA: A("liner", [3.2, 5.6, -4.4], 150, -80), wallA: A("chamber", [-7.5, 6.4, 1.0], -150, -80), windowA: A("chamber", [-4.5, 5.0, -4.4], 150, -90), topEA: A("topE", [1.8, 7.9, 1.6], 150, 100), pedA: A("pedBase", [3.4, 2.1, 1.0], 150, 100),
-  bRing: A("bRing", [R2(bs.xb + 2.3), 2.7, BZ], 150, 120), bStep: A("bRing", [R2(bs.xb + 0.3), 2.95, BZ], -150, -100), bSpark: A("bSpark", [R2(bs.xb + 1.9), 3.9, 0.3], 150, -100), bLineA: A("bTopLine", [R2(bs.xb + 2.3), 3.8, 2.2], 150, -100), bPlasmaA: A("bPlasma", [30.5, 6.4, BZ], -150, -90), bEscA: A("bEsc", [29.6, 2.4, BZ], -150, 100), bWaferA: A("bWafer", [29.8, 3.1, BZ], -150, -100),
-  sWafer: A("sWafer", [R2(SX + 2.0), 3.12, 1.6], -150, -90), sTop: A("sTop", [R2(SX + 2.4), 2.76, 1.8], 150, -60), sElec: A("sElec", [R2(SX - 1.5), 2.5, 1.5], -150, 100), sHeA: A("sHe", [R2(SX + 0.6), 2.4, 1.2], 150, 100), sCoolA: A("sCool", [R2(SX + 1.6), 1.5, 3.0], 150, 100),
+  bRing: A("bRing", [R2(bs.xb + 2.3), 2.7, BZ], 150, 120), bStep: A("bRing", [R2(bs.xb + 0.3), 2.85, BZ], -150, -100), bSpark: A("bSpark", [R2(bs.xb + 1.9), 3.35, 0.3], 150, -100), bLineA: A("bTopLine", [R2(bs.xb + 2.3), 3.3, 2.2], 150, -100), bPlasmaA: A("bPlasma", [30.5, 6.4, BZ], -150, -90), bEscA: A("bEsc", [29.6, 2.4, BZ], -150, 100), bWaferA: A("bWafer", [29.8, 3.1, BZ], -150, -100),
+  sWafer: A("sWafer", [R2(SX + 2.0), 3.12, 1.6], -150, -90), sTop: A("sTop", [R2(SX + 2.4), 2.76, 1.8], 150, -60), sTopB: A("sTop", [R2(SX + 2.4), 2.76, 1.8], 170, 170), sElec: A("sElec", [R2(SX - 1.5), 2.5, 1.5], -150, 100), sHeA: A("sHe", [R2(SX + 0.6), 2.4, 1.2], 150, 100), sCoolA: A("sCool", [R2(SX + 1.6), 1.5, 3.0], 150, 100),
   cNew: A("cNRing", [R2(cn.xb + 1.7), 3.0, BZ], -150, -100), cOld: A("cORing", [R2(co.xb + 1.7), 2.4, BZ], 150, -100), cArmA: A("cArm", [AX, 5.0, 0.7], 160, -170), cPlO: A("cPlO1", [R2(co.xb + 2.5), 4.5, BZ], 150, -100),
-  eCerA: A("eCer", [122.2, EY, 2.3], -150, -100), eMetA: A("eMet", [134.2, EY, 2.3], 150, -100),
+  eCerA: A("eCer", [124.2, EY, 2.3], -150, -100), eMetA: A("eMet", [132.2, EY, 2.3], 150, -100),
   pPumpA: A("pPump", [144.5, 4.5, 1.2], -150, -100), pValveA: A("pValve", [151.7, 4.25, 0.6], 150, -100), pPowerA: A("pPower", [156.4, 6.6, 1.4], 150, -90),
   rFfuA: A("rFfu", [215, 10.9, 4.2], -150, 100), rToolA: A("rTool", [213, 5.0, 2.3], -150, 100), rPartsA: A("rParts", [223, 3.0, 1.5], 150, 100),
 });
@@ -314,6 +337,10 @@ Object.assign(anchors, {
 for (const q of parts) if (q.layer === "pPower") q.pos = [R2(q.pos[0] - 2.0), q.pos[1], q.pos[2]];
 { const l = layers.find((q) => q.id === "pPower"); l.outline = [5, 6.4, 154.4, 3.8]; }
 anchors.pPowerA.p = [R2(anchors.pPowerA.p[0] - 2.0), anchors.pPowerA.p[1], anchors.pPowerA.p[2]];
+// P 站：閥門整組左移 2.1（泵入口 → 閥門 → 往上接腔體排氣），射頻電源只接同軸線
+for (const q of parts) if (q.layer === "pValve") q.pos = [R2(q.pos[0] - 2.1), q.pos[1], q.pos[2]];
+actions.pWheel.pivot = [R2(actions.pWheel.pivot[0] - 2.1), 0, 0]; anchors.pValveA.p = [R2(anchors.pValveA.p[0] - 2.1), anchors.pValveA.p[1], anchors.pValveA.p[2]];
+{ const l = layers.find((q) => q.id === "pValve"); l.outline = [5, 6.4, 149.4, 3.6]; }
 // 站間距：P、K、R 整站往右平移（避免相鄰站被鏡頭看到邊緣）
 const SHIFT = [[["pBack", "pPlinth", "pPump", "pValve", "pPower"], 12], [["kBack", "kBase", "kA", "kB", "kC"], 30], [["rRoom", "rFfu", "rTool", "rParts"], 50]];
 const sx = (v, d) => [R2(v[0] + d), v[1], v[2]];
