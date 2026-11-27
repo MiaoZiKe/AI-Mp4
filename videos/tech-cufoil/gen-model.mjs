@@ -35,7 +35,7 @@ const materials = {
   warnY: M("std", "warnY", { rough: 0.5, metal: 0, emissive: "warnY", ei: 0.2 }),
   wafer: M("std", "waferC", { rough: 0.2, metal: 0.6, env: 0.9 }), waferD: M("std", "waferD", { rough: 0.3, metal: 0.5, env: 0.6 }),
   die: M("std", "dieC", { rough: 0.3, metal: 0.4, env: 0.6 }), dieTop: M("std", "dieTop", { rough: 0.25, metal: 0.5, env: 0.8 }),
-  bump: M("std", "bumpC", { rough: 0.25, metal: 0.9, env: 0.9 }), copper: M("std", "copper", { rough: 0.3, metal: 0.9, env: 0.7 }),
+  bump: M("std", "bumpC", { rough: 0.25, metal: 0.9, env: 0.9 }), copper: M("std", "cuBright", { rough: 0.35, metal: 0.55, env: 0.4, emissive: "cuBright", ei: 0.06 }),
   ncf: M("std", "ncfC", { rough: 0.5, metal: 0, emissive: "ncfC", ei: 0.1 }), ncfHot: M("std", "#FFC93C", { rough: 0.3, metal: 0, emissive: "#FFC93C", ei: 0.6 }), hot: glowM("hotC", 0.95, 0.9), heat: M("std", "heatC", { rough: 0.4, metal: 0.3, emissive: "heatC", ei: 0.25 }),
   ceramic: M("std", "ceramic", { rough: 0.6, metal: 0, env: 0.2 }), tape: M("phys", "tapeC", { rough: 0.3, metal: 0, clearcoat: 0.5, opacity: 0.85, env: 0.4 }), frame: M("std", "frameC", { rough: 0.3, metal: 0.8, env: 0.6 }),
   uf: M("std", "ufC", { rough: 0.25, metal: 0, env: 0.6, emissive: "ufC", ei: 0.15 }), ufD: M("std", "ufD", { rough: 0.3, metal: 0, env: 0.4 }), ufDot: glowM("ufC", 1, 0.5),
@@ -87,15 +87,15 @@ function FRAME3(id, layer, x0, x1, y0, y1, z, t, mat) { BOX(`${id}T`, layer, x0,
 
 // ═════ 本集額外色票與材質 ═════
 Object.assign(palette, {
-  resinC: "#E6C27A", glassY: "#EEF2F6", glassLD: "#BFE6D6", liquidC: "#5FA8E8", tiC: "#A3ACB8", anodeC: "#4D5563", cuMatteC: "#B5652B", nodC: "#8F4A1E",
+  resinC: "#E6C27A", glassY: "#EEF2F6", glassLD: "#BFE6D6", liquidC: "#5FA8E8", tiC: "#A3ACB8", anodeC: "#4D5563", cuMatteC: "#A9542A", nodC: "#8A3F1C", cuBright: "#D2692F", warpC: "#DCE6F4", resinV: "#E8B04A",
   fiberC: "#F7FBFF", ionC: "#F2A65A", pregC: "#E9D9A6", boardG: "#2F6B4A", slotC: "#1B1F27", lowC: "#2FBF71", slowC: "#E5484D",
 });
 Object.assign(materials, {
-  resin: M("phys", "resinC", { rough: 0.3, metal: 0, clearcoat: 0.4, opacity: 0.42, env: 0.4 }),
+  resin: M("phys", "resinV", { rough: 0.3, metal: 0, clearcoat: 0.4, opacity: 0.3, env: 0.3 }),
   resinS: M("phys", "resinC", { rough: 0.3, metal: 0, clearcoat: 0.4, opacity: 0.6, env: 0.4 }),
-  glassY: M("std", "glassY", { rough: 0.45, metal: 0, env: 0.4 }), glassLD: M("std", "glassLD", { rough: 0.4, metal: 0, env: 0.4, emissive: "glassLD", ei: 0.15 }),
+  glassY: M("std", "glassY", { rough: 0.45, metal: 0, env: 0.4 }), warpW: M("std", "warpC", { rough: 0.5, metal: 0, env: 0.3 }), glassLD: M("std", "glassLD", { rough: 0.4, metal: 0, env: 0.4, emissive: "glassLD", ei: 0.15 }),
   liquid: M("phys", "liquidC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.35, env: 0.6 }), titanium: M("std", "tiC", { rough: 0.2, metal: 0.9, env: 0.9, tex: "brushed", texScale: 2 }),
-  anode: M("std", "anodeC", { rough: 0.6, metal: 0.5, env: 0.3 }), cuShiny: M("std", "copper", { rough: 0.12, metal: 1, env: 1 }), cuMatte: M("std", "cuMatteC", { rough: 0.75, metal: 0.6, env: 0.3 }),
+  anode: M("std", "anodeC", { rough: 0.6, metal: 0.5, env: 0.3 }), cuShiny: M("std", "cuBright", { rough: 0.28, metal: 0.55, env: 0.45, emissive: "cuBright", ei: 0.08 }), cuMatte: M("std", "cuMatteC", { rough: 0.75, metal: 0.6, env: 0.3 }),
   nod: M("std", "nodC", { rough: 0.8, metal: 0.5, env: 0.2 }), fiber: glowM("fiberC", 0.95, 0.5), preg: M("std", "pregC", { rough: 0.5, metal: 0, env: 0.3 }),
   board: M("std", "boardG", { rough: 0.55, metal: 0.1, env: 0.3 }), slot: M("std", "slotC", { rough: 0.5, metal: 0.2 }), sigBand: glowM("sigC", 0.35, 0.8),
 });
@@ -108,10 +108,14 @@ P({ id: "floorSeam", layer: "floor", shape: "slab", size: [380, 0.04, 0.1], pos:
 // 一塊玻纖布（平紋示意）：經紗沿 z、緯紗沿 x，緯紗高低交錯；cx,yc,cz 中心，hw,hd 半寬半深，pitch 間距，r 紗半徑
 const CLOTH = (pre, ly, cx, yc, cz, hw, hd, pitch, r, mat = "glassY") => {
   const nx = Math.floor((2 * hw) / pitch), nz = Math.floor((2 * hd) / pitch);
-  P({ id: `${pre}Wp`, layer: ly, shape: "cyl", size: [r, R2(2 * hd)], pos: [cx, yc, cz], at: Array.from({ length: nx }, (_, i) => [R2(-hw + pitch / 2 + i * pitch), 0, 0]), mat });
-  const wf = Array.from({ length: nz }, (_, j) => [0, 0, R2(-hd + pitch / 2 + j * pitch)]);
-  P({ id: `${pre}WfA`, layer: ly, shape: "cyl", size: [r, R2(2 * hw)], rot: HX, pos: [cx, R2(yc + r * 0.6), cz], at: wf.filter((_, j) => j % 2 === 0), mat });
-  P({ id: `${pre}WfB`, layer: ly, shape: "cyl", size: [r, R2(2 * hw)], rot: HX, pos: [cx, R2(yc - r * 0.6), cz], at: wf.filter((_, j) => j % 2 === 1), mat });
+  // 平紋：交點 (i,j) 上，(i+j) 偶數＝經紗在上、緯紗在下；奇數相反。每段長一個 pitch，在交點之間上下換邊
+  const up = [], dn = [], wu = [], wd = [];
+  for (let i = 0; i < nx; i++) for (let j = 0; j < nz; j++) { const x = R2(-hw + pitch / 2 + i * pitch), z = R2(-hd + pitch / 2 + j * pitch);
+    ((i + j) % 2 === 0 ? up : dn).push([x, 0, z]); ((i + j) % 2 === 0 ? wd : wu).push([x, 0, z]); }
+  P({ id: `${pre}WpU`, layer: ly, shape: "cyl", size: [r, R2(pitch * 0.98)], pos: [cx, R2(yc + r * 0.55), cz], at: up, mat });
+  P({ id: `${pre}WpD`, layer: ly, shape: "cyl", size: [r, R2(pitch * 0.98)], pos: [cx, R2(yc - r * 0.55), cz], at: dn, mat });
+  P({ id: `${pre}WfU`, layer: ly, shape: "cyl", size: [r * 0.92, R2(pitch * 0.98)], rot: HX, pos: [cx, R2(yc + r * 0.55), cz], at: wu, mat: "warpW" });
+  P({ id: `${pre}WfD`, layer: ly, shape: "cyl", size: [r * 0.92, R2(pitch * 0.98)], rot: HX, pos: [cx, R2(yc - r * 0.55), cz], at: wd, mat: "warpW" });
 };
 
 // ═════ 站 H：銅箔基板剖面（s1）：上下銅箔＋兩層玻纖布浸樹脂；上層銅箔掀起一角 ═════
@@ -124,18 +128,28 @@ BOX("hCuB", "hBoard", HX0 - 5, HX0 + 5, HB, HB + 0.15, -3.4, 3.4, "cuShiny");
 BOX("hResin", "hBoard", HX0 - 5, HX0 + 5, HB + 0.15, HB + 1.35, -3.4, 3.4, "resin");
 CLOTH("hC1", "hBoard", HX0, HB + 0.5, 0, 4.9, 3.3, 0.42, 0.08); CLOTH("hC2", "hBoard", HX0, HB + 1.0, 0, 4.9, 3.3, 0.42, 0.08);
 LAY("hCuTop", [10.4, 0.4, HX0, HB + 1.45]);
-BOX("hCuT", "hCuTop", HX0 - 5, HX0 + 5, HB + 1.35, HB + 1.5, -3.4, 3.4, "cuShiny");
+BOX("hCuT", "hCuTop", HX0 - 5, HX0 + 5, HB + 1.35, HB + 1.5, -3.4, 1.4, "cuShiny"); BOX("hCuT2", "hCuTop", HX0 - 5, HX0 + 2, HB + 1.35, HB + 1.5, 1.4, 3.4, "cuShiny");
+LAY("hCuFlap", [3, 0.4, HX0 + 3.5, HB + 1.45]); BOX("hCuFlapB", "hCuFlap", HX0 + 2, HX0 + 5, HB + 1.35, HB + 1.5, 1.4, 3.4, "cuShiny");
+P({ id: "hCuFlapNod", layer: "hCuFlap", shape: "sphere", size: [0.05], pos: [HX0, HB + 1.34, 0], at: GXZ(7, 5, 0.42, 0.42, 2.2, 1.6), mat: "nod" });
+BOX("hCuBEdge", "hBoard", HX0 - 5, HX0 + 5, HB - 0.02, HB + 0.15, 3.4, 3.43, "cuShiny");
 P({ id: "hCuTNod", layer: "hCuTop", shape: "sphere", size: [0.05], pos: [HX0, HB + 1.34, 0], at: GXZ(24, 16, 0.42, 0.42, -4.8, -3.2), mat: "nod" });
 const HTOP = HB + 1.5;
 
 // ═════ 站 E：電解銅箔機（s2）：電解槽＋藥水＋鈦滾筒（陰極）＋弧形陽極＋銅箔剝離→導輥→收卷；整流器 ═════
-const EX = 34, ECY = 4.6, ER = 3.0, EAR = 3.7, ELQ = 2.8;
-LAY("eTank", [9, 3.4, EX, 1.6]);
+const EX = 34, ECY = 4.6, ER = 3.0, EAR = 3.7, ELQ = 4.0, ETW = 4.3;   // 液面 4.0：滾筒下半泡在藥水裡
+LAY("eTank", [9, 4.4, EX, 2.2]);
 BOX("etBase", "eTank", EX - 4.6, EX + 4.6, 0, 0.4, -3.2, 3.2, "band");
-BOX("etBot", "eTank", EX - 4.4, EX + 4.4, 0.4, 0.6, -3.0, 3.0, "steel2"); BOX("etBack", "eTank", EX - 4.4, EX + 4.4, 0.6, 3.2, -3.0, -2.8, "steel2");
-BOX("etL", "eTank", EX - 4.4, EX - 4.2, 0.6, 3.2, -3.0, 3.0, "steel2"); BOX("etR", "eTank", EX + 4.2, EX + 4.4, 0.6, 3.2, -3.0, 3.0, "steel2");
-BOX("etFront", "eTank", EX - 4.2, EX + 4.2, 0.6, 3.2, 2.8, 2.86, "window"); FRAME3("etFr", "eTank", EX - 4.4, EX + 4.4, 0.6, 3.2, 2.86, 0.1, "steel2");
-BOX("etLiq", "eTank", EX - 4.2, EX + 4.2, 0.6, ELQ, -2.8, 2.8, "liquid");
+BOX("etBot", "eTank", EX - 4.4, EX + 4.4, 0.4, 0.6, -3.0, 3.0, "steel2"); BOX("etBack", "eTank", EX - 4.4, EX + 4.4, 0.6, ETW, -3.0, -2.8, "steel2");
+BOX("etL", "eTank", EX - 4.4, EX - 4.2, 0.6, ETW, -3.0, 3.0, "steel2"); BOX("etR", "eTank", EX + 4.2, EX + 4.4, 0.6, ETW, -3.0, 3.0, "steel2");
+BOX("etFront", "eTank", EX - 4.2, EX + 4.2, 0.6, ETW, 2.8, 2.86, "window"); FRAME3("etFr", "eTank", EX - 4.4, EX + 4.4, 0.6, ETW, 2.86, 0.1, "steel2");
+// 出液管＋閥門手輪（右下前）、溢流口（右壁上緣）、液位計（左前玻璃管＋刻度）
+PIPE("etOut", "eTank", [[EX + 4.4, 0.9, 2.2], [EX + 5.6, 0.9, 2.2], [EX + 5.6, 0.3, 2.2]], 0.16, "steel");
+ZC("etValve", "eTank", 0.22, 2.1, 2.5, EX + 5.0, 0.9, "dark"); P({ id: "etWheel", layer: "eTank", shape: "cyl", size: [0.32, 0.05], rot: V, pos: [EX + 5.0, 1.25, 2.3], mat: "lampR" });
+P({ id: "etWheelSp", layer: "eTank", shape: "box", size: [0.6, 0.04, 0.05], pos: [EX + 5.0, 1.26, 2.3], at: [[0, 0, 0]], rot: [0, 45, 0], mat: "lampR" }); VC("etStem", "eTank", 0.05, 0.9, 1.25, "steel", { x: EX + 5.0, z: 2.3 });
+BOX("etOver", "eTank", EX + 4.4, EX + 5.0, ETW - 0.5, ETW - 0.2, -1.0, 1.0, "steel2"); PIPE("etOverP", "eTank", [[EX + 4.9, ETW - 0.5, 0], [EX + 4.9, 0.3, 0]], 0.12, "steel");
+VC("etGauge", "eTank", 0.09, 0.8, ETW, "window", { x: EX - 4.0, z: 3.05 }); VC("etGaugeL", "eTank", 0.07, 0.8, ELQ, "liquid", { x: EX - 4.0, z: 3.05 });
+P({ id: "etGaugeT", layer: "eTank", shape: "box", size: [0.16, 0.025, 0.03], pos: [EX - 3.82, 0, 3.05], at: Array.from({ length: 8 }, (_, i) => [0, R2(1.0 + i * 0.42), 0]), mat: "dark" });
+BOX("etLiq", "eTank", EX - 4.2, EX + 4.2, 0.6, ELQ, -2.8, 2.8, "liquid"); BOX("etLiqTop", "eTank", EX - 4.2, EX + 4.2, ELQ - 0.02, ELQ, -2.8, 2.8, "liquid");
 PIPE("etFeed", "eTank", [[EX - 3.6, 0.9, -3.8], [EX - 3.6, 0.9, -2.9]], 0.18, "steel"); PIPE("etFeedV", "eTank", [[EX - 3.6, 0.9, -3.8], [EX - 3.6, 3.8, -3.8]], 0.18, "steel");
 // 弧形陽極（滾筒下方，泡在藥水裡）
 for (let k = 0; k < 9; k++) { const a = (218 + k * 13) * D2R, x = EX + EAR * Math.cos(a), y = ECY + EAR * Math.sin(a);
@@ -144,19 +158,22 @@ for (let k = 0; k < 9; k++) { const a = (218 + k * 13) * D2R, x = EX + EAR * Mat
 LAY("eDrum", [6.4, 6.4, EX, ECY]);
 ZC("edDrum", "eDrum", ER, -2.4, 2.4, EX, ECY, "titanium"); ZC("edCapF", "eDrum", ER + 0.08, 2.4, 2.52, EX, ECY, "dark"); ZC("edCapB", "eDrum", ER + 0.08, -2.52, -2.4, EX, ECY, "dark");
 P({ id: "edMark", layer: "eDrum", shape: "box", size: [0.06, 0.06, 4.8], pos: [EX, ECY, 0], at: Array.from({ length: 12 }, (_, i) => { const a = i * 30 * D2R; return [R2((ER + 0.01) * Math.cos(a)), R2((ER + 0.01) * Math.sin(a)), 0]; }), mat: "dark" });
-P({ id: "edSpoke", layer: "eDrum", shape: "box", size: [0.12, R2(2 * ER - 0.4), 0.05], pos: [EX, ECY, 2.55], at: [[0, 0, 0]], mat: "steel" }); P({ id: "edSpoke2", layer: "eDrum", shape: "box", size: [R2(2 * ER - 0.4), 0.12, 0.05], pos: [EX, ECY, 2.55], mat: "steel" });
+// 端蓋：外圈螺栓＋內圈導電環（陰極接點），沒有輻條
+P({ id: "edBolt", layer: "eDrum", shape: "cyl", size: [0.09, 0.06], pos: [EX, ECY, 2.55], at: Array.from({ length: 16 }, (_, i) => { const a = i * 22.5 * D2R; return [R2((ER - 0.35) * Math.cos(a)), R2((ER - 0.35) * Math.sin(a)), 0]; }), mat: "steel2" });
+ZC("edHub", "eDrum", 0.9, 2.52, 2.6, EX, ECY, "copper"); ZC("edHubIn", "eDrum", 0.5, 2.6, 2.66, EX, ECY, "steel2");
 ZC("edShaft", "eDrum", 0.35, -3.8, 3.0, EX, ECY, "steel");
 LAY("eFrame", [10, 6, EX, 3.5]);
 BOX("efPostB", "eFrame", EX - 0.5, EX + 0.5, 0, ECY - 0.4, -3.9, -3.3, "panel2"); BOX("efBrgB", "eFrame", EX - 0.7, EX + 0.7, ECY - 0.6, ECY + 0.6, -3.9, -3.3, "dark");
-BOX("efArm", "eFrame", EX + 0.4, EX + 6.6, ECY - 0.25, ECY + 0.25, 3.1, 3.5, "panel2"); BOX("efBrgF", "eFrame", EX - 0.5, EX + 0.6, ECY - 0.5, ECY + 0.5, 3.0, 3.6, "dark");
+BOX("efBrgF", "eFrame", EX - 0.5, EX + 0.5, ECY - 0.5, ECY + 0.5, 3.0, 3.6, "dark"); BOX("efPostF", "eFrame", EX - 0.25, EX + 0.25, 0, ECY - 0.5, 3.2, 3.5, "panel2");
 BOX("efMotor", "eFrame", EX - 0.8, EX + 0.8, ECY - 0.8, ECY + 0.8, -5.0, -3.9, "dark"); BOX("efMotorL", "eFrame", EX - 0.3, EX + 0.3, ECY + 0.8, ECY + 1.0, -4.8, -4.1, "lampG");
 // 從藥水出來到頂端這一段：銅一路長在滾筒上（左上半圈，滾筒順時針轉）
 LAY("eCuArc", [3.5, 4.5, EX - 2, ECY + 1.5]);
-for (let k = 0; k < 9; k++) { const a = (98 + k * 14) * D2R; P({ id: `eArc${k}`, layer: "eCuArc", shape: "box", size: [0.76, 0.04, 4.6], pos: [R2(EX + (ER + 0.03) * Math.cos(a)), R2(ECY + (ER + 0.03) * Math.sin(a)), 0], rot: [0, 0, R2(a / D2R + 90)], mat: "cuShiny" }); }
+// 液面出來（約 192°）到頂端（90°）：越往上銅越厚（示意放大），半徑大過端蓋，正面看得到
+for (let k = 0; k < 9; k++) { const a = (90 + 8 + k * 12) * D2R, t = R2(0.2 - 0.018 * k); P({ id: `eArc${k}`, layer: "eCuArc", shape: "box", size: [0.7, t, 5.0], pos: [R2(EX + (ER + 0.09 + t / 2) * Math.cos(a)), R2(ECY + (ER + 0.09 + t / 2) * Math.sin(a)), 0], rot: [0, 0, R2(a / D2R + 90)], mat: "cuShiny" }); }
 // 剝下來的銅箔：滾筒頂端 → 導輥 → 收卷
 const EGX = EX + 4.6, EGY = ECY + ER - 0.35, EWX = EX + 6.4, EWY = 2.6, EWR = 1.2;
 LAY("eFoil", [8, 5, EX + 4, ECY + 1]);
-BOX("efoTop", "eFoil", EX, EGX, ECY + ER, ECY + ER + 0.04, -2.3, 2.3, "cuShiny");
+BOX("efoTop", "eFoil", EX, EGX, ECY + ER + 0.12, ECY + ER + 0.2, -2.3, 2.3, "cuShiny");
 ZC("efoGuide", "eFoil", 0.35, -2.6, 2.6, EGX, EGY, "steel2");
 BOX("efoDown", "eFoil", EGX + 0.33, EGX + 0.37, EWY, EGY, -2.3, 2.3, "cuShiny");
 ZC("efoRoll", "eFoil", EWR, -2.3, 2.3, EGX + 0.35 + EWR, EWY, "copper"); ZC("efoCore", "eFoil", 0.3, -2.8, 2.8, EGX + 0.35 + EWR, EWY, "steel");
@@ -175,9 +192,9 @@ LAY("fFoil", [10.4, 1.2, FX, 2.5]);
 BOX("ffBody", "fFoil", FX - 5, FX + 5, FB, FT, -2.4, 2.4, "cuShiny");
 BOX("ffShiny", "fFoil", FX - 5, FX + 5, FB - 0.01, FB, -2.4, 2.4, "cuShiny");
 for (let g = 0; g < 3; g++) { const h = [0.12, 0.2, 0.28][g]; const pts = []; for (let i = 0; i < 140; i++) pts.push([R2(-4.85 + rnd() * 9.7), 0, R2(-2.25 + rnd() * 4.5)]);
-  P({ id: `ffBump${g}`, layer: "fFoil", shape: "box", size: [0.22, h, 0.22], pos: [FX, R2(FT + h / 2), 0], at: pts, mat: "cuMatte" }); }
+  P({ id: `ffBump${g}`, layer: "fFoil", shape: "sphere", size: [R2(0.14 + h * 0.5)], pos: [FX, R2(FT - 0.04), 0], at: pts, mat: "cuMatte" }); }
 // 正面剖面的凹凸輪廓（看得出粗面）
-{ const pts = []; for (let i = 0; i < 33; i++) pts.push([R2(-4.85 + i * 0.3), 0, 0]); P({ id: "ffProfile", layer: "fFoil", shape: "box", size: [0.18, 0.22, 0.1], pos: [FX, FT + 0.11, 2.36], at: pts.map(([x], i) => [x, R2((i % 3) * 0.05), 0]), mat: "cuMatte" }); }
+{ const pts = []; for (let i = 0; i < 33; i++) pts.push([R2(-4.85 + i * 0.3), 0, 0]); P({ id: "ffProfile", layer: "fFoil", shape: "sphere", size: [0.2], pos: [FX, FT - 0.02, 2.3], at: pts.map(([x], i) => [x, R2([0, 0.07, 0.02, 0.1, 0.04][i % 5]), 0]), mat: "cuMatte" }); }
 LAY("fNod", [10, 0.6, FX, FT + 0.35]);
 for (let g = 0; g < 3; g++) { const pts = []; for (let i = 0; i < 120; i++) pts.push([R2(-4.8 + rnd() * 9.6), R2(rnd() * 0.12), R2(-2.2 + rnd() * 4.4)]); P({ id: `fnN${g}`, layer: "fNod", shape: "sphere", size: [[0.07, 0.09, 0.11][g]], pos: [FX, FT + 0.3, 0], at: pts, mat: "nod" }); }
 LAY("fResin", [10.4, 1, FX, FT + 0.8]);
@@ -202,7 +219,8 @@ LAY("rSmooth", [12.4, 1, RX, RSB + 0.3]);
 BOX("rsBase", "rSmooth", RX - 6, RX + 6, RSB, RST, -0.6, 0.6, "cuShiny");
 P({ id: "rsNod", layer: "rSmooth", shape: "sphere", size: [0.045], pos: [RX, RST + 0.02, 0], at: GXZ(60, 4, 0.2, 0.3, -5.9, -0.45), mat: "nod" });
 LAY("rGlue", [12.4, 0.8, RX, RST + 0.35]);
-BOX("rgResin", "rGlue", RX - 6, RX + 6, RST, RST + 0.6, -0.65, 0.65, "resinS");
+BOX("rgResin", "rGlue", RX - 6, RX + 3.6, RST, RST + 0.6, -0.65, 0.65, "resinS");
+LAY("rGlueEdge", [2.4, 0.8, RX + 4.8, RST + 0.35]); BOX("rgEdge", "rGlueEdge", RX + 3.6, RX + 6, RST, RST + 0.6, -0.65, 0.65, "resinS");
 
 // ═════ 站 G：拉絲 → 捻紗 → 織布（s6） ═════
 const GX = 150, GSX = GX - 5.2, GBY = 7.0, GSY = 4.4;
@@ -238,10 +256,12 @@ P({ id: "gwaT", layer: "gWarpA", shape: "box", size: [0.04, 0.04, 3.4], pos: [0,
 P({ id: "gwbT", layer: "gWarpB", shape: "box", size: [0.04, 0.04, 3.4], pos: [0, LWY, -1.5], at: WXS.filter((_, i) => i % 2 === 1).map((x) => [x, 0, 0]), mat: "fiber" });
 BOX("gHedA", "gWarpA", LX0 - 0.2, LX1 + 0.2, LWY + 0.5, LWY + 0.6, -1.0, -0.9, "steel"); BOX("gHedA2", "gWarpA", LX0 - 0.2, LX1 + 0.2, LWY - 0.6, LWY - 0.5, -1.0, -0.9, "steel");
 BOX("gHedB", "gWarpB", LX0 - 0.2, LX1 + 0.2, LWY + 0.5, LWY + 0.6, -0.6, -0.5, "steel"); BOX("gHedB2", "gWarpB", LX0 - 0.2, LX1 + 0.2, LWY - 0.6, LWY - 0.5, -0.6, -0.5, "steel");
+for (const [ly, z] of [["gWarpA", -0.95], ["gWarpB", -0.55]]) { P({ id: `${ly}Fr`, layer: ly, shape: "box", size: [0.08, 1.3, 0.08], pos: [0, LWY, z], at: [[LX0 - 0.2, 0, 0], [LX1 + 0.2, 0, 0]], mat: "steel" });
+  P({ id: `${ly}Hd`, layer: ly, shape: "box", size: [0.015, 1.1, 0.015], pos: [0, LWY, z], at: WXS.filter((_, i) => i % 2 === (ly === "gWarpA" ? 0 : 1)).map((x) => [x, 0, 0]), mat: "steel2" }); }
 LAY("gReed", [6.6, 1.2, LCX, LWY]);
 BOX("grTop", "gReed", LX0 - 0.3, LX1 + 0.3, LWY + 0.5, LWY + 0.6, 0.15, 0.3, "dark"); BOX("grBot", "gReed", LX0 - 0.3, LX1 + 0.3, LWY - 0.6, LWY - 0.5, 0.15, 0.3, "dark");
 P({ id: "grWire", layer: "gReed", shape: "box", size: [0.025, 1.0, 0.04], pos: [0, LWY, 0.22], at: WXS.map((x) => [R2(x + 0.1), 0, 0]), mat: "steel2" });
-LAY("gRapier", [1, 0.4, LX0 - 0.6, LWY]); BOX("gRap", "gRapier", LX0 - 1.0, LX0 - 0.2, LWY - 0.06, LWY + 0.06, 0.4, 0.6, "warnY"); BOX("gRapTail", "gRapier", LX0 - 1.0, LX0 - 0.2, LWY - 0.02, LWY + 0.02, 0.46, 0.54, "fiber");
+LAY("gRapier", [1, 0.4, LX0 - 0.6, LWY]); BOX("gRap", "gRapier", LX0 - 1.0, LX0 - 0.2, LWY - 0.06, LWY + 0.06, 0.4, 0.6, "warnY"); BOX("gRapTail", "gRapier", LX0 - 1.0, LX0 - 0.2, LWY - 0.02, LWY + 0.02, 0.46, 0.54, "fiber"); BOX("gRapWeft", "gRapier", LX0 - 4.0, LX0 - 1.0, LWY - 0.02, LWY + 0.02, 0.48, 0.52, "fiber"); BOX("gRapRod", "gRapier", LX0 - 4.2, LX0 - 1.0, LWY - 0.05, LWY + 0.05, 0.6, 0.7, "steel");
 LAY("gCloth", [6.4, 0.3, LCX, LWY]);
 BOX("gcSheet", "gCloth", LX0 + 0.05, LX1 - 0.05, LWY - 0.03, LWY + 0.01, 0.7, 2.6, "glassY");
 P({ id: "gcWeftA", layer: "gCloth", shape: "box", size: [6.3, 0.04, 0.06], pos: [LCX, LWY + 0.03, 0], at: Array.from({ length: 10 }, (_, j) => [0, 0, R2(0.8 + j * 0.2)]), mat: "seam" });
@@ -255,6 +275,7 @@ const LAMINA = (pre, cx, round = true) => {
   LAY(`${pre}Trace`, [12.4, 0.3, cx, WT + 0.08]);
   BOX(`${pre}tA`, `${pre}Trace`, cx - 6.2, cx + 6.2, WT, WT + 0.14, TZA - 0.16, TZA + 0.16, "copper"); BOX(`${pre}tB`, `${pre}Trace`, cx - 6.2, cx + 6.2, WT, WT + 0.14, TZB - 0.16, TZB + 0.16, "copper");
   P({ id: `${pre}tPad`, layer: `${pre}Trace`, shape: "box", size: [0.4, 0.16, 0.4], pos: [0, WT + 0.08, 0], at: [[cx - 6.0, 0, TZA], [cx - 6.0, 0, TZB], [cx + 6.0, 0, TZA], [cx + 6.0, 0, TZB]], mat: "copper" });
+  P({ id: `${pre}LampA`, layer: `${pre}Trace`, shape: "sphere", size: [0.24], pos: [cx + 7.2, WT + 0.5, TZA], mat: "steel2" }); P({ id: `${pre}LampB`, layer: `${pre}Trace`, shape: "sphere", size: [0.24], pos: [cx + 7.2, WT + 0.5, TZB], mat: "steel2" });
   P({ id: `${pre}tChipL`, layer: `${pre}Trace`, shape: "box", size: [0.8, 0.35, 1.6], pos: [cx - 6.6, WT + 0.18, 0.4], mat: "dark" }); P({ id: `${pre}tChipR`, layer: `${pre}Trace`, shape: "box", size: [0.8, 0.35, 1.6], pos: [cx + 6.6, WT + 0.18, 0.4], mat: "dark" });
 };
 LAMINA("w", WX0);
@@ -320,31 +341,36 @@ P({ id: "nmVia", layer: "nMb", shape: "cyl", size: [0.05, 0.02], rot: V, pos: [0
 P({ id: "nmCap", layer: "nMb", shape: "box", size: [0.12, 0.06, 0.06], pos: [0, MBY + 0.03, 0], at: Array.from({ length: 10 }, (_, i) => [R2(MBX - 3.0 + i * 0.18), 0, R2(i % 2 ? 2.6 : 2.75)]), mat: "dark" });
 
 // ═════ 動作 ═════
-actions.hSig = { type: "flow", _說明: "訊號沿上層銅箔跑（第 0 幀就在動）", layer: "hCuTop", path: [[HX0 - 5, HTOP + 0.02, 3.42], [HX0 + 5, HTOP + 0.02, 3.42]], n: 6, size: 0.14, shape: "dot", rate: 0.3, color: "sigC", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0 };
-actions.hPeel = { type: "rotate", _說明: "上層銅箔從後緣掀起一角，露出下面的玻纖布", parts: idsOf("hCuTop"), axis: [1, 0, 0], pivot: [HX0, HTOP, -3.4], angle: -24, hold: true };
+actions.hSig = { type: "flow", _說明: "訊號沿上層銅箔跑（第 0 幀就在動）", layer: "hCuTop", path: [[HX0 - 5, HTOP + 0.02, -0.6], [HX0 + 5, HTOP + 0.02, -0.6]], n: 6, size: 0.14, shape: "dot", rate: 0.3, color: "sigC", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0 };
+actions.hPeel = { type: "rotate", _說明: "上層銅箔右前角掀起，露出下面的玻纖布和銅瘤", parts: idsOf("hCuFlap"), axis: [1, 0, 0], pivot: [HX0, HTOP, 1.4], angle: -38, hold: true };
 actions.eDrumSpin = { type: "rotate", _說明: "鈦滾筒（陰極）順時針慢轉：從藥水出來的那一段長滿銅", parts: idsOf("eDrum"), axis: [0, 0, 1], pivot: [EX, ECY, 0], rps: -0.05 };
 actions.eGuideSpin = { type: "rotate", parts: ["efoGuide"], axis: [0, 0, 1], pivot: [EGX, EGY, 0], rps: -0.35 };
 actions.eRollSpin = { type: "rotate", _說明: "收卷輥逆時針轉，把銅箔捲起來", parts: ["efoRoll", "efoCore", "efoRollMark"], axis: [0, 0, 1], pivot: [EGX + 0.35 + EWR, EWY, 0], rps: 0.12 };
 [240, 270, 300].forEach((d, i) => { const a = d * D2R; actions[`eIon${i}`] = { type: "flow", _說明: "銅離子從陽極往滾筒（陰極）走（示意）", layer: "eTank", path: [[R2(EX + (EAR - 0.15) * Math.cos(a)), R2(ECY + (EAR - 0.15) * Math.sin(a)), 2.5], [R2(EX + (ER + 0.05) * Math.cos(a)), R2(ECY + (ER + 0.05) * Math.sin(a)), 2.5]], n: 3, size: 0.1, shape: "dot", rate: 0.9, phase: -i * 0.3, color: "ionC", track: false, free: true, jitter: 0.02 }; });
-actions.eFoil = { type: "flow", _說明: "銅箔沿滾筒頂端被撕下來、繞過導輥、捲到收卷輥", layer: "eFoil", path: [[EX - 2.0, ECY + 2.25, 2.4], [EX - 1.0, ECY + 2.85, 2.4], [EX, ECY + ER + 0.06, 2.4], [EGX, ECY + ER + 0.06, 2.4], [EGX + 0.4, EGY - 0.2, 2.4], [EGX + 0.4, EWY + 0.3, 2.4]], n: 7, size: 0.13, shape: "arrow", rate: 0.12, color: "ionC", track: true, band: 0.04, bandO: 0.3, free: true, jitter: 0 };
+actions.eFoil = { type: "flow", _說明: "銅箔沿滾筒頂端被撕下來、繞過導輥、捲到收卷輥", layer: "eFoil", path: [[EX - 2.2, ECY + 2.4, 2.6], [EX - 1.1, ECY + 3.0, 2.6], [EX, ECY + ER + 0.24, 2.6], [EGX, ECY + ER + 0.24, 2.6], [EGX + 0.4, EGY - 0.2, 2.4], [EGX + 0.4, EWY + 0.3, 2.4]], n: 7, size: 0.13, shape: "arrow", rate: 0.08, color: "ionC", track: true, band: 0.04, bandO: 0.3, free: true, jitter: 0 };
 actions.eAnode = { type: "pulse", _說明: "通電：陽極亮", parts: Array.from({ length: 9 }, (_, k) => `eAn${k}`), color: "ionC", glow: 0.7, freq: 0.8, halo: 0 };
 actions.fNodPop = { type: "vibrate", _說明: "小銅瘤長出來（往上長）", parts: ["fnN0", "fnN1", "fnN2"], axis: [0, 1, 0], amp: 0.4, freq: 0.5, grow: true };
 actions.fShiny = { type: "pulse", _說明: "光面反光", parts: ["ffShiny"], color: "edgeC", glow: 0.8, freq: 1.0, halo: 0 };
-actions.rSigR = { type: "flow", _說明: "高頻訊號擠在表面，沿著凹凸繞路（慢）", layer: "rRough", path: (() => { const lo = RRT + 0.03, hi = RRT + RH + 0.03, p = []; for (let i = 0; i < 20; i++) { const x0 = R2(RX - 6 + i * RP), x1 = R2(x0 + RP / 2), x2 = R2(x0 + RP); p.push([x0, lo, 0.64], [x0, hi, 0.64], [x1, hi, 0.64], [x1, lo, 0.64]); if (i === 19) p.push([x2, lo, 0.64]); } return p; })(), n: 9, size: 0.12, shape: "dot", rate: 0.05, color: "sigC", track: true, band: 0.04, bandO: 0.35, free: true, jitter: 0 };
+actions.rSigR = { type: "flow", _說明: "高頻訊號擠在表面，沿著凹凸繞路：路徑長、沿路損耗大（光點越走越小越淡）；水平速度和平道一樣", keep: 0.94, bounces: Array.from({ length: 20 }, (_, i) => 4 * i + 3), lossFloor: 0.25, layer: "rRough", path: (() => { const lo = RRT + 0.03, hi = RRT + RH + 0.03, p = []; for (let i = 0; i < 20; i++) { const x0 = R2(RX - 6 + i * RP), x1 = R2(x0 + RP / 2), x2 = R2(x0 + RP); p.push([x0, lo, 0.64], [x0, hi, 0.64], [x1, hi, 0.64], [x1, lo, 0.64]); if (i === 19) p.push([x2, lo, 0.64]); } return p; })(), n: 9, size: 0.12, shape: "dot", rate: 0.055, color: "sigC", track: true, band: 0.04, bandO: 0.35, free: true, jitter: 0 };
 actions.rSkin = { type: "pulse", _說明: "表面那一層亮（集膚效應）", parts: ["rsBandTop", "rsBandLow", "rsBandV"], color: "sigC", glow: 0.9, freq: 1.0, halo: 0 };
-actions.rSigS = { type: "flow", _說明: "表面平：訊號走直線（快）", layer: "rSmooth", path: [[RX - 6, RST + 0.03, 0.64], [RX + 6, RST + 0.03, 0.64]], n: 9, size: 0.12, shape: "dot", rate: 0.11, color: "sigC", track: true, band: 0.04, bandO: 0.35, free: true, jitter: 0 };
+actions.rSigS = { type: "flow", _說明: "表面平：訊號走直線，沿路幾乎不減（損耗小）", keep: 0.985, bounces: [1, 2, 3, 4, 5, 6, 7, 8, 9], lossFloor: 0.25, layer: "rSmooth", path: Array.from({ length: 11 }, (_, i) => [R2(RX - 6 + i * 1.2), RST + 0.03, 0.64]), n: 9, size: 0.12, shape: "dot", rate: 0.11, color: "sigC", track: true, band: 0.04, bandO: 0.35, free: true, jitter: 0 };
+actions.rLift = { type: "rotate", _說明: "低粗糙度：銅瘤小、抓不牢，樹脂右端翹起一角", parts: idsOf("rGlueEdge"), axis: [0, 0, 1], pivot: [RX + 3.6, RST, 0], angle: 9, hold: true };
 actions.gBush = { type: "pulse", _說明: "白金漏板（熔融玻璃）發橘光", parts: ["gfBush", "gfTip"], color: "hotC", glow: 1, freq: 0.6, halo: 0.2, steady: true };
 actions.gDraw = { type: "flow", _說明: "玻璃絲從漏板往下拉、集束成一股", layer: "gFil", path: [[GSX, GBY - 0.15, 0.3], [GSX, GSY, 0.3], [GSX, 2.3 + 0.95, 0.3]], n: 6, size: 0.09, shape: "dot", rate: 0.5, color: "edgeC", track: false, free: true, jitter: 0 };
 actions.gBobSpin = { type: "rotate", _說明: "收絲筒轉動捲起玻璃紗", parts: ["gwBob", "gwBobCore", "gwBobLine"], axis: [0, 0, 1], pivot: [GSX, 2.3, 0], rps: 0.5 };
 for (let i = 0; i < 4; i++) actions[`gTw${i}`] = { type: "rotate", _說明: "捻紗：紗管自轉加捻", parts: [`gtBob${i}`, `gtSp${i}`, `gtLn${i}`], axis: [0, 1, 0], pivot: [GX - 2.4 + i * 0.7, 1.7, 1.5], rps: 1.2 };
 actions.gShedA = { type: "vibrate", _說明: "綜框 A 上、B 下：經紗分開成開口", parts: idsOf("gWarpA"), axis: [0, 1, 0], amp: 0.22, freq: 0.5 };
 actions.gShedB = { type: "vibrate", parts: idsOf("gWarpB"), axis: [0, -1, 0], amp: 0.22, freq: 0.5 };
+actions.gRapierGo = { type: "vibrate", _說明: "劍桿夾著緯紗左右往返穿過經紗開口（和綜框同頻率）", parts: idsOf("gRapier"), axis: [1, 0, 0], amp: 3.2, freq: 0.5 };
 actions.gReedBeat = { type: "vibrate", _說明: "筘往前把緯紗打緊", parts: idsOf("gReed"), axis: [0, 0, 1], amp: 0.25, freq: 1.0 };
 actions.gClothSpin = { type: "rotate", _說明: "布軸慢慢捲起織好的布", parts: ["glClothBeam", "glClothCore", "glClothMark"], axis: [1, 0, 0], pivot: [LCX, 1.9, 3.0], rps: 0.08 };
 actions.gWarpSpin = { type: "rotate", parts: ["glWarpBeam", "glWarpCore"], axis: [1, 0, 0], pivot: [LCX, 1.9, -3.0], rps: 0.08 };
 const TRACE = (k, pre, cx, z, rate, size = 0.13, color = "sigC") => ({ type: "flow", layer: `${pre}Trace`, path: [[cx - 6.0, WT + 0.17, z], [cx + 6.0, WT + 0.17, z]], n: 5, size, shape: "dot", rate, color, track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0 });
 actions.wSigA = { ...TRACE(0, "w", WX0, TZA, 0.07), _說明: "走在紗上面的那條：周圍玻璃多、訊號慢" };
 actions.wSigB = { ...TRACE(1, "w", WX0, TZB, 0.11), _說明: "走在空隙上面的那條：周圍樹脂多、訊號快 → 兩條對不齊" };
+actions.wLampB = { type: "pulse", _說明: "走空隙那條先到：B 燈先亮", parts: ["wLampB"], color: "lampY", glow: 1, freq: 1.2, halo: 0.3 };
+actions.wLampA = { type: "pulse", _說明: "走紗上那條晚到：A 燈後亮", parts: ["wLampA"], color: "lampR", glow: 1, freq: 1.2, halo: 0.3 };
+actions.xLampAB = { type: "pulse", _說明: "攤平後兩條一起到：兩燈同時亮", parts: ["xLampA", "xLampB"], color: "lampG", glow: 1, freq: 1.2, halo: 0.3 };
 actions.wYarnGlow = { type: "pulse", _說明: "紗（玻璃）與空隙（樹脂）標出來", parts: ["wyWeft"], color: "lampY", glow: 0.6, freq: 0.8, halo: 0 };
 actions.wGapGlow = { type: "pulse", parts: ["wgMark"], color: "sigC", glow: 1, freq: 0.8, halo: 0 };
 actions.xSigA0 = { ...TRACE(0, "x", XX, TZA, 0.07), _說明: "攤平前：一快一慢" }; actions.xSigB0 = TRACE(1, "x", XX, TZB, 0.11);
@@ -357,9 +383,9 @@ actions.nSig = { type: "flow", _說明: "主機板上的訊號沿銅線跑", lay
 
 Object.assign(anchors, {
   hCloth: A("hBoard", [HX0 - 3.0, HB + 1.0, 3.4], -150, 90), hCu: A("hCuTop", [HX0 + 3.0, HTOP, 2.0], 150, -90),
-  eDrum: A("eDrum", [EX - 2.0, ECY + 2.0, 2.5], -150, -90), eLiq: A("eTank", [EX - 2.5, 1.6, 2.86], -150, 90), eRoll: A("eFoil", [EGX + 0.35 + EWR, EWY + EWR, 2.3], 150, -90),
+  eDrum: A("eDrum", [EX - 2.0, ECY + 2.0, 2.5], -150, -90), eLiq: A("eTank", [EX - 2.5, 1.6, 2.86], -150, 90), eAnode: A("eTank", [EX + 2.6, 1.8, 2.3], 150, 90), eRectA: A("eRect", [EX - 7, 4.6, 1.8], -150, -90), eRoll: A("eFoil", [EGX + 0.35 + EWR, EWY + EWR, 2.3], 150, -90),
   fShiny: A("fFoil", [FX - 3.5, FB, 2.4], -150, 100), fNod: A("fNod", [FX + 2.5, FT + 0.3, 2.0], 150, -90), fResin: A("fResin", [FX + 3.5, FT + 0.8, 2.4], 150, -90),
-  rRough: A("rRough", [RX + 3.0, RRT + RH, 0.6], 150, -90), rSmooth: A("rSmooth", [RX + 3.0, RST, 0.6], 150, 90), rGlue: A("rGlue", [RX - 3.0, RST + 0.6, 0.6], -150, -90),
+  rLift: A("rGlueEdge", [RX + 5.0, RST + 0.6, 0.65], 150, -90), rRough: A("rRough", [RX + 3.0, RRT + RH, 0.6], 150, -90), rSmooth: A("rSmooth", [RX + 3.0, RST, 0.6], 150, 90), rGlue: A("rGlue", [RX - 3.0, RST + 0.6, 0.6], -150, -90),
   gBush: A("gFurn", [GSX, GBY, 0.6], -150, -90), gTwist: A("gTwist", [GX - 1.4, 2.4, 1.5], -150, 90), gLoom: A("gCloth", [LCX + 2.0, LWY, 1.8], 150, -90),
   wA: A("wTrace", [WX0 + 3.0, WT + 0.14, TZA], 150, -90), wB: A("wTrace", [WX0 - 3.0, WT + 0.14, TZB], -150, 90),
   xFlat: A("xFlat", [XX + 3.0, WYC + 0.3, 2.4], 150, 90), xLd: A("xFlatLD", [XX - 3.0, WYC + 0.3, 2.4], -150, 90),

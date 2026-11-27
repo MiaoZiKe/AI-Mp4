@@ -113,12 +113,15 @@ def nxt(sid): return f"s{int(sid[1:]) + 1}:voice-3"
 def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
 
+# ── 站 E：s2 一開口電解銅箔機拆開、逐件掛名牌，念到「長到轉動滾筒」前組回（第 17、29 條） ──
+for l, kw in [("eDrum", {"dy": 2.6}), ("eCuArc", {"dy": 2.6}), ("eFrame", {"dy": 2.6}), ("eRect", {"dx": -2.6}), ("eFoil", {"dx": 3.0})]:
+    VIS.append(mv(l, "s2:voice+2", "s2:grow+10", 14, **kw))
 # ── 站 F：小銅瘤念到才長出；樹脂念到「咬住樹脂」才從上方壓下來 ──
 vis("fNod", [("s3:nod-4", FAR)], 6)
 VIS.append(hid("fDrum", T0, FAR, 1)); VIS.append(hid("rFrame", T0, FAR, 1))   # 放大剖面只留樣品本身（滾筒與展示架會把主素材中心拉進卡片區）
 drop("fResin", "s3:bite", dy=1.2, dur=12, bounce=0.03)
 # ── 站 R：s4 只有粗銅箔；s5 念到「低粗糙度」才放上低粗糙度那片（下面），「黏得牢」才放樹脂 ──
-drop("rSmooth", "s5:low", dy=1.2, dur=12, bounce=0.04); drop("rGlue", "s5:glue", dy=0.8, dur=10, bounce=0.03)
+drop("rSmooth", "s5:low", dy=1.2, dur=12, bounce=0.04); drop("rGlue", "s5:glue", dy=0.8, dur=10, bounce=0.03); drop("rGlueEdge", "s5:glue", dy=0.8, dur=10, bounce=0.03)
 # ── 站 X：圓紗 → 攤平 → 換低介電玻璃 ──
 vis("xRound", [(T0, "s8:flat")], 8); vis("xFlat", [("s8:flat", "s8:lowdk")], 8); vis("xFlatLD", [("s8:lowdk", FAR)], 8)
 # ── 站 K：三家念到才落下 ──
@@ -130,65 +133,67 @@ VIS.append(mv("nTop", "s10:up+20", FAR, 16, dy=-NPRESS))
 drop("nMb", "s10:mb-6", dy=1.4, dur=12, bounce=0.04)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
-HV = (0.0, -0.3, 36, 30)
-EV = (34.0, 1.0, 40, 10); EV2 = EV     # 不推近：推近時機台下半出框、主素材中心掉進卡片區
-FV = (70.0, 1.7, 18, 22)
-RV = (104.0, 3.7, 18, 10); RV2 = (104.0, 2.4, 22, 10)   # s5 念到「低粗糙度」往下移到低粗糙度那片
+HV = (0.0, -0.3, 36, 24)
+EV = (33.4, 1.4, 48, 10); EV2 = EV     # 不推近：推近時機台下半出框、主素材中心掉進卡片區
+FV = (70.0, 2.2, 15, 8)
+RV = (104.0, 4.3, 13, 8); RV2 = (104.0, 2.9, 19, 8)   # s5 念到「低粗糙度」往下移到低粗糙度那片
 GV = (150.0, 1.0, 46, 12)
-WV = (192.0, -1.0, 36, 38)
-XV = (230.0, -1.0, 36, 38)
+WV = (192.6, 0.4, 34, 58)
+XV = (230.6, 0.4, 34, 58)
 KV = (268.0, 0.5, 44, 12)
-NV = (307.6, -0.5, 44, 18)
+NV = (306.4, -0.2, 46, 18)
 if os.environ.get("VIEWS"): globals().update({k: tuple(v) for k, v in json.loads(os.environ["VIEWS"]).items()})   # 開發用：調鏡頭
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
 P["s1"] = {"zoom": [{"to": "start", "at": "end-16", "dur": 1}],   # 鉤子大字在第一個 zoom 鍵淡出：放在 H 站換站前收完
  "shot": [S_("start-30", HV, 1, yaw=0.0)], "shift": VIS,
- "run": [run("hSig", "start-30", "s2:start", 4), run("hPeel", "smooth", "s2:start", 14)],
+ "run": [run("hSig", "start-30", "s2:start", 4), run("hPeel", "smooth-6", "s2:start", 14)],
  "labels": [lab("hCloth", "玻纖布（浸樹脂）", "Glass fabric in resin", "blue", "flat", "flat+45"),
-            lab("hCu", "銅箔", "Copper foil", "amber", "smooth", "smooth+45")],
+            lab("hCu", "銅箔（掀起一角：底下是玻纖布）", "Copper foil, corner lifted", "amber", "smooth", "smooth+45")],
  "overlay": [sec("cuf-hook", "start", nxt("s1"), "系列 3・第 12 集", "示意", {"flat": "flat", "smooth": "smooth", "resin": "resin", "up": "up"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "drum", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
  "run": [run(x, "start-30", "s3:start", 8) for x in ["eDrumSpin", "eGuideSpin", "eRollSpin"]] + [run("eAnode", "plate-4", "s3:start", 6)] + [run(f"eIon{i}", "plate", "s3:start", 4) for i in range(3)] + [run("eFoil", "peel-6", "s3:start", 4)],
- "labels": [lab("eLiq", "硫酸銅藥水＋陽極", "Copper solution + anode", "blue", "plate", "grow-2"),
-            lab("eDrum", "鈦滾筒（陰極）轉動", "Rotating titanium drum", "amber", "grow", "peel-2"),
+ "labels": [lab("eRectA", "整流器：送直流電", "Rectifier (DC)", "blue", "voice+4", "voice+16"),
+            lab("eDrum", "鈦滾筒＝陰極", "Titanium drum = cathode", "amber", "voice+24", "voice+38"),
+            lab("eAnode", "弧形陽極，泡在硫酸銅藥水", "Arc anode in copper sulfate", "amber", "voice+46", "grow+8"),
+            lab("eDrum", "銅長在滾筒上，越轉越厚", "Copper grows thicker on the drum", "amber", "grow+12", "peel-2", xy=[560, 250]),
             lab("eRoll", "撕下銅箔、捲起來", "Peel and wind the foil", "amber", "peel+2", "peel+47")],
  "overlay": [card("s2", "cuf-drum", "電解銅箔：長在滾筒，再撕下來", "示意（電鍍，不是加熱）", {"plate": "plate", "grow": "grow", "peel": "peel", "crepe": "crepe"})]}
 P["s3"] = {"zoom": [{"to": "foil", "at": CC, "dur": 1}],
  "shot": [S_(CC, FV, 1)],
  "run": [run("fShiny", "shiny-4", "s4:start", 6), run("fNodPop", "nod-4", "s4:start", 6)],
- "labels": [lab("fShiny", "光面：貼滾筒那面", "Drum side: smooth", "blue", "shiny", "nod-2"),
+ "labels": [lab("fShiny", "光面：貼滾筒那面（撕下後再處理）", "Drum side: smooth", "blue", "shiny", "nod-2"),
             lab("fNod", "粗面：小銅瘤", "Matte side: nodules", "amber", "nod", "bite-8", xy=[760, 330]),
             lab("fResin", "樹脂被銅瘤咬住", "Resin gripped by nodules", "blue", "bite+4", "bite+40", xy=[330, 330])],
  "overlay": [card("s3", "cuf-nod", "光面與粗面：小銅瘤像魔鬼氈", "示意（放大，不按比例）", {"shiny": "shiny", "nod": "nod", "velcro": "velcro", "bite": "bite"})]}
 P["s4"] = {"zoom": [{"to": "skin", "at": CC, "dur": 1}],
  "shot": [S_(CC, RV, 1)],
  "run": [run("rSigR", "fast-4", "s6:start", 4), run("rSkin", "surf-4", "s6:start", 6)],
- "labels": [lab("rRough", "訊號擠在表面，沿凹凸繞路", "Signal hugs the rough surface", "amber", "surf", "surf+45")],
+ "labels": [lab("rRough", "訊號擠在表面，繞路、越走越弱", "Signal hugs the surface and fades", "amber", "surf", "surf+45")],
  "overlay": [card("s4", "cuf-skin", "訊號走銅表面：像在洗衣板跑步", "示意（不標頻率與粗糙度）", {"fast": "fast", "surf": "surf", "bend": "bend", "board": "board"})]}
 P["s5"] = {"shot": [S_("low-6", RV2, 24)],
- "run": [run("rSigS", "low+8", "s6:start", 4)],
- "labels": [lab("rSmooth", "低粗糙度：表面平，走直線", "Low profile: straight path", "blue", "low+4", "low+49"),
-            lab("rGlue", "還要黏得住樹脂", "Must still bond to resin", "amber", "glue+2", "glue+47")],
+ "run": [run("rSigS", "low+8", "s6:start", 4), run("rLift", "hard-4", "s6:start", 12)],
+ "labels": [lab("rSmooth", "低粗糙度：路直、耗得少", "Low profile: less loss", "blue", "low+4", "low+49"),
+            lab("rGlue", "還要黏得住樹脂", "Must still bond to resin", "amber", "glue+2", "hard-6"), lab("rLift", "太平：樹脂翹起一角", "Too smooth: resin lifts", "amber", "hard", "end-2", xy=[700, 360])],
  "overlay": [card("s5", "cuf-hvlp", "低粗糙度銅箔：平和黏得牢互相拉扯", "示意", {"low": "low", "flat": "flat", "glue": "glue", "hard": "hard"})]}
 P["s6"] = {"zoom": [{"to": "loom", "at": CC, "dur": 1}],
+ "run": [run("gBush", "start-30", "s7:start", 8), run("gDraw", "start-10", "s7:start", 4), run("gBobSpin", "start-10", "s7:start", 8)] + [run(f"gTw{i}", "twist-6", "s7:start", 8) for i in range(4)] + [run(x, "weave-6", "s7:start", 8) for x in ["gShedA", "gShedB", "gRapierGo", "gReedBeat", "gClothSpin", "gWarpSpin"]],
  "shot": [S_(CC, GV, 1)],
- "run": [run("gBush", "start-30", "s7:start", 8), run("gDraw", "start-10", "s7:start", 4), run("gBobSpin", "start-10", "s7:start", 8)] + [run(f"gTw{i}", "twist-6", "s7:start", 8) for i in range(4)] + [run(x, "weave-6", "s7:start", 8) for x in ["gShedA", "gShedB", "gReedBeat", "gClothSpin", "gWarpSpin"]],
- "labels": [lab("gBush", "白金漏板：熔融玻璃拉成絲", "Bushing: glass drawn into filaments", "amber", "draw-2", "draw+43"),
+ "labels": [lab("gBush", "白金漏板：熔融玻璃拉成絲", "Bushing: glass drawn into filaments", "amber", "draw-2", "twist-3"),
             lab("gTwist", "捻紗", "Twisting", "blue", "twist", "twist+45"),
-            lab("gLoom", "織布機：一經一緯", "Loom: plain weave", "amber", "weave", "weave+45")],
+            lab("gLoom", "織布機：劍桿穿緯", "Loom: rapier inserts weft", "amber", "weave", "weave+45")],
  "overlay": [card("s6", "cuf-weave", "玻纖布：拉絲、捻紗、平織", "示意（放大）", {"draw": "draw", "twist": "twist", "weave": "weave", "mat": "mat"})]}
 P["s7"] = {"zoom": [{"to": "weave", "at": CC, "dur": 1}],
  "shot": [S_(CC, WV, 1)],
- "run": [run("wYarnGlow", "yarn-4", "s8:start", 6), run("wGapGlow", "yarn-4", "s8:start", 6), run("wSigA", "speed-4", "s8:start", 4), run("wSigB", "speed-4", "s8:start", 4)],
+ "run": [run("wYarnGlow", "yarn-4", "s8:start", 6), run("wGapGlow", "yarn-4", "s8:start", 6), run("wSigA", "speed-4", "s8:start", 4), run("wSigB", "speed-4", "s8:start", 4), run("wLampB", "pair", "s8:start", 4), run("wLampA", "skew", "s8:start", 4)],
  "labels": [lab("wA", "走在紗上：慢", "Over the yarn: slower", "amber", "speed", "speed+45"),
             lab("wB", "走在空隙上：快", "Over the gap: faster", "blue", "speed+2", "speed+47")],
  "overlay": [card("s7", "cuf-skew", "玻纖效應：一對訊號對不齊", "示意（速度差放大）", {"yarn": "yarn", "speed": "speed", "pair": "pair", "skew": "skew"})]}
 P["s8"] = {"zoom": [{"to": "spread", "at": CC, "dur": 1}],
  "shot": [S_(CC, XV, 1)],
  "run": [run("xSigA0", "start-10", "flat", 4), run("xSigB0", "start-10", "flat", 4), run("xSigA1", "flat+6", "lowdk", 4), run("xSigB1", "flat+6", "lowdk", 4),
-         run("xSigA2", "lowdk+6", "s9:start", 4), run("xSigB2", "lowdk+6", "s9:start", 4), run("xLdGlow", "lowdk", "s9:start", 6)],
+         run("xSigA2", "lowdk+6", "s9:start", 4), run("xSigB2", "lowdk+6", "s9:start", 4), run("xLdGlow", "lowdk", "s9:start", 6), run("xLampAB", "braid", "s9:start", 4)],
  "labels": [lab("xFlat", "開纖：紗攤平、空隙變小", "Spread glass: flatter yarn", "blue", "flat+2", "flat+47"),
             lab("xLd", "低介電玻璃", "Low-Dk glass", "amber", "lowdk+2", "lowdk+47")],
  "overlay": [card("s8", "cuf-spread", "開纖＋低介電玻璃", "示意（不標介電常數）", {"flat": "flat", "braid": "braid", "lowdk": "lowdk", "fast": "fast"})]}

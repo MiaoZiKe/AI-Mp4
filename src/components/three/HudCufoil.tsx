@@ -140,7 +140,7 @@ const Skin: React.FC<P> = ({ o, f, k }) => {
     <path d={path} fill="none" stroke={SIG} strokeWidth={8} opacity={0.25 + 0.75 * sf} />
     {sf > 0 ? [0, 0.33, 0.66].map((d) => { const t = (ph + d) % 1, i = Math.floor(t * n), r = t * n - i, ya = y0 - (i % 2 ? 14 : 0), yb = y0 - ((i + 1) % 2 ? 14 : 0);
       return <circle key={d} cx={x0 + (i + r) * p} cy={ya + (yb - ya) * r} r={8} fill="#FFFFFF" stroke={SIG} strokeWidth={3} />; }) : null}
-    <text x={x0} y={y0 + 104} style={zh(24, H.text2, 800)} opacity={sf}>訊號（藍）只走表面一層</text>
+    <text x={x0} y={y0 + 104} style={zh(24, H.text2, 800)} opacity={sf}>訊號（藍）大多走表面一層</text>
     <text x={x0} y={CT + 70} style={zh(24, RED, 900)} opacity={bd}>表面越粗，路越彎、越耗</text>
     <Sep x={334} />
     <Row x={360} y={CT + 48} t="伺服器訊號很快" c={BLUE} a={sp} />

@@ -200,10 +200,45 @@
       "x": 0.0,
       "y": -0.3,
       "d": 36,
-      "elev": 30
+      "elev": 24
      }
     ],
     "shift": [
+     {
+      "layer": "eDrum",
+      "at": "s2:voice+2",
+      "until": "s2:grow+10",
+      "dur": 14,
+      "dy": 2.6
+     },
+     {
+      "layer": "eCuArc",
+      "at": "s2:voice+2",
+      "until": "s2:grow+10",
+      "dur": 14,
+      "dy": 2.6
+     },
+     {
+      "layer": "eFrame",
+      "at": "s2:voice+2",
+      "until": "s2:grow+10",
+      "dur": 14,
+      "dy": 2.6
+     },
+     {
+      "layer": "eRect",
+      "at": "s2:voice+2",
+      "until": "s2:grow+10",
+      "dur": 14,
+      "dx": -2.6
+     },
+     {
+      "layer": "eFoil",
+      "at": "s2:voice+2",
+      "until": "s2:grow+10",
+      "dur": 14,
+      "dx": 3.0
+     },
      {
       "layer": "fNod",
       "at": "s1:start-40",
@@ -247,6 +282,16 @@
      },
      {
       "layer": "rGlue",
+      "at": "s1:start-40",
+      "until": "s5:glue",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rGlueEdge",
       "at": "s1:start-40",
       "until": "s5:glue",
       "dur": 10,
@@ -390,7 +435,7 @@
      },
      {
       "id": "hPeel",
-      "at": "smooth",
+      "at": "smooth-6",
       "ramp": 14,
       "until": "s2:start"
      }
@@ -407,8 +452,8 @@
      },
      {
       "part": "hCu",
-      "text": "銅箔",
-      "en": "Copper foil",
+      "text": "銅箔（掀起一角：底下是玻纖布）",
+      "en": "Copper foil, corner lifted",
       "color": "amber",
       "at": "smooth",
       "until": "smooth+45",
@@ -499,9 +544,9 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 34.0,
-      "y": 1.0,
-      "d": 40,
+      "x": 33.4,
+      "y": 1.4,
+      "d": 48,
       "elev": 10
      }
     ],
@@ -557,22 +602,44 @@
     ],
     "labels": [
      {
-      "part": "eLiq",
-      "text": "硫酸銅藥水＋陽極",
-      "en": "Copper solution + anode",
+      "part": "eRectA",
+      "text": "整流器：送直流電",
+      "en": "Rectifier (DC)",
       "color": "blue",
-      "at": "plate",
-      "until": "grow-2",
+      "at": "voice+4",
+      "until": "voice+16",
       "cut": true
      },
      {
       "part": "eDrum",
-      "text": "鈦滾筒（陰極）轉動",
-      "en": "Rotating titanium drum",
+      "text": "鈦滾筒＝陰極",
+      "en": "Titanium drum = cathode",
       "color": "amber",
-      "at": "grow",
-      "until": "peel-2",
+      "at": "voice+24",
+      "until": "voice+38",
       "cut": true
+     },
+     {
+      "part": "eAnode",
+      "text": "弧形陽極，泡在硫酸銅藥水",
+      "en": "Arc anode in copper sulfate",
+      "color": "amber",
+      "at": "voice+46",
+      "until": "grow+8",
+      "cut": true
+     },
+     {
+      "part": "eDrum",
+      "text": "銅長在滾筒上，越轉越厚",
+      "en": "Copper grows thicker on the drum",
+      "color": "amber",
+      "at": "grow+12",
+      "until": "peel-2",
+      "cut": true,
+      "xy": [
+       560,
+       250
+      ]
      },
      {
       "part": "eRoll",
@@ -670,9 +737,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 70.0,
-      "y": 1.7,
-      "d": 18,
-      "elev": 22
+      "y": 2.2,
+      "d": 15,
+      "elev": 8
      }
     ],
     "run": [
@@ -692,7 +759,7 @@
     "labels": [
      {
       "part": "fShiny",
-      "text": "光面：貼滾筒那面",
+      "text": "光面：貼滾筒那面（撕下後再處理）",
       "en": "Drum side: smooth",
       "color": "blue",
       "at": "shiny",
@@ -812,9 +879,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 104.0,
-      "y": 3.7,
-      "d": 18,
-      "elev": 10
+      "y": 4.3,
+      "d": 13,
+      "elev": 8
      }
     ],
     "run": [
@@ -834,8 +901,8 @@
     "labels": [
      {
       "part": "rRough",
-      "text": "訊號擠在表面，沿凹凸繞路",
-      "en": "Signal hugs the rough surface",
+      "text": "訊號擠在表面，繞路、越走越弱",
+      "en": "Signal hugs the surface and fades",
       "color": "amber",
       "at": "surf",
       "until": "surf+45",
@@ -921,9 +988,9 @@
       "at": "low-6",
       "dur": 24,
       "x": 104.0,
-      "y": 2.4,
-      "d": 22,
-      "elev": 10
+      "y": 2.9,
+      "d": 19,
+      "elev": 8
      }
     ],
     "run": [
@@ -932,13 +999,19 @@
       "at": "low+8",
       "ramp": 4,
       "until": "s6:start"
+     },
+     {
+      "id": "rLift",
+      "at": "hard-4",
+      "ramp": 12,
+      "until": "s6:start"
      }
     ],
     "labels": [
      {
       "part": "rSmooth",
-      "text": "低粗糙度：表面平，走直線",
-      "en": "Low profile: straight path",
+      "text": "低粗糙度：路直、耗得少",
+      "en": "Low profile: less loss",
       "color": "blue",
       "at": "low+4",
       "until": "low+49",
@@ -950,8 +1023,21 @@
       "en": "Must still bond to resin",
       "color": "amber",
       "at": "glue+2",
-      "until": "glue+47",
+      "until": "hard-6",
       "cut": true
+     },
+     {
+      "part": "rLift",
+      "text": "太平：樹脂翹起一角",
+      "en": "Too smooth: resin lifts",
+      "color": "amber",
+      "at": "hard",
+      "until": "end-2",
+      "cut": true,
+      "xy": [
+       700,
+       360
+      ]
      }
     ],
     "overlay": [
@@ -1035,16 +1121,6 @@
       "dur": 1
      }
     ],
-    "shot": [
-     {
-      "at": "voice-4",
-      "dur": 1,
-      "x": 150.0,
-      "y": 1.0,
-      "d": 46,
-      "elev": 12
-     }
-    ],
     "run": [
      {
       "id": "gBush",
@@ -1101,6 +1177,12 @@
       "until": "s7:start"
      },
      {
+      "id": "gRapierGo",
+      "at": "weave-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
       "id": "gReedBeat",
       "at": "weave-6",
       "ramp": 8,
@@ -1119,6 +1201,16 @@
       "until": "s7:start"
      }
     ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 150.0,
+      "y": 1.0,
+      "d": 46,
+      "elev": 12
+     }
+    ],
     "labels": [
      {
       "part": "gBush",
@@ -1126,7 +1218,7 @@
       "en": "Bushing: glass drawn into filaments",
       "color": "amber",
       "at": "draw-2",
-      "until": "draw+43",
+      "until": "twist-3",
       "cut": true
      },
      {
@@ -1140,8 +1232,8 @@
      },
      {
       "part": "gLoom",
-      "text": "織布機：一經一緯",
-      "en": "Loom: plain weave",
+      "text": "織布機：劍桿穿緯",
+      "en": "Loom: rapier inserts weft",
       "color": "amber",
       "at": "weave",
       "until": "weave+45",
@@ -1233,10 +1325,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 192.0,
-      "y": -1.0,
-      "d": 36,
-      "elev": 38
+      "x": 192.6,
+      "y": 0.4,
+      "d": 34,
+      "elev": 58
      }
     ],
     "run": [
@@ -1261,6 +1353,18 @@
      {
       "id": "wSigB",
       "at": "speed-4",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "wLampB",
+      "at": "pair",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "wLampA",
+      "at": "skew",
       "ramp": 4,
       "until": "s8:start"
      }
@@ -1370,10 +1474,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 230.0,
-      "y": -1.0,
-      "d": 36,
-      "elev": 38
+      "x": 230.6,
+      "y": 0.4,
+      "d": 34,
+      "elev": 58
      }
     ],
     "run": [
@@ -1417,6 +1521,12 @@
       "id": "xLdGlow",
       "at": "lowdk",
       "ramp": 6,
+      "until": "s9:start"
+     },
+     {
+      "id": "xLampAB",
+      "at": "braid",
+      "ramp": 4,
       "until": "s9:start"
      }
     ],
@@ -1625,9 +1735,9 @@
      {
       "at": "voice+2",
       "dur": 1,
-      "x": 307.6,
-      "y": -0.5,
-      "d": 44,
+      "x": 306.4,
+      "y": -0.2,
+      "d": 46,
       "elev": 18
      }
     ],
