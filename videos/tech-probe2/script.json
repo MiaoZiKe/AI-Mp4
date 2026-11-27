@@ -264,52 +264,52 @@
      },
      {
       "layer": "lgp",
-      "at": "s7:pins-8",
-      "until": "s7:tw+22",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
       "dur": 16,
       "dy": 2.7
      },
      {
       "layer": "spc",
-      "at": "s7:pins-8",
-      "until": "s7:tw+22",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
       "dur": 16,
       "dy": 1.55
      },
      {
       "layer": "ugp",
-      "at": "s7:pins-8",
-      "until": "s7:tw+22",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
       "dur": 16,
       "dy": 0.45
      },
      {
       "layer": "nd",
-      "at": "s7:pins-8",
-      "until": "s7:tw+22",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
       "dur": 16,
       "dy": 1.0
      },
      {
       "layer": "ndRow",
-      "at": "s7:pins-8",
-      "until": "s7:tw+22",
+      "at": "s7:voice+2",
+      "until": "s7:voice+107",
       "dur": 16,
       "dy": 1.0
      },
      {
       "layer": "ndRow",
-      "at": "s7:pitch+6",
-      "until": "s7:tw+20",
-      "dur": 16,
+      "at": "s7:voice+10",
+      "until": "s7:voice+101",
+      "dur": 14,
       "dy": 1.2,
       "dx": -2.3
      },
      {
       "layer": "st",
-      "at": "s7:hard+16",
-      "until": "s7:tw+18",
-      "dur": 14,
+      "at": "s7:voice+50",
+      "until": "s7:voice+95",
+      "dur": 12,
       "dx": 3.4,
       "dy": 0.25
      },
@@ -454,41 +454,6 @@
       "dy": -1.3
      },
      {
-      "layer": "mSt",
-      "at": "s3:miss",
-      "until": "s10:start+400",
-      "dur": 12,
-      "dy": -0.4
-     },
-     {
-      "layer": "mUg",
-      "at": "s3:miss",
-      "until": "s10:start+400",
-      "dur": 12,
-      "dy": -0.4
-     },
-     {
-      "layer": "mLg",
-      "at": "s3:miss",
-      "until": "s10:start+400",
-      "dur": 12,
-      "dy": -0.4
-     },
-     {
-      "layer": "mNs",
-      "at": "s3:miss",
-      "until": "s10:start+400",
-      "dur": 12,
-      "dy": -0.4
-     },
-     {
-      "layer": "mNb",
-      "at": "s3:miss",
-      "until": "s10:start+400",
-      "dur": 12,
-      "dy": -0.4
-     },
-     {
       "layer": "mLaser",
       "at": "s3:pin-2",
       "until": "s10:start+400",
@@ -524,16 +489,9 @@
       "dur": 3
      },
      {
-      "layer": "mNs",
-      "at": "s3:miss+10",
-      "until": "s10:start+400",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
       "layer": "mNb",
       "at": "s1:start-40",
-      "until": "s3:miss+10",
+      "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
      },
@@ -545,30 +503,16 @@
       "dur": 3
      },
      {
-      "layer": "mC1",
-      "at": "s3:miss+10",
-      "until": "s10:start+400",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
       "layer": "mGap",
       "at": "s1:start-40",
       "until": "s3:gap+8",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
-      "layer": "mGap",
-      "at": "s3:miss+4",
-      "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "mC2",
       "at": "s1:start-40",
-      "until": "s3:miss+12",
+      "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
      },
@@ -588,7 +532,7 @@
      },
      {
       "layer": "wTipWorn",
-      "at": "s6:care-12",
+      "at": "s6:care-2",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -602,7 +546,7 @@
      },
      {
       "layer": "wDep",
-      "at": "s6:care-12",
+      "at": "s6:pencil+20",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -610,91 +554,80 @@
      {
       "layer": "wTipClean",
       "at": "s1:start-40",
-      "until": "s6:care-12",
-      "opacity": 0,
-      "dur": 3
-     },
-     {
-      "layer": "wTipClean",
-      "at": "s6:care+14",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "wPadL",
-      "at": "s6:pencil+6",
+      "at": "s6:wear+12",
       "until": "s10:start+400",
-      "dur": 14,
+      "dur": 10,
       "dx": -8.0
      },
      {
       "layer": "wSheet",
       "at": "s1:start-40",
-      "until": "s6:pencil+6",
-      "dur": 14,
+      "until": "s6:wear+12",
+      "dur": 10,
       "dx": 8.0
      },
      {
       "layer": "wNdl",
-      "at": "s6:pencil+22",
-      "until": "s6:care-4",
-      "dur": 8,
+      "at": "s6:pencil+4",
+      "until": "s6:pencil+28",
+      "dur": 6,
       "dy": -0.13
      },
      {
       "layer": "wTipWorn",
-      "at": "s6:pencil+22",
-      "until": "s6:care-4",
-      "dur": 8,
+      "at": "s6:pencil+4",
+      "until": "s6:pencil+28",
+      "dur": 6,
       "dy": -0.13
      },
      {
       "layer": "wDep",
-      "at": "s6:pencil+22",
-      "until": "s6:care-4",
-      "dur": 8,
-      "dy": -0.13
-     },
-     {
-      "layer": "wTipClean",
-      "at": "s6:pencil+22",
-      "until": "s6:care-4",
-      "dur": 8,
+      "at": "s6:pencil+4",
+      "until": "s6:pencil+28",
+      "dur": 6,
       "dy": -0.13
      },
      {
       "layer": "wTwz",
       "at": "s1:start-40",
-      "until": "s6:care-8",
+      "until": "s6:pencil+34",
       "dur": 8,
       "dx": 3.0,
       "dy": 0.2
      },
      {
       "layer": "wTwz",
-      "at": "s6:care+4",
+      "at": "s6:pencil+36",
       "until": "s10:start+400",
-      "dur": 8,
+      "dur": 14,
+      "dx": 3.0,
       "dy": 4.0
      },
      {
       "layer": "wNdl",
-      "at": "s6:care+4",
+      "at": "s6:pencil+36",
       "until": "s10:start+400",
-      "dur": 8,
+      "dur": 14,
+      "dx": 3.0,
       "dy": 4.0
      },
      {
-      "layer": "wTipClean",
-      "at": "s6:care+4",
+      "layer": "wTipWorn",
+      "at": "s6:pencil+36",
       "until": "s10:start+400",
-      "dur": 8,
+      "dur": 14,
+      "dx": 3.0,
       "dy": 4.0
      },
      {
       "layer": "wNdl",
-      "at": "s6:care+14",
+      "at": "s6:care-2",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -702,13 +635,13 @@
      {
       "layer": "wTwz",
       "at": "s1:start-40",
-      "until": "s6:care-10",
+      "until": "s6:pencil+24",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "wTwz",
-      "at": "s6:care+14",
+      "at": "s6:care-2",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -716,41 +649,44 @@
      {
       "layer": "wNew",
       "at": "s1:start-40",
-      "until": "s6:swap-2",
-      "dur": 8,
+      "until": "s6:care-2",
+      "dur": 14,
+      "dx": -3.0,
       "dy": 4.0
      },
      {
       "layer": "wTwz2",
       "at": "s1:start-40",
-      "until": "s6:swap-2",
-      "dur": 8,
+      "until": "s6:care-2",
+      "dur": 14,
+      "dx": -3.0,
       "dy": 4.0
      },
      {
       "layer": "wTwz2",
-      "at": "s6:swap+6",
+      "at": "s6:care+16",
       "until": "s10:start+400",
-      "dur": 6,
-      "dx": 3.0
+      "dur": 8,
+      "dx": -3.0,
+      "dy": 4.0
      },
      {
       "layer": "wNew",
       "at": "s1:start-40",
-      "until": "s6:swap-4",
+      "until": "s6:care-2",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "wTwz2",
       "at": "s1:start-40",
-      "until": "s6:swap-4",
+      "until": "s6:care-2",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "wTwz2",
-      "at": "s6:swap+14",
+      "at": "s6:care+26",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -1024,19 +960,13 @@
       "id": "mOk1",
       "at": "gap+8",
       "ramp": 6,
-      "until": "miss+10"
+      "until": "s4:start"
      },
      {
       "id": "mGapP",
       "at": "gap+8",
       "ramp": 6,
-      "until": "miss+4"
-     },
-     {
-      "id": "mOk2",
-      "at": "miss+12",
-      "ramp": 6,
-      "until": "s10:start+400"
+      "until": "s4:start"
      }
     ],
     "labels": [
@@ -1055,21 +985,8 @@
       "en": "Not touching",
       "color": "amber",
       "at": "gap+12",
-      "until": "miss-2",
+      "until": "miss+30",
       "cut": true
-     },
-     {
-      "part": "mNeedle",
-      "text": "超壓：針彎曲",
-      "en": "Overdrive: needles flex",
-      "color": "blue",
-      "at": "miss+4",
-      "until": "miss+36",
-      "cut": true,
-      "xy": [
-       770,
-       390
-      ]
      }
     ],
     "overlay": [
@@ -1099,7 +1016,7 @@
         "at": "miss"
        },
        "flex": {
-        "at": "miss+12"
+        "at": "end+40"
        }
       },
       "cut": true
@@ -1421,8 +1338,8 @@
       "elev": 10
      },
      {
-      "at": "pencil+2",
-      "dur": 16,
+      "at": "wear+4",
+      "dur": 14,
       "x": 150.8,
       "y": 5.0,
       "d": 30,
@@ -1434,37 +1351,37 @@
       "id": "wTouch",
       "at": "start-4",
       "ramp": 8,
-      "until": "pencil+4"
+      "until": "wear+10"
      },
      {
       "id": "wScrubAct",
       "at": "start-4",
       "ramp": 8,
-      "until": "pencil+4"
+      "until": "wear+10"
      },
      {
       "id": "wContact",
       "at": "start-4",
       "ramp": 8,
-      "until": "pencil+4"
+      "until": "wear+10"
      },
      {
       "id": "wPolish",
-      "at": "pencil+22",
+      "at": "pencil+4",
       "ramp": 8,
-      "until": "care-4"
+      "until": "pencil+28"
      },
      {
       "id": "wDust",
-      "at": "pencil+24",
+      "at": "pencil+6",
       "ramp": 6,
-      "until": "care-4"
+      "until": "pencil+28"
      },
      {
       "id": "wDust2",
-      "at": "pencil+26",
+      "at": "pencil+8",
       "ramp": 6,
-      "until": "care-4"
+      "until": "pencil+28"
      }
     ],
     "labels": [
@@ -1473,8 +1390,8 @@
       "text": "針尖磨耗處",
       "en": "Tip wear zone",
       "color": "amber",
-      "at": "cons-12",
-      "until": "cons+33",
+      "at": "cons-16",
+      "until": "cons+29",
       "cut": true
      },
      {
@@ -1482,12 +1399,12 @@
       "text": "清針片",
       "en": "Cleaning sheet",
       "color": "blue",
-      "at": "pencil+10",
-      "until": "care-6",
+      "at": "wear+6",
+      "until": "pencil+34",
       "cut": true,
       "xy": [
-       850,
-       430
+       230,
+       400
       ]
      },
      {
@@ -1495,8 +1412,8 @@
       "text": "換上新針",
       "en": "New needle",
       "color": "amber",
-      "at": "swap",
-      "until": "swap+30",
+      "at": "care-2",
+      "until": "care+44",
       "cut": true,
       "xy": [
        800,
@@ -1538,10 +1455,10 @@
      }
     ]
    },
-   "durationSec": 6.2,
-   "holdSec": 0.7,
+   "durationSec": 6.3,
+   "holdSec": 0.85,
    "headSec": 0.3,
-   "pauseAfter": 0.7
+   "pauseAfter": 0.85
   },
   {
    "id": "s7",
@@ -1602,29 +1519,20 @@
     "labels": [
      {
       "part": "lgp",
-      "text": "導板展開",
-      "en": "Guide plates apart",
+      "text": "導板展開・抽出一排針",
+      "en": "Guide plates apart, a row out",
       "color": "amber",
-      "at": "pins-6",
-      "until": "pitch+4",
-      "cut": true
-     },
-     {
-      "part": "row",
-      "text": "一排探針",
-      "en": "A row of needles",
-      "color": "blue",
-      "at": "pitch+10",
-      "until": "hard+12",
+      "at": "voice+4",
+      "until": "voice+49",
       "cut": true
      },
      {
       "part": "st",
       "text": "空間轉換器",
       "en": "Space transformer",
-      "color": "amber",
-      "at": "hard+20",
-      "until": "tw+20",
+      "color": "blue",
+      "at": "voice+50",
+      "until": "voice+95",
       "cut": true
      }
     ],
@@ -1659,10 +1567,9 @@
      }
     ]
    },
-   "durationSec": 5.2,
-   "holdSec": 0.7,
-   "headSec": 0.3,
-   "pauseAfter": 0.7
+   "durationSec": 5.1,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
   },
   {
    "id": "s8",
@@ -1790,9 +1697,8 @@
      }
     ]
    },
-   "durationSec": 4.9,
+   "durationSec": 4.7,
    "holdSec": 0.7,
-   "headSec": 0.2,
    "pauseAfter": 0.7
   },
   {

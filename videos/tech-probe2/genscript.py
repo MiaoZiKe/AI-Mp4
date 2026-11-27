@@ -27,13 +27,13 @@ S = [
  [("chpt", "精測"), ("card", "探針卡"), ("board", "測試板"), ("phone", "手機"), ("ai", "AI")], ["精測", "測試板", "AI"], ["科技新報、鉅亨網（媒體報導）"], 0, 0.2, 0.7),
 ("s6", "mechanism", "探針卡其實是耗材。針會磨損，像鉛筆越寫越短，要定期保養更換。",
  ["探針卡其實是耗材", "針會磨損", "像鉛筆越寫越短", "要定期保養更換"], ["A probe card is actually a consumable.", "The needles wear down,", "like a pencil getting shorter,", "so they need regular care and replacement."],
- [("cons", "耗材"), ("wear", "磨損"), ("pencil", "鉛筆"), ("care", "保養"), ("swap", "更換")], ["耗材", "磨損", "鉛筆"], ["專利 USPTO 5961728（探針針尖清潔）；示意動畫，不是量測"], 0, 0.3, 0.7),
+ [("cons", "耗材"), ("wear", "磨損"), ("pencil", "鉛筆"), ("care", "保養"), ("swap", "更換")], ["耗材", "磨損", "鉛筆"], ["專利 USPTO 5961728（探針針尖清潔）；示意動畫，不是量測"], 0, 0.3, 0.85),
 ("s7", "twist", "AI 晶片腳數多、間距小，卡越做越難，台廠正趕過來。",
  ["AI 晶片腳數多", "間距小", "卡越做越難", "台廠正趕過來"], ["AI chips have many pins", "packed close together,", "so cards get harder to make,", "and Taiwan makers are catching up."],
- [("pins", "腳數多"), ("pitch", "間距小"), ("hard", "越做越難"), ("tw", "台廠")], ["腳數多", "間距小", "台廠"], ["TrendForce 2026/6（RP260626XO3，研究機構）；示意動畫"], 0, 0.3, 0.7),
+ [("pins", "腳數多"), ("pitch", "間距小"), ("hard", "越做越難"), ("tw", "台廠")], ["腳數多", "間距小", "台廠"], ["TrendForce 2026/6（RP260626XO3，研究機構）；示意動畫"], 0, 0.0, 0.85),
 ("s8", "payoff", "設備、材料、廠務、測試，一片晶圓終於做完也測完了。",
  ["設備・材料", "廠務・測試", "一片晶圓", "終於做完也測完了"], ["Equipment, materials,", "facilities, testing:", "one wafer", "is finally made and tested."],
- [("eq", "設備"), ("mat", "材料"), ("fac", "廠務"), ("test", "測試"), ("done", "做完")], ["設備", "廠務", "測完"], ["示意動畫，不是量測"], 0, 0.2, 0.7),
+ [("eq", "設備"), ("mat", "材料"), ("fac", "廠務"), ("test", "測試"), ("done", "做完")], ["設備", "廠務", "測完"], ["示意動畫，不是量測"], 0, 0.0, 0.7),
 ("s9", "cta", "下一個系列，晶片往下游走。第一集，晶圓切割與薄化。留言探針卡廠，拿完整資料。",
  ["下一個系列", "晶片往下游走", "第一集", "晶圓切割與薄化", "留言探針卡廠", "拿完整資料"], ["Next series:", "chips move downstream.", "Episode one:", "wafer dicing and thinning.", "Comment \"probe card makers\"", "for the full notes."],
  [("next", "下一個系列"), ("down", "下游"), ("ep", "第一集"), ("dice", "切割"), ("kw", "留言探針卡廠")], ["下游", "切割", "探針卡廠"], ["示意動畫，不是量測"], 0, 0.2, 0.8),
@@ -112,12 +112,11 @@ S7B = "s7:tw+4"
 # 每一步做完停住再下一步；三張標籤各 45 幀、一次一張；組回順序：空間轉換器 → 前排針 → 導板與針林
 RA = "s7:hard+93"
 # 依序：②導板展開（間隙拉大）→ ③前排一列針整排抽出、往鏡頭與上方飄 → ⑤空間轉換器（等前一張標籤收掉才動）→ ⑧反序組回；組回後停住，s8 開頭才翻回、放下
-# 第 39 條：三步都在 s7 念的期間做完，一步一張標籤：①導板展開（pins−8）→ ②前排一列針往左整排抽出（pitch+6）→ ③空間轉換器往右上滑開（hard+16）→ ④反序組回（tw+22，念完前落定）
-EX0, EXR = "s7:pins-8", "s7:tw+22"
-VIS += [mv("lgp", EX0, EXR, 16, dy=2.7), mv("spc", EX0, EXR, 16, dy=1.55), mv("ugp", EX0, EXR, 16, dy=0.45),
-        mv("nd", EX0, EXR, 16, dy=1.0), mv("ndRow", EX0, EXR, 16, dy=1.0),
-        mv("ndRow", "s7:pitch+6", "s7:tw+20", 16, dy=1.2, dx=-2.3),   # 往側邊（左）整排抽出：斜俯視鏡頭下往上＋往鏡頭會互相抵消
-        mv("st", "s7:hard+16", "s7:tw+18", 14, dx=3.4, dy=0.25)]
+# 第 39 條：一開口就拆、念完前組回；兩步兩張標籤（一次一張、各 45 幀）：①導板沿軸線展開＋前排一列針往左整排抽出 → ②空間轉換器往右上滑開 → 全拆停約 1 秒 → 反序組回（空間轉換器 → 前排針 → 導板與針林，各隔 6 幀）
+EV = lambda n: f"s7:voice{n:+d}"
+VIS += [mv(l, EV(2), EV(107), 16, dy=d) for l, d in (("lgp", 2.7), ("spc", 1.55), ("ugp", 0.45), ("nd", 1.0), ("ndRow", 1.0))]
+VIS += [mv("ndRow", EV(10), EV(101), 14, dy=1.2, dx=-2.3),   # 往側邊（左）整排抽出
+        mv("st", EV(50), EV(95), 12, dx=3.4, dy=0.25)]
 # 鏡頭在高處看翻面的卡片時（s3 開頭、s7 爆炸），下方的載台與晶圓在 2D 卡後面、看不到：這兩段收起來（不算進主素材範圍），拉遠前再出現
 for l in ["chuck", "wafer"]: vis(l, [(T0, "s3:start-6"), ("s3:pin-8", "s7:start-6"), ("s8:voice-4", FAR)], dur=8)
 # s8：晶圓測完，載台沿導軌送到右側裝卸區；晶粒一列一列亮綠（設備、材料、廠務、測試）
@@ -127,25 +126,26 @@ for k, cue in enumerate(["eq", "mat", "fac", "test"]): vis(f"dieOk{k}", [(f"s8:{
 HEADM = ["mSt", "mUg", "mLg", "mNs", "mNb", "mHmap"]
 OFF0, OVR = INFO["OFF0"], INFO["OVR"]
 DOWN1, DOWN2 = "s3:gap-18", "s3:miss"   # 第 39 條：超壓在念「壓不到」時接著做完（念完前落定）
-VIS += [mv(l, DOWN1, FAR, 24, dy=-OFF0) for l in HEADM] + [mv(l, DOWN2, FAR, 12, dy=-OVR) for l in HEADM if l != "mHmap"]
+VIS += [mv(l, DOWN1, FAR, 24, dy=-OFF0) for l in HEADM]   # 超壓不做：念稿沒講，第 39 條也不允許念完後再演；s3 停在「壓不到」
 VIS += [mv("mLaser", "s3:pin-2", FAR, 40, dx=12.8)]
 vis("mLaser", [("s3:pin-9", "s3:pin+44")]); vis("mHmap", [("s3:pin+14", "s3:gap+10")])
-vis("mNs", [(T0, "s3:miss+10")]); vis("mNb", [("s3:miss+10", FAR)])
-vis("mC1", [("s3:gap+8", "s3:miss+10")]); vis("mGap", [("s3:gap+8", "s3:miss+4")]); vis("mC2", [("s3:miss+12", FAR)])
+vis("mNs", [(T0, FAR)]); vis("mNb", [])
+vis("mC1", [("s3:gap+8", FAR)]); vis("mGap", [("s3:gap+8", FAR)]); vis("mC2", [])
 # ── 站 W：單根針（s6）：接觸刮擦 → 磨鈍變短沾汙 → 清針片滑進、來回磨、粉末飛出 → 鑽子夾走舊針、新針落下 ──
-# 第 39 條：清針與換針都在念的期間做完（念到「鉛筆」清針片就滑進來，念到「保養」夾走舊針、「更換」新針放進去，念完前退出）
-vis("wTipNew", [(T0, "s6:wear+6")]); vis("wTipWorn", [("s6:wear+6", "s6:care-12")]); vis("wDep", [("s6:wear+6", "s6:care-12")])
-vis("wTipClean", [("s6:care-12", "s6:care+14")])
-VIS += [mv("wPadL", "s6:pencil+6", FAR, 14, dx=-8.0)]
-VIS += [mv("wSheet", T0, "s6:pencil+6", 14, dx=8.0)]
-VIS += [mv(l, "s6:pencil+22", "s6:care-4", 8, dy=-0.13) for l in ("wNdl", "wTipWorn", "wDep", "wTipClean")]
-# 換針：鑷子從右邊夾住舊針 → 沿導板孔垂直往上拔出、整根帶走 → 第二把鑷子夾著新針從上方垂直放進孔 → 放開、往右退出
-VIS += [mv("wTwz", T0, "s6:care-8", 8, dx=3.0, dy=0.2)]
-VIS += [mv(l, "s6:care+4", FAR, 8, dy=4.0) for l in ("wTwz", "wNdl", "wTipClean")]
-vis("wNdl", [(T0, "s6:care+14")]); vis("wTwz", [("s6:care-10", "s6:care+14")])
-VIS += [mv(l, T0, "s6:swap-2", 8, dy=4.0) for l in ("wNew", "wTwz2")]
-VIS += [mv("wTwz2", "s6:swap+6", FAR, 6, dx=3.0)]
-vis("wNew", [("s6:swap-4", FAR)]); vis("wTwz2", [("s6:swap-4", "s6:swap+14")])   # 新針從導板上方放下、穿進導板孔
+# 第 39 條：清針與換針都在念的期間做完；舊針整根移開那條線之後新針才進來，換針整段約 1.5 秒；標籤一次一張、各 ≥45 幀
+# 「磨損」針尖變鈍沾汙 → 清針片滑進、壓下來回磨約 0.9 秒（汙垢掉光，針尖仍是磨短的平頭）→ 鑷子從右邊進來夾住 → 舊針連鑷子往右上拔走、離開那條線
+# →「保養」第二把鑷子夾著新針（尖、亮）從左上斜送進導板孔 → 放開、往左上退出，念完前收完
+vis("wTipNew", [(T0, "s6:wear+6")]); vis("wTipWorn", [("s6:wear+6", "s6:care-2")]); vis("wDep", [("s6:wear+6", "s6:pencil+20")])
+vis("wTipClean", [])
+VIS += [mv("wPadL", "s6:wear+12", FAR, 10, dx=-8.0)]
+VIS += [mv("wSheet", T0, "s6:wear+12", 10, dx=8.0)]
+VIS += [mv(l, "s6:pencil+4", "s6:pencil+28", 6, dy=-0.13) for l in ("wNdl", "wTipWorn", "wDep")]
+VIS += [mv("wTwz", T0, "s6:pencil+34", 8, dx=3.0, dy=0.2)]
+VIS += [mv(l, "s6:pencil+36", FAR, 14, dx=3.0, dy=4.0) for l in ("wTwz", "wNdl", "wTipWorn")]
+vis("wNdl", [(T0, "s6:care-2")]); vis("wTwz", [("s6:pencil+24", "s6:care-2")])
+VIS += [mv(l, T0, "s6:care-2", 14, dx=-3.0, dy=4.0) for l in ("wNew", "wTwz2")]   # care−2 起 14 幀送到孔裡（舊針 care−17 已移開那條線）
+VIS += [mv("wTwz2", "s6:care+16", FAR, 8, dx=-3.0, dy=4.0)]   # 放開停 2 幀後退出，念完那一幀收完
+vis("wNew", [("s6:care-2", FAR)]); vis("wTwz2", [("s6:care-2", "s6:care+26")])   # 新針從左上斜送進導板孔
 
 # ═════ 各幕 ═════
 AX = 1.0
@@ -163,11 +163,10 @@ P["s2"] = {"zoom": [{"to": "map", "at": "start-14", "dur": 1}],
  "overlay": [card("s2", "probe2-ff", "全球少數幾家主導", "FormFactor 2025 財報；TrendForce", {"few": "few", "us": "us", "ff": "ff", "pct": "pct"})]}
 P["s3"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}, {"to": "micro", "at": "pin-9", "dur": 1}],
  "shot": [shot(CC, 0.3, 7.3, 28, 44, 1), shot("pin-9", INFO["MX"], 3.9, 38, 10, 1)],
- "run": [run("lzScan", "start-2", "pin-8", 6), run("hmapGlow", "more+6", "pin-8", 6), run("mOk1", "gap+8", "miss+10", 6), run("mGapP", "gap+8", "miss+4", 6), run("mOk2", "miss+12", FAR, 6)],
+ "run": [run("lzScan", "start-2", "pin-8", 6), run("hmapGlow", "more+6", "pin-8", 6), run("mOk1", "gap+8", "s4:start", 6), run("mGapP", "gap+8", "s4:start", 6)],
  "labels": [lab("hmap", "針尖高度圖", "Tip height map", "amber", "more+6", "pin-10"),
-            lab("mGap", "壓不到", "Not touching", "amber", "gap+12", "miss-2"),
-            lab("mNeedle", "超壓：針彎曲", "Overdrive: needles flex", "blue", "miss+4", "miss+36", xy=[770, 390])],
- "overlay": [card("s3", "probe2-pin", "一萬個圖釘壓進軟木板", "示意（不標針數、針壓）", {"more": "more", "pin": "pin", "gap": "gap", "miss": "miss", "flex": "miss+12"})]}
+            lab("mGap", "壓不到", "Not touching", "amber", "gap+12", "miss+30")],
+ "overlay": [card("s3", "probe2-pin", "一萬個圖釘壓進軟木板", "示意（不標針數、針壓）", {"more": "more", "pin": "pin", "gap": "gap", "miss": "miss", "flex": "end+40"})]}
 P["s4"] = {"zoom": [{"to": "map", "at": CC, "dur": 1}],
  "shot": [shot(CC, INFO["MPX"] + 0.4, 1.6, 20, 22, 1)],
  "run": [run("mpiPin", "tw-4", "s5:start", 8)],
@@ -179,19 +178,18 @@ P["s5"] = {"zoom": [{"to": "map", "at": CC, "dur": 1}],
  "labels": [lab("chFab", "精測（平鎮）", "CHPT, Pingzhen", "blue", "chpt", "chpt+48", flag="TW")],
  "overlay": [card("s5", "probe2-chpt", "台灣：中華精測 CHPT", "媒體報導", {"chpt": "chpt", "card": "card", "board": "board", "phone": "phone", "ai": "ai"})]}
 P["s6"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["WX"], 4.0, 24, 10, 1), shot("wear+4", INFO["WX"] + 0.3, 3.4, 19, 10, 30), shot("pencil+2", INFO["WX"] + 0.8, 5.0, 30, 10, 16)],
- "run": [run("wTouch", "start-4", "pencil+4", 8), run("wScrubAct", "start-4", "pencil+4", 8), run("wContact", "start-4", "pencil+4", 8),
-         run("wPolish", "pencil+22", "care-4", 8), run("wDust", "pencil+24", "care-4", 6), run("wDust2", "pencil+26", "care-4", 6)],
- "labels": [lab("wTip", "針尖磨耗處", "Tip wear zone", "amber", "cons-12", "cons+33"),
-            lab("wSheetA", "清針片", "Cleaning sheet", "blue", "pencil+10", "care-6", xy=[850, 430]),
-            lab("wNewA", "換上新針", "New needle", "amber", "swap", "swap+30", xy=[800, 430])],
+ "shot": [shot(CC, INFO["WX"], 4.0, 24, 10, 1), shot("wear+4", INFO["WX"] + 0.3, 3.4, 19, 10, 30), shot("wear+4", INFO["WX"] + 0.8, 5.0, 30, 10, 14)],
+ "run": [run("wTouch", "start-4", "wear+10", 8), run("wScrubAct", "start-4", "wear+10", 8), run("wContact", "start-4", "wear+10", 8),
+         run("wPolish", "pencil+4", "pencil+28", 8), run("wDust", "pencil+6", "pencil+28", 6), run("wDust2", "pencil+8", "pencil+28", 6)],
+ "labels": [lab("wTip", "針尖磨耗處", "Tip wear zone", "amber", "cons-16", "cons+29"),
+            lab("wSheetA", "清針片", "Cleaning sheet", "blue", "wear+6", "pencil+34", xy=[230, 400]),
+            lab("wNewA", "換上新針", "New needle", "amber", "care-2", "care+44", xy=[800, 430])],
  "overlay": [card("s6", "probe2-wear", "像鉛筆越寫越短", "示意（不標壽命次數）", {"cons": "cons", "wear": "wear", "pencil": "pencil", "care": "care", "swap": "swap"})]}
 P["s7"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
  "shot": [shot(CC, 1.4, 7.6, 34, 36, 1)],
  "run": [],
- "labels": [lab("lgp", "導板展開", "Guide plates apart", "amber", "pins-6", "pitch+4"),
-            lab("row", "一排探針", "A row of needles", "blue", "pitch+10", "hard+12"),
-            lab("st", "空間轉換器", "Space transformer", "amber", "hard+20", "tw+20")],
+ "labels": [lab("lgp", "導板展開・抽出一排針", "Guide plates apart, a row out", "amber", "voice+4", "voice+49"),
+            lab("st", "空間轉換器", "Space transformer", "blue", "voice+50", "voice+95")],
  "overlay": [card("s7", "probe2-ai", "AI 晶片：卡越做越難", "TrendForce 2026/6", {"pins": "pins", "pitch": "pitch", "hard": "hard", "tw": "tw"})]}
 P["s8"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
  "shot": [shot(CC, 3.0, 3.2, 46, 32, 1), shot("done-10", 8.4, 2.6, 31, 46, 34)],
