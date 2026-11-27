@@ -21,7 +21,7 @@ S = [
  [("q", "多乾淨"), ("pool", "游泳池"), ("spoon", "一小匙")], ["多乾淨", "游泳池", "一小匙"], ["比喻為自行換算；示意，不是量測"], 6.4, 2.2),
 ("s4", "mechanism", "藥水從廠外大槽出發，沿管線送到機台旁，",
  ["藥水從廠外大槽出發", "沿管線送到機台旁"], ["Chemicals leave the outdoor tank,", "travel by pipe to the tool,"],
- [("tank", "大槽"), ("pipe", "管線"), ("desk", "機台旁")], ["大槽", "管線"], ["Air Liquide、3M 文件；示意，不是量測"], 5.3, 0.4),
+ [("tank", "大槽"), ("pipe", "管線"), ("desk", "機台旁")], ["大槽", "管線"], ["Air Liquide、3M 文件；示意，不是量測"], 6.0, 0.4),
 ("s4b", "mechanism", "像自來水廠送水，",
  ["像自來水廠送水"], ["like a water works,"],
  [("water", "自來水廠")], ["自來水廠"], ["Air Liquide、3M 文件；示意，不是量測"], 1.9, 0.4),
@@ -174,13 +174,13 @@ P["s3"] = {"shot": [shot("start-1", -33.0, 2.4, 40, 26, 1, yaw=0.0), shot("pool-
  "labels": [lab("pool", "一座游泳池", "A swimming pool", "blue", "pool-7", "spoon-2"), lab("spoon", "一小匙", "One teaspoon", "amber", "spoon-1", "spoon+44"), lab("ionRed", "紅點＝金屬雜質（示意）", "Red = metal impurity (illustrative)", "amber", "spoon+45", "s4:start-10")],
  "overlay": [sec("chem-pool", "start+20", "s4:start-10", "游泳池裡的一小匙", "示意（自行換算，不是量測）", {"q": "q", "pool": "pool", "spoon": "spoon"})]}
 # ─── s4（拆三幕，r1）：s4 大槽→塑膠管線→管理櫃近景；s4b 管理櫃爆炸分解；s4c 迴路遠景→旋轉清洗腔 ───
-P["s4"] = {"shot": [shot("start-1", 3.0, 8.0, 62, 14, 1, yaw=0.0), shot("tank+6", 14.0, 4.5, 62, 22, 14), shot(DK(-16), 26.0, 9.5, 76, 16, 26), shot(DK(4), 28.0, 9.0, 60, 22, 22)],
+P["s4"] = {"shot": [shot("start-1", 3.0, 8.0, 62, 14, 1, yaw=0.0), shot("start+58", 14.0, 4.5, 62, 22, 14), shot(DK(-16), 26.0, 9.5, 76, 16, 26), shot(DK(4), 28.0, 9.0, 60, 22, 22)],
  "run": [run("supFlow", "start", "start+98", 10), run("tankLevel", "start", "start+98", 6), run("cdsFlow", DK(-10), W(0), 10), run("pumpBeat", DK(-10), W(0), 10), run("pumpLed", DK(-10), W(0), 8)],
- "labels": [lab("tank", "大宗儲槽", "Bulk tank", "amber", "start+12", "start+57", xy=[860, 300]), lab("sup", "塑膠管線", "Plastic piping", "blue", "start+64", "start+109"),
-            lab("cdsDoorA", "化學品管理櫃", "Chemical cabinet", "amber", "start+112", "start+157", xy=[330, 410])],
+ "labels": [lab("tank", "大宗儲槽", "Bulk tank", "amber", "start+12", "start+57", xy=[860, 300]), lab("sup", "塑膠管線", "Plastic piping", "blue", "start+74", "start+119"),
+            lab("cdsDoorA", "化學品管理櫃", "Chemical cabinet", "amber", "start+120", "start+165", xy=[790, 270])],
  "overlay": [sec("chem-path", "start+30", "s5:start-8", "送液路徑：一路過濾、一路循環", "示意（不標流量與壓力）", {"tank": "tank", "pipe": "pipe", "desk": "desk", "water": "s4b:water", "clean": "s4c:clean", "back": R4})]}
 P["s4b"] = {"shot": [shot(W(2), 22.0, 8.0, 64, 20, 26, yaw=0.5), shot(W(44), 30.0, 8.0, 62, 22, 26)],
- "labels": [lab("pump", "泵與閥島", "Pump & valve island", "blue", W(-8), W(38), xy=[790, 1010])]}
+ "labels": [lab("pump", "泵與閥島", "Pump & valve island", "blue", W(-8), W(38), xy=[270, 930])]}
 P["s4c"] = {"shot": [shot(C(8), 31.0, 9.5, 58, 22, 26), shot(C(52), 27.0, 11.5, 96, 22, 26), shot(C(100), 26.0, 10.0, 80, 20, 30, yaw=0.0), shot(C(136), 62.0, 6.0, 175, 30, 28), shot(C(185), 102.0, 6.0, 92, 28, 36)],
  "run": [run("cdsFlow", C(132), "s5:start-4", 10), run("pumpBeat", C(132), "s5:start-4", 10), run("pumpLed", C(132), "s5:start-4", 8),
          run("supFlow", C(148), "s5:start-4", 10), run("tankLevel", C(148), "s5:start-4", 6),
