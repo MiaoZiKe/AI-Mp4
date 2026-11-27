@@ -27,6 +27,9 @@ export const LOGOS: Record<string, LogoSpec> = {
   tsmc: { file: "logos/tsmc.svg", w: 273, h: 215, name: "台積電 TSMC", source: "https://commons.wikimedia.org/wiki/File:Tsmc-text.svg" },
   intel: { file: "logos/intel.svg", w: 388.2, h: 150.6, name: "英特爾 Intel", source: "https://commons.wikimedia.org/wiki/File:Intel_logo_2023.svg" },
   samsung: { file: "logos/samsung.svg", w: 7051.4024, h: 1080, name: "三星 Samsung", source: "https://commons.wikimedia.org/wiki/File:Samsung_wordmark.svg" },
+  // 2026-11-28 tech-memfab：Wikimedia Commons 原檔（未改色）
+  skhynix: { file: "logos/skhynix.svg", w: 28.452518, h: 15.028476, name: "SK 海力士 SK hynix", source: "https://commons.wikimedia.org/wiki/File:SK_Hynix.svg" },
+  micron: { file: "logos/micron.svg", w: 288, h: 61.704, name: "美光 Micron", source: "https://commons.wikimedia.org/wiki/File:Micron_Technology_logo_2024.svg" },
   dnp: { file: "logos/dnp.svg", w: 110, h: 33, name: "大日本印刷 DNP", source: "https://www.global.dnp/content/dam/dnp-global/common/img/logo.svg" },
   tekscend: { file: "logos/tekscend.svg", w: 199, h: 32, name: "Tekscend Photomask", source: "https://www.photomask.com/assets/img/common/header_logo.svg" },
   photronics: { file: "logos/photronics.svg", w: 114, h: 134.538, labelH: 90, name: "Photronics", source: "https://www.photronics.com/wp-content/uploads/2018/11/logo.svg" },

@@ -63,6 +63,7 @@ import { AbfsubSection } from "./HudAbfsub";
 import { BtSection } from "./HudBt";
 import { CclSection } from "./HudCcl";
 import { CufoilSection } from "./HudCufoil";
+import { MemfabSection } from "./HudMemfab";
 import { GlassSection } from "./HudGlass";
 import { PartsSection } from "./HudParts";
 import { FanoutSection } from "./HudFanout";
@@ -766,6 +767,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("dc-")) return <DicingSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-dicing（HudDicing.tsx）
   if (String((o as any).kind ?? "").startsWith("abs-")) return <AbfsubSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-abfsub（HudAbfsub.tsx）
   if (String((o as any).kind ?? "").startsWith("bt-")) return <BtSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-bt（HudBt.tsx）
+  if (String((o as any).kind ?? "").startsWith("memfab-")) return <MemfabSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-memfab（HudMemfab.tsx）
   if (String((o as any).kind ?? "").startsWith("ccl-")) return <CclSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-ccl（HudCcl.tsx）
   if (String((o as any).kind ?? "").startsWith("cuf-")) return <CufoilSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-cufoil（HudCufoil.tsx）
   if (String((o as any).kind ?? "").startsWith("glass-")) return <GlassSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-glass（HudGlass.tsx）
