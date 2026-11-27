@@ -212,7 +212,7 @@ P["s4"] = {"shot": [shot(CC, BX, 3.9, 30, 12, 1)],
  "overlay": [card("s4", "abs-sym", "兩邊一樣厚才不翹", "示意", {"two": "two", "out": "out", "even": "even", "warp": "warp"})]}
 P["s5"] = {"shot": [shot(CC, BX + 2.0, 4.0, 40, 12, 1)],
  "run": [run("laserPulseT", "hole-8", "link+8", 4), run("laserPulseB", "hole-8", "link+8", 4)],
- "labels": [lab("via", "雷射打洞，銅填滿", "Laser via, filled with copper", "amber", "hole-4", "link+30", xy=[330, 1000])],
+ "labels": [lab("via", "雷射打洞，銅填滿", "Laser via, then copper", "amber", "hole-4", "link+30", xy=[360, 1000])],
  "overlay": [card("s5", "abs-layer", "一層三步", "示意（細節見前一集）", {"film": "film", "hole": "hole", "cu": "cu", "link": "link"})]}
 P["s6"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
  "shot": [shot(CC, INFO["DX"] - 1.0, -7.6, 72, 42, 1)],
