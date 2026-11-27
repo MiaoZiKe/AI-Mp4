@@ -117,7 +117,7 @@ VIS += [hid("yard", "s2:closet-6", FAR, 1, 0)]
 for l in ("ffuArr", "ffuFront", "oneFrame", "oneFan", "oneHepa"):
     VIS += [mv(l, "s3:ffu-4", "s3:ffu+40", 18, dy=1.5)]
 # s4：拉出一台（爆炸 2.1-3）：風扇箱往上、濾網往下、外框留在原位；切到纖維放大期間組回
-VIS += [mv("oneFan", "s4:voice-3", "s4:maze+30", 20, dy=1.5), mv("oneHepa", "s4:voice-3", "s4:maze+30", 20, dy=-1.3)]
+VIS += [mv("oneFan", "s4:voice-3", "s4:maze+30", 20, dy=1.1), mv("oneHepa", "s4:voice-3", "s4:maze+30", 20, dy=-0.8)]
 # s4：高架地板往下分開（爆炸 2.1-4），露出回風層；念完「重新過濾」組回（2.1-5）
 VIS += [mv("rFloor", "s4:floor-2", "s4:again+14", 20, dy=-0.9)]
 # s9：水、氣、電管路依序淡入
@@ -142,7 +142,7 @@ P["s1"] = {"zoom": [{"to": "room", "at": "start", "dur": 1}],
  "shift": VIS,
  "run": [run("ffuLed", "start-30", FAR, 6)],
  "overlay": [sec("cr-hook", "start", nxt("s1"), "系列 2・第 19 集", "示意，非特定廠房", {"room": "room", "clean": "clean", "prev": "prev"}, cut=True)]}
-P["s2"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
+P["s2"] = {"zoom": [{"to": "room", "at": "voice-18", "dur": 1}, {"to": "room", "at": CC, "dur": 1}],   # 第一個 zoom 讓鉤子大字在換幕前退場
  "shot": [shot(CC, 0.5, 3.11, 80.5, 15, 1), shot("cr+4", RX, RY, RD, RE, 30), shot("closet-6", 41.85, 1.63, 32, 14, 1, yaw=0.0), shot("closet", 41.85, 1.63, 30.5, 14, 60)],
  "run": [run(f"kBrown{i}", "closet-8", "s3:start+4", 6) for i in range(10)] + [run("kGlow", "ten-2", "s3:start+4", 6), run("kSample", "top", "s3:start+4", 6), run("ffuSpin", "cr+10", "s2:closet-6", 8)],
  "labels": [lab("room", "無塵室", "Cleanroom", "blue", "cr", "closet-8", xy=[300, 320]),
@@ -151,17 +151,17 @@ P["s2"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "overlay": [card("s2", "cr-class", "最乾淨那一級", "ISO 14644-1", {"cr": "cr", "top": "top", "closet": "closet", "ten": "ten"})]}
 P["s3"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "shot": [shot(CC, RX, RY, RD, RE, 1), shot("ffu-10", 0.0, 3.8, 44.0, 8, 26)],
- "run": [run("ffuSpin", "ceil-6", "s4:end+60", 10), run("ffuLed", "start", FAR, 6)] + [run(f"airDown{k}", "down", "s4:maze+16", 8) for k in range(3)] + [run(f"airDot{k}", "down+4", "s4:maze+16", 8) for k in range(3)]
-        + [run("airWake", "down+10", "s4:maze+16", 8), run("dustDown", "down+6", "s4:maze+16", 6)],
+ "run": [run("ffuSpin", "ceil-6", "s4:end+60", 10), run("ffuLed", "start", FAR, 6)] + [run(f"airDown{k}", "down", "s4:voice-6", 1) for k in range(3)] + [run(f"airDot{k}", "down+4", "s4:voice-6", 1) for k in range(3)]
+        + [run("airWake", "down+10", "s4:voice-6", 1), run("dustDown", "down+6", "s4:voice-6", 1)],
  "labels": [lab("ffu", "風扇濾網（一台台排滿）", "Fan filter units", "amber", "ffu", "ffu+46")],
  "overlay": [card("s3", "cr-fall", "像一道瀑布：往下吹", "示意（不標風速）", {"ceil": "ceil", "ffu": "ffu", "down": "down", "fall": "fall"})]}
 P["s4"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}, {"to": "fiber", "at": "maze+16", "dur": 1}, {"to": "room", "at": "floor-6", "dur": 1}],
- "shot": [shot(CC, -0.8, 7.7, 24, 8, 1), shot("voice+2", -0.8, 7.58, 23.0, 8, 30), shot("maze+16", 70.0, 2.41, 35.0, 6, 1, yaw=0.0), shot("floor-6", RX, RY, RD, RE, 1)],
+ "shot": [shot(CC, -0.8, 7.7, 23.5, 4, 1), shot("voice+2", -0.8, 7.64, 21.5, 4, 30), shot("maze+16", 70.0, 2.41, 35.0, 6, 1, yaw=0.0), shot("floor-6", RX, RY, RD, RE, 1)],
  "run": [run("oneSpin", "start", "maze+16", 8), run("ffuSpin", "start", FAR, 6), run("fAir", "maze-6", "floor-4", 6), run("fOut", "maze", "floor-4", 6)]
         + [run(f"fDust{i}", f"maze+{4 + i * 7}", "floor-4", 4) for i in range(6)]
         + [run("floorSuck", "floor+4", "s5:start+4", 6), run("loopL", "floor+10", "s5:start+4", 8), run("loopR", "floor+10", "s5:start+4", 8)]
         + [run(f"airDown{k}", "floor-6", "s5:start+4", 1) for k in range(3)] + [run("dustDown", "floor-6", "s5:start+4", 1)],
- "labels": [lab("hepa", "濾網（褶成 V 形）", "Filter, V-pleated", "amber", "voice-2", "voice+44"),
+ "labels": [lab("hepa", "濾網（褶成 V 形）", "Filter, V-pleated", "amber", "voice-2", "voice+44", xy=[340, 968]),
             lab("stuck", "纖維黏住灰塵", "Fibers trap dust", "amber", "maze+18", "maze+64"),
             lab("ret", "回風（地板下）", "Return air", "blue", "floor+8", "floor+54")],
  "overlay": [card("s4", "cr-maze", "纖維迷宮＋回風循環", "示意", {"filt": "filt", "maze": "maze", "stick": "stick", "floor": "floor", "again": "again"})]}
@@ -172,8 +172,7 @@ P["s5"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
         + [run(f"leak{i}", "hair-4", "s6:start+4", 6) for i in range(6)] + [run("leakGlow", "hair-4", "s6:start+4", 6), run("pDown", "start", "s6:start+4", 6)]
         + [run("walkL", "hair", "s6:start+4", 12, gain=0.6), run("walkR", "hair", "s6:start+4", 12, gain=0.6), run("armL", "hair", "s6:start+4", 12, gain=0.6), run("armR", "hair", "s6:start+4", 12, gain=0.6)],
  "labels": [lab("person", "皮屑、頭髮", "Skin flakes, hair", "amber", "src", "src+46"),
-            lab("suit", "無塵衣", "Cleanroom suit", "blue", "suit+24", "suit+70"),
-            lab("leakA", "領口、袖口會漏一點", "Small leaks at cuffs", "amber", "suit+74", "suit+120")],
+            lab("suit", "無塵衣", "Cleanroom suit", "blue", "suit+24", "suit+70")],
  "overlay": [card("s5", "cr-suit", "人是最大的灰塵來源", "示意（供應商估計，不標數字）", {"src": "src", "ppl": "ppl", "suit": "suit", "rain": "rain", "hair": "hair"})]}
 P["s6"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "shot": [shot(CC, 129.0, 0.54, 51, 30, 1)],
