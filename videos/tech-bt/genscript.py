@@ -227,7 +227,7 @@ P["s7"] = {"zoom": [{"to": "co", "at": SC("s7"), "dur": 1}],
             lab("gSmall", "BT 載板（小店）：斷貨", "BT substrates: out of stock", "amber", "small-4", "end")],
  "overlay": [card("s7", "bt-flour", "像大店搶光麵粉", "分析師普遍認為（高盛 2025/10）", {"ai": "ai", "core": "core", "big": "big", "small": "small", "out": "out"})]}
 P["s8"] = {"zoom": [{"to": "line", "at": CC, "dur": 1}],
- "shot": [shot(CC, X["HX2"] - 4.0, 2.4, 44, 28, 1), shot("jp-8", X["HX2"] + 4.0, 2.0, 70, 22, 24)],
+ "shot": [shot(CC, X["HX2"] + 2.5, 2.0, 76, 22, 1)],
  "run": [run("heddleA", "start-10", "s9:start+20", 6), run("heddleB", "start-10", "s9:start+20", 6), run("reedBeat", "start-10", "s9:start+20", 6), run("rapier", "start-10", "s9:start+20", 6),
          run("beamSpin", "start-10", "s9:start+20", 8), run("gearSpin", "start-10", "s9:start+20", 8), run("takeSpin", "start-10", "s9:start+20", 8)],
  "labels": [lab("hLoom", "劍桿織布機（示意）", "Rapier loom (schematic)", "blue", C, "jp+17"), lab("hP0", "日東紡擴廠、台玻出貨", "Nittobo expands; Taiwan Glass ships", "amber", "jp+19", "end")],
