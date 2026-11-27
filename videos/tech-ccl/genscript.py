@@ -134,21 +134,22 @@ VIS.append(mv("hTop", "s5:press-4", FAR, 16, dy=-HPRESS))
 vis("hBleed", [("s5:melt", FAR)], 10); vis("hCore", [("s5:glue-4", FAR)], 12)
 # ── 站 E：整片銅 → 噴藥 → 只剩線路 ──
 for k in range(8): vis(f"eCu{k}", [(T0, f"s6:etch+{2 + 3 * k}")], 4)
-vis("eTr", [(T0, FAR)], 1); vis("eFilm", [(T0, "s6:run-6")], 6)
+vis("eTr", [(T0, FAR)], 1); vis("eFilm", [(T0, "s6:run-6")], 6); vis("eChips", [(T0, "s5:end"), ("s6:start+42", FAR)], 4)
 for l in ["ePanel", "eTr", "eFilm", "eChips"] + [f"eCu{k}" for k in range(8)]: VIS.append(mv(l, T0, "s6:start+4", 36, dx=-3.0))
 # ── 站 S：s7 只有一般材料那道；s8 念到「低損耗」才放上低損耗那道 ──
 drop("sLaneB", "s8:low", dy=1.2, dur=12, bounce=0.05); drop("sRxB", "s8:low", dy=1.2, dur=12, bounce=0.05)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 KV1 = (0.0, -0.6, 30, 38)     # 鉤子：做好的電路板
-KV2 = (1.6, 1.4, 36, 22)      # 夾心爆炸（低角度看分層）
+KV2 = (1.6, 1.2, 38, 22)      # 夾心爆炸（低角度看分層）
 GV = (30.0, -1.2, 24, 46)      # 玻纖布織紋
-RV = (62.6, 2.3, 46, 10)      # 含浸線側面
+RV = (62.6, 1.0, 46, 12)
+RV2 = (66.4, 1.4, 29, 12)    # 念到「烘到半乾」推近：烘箱到裁刀      # 含浸線側面
 HV = (96.0, 2.6, 36, 8)       # 熱壓機
 EV = (125.0, 0.6, 24, 42)     # 蝕刻線
 SV = (155.0, 0.2, 35, 34)     # 損耗對照
-VV = (185.0, 0.9, 31, 14)     # 供應商
-NV = (215.0, 0.8, 36, 20)     # 下一集
+VV = (185.0, -0.3, 31, 18)     # 供應商
+NV = (215.0, -0.2, 31, 22)     # 下一集
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
 P["s1"] = {"shot": [S_("start-30", KV1, 1, yaw=0.0)], "shift": VIS,
@@ -156,18 +157,18 @@ P["s1"] = {"shot": [S_("start-30", KV1, 1, yaw=0.0)], "shift": VIS,
  "overlay": [sec("ccl-hook", "start", nxt("s1"), "系列 3・第 11 集", "示意", {"sub": "sub", "q": "q", "prev": "prev", "ccl": "ccl"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "start", "at": "start-10", "dur": 1}, {"to": "pcb", "at": CC, "dur": 1}],
  "shot": [S_(CC, KV2, 1)],
- "labels": [lab("kCuTA", "銅箔：導電，之後做成線路", "Copper foil", "amber", "cookie+8", "cookie+53"),
-            lab("kPPA", "膠片：玻纖布＋樹脂", "Prepreg: glass fabric + resin", "blue", "fab", "fab+45"),
-            lab("kCuBA", "下銅箔", "Copper foil (bottom)", "amber", "cu", "cu+45")],
+ "labels": [lab("kCuTA", "銅箔：導電，之後做成線路", "Copper foil", "amber", "cookie-20", "cookie+25"),
+            lab("kPPA", "膠片：玻纖布＋樹脂", "Prepreg: glass fabric + resin", "blue", "cookie+25", "cookie+70"),
+            lab("kCuBA", "下銅箔", "Copper foil (bottom)", "amber", "fab+3", "fab+48", xy=[800, 330])],
  "overlay": [card("s2", "ccl-sand", "像夾心餅乾：銅箔／膠片／銅箔", "示意（厚度放大）", {"cookie": "cookie", "fab": "fab", "cu": "cu"})]}
 P["s3"] = {"zoom": [{"to": "glass", "at": CC, "dur": 1}],
  "shot": [S_(CC, GV, 1)],
  "run": [run("gGlow", "hold-4", "s4:start", 6)],
- "labels": [lab("gFilA", "一根紗＝很多根玻璃絲", "Yarn = many glass filaments", "amber", "glass-3", "screen+1"),
+ "labels": [lab("gFilA", "一根紗＝很多根玻璃絲", "Yarn = many glass filaments", "amber", "glass-3", "screen+1", xy=[560, 1000]),
             lab("gWarpA", "經紗緯紗上下交錯", "Warp and weft interlace", "blue", "screen+3", "screen+48")],
  "overlay": [card("s3", "ccl-fab", "玻纖布：玻璃絲織成，像紗窗", "示意（放大，不按比例）", {"glass": "glass", "screen": "screen", "hold": "hold"})]}
 P["s4"] = {"zoom": [{"to": "treat", "at": CC, "dur": 1}],
- "shot": [S_(CC, RV, 1)],
+ "shot": [S_(CC, RV, 1), S_("dry-12", RV2, 24)],
  "run": [run("rUnSpin", "start-30", "s5:start", 10)] + [run(x, "start-30", "s5:start", 10) for x in ["rGuideSpin", "rDipSpin", "rSqzLo", "rSqzHi"]] + [ run("rWebDryF", "start-30", "s5:start", 4), run("rWebWetF", "start-30", "s5:start", 4),
          run("rDrip", "towel-6", "s5:start", 4), run("rHeatGlow", "dry-6", "s5:start", 8), run("rHotAir", "dry-4", "s5:start", 6)],
  "labels": [lab("rTankA", "樹脂槽：布整片泡進去", "Resin bath", "amber", "soak", "soak+45"),

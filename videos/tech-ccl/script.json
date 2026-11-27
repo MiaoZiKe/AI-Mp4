@@ -630,6 +630,13 @@
       "dur": 6
      },
      {
+      "layer": "eChips",
+      "at": "s5:end",
+      "until": "s6:start+42",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
       "layer": "ePanel",
       "at": "s1:start-40",
       "until": "s6:start+4",
@@ -828,8 +835,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 1.6,
-      "y": 1.4,
-      "d": 36,
+      "y": 1.2,
+      "d": 38,
       "elev": 22
      }
     ],
@@ -839,8 +846,8 @@
       "text": "銅箔：導電，之後做成線路",
       "en": "Copper foil",
       "color": "amber",
-      "at": "cookie+8",
-      "until": "cookie+53",
+      "at": "cookie-20",
+      "until": "cookie+25",
       "cut": true
      },
      {
@@ -848,8 +855,8 @@
       "text": "膠片：玻纖布＋樹脂",
       "en": "Prepreg: glass fabric + resin",
       "color": "blue",
-      "at": "fab",
-      "until": "fab+45",
+      "at": "cookie+25",
+      "until": "cookie+70",
       "cut": true
      },
      {
@@ -857,9 +864,13 @@
       "text": "下銅箔",
       "en": "Copper foil (bottom)",
       "color": "amber",
-      "at": "cu",
-      "until": "cu+45",
-      "cut": true
+      "at": "fab+3",
+      "until": "fab+48",
+      "cut": true,
+      "xy": [
+       800,
+       330
+      ]
      }
     ],
     "overlay": [
@@ -962,7 +973,11 @@
       "color": "amber",
       "at": "glass-3",
       "until": "screen+1",
-      "cut": true
+      "cut": true,
+      "xy": [
+       560,
+       1000
+      ]
      },
      {
       "part": "gWarpA",
@@ -1057,9 +1072,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 62.6,
-      "y": 2.3,
+      "y": 1.0,
       "d": 46,
-      "elev": 10
+      "elev": 12
+     },
+     {
+      "at": "dry-12",
+      "dur": 24,
+      "x": 66.4,
+      "y": 1.4,
+      "d": 29,
+      "elev": 12
      }
     ],
     "run": [
@@ -1886,9 +1909,9 @@
       "at": "voice-4",
       "dur": 1,
       "x": 185.0,
-      "y": 0.9,
+      "y": -0.3,
       "d": 31,
-      "elev": 14
+      "elev": 18
      }
     ],
     "labels": [
@@ -1992,9 +2015,9 @@
       "at": "voice+5",
       "dur": 1,
       "x": 215.0,
-      "y": 0.8,
-      "d": 36,
-      "elev": 20
+      "y": -0.2,
+      "d": 31,
+      "elev": 22
      }
     ],
     "run": [

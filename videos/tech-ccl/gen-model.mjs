@@ -123,7 +123,7 @@ for (let j = 0; j < GN; j++) {
 P({ id: "gWJ", layer: "gWarp", shape: "sphere", size: [GR], pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => Array.from({ length: GN }, (_, j) => [gx(i), R2(GY - GA * sg(i, j)), gz(j)])).flat(), mat: "yarn" });
 // 一根紗拆開＝很多根玻璃絲（散開的尾端）
 LAY("gFil", [2, 1, GX + 4, GY]);
-for (let k = 0; k < 15; k++) { const t = (k - 7) / 7, u = ((k * 5) % 7 - 3) / 3; SEG3(`gFl${k}`, "gFil", [GX, R2(GY + 0.2), R2(gz(GN - 1) + 0.2)], [R2(GX + 1.1 * t), R2(GY + 0.9 + 0.5 * u), R2(gz(GN - 1) + 2.4)], 0.05, "yarn"); }
+for (let k = 0; k < 15; k++) { const t = (k - 7) / 7, u = ((k * 5) % 7 - 3) / 3; SEG3(`gFl${k}`, "gFil", [GX, R2(GY + 0.2), R2(gz(GN - 1) + 0.2)], [R2(GX + 1.1 * t), R2(GY + 1.2 + 0.4 * u), R2(gz(GN - 1) + 2.0)], 0.05, "yarn"); }
 // 後面一捲布
 LAY("gRoll", [8, 2, GX, 2]);
 HXC("grRoll", "gRoll", 0.9, GX - 4, GX + 4, 1.85, -5.6, "yarn"); HXC("grCore", "gRoll", 0.25, GX - 4.4, GX + 4.4, 1.85, -5.6, "steel");
@@ -319,7 +319,7 @@ actions.rWebDryF = { type: "flow", _說明: "乾布往前走（白色標記點�
 actions.rWebWetF = { type: "flow", _說明: "布浸過樹脂後往前走，經擠壓輥、進烘箱（琥珀色標記點）", layer: "rWebWet", path: [[RX - 2.5, 1.5, 1.0], [RX - 1.8, 0.66, 1.0], [RX + 0.4, 2.65, 1.0], [OV0, 2.65, 1.0], [OV1, 2.65, 1.0], [RX + 8.6, 2.65, 1.0]], n: 8, size: 0.09, shape: "dot", rate: 0.3, color: "ppC", track: false };
 actions.rGuideSpin = { type: "rotate", parts: ["rGuide0", "rMkG0"], axis: [0, 0, -1], pivot: [RX - 3.6, 3.05, 0], rps: 0.9, rampSpin: true };
 actions.rDipSpin = { type: "rotate", parts: ["rGuide1", "rMkG1"], axis: [0, 0, 1], pivot: [RX - 1.8, 0.75, 0], rps: 0.9, rampSpin: true };
-actions.rSqzLo = { type: "rotate", _說明: "擠壓輥一對反向轉（下支逆、上支順，夾著布往右送）", parts: ["rSqz0", "rMkS0"], axis: [0, 0, -1], pivot: [RX + 0.4, 2.25, 0], rps: 0.5, rampSpin: true };
+actions.rSqzLo = { type: "rotate", _說明: "擠壓輥一對反向轉（下支軸 −z、上支軸 +z，夾著布往右送）", parts: ["rSqz0", "rMkS0"], axis: [0, 0, -1], pivot: [RX + 0.4, 2.25, 0], rps: 0.5, rampSpin: true };
 actions.rSqzHi = { type: "rotate", parts: ["rSqz1", "rMkS1"], axis: [0, 0, 1], pivot: [RX + 0.4, 2.95, 0], rps: 0.5, rampSpin: true };
 for (let i = 0; i < 11; i++) actions[`eRS${i}`] = { type: "rotate", parts: [`eRol${i}`, `eRolMk${i}`], axis: [0, 0, -1], pivot: [R2(EX - 4.5 + i * 0.9), 1.13, 0], rps: 0.6, rampSpin: true };
 actions.rDrip = { type: "flow", _說明: "擠壓輥擠掉多的樹脂，滴回槽裡（受重力加速）", layer: "rFrame", path: [[RX + 0.1, 2.3, 0.6], [RX - 0.6, 1.45, 0.6]], n: 3, lanes: 2, laneDir: [0, 0, -1], laneGap: 0.9, size: 0.08, shape: "dot", rate: 1.1, color: "resinL", track: false, accel: true, free: true };
