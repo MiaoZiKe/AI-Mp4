@@ -283,7 +283,7 @@ const LAB = (id, x, logo) => { LAY(id, [4, 2.4, x, 1.2]);
   BOX(`${id}Door`, id, x + 0.9, x + 1.7, 0.12, 1.2, 4.2, 4.25, "dark"); BOX(`${id}SignBg`, id, x - 1.8, x + 0.7, 1.25, 1.85, 4.2, 4.24, "panel");
   PLATE(`${id}Sign`, id, logo, 2.4, x - 0.55, 1.55, 4.25); };
 LAB("cUni", CX - 5.5, "sign-unimicron"); LAB("cInno", CX + 1.5, "sign-innolux");
-LAY("cfTw", [1.6, 5, CX - 2.0, 2.5]); FLAGPOLE("cfTwP", "cfTw", "TW", CX - 2.0, 3.2, 3.6, 1.2);
+LAY("cfTw", [1.6, 3, CX - 2.0, 1.2]); FLAGPOLE("cfTwP", "cfTw", "TW", CX - 2.0, 4.4, 2.0, 1.0);
 // 送樣箱（台灣兩家各一箱，念「送樣」時往外送）：箱子＋上面一片玻璃基板樣品
 const BOXES = (id, x) => { LAY(id, [1.2, 0.8, x, 0.4]); BOX(`${id}B`, id, x - 0.5, x + 0.5, 0.12, 0.6, 4.6, 5.4, "kraft"); BOX(`${id}G`, id, x - 0.4, x + 0.4, 0.6, 0.66, 4.7, 5.3, "glassCore"); BOX(`${id}Tape`, id, x - 0.06, x + 0.06, 0.6, 0.61, 4.6, 5.4, "warnY"); };
 BOXES("cBoxU", CX - 4.0); BOXES("cBoxI", CX + 3.0);
