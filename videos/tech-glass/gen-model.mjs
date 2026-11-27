@@ -116,7 +116,7 @@ const idsOf = (layer) => parts.filter((q) => q.layer === layer).map((q) => q.id)
 const SPIRAL = (a0, cx, y, r0, r1, turns = 1.1) => Array.from({ length: 12 }, (_, i) => { const u = i / 11, [x, z] = pol(a0 + u * 360 * turns, r0 + (r1 - r0) * u); return [R2(x + cx), y, z]; });
 
 // ── 貼圖：國旗、台積電 LOGO（原檔）、沒有原檔可用的公司用白底深色字名牌、電阻率表頭 ──
-const TEX = ["flag:TW", "flag:US", "flag:KR", "logo:intel", "logo:samsung", "text:absolics=Absolics|SKC 子公司", "text:unimicron=欣興電子|送樣中", "text:innolux=群創光電|送樣中", "text:m26=2026|現在", "text:m27=2027|最快", "text:m28=2028 以後|多數", "text:goal=量產|預計", "text:ccl=銅箔基板|下一集", "text:unk=尚未確定|截至 2026/11/28"];
+const TEX = ["flag:TW", "flag:US", "flag:KR", "logo:intel", "logo:samsung", "text:absolics=Absolics|SKC 子公司", "text:unimicron=台灣廠商|送樣中", "text:innolux=台灣廠商|送樣中", "text:m26=2026|現在", "text:m27=2027|最快", "text:m28=2028 以後|多數", "text:goal=量產|預計", "text:ccl=銅箔基板|下一集", "text:unk=尚未確定|截至 2026/11/28"];
 { const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-glass", ...TEX], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stdout, r.stderr); process.exit(1); } }
 const SIGN = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
 const TEXMAT = (name) => { materials[`t_${name}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/${name}.png` }; return `t_${name}`; };
@@ -339,13 +339,13 @@ P({ id: "cRoad", layer: "floor", shape: "box", size: [26, 0.02, 1.2], pos: [CX, 
 const QX = 120;
 LAY("qRoad", [20, 0.2, QX, 0.06]); BOX("qRoadB", "qRoad", QX - 10, QX + 10, 0.02, 0.08, -0.9, 0.9, "band"); P({ id: "qDash", layer: "qRoad", shape: "box", size: [0.8, 0.01, 0.1], pos: [0, 0.085, 0], at: Array.from({ length: 10 }, (_, i) => [R2(QX - 9 + i * 2), 0, 0]), mat: "warnY" });
 const POST = (id, x, sign) => { LAY(id, [3.4, 3.6, x, 1.8]); VC(`${id}P`, id, 0.08, 0, 2.6, "steel2", { x, z: -1.4 }); BOX(`${id}Bg`, id, x - 1.5, x + 1.5, 2.2, 3.5, -1.47, -1.43, "panel"); PLATE(`${id}S`, id, sign, 2.8, x, 2.85, -1.42); };
-POST("qP26", QX - 7, "sign-m26"); POST("qP27", QX, "sign-m27"); POST("qP28", QX + 7, "sign-m28");
+POST("qP26", QX - 5, "sign-m26"); POST("qP27", QX, "sign-m27"); POST("qP28", QX + 5, "sign-m28");
 LAY("qCart", [4.8, 2.0, QX - 7, 1.0]);
 BOX("qCartB", "qCart", QX - 9.2, QX - 4.8, 0.55, 0.8, -1.2, 1.2, "steel2"); P({ id: "qWheel", layer: "qCart", shape: "cyl", size: [0.34, 0.2], pos: [0, 0.34, 0], at: [[QX - 8.6, 0, -1.25], [QX - 5.4, 0, -1.25], [QX - 8.6, 0, 1.25], [QX - 5.4, 0, 1.25]], mat: "rubber" });
 BOX("qCartG", "qCart", QX - 8.8, QX - 5.2, 0.8, 1.15, -1.0, 1.0, "glassCore"); P({ id: "qCartTgv", layer: "qCart", shape: "tube", size: [0.07, 0.045, 0.35], rot: V, pos: [0, 0.975, 0], at: Array.from({ length: 24 }, (_, i) => [R2(QX - 8.5 + (i % 8) * 0.43), 0, R2(-0.6 + Math.floor(i / 8) * 0.6)]), mat: "cuB" });
 VC("qCartPostL", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: -0.9 }); VC("qCartPostR", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: 0.9 }); ZC("qCartBar", "qCart", 0.06, -1.0, 1.0, QX - 9.1, 1.9, "rubber");
 // 量產目標旗（念「一延再延」時往後挪兩次）
-LAY("qGoal", [3, 5.4, QX + 1.8, 2.7]); VC("qGoalP", "qGoal", 0.08, 0, 5.4, "steel2", { x: QX + 0.4, z: 0 }); VC("qGoalB", "qGoal", 0.3, 0, 0.14, "dark", { x: QX + 0.4, z: 0 }); PLATE("qGoalS", "qGoal", "sign-goal", 2.8, QX + 1.9, 4.6, 0.02);
+LAY("qGoal", [3, 5.4, QX + 1.8, 2.7]); VC("qGoalP", "qGoal", 0.08, 0, 5.4, "steel2", { x: QX + 0.4, z: 0 }); VC("qGoalB", "qGoal", 0.3, 0, 0.14, "dark", { x: QX + 0.4, z: 0 }); PLATE("qGoalS", "qGoal", "sign-goal", 3.4, QX + 2.2, 4.6, 0.02);
 LAY("qTest", [3.4, 3.4, QX + 3.2, 1.7]);
 BOX("qTestB", "qTest", QX + 1.6, QX + 4.8, 0, 3.2, 1.4, 3.6, "panel"); BOX("qTestWin", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 3.6, 3.63, "window"); BOX("qTestIn", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 2.0, 2.04, "dark");
 P({ id: "qTestRack", layer: "qTest", shape: "box", size: [1.8, 0.04, 1.2], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.6, 0], [0, 2.1, 0]], mat: "steel2" }); P({ id: "qTestPanel", layer: "qTest", shape: "box", size: [1.4, 0.06, 0.9], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.65, 0], [0, 2.15, 0]], mat: "glassCore" });
@@ -355,7 +355,7 @@ BOX("qTestHandle", "qTest", QX + 3.7, QX + 3.8, 0.9, 1.0, 3.6, 3.75, "steel"); P
 P({ id: "qTestVent", layer: "qTest", shape: "box", size: [0.02, 0.06, 1.6], pos: [R2(QX + 4.81), 0, 2.5], at: Array.from({ length: 8 }, (_, i) => [0, R2(0.4 + i * 0.12), 0]), mat: "dark" });
 SPH("qTestStop", "qTest", 0.13, QX + 4.4, 0.8, 3.64, "lampR"); VC("qTestPort", "qTest", 0.12, 3.2, 3.4, "dark", { x: QX + 2.0, z: 2.0 });
 BOX("qTestScreen", "qTest", QX + 4.15, QX + 4.65, 1.4, 2.1, 3.6, 3.63, "screen");
-LAY("qUnk", [3, 2, QX + 6.4, 1.2]); VC("qUnkP", "qUnk", 0.06, 0, 1.0, "steel2", { x: QX + 6.4, z: 4.0 }); BOX("qUnkBg", "qUnk", QX + 4.9, QX + 7.9, 1.0, 2.0, 4.0, 4.04, "panel"); PLATE("qUnkS", "qUnk", "sign-unk", 2.9, QX + 6.4, 1.5, 4.05);
+LAY("qUnk", [3.6, 2.4, QX + 5.6, 1.4]); VC("qUnkP", "qUnk", 0.06, 0, 1.0, "steel2", { x: QX + 5.6, z: 4.0 }); BOX("qUnkBg", "qUnk", QX + 3.8, QX + 7.4, 1.0, 2.4, 4.0, 4.04, "panel"); PLATE("qUnkS", "qUnk", "sign-unk", 3.5, QX + 5.6, 1.7, 4.05);
 
 // ═════ 站 N：下一集（銅箔基板：銅箔／浸樹脂玻纖布／銅箔，疊成一疊）═════
 const NX = 150;
@@ -410,7 +410,7 @@ Object.assign(anchors, {
   qCart: A("qCart", [QX - 7, 0.75, 0], -120, -110), qTest: A("qTest", [QX + 3.2, 3.2, 2.5], 130, -110), qP27: A("qP27", [QX, 3.5, -1.42], 120, -100),
   tGalvo: A("tHead", [TX + 0.7, 5.3, 0.6], 150, -90), tBarrel: A("tHeadB", [TX + 0.28, 4.0, 0.2], 150, 0), tLens: A("tHeadL", [TX + 0.3, 3.36, 0.2], 150, 80), tNo: A("tNo", [TXS[3], TG1 + 0.35, 2.56], -140, -110),
   tDrillH: A("tDrill", [CPX + 0.55, CPY + 2.6, CPZ + 0.45], 140, -100), kB2: A("kB2", [KX + 4.6, R2(ky0 + 2 * BU + 0.1), 3.5], 150, 90), kBalls: A("kBalls", [KX + 3.0, 0.6, 4.5], 150, 100), kT2: A("kT2", [KX + 4.6, R2(kc1 + BU + 0.1), 3.5], 150, -90),
-  qGoal: A("qGoal", [QX + 1.9, 4.6, 0.02], 120, -100), qUnk: A("qUnk", [QX + 6.4, 1.5, 4.05], -120, -100),
+  qGoal: A("qGoal", [QX + 1.9, 4.6, 0.02], 120, -100), qUnk: A("qUnk", [QX + 5.6, 1.7, 4.05], -120, -100),
   nStack: A("nTop", [NX + 3.5, 2.38, 2.0], 140, -110),
 });
 

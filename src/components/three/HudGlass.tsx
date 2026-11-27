@@ -153,8 +153,7 @@ const Co: React.FC<P> = ({ o, f, k }) => {
     { fl: ["US"], logo: "intel", lh: 34, name: "英特爾", sub: "", s: "美國晶片大廠：研發、展示樣品", a: it },
     { fl: ["KR"], logo: "samsung", lh: 14, name: "三星電機", sub: "", s: "南韓零件廠：試產線", a: sm },
     { fl: ["KR", "US"], name: "Absolics", sub: "", s: "南韓 SKC 子公司：美國喬治亞專廠", a: kr },
-    { fl: ["TW"], name: "欣興", sub: "", s: "台灣載板廠：送樣、驗證中", a: Math.max(tw, sp) },
-    { fl: ["TW"], name: "群創", sub: "", s: "台灣面板廠：送樣、試產規劃", a: Math.max(tw, sp) },
+    { fl: ["TW"], name: "台灣廠商", sub: "", s: "送樣中（媒體報導，截至 2026/11/28）", a: Math.max(tw, sp) },
   ];
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     {rows.map((r, i) => { const y = CT + 10 + i * 64; return (<g key={r.name}>

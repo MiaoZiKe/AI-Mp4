@@ -107,8 +107,8 @@ def ext_frames(sid, n, last_cue, name_len):
     lc = next((c["frame"] for c in _tl[sid]["cues"] if c["id"] == last_cue), c0)
     need = round(max(3.5, 1.2 * n + 1.5) * 30) + 6
     return max(0, need - (c1 - c0), (lc + name_len * 6 + 30 + 3) - c1)
-# s6 卡上 5 家（英特爾、三星電機、Absolics、欣興、群創）；最後念到的是「台灣」（廠商）＋「送樣」
-EXTN = {"s7": ext_frames("s6", 5, "sample", 2)}
+# s6 卡上 3 家（英特爾、三星電機、Absolics；第 27 條⑤ 最多 3 家）＋不具名的台灣廠商列；最後念到的是「台灣」（廠商）＋「送樣」
+EXTN = {"s7": ext_frames("s6", 3, "sample", 2)}
 def SA(sid):
     n = EXTN.get(sid, 0); return f"voice{n - 3:+d}" if n else C
 def SC(sid):
@@ -157,7 +157,7 @@ drop("cUni", "s6:tw-8", 4.0, 14); drop("cInno", "s6:tw-4", 4.0, 14); drop("cfTw"
 drop("cBoxU", "s6:sample-10", 2.0, 10); drop("cBoxI", "s6:sample-6", 2.0, 10)
 VIS += [mv("cBoxU", "s6:sample+8", FAR, 26, dz=2.2), mv("cBoxI", "s6:sample+12", FAR, 26, dz=2.2)]
 # ── 站 Q（s7）：推車往 2027 推（量產）→ 被推回（一延再延）→ 2028 以後路標落下；冷熱循環一直跑；「尚未確定」牌念到才落下 ──
-VIS += [mv("qGoal", T0, "s7:delay+2", 16, dx=-3.9), mv("qGoal", "s7:early-2", FAR, 16, dx=3.6)]
+VIS += [mv("qCart", T0, FAR, 1, dx=2.6), mv("qGoal", T0, "s7:delay+2", 16, dx=-3.9), mv("qGoal", "s7:early-2", FAR, 16, dx=3.6)]
 drop("qP28", "s7:most-4", 1.2, 12); drop("qUnk", "s7:unk-6", 3.0, 12)
 # ── 站 N（s8）：銅箔基板一疊，最上面一組念「銅箔基板」才蓋上；招牌念到才落下 ──
 drop("nTop", "s8:ccl-6", 2.0, 14); drop("nSign", "s8:ccl", 3.0, 12)
@@ -212,7 +212,7 @@ P["s6"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "labels": [lab("cUni", "台灣廠商：送樣", "Taiwan makers: sampling", "amber", "tw-2", "end")],
  "overlay": [card("s6", "glass-co", "誰在做玻璃基板", f"公司說法、媒體報導；截至 {ASOF}", {"intel": "intel", "sem": "sem", "kr": "kr", "us": "us", "tw": "tw", "sample": "sample"}, h=400, y=990)]}
 P["s7"] = {"zoom": [{"to": "co", "at": SC("s7"), "dur": 1}],
- "shot": [shot(SC("s7"), X["QX"] - 1.2, 0.4, 60, 22, 1)],
+ "shot": [shot(SC("s7"), X["QX"] + 0.4, 0.6, 50, 20, 1)],
  "run": [run(a, b, c, 6) for i, (b, c) in enumerate([("start", "start+50"), ("start+50", "start+100"), ("start+100", "start+150"), ("start+150", "s8:start")]) for a in (("qHot", "qLampHot") if i % 2 == 0 else ("qCold", "qLampCold"))],
  "labels": [lab("qTest", "可靠性測試（延後原因之一）", "Reliability tests (a reported cause)", "blue", "mass+2", "early+6", xy=[560, 990]), lab("qGoal", "量產目標往後挪", "Target keeps slipping", "amber", "delay", "early+8", xy=[560, 400]), lab("qUnk", "截至 11/28 還沒確定", "Unconfirmed as of 11/28", "amber", "unk-4", "end")],
  "overlay": [card("s7", "glass-road", "量產一延再延", f"分析預期；截至 {ASOF} 尚未確定", {"mass": "mass", "delay": "delay", "most": "most", "early": "early", "unk": "unk"})]}
