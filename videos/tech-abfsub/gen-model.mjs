@@ -191,22 +191,28 @@ LAY("dRuler", [10, 0.3, DX + 3.5, 1]); BOX("drBar", "dRuler", DX - 1.5, DX + 8.5
 for (let i = 0; i <= 10; i++) BOX(`drTick${i}`, "dRuler", R2(DX - 1.5 + i - 0.03), R2(DX - 1.5 + i + 0.03), 1.0, 1.02, 5.4, i % 5 ? 5.8 : 6.2, "dark");
 
 // ═════ 站 E：層數闖關（x 180）：載板側面剖開，二十多層一層層亮綠；其中一層亮紅 → 整片紅、蓋✗ ═════
-const EX = 180, EN = 22, ET = 0.32, EY0 = 1.4;
+const EX = 180, EN = 22, ET = 0.32, EY0 = 1.4, ECT = 0.8, EC0 = EN / 2;   // 第 EC0 層起往上多墊一塊核心
+const eY = (k) => R2(EY0 + k * ET + (k >= EC0 ? ECT : 0));
 LAY("eBase", [18, 1.4, EX, 0.7]); BOX("ebStand", "eBase", EX - 9, EX + 9, 0, EY0, -3, 3, "steel2");
-LAY("eStack", [16, EN * ET, EX, EY0 + EN * ET / 2]);
-for (let k = 0; k < EN; k++) { const y0 = R2(EY0 + k * ET), core = k === EN / 2 - 1 || k === EN / 2;
-  BOX(`esL${k}`, "eStack", EX - 8, EX + 8, y0, R2(y0 + ET - 0.06), -2.5, 2.5, core ? "core" : "abf"); BOX(`esC${k}`, "eStack", EX - 8, EX + 8, R2(y0 + ET - 0.06), R2(y0 + ET), -2.5, 2.5, "copper"); }
-const EBAD = 18;      // 外側（上面數來第 4 層）出錯
-for (let k = 0; k < EN; k++) { LAY(`eOk${k}`, [16, ET, EX, EY0 + k * ET]); BOX(`eOkB${k}`, `eOk${k}`, EX - 8.02, EX + 8.02, R2(EY0 + k * ET + 0.04), R2(EY0 + (k + 1) * ET - 0.1), 2.5, 2.54, k === EBAD ? "badGlow" : "okGlow"); }
-LAY("eFail", [16, EN * ET, EX, EY0 + EN * ET / 2]); BOX("efBox", "eFail", EX - 8.1, EX + 8.1, EY0, R2(EY0 + EN * ET + 0.05), 2.5, 2.62, "badSolid");
-LAY("eX", [3, 3, EX, EY0 + EN * ET + 2]); P({ id: "eXa", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + 2), 2.6], rot: [0, 0, 45], mat: "badSolid" }); P({ id: "eXb", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + 2), 2.6], rot: [0, 0, -45], mat: "badSolid" });
+LAY("eStack", [16, EN * ET + ECT, EX, EY0 + (EN * ET + ECT) / 2]);
+const EYC = R2(EY0 + EC0 * ET);
+BOX("esCore", "eStack", EX - 8, EX + 8, EYC, R2(EYC + ECT), -2.5, 2.5, "core");
+for (let i = 0; i < 3; i++) BOX(`esFib${i}`, "eStack", EX - 8, EX + 8, R2(EYC + 0.12 + i * 0.24), R2(EYC + 0.2 + i * 0.24), 2.5, 2.52, "fiber");
+for (let k = 0; k < EN; k++) { const y0 = eY(k);
+  BOX(`esL${k}`, "eStack", EX - 8, EX + 8, y0, R2(y0 + ET - 0.06), -2.5, 2.5, "abf"); BOX(`esC${k}`, "eStack", EX - 8, EX + 8, R2(y0 + ET - 0.06), R2(y0 + ET), -2.5, 2.5, "copper"); }
+const EBAD = 18;      // 核心上方第 8 層出錯
+for (let k = 0; k < EN; k++) { LAY(`eOk${k}`, [16, ET, EX, eY(k)]); BOX(`eOkB${k}`, `eOk${k}`, EX - 8.02, EX + 8.02, R2(eY(k) + 0.04), R2(eY(k) + ET - 0.1), 2.5, 2.54, k === EBAD ? "badGlow" : "okGlow"); }
+LAY("eFail", [16, EN * ET + ECT, EX, EY0 + (EN * ET + ECT) / 2]); BOX("efBox", "eFail", EX - 8.1, EX + 8.1, EY0, R2(EY0 + EN * ET + ECT + 0.05), 2.5, 2.62, "badSolid");
+LAY("eX", [3, 3, EX, EY0 + EN * ET + ECT + 2]); P({ id: "eXa", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + ECT + 2), 2.6], rot: [0, 0, 45], mat: "badSolid" }); P({ id: "eXb", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + ECT + 2), 2.6], rot: [0, 0, -45], mat: "badSolid" });
 
 // ═════ 站 F：翹曲（x 240）：連續彎曲的板（poly 剖面沿 z 擠出）；受熱後依序換成越來越彎的四個階段（兩端往上翹，示意） ═════
 const FX = 240, FL = 15, FT = 0.56, FY = 3.0, FDEP = 8;
 LAY("fBase", [18, 3, FX, 1.5]); BOX("ffStand", "fBase", FX - 9, FX + 9, 0, 1.2, -4.5, 4.5, "steel2"); P({ id: "ffPin", layer: "fBase", shape: "cyl", size: [0.3, 1.8], rot: V, pos: [FX, 2.1, 0], mat: "dark" });
 const arcPts = (h) => { const n = 24, top = [], bot = []; for (let i = 0; i <= n; i++) { const u = -FL / 2 + (FL * i) / n, y = h * (u / (FL / 2)) ** 2; top.push([R2(u), R2(y + FT)]); bot.push([R2(u), R2(y)]); } return [...bot, ...top.reverse()]; };
-const FH = [0, 0.5, 1.0, 1.6];
-FH.forEach((h, i) => { LAY(`fB${i}`, [FL, FT + h, FX, FY + h / 2]); P({ id: `fBoard${i}`, layer: `fB${i}`, shape: "poly", pts: arcPts(h), size: [FL, R2(FT + h), FDEP], pos: [FX, FY, 0], mat: i === 0 ? "pcb" : "hotSolid" }); });
+const FNS = 9, FH = Array.from({ length: FNS }, (_, i) => R2(1.6 * (i / (FNS - 1)) ** 1.3));
+const mix = (a, b, t) => "#" + [0, 2, 4].map((j) => Math.round(parseInt(a.slice(1 + j, 3 + j), 16) * (1 - t) + parseInt(b.slice(1 + j, 3 + j), 16) * t).toString(16).padStart(2, "0")).join("");
+FH.forEach((_, i) => { const t = i / (FNS - 1); palette[`warm${i}C`] = mix(palette.pcbC, palette.hotC2, t); materials[`warm${i}`] = M("std", `warm${i}C`, { emissive: `warm${i}C`, ei: R2(0.35 * t), rough: 0.6, metal: 0.05, tex: "traces", texScale: 3 }); });
+FH.forEach((h, i) => { LAY(`fB${i}`, [FL, FT + h, FX, FY + h / 2]); P({ id: `fBoard${i}`, layer: `fB${i}`, shape: "poly", pts: arcPts(h), size: [FL, R2(FT + h), FDEP], pos: [FX, FY, 0], mat: `warm${i}` }); });
 LAY("fChip", [5, 0.6, FX, FY + 0.8]); BOX("fcDie", "fChip", FX - 2.2, FX + 2.2, FY + FT, FY + FT + 0.3, -1.8, 1.8, "siTop");
 
 // ═════ 站 G：出貨盒（x 300）：三只紙箱貼文字貼紙（不仿商標）═════
@@ -241,7 +247,7 @@ actions.drillSpin = { type: "rotate", _說明: "鑽針高速自轉（示意）�
 actions.drillChips = { type: "flow", _說明: "鑽屑從孔口往上、往外排出（跟著板子，不跟鑽針）", layer: "bCore", path: [[HOX + 0.3, BC1 + 0.2, 0.3], [HOX + 1.4, BC1 + 1.2, 0.6], [HOX + 2.6, BC1 + 0.3, 0.9]], n: 6, size: 0.1, shape: "dot", rate: 0.8, color: "fiberC", track: false, free: true, jitter: 0.2, accel: true };
 actions.laserPulseT = { type: "pulse", parts: ["bltBeam"], color: "laserC", glow: 1, freq: 4, halo: 0 };
 actions.laserPulseB = { type: "pulse", parts: ["blbBeam"], color: "laserC", glow: 1, freq: 4, halo: 0 };
-actions.heatGlow = { type: "pulse", parts: ["fBoard1", "fBoard2", "fBoard3"], color: "hotC2", glow: 0.5, freq: 0.8, halo: 0 };
+actions.heatGlow = { type: "pulse", parts: [`fBoard${FNS - 1}`], color: "hotC2", glow: 0.5, freq: 0.8, halo: 0 };
 actions.failPulse = { type: "pulse", parts: ["efBox"], color: "badC", glow: 0.9, freq: 1.2, halo: 0 };
 actions.wirePulse = { type: "pulse", parts: Array.from({ length: 7 }, (_, i) => `hW${i}`), color: "wireC", glow: 0.9, freq: 1.0, halo: 0 };
 
@@ -252,7 +258,7 @@ Object.assign(anchors, {
   filmT: A("bF0t", [BX - 7, BC1 + BF + 0.3, 0.02], -150, -90), filmB: A("bF0b", [BX - 7, BC0 - BF - 0.3, 0.02], -150, 100), via: A("bV1t", [VX, BC1 + BF + BL * 1.5, 0.3], 150, -90), laser: A("bLaserT", [VX + 0.9, LT + 3.6, 0.5], 150, -90),
   dSmall: A("dSmall", [DX - 9, 1.5, 0.8], -150, -90), dBig: A("dBig", [DX + 6, 1.8, 2.0], 150, -90), dRuler: A("dRuler", [DX + 8.5, 1.0, 6.0], 150, 100),
   eStack: A("eStack", [EX - 8, EY0 + 3, 2.5], -150, -90), eBad: A(`eOk${EBAD}`, [EX + 6, EY0 + EBAD * ET + 0.1, 2.54], 150, -90),
-  fWarp: A("fB3", [FX - 7.0, FY + 2.1, 4], -150, -90), fChip: A("fChip", [FX + 2.2, FY + 0.86, 1.8], 150, -90),
+  fWarp: A(`fB${FNS - 1}`, [FX - 7.0, FY + 2.1, 4], -150, -90), fChip: A("fChip", [FX + 2.2, FY + 0.86, 1.8], 150, -90),
   g0: A("g0", [PX - 7.6, 5.9, 3.3], -150, -90), g1: A("g1", [PX, 5.9, 3.3], 150, -90), g2: A("g2", [PX + 7.6, 5.9, 3.3], 150, -90),
   hSub: A("hSub", [HX2 - 3.5, 1.2, 3], -150, -90),
 });
@@ -266,7 +272,7 @@ const model = {
   pose: { yaw0: 0, yawIso: 0, drift: 0 },
   camera: { stand: { d: 60, elev: 24, y: 3 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { MBY, SBY0, SBY1, CHY0, BX, BC0, BC1, BF, BL, BN, HOX, VX, DRY, DX, EX, EN, EBAD, FX, FY, FH, PX, HX2, RS, BLY },
+  info: { MBY, SBY0, SBY1, CHY0, BX, BC0, BC1, BF, BL, BN, HOX, VX, DRY, DX, EX, EN, EBAD, FX, FY, FH, FNS, PX, HX2, RS, BLY },
 };
 const out = path.join(HERE, "model.json");
 fs.writeFileSync(out, JSON.stringify(model, null, 1) + "\n");

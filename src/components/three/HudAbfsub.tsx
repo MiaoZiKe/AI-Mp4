@@ -133,6 +133,7 @@ const Layer: React.FC<P> = ({ o, f, k }) => {
         {[0, 1, 2].map((i) => <rect key={i} x={30} y={y0 - (i + 1) * 40} width={270} height={34} fill={ABF} stroke={H.text2} strokeWidth={1.5} opacity={i === 0 ? 0.4 + 0.6 * fm : lk} />)}
         {[0, 1, 2].map((i) => <rect key={`c${i}`} x={30} y={y0 - (i + 1) * 40 - 6} width={270} height={6} fill={CU} opacity={i === 0 ? cu : lk} />)}
         <path d={`M150 ${y0 - 40} L158 ${y0} L172 ${y0} L180 ${y0 - 40} Z`} fill={ho > 0.5 && cu < 0.5 ? "#FFFFFF" : CU} opacity={Math.max(ho, cu)} />
+        {[1, 2].map((i) => <g key={`v${i}`} opacity={lk}><path d={`M150 ${y0 - (i + 1) * 40} L158 ${y0 - i * 40} L172 ${y0 - i * 40} L180 ${y0 - (i + 1) * 40} Z`} fill={CU} /><rect x={144} y={y0 - i * 40 - 6} width={42} height={6} fill={CU} /></g>)}
         <line x1={165} y1={CT + 10} x2={165} y2={y0 - 40} stroke={LASER} strokeWidth={5} opacity={ho * (1 - cu)} />
         <Sep x={334} />
         <Row x={360} y={CT + 48} t="貼膜（前一集的膜）" c={H.text2} a={fm} />
@@ -167,11 +168,13 @@ const Size: React.FC<P> = ({ o, f, k }) => {
 // ── abs-yield：每一層都是一關，一關失手就全毀（示意，非實際良率） ──
 const Yield: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, tw = on(f, T(o, "twenty")), mo = on(f, T(o, "more")), er = on(f, T(o, "err")), gm = on(f, T(o, "game")), fl = on(f, T(o, "fail"));
-  const n = Math.min(22, Math.floor(Math.max(0, f - T(o, "twenty") + 12) / 3));
+  const ring = Math.min(11, Math.floor(Math.max(0, f - T(o, "twenty") + 12) / 5));   // 從核心往外亮到第幾圈
+  const yOf = (i: number) => CT + 236 - (i + 1) * 8.4 - (i >= 11 ? 16 : 0);
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        {Array.from({ length: 22 }, (_, i) => { const bad = i === 15 && er > 0.5, lit = i < n && !(i > 15 && er > 0.5); return <rect key={i} x={40} y={CT + 226 - (i + 1) * 9.5} width={200} height={7} fill={fl > 0.5 ? RED : bad ? RED : lit ? OK : "#DDE3EC"} opacity={0.5 + 0.5 * tw} />; })}
+        <rect x={40} y={CT + 236 - 11 * 8.4 - 16} width={200} height={14} fill={fl > 0.5 ? RED : CORE} stroke={H.text2} strokeWidth={1} opacity={0.5 + 0.5 * tw} />
+        {Array.from({ length: 22 }, (_, i) => { const d = i >= 11 ? i - 11 : 10 - i, bad = i === 18 && er > 0.5, lit = d < Math.min(ring, 7); return <rect key={i} x={40} y={yOf(i)} width={200} height={6} fill={fl > 0.5 ? RED : bad ? RED : lit ? OK : "#DDE3EC"} opacity={0.5 + 0.5 * tw} />; })}
         <g opacity={fl}><line x1={250} y1={CT + 30} x2={300} y2={CT + 80} stroke={RED} strokeWidth={10} /><line x1={300} y1={CT + 30} x2={250} y2={CT + 80} stroke={RED} strokeWidth={10} /></g>
         <Sep x={334} />
         <Row x={360} y={CT + 48} t="兩面加起來二十多層" c={BLUE} a={tw} />
@@ -183,7 +186,7 @@ const Yield: React.FC<P> = ({ o, f, k }) => {
   );
 };
 
-// ── abs-warp：越大越厚、受熱越容易翹，像烤過頭的餅乾 ──
+// ── abs-warp：越大、層數越多，受熱越容易翹，像烤過頭的餅乾 ──
 const Warp: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, bg = on(f, T(o, "big")), ht = on(f, T(o, "heat"), 24), ck = on(f, T(o, "cookie"));
   const y0 = CT + 110, b = 34 * ht;
@@ -192,9 +195,9 @@ const Warp: React.FC<P> = ({ o, f, k }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <path d={`M30 ${y0 - b} Q160 ${y0 + b} 290 ${y0 - b} L290 ${y0 - b + 22} Q160 ${y0 + b + 22} 30 ${y0 - b + 22} Z`} fill={PCB} stroke={H.text2} strokeWidth={2} opacity={0.4 + 0.6 * bg} />
         {[0, 1, 2].map((i) => <path key={i} d={`M${90 + i * 70} ${y0 + 70} q10 -14 0 -28 q-10 -14 0 -28`} fill="none" stroke="#F28A3C" strokeWidth={5} opacity={ht} />)}
-        <g opacity={0.35 + 0.65 * ck}><path d={`M60 ${CT + 222} Q160 ${CT + 196 - 10} 260 ${CT + 222} L260 ${CT + 236} Q160 ${CT + 212} 60 ${CT + 236} Z`} fill={COOKIE} stroke={COOKIED} strokeWidth={3} />{[0, 1, 2].map((i) => <circle key={i} cx={110 + i * 50} cy={CT + 222 - 6 + Math.abs(i - 1) * 4} r={5} fill={COOKIED} />)}</g>
+        <g opacity={0.35 + 0.65 * ck}><path d={`M60 ${CT + 200} Q160 ${CT + 244} 260 ${CT + 200} L260 ${CT + 214} Q160 ${CT + 258} 60 ${CT + 214} Z`} fill={COOKIE} stroke={COOKIED} strokeWidth={3} />{[0, 1, 2].map((i) => <circle key={i} cx={110 + i * 50} cy={CT + 220 - Math.abs(i - 1) * 9} r={5} fill={COOKIED} />)}</g>
         <Sep x={334} />
-        <Row x={360} y={CT + 52} t="板子越大越厚" c={H.text2} a={bg} />
+        <Row x={360} y={CT + 52} t="板子越大、層數越多" c={H.text2} a={bg} />
         <Row x={360} y={CT + 118} t="受熱，材料脹得不一樣" c={H.amber} a={ht} />
         <Row x={360} y={CT + 184} t="翹起來，像烤過頭的餅乾" c={RED} a={ck} />
       </svg>

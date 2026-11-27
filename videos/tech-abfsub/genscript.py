@@ -145,16 +145,19 @@ for k, t in ((1, "s5:cu+2"), (2, "s5:link-6")):                                 
     VIS += [mv(l, t, FAR, 6, dy=BL) for l in ("bLaserT", "bBeamT")] + [mv(l, t, FAR, 6, dy=-BL) for l in ("bLaserB", "bBeamB")]
 # ── 站 E（s7）：二十多層逐層亮綠，第 15 層亮紅 → 整片紅、蓋✗ ──
 EN, EBAD = INFO["EN"], INFO["EBAD"]
-C0 = EN // 2                                                                         # 核心＝第 C0−1、C0 層
+C0 = EN // 2                                                                         # 核心在第 C0−1 與 C0 層之間（米色，一直看得到）
+BAD_RING = EBAD - C0
 for k in range(EN):
-    if k in (C0 - 1, C0): vis(f"eOk{k}", [("s7:twenty-14", FAR)], 1); continue          # 核心先亮
-    i = (k - (C0 + 1)) if k > C0 else (C0 - 2 - k)                                      # 往外第 i 圈（上下同時）
+    i = (k - C0) if k >= C0 else (C0 - 1 - k)                                           # 從核心往外第 i 圈（上下同時亮）
     if k == EBAD: vis(f"eOk{k}", [("s7:err-4", FAR)], 1)
-    elif i < EBAD - (C0 + 1): vis(f"eOk{k}", [(f"s7:twenty{i * 4 - 10:+d}", FAR)], 1)
+    elif i < BAD_RING: vis(f"eOk{k}", [(f"s7:twenty{i * 5 - 12:+d}", FAR)], 1)
     else: vis(f"eOk{k}", [], 1)
 vis("eFail", [("s7:fail-4", FAR)], 3); vis("eX", [("s7:fail", FAR)], 2)
 # ── 站 F（s8）：受熱發橘，各段往上翹（離中心越遠翹越高＝拋物線） ──
-vis("fB0", [(T0, "s8:heat")], 1); vis("fB1", [("s8:heat", "s8:heat+8")], 1); vis("fB2", [("s8:heat+8", "s8:heat+16")], 1); vis("fB3", [("s8:heat+16", FAR)], 1)
+FNS = INFO["FNS"]                                                                    # 同一塊板：受熱後 24 幀內由綠漸變到橘、彎曲從 0 長到最彎
+for i in range(FNS):
+    a = T0 if i == 0 else f"s8:heat{(i - 1) * 3 + 2:+d}"
+    vis(f"fB{i}", [(a, FAR if i == FNS - 1 else f"s8:heat{i * 3 + 2:+d}")], 1)
 # ── 站 G（s9）：三只紙箱念到才落下 ──
 drop("g0", "s9:uni-8", 3.0, 12); drop("g1", "s9:nya-8", 3.0, 12); drop("g2", "s9:kin-8", 3.0, 12)
 # ── 站 H（s10）：金線念到「另一種」才出現 ──
