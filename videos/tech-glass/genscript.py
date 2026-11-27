@@ -157,7 +157,7 @@ drop("cUni", "s6:tw-8", 4.0, 14); drop("cInno", "s6:tw-4", 4.0, 14); drop("cfTw"
 drop("cBoxU", "s6:sample-10", 2.0, 10); drop("cBoxI", "s6:sample-6", 2.0, 10)
 VIS += [mv("cBoxU", "s6:sample+8", FAR, 26, dz=2.2), mv("cBoxI", "s6:sample+12", FAR, 26, dz=2.2)]
 # ── 站 Q（s7）：推車往 2027 推（量產）→ 被推回（一延再延）→ 2028 以後路標落下；冷熱循環一直跑；「尚未確定」牌念到才落下 ──
-VIS += [mv("qCart", T0, FAR, 1, dx=2.6), mv("qGoal", T0, "s7:delay+2", 16, dx=-3.9), mv("qGoal", "s7:early-2", FAR, 16, dx=3.6)]
+VIS += [mv("qCart", T0, FAR, 1, dx=2.6), mv("qGoal", T0, "s7:delay+2", 16, dx=-3.9), mv("qGoal", "s7:early-2", FAR, 16, dx=2.6)]
 drop("qP28", "s7:most-4", 1.2, 12); drop("qUnk", "s7:unk-6", 3.0, 12)
 # ── 站 N（s8）：銅箔基板一疊，最上面一組念「銅箔基板」才蓋上；招牌念到才落下 ──
 drop("nTop", "s8:ccl-6", 2.0, 14); drop("nSign", "s8:ccl", 3.0, 12)

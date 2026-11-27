@@ -345,7 +345,7 @@ BOX("qCartB", "qCart", QX - 9.2, QX - 4.8, 0.55, 0.8, -1.2, 1.2, "steel2"); P({ 
 BOX("qCartG", "qCart", QX - 8.8, QX - 5.2, 0.8, 1.15, -1.0, 1.0, "glassCore"); P({ id: "qCartTgv", layer: "qCart", shape: "tube", size: [0.07, 0.045, 0.35], rot: V, pos: [0, 0.975, 0], at: Array.from({ length: 24 }, (_, i) => [R2(QX - 8.5 + (i % 8) * 0.43), 0, R2(-0.6 + Math.floor(i / 8) * 0.6)]), mat: "cuB" });
 VC("qCartPostL", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: -0.9 }); VC("qCartPostR", "qCart", 0.05, 0.8, 1.9, "steel", { x: QX - 9.1, z: 0.9 }); ZC("qCartBar", "qCart", 0.06, -1.0, 1.0, QX - 9.1, 1.9, "rubber");
 // 量產目標旗（念「一延再延」時往後挪兩次）
-LAY("qGoal", [3, 5.4, QX + 1.8, 2.7]); VC("qGoalP", "qGoal", 0.08, 0, 5.4, "steel2", { x: QX + 0.4, z: 0 }); VC("qGoalB", "qGoal", 0.3, 0, 0.14, "dark", { x: QX + 0.4, z: 0 }); PLATE("qGoalS", "qGoal", "sign-goal", 3.4, QX + 2.2, 4.6, 0.02);
+LAY("qGoal", [3, 6.4, QX + 1.8, 3.2]); VC("qGoalP", "qGoal", 0.08, 0, 6.4, "steel2", { x: QX + 0.4, z: 0 }); VC("qGoalB", "qGoal", 0.3, 0, 0.14, "dark", { x: QX + 0.4, z: 0 }); PLATE("qGoalS", "qGoal", "sign-goal", 3.4, QX + 2.2, 5.6, 0.02);
 LAY("qTest", [3.4, 3.4, QX + 3.2, 1.7]);
 BOX("qTestB", "qTest", QX + 1.6, QX + 4.8, 0, 3.2, 1.4, 3.6, "panel"); BOX("qTestWin", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 3.6, 3.63, "window"); BOX("qTestIn", "qTest", QX + 2.0, QX + 4.0, 1.2, 2.6, 2.0, 2.04, "dark");
 P({ id: "qTestRack", layer: "qTest", shape: "box", size: [1.8, 0.04, 1.2], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.6, 0], [0, 2.1, 0]], mat: "steel2" }); P({ id: "qTestPanel", layer: "qTest", shape: "box", size: [1.4, 0.06, 0.9], pos: [QX + 3.0, 0, 2.8], at: [[0, 1.65, 0], [0, 2.15, 0]], mat: "glassCore" });
@@ -410,7 +410,7 @@ Object.assign(anchors, {
   qCart: A("qCart", [QX - 7, 0.75, 0], -120, -110), qTest: A("qTest", [QX + 3.2, 3.2, 2.5], 130, -110), qP27: A("qP27", [QX, 3.5, -1.42], 120, -100),
   tGalvo: A("tHead", [TX + 0.7, 5.3, 0.6], 150, -90), tBarrel: A("tHeadB", [TX + 0.28, 4.0, 0.2], 150, 0), tLens: A("tHeadL", [TX + 0.3, 3.36, 0.2], 150, 80), tNo: A("tNo", [TXS[3], TG1 + 0.35, 2.56], -140, -110),
   tDrillH: A("tDrill", [CPX + 0.55, CPY + 2.6, CPZ + 0.45], 140, -100), kB2: A("kB2", [KX + 4.6, R2(ky0 + 2 * BU + 0.1), 3.5], 150, 90), kBalls: A("kBalls", [KX + 3.0, 0.6, 4.5], 150, 100), kT2: A("kT2", [KX + 4.6, R2(kc1 + BU + 0.1), 3.5], 150, -90),
-  qGoal: A("qGoal", [QX + 1.9, 4.6, 0.02], 120, -100), qUnk: A("qUnk", [QX + 5.6, 1.7, 4.05], -120, -100),
+  qGoal: A("qGoal", [QX + 1.9, 5.6, 0.02], 120, -100), qUnk: A("qUnk", [QX + 5.6, 1.7, 4.05], -120, -100),
   nStack: A("nTop", [NX + 3.5, 2.38, 2.0], 140, -110),
 });
 
