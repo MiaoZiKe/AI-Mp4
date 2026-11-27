@@ -1064,7 +1064,7 @@ const HudEndCard: React.FC<{ f: number; at: number; nextAt?: number; spec: { nex
 };
 
 /** 字幕：深色框、一次一段單行；關鍵詞念到時上色加底線；英文跟著中文的句 */
-type Cue = { id: string; en: string; keywords: string[]; mark?: string; window: [number, number]; phrases: { text: string; start: number }[]; keywords_at: { text: string; start: number }[] };
+type Cue = { id: string; en: string; keywords: string[]; mark?: string; notes?: { a: number; b: number; zh: string; en: string }[]; window: [number, number]; phrases: { text: string; start: number }[]; keywords_at: { text: string; start: number }[] };
 const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
   const act = cues.filter((c) => c.phrases.length);
   if (!act.length) return null;
@@ -1077,7 +1077,9 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
   const kwAt = Object.fromEntries(cue.keywords_at.map((x) => [x.text, x.start]));
   const p = a <= 0 && k === 0 ? 1 : tween(f, startOf(k), 5, EASE.enter);
   const cols = [H.line, H.amber, H.coral];
-  const text = ps[k].text.replace(/\n/g, "").replace(/[，、；：。]+$/, "");
+  // props.capNote（tech-twequip r5）：這段時間畫面在講的不是旁白那句（例如電控箱特寫），字幕卡改成畫面字，不讓字幕停在別句
+  const note = (cue.notes ?? []).find((n) => f >= n.a && f < n.b);
+  const text = note ? note.zh : ps[k].text.replace(/\n/g, "").replace(/[，、；：。]+$/, "");
   return (
     <div style={{ position: "absolute", left: L.X, top: L.CAP_TOP, width: L.INNER_W, height: L.CAP_H, background: H.caption, borderTop: `2px solid ${H.lineSoft}`, borderBottom: `2px solid ${H.lineSoft}` }}>
       <div style={{ position: "absolute", left: 0, right: 0, top: Math.round(L.CAP_H * 0.12), height: Math.round(L.CAP_ZH_PX * 1.45), display: "flex", alignItems: "center", justifyContent: "center", ...zh(L.CAP_ZH_PX, H.text), letterSpacing: "0.02em", transform: `translateY(${Math.round(8 * (1 - p))}px)` }}>
@@ -1091,7 +1093,7 @@ const HudCaption: React.FC<{ cues: Cue[]; f: number }> = ({ cues, f }) => {
           })}
         </span>
       </div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: Math.round(L.CAP_H * 0.12 + L.CAP_ZH_PX * 1.45 + 18), textAlign: "center", ...mono(L.CAP_EN_PX, H.text2, 500), letterSpacing: "0.02em", fontFamily: FONT_EN }}>{en[e]}</div>
+      <div style={{ position: "absolute", left: 0, right: 0, top: Math.round(L.CAP_H * 0.12 + L.CAP_ZH_PX * 1.45 + 18), textAlign: "center", ...mono(L.CAP_EN_PX, H.text2, 500), letterSpacing: "0.02em", fontFamily: FONT_EN }}>{note ? note.en : en[e]}</div>
     </div>
   );
 };
@@ -1127,7 +1129,8 @@ export const VideoHud: React.FC<Script & { timeline: TimelineV2 }> = (props) => 
   const s = useMemo(() => stateAt(m, f), [m, f]);
   const by = Object.fromEntries(timeline.scenes.map((x) => [x.id, x]));
   const ordered = scenes.filter((x) => by[x.id]);
-  const subCues = ordered.filter((x) => by[x.id].subtitleWindow).map((x) => ({ id: x.id, en: x.subtitle.en, keywords: x.keywords, mark: (x.props as any)?.kwMark, window: by[x.id].subtitleWindow as [number, number], phrases: by[x.id].lines, keywords_at: by[x.id].keywords }));
+  const atN = atOf(timeline);
+  const subCues = ordered.filter((x) => by[x.id].subtitleWindow).map((x) => ({ id: x.id, en: x.subtitle.en, keywords: x.keywords, mark: (x.props as any)?.kwMark, notes: ([] as any[]).concat((x.props as any)?.capNote ?? []).map((n) => ({ a: atN(x.id, n.at, 1e9), b: atN(x.id, n.until, 1e9), zh: n.zh, en: n.en })), window: by[x.id].subtitleWindow as [number, number], phrases: by[x.id].lines, keywords_at: by[x.id].keywords }));
   const srcCues = ordered.map((x) => ({ sources: x.sources, window: by[x.id].sourceWindow as [number, number] }));
   // 鉤子在第一次真正縮放（不是 drift）時退場
   const hookOut = keys.find((k) => !k.drift && k.at > 0)?.at ?? 1e9;

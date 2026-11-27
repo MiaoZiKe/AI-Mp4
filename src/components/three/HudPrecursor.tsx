@@ -119,8 +119,8 @@ const Path: React.FC<P> = ({ o, f, k }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <defs><linearGradient id="pcGr" x1="0" x2="1"><stop offset="0" stopColor="#4DA3FF" /><stop offset="0.45" stopColor="#F2B632" /><stop offset="1" stopColor="#E5602B" /></linearGradient></defs>
         {st.map(([n, a], i) => <g key={n}><Chip x={xs[i]} y={CT + 6} w={ws[i]} t={n} a={i === 0 ? 1 : a} />{i < 5 ? <Arr x1={xs[i] + ws[i] + 2} x2={xs[i] + ws[i] + 18} y={CT + 31} a={a} /> : null}</g>)}
-        <rect x={24} y={CT + 92} width={W - 48} height={20} fill="url(#pcGr)" /><text x={24} y={CT + 148} style={zh(30, H.text2, 800)}>示意：越往後管路越暖一點</text>
-        <Row x={24} y={CT + 204} t="起泡器產生蒸氣，管路保溫送進腔體" c={H.amber} a={on(f, T(o, "pipe"))} /><Row x={24} y={CT + 252} t="閥一開一關，控制一次送多少" c={BLUE} a={on(f, T(o, "valve"))} />
+        <rect x={24} y={CT + 88} width={W - 48} height={20} fill="url(#pcGr)" /><text x={24} y={CT + 140} style={zh(30, H.text2, 800)}>示意：越往後管路越暖一點</text>
+        <Row x={24} y={CT + 188} t="起泡器產生蒸氣，管路保溫送進腔體" c={H.amber} a={on(f, T(o, "pipe"))} /><Row x={24} y={CT + 232} t="閥一開一關，控制一次送多少" c={BLUE} a={on(f, T(o, "valve"))} />
       </svg>
     </Card>
   );

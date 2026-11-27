@@ -187,7 +187,7 @@ const Chamber: React.FC<P> = ({ o, f, k }) => {
         {fl > 0 ? [0, 1, 2, 3].map((i) => { const t = fr(f / 22 + i * 0.25); return <g key={i} opacity={fl}>
           <circle cx={cx + R + t * 66} cy={wy - 4 + t * t * 22} r={5} fill={LIQ} /><circle cx={cx - R - t * 66} cy={wy - 4 + t * t * 22} r={5} fill={LIQ} /></g>; }) : null}
         <ellipse cx={cx} cy={wy + 24} rx={R + 22} ry={14} fill="none" stroke={BLUE} strokeWidth={5} strokeDasharray="14 10" strokeDashoffset={-((f * 3) % 24)} opacity={sp} />
-        <text x={cx} y={wy + 172} textAnchor="middle" style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>吸盤＋抓取銷</text>
+        <text x={cx} y={wy + 164} textAnchor="middle" style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>旋轉吸盤＋抓取銷</text>
         <Sep x={560} y1={330} />
         <Row x={590} y={CT + 52} t="轉動：離心力往外" c={sp > 0.5 ? H.amber : H.lineSoft} a={sp} />
         <Row x={590} y={CT + 112} t="一條液柱落在中心" c={st > 0.5 ? H.amber : H.lineSoft} a={st} />
