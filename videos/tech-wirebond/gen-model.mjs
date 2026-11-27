@@ -353,14 +353,15 @@ for (const [i, lay, wm] of [[0, "eAu", "au"], [1, "eCu", "cuW"], [2, "eCu2", "cu
 SPH("eAuFab", "eAu", 0.46, EXS[0], EY - 0.44, 0, "auHi");
 P({ id: "eCuOxBall", layer: "eCuOx", shape: "sphere", size: [0.48], scale: [1.05, 0.9, 1], pos: [EXS[1], EY - 0.44, 0], mat: "cuOx" });
 SPH("eCuOkBall", "eCuOk", 0.46, EXS[2], EY - 0.44, 0, "cuW");
-for (const [lay, x] of [["eSpk1", EXS[1]], ["eSpk2", EXS[2]]]) { const z = [[x + 1.5, EY - 0.8, 0.3], [x + 1.1, EY - 0.5, 0.3], [x + 0.8, EY - 0.95, 0.3], [x + 0.4, EY - 0.7, 0.3]]; for (let i = 0; i < 3; i++) { SEG(`${lay}A${i}`, lay, z[i], z[i + 1], 0.075, "arc"); }   }
+for (const [lay, x] of [["eSpk1", EXS[1]], ["eSpk2", EXS[2]]]) { const z = [[x + 1.35, EY - 0.8, 0.35], [x + 1.05, EY - 0.45, 0.35], [x + 0.75, EY - 1.0, 0.35], [x + 0.45, EY - 0.6, 0.35], [x + 0.15, EY - 1.05, 0.35]]; for (let i = 0; i < 4; i++) SEG(`${lay}A${i}`, lay, z[i], z[i + 1], 0.075, "arc"); }
+for (const [i, x] of [[1, EXS[1]], [2, EXS[2]]]) { SEG(`eEfoRod${i}`, "eBase", [x + 5.0, EY - 0.8, 0.35], [x + 1.4, EY - 0.8, 0.35], 0.18, "steel"); SPH(`eEfoTip${i}`, "eBase", 0.24, x + 1.38, EY - 0.8, 0.35, "steel"); BOX(`eEfoBase${i}`, "eBase", x + 5.0, x + 6.6, EY - 1.6, EY, -0.8, 0.8, "dark"); }
 // 保護氣罩：環形噴口＋進氣管；氣流用大量細粒子從噴口錐狀散開、繞過劈刀尖
-VT("eGasRing", "eGas", 2.0, 1.55, EY - 1.4, EY - 1.0, "steel", { x: EXS[2] }); SEG("eGasPipe", "eGas", [EXS[2] + 2.0, EY - 1.2, 0], [EXS[2] + 5.5, EY + 1.8, 0], 0.25, "steel");
-P({ id: "eGasNozzle", layer: "eGas", shape: "cyl", size: [0.12, 0.3], rot: V, pos: [EXS[2], EY - 1.45, 0], at: [0, 60, 120, 180, 240, 300].map((d) => { const [x, z] = pol(d, 1.78); return [x, 0, z]; }), mat: "dark" });
+VT("eGasRing", "eGas", 2.6, 2.2, EY - 2.1, EY - 1.7, "steel", { x: EXS[2] }); SEG("eGasPipe", "eGas", [EXS[2] - 2.6, EY - 1.9, 0], [EXS[2] - 6.0, EY + 1.2, 0], 0.25, "steel");
+P({ id: "eGasNozzle", layer: "eGas", shape: "cyl", size: [0.12, 0.3], rot: V, pos: [EXS[2], EY - 1.65, 0], at: [0, 60, 120, 180, 240, 300].map((d) => { const [x, z] = pol(d, 2.4); return [x, 0, z]; }), mat: "dark" });
 SEG("eCr0", "eCrack", [EXS[1] - 0.7, 4.43, 0.3], [EXS[1], 4.43, -0.2], 0.05, "crack"); SEG("eCr1", "eCrack", [EXS[1], 4.43, -0.2], [EXS[1] + 0.7, 4.43, 0.4], 0.05, "crack");
-for (const [k, sgn] of [["A", -1], ["B", 1]]) actions[`eGas${k}`] = { type: "flow", _說明: "保護氣（氮＋氫）從環形噴口錐狀往下散開、繞過劈刀尖與球（細粒子）", layer: "eGas", path: [[EXS[2] + sgn * 1.8, EY - 1.45, 0], [EXS[2] + sgn * 1.0, EY - 1.0, 0], [EXS[2] + sgn * 0.7, EY - 1.6, 0], [EXS[2] + sgn * 1.6, EY - 3.2, 0]], n: 26, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.6, size: 0.07, shape: "dot", rate: 0.55, color: "gasC", track: false, jitter: 0.35, free: true };
-actions.eGasIn = { type: "flow", layer: "eGas", path: [[EXS[2] + 5.5, EY + 1.8, 0], [EXS[2] + 2.0, EY - 1.2, 0]], n: 12, size: 0.07, shape: "dot", rate: 0.5, color: "gasC", track: false, jitter: 0.15, free: true };
-Object.assign(anchors, { eAuA: A("eAu", [EXS[0] - 0.3, EY - 0.6, 0.4], -150, 90), eCuA: A("eCuOx", [EXS[1] - 0.3, EY - 0.6, 0.4], -150, 90), eGasA: A("eGas", [EXS[2] + 1.6, EY - 2.6, 0.4], 150, 90), eOkA: A("eCuOk", [EXS[2] + 0.3, EY - 0.6, 0.4], 150, 90) });
+for (const [k, sgn] of [["A", -1], ["B", 1]]) actions[`eGas${k}`] = { type: "flow", _說明: "保護氣（氮＋氫）從環形噴口錐狀往下散開、繞過劈刀尖與球（細粒子）", layer: "eGas", path: [[EXS[2] + sgn * 2.4, EY - 1.6, 0], [EXS[2] + sgn * 1.0, EY - 0.9, 0], [EXS[2] + sgn * 0.6, EY - 1.4, 0], [EXS[2] + sgn * 1.5, EY - 3.0, 0]], n: 26, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.6, size: 0.07, shape: "dot", rate: 0.55, color: "gasC", track: false, jitter: 0.35, free: true };
+actions.eGasIn = { type: "flow", layer: "eGas", path: [[EXS[2] - 6.0, EY + 1.2, 0], [EXS[2] - 2.6, EY - 1.9, 0]], n: 12, size: 0.07, shape: "dot", rate: 0.5, color: "gasC", track: false, jitter: 0.15, free: true };
+Object.assign(anchors, { eAuA: A("eAu", [EXS[0] - 0.3, EY - 0.6, 0.4], -150, 90), eCuA: A("eCuOx", [EXS[1] - 0.3, EY - 0.6, 0.4], -150, 90), eGasA: A("eGas", [EXS[2] - 2.4, EY - 1.9, 0.5], -150, 90), eOkA: A("eCuOk", [EXS[2] + 0.3, EY - 0.6, 0.4], 150, 90) });
 
 // ═════ A 站預告：封裝膠從上方蓋下來＋旁邊另一片小載板上的錫球（另一種封裝，下一集） ═════
 LAY("moldA", [20, 2, X0, 3]); LAY("ballsA", [12, 1, X0 + 14, 0.4]);

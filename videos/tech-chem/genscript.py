@@ -33,7 +33,7 @@ S = [
  [("slurry", "研磨液"), ("grain", "磨粒"), ("wash", "洗面乳"), ("sand", "砂磨"), ("chem", "藥水溶"), ("both", "一起動手")], ["研磨液", "磨粒", "一起動手"], ["科技新報〈什麼是 CMP〉", "3M 研磨液應用文件"], 8.1, 0.8),
 ("s7b", "mechanism", "磨粒最怕結塊，會刮傷晶圓。所以槽裡一直攪動、循環過濾，像不停攪拌的豆漿，才不會沉底。",
  ["磨粒最怕結塊", "會刮傷晶圓", "所以槽裡一直攪動", "循環過濾", "像不停攪拌的豆漿", "才不會沉底"], ["Grains hate clumping,", "it scratches the wafer.", "So the tank keeps stirring,", "recirculating and filtering,", "like soy milk kept stirred", "so it never sinks."],
- [("lump", "結塊"), ("scratch", "刮傷"), ("so", "所以"), ("stir", "攪動"), ("loop", "循環"), ("filter", "過濾"), ("soy", "豆漿"), ("sink", "沉底")], ["結塊", "刮傷", "攪動", "循環過濾"], ["Air Liquide、3M 文件；示意，不是量測"], 9.4, 0.8),
+ [("lump", "結塊"), ("scratch", "刮傷"), ("so", "所以"), ("stir", "攪動"), ("loop", "循環"), ("filter", "過濾"), ("soy", "豆漿"), ("sink", "沉底")], ["結塊", "刮傷", "攪動", "循環過濾"], ["Air Liquide、3M 文件；示意，不是量測"], 10.0, 0.8),
 ("s8", "payoff", "國際有英特格，台灣有中華化做硫酸，三福化做顯影液。",
  ["國際有英特格", "台灣有中華化", "做硫酸", "三福化", "做顯影液"], ["Internationally: Entegris.", "In Taiwan: Chung Hwa Chemical", "makes sulfuric acid,", "San Fu Chemical", "makes developer."],
  [("intl", "英特格"), ("chc", "中華化"), ("acid", "硫酸"), ("sanfu", "三福化"), ("dev", "顯影液")], ["英特格", "中華化", "三福化"], ["Entegris 官網、經濟日報、Yahoo 股市；截至 11/27"], 5.8, 0.85),
@@ -141,7 +141,7 @@ EXPL += [mv("cdsDoor", DK(0), R4, 14, dx=9.5), hid("cdsDoor", DK(0), R4, 12, 0.1
          mv("cdsPump", "s4c:start+4", R4, 18, dx=-4.8), mv("cdsValve", "s4c:start+4", R4, 18, dx=-1.8),
          mv("cdsFilter", "s4c:start+50", R4, 18, dz=9.0), mv("cdsCore", "s4c:start+66", R4, 18, dy=5.2, dz=9.0)]
 # s7：研磨液槽組：①槽蓋掀開看攪拌槳 ②槽內結塊被迴路抽走 ③濾芯沿軸線拉開，濾膜卡住大顆粒 ④組回
-B7 = "s7b:stir+138"
+B7 = "s7b:stir+142"
 F7 = "s7b:stir+90"   # 過濾標籤與濾芯拉開同時開始（標籤依序：攪拌→結塊被抽走→過濾，一次一張）
 EXPL += [mv("slDoor", "s7b:stir-2", "s8:start-2", 14, dx=24.0), hid("slWall", "s7b:stir-2", "s8:start-2", 14, 0.14), mv("slLid", "s7b:stir-4", B7, 22, dy=6.0),
          hid("slFilter", F7, B7, 12, 0.2), mv("slFCore", F7, B7, 24, dy=8.5), mv("slTrap", F7, B7, 24, dy=8.5)]
@@ -186,8 +186,8 @@ P["s5"] = {"shot": [shot("start-1", 152.0, 3.8, 60, 16, 1, yaw=0.0), shot("lemon
 # ─── s6：研磨液＝磨粒＋藥劑 ───
 P["s6"] = {"shot": [shot("start-1", 182.0, 5.8, 56, 8, 1, yaw=0.0), shot("grain-6", 183.0, 5.8, 48, 10, 36), shot("sand-12", 182.0, 5.8, 48, 12, 36)],
  "run": [run("brown", "start", "s7b:stir-2", 8), run("drift", "start", "s7b:stir-2", 8), run("padPress", "sand-6", "s7b:stir-2", 8), run("grit", "sand+20", "s7b:stir-2", 8), run("oxIn", "chem-8", "s7b:stir-2", 8)],
- "labels": [lab("slurry", "研磨液（放大）", "Slurry (magnified)", "blue", "slurry+2", "grain-6"), lab("grain", "磨粒", "Abrasive grain", "amber", "grain-2", "grain+43"), lab("bump", "凸起處被磨薄", "High spot gets thinner", "amber", "sand-9", "sand+36"),
-            lab("ox", "藥劑溶出氧化層", "Chemistry dissolves oxide", "blue", "sand+37", "s7b:start-6")],
+ "labels": [lab("slurry", "研磨液（放大）", "Slurry (magnified)", "blue", "slurry+2", "grain-6"), lab("grain", "磨粒", "Abrasive grain", "amber", "grain-2", "grain+43"), lab("bump", "凸起處被磨薄", "High spot gets thinner", "amber", "sand-15", "sand+30"),
+            lab("ox", "藥劑溶出氧化層", "Chemistry dissolves oxide", "blue", "sand+32", "s7b:start-6")],
  "overlay": [sec("chem-slurry", "start+24", "s7b:start-8", "磨粒磨、藥劑溶", "示意（不標粒徑與濃度）", {"slurry": "slurry", "grain": "grain", "wash": "wash", "sand": "sand", "chem": "chem", "both": "both"})]}
 # ─── s7（拆兩幕，r1）：s7 結塊刮傷；s7b 槽裡攪動、循環過濾（槽組爆炸分解） ───
 P["s7b"] = {"shot": [shot("start-1", 181.0, 4.2, 54, 10, 1, yaw=0.0), shot("stir-2", 218.0, 7.5, 92, 16, 1), shot("stir+4", 214.0, 8.0, 76, 20, 24), shot("stir+88", 220.0, 7.0, 76, 22, 22)],

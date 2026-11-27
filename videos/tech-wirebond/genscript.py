@@ -104,13 +104,13 @@ def vis(lay, wins, dur=1):
     if prev != FAR: VIS.append(hid(lay, prev, FAR, dur))
 
 # ── 各站可見區間 ──
-A_ALL = [(T0, "s3:start-1"), ("s8:start-1", "s9:start-1"), ("s11:start-1", FAR)]
+A_ALL = [(T0, "s3:start-1"), ("s8:start-1", "s9:start-1"), ("s11:start+7", FAR)]
 for l in ["lfA", "dieA"]: vis(l, A_ALL)
 vis("padGlowA", [("s1:out-4", "s2:lead-6"), ("s2:pad-6", "s2:wire")])
 vis("leadGlowA", [("s2:lead-6", "s3:start-1")])
 WG = 14
-for g in range(WG): vis(f"wA{g}", [(f"s8:start+{4 + 3 * g}", "s9:start-1"), ("s11:start-1", FAR)])
-for l in ["bdBase", "bdDeck", "bdHood", "bdXY", "bdHead", "bdSpool", "bdClamp", "bdHorn", "bdCap", "bdEfo", "bdCam", "bdLf"]: vis(l, [("s3:start-1", "s4:start-1"), ("s10:start-1", "s11:start-1")])
+for g in range(WG): vis(f"wA{g}", [(f"s8:start+{4 + 3 * g}", "s9:start-1"), ("s11:start+7", FAR)])
+for l in ["bdBase", "bdDeck", "bdHood", "bdXY", "bdHead", "bdSpool", "bdClamp", "bdHorn", "bdCap", "bdEfo", "bdCam", "bdLf"]: vis(l, [("s3:start-1", "s4:start-1"), ("s10:start-1", "s11:start+7")])
 C_ALL = [("s4:start-1", "s6:start-1"), ("s7:start-1", "s8:start-1")]
 for l in ["cHeat", "cDie", "cDieBg", "cLead", "cLeadBg", "cEfo", "cCap", "cCapUp", "cJawLl", "cJawRl"]: vis(l, C_ALL)
 # ── s7 劈刀時間表（全部從 s7:arc 起算）：沿線弧線性走（頭尾兩步放慢）→ 第二焊點 → 抬起留線尾（線夾鬆）→ 線夾夾住 → 上拉拉斷 → 線夾鬆開 → 回到打火棒旁放電成球 → 移到下一顆焊墊 ──
@@ -121,12 +121,12 @@ T_ = [0]
 for d in STEPS: T_.append(T_[-1] + d)
 E7 = T_[-1] + 2                                    # 線弧走完（相對 s7:start）
 A7 = lambda n: off("s7:start", E7 + n)            # 從「壓到引腳」起算
-vis("cTail", [("s4:start-1", "s4:spark+3"), ("s7:cut-2", "s8:start-1")])
+vis("cTail", [("s4:start-1", "s4:spark+3"), ("s7:cut-4", "s8:start-1")])
 vis("cBall", [("s4:spark+3", "s5:press")])
-vis("cSpark", [("s4:spark-2", "s4:spark+6")])
+vis("cSpark", [("s4:spark-2", "s4:spark+3")])
 vis("cBallB", [("s5:press", "s6:start-1"), ("s7:start-1", "s8:start-1")])
 vis("cUS", [("s5:us-4", "s5:rub+30"), (A7(0), A7(16))]); vis("cGlow", [("s5:heat-2", "s6:start-1"), ("s7:start-1", L0)])
-vis("cStitch", [(A7(0), "s8:start-1")]); vis("cTail2", [(A7(22), "s7:cut-4")])
+vis("cStitch", [(A7(0), "s8:start-1")]); vis("cTail2", [(A7(22), "s7:cut-3")])
 for i in range(NL): vis(f"cW{i}", [(off(L0, T_[i + 1] - 1), "s8:start-1")])
 D_ALL = [("s6:start-1", "s7:start-1")]
 for l in ["dSi", "dPad", "dBall", "dNeckL", "dHeat", "dArrow"]: vis(l, D_ALL)
@@ -134,8 +134,8 @@ vis("dOx", [("s6:start-1", "s7:start-1")]); VIS.append(hid("dOx", "s6:dust", "s7
 vis("dImc", [("s6:dust+10", "s7:start-1")], 18); vis("dAtom", [("s6:dust+10", "s7:start-1")], 8)
 E_ALL = [("s9:start-1", "s10:start-1")]
 for l in ["eBase", "eAu", "eCu", "eCu2", "eSpool", "eUp"]: vis(l, E_ALL)
-vis("eCuOx", [("s9:ox-38", "s10:start-1")], 2); vis("eSpk1", [("s9:ox-44", "s9:ox-38")])
-vis("eGas", [("s9:gas-10", "s10:start-1")], 6); vis("eSpk2", [("s9:gas+10", "s9:gas+16")]); vis("eCuOk", [("s9:gas+14", "s10:start-1")], 2); vis("eCrack", [])
+vis("eCuOx", [("s9:ox-38", "s10:start-1")], 2); vis("eSpk1", [("s9:ox-44", "s9:ox-39")])
+vis("eGas", [("s9:gas-10", "s10:start-1")], 6); vis("eSpk2", [("s9:gas+8", "s9:gas+13")]); vis("eCuOk", [("s9:gas+12", "s10:start-1")], 2); vis("eCrack", [])
 
 vis("moldA", [("s11:next-6", FAR)]); vis("ballsA", [("s11:mat+10", FAR)])
 # ── 劈刀組的動作（cCap＋cCapUp＋球＋線尾＋夾爪＋超音波圈一起走；位移累加）──
@@ -181,7 +181,7 @@ P["s3"] = {"shot": [shot("start-1", X1, 6.0, 52, 18, 1, yaw=0.0), shot("start+2"
             lab("clamp", "線夾", "Wire clamp", "blue", "start+120", "start+165")],
  "overlay": [sec("wb-needle", "start+24", "s4:start-8", "像縫紉機針，但不是刺穿", "示意", {"cap": "cap", "sew": "sew", "mid": "mid", "hair": "hair"})]}
 # ─── s4：放電燒線頭 → 小圓球 ───
-P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 10.6, 46, 8, 20)],
+P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 10.2, 48, 8, 20)],
  "run": [run("cHeatOn", "start", "s6:start-2", 6)],
  "labels": [lab("cEfoA", "打火棒放電", "EFO spark", "blue", "spark-6", "spark+39", xy=[820, 980]), lab("cFabA", "小圓球", "Free air ball", "amber", "spark+41", "spark+86")],
  "overlay": [sec("wb-steps", "start+20", "s6:start-8", "打一條線的步驟", "示意", {"s1": "spark", "s2": "s5:press", "s3": "s7:arc", "s4": "s7:foot", "s5": "s7:cut"})]}
@@ -213,14 +213,15 @@ P["s9"] = {"shot": [shot("start-1", X5, 12.0, 80, 10, 1, yaw=0.0), shot("ox-14",
  "overlay": [sec("wb-cu", "start+20", "s10:start-8", "金線換銅線", "日月光、安靠公司資料（示意，不標價格）", {"gold": "gold", "pricey": "pricey", "cu": "cu", "ox": "ox", "gas": "gas"})]}
 # ─── s10：公司 ───
 P["s10"] = {"shot": [shot("start-1", X1, 6.0, 50, 16, 1, yaw=0.0)],
- "run": [run("bdHeat", "start", "s11:start-2", 6), run("bdBob", "start", "s11:start-2", 6)],
- "overlay": [sec("wb-co", "start-4", "s11:start-6", "打線產業", "日月光、安靠官網、K&S 年報；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
+ "run": [run("bdHeat", "start", "s11:start+6", 6), run("bdBob", "start", "s11:start+6", 6)],
+ "overlay": [sec("wb-co", "start-4", "s11:start+2", "打線產業", "日月光、安靠官網、K&S 年報；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
 # ─── s11：預告封裝材料 ───
-P["s11"] = {"shot": [shot("start-1", X0 + 2.0, -4.0, 58, 40, 1, yaw=0.0), shot("next-6", X0 + 3.0, -4.0, 66, 38, 40)],
+P["s11"] = {"shot": [shot("start+7", X0 + 2.0, -4.0, 58, 40, 1, yaw=0.0), shot("next-6", X0 + 3.0, -4.0, 66, 38, 40)],
  "shift": [mv("moldA", T0, "s11:next+4", 20, dy=2.5)],
  "overlay": [sec("wb-next", "start+20", "s12:start-8", "接下來", "下一集：封裝材料", {"done": "done", "bare": "bare", "next": "next", "mat": "mat", "q": "q", "kw": "kw"})]}
+ZOOMS_AT = {"s11": "start+7"}
 ZOOMS = {'s2': 'pkg', 's3': 'tool', 's4': 'cap', 's6': 'micro', 's7': 'cap', 's8': 'pkg', 's9': 'cu', 's10': 'co', 's11': 'pkg'}
-for sid, lvz in ZOOMS.items(): P[sid]["zoom"] = [{"to": lvz, "at": "start-1", "dur": 1}]
+for sid, lvz in ZOOMS.items(): P[sid]["zoom"] = [{"to": lvz, "at": ZOOMS_AT.get(sid, "start-1"), "dur": 1}]
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 missing = [l for l in LAYERS if l not in USED and l != "floorAll"]
