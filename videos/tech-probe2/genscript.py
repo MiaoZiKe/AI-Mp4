@@ -141,9 +141,9 @@ VIS += [mv("wPadL", "s6:wear+12", FAR, 10, dx=-8.0)]
 VIS += [mv("wSheet", T0, "s6:wear+12", 10, dx=8.0)]
 VIS += [mv(l, "s6:pencil+4", "s6:pencil+28", 6, dy=-0.13) for l in ("wNdl", "wTipWorn", "wDep")]
 VIS += [mv("wTwz", T0, "s6:pencil+34", 8, dx=3.0, dy=0.2)]
-VIS += [mv(l, "s6:pencil+36", FAR, 14, dx=3.0, dy=4.0) for l in ("wTwz", "wNdl", "wTipWorn")]
+VIS += [mv(l, "s6:pencil+36", FAR, 8, dy=4.0) for l in ("wTwz", "wNdl", "wTipWorn")] + [mv(l, "s6:pencil+44", FAR, 6, dx=3.0) for l in ("wTwz", "wNdl", "wTipWorn")]   # 先沿孔垂直拔出、出孔後才往右移開
 vis("wNdl", [(T0, "s6:care-2")]); vis("wTwz", [("s6:pencil+24", "s6:care-2")])
-VIS += [mv(l, T0, "s6:care-2", 14, dx=-3.0, dy=4.0) for l in ("wNew", "wTwz2")]   # care−2 起 14 幀送到孔裡（舊針 care−17 已移開那條線）
+VIS += [mv(l, T0, "s6:care-2", 6, dx=-3.0) for l in ("wNew", "wTwz2")] + [mv(l, T0, "s6:care+4", 10, dy=4.0) for l in ("wNew", "wTwz2")]   # 新針先在孔正上方對準，再垂直放進孔   # care−2 起 14 幀送到孔裡（舊針 care−17 已移開那條線）
 VIS += [mv("wTwz2", "s6:care+16", FAR, 8, dx=-3.0, dy=4.0)]   # 放開停 2 幀後退出，念完那一幀收完
 vis("wNew", [("s6:care-2", FAR)]); vis("wTwz2", [("s6:care-2", "s6:care+26")])   # 新針從左上斜送進導板孔
 
