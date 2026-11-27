@@ -1,0 +1,59 @@
+{
+ "rule": "f0Median 120–135 Hz 才收下（基準 121.5 Hz＝光罩-1／光罩-2 實測），最多 3 次請求",
+ "runs": [
+  {
+   "startedAt": "2026-11-27T21:20:44.528358+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-27T21:20:44.528372+00:00",
+     "f0Median": 115.9,
+     "sec": 63.49,
+     "accepted": true,
+     "file": "out/tech-ccl-take-reject-1.wav",
+     "note": "收下：115–135 Hz、起伏 ≥38（腳本當時量測失敗：容器沒有 .venv，事後用系統 python 補量）",
+     "f0Iqr": 47.2
+    },
+    {
+     "n": 2,
+     "at": "2026-11-27T21:21:04.337745+00:00",
+     "f0Median": 135.6,
+     "sec": 63.93,
+     "accepted": false,
+     "file": "out/tech-ccl-take-reject-2.wav",
+     "note": "超出 115–135 Hz（腳本當時量測失敗：容器沒有 .venv，事後用系統 python 補量）",
+     "f0Iqr": 71.0
+    },
+    {
+     "n": 3,
+     "at": "2026-11-27T21:21:29.517460+00:00",
+     "f0Median": 137.1,
+     "sec": 67.45,
+     "accepted": false,
+     "file": "out/tech-ccl-take-reject-3.wav",
+     "note": "超出 115–135 Hz（腳本當時量測失敗：容器沒有 .venv，事後用系統 python 補量）",
+     "f0Iqr": 78.4
+    }
+   ],
+   "chosen": "out/tech-ccl-take.orig.wav（＝第 1 次）"
+  },
+  {
+   "startedAt": "2026-11-27T21:24:35.065574+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-27T21:24:35.065584+00:00",
+     "f0Median": 134.1,
+     "sec": 67.01,
+     "accepted": true,
+     "file": "out/tech-ccl-take.orig.wav",
+     "note": "合格"
+    }
+   ],
+   "closed": true,
+   "chosen": "out/tech-ccl-take.orig.wav",
+   "chosenF0": 134.1,
+   "status": "accepted"
+  }
+ ]
+}
