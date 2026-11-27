@@ -182,8 +182,14 @@ Andy 2026/11/24 原話：「往後只要有修正，會被我點出來的地方�
    - 以後：各幕 `sources` 只寫真實來源，或沒有來源就寫「示意動畫，不是量測」；銜接與預告放字幕、畫面與 `prevEpisode`，不放出處列。
    - 擋：`scripts/three/validate-three.mjs` 各幕出處列含「上一集、前一集、預告、series_plan」即 error（自動擋）。
 
-33. **金手指第二版：AI Studio 加 Pace＝Rapid Fire、Accent＝American (Gen)**（11-27 晚，Andy：「以後 Follow 這方式，並且提供給我提示詞，重新全部再生成一次」）
+33. **（已被第 34 條取代）金手指第二版：AI Studio 加 Pace＝Rapid Fire、Accent＝American (Gen)**（11-27 晚，Andy：「以後 Follow 這方式，並且提供給我提示詞，重新全部再生成一次」）
    - 說明句拿掉「語速偏快、節奏緊湊、不拖尾音」，改成：「用台灣人平常講話的口音，不特別捲舌、不兒化，聲音明亮、有精神，像在跟一個好奇的朋友介紹自己很熟的東西，講得很有把握、很篤定，問句自然上揚，講到答案時肯定一點，直接說：」；語速改由 Director's note 的 Pace 控制。第 31 條的說明句作廢。
    - 原因：配音導演量了 9 份試配，語速只有每秒 3.3～4.1 字，兩奈米是 4.71，說明句裡寫「語速偏快」推不動語速。
    - 以後：AI Studio 一律 Iapetus＋上面說明句＋Style 不選、Pace＝Rapid Fire、Accent＝American (Gen)；配音包 `docs/prompts/AIStudio-配音包.md` 寫明。API 沒有這兩個欄位，要改用 API 配之前，先依 Andy 的「Get code」把同樣的內容寫進程式並比對過。
    - 擋：交件附音高、起伏、語速三個數字對兩奈米；不合格不給 Andy 聽。
+
+34. **金手指第三版：照東京威力、KLA、ASML、應材、科林那套；試聽必須跟正式同設定**（11-27 午，Andy：「好就 Follow 這套，但是你之後的試聽，記得也要一樣的設定不能讓我誤導，你先接續作影片」）
+   - 設定：API、2.5 Flash、Iapetus、languageCode cmn-TW、說明句「用台灣人平常講話的口音，不兒化，但捲舌音（ㄓㄔㄕㄖ）一定要念清楚、不可念成ㄗㄘㄙ，語氣溫和親切，像在跟一個好奇的朋友解說，問句自然上揚，講到答案時肯定一點，語速稍快、不拖尾音，直接說：」、tts-pitch-take.sh 音高 126–136／IQR≥55、整篇 atempo 1.12。
+   - 原因：今天在 AI Studio 換說明句、模型、Pace 反覆試，聲音一直對不上，而試聽跟正式用的設定不同，會誤導判斷。
+   - 以後：試聽只准用正式那條路（tts-pitch-take／tts-take 加 --upto，同 atempo），不准另外換模型、說明句、網站設定去試聽給 Andy。
+   - 擋：金手指文件第三版鎖定表；TECH_B_LINE 註記；交件附三個數字 vs 東京威力。

@@ -1,3 +1,22 @@
+# 科技透明圈旁白「金手指」第三版（2026/11/27 午 Andy 定案，蓋掉下面所有舊版）
+
+Andy 11-27 原話：「東京威力、KLA、ASML、應材、科林 好就 Follow 這套，但是你之後的試聽，記得也要一樣的設定不能讓我誤導，你先接續作影片」。
+＝照 11/26 這五支實際配音的設定（各片 tts-manifest.json 可查），由我用 API 配，不再請 Andy 在 AI Studio 配。
+
+| 項目 | 鎖定值（不准再改，要改先問 Andy） |
+|---|---|
+| 模型／音色 | gemini-2.5-flash-preview-tts／Iapetus（API，整篇一次） |
+| languageCode | cmn-TW |
+| 說明句 | **「用台灣人平常講話的口音，不兒化，但捲舌音（ㄓㄔㄕㄖ）一定要念清楚、不可念成ㄗㄘㄙ，語氣溫和親切，像在跟一個好奇的朋友解說，問句自然上揚，講到答案時肯定一點，語速稍快、不拖尾音，直接說：」**（scripts/voice-profile.mjs TECH_B_LINE；script.json voice.profile="tech-b"，不准帶 --style） |
+| 配音指令 | `bash scripts/three/tts-pitch-take.sh <slug>`（音高不合格自動重配，最多 3 次，不准移調） |
+| 音高 | f0 中位數 126–136 Hz（東京威力 131）、起伏 IQR ≥55 |
+| 後製 | 整篇 atempo **1.12**（東京威力 v3 同值），不剪停頓、不改音高 |
+| 語速步調基準 | 東京威力 v3（out/tech-tel.v3.mp4）：含停頓 4.22、純說話 5.23 字/秒 |
+| **試聽** | **一律跟正式配音同一條路**：同模型、同音色、同 languageCode、同說明句、同 atempo 1.12，只用 `--upto=<幕>` 截前幾幕；不准用 AI Studio、不准換說明句或模型去試聽給 Andy，以免誤導 |
+| 每支交件 | 附音高中位數、IQR、含停頓字／秒 vs 東京威力 |
+
+AI Studio 配音包（docs/prompts/AIStudio-配音包*.md）、2.5 Pro、Rapid Fire、confident-3、第二版說明句：**停用**，只留沿革。
+
 # 科技透明圈旁白「金手指」第二版（2026/11/27 晚 Andy 定案，蓋掉下面所有舊版）
 
 Andy 11-27 原話：說明句＋「Pace : Rapid Fire、Accent : American (Gen)，以後 Follow 這方式」。

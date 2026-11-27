@@ -1,3 +1,5 @@
+⚠ 2026-11-27 午起停用：Andy 定案照東京威力等五支的 API 設定，由 Claude 配音（見 docs/prompts/tech-旁白金手指.md 第三版）。這份只留紀錄。
+
 # 科技透明圈｜AI Studio 配音包（給 Claude 瀏覽器擴充功能讀）
 
 更新：2026-11-27（第二版：Andy 定案 Pace＝Rapid Fire、Accent＝American (Gen)，說明句拿掉語速那段，全部重配）。這份檔案會持續更新，每次都以最新版為準。

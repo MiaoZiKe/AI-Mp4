@@ -53,7 +53,7 @@ const prompt = (text) => STYLE_TEXT ? (STYLE_MODE === "prefix" ? `${STYLE_TEXT}\
 // languageCode：有設定檔預設送 cmn-TW；舊片沒寫 voice.languageCode 就不送（請求和以前一樣）。--lang=off 關掉
 let LANG = opt.lang === "off" ? null : opt.lang ?? voice.languageCode ?? (profile ? LANGUAGE_CODE : null);
 // 2026-11-27 Andy 鎖定兩奈米：兩奈米是 AI Studio 錄的，不送 languageCode → tech-b 一律不送（要送得明寫 --lang=cmn-TW）
-if (voice.profile === "tech-b" && opt.lang == null) LANG = null;
+// 2026-11-27 第三版：照東京威力等五支，tech-b 送 languageCode cmn-TW（不再自動關）
 const SR = 24000, KEEP = 0.04, FADE = 0.004, FADE_IN = 0.02, VOICE_DB = -40; // FADE_IN：每段切出後 20ms 淡入（音訊不斷續規則，2026-11-21）
 
 /** 有旁白的幕；同一個 para 接成同一行，換段空一行 */
