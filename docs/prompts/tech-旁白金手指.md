@@ -1,7 +1,7 @@
 # 科技透明圈旁白「金手指」第三版（2026/11/27 午 Andy 定案，蓋掉下面所有舊版）
 
 Andy 11-27 原話：「東京威力、KLA、ASML、應材、科林 好就 Follow 這套，但是你之後的試聽，記得也要一樣的設定不能讓我誤導，你先接續作影片」。
-＝照 11/26 這五支實際配音的設定（各片 tts-manifest.json 可查），由我用 API 配，不再請 Andy 在 AI Studio 配。
+＝照 11/26 這五支實際配音的設定（各片 tts-manifest.json 可查），Andy 11-27 補：「上面我說的那套提示詞，我請擴充版 claude 依據不同主題生成不同 Speech Block 並下載再給你」→ 正式錄音由 Andy 在 AI Studio 用同一句說明配（2.5 Flash Preview TTS、Iapetus、Style／Pace 不選、Accent Neutral；網站沒有 languageCode），我量音高、起伏、語速後整篇 atempo 1.12；API 只在 Andy 沒給錄音時用，路徑如下表。
 
 | 項目 | 鎖定值（不准再改，要改先問 Andy） |
 |---|---|
@@ -15,7 +15,7 @@ Andy 11-27 原話：「東京威力、KLA、ASML、應材、科林 好就 Follow
 | **試聽** | **一律跟正式配音同一條路**：同模型、同音色、同 languageCode、同說明句、同 atempo 1.12，只用 `--upto=<幕>` 截前幾幕；不准用 AI Studio、不准換說明句或模型去試聽給 Andy，以免誤導 |
 | 每支交件 | 附音高中位數、IQR、含停頓字／秒 vs 東京威力 |
 
-AI Studio 配音包（docs/prompts/AIStudio-配音包*.md）、2.5 Pro、Rapid Fire、confident-3、第二版說明句：**停用**，只留沿革。
+AI Studio 配音包已改成第三版（docs/prompts/AIStudio-配音包-完整提示詞.txt）。2.5 Pro、Rapid Fire、confident-3、第二版說明句：**停用**，只留沿革。
 
 # 科技透明圈旁白「金手指」第二版（2026/11/27 晚 Andy 定案，蓋掉下面所有舊版）
 

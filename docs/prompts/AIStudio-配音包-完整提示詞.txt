@@ -1,13 +1,11 @@
-⚠ 2026-11-27 午起停用：Andy 定案照東京威力等五支的 API 設定，由 Claude 配音（見 docs/prompts/tech-旁白金手指.md 第三版）。這份只留紀錄。
-
 請幫我在目前開著的 Google AI Studio 語音生成頁（https://aistudio.google.com/generate-speech，Composer 模式）批次配音，全程用繁體中文回報。
 
 固定設定（每一支都一樣，不准改）：
 1. 模型：Gemini 2.5 Flash Preview TTS
 2. 只用 Speaker 1，音色 Iapetus
 3. Audio Profile 一字不改貼上：
-用台灣人平常講話的口音，不特別捲舌、不兒化，聲音明亮、有精神，像在跟一個好奇的朋友介紹自己很熟的東西，講得很有把握、很篤定，問句自然上揚，講到答案時肯定一點，直接說：
-4. Director's note：Style 不選（維持預設）；Pace 選「Rapid Fire」；Accent 選「American (Gen)」
+用台灣人平常講話的口音，不兒化，但捲舌音（ㄓㄔㄕㄖ）一定要念清楚、不可念成ㄗㄘㄙ，語氣溫和親切，像在跟一個好奇的朋友解說，問句自然上揚，講到答案時肯定一點，語速稍快、不拖尾音，直接說：
+4. Director's note：Style 不選（維持預設）；Pace 不選（維持顯示「Pace」）；Accent 選「Neutral」
 5. Temperature 1 不動；Scene、Sample Context 留空
 
 做法：

@@ -1,19 +1,17 @@
-⚠ 2026-11-27 午起停用：Andy 定案照東京威力等五支的 API 設定，由 Claude 配音（見 docs/prompts/tech-旁白金手指.md 第三版）。這份只留紀錄。
-
 # 科技透明圈｜AI Studio 配音包（給 Claude 瀏覽器擴充功能讀）
 
-更新：2026-11-27（第二版：Andy 定案 Pace＝Rapid Fire、Accent＝American (Gen)，說明句拿掉語速那段，全部重配）。這份檔案會持續更新，每次都以最新版為準。
+更新：2026-11-27（第三版：照東京威力、KLA、ASML、應材、科林那套說明句；Style／Pace 不選、Accent Neutral；全部重配）。這份檔案會持續更新，每次都以最新版為準。
 
 ## 你（Claude 擴充功能）要做的事
 請在 Andy 開著的 https://aistudio.google.com/generate-speech（Composer 模式）照下面做，全程繁體中文回報：
-1. 固定設定（全部影片共用，不准改）：模型 Gemini 2.5 Flash Preview TTS；只用 Speaker 1＝Iapetus；Audio Profile（說話風格）放下面【金手指說明】一字不改；Director's note：Style 不選（維持預設）、**Pace 選「Rapid Fire」**、**Accent 選「American (Gen)」**；Temperature 1 不動；Scene、Sample Context 留空。
+1. 固定設定（全部影片共用，不准改）：模型 Gemini 2.5 Flash Preview TTS；只用 Speaker 1＝Iapetus；Audio Profile（說話風格）放下面【金手指說明】一字不改；Director's note：Style 不選（維持預設）、**Pace 不選（維持顯示「Pace」）**、**Accent 選「Neutral」**；Temperature 1 不動；Scene、Sample Context 留空。
 2. 先截圖設定給 Andy 確認；對不上就停下來問。
 3. 一支影片一個 speech block：清空舊的 block，貼該支【念稿】一字不改（段落空行保留），按 Run，下載 wav 改名「代號-1.wav」；不改任何東西再 Run 一次存「代號-2.wav」。
 4. 做完一支換下一支，照「待配清單」順序。這一版全部重配，舊檔不要沿用；檔名照「代號-1.wav」「代號-2.wav」，覆蓋舊檔前先改名成「代號-舊-1.wav」保留。
 5. 全部做完列出檔名、長度（秒）、資料夾。遇到額度、錯誤、登入或付款，截圖並停下來。
 
 ## 金手指說明
-用台灣人平常講話的口音，不特別捲舌、不兒化，聲音明亮、有精神，像在跟一個好奇的朋友介紹自己很熟的東西，講得很有把握、很篤定，問句自然上揚，講到答案時肯定一點，直接說：
+用台灣人平常講話的口音，不兒化，但捲舌音（ㄓㄔㄕㄖ）一定要念清楚、不可念成ㄗㄘㄙ，語氣溫和親切，像在跟一個好奇的朋友解說，問句自然上揚，講到答案時肯定一點，語速稍快、不拖尾音，直接說：
 
 ## 待配清單（依發文順序）
 
