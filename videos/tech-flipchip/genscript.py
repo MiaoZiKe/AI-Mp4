@@ -171,8 +171,8 @@ P["s3"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "labels": [lab("wbWire", "打線：邊緣一圈", "Wire bond: edge only", "amber", "edge-4", "edge+41"), lab("fcBumpA", "覆晶：整面凸塊", "Flip chip: full array", "blue", "full", "full+45")],
  "overlay": [card("s3", "fc-vs", "邊緣一圈 vs 整面", "示意（不標腳數）", {"wb": "wb", "edge": "edge", "full": "full", "many": "short", "short": "short"})]}
 P["s4"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
- "shot": [shot(CC, I["CX"], 0.6, 22, 46, 1)],
- "run": [run("dieHot", "start", FAR, 8), run("heatUp", "lid+16", FAR, 8)],
+ "shot": [shot(CC, I["CX"], 2.2, 30, 24, 1)],
+ "run": [run("dieHot", "start", FAR, 8), run("heatUp", "lid-2", FAR, 6)],
  "labels": [lab("timA", "導熱膏", "Thermal paste", "amber", "back", "back+45"), lab("lidA", "散熱蓋", "Heat lid", "blue", "lid+5", "lid+36", xy=[820, 400])],
  "overlay": [card("s4", "fc-heat", "背面朝外：熱往上走", "示意，不是量測", {"back": "back", "nowire": "nowire", "lid": "lid"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
