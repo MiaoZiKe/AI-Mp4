@@ -1,0 +1,1779 @@
+{
+ "slug": "tech-cufoil",
+ "prevEpisode": "3-11：銅箔基板",
+ "title": "銅箔與玻纖布（科技透明圈）",
+ "asOf": "2026/11/28",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指第三版"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "start",
+    "label": "銅箔基板（示意，厚度放大）",
+    "en": "COPPER-CLAD LAMINATE",
+    "field": "10 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "drum",
+    "label": "電解銅箔機（示意）",
+    "en": "ED COPPER FOIL",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "foil",
+    "label": "銅箔剖面（放大示意）",
+    "en": "FOIL CROSS-SECTION",
+    "field": "20 µm",
+    "ruler": "2 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "skin",
+    "label": "訊號走銅表面（示意）",
+    "en": "SKIN EFFECT",
+    "field": "20 µm",
+    "ruler": "2 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "loom",
+    "label": "拉絲、捻紗、織布（示意）",
+    "en": "GLASS FABRIC",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "weave",
+    "label": "玻纖效應（示意）",
+    "en": "FIBER WEAVE EFFECT",
+    "field": "1 mm",
+    "ruler": "0.1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "spread",
+    "label": "開纖與低介電玻璃（示意）",
+    "en": "SPREAD / LOW-DK GLASS",
+    "field": "1 mm",
+    "ruler": "0.1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "銅箔與玻纖布供應商",
+    "en": "SUPPLIERS",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "壓合與鑽孔（下一集）",
+    "en": "NEXT",
+    "field": "50 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "銅箔與玻纖布",
+   "電路板的原料"
+  ],
+  "sub": "要平、要黏得牢",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "布要多平、銅要多光滑？前一集換了樹脂，布和銅也得升級。",
+   "tts": "布要多平、銅要多光滑？前一集換了樹脂，布和銅也得升級。",
+   "subtitle": {
+    "zh": "布要多平\n銅要多光滑？\n前一集換了樹脂\n布和銅也得升級",
+    "en": "How flat must the cloth be, | how smooth the copper? | Last time the resin changed, | so cloth and copper must upgrade too."
+   },
+   "keywords": [
+    "布",
+    "銅",
+    "升級"
+   ],
+   "cues": [
+    {
+     "id": "flat",
+     "text": "布要多平"
+    },
+    {
+     "id": "smooth",
+     "text": "銅要多光滑"
+    },
+    {
+     "id": "resin",
+     "text": "換了樹脂"
+    },
+    {
+     "id": "up",
+     "text": "也得升級"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "接續 3-11 銅箔基板；示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：樹脂換了，布和銅也得升級",
+     "title": "銅要多光滑？",
+     "size": 104,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "start",
+      "at": "end-16",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.0,
+      "y": -0.3,
+      "d": 36,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "fNod",
+      "at": "s1:start-40",
+      "until": "s3:nod-4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "fDrum",
+      "at": "s1:start-40",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rFrame",
+      "at": "s1:start-40",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "fResin",
+      "at": "s1:start-40",
+      "until": "s3:bite",
+      "dur": 12,
+      "dy": 1.2,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rSmooth",
+      "at": "s1:start-40",
+      "until": "s5:low",
+      "dur": 12,
+      "dy": 1.2,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "rGlue",
+      "at": "s1:start-40",
+      "until": "s5:glue",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "xRound",
+      "at": "s8:flat",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "xFlat",
+      "at": "s1:start-40",
+      "until": "s8:flat",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "xFlat",
+      "at": "s8:lowdk",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "xFlatLD",
+      "at": "s1:start-40",
+      "until": "s8:lowdk",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "kMod0",
+      "at": "s1:start-40",
+      "until": "s9:cotech-2",
+      "dur": 12,
+      "dy": 1.6,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "kMod1",
+      "at": "s1:start-40",
+      "until": "s9:tglass-2",
+      "dur": 12,
+      "dy": 1.6,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "kMod2",
+      "at": "s1:start-40",
+      "until": "s9:fulltech-2",
+      "dur": 12,
+      "dy": 1.6,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "nL0",
+      "at": "s1:start-40",
+      "until": "s10:voice+2",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "nL1",
+      "at": "s1:start-40",
+      "until": "s10:voice+7",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "nL2",
+      "at": "s1:start-40",
+      "until": "s10:voice+12",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "nL3",
+      "at": "s1:start-40",
+      "until": "s10:voice+17",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "nL4",
+      "at": "s1:start-40",
+      "until": "s10:voice+22",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "nTop",
+      "at": "s10:press-4",
+      "until": "s11:start+400",
+      "dur": 16,
+      "dy": -2.7
+     },
+     {
+      "layer": "nMb",
+      "at": "s1:start-40",
+      "until": "s10:drill-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "nDrill",
+      "at": "s1:start-40",
+      "until": "s10:drill-8",
+      "opacity": 0,
+      "dur": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "hSig",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     },
+     {
+      "id": "hPeel",
+      "at": "smooth",
+      "ramp": 14,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hCloth",
+      "text": "玻纖布（浸樹脂）",
+      "en": "Glass fabric in resin",
+      "color": "blue",
+      "at": "flat",
+      "until": "flat+45",
+      "cut": true
+     },
+     {
+      "part": "hCu",
+      "text": "銅箔",
+      "en": "Copper foil",
+      "color": "amber",
+      "at": "smooth",
+      "until": "smooth+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 12 集",
+      "tag": "示意",
+      "t": {
+       "flat": {
+        "at": "flat"
+       },
+       "smooth": {
+        "at": "smooth"
+       },
+       "resin": {
+        "at": "resin"
+       },
+       "up": {
+        "at": "up"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.2,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "銅箔是電鍍的，銅從藥水長到轉動滾筒，再撕下來，像煎潤餅皮。",
+   "tts": "銅箔是電鍍的，銅從藥水長到轉動滾筒，再撕下來，像煎潤餅皮。",
+   "subtitle": {
+    "zh": "銅箔是電鍍的\n銅從藥水\n長到轉動滾筒\n再撕下來\n像煎潤餅皮",
+    "en": "Copper foil is electroplated: | copper from the solution | grows onto a turning drum, | then is peeled off, | like making a spring-roll wrapper."
+   },
+   "keywords": [
+    "電鍍",
+    "滾筒",
+    "潤餅皮"
+   ],
+   "cues": [
+    {
+     "id": "plate",
+     "text": "電鍍"
+    },
+    {
+     "id": "grow",
+     "text": "長到轉動滾筒"
+    },
+    {
+     "id": "peel",
+     "text": "撕下來"
+    },
+    {
+     "id": "crepe",
+     "text": "潤餅皮"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "De Nora、專利 US4240894；示意（電鍍，不是加熱）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "drum",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 34.0,
+      "y": 1.0,
+      "d": 40,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "eDrumSpin",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "eGuideSpin",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "eRollSpin",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "eAnode",
+      "at": "plate-4",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "eIon0",
+      "at": "plate",
+      "ramp": 4,
+      "until": "s3:start"
+     },
+     {
+      "id": "eIon1",
+      "at": "plate",
+      "ramp": 4,
+      "until": "s3:start"
+     },
+     {
+      "id": "eIon2",
+      "at": "plate",
+      "ramp": 4,
+      "until": "s3:start"
+     },
+     {
+      "id": "eFoil",
+      "at": "peel-6",
+      "ramp": 4,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eLiq",
+      "text": "硫酸銅藥水＋陽極",
+      "en": "Copper solution + anode",
+      "color": "blue",
+      "at": "plate",
+      "until": "grow-2",
+      "cut": true
+     },
+     {
+      "part": "eDrum",
+      "text": "鈦滾筒（陰極）轉動",
+      "en": "Rotating titanium drum",
+      "color": "amber",
+      "at": "grow",
+      "until": "peel-2",
+      "cut": true
+     },
+     {
+      "part": "eRoll",
+      "text": "撕下銅箔、捲起來",
+      "en": "Peel and wind the foil",
+      "color": "amber",
+      "at": "peel+2",
+      "until": "peel+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-drum",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "電解銅箔：長在滾筒，再撕下來",
+      "tag": "示意（電鍍，不是加熱）",
+      "t": {
+       "plate": {
+        "at": "plate"
+       },
+       "grow": {
+        "at": "grow"
+       },
+       "peel": {
+        "at": "peel"
+       },
+       "crepe": {
+        "at": "crepe"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "貼滾筒那面光滑，另一面長滿小銅瘤，像魔鬼氈，咬住樹脂。",
+   "tts": "貼滾筒那面光滑，另一面長滿小銅瘤，像魔鬼氈，咬住樹脂。",
+   "subtitle": {
+    "zh": "貼滾筒那面光滑\n另一面長滿小銅瘤\n像魔鬼氈\n咬住樹脂",
+    "en": "The drum side is smooth; | the other side is covered in tiny nodules, | like Velcro, | gripping the resin."
+   },
+   "keywords": [
+    "光滑",
+    "小銅瘤",
+    "魔鬼氈"
+   ],
+   "cues": [
+    {
+     "id": "shiny",
+     "text": "光滑"
+    },
+    {
+     "id": "nod",
+     "text": "小銅瘤"
+    },
+    {
+     "id": "velcro",
+     "text": "魔鬼氈"
+    },
+    {
+     "id": "bite",
+     "text": "咬住樹脂"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 EP1308539；示意（放大，不按比例）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "foil",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 70.0,
+      "y": 1.7,
+      "d": 18,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "fShiny",
+      "at": "shiny-4",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "fNodPop",
+      "at": "nod-4",
+      "ramp": 6,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fShiny",
+      "text": "光面：貼滾筒那面",
+      "en": "Drum side: smooth",
+      "color": "blue",
+      "at": "shiny",
+      "until": "nod-2",
+      "cut": true
+     },
+     {
+      "part": "fNod",
+      "text": "粗面：小銅瘤",
+      "en": "Matte side: nodules",
+      "color": "amber",
+      "at": "nod",
+      "until": "bite-8",
+      "cut": true,
+      "xy": [
+       760,
+       330
+      ]
+     },
+     {
+      "part": "fResin",
+      "text": "樹脂被銅瘤咬住",
+      "en": "Resin gripped by nodules",
+      "color": "blue",
+      "at": "bite+4",
+      "until": "bite+40",
+      "cut": true,
+      "xy": [
+       330,
+       330
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-nod",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "光面與粗面：小銅瘤像魔鬼氈",
+      "tag": "示意（放大，不按比例）",
+      "t": {
+       "shiny": {
+        "at": "shiny"
+       },
+       "nod": {
+        "at": "nod"
+       },
+       "velcro": {
+        "at": "velcro"
+       },
+       "bite": {
+        "at": "bite"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "但伺服器訊號很快，大多擠在銅表面走，表面越粗路越彎，像在洗衣板跑步。",
+   "tts": "但伺服器訊號很快，大多擠在銅表面走，表面越粗路越彎，像在洗衣板跑步。",
+   "subtitle": {
+    "zh": "但伺服器訊號很快\n大多擠在銅表面走\n表面越粗路越彎\n像在洗衣板跑步",
+    "en": "But server signals are fast, | and mostly crowd along the copper surface; | the rougher it is, the longer the path, | like running on a washboard."
+   },
+   "keywords": [
+    "表面",
+    "路越彎",
+    "洗衣板"
+   ],
+   "cues": [
+    {
+     "id": "fast",
+     "text": "訊號很快"
+    },
+    {
+     "id": "surf",
+     "text": "擠在銅表面"
+    },
+    {
+     "id": "bend",
+     "text": "路越彎"
+    },
+    {
+     "id": "board",
+     "text": "洗衣板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Rogers、Altium 技術文章；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "skin",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 104.0,
+      "y": 3.7,
+      "d": 18,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "rSigR",
+      "at": "fast-4",
+      "ramp": 4,
+      "until": "s6:start"
+     },
+     {
+      "id": "rSkin",
+      "at": "surf-4",
+      "ramp": 6,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "rRough",
+      "text": "訊號擠在表面，沿凹凸繞路",
+      "en": "Signal hugs the rough surface",
+      "color": "amber",
+      "at": "surf",
+      "until": "surf+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-skin",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "訊號走銅表面：像在洗衣板跑步",
+      "tag": "示意（不標頻率與粗糙度）",
+      "t": {
+       "fast": {
+        "at": "fast"
+       },
+       "surf": {
+        "at": "surf"
+       },
+       "bend": {
+        "at": "bend"
+       },
+       "board": {
+        "at": "board"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "twist",
+   "para": 5,
+   "narration": "所以要用低粗糙度銅箔，做得更平又要黏得牢，這最難。",
+   "tts": "所以要用低粗糙度銅箔，做得更平又要黏得牢，這最難。",
+   "subtitle": {
+    "zh": "所以要用\n低粗糙度銅箔\n做得更平\n又要黏得牢\n這最難",
+    "en": "So use | low-profile copper foil: | flatter, | yet still firmly bonded — | that's the hardest part."
+   },
+   "keywords": [
+    "低粗糙度",
+    "更平",
+    "黏得牢"
+   ],
+   "cues": [
+    {
+     "id": "low",
+     "text": "低粗糙度"
+    },
+    {
+     "id": "flat",
+     "text": "更平"
+    },
+    {
+     "id": "glue",
+     "text": "黏得牢"
+    },
+    {
+     "id": "hard",
+     "text": "最難"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "IPC 技術論文 E5&S24_01、專利 US10765010；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "low-6",
+      "dur": 24,
+      "x": 104.0,
+      "y": 2.4,
+      "d": 22,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "rSigS",
+      "at": "low+8",
+      "ramp": 4,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "rSmooth",
+      "text": "低粗糙度：表面平，走直線",
+      "en": "Low profile: straight path",
+      "color": "blue",
+      "at": "low+4",
+      "until": "low+49",
+      "cut": true
+     },
+     {
+      "part": "rGlue",
+      "text": "還要黏得住樹脂",
+      "en": "Must still bond to resin",
+      "color": "amber",
+      "at": "glue+2",
+      "until": "glue+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-hvlp",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "低粗糙度銅箔：平和黏得牢互相拉扯",
+      "tag": "示意",
+      "t": {
+       "low": {
+        "at": "low"
+       },
+       "flat": {
+        "at": "flat"
+       },
+       "glue": {
+        "at": "glue"
+       },
+       "hard": {
+        "at": "hard"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "玻纖布是玻璃拉成細絲、捻成紗，再一經一緯織成布，像編竹蓆。",
+   "tts": "玻纖布是玻璃拉成細絲、捻成紗，再一經一緯織成布，像編竹蓆。",
+   "subtitle": {
+    "zh": "玻纖布是\n玻璃拉成細絲\n捻成紗\n再一經一緯織成布\n像編竹蓆",
+    "en": "Glass fabric: | glass drawn into fine filaments, | twisted into yarn, | then woven warp over weft, | like weaving a bamboo mat."
+   },
+   "keywords": [
+    "細絲",
+    "紗",
+    "竹蓆"
+   ],
+   "cues": [
+    {
+     "id": "draw",
+     "text": "拉成細絲"
+    },
+    {
+     "id": "twist",
+     "text": "捻成紗"
+    },
+    {
+     "id": "weave",
+     "text": "一經一緯"
+    },
+    {
+     "id": "mat",
+     "text": "竹蓆"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Isola、Intel 技術文件、IPC-4412；示意（放大）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "loom",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 150.0,
+      "y": 1.0,
+      "d": 46,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "gBush",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gDraw",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s7:start"
+     },
+     {
+      "id": "gBobSpin",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gTw0",
+      "at": "twist-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gTw1",
+      "at": "twist-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gTw2",
+      "at": "twist-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gTw3",
+      "at": "twist-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gShedA",
+      "at": "weave-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gShedB",
+      "at": "weave-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gReedBeat",
+      "at": "weave-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gClothSpin",
+      "at": "weave-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "gWarpSpin",
+      "at": "weave-6",
+      "ramp": 8,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "gBush",
+      "text": "白金漏板：熔融玻璃拉成絲",
+      "en": "Bushing: glass drawn into filaments",
+      "color": "amber",
+      "at": "draw-2",
+      "until": "draw+43",
+      "cut": true
+     },
+     {
+      "part": "gTwist",
+      "text": "捻紗",
+      "en": "Twisting",
+      "color": "blue",
+      "at": "twist",
+      "until": "twist+45",
+      "cut": true
+     },
+     {
+      "part": "gLoom",
+      "text": "織布機：一經一緯",
+      "en": "Loom: plain weave",
+      "color": "amber",
+      "at": "weave",
+      "until": "weave+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-weave",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "玻纖布：拉絲、捻紗、平織",
+      "tag": "示意（放大）",
+      "t": {
+       "draw": {
+        "at": "draw"
+       },
+       "twist": {
+        "at": "twist"
+       },
+       "weave": {
+        "at": "weave"
+       },
+       "mat": {
+        "at": "mat"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "紗和空隙讓訊號快慢不一，一對訊號就對不齊。",
+   "tts": "紗和空隙讓訊號快慢不一，一對訊號就對不齊。",
+   "subtitle": {
+    "zh": "紗和空隙\n讓訊號快慢不一\n一對訊號\n就對不齊",
+    "en": "Yarn and gaps | make signals travel at different speeds, | so a signal pair | falls out of step."
+   },
+   "keywords": [
+    "空隙",
+    "快慢不一",
+    "對不齊"
+   ],
+   "cues": [
+    {
+     "id": "yarn",
+     "text": "紗和空隙"
+    },
+    {
+     "id": "speed",
+     "text": "快慢不一"
+    },
+    {
+     "id": "pair",
+     "text": "一對訊號"
+    },
+    {
+     "id": "skew",
+     "text": "對不齊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Isola、PCD&F 技術文章；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "weave",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 192.0,
+      "y": -1.0,
+      "d": 36,
+      "elev": 38
+     }
+    ],
+    "run": [
+     {
+      "id": "wYarnGlow",
+      "at": "yarn-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "wGapGlow",
+      "at": "yarn-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "wSigA",
+      "at": "speed-4",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "wSigB",
+      "at": "speed-4",
+      "ramp": 4,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wA",
+      "text": "走在紗上：慢",
+      "en": "Over the yarn: slower",
+      "color": "amber",
+      "at": "speed",
+      "until": "speed+45",
+      "cut": true
+     },
+     {
+      "part": "wB",
+      "text": "走在空隙上：快",
+      "en": "Over the gap: faster",
+      "color": "blue",
+      "at": "speed+2",
+      "until": "speed+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-skew",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "玻纖效應：一對訊號對不齊",
+      "tag": "示意（速度差放大）",
+      "t": {
+       "yarn": {
+        "at": "yarn"
+       },
+       "speed": {
+        "at": "speed"
+       },
+       "pair": {
+        "at": "pair"
+       },
+       "skew": {
+        "at": "skew"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.8,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "twist",
+   "para": 8,
+   "narration": "所以把紗攤平，像把辮子梳開，再換低介電玻璃，訊號更快、損耗更少。",
+   "tts": "所以把紗攤平，像把辮子梳開，再換低介電玻璃，訊號更快、損耗更少。",
+   "subtitle": {
+    "zh": "所以把紗攤平\n像把辮子梳開\n再換低介電玻璃\n訊號更快\n損耗更少",
+    "en": "So spread the yarn flat, | like combing out a braid, | then switch to low-Dk glass: | faster signals, | less loss."
+   },
+   "keywords": [
+    "攤平",
+    "辮子",
+    "低介電"
+   ],
+   "cues": [
+    {
+     "id": "flat",
+     "text": "攤平"
+    },
+    {
+     "id": "braid",
+     "text": "辮子"
+    },
+    {
+     "id": "lowdk",
+     "text": "低介電"
+    },
+    {
+     "id": "fast",
+     "text": "訊號更快"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Isola、Intel、專利 US11191158；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "spread",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 230.0,
+      "y": -1.0,
+      "d": 36,
+      "elev": 38
+     }
+    ],
+    "run": [
+     {
+      "id": "xSigA0",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "flat"
+     },
+     {
+      "id": "xSigB0",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "flat"
+     },
+     {
+      "id": "xSigA1",
+      "at": "flat+6",
+      "ramp": 4,
+      "until": "lowdk"
+     },
+     {
+      "id": "xSigB1",
+      "at": "flat+6",
+      "ramp": 4,
+      "until": "lowdk"
+     },
+     {
+      "id": "xSigA2",
+      "at": "lowdk+6",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "xSigB2",
+      "at": "lowdk+6",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "xLdGlow",
+      "at": "lowdk",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "xFlat",
+      "text": "開纖：紗攤平、空隙變小",
+      "en": "Spread glass: flatter yarn",
+      "color": "blue",
+      "at": "flat+2",
+      "until": "flat+47",
+      "cut": true
+     },
+     {
+      "part": "xLd",
+      "text": "低介電玻璃",
+      "en": "Low-Dk glass",
+      "color": "amber",
+      "at": "lowdk+2",
+      "until": "lowdk+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-spread",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "開纖＋低介電玻璃",
+      "tag": "示意（不標介電常數）",
+      "t": {
+       "flat": {
+        "at": "flat"
+       },
+       "braid": {
+        "at": "braid"
+       },
+       "lowdk": {
+        "at": "lowdk"
+       },
+       "fast": {
+        "at": "fast"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "台灣金居做低粗糙度銅箔；台玻和富喬做低介電玻纖布，都在擴產。",
+   "tts": "台灣金居做低粗糙度銅箔；台玻和富喬做低介電玻纖布，都在擴產。",
+   "subtitle": {
+    "zh": "台灣金居\n做低粗糙度銅箔\n台玻和富喬\n做低介電玻纖布\n都在擴產",
+    "en": "In Taiwan, Co-Tech | makes low-profile copper foil; | Taiwan Glass and Fulltech | make low-Dk glass fabric — | all expanding capacity."
+   },
+   "keywords": [
+    "金居",
+    "台玻",
+    "富喬"
+   ],
+   "cues": [
+    {
+     "id": "cotech",
+     "text": "金居"
+    },
+    {
+     "id": "tglass",
+     "text": "台玻"
+    },
+    {
+     "id": "fulltech",
+     "text": "富喬"
+    },
+    {
+     "id": "exp",
+     "text": "擴產"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報、經濟日報等報導；擴產為公司說法"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 268.0,
+      "y": 0.5,
+      "d": 44,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "kGlow",
+      "at": "exp-4",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-co",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "銅箔與玻纖布供應商（台灣）",
+      "tag": "媒體報導；截至 2026/11/28",
+      "t": {
+       "cotech": {
+        "at": "cotech"
+       },
+       "tglass": {
+        "at": "tglass"
+       },
+       "fulltech": {
+        "at": "fulltech"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "布和銅升級好，變成電路板還得壓合、鑽孔、電鍍。下一集，看電路板怎麼做。留言玻纖布，拿完整資料。",
+   "tts": "布和銅升級好，變成電路板還得壓合、鑽孔、電鍍。下一集，看電路板怎麼做。留言玻纖布，拿完整資料。",
+   "subtitle": {
+    "zh": "布和銅升級好\n變成電路板\n還得壓合\n鑽孔 電鍍\n下一集\n看電路板怎麼做\n留言玻纖布\n拿完整資料",
+    "en": "With cloth and copper upgraded, | to become a circuit board | they still need laminating, | drilling and plating. | Next time: | how a circuit board is made. | Comment \"glass fabric\" | for the full notes."
+   },
+   "keywords": [
+    "壓合",
+    "鑽孔",
+    "電鍍"
+   ],
+   "cues": [
+    {
+     "id": "up",
+     "text": "升級好"
+    },
+    {
+     "id": "press",
+     "text": "壓合"
+    },
+    {
+     "id": "drill",
+     "text": "鑽孔"
+    },
+    {
+     "id": "plate",
+     "text": "電鍍"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言玻纖布"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice+2",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice+2",
+      "dur": 1,
+      "x": 307.6,
+      "y": -0.5,
+      "d": 44,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "nHeat",
+      "at": "press-6",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "nDrillDown",
+      "at": "drill",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "nBitSpin",
+      "at": "drill",
+      "ramp": 6,
+      "until": "s11:start"
+     },
+     {
+      "id": "nPlate",
+      "at": "plate",
+      "ramp": 6,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nStack",
+      "text": "銅箔＋膠片＋銅箔：壓合",
+      "en": "Lamination",
+      "color": "amber",
+      "at": "press",
+      "until": "press+45",
+      "cut": true
+     },
+     {
+      "part": "nDrill",
+      "text": "鑽孔，孔壁再電鍍（下一集）",
+      "en": "Drilling and plating (next)",
+      "color": "blue",
+      "at": "drill+2",
+      "until": "drill+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cuf-co",
+      "at": "voice-3",
+      "until": "voice+3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "銅箔與玻纖布供應商（台灣）",
+      "tag": "媒體報導；截至 2026/11/28",
+      "t": {
+       "cotech": {
+        "at": "s9:cotech"
+       },
+       "tglass": {
+        "at": "s9:tglass"
+       },
+       "fulltech": {
+        "at": "s9:fulltech"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "cuf-next",
+      "at": "voice+3",
+      "until": "s11:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：電路板怎麼做",
+      "tag": "留言「玻纖布」",
+      "t": {
+       "up": {
+        "at": "up"
+       },
+       "press": {
+        "at": "press"
+       },
+       "drill": {
+        "at": "drill"
+       },
+       "plate": {
+        "at": "plate"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.6,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "電路板怎麼做",
+     "trail": [
+      "銅箔要平又黏得牢、玻纖布要攤平換低介電"
+     ],
+     "comment": "玻纖布",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

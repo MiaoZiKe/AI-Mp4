@@ -62,6 +62,7 @@ import { DicingSection } from "./HudDicing";
 import { AbfsubSection } from "./HudAbfsub";
 import { BtSection } from "./HudBt";
 import { CclSection } from "./HudCcl";
+import { CufoilSection } from "./HudCufoil";
 import { GlassSection } from "./HudGlass";
 import { PartsSection } from "./HudParts";
 import { FanoutSection } from "./HudFanout";
@@ -766,6 +767,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("abs-")) return <AbfsubSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-abfsub（HudAbfsub.tsx）
   if (String((o as any).kind ?? "").startsWith("bt-")) return <BtSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-bt（HudBt.tsx）
   if (String((o as any).kind ?? "").startsWith("ccl-")) return <CclSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-ccl（HudCcl.tsx）
+  if (String((o as any).kind ?? "").startsWith("cuf-")) return <CufoilSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-cufoil（HudCufoil.tsx）
   if (String((o as any).kind ?? "").startsWith("glass-")) return <GlassSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-glass（HudGlass.tsx）
   if (String((o as any).kind ?? "").startsWith("target-")) return <TargetSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-target（HudTarget.tsx）
   if (String((o as any).kind ?? "").startsWith("twequip-")) return <TwequipSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-twequip（HudTwequip.tsx）
