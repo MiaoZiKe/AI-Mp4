@@ -118,10 +118,13 @@ VIS += [mv("head", T0, FAR, 1, dy=L1), mv("head", T0, F(16), 8, dy=1.4)]
 for l in ("die", "head"):
     VIS += [mv(l, F(26), FAR, 8, dy=U), mv(l, F(34), FAR, 12, dx=DX1), mv(l, F(46), F(52), 6, dy=-D1), mv(l, F(58), FAR, 12, dx=DX2), mv(l, F(72), FAR, 8, dy=-D2)]
 VIS += [mv("head", F(84), FAR, 8, dy=1.0)]
-# s1 爆炸（第 39 條：全在念的期間做完）：①頂蓋與接合頭抬開（標「接合頭」）→停 1.2 秒 →②翻面單元往左抽出、助焊劑盤往前滑出（標「翻面單元」）→停 1.4 秒 →③全部組回（念完前 0.5 秒落定）
+# s1 爆炸（第 39 條：全在 s1 念的期間做完）：真正三步、各標一張（≥45 幀）
+# ①頂蓋抬起＋接合頭沿橫樑滑到右端、Z 軸降下（避開鉤子大字，標「接合頭」）→ ②翻面單元往左抽出（標「翻面單元」）→ ③助焊劑盤往前滑出（標「助焊劑盤」）
+# → 反序組回：助焊劑盤 → 翻面單元 → 接合頭與頂蓋；落定後停 1.3 秒才換幕
 Q = lambda n: f"s1:q{n:+d}"
-VIS += [mv("cover", Q(-30), Q(76), 14, dy=1.0), mv("head", Q(-30), Q(76), 14, dx=3.0)]
-VIS += [mv(l, Q(20), Q(76), 12, dx=-2.4) for l in ("flipper", "flipBase")] + [mv("flux", Q(20), Q(76), 12, dz=2.4)]
+VIS += [mv("cover", Q(-54), Q(70), 12, dy=1.0), mv("head", Q(-54), Q(70), 12, dx=7.0, dy=-1.8)]
+VIS += [mv(l, Q(-26), Q(66), 12, dx=-2.4) for l in ("flipper", "flipBase")]
+VIS += [mv("flux", Q(20), Q(62), 10, dz=2.4)]
 
 # ═════ 站 B：覆晶晶片先浮在焊墊上方（看得到凸塊陣列），念完往下貼合 ═════
 VIS += [mv("fcDie", T0, "s3:short", 20, dy=1.0)]
@@ -158,7 +161,7 @@ vis("nRdl", [("s10:rdl", FAR)])
 P = {}
 P["s1"] = {"shot": [shot("start-30", 0.4, 2.0, 42, 28, 1, yaw=0.0), shot("start", 0.4, 2.0, 40, 29, 160)], "shift": VIS,
  "run": [run("fluxSpin", "start-30", "s2:press+30", 10), run("upcamFlash", "start-30", "s1:end+20", 6)],
- "labels": [lab("head", "接合頭", "Bond head", "blue", "q-26", "q+14"), lab("flipper", "翻面單元", "Flip unit", "amber", "q+24", "q+66")],
+ "labels": [lab("head", "接合頭", "Bond head", "blue", "q-52", "q-7"), lab("flipper", "翻面單元", "Flip unit", "amber", "q-26", "q+19"), lab("flux", "助焊劑盤", "Flux plate", "blue", "q+20", "q+65")],
  "overlay": [sec("fc-hook", "start", nxt("s1"), "系列 3・第 4 集", "示意，非實際比例", {"q": "q", "prev": "prev", "fc": "fc"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-14", "dur": 1}],
  "shot": [shot(CC, -2.4, 2.6, 24, 32, 1), shot("flip+40", 0.8, 2.4, 28, 34, 40)],
