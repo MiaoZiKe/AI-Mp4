@@ -111,9 +111,9 @@
    ],
    "props": {
     "hook": {
-     "kicker": "接上集：機台住在超乾淨的房間",
-     "title": "只准 10 顆灰塵",
-     "size": 120,
+     "kicker": "接上集：超乾淨的房間也分等級",
+     "title": "最乾淨一級：10 顆",
+     "size": 104,
      "top": 236
     },
     "zoom": [
@@ -213,6 +213,20 @@
       "dy": 1.5
      },
      {
+      "layer": "roof",
+      "at": "s3:ffu-10",
+      "until": "s3:down-6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "roofTop",
+      "at": "s3:ffu-10",
+      "until": "s3:down-6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
       "layer": "oneFan",
       "at": "s4:voice-3",
       "until": "s4:maze+30",
@@ -239,6 +253,20 @@
       "until": "s4:again+14",
       "dur": 20,
       "dy": -0.6
+     },
+     {
+      "layer": "hSpark",
+      "at": "s1:start-40",
+      "until": "s7:static+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hSpark",
+      "at": "s7:static+24",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 1
      },
      {
       "layer": "utilW",
@@ -305,7 +333,7 @@
      },
      {
       "layer": "person",
-      "at": "s5:suit+40",
+      "at": "s5:suit+36",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 1
@@ -315,7 +343,7 @@
       "at": "s1:start-40",
       "until": "s5:suit+0",
       "dur": 16,
-      "dy": 6.0,
+      "dy": 1.6,
       "fallIn": true,
       "bounce": 0.05,
       "opacity": 0
@@ -325,7 +353,7 @@
       "at": "s1:start-40",
       "until": "s5:suit+8",
       "dur": 16,
-      "dy": 6.0,
+      "dy": 1.2,
       "fallIn": true,
       "bounce": 0.05,
       "opacity": 0
@@ -335,7 +363,7 @@
       "at": "s1:start-40",
       "until": "s5:suit+14",
       "dur": 16,
-      "dy": 6.0,
+      "dy": 2.0,
       "fallIn": true,
       "bounce": 0.05,
       "opacity": 0
@@ -345,7 +373,7 @@
       "at": "s1:start-40",
       "until": "s5:suit+20",
       "dur": 16,
-      "dy": 5.0,
+      "dy": 2.4,
       "fallIn": true,
       "bounce": 0.05,
       "opacity": 0
@@ -412,6 +440,13 @@
       "until": "s4:floor-7",
       "opacity": 0,
       "dur": 1
+     },
+     {
+      "layer": "roof",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
      }
     ],
     "run": [
@@ -420,6 +455,18 @@
       "at": "start-30",
       "ramp": 6,
       "until": "s10:start+400"
+     },
+     {
+      "id": "roofSpin",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:closet"
+     },
+     {
+      "id": "flagWave",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:closet"
      }
     ],
     "overlay": [
@@ -749,9 +796,9 @@
       "at": "ffu-10",
       "dur": 24,
       "x": 0.0,
-      "y": 3.15,
-      "d": 62.0,
-      "elev": 15
+      "y": 4.01,
+      "d": 63.0,
+      "elev": 36
      },
      {
       "at": "down-6",
@@ -1638,8 +1685,7 @@
     "en": "Temperature and humidity | are held fixed too, | or materials swell and shrink | and static runs wild."
    },
    "keywords": [
-    "溫度",
-    "濕度",
+    "溫度、濕度",
     "靜電"
    ],
    "cues": [
@@ -1695,21 +1741,27 @@
      },
      {
       "id": "hExpL",
-      "at": "exp",
+      "at": "exp-4",
       "ramp": 8,
-      "until": "static+16"
+      "until": "static+20"
+     },
+     {
+      "id": "hExpBrL",
+      "at": "exp-4",
+      "ramp": 8,
+      "until": "static+20"
      },
      {
       "id": "hExpR",
-      "at": "exp",
+      "at": "exp-4",
       "ramp": 8,
-      "until": "static+16"
+      "until": "static+20"
      },
      {
       "id": "hSparkFlash",
       "at": "static+2",
       "ramp": 2,
-      "until": "static+26"
+      "until": "static+24"
      },
      {
       "id": "hDustPull",
@@ -1789,8 +1841,7 @@
    },
    "keywords": [
     "漢唐",
-    "亞翔",
-    "洋基工程"
+    "亞翔、洋基工程"
    ],
    "cues": [
     {
@@ -1840,6 +1891,12 @@
      {
       "id": "bHook",
       "at": "start",
+      "ramp": 6,
+      "until": "s9:start+4"
+     },
+     {
+      "id": "bGlow",
+      "at": "build-2",
       "ramp": 6,
       "until": "s9:start+4"
      }

@@ -24,7 +24,7 @@ const palette = {
   woodC: "#C79A62", woodD: "#9E7444", fiberC: "#F1EEE6", fiberD: "#D8D2C4",
   skinC: "#E8C3A0", hairC: "#4A3426", shirtC: "#4F7FBF", pantsC: "#3A4254", shoeC: "#2B2F36", suitC: "#FAFBFD", suitS: "#D7DEE8", gloveC: "#6C7FD8", visorC: "#2E3A4E",
   corrC: "#E8DFCF", anteC: "#E6EEF6", matC: "#7C93A8", nozC: "#A9B5C7",
-  waterC: "#2F7FE0", gasC: "#8E99A8", powerC: "#F2B632", sparkC: "#CFE8FF", markC: "#E8613C", yellowBr: "#F2B632", whiteP: "#FFFFFF", edgeC: "#F4FAFF",
+  waterC: "#2F7FE0", gasC: "#8E99A8", powerC: "#F2B632", sparkC: "#5FB4FF", markC: "#E8613C", yellowBr: "#F2B632", whiteP: "#FFFFFF", edgeC: "#F4FAFF",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const glowM = (c, op, ei = 1) => M("std", c, { emissive: c, ei, opacity: op, rough: 1, metal: 0 });
@@ -52,7 +52,7 @@ const materials = {
   glove: M("std", "gloveC", { rough: 0.5, metal: 0 }), visor: M("phys", "visorC", { rough: 0.1, metal: 0.2, clearcoat: 1, env: 0.8 }), leak: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }),
   corr: M("std", "corrC", { rough: 0.8, metal: 0 }), ante: M("std", "anteC", { rough: 0.7, metal: 0.05 }), mat: M("std", "matC", { rough: 0.95, metal: 0 }), noz: M("std", "nozC", { rough: 0.3, metal: 0.8, env: 0.6 }),
   water: M("std", "waterC", { rough: 0.35, metal: 0.5, env: 0.5 }), gas: M("std", "gasC", { rough: 0.3, metal: 0.85, env: 0.6 }), power: M("std", "powerC", { rough: 0.5, metal: 0.2, emissive: "powerC", ei: 0.15 }),
-  spark: glowM("sparkC", 1, 1.2), mark: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }), bracket: M("std", "yellowBr", { rough: 0.5, metal: 0, emissive: "yellowBr", ei: 0.35 }),
+  spark: glowM("sparkC", 1, 1.4), sparkHalo: glowM("sparkC", 0.35, 1.2), mark: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }), bracket: M("std", "yellowBr", { rough: 0.5, metal: 0, emissive: "yellowBr", ei: 0.35 }),
   white: M("std", "whiteP", { rough: 0.7, metal: 0 }), lightPanel: M("std", "whiteP", { rough: 0.3, metal: 0, emissive: "whiteP", ei: 0.55 }),
 };
 const parts = [], layers = [], anchors = {}, actions = {};
@@ -92,7 +92,8 @@ const BX0 = -11.2, BX1 = 11.2, BZ0 = -6.2, BZ1 = 6.2, YF = 2.4, YC = 8.2, YR = 1
 LAY("shell", [23, 13, 0, 6.3]);
 BOX("shBack", "shell", BX0, BX1, 0, YR, BZ0 - 0.3, BZ0, "wall");
 BOX("shSideL", "shell", BX0 - 0.3, BX0, 0, YR, BZ0 - 0.3, BZ1, "wall"); BOX("shSideR", "shell", BX1, BX1 + 0.3, 0, YR, BZ0 - 0.3, BZ1, "wall");
-BOX("shRoof", "shell", BX0 - 0.4, BX1 + 0.4, YR, YR + 0.4, BZ0 - 0.5, BZ1 + 0.3, "roof"); BOX("shParapet", "shell", BX0 - 0.4, BX1 + 0.4, YR + 0.4, YR + 0.8, BZ1 + 0.1, BZ1 + 0.3, "wallD");
+LAY("roof", [23.6, 1.2, 0, 10.6]);
+BOX("shRoof", "roof", BX0 - 0.4, BX1 + 0.4, YR, YR + 0.4, BZ0 - 0.5, BZ1 + 0.3, "roof"); BOX("shParapet", "roof", BX0 - 0.4, BX1 + 0.4, YR + 0.4, YR + 0.8, BZ1 + 0.1, BZ1 + 0.3, "wallD");
 P({ id: "shSideSeam", layer: "shell", shape: "box", size: [0.06, YR, 0.06], pos: [0, YR / 2, 0], at: [[BX0 - 0.32, 0, -3.1], [BX0 - 0.32, 0, 0], [BX0 - 0.32, 0, 3.1], [BX1 + 0.32, 0, -3.1], [BX1 + 0.32, 0, 0], [BX1 + 0.32, 0, 3.1]], mat: "seam" });
 // 中間樓板（回風層與無塵室之間的格子樓板，梁柱看得見）、空氣室樓板（屋頂下）
 LAY("slab", [22.4, 0.3, 0, 1.45]);
@@ -130,14 +131,16 @@ for (const [i, x] of [[0, -6.4], [1, 1.0]]) {
   P({ id: `mau${i}Handle`, layer: "roofTop", shape: "box", size: [0.08, 0.3, 0.08], pos: [x + 0.35, YR + 1.25, -0.52], at: [[-1.6, 0, 0], [0, 0, 0], [1.6, 0, 0]], mat: "steel" });
   BOX(`mau${i}Duct`, "roofTop", x + 2.8, x + 3.8, YR + 0.4, YR + 1.4, -2.6, -1.6, "steel2");
 }
-for (const [i, x] of [[0, -2.0], [1, 6.6], [2, 9.0]]) { VC(`exf${i}`, "roofTop", 0.7, YR + 0.4, YR + 1.5, "steel2", { x, z: 2.0 }); VT(`exf${i}Hood`, "roofTop", 0.95, 0.7, YR + 1.5, YR + 1.8, "dark", { x, z: 2.0 }); VC(`exf${i}Cap`, "roofTop", 0.5, YR + 1.8, YR + 2.0, "steel", { x, z: 2.0 }); }
+const EXF = [[0, -2.0], [1, 6.6], [2, 9.0]];
+for (const [i, x] of EXF) { VC(`exf${i}`, "roofTop", 0.7, YR + 0.4, YR + 1.5, "steel2", { x, z: 2.0 }); VT(`exf${i}Hood`, "roofTop", 0.95, 0.7, YR + 1.5, YR + 1.8, "dark", { x, z: 2.0 }); VC(`exf${i}Cap`, "roofTop", 0.5, YR + 1.8, YR + 2.0, "steel", { x, z: 2.0 }); }
 P({ id: "roofRail", layer: "roofTop", shape: "box", size: [22.6, 0.06, 0.06], pos: [0, YR + 1.3, BZ1 + 0.2], mat: "warnY" });
 P({ id: "roofRailPost", layer: "roofTop", shape: "box", size: [0.06, 0.5, 0.06], pos: [0, YR + 1.05, BZ1 + 0.2], at: Array.from({ length: 9 }, (_, i) => [R2(-11 + i * 2.75), 0, 0]), mat: "warnY" });
+EXF.forEach(([i, x]) => { P({ id: `exfBlade${i}`, layer: "roofTop", shape: "poly", size: [1, 1, 0.05], pts: [[0, 0.08], [0.85, 0.2], [0.88, -0.03], [0, -0.08], [-0.85, -0.2], [-0.88, 0.03]], pos: [x, YR + 2.04, 2.0], rot: [-90, 0, 0], mat: "dark" }); P({ id: `exfBladeX${i}`, layer: "roofTop", shape: "poly", size: [1, 1, 0.05], pts: [[0, 0.08], [0.85, 0.2], [0.88, -0.03], [0, -0.08], [-0.85, -0.2], [-0.88, 0.03]], pos: [x, YR + 2.04, 2.0], rot: [-90, 90, 0], mat: "dark" }); });
 // 冷卻水塔（右側地面）、管排（左側）、警衛室與柵欄（左前）、旗桿與國旗（入口前）
 LAY("yard", [40, 13, 0, 4]);
 BOX("ctBase", "yard", 13.2, 17.8, 0, 0.5, -4.5, 0.5, "conc"); BOX("ctBody", "yard", 13.6, 17.4, 0.5, 4.6, -4.1, 0.1, "tower");
 P({ id: "ctLouver", layer: "yard", shape: "box", size: [3.8, 0.08, 0.06], pos: [15.5, 0, 0.14], at: Array.from({ length: 9 }, (_, i) => [0, R2(0.8 + i * 0.32), 0]), mat: "dark" });
-VT("ctFan", "yard", 1.5, 1.3, 4.6, 5.4, "steel2", { x: 15.5, z: -2.0 }); VC("ctFanHub", "yard", 0.3, 4.6, 5.3, "dark", { x: 15.5, z: -2.0 });
+VT("ctFan", "yard", 1.5, 1.3, 4.6, 5.4, "steel2", { x: 15.5, z: -2.0 }); P({ id: "ctBlade", layer: "yard", shape: "poly", size: [1, 1, 0.06], pts: [[0, 0.12], [1.35, 0.3], [1.38, -0.05], [0, -0.12], [-1.35, -0.3], [-1.38, 0.05]], pos: [15.5, 5.25, -2.0], rot: [-90, 0, 0], mat: "dark" }); P({ id: "ctBlade2", layer: "yard", shape: "poly", size: [1, 1, 0.06], pts: [[0, 0.12], [1.35, 0.3], [1.38, -0.05], [0, -0.12], [-1.35, -0.3], [-1.38, 0.05]], pos: [15.5, 5.25, -2.0], rot: [-90, 90, 0], mat: "dark" }); VC("ctFanHub", "yard", 0.3, 4.6, 5.3, "dark", { x: 15.5, z: -2.0 });
 PIPE("ctPipe", "yard", [[13.6, 1.2, -1.0], [11.6, 1.2, -1.0]], 0.22, "water");
 for (const [k, y] of [[0, 4.4], [1, 5.0]]) PIPE(`rack${k}`, "yard", [[-16.5, y, 3.0], [-11.6, y, 3.0]], 0.18, k ? "gas" : "water");
 P({ id: "rackPost", layer: "yard", shape: "box", size: [0.2, 5.4, 0.2], pos: [0, 2.7, 3.0], at: [[-16.0, 0, 0], [-13.4, 0, 0]], mat: "steel" }); BOX("rackBeam", "yard", -16.4, -12.0, 4.0, 4.15, 2.6, 3.4, "steel");
@@ -399,14 +402,17 @@ P({ id: "hCtrlLed", layer: "hRoom", shape: "sphere", size: [0.07], pos: [0, 6.1,
 LAY("hStage", [6, 2, HXc + 1.0, 1.6]);
 BOX("hStageBase", "hStage", HXc - 2.4, HXc + 4.4, 0.9, 1.6, -1.2, 2.4, "band"); P({ id: "hStageRail", layer: "hStage", shape: "box", size: [6.6, 0.08, 0.12], pos: [HXc + 1.0, 1.64, 0], at: [[0, 0, -0.8], [0, 0, 2.0]], mat: "steel2" });
 VC("hChuck", "hStage", 2.0, 1.6, 1.9, "steel2", { x: HXc + 1.0, z: 0.6 }); VC("hWafer", "hStage", 1.85, 1.9, 1.96, "dark", { x: HXc + 1.0, z: 0.6 });
-LAY("hPatL", [2, 0.2, HXc + 0.2, 2]); LAY("hPatR", [2, 0.2, HXc + 1.8, 2]);
-for (const [s, sx] of [["L", -1], ["R", 1]]) { const pts = []; for (let i = 0; i < 3; i++) for (let j = 0; j < 5; j++) { const x = HXc + 1.0 + sx * (0.35 + i * 0.45), z = 0.6 - 1.0 + j * 0.5; if (Math.hypot(x - HXc - 1.0, z - 0.6) < 1.6) pts.push([R2(x), 0, R2(z)]); }
-  P({ id: `hDie${s}`, layer: `hPat${s}`, shape: "box", size: [0.36, 0.02, 0.4], pos: [0, 1.975, 0], at: pts, mat: "screen" }); }
+LAY("hPat", [4, 0.2, HXc + 1.0, 2]);
+{ const pts = []; for (let i = -3; i <= 3; i++) for (let j = -3; j <= 3; j++) { const x = i * 0.45, z = j * 0.48; if (Math.hypot(x, z) < 1.5) pts.push([R2(x), 0, R2(z)]); }
+  P({ id: "hDie", layer: "hPat", shape: "box", size: [0.36, 0.02, 0.4], pos: [HXc + 1.0, 1.975, 0.6], at: pts, mat: "screen" });
+  P({ id: "hNotchW", layer: "hPat", shape: "box", size: [0.12, 0.02, 0.12], pos: [HXc + 1.0, 1.972, 0.6], at: [[0, 0, 1.8]], mat: "dark" }); }
 LAY("hBr", [5, 1, HXc + 1, 2.4]); BOX("hBrL", "hBr", HXc - 0.95, HXc - 0.85, 1.96, 2.5, 2.3, 2.4, "bracket"); BOX("hBrR", "hBr", HXc + 2.85, HXc + 2.95, 1.96, 2.5, 2.3, 2.4, "bracket");
 // 靜電：接地叉片靠近晶圓邊緣，火花（鋸齒）閃一下
-BOX("hFork", "hStage", HXc + 3.1, HXc + 4.4, 1.95, 2.02, 0.2, 1.0, "steel2");
-LAY("hSpark", [1, 0.6, HXc + 2.95, 2.1]); P({ id: "hSparkBolt", layer: "hSpark", shape: "poly", size: [1, 1, 0.05], pts: [[-0.22, 0.02], [-0.05, 0.12], [0.02, -0.04], [0.22, 0.06], [0.22, 0.12], [0.0, 0.04], [-0.06, 0.2], [-0.22, 0.08]], pos: [HXc + 2.95, 2.0, 0.6], rot: [-90, 0, 0], mat: "spark" });
-SPH("hSparkGlow", "hSpark", 0.14, HXc + 2.95, 2.02, 0.6, "spark");
+BOX("hFork", "hStage", HXc + 3.7, HXc + 5.0, 1.93, 2.0, 0.25, 0.95, "steel2"); BOX("hForkBase", "hStage", HXc + 4.6, HXc + 5.0, 1.6, 1.93, 0.3, 0.9, "dark"); P({ id: "hGround", layer: "hStage", shape: "box", size: [0.5, 0.04, 0.04], pos: [HXc + 4.8, 1.75, 0.95], mat: "lampG" });
+LAY("hSpark", [1, 0.8, HXc + 3.28, 2.1]);
+{ const X0 = HXc + 2.86, X1 = HXc + 3.7, pts = [[0, 0.0], [0.16, 0.42], [0.3, -0.12], [0.46, 0.38], [0.62, -0.1], [0.84, 0.1], [0.84, 0.22], [0.62, 0.06], [0.46, 0.54], [0.3, 0.04], [0.16, 0.58], [0, 0.14]];
+  P({ id: "hSparkBolt", layer: "hSpark", shape: "poly", size: [1, 1, 0.06], pts: pts.map(([u, v]) => [R2(u - 0.42), R2(v - 0.1)]), pos: [R2((X0 + X1) / 2), 2.12, 0.7], mat: "spark" });
+  SPH("hSparkGlow", "hSpark", 0.48, R2((X0 + X1) / 2), 2.08, 0.62, "sparkHalo"); SPH("hSparkEnd", "hSpark", 0.09, X0, 1.98, 0.6, "spark"); SPH("hSparkEnd2", "hSpark", 0.09, X1, 1.98, 0.6, "spark"); }
 
 // ═════ 站 B：工程公司（x 190）：三個無塵室模組（剖開的小房間）＋文字名牌（白底深色字，不是商標）═════
 const BXc = 190;
@@ -444,6 +450,9 @@ const LOOP = (s) => [[s * 3.0, YF + 0.3, 5.8], [s * 3.0, 0.45, 5.8], [s * 10.3, 
 actions.loopL = { type: "flow", _說明: "回風循環（左）：從地板孔洞抽回、往兩側、沿豎井往上、回到空氣室重新過濾", layer: "subfab", path: LOOP(-1), n: 8, size: 0.16, shape: "arrow", rate: 0.16, color: "airD", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0.03 };
 actions.loopR = { type: "flow", layer: "subfab", path: LOOP(1), n: 8, size: 0.16, shape: "arrow", rate: 0.16, color: "airD", track: true, band: 0.05, bandO: 0.35, free: true, jitter: 0.03 };
 actions.floorSuck = { type: "flow", _說明: "空氣穿過地板孔洞往下", layer: "subfab", path: [[0.0, YF + 0.9, 4.9], [0.0, 0.9, 4.9]], n: 2, lanes: 9, phase: -4, laneDir: [1, 0, 0], laneGap: 2.1, size: 0.1, shape: "arrow", rate: 0.35, color: "airD", track: false, free: true, jitter: 0.05 };
+actions.roofSpin = { type: "rotate", _說明: "屋頂排氣風機與冷卻水塔風扇轉動（s1 外觀從第 0 幀就在轉）", parts: ["exfBlade0", "exfBladeX0", "exfBlade1", "exfBladeX1", "exfBlade2", "exfBladeX2", "ctBlade", "ctBlade2"], axis: [0, 1, 0], pivots: { exfBlade0: [-2.0, 0, 2.0], exfBladeX0: [-2.0, 0, 2.0], exfBlade1: [6.6, 0, 2.0], exfBladeX1: [6.6, 0, 2.0], exfBlade2: [9.0, 0, 2.0], exfBladeX2: [9.0, 0, 2.0], ctBlade: [15.5, 0, -2.0], ctBlade2: [15.5, 0, -2.0] }, rps: 0.9 };
+actions.flagWave = { type: "rotate", _說明: "國旗被風吹得小幅擺動（繞旗桿）", parts: ["flagTW"], axis: [0, 1, 0], pivot: [10.4, 0, 9.4], swing: 9, freq: 0.7 };
+actions.bGlow = { type: "pulse", _說明: "「專門蓋這種房間」：三個模組的風扇濾網同時亮起", parts: ["b0Ffu", "b1Ffu", "b2Ffu"], color: "airC", glow: 0.8, freq: 0.9, halo: 0 };
 // 站 K：十顆灰塵各自布朗擺動（不同軸、不同頻率）
 DUST10.forEach((_, i) => { actions[`kBrown${i}`] = { type: "vibrate", parts: [`kD${i}`, `kR${i}`], axis: [[1, 0.3, 0], [0, 1, 0.2], [0.4, 0, 1], [1, 1, 0]][i % 4], amp: 0.12, freq: 0.18 + (i % 5) * 0.05 }; });
 actions.kGlow = { type: "pulse", _說明: "十顆灰塵亮起（數得出來）", parts: DUST10.map((_, i) => `kD${i}`), color: "lampY", glow: 1, freq: 0.9, halo: 0 };
@@ -481,7 +490,7 @@ actions.doorA = { type: "rotate", _說明: "外門（走廊／前室）繞鉸鏈
 actions.doorB = { type: "rotate", _說明: "內門（前室／無塵室）", parts: idsOf("gDoorB"), axis: [0, 1, 0], pivot: [GB, 0, -1.1], angle: -75 };
 actions.gOutA = { type: "flow", _說明: "門一開：前室的空氣往走廊湧出（壓差大，箭頭粗），進去走廊後散開變慢", layer: "gRoom", path: [[GA + 2.0, 2.8, 0.2], [GA + 0.4, 2.8, 0.2], [GA - 1.0, 2.8, 0.4], [GA - 3.0, 3.1, 1.2]], n: 4, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.1, size: 0.32, shape: "arrow", rate: 0.55, color: "airD", track: false, free: true, jitter: 0.08 };
 actions.gOutB = { type: "flow", _說明: "無塵室氣壓最高：空氣再從無塵室流進前室", layer: "gRoom", path: [[GB + 3.0, 2.6, 0.0], [GB + 0.4, 2.6, 0.0], [GB - 1.6, 2.7, 0.2]], n: 3, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.1, size: 0.15, shape: "arrow", rate: 0.45, color: "airC", track: false, free: true, jitter: 0.06 };
-actions.gDustBack = { type: "flow", _說明: "走廊的灰塵靠近門口，被往外的風推回去（進不來）", layer: "gDustOut", path: [[GX0 + 0.6, 2.2, 1.6], [GA - 0.6, 2.4, 0.6], [GA - 0.9, 2.6, 0.5], [GX0 + 1.2, 3.0, 1.8]], n: 5, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.0, size: 0.11, shape: "dot", rate: 0.3, color: "dustC", track: false, free: true, jitter: 0.12 };
+actions.gDustBack = { type: "flow", _說明: "走廊的灰塵靠近門口，被往外的風推回去（進不來）", layer: "gDustOut", path: [[GX0 + 0.4, 2.2, 1.8], [GA - 1.5, 2.4, 1.2], [GA - 1.8, 2.7, 1.3], [GX0 + 0.8, 3.2, 2.2]], n: 5, lanes: 3, phase: -4, laneDir: [0, 1, 0], laneGap: 1.0, size: 0.11, shape: "dot", rate: 0.3, color: "dustC", track: false, free: true, jitter: 0.12 };
 actions.gShower = { type: "flow", _說明: "風淋噴嘴往人身上吹（前室）", layer: "gRoom", path: [[GA + 2.9, 2.6, GZ0 + 0.2], [GA + 2.9, 2.3, GZ0 + 2.2]], n: 3, lanes: 5, phase: -4, laneDir: [1, 0, 0], laneGap: 1.0, size: 0.08, shape: "arrow", rate: 0.9, color: "airC", track: false, free: true, jitter: 0.04 };
 actions.gShower2 = { type: "flow", layer: "gRoom", path: [[GA + 2.9, 4.2, GZ0 + 0.2], [GA + 2.9, 3.9, GZ0 + 2.2]], n: 3, lanes: 5, phase: -4, laneDir: [1, 0, 0], laneGap: 1.0, size: 0.08, shape: "arrow", rate: 0.9, color: "airC", track: false, free: true, jitter: 0.04 };
 actions.gAnteGlow = { type: "pulse", _說明: "前室燈亮起", parts: ["gLightA", "gBackA", "gFloorA"], color: "airC", glow: 0.45, freq: 0.8, halo: 0 };
@@ -490,9 +499,10 @@ actions.gLockB = { type: "pulse", _說明: "內門互鎖燈：紅（外門開著
 actions.gGaugeGlow = { type: "pulse", _說明: "三個壓差表依序亮起：無塵室最高、前室中間、走廊最低", parts: ["gGaugeRimR", "gGaugeRimA", "gGaugeRimC"], color: "lampY", glow: 0.9, freq: 1.0, halo: 0 };
 // 站 H：溫濕度儀表亮、晶圓圖案脹縮（左右兩半往外往內）、靜電火花一閃、灰塵被吸過去
 actions.hDialGlow = { type: "pulse", _說明: "溫度、濕度表綠色範圍亮起（被固定住；指針不抖）", parts: ["hDialBandT", "hDialBandH", "hDialRimT", "hDialRimH"], color: "lampG", glow: 0.9, freq: 0.8, halo: 0 };
-actions.hExpL = { type: "vibrate", _說明: "溫度一變：圖案往外脹、往內縮（放大示意）", parts: ["hDieL", "hBrL"], axis: [1, 0, 0], amp: -0.12, freq: 0.6 };
-actions.hExpR = { type: "vibrate", parts: ["hDieR", "hBrR"], axis: [1, 0, 0], amp: 0.12, freq: 0.6 };
-actions.hSparkFlash = { type: "pulse", _說明: "太乾：靜電累積，在晶圓邊緣放電閃一下（示意）", parts: ["hSparkBolt", "hSparkGlow"], color: "sparkC", glow: 1, freq: 3.5, halo: 0.6 };
+actions.hExpL = { type: "vibrate", _說明: "溫度一變：整片晶圓與圖案對中心均勻脹大、縮小（放大示意）", parts: ["hDie", "hWafer"], axis: [1, 0, 1], amp: 0.05, freq: 0.6, grow: true };
+actions.hExpBrL = { type: "vibrate", parts: ["hBrL"], axis: [1, 0, 0], amp: -0.09, freq: 0.6 };
+actions.hExpR = { type: "vibrate", parts: ["hBrR"], axis: [1, 0, 0], amp: 0.09, freq: 0.6 };
+actions.hSparkFlash = { type: "pulse", _說明: "太乾：靜電累積，晶圓邊緣到接地叉片放電，藍白電弧閃爍約 0.7 秒（示意）", parts: ["hSparkBolt", "hSparkGlow", "hSparkEnd", "hSparkEnd2"], color: "sparkC", glow: 1, freq: 7, halo: 1.1 };
 actions.hDustPull = { type: "flow", _說明: "帶電的晶圓把空氣中的灰塵吸過去", layer: "hStage", path: [[HXc + 4.2, 4.2, 1.6], [HXc + 3.2, 3.0, 1.2], [HXc + 2.6, 2.1, 0.9]], n: 2, lanes: 3, phase: -4, laneDir: [-1, 0.3, 0], laneGap: 0.9, size: 0.09, shape: "dot", rate: 0.45, color: "dustC", track: false, accel: true, free: true, jitter: 0.08 };
 // 站 B：模組上的施工吊鉤小幅擺動
 actions.bHook = { type: "vibrate", parts: ["b0Hook0", "b1Hook0", "b2Hook0"], axis: [1, 0, 0], amp: 0.06, freq: 0.5 };
@@ -510,7 +520,7 @@ Object.assign(anchors, {
   fiber: A("fFrame", [FIB[1].x, FIB[1].y + FIB[1].r, FIB[1].z + FIB[1].r], -160, -100), stuck: A("fStuck0", STUCK[0][2] ?? [FXC, 4, 1], 160, -100),
   person: A("person", [PX + 0.7, 5.6, 0.2], 170, -100), suit: A("suitBody", [PX + 0.75, 5.2, 0.4], 170, -100), leakA: A("suitBody", [PX + 0.3, 6.62, 0.3], 170, -90),
   gauge: A("gRoom", [GB + 3.0, 4.6, GZ0 + 0.2], 150, -100), ante: A("gRoom", [GA + 2.9, 2.2, 0.6], 40, -150), door: A("gDoorA", [GA, 3.4, 0.0], -150, -100), press: A("gRoom", [GA - 1.6, 2.8, 0.6], -120, -120),
-  dial: A("hRoom", [HXc - 4.4, 4.4, -3.1], -150, 100), wafer: A("hStage", [HXc + 0.2, 1.96, 2.2], -150, 90), spark: A("hSpark", [HXc + 2.95, 2.05, 0.6], 150, -100),
+  dial: A("hRoom", [HXc - 4.4, 4.4, -3.1], -150, 100), wafer: A("hStage", [HXc + 0.2, 1.96, 2.2], -150, 90), spark: A("hSpark", [HXc + 3.28, 2.1, 0.6], 150, -100),
   b0: A("bMod0", [BXc - 5.0, 4.8, 1.8], -120, -100), b1: A("bMod1", [BXc, 4.8, 1.8], 0, -130), b2: A("bMod2", [BXc + 5.0, 4.8, 1.8], 120, -100),
 });
 
