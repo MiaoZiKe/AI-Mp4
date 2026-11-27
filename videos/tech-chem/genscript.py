@@ -33,7 +33,7 @@ S = [
  [("slurry", "研磨液"), ("grain", "磨粒"), ("wash", "洗面乳"), ("sand", "砂磨"), ("chem", "藥水溶"), ("both", "一起動手")], ["研磨液", "磨粒", "一起動手"], ["科技新報〈什麼是 CMP〉", "3M 研磨液應用文件"], 8.1, 0.8),
 ("s7b", "mechanism", "磨粒最怕結塊，會刮傷晶圓。所以槽裡一直攪動、循環過濾，像不停攪拌的豆漿，才不會沉底。",
  ["磨粒最怕結塊", "會刮傷晶圓", "所以槽裡一直攪動", "循環過濾", "像不停攪拌的豆漿", "才不會沉底"], ["Grains hate clumping,", "it scratches the wafer.", "So the tank keeps stirring,", "recirculating and filtering,", "like soy milk kept stirred", "so it never sinks."],
- [("lump", "結塊"), ("scratch", "刮傷"), ("so", "所以"), ("stir", "攪動"), ("loop", "循環"), ("filter", "過濾"), ("soy", "豆漿"), ("sink", "沉底")], ["結塊", "刮傷", "攪動", "循環過濾"], ["Air Liquide、3M 文件；示意，不是量測"], 10.0, 0.8),
+ [("lump", "結塊"), ("scratch", "刮傷"), ("so", "所以"), ("stir", "攪動"), ("loop", "循環"), ("filter", "過濾"), ("soy", "豆漿"), ("sink", "沉底")], ["結塊", "刮傷", "攪動", "循環過濾"], ["Air Liquide、3M 文件；示意，不是量測"], 8.8, 0.8),
 ("s8", "payoff", "國際有英特格，台灣有中華化做硫酸，三福化做顯影液。",
  ["國際有英特格", "台灣有中華化", "做硫酸", "三福化", "做顯影液"], ["Internationally: Entegris.", "In Taiwan: Chung Hwa Chemical", "makes sulfuric acid,", "San Fu Chemical", "makes developer."],
  [("intl", "英特格"), ("chc", "中華化"), ("acid", "硫酸"), ("sanfu", "三福化"), ("dev", "顯影液")], ["英特格", "中華化", "三福化"], ["Entegris 官網、經濟日報、Yahoo 股市；截至 11/27"], 5.8, 0.85),
@@ -128,8 +128,8 @@ for i in range(6): vis(f"scr{i}", [(f"s7b:scratch+{6 * i + 4}", "s7b:stir-2")])
 VIS += [hid("bumpHi", "s6:sand+20", "s7b:stir-2", 30, 0), hid("oxFilm", "s6:chem+2", "s7b:stir-2", 54, 0)]
 S7 = ("s7b:stir-2", "s8:start-1")
 for l in ["slBase", "slWall", "slDoor", "slTankA", "slLiq", "slLid", "slStir", "slTankB", "slLumps", "slPump", "slFilter", "slFCore", "slPipe", "slN2"]: vis(l, [S7])
-vis("slTrap", [("s7b:stir+94", "s8:start-1")]); vis("slSed", [S7])
-VIS.append(hid("slLumps", "s7b:stir+48", "s8:start-1", 40, 0))   # r2：結塊被迴路抽走，槽底結塊在標籤期間（stir+44～+89）淡掉，念到「才不會沉底」時槽底已乾淨
+vis("slTrap", [("s7b:end-96", "s8:start-1")]); vis("slSed", [S7])
+VIS.append(hid("slLumps", "s7b:stir+10", "s8:start-1", 40, 0))   # r2：結塊被迴路抽走，槽底結塊在標籤期間（stir+44～+89）淡掉，念到「才不會沉底」時槽底已乾淨
 S8 = ("s8:start-1", "s9:start-1")
 for l in ["palletC", "co0", "co1", "co2"]: vis(l, [S8])
 for l in ["pdBase", "pdPad", "pdRing", "pdArm", "pdPuddle"]: vis(l, [("s9:start-2", FAR)])
@@ -141,8 +141,8 @@ EXPL += [mv("cdsDoor", DK(0), R4, 14, dx=9.5), hid("cdsDoor", DK(0), R4, 12, 0.1
          mv("cdsPump", "s4c:start+4", R4, 18, dx=-4.8), mv("cdsValve", "s4c:start+4", R4, 18, dx=-1.8),
          mv("cdsFilter", "s4c:start+50", R4, 18, dz=9.0), mv("cdsCore", "s4c:start+66", R4, 18, dy=5.2, dz=9.0)]
 # s7：研磨液槽組：①槽蓋掀開看攪拌槳 ②槽內結塊被迴路抽走 ③濾芯沿軸線拉開，濾膜卡住大顆粒 ④組回
-B7 = "s7b:stir+142"
-F7 = "s7b:stir+90"   # 過濾標籤與濾芯拉開同時開始（標籤依序：攪拌→結塊被抽走→過濾，一次一張）
+B7 = "s7b:end-44"   # r5：綁幕尾，配音後幕長變動仍在幕尾前 ≥15 幀組回
+F7 = "s7b:end-92"   # 過濾標籤與濾芯拉開同時開始（標籤依序：攪拌→結塊被抽走→過濾，一次一張）
 EXPL += [mv("slDoor", "s7b:stir-2", "s8:start-2", 14, dx=24.0), hid("slWall", "s7b:stir-2", "s8:start-2", 14, 0.14), mv("slLid", "s7b:stir-4", B7, 22, dy=6.0),
          hid("slFilter", F7, B7, 12, 0.2), mv("slFCore", F7, B7, 24, dy=8.5), mv("slTrap", F7, B7, 24, dy=8.5)]
 # s7 開頭：結塊的大顆粒夾在墊與晶圓之間，一次劃出刮痕
@@ -190,11 +190,11 @@ P["s6"] = {"shot": [shot("start-1", 182.0, 5.8, 56, 8, 1, yaw=0.0), shot("grain-
             lab("ox", "藥劑溶出氧化層", "Chemistry dissolves oxide", "blue", "sand+32", "s7b:start-6")],
  "overlay": [sec("chem-slurry", "start+24", "s7b:start-8", "磨粒磨、藥劑溶", "示意（不標粒徑與濃度）", {"slurry": "slurry", "grain": "grain", "wash": "wash", "sand": "sand", "chem": "chem", "both": "both"})]}
 # ─── s7（拆兩幕，r1）：s7 結塊刮傷；s7b 槽裡攪動、循環過濾（槽組爆炸分解） ───
-P["s7b"] = {"shot": [shot("start-1", 181.0, 4.2, 54, 10, 1, yaw=0.0), shot("stir-2", 218.0, 7.5, 92, 16, 1), shot("stir+4", 214.0, 8.0, 76, 20, 24), shot("stir+88", 220.0, 7.0, 76, 22, 22)],
+P["s7b"] = {"shot": [shot("start-1", 181.0, 4.2, 54, 10, 1, yaw=0.0), shot("stir-2", 218.0, 7.5, 92, 16, 1), shot("stir+4", 214.0, 8.0, 76, 20, 24), shot("end-96", 220.0, 7.0, 76, 22, 22)],
  "run": [run("stirSpin", "stir+6", "s8:start-4", 10), run("suspend", "stir+6", "s8:start-4", 10), run("n2Mist", "stir-2", "s8:start-4", 8), run("sedWarn", "stir-2", "loop+4", 6),
-         run("sedFlow", "stir+44", "stir+90", 8), run("loopA", "loop+2", "s8:start-4", 10), run("catchFx", "stir+92", "stir+142", 8)],
- "labels": [lab("lumpL", "結塊的大顆粒", "Clumped grain", "amber", "lump-6", "lump+39"), lab("scratchL", "刮痕", "Scratch", "amber", "lump+41", "lump+86"),
-            lab("stir", "攪拌", "Stirring", "blue", "stir+2", "stir+47"), lab("sed", "槽底結塊、被抽走", "Clumps pulled off the bottom", "amber", "stir+49", "stir+94", xy=[660, 320]), lab("filt", "過濾", "Filter", "blue", "stir+96", "stir+141")],
+         run("sedFlow", "stir+6", "end-92", 8), run("loopA", "loop+2", "s8:start-4", 10), run("catchFx", "end-90", "end-44", 8)],
+ "labels": [lab("lumpL", "結塊的大顆粒", "Clumped grain", "amber", "start+6", "lump+30"), lab("scratchL", "刮痕", "Scratch", "amber", "lump+32", "stir-6"),
+            lab("sed", "攪拌，結塊被抽走", "Stirred, clumps pulled away", "amber", "stir+2", "end-94", xy=[560, 320]), lab("filt", "過濾", "Filter", "blue", "end-92", "end-46")],
  "overlay": [sec("chem-stir", "start+24", "s8:start-8", "不讓磨粒結塊", "示意", {"lump": "lump", "scratch": "scratch", "stir": "stir", "loop": "loop", "filter": "filter", "soy": "soy"})]}
 # ─── s8：公司（英特格、中華化、三福化） ───
 P["s8"] = {"zoom": [{"to": "co", "at": "start-1", "dur": 1}], "shot": [shot("start-1", 258.0, 4.6, 72, 14, 1, yaw=0.0)],

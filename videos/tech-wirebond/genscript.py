@@ -214,7 +214,7 @@ P["s9"] = {"shot": [shot("start-1", X5, 12.0, 80, 10, 1, yaw=0.0), shot("ox-14",
 # ─── s10：公司 ───
 P["s10"] = {"shot": [shot("start-1", X1, 6.0, 50, 16, 1, yaw=0.0)],
  "run": [run("bdHeat", "start", "s11:start+6", 6), run("bdBob", "start", "s11:start+6", 6)],
- "overlay": [sec("wb-co", "start-4", "s11:start+2", "打線產業", "日月光、安靠官網、K&S 年報；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
+ "overlay": [sec("wb-co", "start-4", "s11:start-2", "打線產業", "日月光、安靠官網、K&S 年報；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
 # ─── s11：預告封裝材料 ───
 P["s11"] = {"shot": [shot("start+7", X0 + 2.0, -4.0, 58, 40, 1, yaw=0.0), shot("next-6", X0 + 3.0, -4.0, 66, 38, 40)],
  "shift": [mv("moldA", T0, "s11:next+4", 20, dy=2.5)],
