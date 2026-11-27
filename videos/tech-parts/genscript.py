@@ -159,7 +159,7 @@ P["s4"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
 P["s5"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "wall+12", "dur": 1}],
  "shot": [shot(CC, 0.2, 3.4, 36, 24, 1), shot("wall+12", 128.0, 0.3, 26, 22, 1)],
  "run": [run("ionA0", "start", "wall+12", 4), run("plasmaGlow", "start", "wall+12", 6), run("eIonC", "wall+12", FAR, 6), run("eIonM", "wall+12", FAR, 6), run("eBounceC", "wall+20", FAR, 6), run("eDebrisM", "wall+30", FAR, 6), run("eSparkC", "wall+20", FAR, 6), run("eSparkM", "wall+20", FAR, 6)],
- "labels": [lab("linerA", "陶瓷內襯", "Ceramic liner", "amber", "start+8", "start+53"), lab("eMetA", "金屬：被打花", "Metal: pitted", "amber", "wall+40", "wall+85")],
+ "labels": [lab("linerA", "陶瓷內襯", "Ceramic liner", "amber", "start+4", "start+49"), lab("eMetA", "金屬：被打花", "Metal: pitted", "amber", "wall+40", "wall+85")],
  "overlay": [card("s5", "parts-liner", "耐電漿、不掉渣", "示意", {"wall": "wall", "resist": "resist", "shed": "shed"})]}
 P["s6"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 63.0, 0.1, 32, 22, 1)],
@@ -178,7 +178,7 @@ P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
 P["s9"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
  "shot": [shot(CC, XR, 0.5, 40, 20, 1)],
  "run": [run(f"rAir{k}", "start-30", FAR, 8) for k in range(3)] + [run("rFfuPulse", "clean", FAR, 8)],
- "labels": [lab("rPartsA", "零件推車", "Parts cart", "amber", "parts", "parts+46"), lab("rToolA", "機台", "Tool", "blue", "mach+30", "mach+76"), lab("rFfuA", "潔淨空氣往下送", "Clean air flows down", "amber", "clean+40", "clean+86")],
+ "labels": [lab("rPartsA", "零件推車", "Parts cart", "amber", "parts", "parts+46"), lab("rToolA", "機台", "Tool", "blue", "mach+18", "mach+64"), lab("rFfuA", "潔淨空氣往下送", "Clean air flows down", "amber", "clean+40", "clean+86")],
  "overlay": [sec("parts-next", C, "s10:start", "接下來", "下一集：無塵室", {"next": "next", "kw": "kw", "clean": "clean"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
