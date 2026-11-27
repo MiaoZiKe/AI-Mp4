@@ -337,3 +337,10 @@ Andy 原話：「往後文章越來越多，所以以後影片結尾的『留言
 ## 三十、頻道完善順序與文章規範（2026/11/23 Andy：「哩股哩股 影片先停止更 我們先一順序把頻道完善 科技 -> AI -> 哩股」「精選文章的規範需要套用每個頻道文章」）
 - 順序：②科技 → ③CaffAIne → ①哩股。輪到 ③ 前：已排程的貼文照常發，不開新的完善工作；新片「PDF 貴純文字幾倍？」先暫停，等主控通知。
 - 輪到 ③ 時第一件：照 tw-rotation main `docs/marketing/channels/article_standard.md` 第二節補強文章（詳細解說、至少一張圖表、公司區塊＋LOGO、數字兩來源）。新寫的文章立即照此寫。
+
+## 三十一、主控 11-25～11-27 轉達的全頻道新規則（新③接手後收到）
+1. **渲染一律走 GitHub Actions 多台分段**（Andy 11-25、11-27 再確認）：`.github/workflows/render-chunks.yml`，說明在 tw-rotation `docs/marketing/channels/render_pipeline.md`；對話容器內不渲染，只做觸發、驗收、傳成品。
+2. **平捲舌念對**（Andy 11-25：配音把「上」念成「喪」、「罩」念成「掃」）：`scripts/voice-profile.mjs` 的「不特別捲舌」會讓模型把ㄕㄓ念成ㄙㄗ。③用到的 `REPORT_AI_V5_LINE`、`PLAIN_LINE` 等，下次配音前改成要求平捲舌念對（②已改 TECH_B_LINE，2a8735d），驗收加聽平捲舌。每幕 ≥4.5 秒、atempo 上限 1.12（見 tech-andy-fixes.md 第 13 條）。
+3. **問 Andy 要附齊資料**（Andy 11-27：「以後要問我，都需要附上詳細資料 有影片就給影片」）：同一則用 SendUserFile 直接傳影片／圖片，附發文日期時段、片長、念稿或文案、出處、審片分數、已知問題；不准只給檔名或路徑。
+4. **記每支片花費**（Andy 11-27）：表在 `docs/channels/caffaine_token_log.md`，交件當天記一列。
+5. **每支片配對應動作的音效**（Andy 11-27：「以後產出所有內容 claude 這邊都需要在影片上配對應運作上的音效」）：沿用②的 `scripts/three/sfx-ops.py`＋`add-sfx.sh`（依分鏡動作自動配音效、成片後只混音軌、旁白時壓低、−16 LUFS）。試聽不合格（音高超出範圍等）不准給 Andy 聽，先自動重配，只交合格的。
