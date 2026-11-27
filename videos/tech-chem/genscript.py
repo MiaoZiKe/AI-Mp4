@@ -165,14 +165,14 @@ P["s2"] = {"zoom": [{"to": "tool", "at": "start-10", "dur": 1}],
 # ─── s3：游泳池一小匙 → 管內雜質比例 ───
 P["s3"] = {"shot": [shot("start-1", -33.0, 2.4, 40, 26, 1, yaw=0.0), shot("pool-8", -32.5, 2.4, 36, 24, 30), shot("spoon+44", -14.0, 3.0, 52, 14, 1)],
  "run": [run("spoonDrip", "spoon-6", "spoon+34", 4), run("poolRipple", "spoon+10", "spoon+34", 4), run("ionsBlue", "spoon+34", "s4:start-4", 8), run("ionsRed", "spoon+34", "s4:start-4", 8)],
- "labels": [lab("pool", "一座游泳池", "A swimming pool", "blue", "pool-7", "spoon-2"), lab("spoon", "一小匙", "One teaspoon", "amber", "spoon-1", "spoon+44")],
+ "labels": [lab("pool", "一座游泳池", "A swimming pool", "blue", "pool-7", "spoon-2"), lab("spoon", "一小匙", "One teaspoon", "amber", "spoon-1", "spoon+44", xy=[839, 1070])],
  "overlay": [sec("chem-pool", "start+20", "s4:start-10", "游泳池裡的一小匙", "示意（自行換算，不是量測）", {"q": "q", "pool": "pool", "spoon": "spoon"})]}
 # ─── s4（r2 併回兩幕：s4b 只有 1.9 秒，違反每幕 ≥4.5 秒）：s4 大槽→塑膠管線→管理櫃近景→泵與閥島分開；s4c 爆炸其餘步驟→迴路遠景→旋轉清洗腔 ───
 P["s4"] = {"shot": [shot("start-1", 9.0, 6.5, 74, 18, 1, yaw=0.0), shot("start+96", 27.0, 9.0, 64, 20, 12)],
  "run": [run("supFlow", "start", "s4:desk-22", 10), run("tankLevel", "start", "s4:desk-2", 6), run("cdsFlow", DK(-10), "s4c:start+2", 10), run("pumpBeat", DK(-10), "s4c:start+2", 10), run("pumpLed", DK(-10), "s4c:start+2", 8)],
- "labels": [lab("tank", "大宗儲槽", "Bulk tank", "amber", "start+2", "start+47", xy=[860, 300]), lab("sup", "塑膠管線", "Plastic piping", "blue", "start+49", "start+94"),
-            lab("cdsTop", "化學品管理櫃", "Chemical cabinet", "amber", "start+110", "start+155", xy=[790, 270])],
- "overlay": [sec("chem-path", "start+30", "s5:start-8", "送液路徑：一路過濾、一路循環", "示意（不標流量與壓力）", {"tank": "tank", "pipe": "pipe", "desk": "desk", "water": "s4c:water", "clean": "s4c:clean", "back": R4})]}
+ "labels": [lab("tank", "大宗儲槽", "Bulk tank", "amber", "tank-8", "tank+37", xy=[450, 300]), lab("sup", "塑膠管線", "Plastic piping", "blue", "pipe+2", "pipe+47"),
+            lab("cdsTop", "化學品管理櫃", "Chemical cabinet", "amber", "desk-4", "desk+41", xy=[600, 895])],
+ "overlay": [sec("chem-path", "start+30", "s5:start-2", "送液路徑：一路過濾、一路循環", "示意（不標流量與壓力）", {"tank": "tank", "pipe": "pipe", "desk": "desk", "water": "s4c:water", "clean": "s4c:clean", "back": R4})]}
 # ─── s4c（11-27 第 39 條：爆炸在念的期間做完）：泵與閥島分開→過濾器抽出、濾芯拉出→念完「掉渣」組回，迴路一起流動 ───
 P["s4c"] = {"shot": [shot("start+2", 23.5, 7.5, 66, 22, 18, yaw=0.5), shot("start+92", 31.0, 9.5, 62, 22, 18)],
  "run": [run("cdsFlow", R4, "s5:start-4", 10), run("pumpBeat", R4, "s5:start-4", 10), run("pumpLed", R4, "s5:start-4", 8), run("supFlow", R4, "s5:start-4", 10)],
