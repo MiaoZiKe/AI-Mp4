@@ -471,6 +471,16 @@
    "color": "#FFFFFF",
    "img": "tex/brand/flag-TW.png"
   },
+  "t_ecer": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-ecer.png"
+  },
+  "t_emet": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-emet.png"
+  },
   "t_toto": {
    "kind": "unlit",
    "color": "#FFFFFF",
@@ -902,6 +912,17 @@
     1,
     96,
     3.4
+   ]
+  },
+  {
+   "id": "sWQ",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    7,
+    0.4,
+    96,
+    2.85
    ]
   },
   {
@@ -5785,7 +5806,7 @@
   },
   {
    "id": "swMinus",
-   "layer": "sWafer",
+   "layer": "sWQ",
    "shape": "sphere",
    "size": [
     0.15
@@ -5831,7 +5852,7 @@
   },
   {
    "id": "swPlus",
-   "layer": "sWafer",
+   "layer": "sWQ",
    "shape": "sphere",
    "size": [
     0.15
@@ -8796,6 +8817,40 @@
    "mat": "rubber"
   },
   {
+   "id": "ecerTag",
+   "layer": "eCer",
+   "shape": "plane",
+   "size": [
+    3.4,
+    1.432
+   ],
+   "pos": [
+    124.2,
+    2.6,
+    2.33
+   ],
+   "uv01": true,
+   "shadow": false,
+   "mat": "t_ecer"
+  },
+  {
+   "id": "emetTag",
+   "layer": "eMet",
+   "shape": "plane",
+   "size": [
+    3.4,
+    1.432
+   ],
+   "pos": [
+    132.2,
+    2.6,
+    2.33
+   ],
+   "uv01": true,
+   "shadow": false,
+   "mat": "t_emet"
+  },
+  {
    "id": "kBackP",
    "layer": "kBack",
    "shape": "box",
@@ -11014,6 +11069,16 @@
    ],
    "dx": -150,
    "dy": 100
+  },
+  "sElecB": {
+   "layer": "sElec",
+   "p": [
+    94.5,
+    2.5,
+    1.5
+   ],
+   "dx": -190,
+   "dy": 190
   },
   "sHeA": {
    "layer": "sHe",

@@ -184,7 +184,7 @@
      },
      {
       "layer": "bSl0",
-      "at": "s2:thin+35",
+      "at": "s2:thin+8",
       "until": "s3:start-2",
       "opacity": 0,
       "dur": 20
@@ -276,100 +276,137 @@
       "bounce": 0.07
      },
      {
+      "layer": "sWQ",
+      "at": "s1:start-40",
+      "until": "s4:lie",
+      "dur": 22,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.07
+     },
+     {
       "layer": "sWafer",
       "at": "s4:chuck+10",
-      "until": "s4:cer+64",
-      "dur": 22,
+      "until": "s4:cer+10",
+      "dur": 20,
+      "dy": 1.5
+     },
+     {
+      "layer": "sWQ",
+      "at": "s4:chuck+10",
+      "until": "s4:cer+10",
+      "dur": 20,
       "dy": 1.5
      },
      {
       "layer": "sTop",
       "at": "s4:chuck+10",
-      "until": "s4:cer+64",
-      "dur": 22,
+      "until": "s4:cer+10",
+      "dur": 20,
       "dy": 1.5
      },
      {
       "layer": "sArrows",
       "at": "s4:chuck+10",
-      "until": "s4:cer+64",
-      "dur": 22,
+      "until": "s4:cer+10",
+      "dur": 20,
       "dy": 1.5
      },
      {
       "layer": "sWafer",
       "at": "s4:chuck+10",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
+      "dur": 22,
+      "dy": 1.0
+     },
+     {
+      "layer": "sWQ",
+      "at": "s4:chuck+10",
+      "until": "s4:cer+10",
       "dur": 22,
       "dy": 1.0
      },
      {
       "layer": "sArrows",
       "at": "s4:chuck+10",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 22,
       "dy": 1.0
      },
      {
       "layer": "sWafer",
       "at": "s4:balloon",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
+      "dur": 20,
+      "dy": 0.9
+     },
+     {
+      "layer": "sWQ",
+      "at": "s4:balloon",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sTop",
       "at": "s4:balloon",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sArrows",
       "at": "s4:balloon",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sElec",
       "at": "s4:balloon",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.9
      },
      {
       "layer": "sWafer",
       "at": "s4:balloon+18",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
+      "dur": 20,
+      "dy": 0.8
+     },
+     {
+      "layer": "sWQ",
+      "at": "s4:balloon+18",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sTop",
       "at": "s4:balloon+18",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sArrows",
       "at": "s4:balloon+18",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sElec",
       "at": "s4:balloon+18",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.8
      },
      {
       "layer": "sHe",
       "at": "s4:balloon+18",
-      "until": "s4:cer+64",
+      "until": "s4:cer+10",
       "dur": 20,
       "dy": 0.8
      },
@@ -383,13 +420,27 @@
      {
       "layer": "sArrows",
       "at": "s4:clamp+40",
-      "until": "s4:cer+80",
+      "until": "s4:cer+26",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "sArrows",
-      "at": "s4:cer+120",
+      "at": "s4:cer+40",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "sWQ",
+      "at": "s1:start-40",
+      "until": "s4:clamp",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "sWQ",
+      "at": "s4:cer+10",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -397,43 +448,43 @@
      {
       "layer": "pins",
       "at": "s3:wafer",
-      "until": "s3:even+18",
+      "until": "s3:ext+52",
       "dur": 22,
       "dy": 1.0
      },
      {
       "layer": "wafer",
       "at": "s3:wafer",
-      "until": "s3:even+18",
+      "until": "s3:ext+52",
       "dur": 22,
       "dy": 1.0
      },
      {
       "layer": "ring",
       "at": "s3:ring",
-      "until": "s3:even+12",
-      "dur": 24,
+      "until": "s3:ext+46",
+      "dur": 22,
       "dy": 2.4
      },
      {
       "layer": "bEq",
       "at": "s1:start-40",
-      "until": "s3:table+6",
+      "until": "s3:ring+64",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "bEq",
-      "at": "s3:even+6",
+      "at": "s3:ext+40",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "liner",
-      "at": "s5:start+12",
-      "until": "s5:resist-6",
-      "dur": 26,
+      "at": "s5:start+8",
+      "until": "s5:wall+10",
+      "dur": 22,
       "dz": 3.2
      },
      {
@@ -441,82 +492,82 @@
       "at": "s1:start-40",
       "until": "s10:start+400",
       "dur": 1,
-      "dx": 11.0,
+      "dx": 7.0,
       "dy": 2.0
      },
      {
       "layer": "cArm",
       "at": "s1:start-40",
-      "until": "s6:time+8",
+      "until": "s6:size+62",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "cArm",
-      "at": "s6:time+10",
+      "at": "s6:size+64",
       "until": "s10:start+400",
-      "dur": 12,
-      "dx": -11.0
+      "dur": 10,
+      "dx": -7.0
      },
      {
       "layer": "cArm",
-      "at": "s6:time+22",
+      "at": "s6:size+74",
       "until": "s10:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": -2.0
      },
      {
       "layer": "cArm",
-      "at": "s6:time+34",
+      "at": "s6:size+84",
       "until": "s10:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": 2.0
      },
      {
       "layer": "cORing",
-      "at": "s6:time+34",
+      "at": "s6:size+84",
       "until": "s10:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": 2.0
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+34",
+      "at": "s6:size+84",
       "until": "s10:start+400",
-      "dur": 10,
+      "dur": 8,
       "dy": 2.0
      },
      {
       "layer": "cArm",
-      "at": "s6:time+46",
+      "at": "s6:size+92",
       "until": "s10:start+400",
-      "dur": 12,
-      "dx": 11.0
+      "dur": 10,
+      "dx": 7.0
      },
      {
       "layer": "cORing",
-      "at": "s6:time+46",
+      "at": "s6:size+92",
       "until": "s10:start+400",
-      "dur": 12,
-      "dx": 11.0
+      "dur": 10,
+      "dx": 7.0
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+46",
+      "at": "s6:size+92",
       "until": "s10:start+400",
-      "dur": 12,
-      "dx": 11.0
+      "dur": 10,
+      "dx": 7.0
      },
      {
       "layer": "cORing",
-      "at": "s6:time+60",
+      "at": "s6:size+103",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "cOldCrumb",
-      "at": "s6:time+60",
+      "at": "s6:size+103",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 1
@@ -526,75 +577,75 @@
       "at": "s1:start-40",
       "until": "s10:start+400",
       "dur": 1,
-      "dx": 11.0,
+      "dx": 7.0,
       "dy": 2.0
      },
      {
       "layer": "cNewRing",
       "at": "s1:start-40",
-      "until": "s6:time+60",
+      "until": "s6:size+103",
       "opacity": 0,
       "dur": 1
      },
      {
       "layer": "cArm",
-      "at": "s6:time+62",
+      "at": "s6:size+104",
       "until": "s10:start+400",
-      "dur": 12,
-      "dx": -11.0
+      "dur": 10,
+      "dx": -7.0
      },
      {
       "layer": "cNewRing",
-      "at": "s6:time+62",
+      "at": "s6:size+104",
       "until": "s10:start+400",
-      "dur": 12,
-      "dx": -11.0
+      "dur": 10,
+      "dx": -7.0
      },
      {
       "layer": "cArm",
-      "at": "s6:time+76",
-      "until": "s10:start+400",
-      "dur": 10,
-      "dy": -2.0
-     },
-     {
-      "layer": "cNewRing",
-      "at": "s6:time+76",
-      "until": "s10:start+400",
-      "dur": 10,
-      "dy": -2.0
-     },
-     {
-      "layer": "cArm",
-      "at": "s6:time+90",
+      "at": "s6:size+114",
       "until": "s10:start+400",
       "dur": 8,
+      "dy": -2.0
+     },
+     {
+      "layer": "cNewRing",
+      "at": "s6:size+114",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": -2.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:size+126",
+      "until": "s10:start+400",
+      "dur": 6,
       "dy": 2.0
      },
      {
       "layer": "cArm",
-      "at": "s6:time+100",
+      "at": "s6:size+132",
       "until": "s10:start+400",
-      "dur": 10,
-      "dx": 11.0
+      "dur": 8,
+      "dx": 7.0
      },
      {
       "layer": "cPlO0",
-      "at": "s6:plasma",
-      "until": "s6:time+92",
+      "at": "s6:size+10",
+      "until": "s6:size+124",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "cPlO1",
       "at": "s1:start-40",
-      "until": "s6:plasma",
+      "until": "s6:size+10",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "cPlO1",
-      "at": "s6:time+8",
+      "at": "s6:size+70",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -602,13 +653,13 @@
      {
       "layer": "cPlO1S",
       "at": "s1:start-40",
-      "until": "s6:plasma",
+      "until": "s6:size+10",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "cPlO1S",
-      "at": "s6:time+8",
+      "at": "s6:size+70",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -616,13 +667,13 @@
      {
       "layer": "cEdgeLine",
       "at": "s1:start-40",
-      "until": "s6:plasma",
+      "until": "s6:size+10",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "cEdgeLine",
-      "at": "s6:time+8",
+      "at": "s6:size+70",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -636,7 +687,7 @@
      },
      {
       "layer": "cBrO",
-      "at": "s6:time+34",
+      "at": "s6:size+84",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 3
@@ -651,7 +702,7 @@
      {
       "layer": "cBrO2",
       "at": "s1:start-40",
-      "until": "s6:time+86",
+      "until": "s6:size+122",
       "opacity": 0,
       "dur": 3
      },
@@ -747,9 +798,9 @@
      }
     ]
    },
-   "durationSec": 6.0,
-   "holdSec": 1.2,
-   "pauseAfter": 1.2
+   "durationSec": 6.2,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
   },
   {
    "id": "s2",
@@ -930,7 +981,7 @@
       "en": "Plasma",
       "color": "blue",
       "at": "plasma",
-      "until": "plasma+46",
+      "until": "plasma+45",
       "cut": true
      },
      {
@@ -938,17 +989,8 @@
       "text": "離子撞擊",
       "en": "Ion impact",
       "color": "amber",
-      "at": "reef+3",
-      "until": "reef+47",
-      "cut": true
-     },
-     {
-      "part": "bRing",
-      "text": "邊緣環",
-      "en": "Edge ring",
-      "color": "blue",
-      "at": "out+27",
-      "until": "out+73",
+      "at": "reef",
+      "until": "reef+45",
       "cut": true
      },
      {
@@ -956,8 +998,8 @@
       "text": "被打掉的部分",
       "en": "Material lost",
       "color": "amber",
-      "at": "thin+34",
-      "until": "thin+80",
+      "at": "thin-4",
+      "until": "thin+41",
       "cut": true
      }
     ],
@@ -992,10 +1034,10 @@
      }
     ]
    },
-   "durationSec": 9.0,
-   "holdSec": 2.9,
+   "durationSec": 7.1,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.9
+   "pauseAfter": 0.6
   },
   {
    "id": "s3",
@@ -1051,12 +1093,12 @@
      },
      {
       "to": "micro",
-      "at": "table-4",
+      "at": "ring+64",
       "dur": 1
      },
      {
       "to": "tool",
-      "at": "even+6",
+      "at": "ext+40",
       "dur": 1
      }
     ],
@@ -1070,7 +1112,7 @@
       "elev": 30
      },
      {
-      "at": "table-4",
+      "at": "ring+64",
       "dur": 1,
       "x": 33.4,
       "y": 1.1,
@@ -1078,7 +1120,7 @@
       "elev": 22
      },
      {
-      "at": "even+6",
+      "at": "ext+40",
       "dur": 1,
       "x": 0.2,
       "y": 2.4,
@@ -1091,41 +1133,41 @@
       "id": "ionA0",
       "at": "start",
       "ramp": 4,
-      "until": "table-30"
+      "until": "ring+64"
      },
      {
       "id": "plasmaGlow",
       "at": "start",
       "ramp": 6,
-      "until": "table-30"
+      "until": "ring+64"
      },
      {
       "id": "bPlGlow",
-      "at": "table-4",
+      "at": "ring+64",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "bDrift",
-      "at": "table-4",
+      "at": "ring+64",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "bRingGlow",
-      "at": "ext+10",
+      "at": "table",
       "ramp": 8,
-      "until": "even+6"
+      "until": "ext+40"
      },
      {
       "id": "ionA0",
-      "at": "even+40",
+      "at": "ext+40",
       "ramp": 4,
       "until": "s4:start"
      },
      {
       "id": "plasmaGlow",
-      "at": "even+40",
+      "at": "ext+40",
       "ramp": 6,
       "until": "s4:start"
      }
@@ -1136,8 +1178,8 @@
       "text": "晶圓",
       "en": "Wafer",
       "color": "blue",
-      "at": "wafer+2",
-      "until": "wafer+47",
+      "at": "wafer",
+      "until": "wafer+45",
       "cut": true
      },
      {
@@ -1145,8 +1187,8 @@
       "text": "邊緣環（石英或矽）",
       "en": "Edge ring (quartz or silicon)",
       "color": "amber",
-      "at": "ring+18",
-      "until": "table-7",
+      "at": "ring+16",
+      "until": "ring+61",
       "cut": true
      },
      {
@@ -1154,8 +1196,8 @@
       "text": "階梯內緣",
       "en": "Stepped inner edge",
       "color": "blue",
-      "at": "table+10",
-      "until": "table+56",
+      "at": "table-8",
+      "until": "table+37",
       "cut": true
      }
     ],
@@ -1187,10 +1229,10 @@
      }
     ]
    },
-   "durationSec": 10.0,
-   "holdSec": 2.2,
+   "durationSec": 9.0,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.2
+   "pauseAfter": 0.6
   },
   {
    "id": "s4",
@@ -1263,8 +1305,8 @@
       "elev": 26
      },
      {
-      "at": "cer+64",
-      "dur": 22,
+      "at": "cer+10",
+      "dur": 16,
       "x": 96,
       "y": 0.1,
       "d": 29.7,
@@ -1276,13 +1318,13 @@
       "id": "sHeFlow",
       "at": "balloon+30",
       "ramp": 8,
-      "until": "cer+64"
+      "until": "cer+10"
      },
      {
       "id": "sHeFlow2",
       "at": "balloon+30",
       "ramp": 8,
-      "until": "cer+64"
+      "until": "cer+10"
      },
      {
       "id": "sPlusGlow",
@@ -1304,9 +1346,9 @@
      },
      {
       "id": "sArrowP",
-      "at": "cer+80",
+      "at": "cer+26",
       "ramp": 4,
-      "until": "cer+120"
+      "until": "cer+40"
      },
      {
       "id": "sWaterFlow",
@@ -1335,30 +1377,21 @@
       "cut": true
      },
      {
-      "part": "sElec",
+      "part": "sElecB",
       "text": "電極（正負兩組）",
       "en": "Electrodes (+/−)",
       "color": "blue",
-      "at": "clamp+28",
-      "until": "clamp+73",
+      "at": "clamp+42",
+      "until": "clamp+87",
       "cut": true
      },
      {
       "part": "sHeA",
-      "text": "氦氣冷卻",
-      "en": "Helium cooling",
+      "text": "氦氣與冷卻",
+      "en": "Helium & cooling",
       "color": "blue",
-      "at": "balloon+33",
-      "until": "balloon+78",
-      "cut": true
-     },
-     {
-      "part": "sCoolA",
-      "text": "冷卻基座",
-      "en": "Cooling base",
-      "color": "amber",
-      "at": "cer+18",
-      "until": "cer+63",
+      "at": "balloon+44",
+      "until": "balloon+89",
       "cut": true
      }
     ],
@@ -1393,10 +1426,10 @@
      }
     ]
    },
-   "durationSec": 10.0,
-   "holdSec": 3.4,
+   "durationSec": 7.3,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 3.4
+   "pauseAfter": 0.6
   },
   {
    "id": "s5",
@@ -1440,7 +1473,7 @@
      },
      {
       "to": "micro",
-      "at": "resist-4",
+      "at": "wall+12",
       "dur": 1
      }
     ],
@@ -1454,7 +1487,7 @@
       "elev": 24
      },
      {
-      "at": "resist-4",
+      "at": "wall+12",
       "dur": 1,
       "x": 128.0,
       "y": 0.3,
@@ -1467,47 +1500,47 @@
       "id": "ionA0",
       "at": "start",
       "ramp": 4,
-      "until": "resist-4"
+      "until": "wall+12"
      },
      {
       "id": "plasmaGlow",
       "at": "start",
       "ramp": 6,
-      "until": "resist-4"
+      "until": "wall+12"
      },
      {
       "id": "eIonC",
-      "at": "resist-4",
+      "at": "wall+12",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "eIonM",
-      "at": "resist-4",
+      "at": "wall+12",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "eBounceC",
-      "at": "resist",
+      "at": "wall+20",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "eDebrisM",
-      "at": "shed-20",
+      "at": "wall+30",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "eSparkC",
-      "at": "resist",
+      "at": "wall+20",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "eSparkM",
-      "at": "resist",
+      "at": "wall+20",
       "ramp": 6,
       "until": "s10:start+400"
      }
@@ -1519,16 +1552,7 @@
       "en": "Ceramic liner",
       "color": "amber",
       "at": "start+8",
-      "until": "start+54",
-      "cut": true
-     },
-     {
-      "part": "eCerA",
-      "text": "陶瓷：平整",
-      "en": "Ceramic: smooth",
-      "color": "blue",
-      "at": "resist+4",
-      "until": "resist+50",
+      "until": "start+53",
       "cut": true
      },
      {
@@ -1536,8 +1560,8 @@
       "text": "金屬：被打花",
       "en": "Metal: pitted",
       "color": "amber",
-      "at": "shed+13",
-      "until": "shed+59",
+      "at": "wall+40",
+      "until": "wall+85",
       "cut": true
      }
     ],
@@ -1569,10 +1593,10 @@
      }
     ]
    },
-   "durationSec": 6.0,
-   "holdSec": 1.8,
+   "durationSec": 5.0,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 1.8
+   "pauseAfter": 0.6
   },
   {
    "id": "s6",
@@ -1644,13 +1668,13 @@
       "id": "cPlPulseO",
       "at": "start",
       "ramp": 6,
-      "until": "plasma"
+      "until": "size+10"
      },
      {
       "id": "cPlPulseP",
-      "at": "plasma",
+      "at": "size+10",
       "ramp": 6,
-      "until": "s6:time+8"
+      "until": "s6:size+70"
      },
      {
       "id": "cIonN",
@@ -1662,38 +1686,29 @@
       "id": "cIonO",
       "at": "start",
       "ramp": 6,
-      "until": "s6:time+8"
+      "until": "s6:size+70"
      },
      {
       "id": "cPlPulseO",
-      "at": "s6:time+92",
+      "at": "s6:size+124",
       "ramp": 6,
       "until": "s10:start+400"
      },
      {
       "id": "cIonN2",
-      "at": "s6:time+96",
+      "at": "s6:size+126",
       "ramp": 6,
       "until": "s10:start+400"
      }
     ],
     "labels": [
      {
-      "part": "cNew",
-      "text": "新環",
-      "en": "New ring",
-      "color": "blue",
-      "at": "slow-30",
-      "until": "slow+15",
-      "cut": true
-     },
-     {
       "part": "cOld",
       "text": "舊環",
       "en": "Old ring",
       "color": "amber",
-      "at": "size-5",
-      "until": "size+40",
+      "at": "slow",
+      "until": "slow+45",
       "cut": true
      },
      {
@@ -1701,8 +1716,8 @@
       "text": "電漿邊緣偏移",
       "en": "Plasma edge shifts",
       "color": "amber",
-      "at": "plasma+1",
-      "until": "plasma+46",
+      "at": "size+24",
+      "until": "size+69",
       "cut": true
      },
      {
@@ -1710,8 +1725,8 @@
       "text": "夾具放入新環",
       "en": "Gripper sets new ring",
       "color": "blue",
-      "at": "time+62",
-      "until": "time+107",
+      "at": "s6:size+104",
+      "until": "s6:size+149",
       "cut": true
      }
     ],
@@ -1746,10 +1761,10 @@
      }
     ]
    },
-   "durationSec": 9.0,
-   "holdSec": 2.5,
+   "durationSec": 7.5,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.5
+   "pauseAfter": 0.6
   },
   {
    "id": "s7",
@@ -1821,15 +1836,15 @@
      },
      {
       "id": "pPumpHot",
-      "at": "pump-12",
+      "at": "pump-14",
       "ramp": 6,
-      "until": "pump+32"
+      "until": "pump+31"
      },
      {
       "id": "pValveHot",
-      "at": "valve+16",
+      "at": "valve+12",
       "ramp": 6,
-      "until": "valve+60"
+      "until": "valve+57"
      },
      {
       "id": "pWheel",
@@ -1839,9 +1854,9 @@
      },
      {
       "id": "pPowerHot",
-      "at": "power+45",
+      "at": "power",
       "ramp": 6,
-      "until": "power+90"
+      "until": "power+38"
      }
     ],
     "labels": [
@@ -1850,8 +1865,8 @@
       "text": "真空泵",
       "en": "Vacuum pump",
       "color": "blue",
-      "at": "pump-12",
-      "until": "pump+32",
+      "at": "pump-14",
+      "until": "pump+31",
       "cut": true
      },
      {
@@ -1859,17 +1874,8 @@
       "text": "閥門",
       "en": "Valve",
       "color": "amber",
-      "at": "valve+16",
-      "until": "valve+60",
-      "cut": true
-     },
-     {
-      "part": "pPowerA",
-      "text": "射頻電源",
-      "en": "RF power supply",
-      "color": "blue",
-      "at": "power+45",
-      "until": "power+90",
+      "at": "valve+12",
+      "until": "valve+57",
       "cut": true
      }
     ],
@@ -1904,10 +1910,10 @@
      }
     ]
    },
-   "durationSec": 6.5,
-   "holdSec": 2.7,
+   "durationSec": 4.6,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.7
+   "pauseAfter": 0.6
   },
   {
    "id": "s8",
@@ -2019,10 +2025,10 @@
      }
     ]
    },
-   "durationSec": 6.5,
-   "holdSec": 2.0,
+   "durationSec": 5.4,
+   "holdSec": 0.6,
    "headSec": 0.3,
-   "pauseAfter": 2.0
+   "pauseAfter": 0.6
   },
   {
    "id": "s9",
@@ -2166,8 +2172,8 @@
      }
     ]
    },
-   "durationSec": 8.4,
-   "holdSec": 1.8,
+   "durationSec": 7.7,
+   "holdSec": 0.6,
    "headSec": 0.2
   },
   {

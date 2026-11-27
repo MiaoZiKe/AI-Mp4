@@ -192,7 +192,7 @@ for (const r of [2.2, 1.4, 0.6]) VT(`stGroove${r * 10}`, "sTop", r + 0.05, r - 0
 P({ id: "stHole", layer: "sTop", shape: "cyl", size: [0.12, 0.02], rot: V, pos: [SX, 3.01, 0], at: RING(3, 1.2, 30), mat: "dark" });
 P({ id: "stMesa", layer: "sTop", shape: "cyl", size: [0.07, 0.02], rot: V, pos: [SX, 3.02, 0], at: RING(18, 2.6).concat(RING(12, 1.9, 7), RING(8, 1.0, 11)), mat: "cerD" });
 LAY("sWafer", [7, 1, SX, 3.4]); VC("swDisc", "sWafer", 3.25, 3.04, 3.12, "si", { x: SX }); BOX("swNotch", "sWafer", R2(SX + 3.1), R2(SX + 3.3), 3.045, 3.125, -0.14, 0.14, "dark");
-P({ id: "swMinus", layer: "sWafer", shape: "sphere", size: [0.15], pos: [SX, 2.72, 0], at: QF([2.0, 1.4, 0.8]), mat: "minus" }); P({ id: "swPlus", layer: "sWafer", shape: "sphere", size: [0.15], pos: [SX, 2.72, 0], at: QF([-2.0, -1.4, -0.8]), mat: "plus" });
+LAY("sWQ", [7, 0.4, SX, 2.85]); P({ id: "swMinus", layer: "sWQ", shape: "sphere", size: [0.15], pos: [SX, 2.72, 0], at: QF([2.0, 1.4, 0.8]), mat: "minus" }); P({ id: "swPlus", layer: "sWQ", shape: "sphere", size: [0.15], pos: [SX, 2.72, 0], at: QF([-2.0, -1.4, -0.8]), mat: "plus" });
 LAY("sArrows", [7, 1.4, SX, 4.0]); P({ id: "saShaft", layer: "sArrows", shape: "cyl", size: [0.09, 0.8], rot: V, pos: [SX, 4.2, 0], at: [[-2.2, 0, 0], [-0.7, 0, 0], [0.8, 0, 0], [2.3, 0, 0]], mat: "mark" });
 P({ id: "saHead", layer: "sArrows", shape: "cone", size: [0.01, 0.26, 0.34], rot: V, pos: [SX, 3.68, 0], at: [[-2.2, 0, 0], [-0.7, 0, 0], [0.8, 0, 0], [2.3, 0, 0]], mat: "mark" });
 actions.sHeFlow = { type: "flow", _說明: "氦氣在晶圓背面環槽內流動、傳走熱（淡藍細點沿環槽）", layer: "sTop", path: RING(13, 2.2).map(([x, , z], i) => [R2(SX + x), 3.03, z]).concat([[R2(SX + 2.2), 3.03, 0]]), n: 10, size: 0.06, shape: "dot", rate: 0.12, color: "heC", track: false, free: true, jitter: 0.04 };
@@ -277,9 +277,13 @@ actions.pExhaust = { type: "flow", _說明: "腔體抽出的氣體：從上方�
 
 // ═════ 站 K：供應商展台（x 180，s8）＝TOTO（日）、台灣精材（台）、翔名（台）；念到才從幽靈變實體 ═════
 const SIGNS = [["toto", "logo:toto"], ["twcm", "text:twcm=台灣精材|3467"], ["feedback", "logo:feedback"]];
-{ const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-parts", "flag:JP", "flag:TW", ...SIGNS.map(([, a]) => a)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
+const ETAGS = [["ecer", "text:ecer=陶瓷|表面平整"], ["emet", "text:emet=金屬|被打花"]];
+{ const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-parts", "flag:JP", "flag:TW", ...SIGNS.map(([, a]) => a), ...ETAGS.map(([, a]) => a)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
 const SIGNM0 = 0; const SIGNM = JSON.parse(fs.readFileSync(path.join(HERE, "..", "..", "public", "tex", "brand", "meta.json"), "utf8"));
 ["JP", "TW"].forEach((c) => { materials[`f_${c}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/flag-${c}.png` }; });
+ETAGS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
+// E 站兩塊正面貼字牌（位置已含 EMV 靠攏位移）
+[["ecer", "eCer", 124.2], ["emet", "eMet", 132.2]].forEach(([id, lay, x]) => { const sg = SIGNM[`sign-${id}`], w = 3.4; P({ id: `${id}Tag`, layer: lay, shape: "plane", size: [w, R2(w / sg.aspect)], pos: [x, 2.6, 2.33], uv01: true, shadow: false, mat: `t_${id}` }); });
 SIGNS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
 BACKDROP("kBack", 169.4, 191.0, 8.5);
 LAY("kBase", [23, 1, 180, 0.5]); BOX("kPl", "kBase", 169.2, 191.2, 0, 0.9, -3.4, 3.4, "band"); BOX("kPlTop", "kBase", 169.2, 191.2, 0.9, 1.0, -3.4, 3.4, "panel2");
@@ -326,7 +330,7 @@ Object.assign(anchors, {
   plasmaA: A("plasma", [0.6, 5.4, 1.4], 150, -90), ringA: A("ring", [2.95, 3.5, 0.9], 150, -100), waferA: A("wafer", [1.5, 3.37, 1.3], -150, -90), escA: A("pedEsc", [1.5, 3.2, 1.4], -150, 100),
   linerA: A("liner", [3.2, 5.6, -4.4], 150, -80), wallA: A("chamber", [-7.5, 6.4, 1.0], -150, -80), windowA: A("chamber", [-4.5, 5.0, -4.4], 150, -90), topEA: A("topE", [1.8, 7.9, 1.6], 150, 100), pedA: A("pedBase", [3.4, 2.1, 1.0], 150, 100),
   bRing: A("bRing", [R2(bs.xb + 2.3), 2.7, BZ], 150, 120), bStep: A("bRing", [R2(bs.xb + 0.3), 2.85, BZ], -150, -100), bSpark: A("bSpark", [R2(bs.xb + 1.9), 3.35, 0.3], 150, -100), bLineA: A("bTopLine", [R2(bs.xb + 2.3), 3.3, 2.2], 150, -100), bPlasmaA: A("bPlasma", [30.5, 6.4, BZ], -150, -90), bEscA: A("bEsc", [29.6, 2.4, BZ], -150, 100), bWaferA: A("bWafer", [29.8, 3.1, BZ], -150, -100),
-  sWafer: A("sWafer", [R2(SX + 2.0), 3.12, 1.6], -150, -90), sTop: A("sTop", [R2(SX + 2.4), 2.76, 1.8], 150, -60), sTopB: A("sTop", [R2(SX + 2.4), 2.76, 1.8], 170, 170), sElec: A("sElec", [R2(SX - 1.5), 2.5, 1.5], -150, 100), sHeA: A("sHe", [R2(SX + 0.6), 2.4, 1.2], 150, 100), sCoolA: A("sCool", [R2(SX + 1.6), 1.5, 3.0], 150, 100),
+  sWafer: A("sWafer", [R2(SX + 2.0), 3.12, 1.6], -150, -90), sTop: A("sTop", [R2(SX + 2.4), 2.76, 1.8], 150, -60), sTopB: A("sTop", [R2(SX + 2.4), 2.76, 1.8], 170, 170), sElec: A("sElec", [R2(SX - 1.5), 2.5, 1.5], -150, 100), sElecB: A("sElec", [R2(SX - 1.5), 2.5, 1.5], -190, 190), sHeA: A("sHe", [R2(SX + 0.6), 2.4, 1.2], 150, 100), sCoolA: A("sCool", [R2(SX + 1.6), 1.5, 3.0], 150, 100),
   cNew: A("cNRing", [R2(cn.xb + 1.7), 3.0, BZ], -150, -100), cOld: A("cORing", [R2(co.xb + 1.7), 2.4, BZ], 150, -100), cArmA: A("cArm", [AX, 5.0, 0.7], 160, -170), cPlO: A("cPlO1", [R2(co.xb + 2.5), 4.5, BZ], 150, -100),
   eCerA: A("eCer", [124.2, EY, 2.3], -150, -100), eMetA: A("eMet", [132.2, EY, 2.3], 150, -100),
   pPumpA: A("pPump", [144.5, 4.5, 1.2], -150, -100), pValveA: A("pValve", [151.7, 4.25, 0.6], 150, -100), pPowerA: A("pPower", [156.4, 6.6, 1.4], 150, -90),
