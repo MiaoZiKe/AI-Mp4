@@ -1705,24 +1705,15 @@
       "en": "Edges warp up",
       "color": "amber",
       "at": "warp",
-      "until": "warp+45",
-      "cut": true
-     },
-     {
-      "part": "fShiftA",
-      "text": "晶片被推離原位",
-      "en": "Chip pushed off",
-      "color": "blue",
-      "at": "shift",
-      "until": "shift+24",
+      "until": "warp+31",
       "cut": true
      },
      {
       "part": "fMissA",
-      "text": "導通孔對不準",
-      "en": "Via misses the pad",
+      "text": "晶片被推離原位 → 導通孔對不準",
+      "en": "Chip pushed off, via misses",
       "color": "amber",
-      "at": "miss-8",
+      "at": "shift+2",
       "until": "miss+37",
       "cut": true
      }

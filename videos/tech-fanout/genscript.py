@@ -179,7 +179,7 @@ P["s6"] = {"zoom": [{"to": "pkg", "at": CC, "dur": 1}],
 P["s7"] = {"zoom": [{"to": "panel", "at": CC, "dur": 1}],
  "shot": [shot(CC, FXc + 0.8, -3.4, 36, 42, 1)],
  "run": [run("fHot", "cte-6", "warp", 6), run("fFlow", "shift-12", "shift+20", 6)],
- "labels": [lab("fWarpA", "整片邊緣翹起", "Edges warp up", "amber", "warp", "warp+45"), lab("fShiftA", "晶片被推離原位", "Chip pushed off", "blue", "shift", "shift+24"), lab("fMissA", "導通孔對不準", "Via misses the pad", "amber", "miss-8", "miss+37")],
+ "labels": [lab("fWarpA", "整片邊緣翹起", "Edges warp up", "amber", "warp", "warp+31"), lab("fMissA", "晶片被推離原位 → 導通孔對不準", "Chip pushed off, via misses", "amber", "shift+2", "miss+37")],
  "overlay": [card("s7", "fo-warp", "熱脹冷縮不同", "示意（不標數字）", {"cte": "cte", "warp": "warp", "shift": "shift", "miss": "miss"})]}
 P["s8"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, GXc, 0.4, 50, 22, 1)],
