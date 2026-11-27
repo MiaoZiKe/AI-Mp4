@@ -56,7 +56,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, tail) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
     for z in zh: assert len(re.sub(r"[ ，。？]", "", z)) <= 11, (sid, z)
     for c in cues: assert c[1] in nar, (sid, c)
-    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = round(max(tail, dur - 0.2 - nch / 5.2), 1)   # 念完之後只有畫面的秒數（無聲估計：每秒 5.2 字）
+    nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = 0.6 if sid == "s11" else round(max(tail, dur - 0.2 - nch / 5.2), 1)   # 念完之後只有畫面的秒數（無聲估計：每秒 5.2 字）
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -101,24 +101,24 @@ def vis(lay, wins, dur=3):
         if a != T0: VIS.append(hid(lay, prev, a, dur))
         prev = b
     if prev != FAR: VIS.append(hid(lay, prev, FAR, dur))
-BACK = "s4:start+272"       # 爆炸組回的起點（s4 尾端的遠景）
+BACK = "s4:start+102"       # 爆炸組回的起點（s4 尾端的遠景；2026/11/27 Andy 第 39 條：念完旁白前做完，原本在 +272）
 A_ALL = ["cabBase", "cabWall", "cabDoor", "bbBase", "vshell", "liq", "lid", "dip", "jack", "mfc", "vtrim"]
-A_WIN = [(T0, "s2:cab+16"), ("s3:start-6", "s4:start+70"), ("s4:start+242", "s6:start-2"), ("s11:start-2", FAR)]
+A_WIN = [(T0, "s2:cab+16"), ("s3:start-6", "s4:start+56"), ("s4:start+100", "s6:start-2"), ("s11:start+10", FAR)]
 for l in A_ALL: vis(l, A_WIN)
 vis("gsrc", [A_WIN[1], A_WIN[2]])   # 減壓閥在 s1、s2 不入鏡（起泡器大特寫不切到左邊的閥）
 for l in ["ampBase", "ampShell", "ampLid", "ampT0", "ampT1", "ampT2", "ampT3"]: vis(l, [("s2:cab+12", "s3:start-2")])
 HL = ["hline", "hjk0", "hjk1", "hjk2", "pfilShell", "pfilCore"]
-for l in HL: vis(l, [("s4:start+72", "s5:start-2")])
+for l in HL: vis(l, [("s4:start+58", "s5:start-2")])
 B_ALL = ["vbox", "vfront", "vbase", "vblock", "vdiaA", "vdiaB", "vdiaP", "vpipes"]
-for l in B_ALL: vis(l, [("s4:start+170", "s5:start-2"), ("s7:start-10", "s8:start-2")])
+for l in B_ALL: vis(l, [("s4:start+80", "s5:start-2"), ("s7:start-10", "s8:start-2")])
 for l in ["chb", "cwf", "cpump"]: vis(l, [("s7:start-10", "s8:start-2")])
 for l in ["hotCmp", "coldCmp", "cmpValve"]: vis(l, [("s6:start-10", "s7:start-2")])
 vis("crust1", [("s6:cold+4", "s7:start-2")]); vis("crust2", [("s6:cold+40", "s7:start-2")]); vis("crust3", [("s6:cold+78", "s7:start-2")])
 # D 站（晶圓表面分子）：八個位置各自在 TMA 反應時（one+4k）換成「鋁＋甲基」，水反應時（atom-14+4k）換成新的羥基
 D_END = "s10:start-2"
-for l in ["supBase"]: vis(l, [("s10:start-6", "s11:start-2")])
+for l in ["supBase"]: vis(l, [("s10:start-6", "s11:start+12")])
 for i, c in enumerate(["de", "fr", "tw"]):
-    vis(f"sup{i}", [("s10:start-6", "s11:start-2")])
+    vis(f"sup{i}", [("s10:start-6", "s11:start+12")])
     VIS.append(hid(f"sup{i}", "s10:start-6", f"s10:{c}-4", 6, 0.3))
 for l in ["sub", "surf"]: vis(l, [("s8:start-8", D_END)])
 for k in range(len(SITES)):
@@ -132,20 +132,20 @@ VIS += [mv("cabDoor", T0, "s2:cab-2", 14, dx=-12.0), hid("cabDoor", T0, "s2:cab-
 VIS += [hid("vshell", T0, "s2:cab+14", 8, 0.2), hid("jack", T0, "s2:cab+14", 8, 0.3)]
 BACKALL = (BACK, FAR)
 # 氣櫃 s2 把門推回 → s3 拆開時滑開、外殼淡成幽靈；爆炸 6 步（門→蓋與進出氣閥→加熱套→插管→外殼剖開看液體與頂部空間）
-EXPL = [mv("cabDoor", "s3:start+48", "s6:start-2", 14, dx=-12.0), hid("cabWall", "s3:start+48", "s6:start-2", 14, 0.14),
-        mv("lid", "s3:open+50", BACK, 26, dy=8.0), mv("jack", "s3:open+104", BACK, 26, dy=7.0), mv("dip", "s3:open+158", BACK, 26, dy=5.0),
-        hid("vshell", "s3:open+212", BACK, 16, 0.18)]
-# s4：載氣流量控制往左拉；加熱管路保溫套逐段剝開；閥塊上抬、隔膜與彈簧分開；最後遠景一起組回
-EXPL += [mv("mfc", "s4:start+6", BACK, 24, dx=-4.2),
-         mv("hjk0", "s4:start+84", BACK, 18, dy=1.7), mv("hjk1", "s4:start+96", BACK, 18, dy=1.7), mv("hjk2", "s4:start+108", BACK, 18, dy=1.7),
-         mv("vblock", "s4:start+182", BACK, 26, dy=6.0), mv("vdiaA", "s4:start+186", BACK, 24, dy=3.2), mv("vdiaB", "s4:start+186", BACK, 24, dy=3.2), mv("vdiaP", "s4:start+186", BACK, 24, dy=3.2),
-         hid("vfront", "s4:start+170", "s4:start+272", 10, 0.18),
-         hid("pfilShell", "s4:start+126", BACK, 10, 0.18), mv("pfilCore", "s4:start+130", BACK, 24, dy=2.8)]
+EXPL = [mv("cabDoor", "s3:start+14", "s6:start-2", 14, dx=-12.0), hid("cabWall", "s3:start+14", "s6:start-2", 14, 0.14),
+        mv("lid", "s3:open+14", BACK, 14, dy=8.0), mv("jack", "s3:open+30", BACK, 14, dy=7.0), mv("dip", "s3:open+72", BACK, 14, dy=5.0),
+        hid("vshell", "s3:open+44", BACK, 10, 0.18)]
+# s4（第 39 條：全部在旁白念的 +104 幀內做完）：載氣流量控制往左拉；加熱管路保溫套逐段剝開；閥塊上抬、隔膜與彈簧分開；念完後遠景一起組回
+EXPL += [mv("mfc", "s4:start+14", BACK, 14, dx=-4.2),
+         mv("hjk0", "s4:start+62", BACK, 12, dy=1.7), mv("hjk1", "s4:start+68", BACK, 12, dy=1.7), mv("hjk2", "s4:start+74", BACK, 12, dy=1.7),
+         mv("vblock", "s4:start+86", BACK, 12, dy=6.0), mv("vdiaA", "s4:start+88", BACK, 12, dy=3.2), mv("vdiaB", "s4:start+88", BACK, 12, dy=3.2), mv("vdiaP", "s4:start+88", BACK, 12, dy=3.2),
+         hid("vfront", "s4:start+82", "s4:start+102", 8, 0.18),
+         hid("pfilShell", "s4:start+78", BACK, 8, 0.18), mv("pfilCore", "s4:start+80", BACK, 12, dy=2.8)]
 # 固體安瓿短版爆炸（s2 後半）：蓋升起、托盤一層層升起
 EXPL += [mv("ampLid", "s2:cab+20", FAR, 18, dy=5.0), mv("ampT3", "s2:cab+30", FAR, 18, dy=3.6), mv("ampT2", "s2:cab+36", FAR, 18, dy=2.4), mv("ampT1", "s2:cab+42", FAR, 18, dy=1.2),
          hid("ampShell", "s2:cab+48", FAR, 12, 0.2)]
 # s11：回到 s1 的起泡器大特寫（門打開、外殼幽靈），呼應「氣體從哪來」
-EXPL += [mv("cabDoor", "s11:start-3", FAR, 4, dx=-12.0), hid("cabWall", "s11:start-3", FAR, 4, 0.14), hid("vshell", "s11:start-3", FAR, 4, 0.2), hid("jack", "s11:start-3", FAR, 4, 0.3)]  # 2026/11/27 複審：畫面換到 s11 要和字幕同時（s10 最後一句到 2167），所以各轉場在 s11 起點＋1 幀完成
+EXPL += [mv("cabDoor", "s11:start+9", FAR, 4, dx=-12.0), hid("cabWall", "s11:start+9", FAR, 4, 0.14), hid("vshell", "s11:start+9", FAR, 4, 0.2), hid("jack", "s11:start+9", FAR, 4, 0.3)]  # 2026/11/27 複審：畫面換到 s11 要和字幕同時（s10 最後一句到 2167），所以各轉場在 s11 起點＋1 幀完成
 # 閥運作（s7）：隔膜 A 一開一關（微回彈）
 OPEN = [mv("vdiaA", "s7:open-2", "s7:close-4", 7, dy=0.32)]
 P = {}
@@ -159,24 +159,19 @@ P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}],
  "run": [run("ampHeat", "cab+16", "s3:start-2", 10), run("sublime", "cab+44", "s3:start-2", 8), run("jackGlow", "start", "cab+14", 6)],
  "labels": [lab("amp", "固體：托盤疊層", "Solid: stacked trays", "amber", "cab+48", "s3:start-14")],
  "overlay": [sec("precursor-kinds", "start+20", "s3:start-5", "前驅物：原料的外型", "示意", {"name": "name", "sauce": "sauce", "cab": "cab", "solid": "solid"})]}
-P["s3"] = {"shot": [shot("start", -2.5, 4.4, 34, 10, 1, yaw=0.0), shot("start+50", 0.0, 3.9, 46, 18, 1), shot("open+52", 0.0, 7.6, 60, 22, 40), shot("open+206", 0.0, 4.6, 50, 22, 24)],
- "run": [run("bubA", "start", "open+210", 6), run("bubB", "start", "open+210", 6)],
- "labels": [lab("cab", "氣櫃", "Gas cabinet", "amber", "start+2", "start+48"),
-            lab("lid", "進出氣閥", "In/out valves", "blue", "open+56", "open+102"),
-            lab("jack", "加熱套", "Heating jacket", "amber", "open+110", "open+156"),
-            lab("dip", "插管", "Dip tube", "blue", "open+164", "open+210"),
-            lab("liq", "液體", "Liquid", "amber", "open+218", "open+264"),
-            lab("headspace", "頂部空間", "Headspace", "blue", "open+270", "open+316")],
- "overlay": [sec("precursor-bubbler", "start+20", "s4:start-5", "起泡器怎麼拆", "示意", {"cab": "open", "lid": "open+56", "jack": "open+110", "dip": "open+164", "liq": "open+218", "head": "open+270"})]}
-P["s4"] = {"shot": [shot("start", -4.0, 5.4, 52, 18, 1, yaw=0.0), shot("start+72", 13.0, 3.2, 40, 28, 1), shot("start+124", 9.5, 3.4, 38, 28, 24), shot("start+176", 24.0, 4.8, 40, 30, 1),
-                    shot("start+242", 8.0, 0.5, 86, 46, 1), shot("start+290", 4.6, 1.4, 70, 44, 22)],
- "run": [run("tapeGlowV", "start+170", FAR, 6), run("tapeFlash", "start+312", "start+342", 6), run("tapeOn", "start+342", FAR, 8), run("mfcLed", "start+312", FAR, 6), run("ledA", "start+200", FAR, 6)],
- "labels": [lab("mfc", "載氣流量控制", "Carrier gas MFC", "amber", "start+26", "start+72"),
-            lab("hline", "加熱管路", "Heated line", "amber", "start+78", "start+124"),
-            lab("pfil", "微粒過濾器", "Particle filter", "blue", "start+128", "start+174"),
-            lab("vblock", "脈衝閥", "Pulse valve", "blue", "start+184", "start+228", xy=[200, 330]),
-            lab("seat", "閥座", "Valve seat", "amber", "start+228", "start+272")],
- "overlay": [sec("precursor-path", "start+78", "s5:start-5", "送料路徑：一路加熱保溫", "示意", {"gas": "start+26", "pipe": "start+80", "valve": "start+186", "back": BACK}, h=326)]}
+P["s3"] = {"shot": [shot("start", -2.5, 4.4, 34, 10, 1, yaw=0.0), shot("open+10", 0.0, 3.9, 46, 18, 1), shot("open+34", 0.0, 7.6, 60, 22, 30), shot("open+78", 0.0, 4.6, 50, 22, 20)],
+ "run": [run("bubA", "start", "s4:start-4", 6), run("bubB", "start", "s4:start-4", 6)],
+ "labels": [lab("cab", "氣櫃", "Gas cabinet", "amber", "start+2", "open+12"),
+            lab("lid", "進出氣閥", "In/out valves", "blue", "open+14", "open+48"),
+            lab("liq", "液體", "Liquid", "amber", "open+50", "open+80"),
+            lab("dip", "插管", "Dip tube", "blue", "open+82", "s4:start-2")],
+ "overlay": [sec("precursor-bubbler", "start+20", "s4:start-5", "起泡器怎麼拆", "示意", {"cab": "open", "lid": "open+14", "jack": "open+30", "dip": "open+72", "liq": "open+84", "head": "open+98"})]}
+P["s4"] = {"shot": [shot("start", -4.0, 5.4, 52, 18, 1, yaw=0.0), shot("start+58", 13.0, 3.2, 40, 28, 1), shot("start+84", 24.0, 4.8, 40, 30, 1), shot("start+102", 8.0, 0.5, 86, 46, 1)],
+ "run": [run("tapeGlowV", "start+84", FAR, 6), run("tapeFlash", "start+106", "start+116", 6), run("tapeOn", "start+116", FAR, 8), run("mfcLed", "start+106", FAR, 6), run("ledA", "start+96", FAR, 6)],
+ "labels": [lab("mfc", "載氣流量控制", "Carrier gas MFC", "amber", "start+26", "start+58"),
+            lab("hline", "加熱管路", "Heated line", "amber", "start+60", "start+88"),
+            lab("vblock", "脈衝閥", "Pulse valve", "blue", "start+90", "start+118", xy=[200, 330])],
+ "overlay": [sec("precursor-path", "start+20", "s5:start-5", "送料路徑：一路加熱保溫", "示意", {"gas": "start+28", "pipe": "start+66", "valve": "start+92", "back": BACK}, h=326)]}
 P["s5"] = {"shot": [shot("start-4", 0.0, 3.2, 38, 10, 1, yaw=0.0)],
  "run": [run(i, "blow-6", "s6:start-4", 8) for i in ("bubA", "bubB", "bubC", "ripple", "carrierIn")] + [run("jackGlow", "start", "s6:start-4", 8), run("liqWarm", "start", "s6:start-4", 8), run("vapLow", "blow-2", "scent-10", 8), run("vapHi", "scent-10", "s6:start-4", 10)],
  "shift": [hid("vshell", "start-2", "s6:start-2", 8, 0.16), hid("jack", "start-2", "s6:start-2", 8, 0.24)],
@@ -207,9 +202,9 @@ P["s9"] = {"shot": [shot("start-4", 59.6, 0.2, 26, 42, 1, yaw=0.0)],
  "labels": [lab("impA", "雜質金屬原子", "Stray metal atom", "amber", "atom+12", "s10:start-14")],
  "overlay": [sec("precursor-purity", "start+24", "s10:start-5", "乾淨有兩把尺", "示意：要求到 ppb 等級", {"clean": "clean", "atom": "atom", "bad": "bad"})]}
 P["s10"] = {"zoom": [{"to": "co", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 40.0, -1.8, 41, 38, 1)],
- "overlay": [sec("precursor-co", "start-4", "s11:start-14", "供應商", "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27", {"few": "few", "de": "de", "fr": "fr", "tw": "tw"}, h=392, y=1000)]}
-P["s11"] = {"zoom": [{"to": "tool", "at": "start", "dur": 1}], "shot": [shot("start", S1X, S1Y, S1D, 14, 1, yaw=0.0)],
- "run": [run("bubA", "start-2", FAR, 6), run("bubB", "start-2", FAR, 6), run("jackGlow", "start-2", FAR, 6), run("liqWarm", "start-2", FAR, 6), run("vapHi", "start-2", FAR, 6)],
+ "overlay": [sec("precursor-co", "start-4", "s11:start+12", "供應商", "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27", {"few": "few", "de": "de", "fr": "fr", "tw": "tw"}, h=392, y=1000)]}
+P["s11"] = {"zoom": [{"to": "tool", "at": "start+12", "dur": 1}], "shot": [shot("start+12", S1X, S1Y, S1D, 14, 1, yaw=0.0)],
+ "run": [run("bubA", "start+10", FAR, 6), run("bubB", "start+10", FAR, 6), run("jackGlow", "start+10", FAR, 6), run("liqWarm", "start+10", FAR, 6), run("vapHi", "start+10", FAR, 6)],
  "overlay": [sec("precursor-next", "start+24", "s12:start-5", "接下來", "下一集：特用氣體", {"next": "next", "gas": "gas", "kw": "kw"})]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])

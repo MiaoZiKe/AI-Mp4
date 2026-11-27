@@ -42,7 +42,7 @@ S = [
  [("used", "用過的氣"), ("burn", "燒掉"), ("wash", "水洗"), ("like", "焚化爐")], ["燒掉", "水洗"], ["美國環保署含氟氣體說明；示意"], 1.4),
 ("s11", "payoff", "全球有林德、液化空氣，台灣有台特化。",
  ["全球有林德", "液化空氣", "台灣有台特化"], ["Globally, Linde", "and Air Liquide;", "in Taiwan, Taiwan Specialty Chemicals."],
- [("lin", "林德"), ("air", "液化空氣"), ("tw", "台特化")], ["林德", "台特化"], ["林德、液化空氣官網；台特化為媒體報導"], 0.5),
+ [("lin", "林德"), ("air", "液化空氣"), ("tw", "台特化")], ["林德", "台特化"], ["林德、液化空氣官網；台特化為媒體報導"], 1.0),
 ("s12", "cta", "下一集，氣體之外，換看液體。留言氣體，拿資料。",
  ["下一集", "氣體之外", "換看液體", "留言氣體", "拿資料"], ["Next episode:", "beyond gases,", "we look at liquids.", "Comment \"gas\"", "for the notes."],
  [("next", "下一集"), ("liq", "換看液體"), ("kw", "留言")], ["液體", "氣體"], ["示意動畫，不是量測"], 0.5),
@@ -101,12 +101,12 @@ P["s3"] = {"shot": [shot("start-2", X["pur"], 3, 58, 16, 1)],
  "run": [run("impIn", "start", "s4:start-4", 6), run("cleanOut", "start", "s4:start-4", 6), run("impLeak", "pool", "s4:start-4", 6)],
  "overlay": [sec("gas-ppb", "start+14", "s4:start-18", "多乾淨才夠", "示意（比喻為換算）", secu(["q", "pool", "spoon"]))]}
 # ── s4 氣瓶櫃爆炸分解（六步：開門→瓶升＋瓶帽落下→調節器出→吹淨抽出→控制器開蓋→組回＋緊急停止鈕閃）
-BACK4 = "ctl+52"
+BACK4 = "ctl+30"
 P["s4"] = {"shot": [shot("start-2", 0.5, 10, 62, 24, 1, yaw=0.0), shot("open-10", 0.6, 10.5, 58, 26, 34)],
  "shift": [mv("cabDoor", "open-4", "s5:start+40", 24, dx=-10, dz=3.4),
            mv("botA", "bv+2", BACK4, 24, dy=5.2), mv("bcap", "bv-2", BACK4, 18, dy=-10.9, dx=2.6, fallOut=True, bounce=0.06), mv("regA", "like-18", BACK4, 24, dz=4.8, dy=0.4),
            mv("purge", "gas-6", BACK4, 24, dz=4.6), mv("ctlDoor", "ctl-2", BACK4, 22, dx=3.4, dz=1.6)],
- "run": [run("purgeN2", "gas+10", BACK4, 6), run("estopFlash", "ctl+56", "ctl+80", 4)],
+ "run": [run("purgeN2", "gas+10", BACK4, 6), run("estopFlash", "ctl+34", "ctl+54", 4)],
  "labels": [lab("cab", "氣瓶櫃", "Gas cabinet", "amber", "cab-2", "cab+43"),
             lab("bottle", "鋼瓶＋瓶閥", "Bottle + valve", "blue", "bv+4", "bv+49"),
             lab("reg", "調節器", "Regulator", "amber", "like-16", "like+29"),
@@ -131,7 +131,7 @@ P["s6"] = {"shot": [shot("start-2", X["pur"] + 1.5, 6, 66, 16, 1), shot("pur+2",
 P["s7"] = {"shot": [shot("start-2", X["vmb"] + 2, 5, 64, 18, 1)],
  "shift": [mv("vmbDoor", "vmb+14", "split+92", 22, dx=16, dz=2.4), mv("stk", "src+22", "split+92", 22, dz=6),
            *[mv(f"vc{i+1}", "src+22", "split+92", 22, dz=6) for i in range(5)],
-           *[mv(f"vc{i+1}", (f"split{i*20-8:+d}"), "split+92", 16, dx=(i - 2) * 1.2) for i in range(5)]],
+           *[mv(f"vc{i+1}", (f"split{i*14-8:+d}"), "split+92", 16, dx=(i - 2) * 1.2) for i in range(5)]],
  "run": [run("lineGas", "start", "s8:start-4", 6)],
  "labels": [lab("vmb", "閥箱（閥門歧管箱 VMB）", "Valve manifold box", "amber", "vmb-2", "vmb+43"),
             lab("stk", "一條支路", "One branch", "blue", "split-14", "split+31")],
@@ -148,7 +148,7 @@ P["s8"] = {"shot": [shot("start-2", X["dbl"] + 1, 5.5, 50, 16, 1)],
 # ── s9 製程腔：先推近流量控制器，再看噴頭與升降銷，最後看抽氣口與泵
 P["s9"] = {"shot": [shot("start-2", 75, 7, 54, 16, 1), shot("shw-8", 77, 5, 52, 18, 24), shot("pump-10", 83, 4, 54, 18, 26)],
  "run": [run(f"shw{i}", "in", "s10:start-4", 6) for i in range(6)] + [run(f"wfOut{i}", "shw", "s10:start-4", 6) for i in range(4)] + [run("plasmaPulse", "shw", "s10:start-4", 6), run("foreline", "pump", "s10:start-4", 6)],
- "labels": [lab("mfc", "質量流量控制器", "Mass flow controller", "blue", "in-2", "in+43"), lab("shw", "噴頭", "Showerhead", "amber", "shw+12", "shw+57"), lab("pump", "乾式泵", "Dry pump", "blue", "pump+6", "pump+51")],
+ "labels": [lab("mfc", "質量流量控制器", "Mass flow controller", "blue", "in-2", "in+43"), lab("shw", "噴頭", "Showerhead", "amber", "shw+12", "shw+57"), lab("pump", "乾式泵", "Dry pump", "blue", "pump", "pump+45")],
  "overlay": [sec("gas-chm", "start+14", "s10:start-18", "氣進腔之後", "示意（腔內壓力很低）", secu(["in", "shw", "pump"]))]}
 # ── s10 尾氣處理器：外殼打開半邊→水槽、燃燒室、水洗段、排氣口由下而上依序分開→組回
 P["s10"] = {"shot": [shot("start-2", X["abt"] + 0.4, 9, 76, 16, 1)],
@@ -159,10 +159,10 @@ P["s10"] = {"shot": [shot("start-2", X["abt"] + 0.4, 9, 76, 16, 1)],
 # ── s11 公司：全線遠景（整條送氣路徑當背景）＋公司卡
 P["s11"] = {"shot": [shot("start-2", 48, 9, 112, 20, 1, yaw=0.15)],
  "run": [run("lineGas", "start", "s12:start-4", 6), run("regOut", "start", "s12:start-4", 6)],
- "overlay": [sec("gas-co", "lin-6", "s12:start-18", "做氣體的公司", "公司官網與年報", secu(["lin", "air", "tw"]), h=360, y=1040)]}
-P["s12"] = {"shot": [shot("start-2", 22, 9, 96, 22, 1, yaw=0.0)],
+ "overlay": [sec("gas-co", "start-4", "s12:start+14", "做氣體的公司", "公司官網與年報", secu(["lin", "air", "tw"]), h=360, y=1040)]}
+P["s12"] = {"shot": [shot("start+14", 22, 9, 96, 22, 1, yaw=0.0)],
  "run": [run("lineGas", "start", "s13:start-4", 6), run("regOut", "start", "s13:start-4", 6)],
- "overlay": [sec("gas-next", "start+14", "s13:start-18", "接下來", "下一集：濕式化學品與研磨液", secu(["next", "liq", "kw"]))]}
+ "overlay": [sec("gas-next", "start+32", "s13:start-18", "接下來", "下一集：濕式化學品與研磨液", secu(["next", "liq", "kw"]))]}
 
 # ── 各站只在講到它的幕出現（其餘淡出，主素材框才不會被整條線撐大）；換幕那一幀鏡頭硬切，新舊 ≤4 幀交叉淡化
 ST = {"CAB": (["cabShell", "cabDoor", "botA", "botB", "bcap", "regA", "regB", "purge", "ctl", "ctlDoor", "ctlPcb"], ["s1", "s4", "s5", "s11", "s12"]),
