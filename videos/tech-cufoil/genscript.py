@@ -141,7 +141,7 @@ GV = (147.0, 4.0, 38, 14); GV2 = (154.0, 3.8, 27, 26)   # r2：念「拉絲、�
 WV = (192.6, 2.4, 30, 86)
 XV = (230.6, 2.4, 30, 86)
 KV = (268.0, 0.4, 43, 26)
-NV = (308.8, 2.2, 56, 30)   # r2：熱壓機（含液壓缸）與加大的主機板都入框
+NV = (308.2, 2.2, 60, 30)   # r2：熱壓機（含液壓缸）與加大的主機板都入框
 if os.environ.get("VIEWS"): globals().update({k: tuple(v) for k, v in json.loads(os.environ["VIEWS"]).items()})   # 開發用：調鏡頭
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
@@ -175,7 +175,7 @@ P["s4"] = {"zoom": [{"to": "skin", "at": CC, "dur": 1}],
 P["s5"] = {"shot": [S_("low-6", RV2, 24)],
  "run": [run("rSigR", "low+8", "s6:start", 4), run("rSigS", "low+8", "s6:start", 4), run("rLift", "hard-4", "s6:start", 12)],
  "labels": [lab("rSmooth", "低粗糙度：路直、耗得少", "Low profile: less loss", "blue", "low+4", "low+49"),
-            lab("rGlue", "還要黏得住樹脂", "Must still bond to resin", "amber", "glue+2", "hard-6"), lab("rLift", "太平：樹脂翹起一角", "Too smooth: resin lifts", "amber", "hard", "end-2", xy=[700, 360])],
+            lab("rGlue", "還要黏得住樹脂", "Must still bond to resin", "amber", "glue+2", "glue+14"), lab("rLift", "太平：樹脂翹起一角", "Too smooth: resin lifts", "amber", "glue+16", "end-2", xy=[620, 250])],
  "overlay": [card("s5", "cuf-hvlp", "低粗糙度銅箔：平和黏得牢互相拉扯", "示意", {"low": "low", "flat": "flat", "glue": "glue", "hard": "hard"})]}
 P["s6"] = {"zoom": [{"to": "loom", "at": CC, "dur": 1}],
  "run": [run("gBush", "start-30", "s7:start", 8), run("gDraw", "start-10", "s7:start", 4), run("gBobSpin", "start-10", "s7:start", 8)] + [run(f"gTw{i}", "twist-6", "s7:start", 8) for i in range(4)] + [run("gYarnRun", "twist-6", "s7:start", 6)] + [run(x, "weave-6", "s7:start", 8) for x in ["gShedA", "gShedB", "gRapierGo", "gReedBeat", "gClothSpin", "gWarpSpin"]],
