@@ -14,7 +14,7 @@ const palette = {
   siC: "#5E6B82", siHi: "#8A97B0", waferC: "#7C89A6", dieC: "#4C5E86", chipC: "#2E3442", chipTop: "#3A4152", chipLab: "#8E97A8", pcbC: "#1E6B4E", pcbD: "#16523B", ssdC: "#2B5C8A",
   oxC: "#E6EBF2", wlC: "#4A5876", blC: "#C8794A", capC: "#B8C2D4", capIn: "#7E8AA2", chg: "#2FD3E0", plugC: "#8E9BB0", trapC: "#E0A43A", chanC: "#6FB38F", wC: "#9AA6BC",
   holeC: "#151922", etchC: "#B07CF0", glassC: "#BFD3F2", winC: "#5B8DEF", winD: "#2F4A7A", roofC: "#B6C0CF", hbmC: "#4E5A74", baseC: "#3B6E8F",
-  sicC: "#3FA37A", ganC: "#9EA3B5", crackC: "#8FD3FF", boltC: "#F2B632", markC: "#E8613C", dielC: "#D9A441", dopeC: "#C46A6A", whiteP: "#FFFFFF",
+  sicC: "#3FA37A", ganC: "#9EA3B5", crackC: "#8FD3FF", boltC: "#F2B632", markC: "#E8613C", chgD: "#4E8C99", dielC: "#D9A441", dopeC: "#C46A6A", whiteP: "#FFFFFF",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const glowM = (c, op, ei = 1) => M("std", c, { emissive: c, ei, opacity: op, rough: 1, metal: 0 });
@@ -43,7 +43,7 @@ const materials = {
   sic: M("phys", "sicC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.8, env: 0.9 }), gan: M("std", "ganC", { rough: 0.06, metal: 0.9, env: 1.3 }),
   diel: M("std", "dielC", { rough: 0.4, metal: 0.1, env: 0.4 }), dope: M("std", "dopeC", { rough: 0.5, metal: 0.2 }), coreOx: M("std", "whiteP", { rough: 0.6, metal: 0 }),
   cellM: glowM("markC", 1, 0.8), trapG: glowM("trapC", 1, 0.7), mirror: M("std", "waferC", { rough: 0.05, metal: 0.95, env: 1.4 }),
-  crack: glowM("crackC", 1, 0.9), bolt: glowM("boltC", 1, 0.7), mark: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }), white: M("std", "whiteP", { rough: 0.7, metal: 0 }),
+  crack: glowM("crackC", 1, 0.9), arcHalo: glowM("crackC", 0.35, 0.6), chgBase: M("std", "chgD", { rough: 0.4, metal: 0.2, env: 0.4 }), bolt: glowM("boltC", 1, 0.7), mark: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }), white: M("std", "whiteP", { rough: 0.7, metal: 0 }),
 };
 const parts = [], layers = [], anchors = {}, actions = {};
 const P = (o) => { parts.push(o); return o; };
@@ -197,7 +197,7 @@ for (let i = 0; i < 8; i++) { const x = R2(CX - 3.15 + i * 0.9);
 // 存了「1」的電容：前排內電極整根發光（電荷），慢慢暗掉、一下補滿（刷新，鋸齒）；後排只在頂端露出一圈光
 const CONE = CFRONT.filter((_, k) => k % 3 !== 1), CONEB = CBACK.filter((_, k) => (k * 5 + 3) % 3 !== 0);
 LAY("cChg", [8, 3, CX, 2.6]);
-P({ id: "cChgI", layer: "cChg", shape: "cyl", size: [0.125, R2(CAPH - 0.12)], rot: V, pos: [0, R2(CB + CAPH / 2 - 0.04), 0], at: CONE, mat: "chg" });
+P({ id: "cChgI", layer: "cChg", shape: "cyl", size: [0.125, R2(CAPH - 0.12)], rot: V, pos: [0, R2(CB + CAPH / 2 - 0.04), 0], at: CONE, mat: "chgBase" });
 P({ id: "cChgT", layer: "cChg", shape: "cyl", size: [0.12, 0.04], rot: V, pos: [0, R2(CB + CAPH + 0.21), 0], at: CONEB.filter(([, , z]) => z > 1.4), mat: "chg" });
 actions.cLeak = { type: "pulse", _說明: "電荷慢慢漏掉、再被一下補滿（刷新，鋸齒，示意）", parts: ["cChgI", "cChgT"], color: "chg", glow: 0.95, freq: 0.55, halo: 0, saw: true };
 actions.cWLGlow = { type: "pulse", _說明: "開關打開：字元線（閘極）先亮", parts: ["cWL", "cGate0", "cGate1", "cGate2", "cGate3", "cGate4", "cGate5", "cGate6", "cGate7"], color: "lampY", glow: 0.8, freq: 1.2, halo: 0 };
@@ -347,22 +347,30 @@ actions.hTsvGlow = { type: "pulse", parts: ["hhTsv"], color: "lampY", glow: 0.7,
 
 // ═════ 站 N：下一集（x 240）：矽晶圓（念到「撐不住」出現裂紋＋紅光）、碳化矽（透明綠）、氮化鎵（金色，長在基板上），中間一道高壓閃電 ═════
 const NX = 240;
-const NW = [["nSi", -4.2, "mirror"], ["nSiC", 0, "sic"], ["nGaN", 4.2, "mirror"]];
+const NW = [["nSi", -3.4, "mirror"], ["nSiC", 0, "sic"], ["nGaN", 3.4, "mirror"]];
 for (const [id, dx, mat] of NW) {
-  const x = NX + dx; LAY(id, [3.4, 3.6, x, 1.9]); const h = plinth(id, id, x, 0, 3.2, 2.6, 0.7);
+  const x = NX + dx; LAY(id, [3.2, 3.6, x, 1.9]); const h = plinth(id, id, x, 0, 3.1, 2.6, 0.7);
   BOX(`${id}Stand`, id, x - 0.12, x + 0.12, h, h + 0.6, -0.3, -0.1, "dark"); BOX(`${id}Foot`, id, x - 1.0, x + 1.0, h, h + 0.1, -0.5, 0.2, "dark");
   P({ id: `${id}W`, layer: id, shape: "cyl", size: [1.35, 0.06], pos: [x, R2(h + 1.55), 0], mat });
   BOX(`${id}Notch`, id, x - 0.08, x + 0.08, R2(h + 2.8), R2(h + 2.92), -0.05, 0.05, "darker");
   if (id === "nGaN") P({ id: "nGaNFilm", layer: id, shape: "cyl", size: [1.3, 0.012], pos: [x, R2(h + 1.55), 0.036], mat: "gan" });
 }
 const NSIH = 0.75;
-LAY("nCrack", [2, 2, NX - 4.2, 2.3]);
-P({ id: "nCrackA", layer: "nCrack", shape: "box", size: [1.3, 0.04, 0.02], pos: [R2(NX - 4.3), R2(NSIH + 1.6), 0.05], rot: [0, 0, 32], mat: "crack" });
-P({ id: "nCrackB", layer: "nCrack", shape: "box", size: [0.9, 0.04, 0.02], pos: [R2(NX - 3.9), R2(NSIH + 1.35), 0.05], rot: [0, 0, -40], mat: "crack" });
-P({ id: "nCrackC", layer: "nCrack", shape: "box", size: [0.7, 0.04, 0.02], pos: [R2(NX - 4.7), R2(NSIH + 1.9), 0.05], rot: [0, 0, 70], mat: "crack" });
-LAY("nBolt", [1, 2, NX - 4.2, 4]);
-P({ id: "nBoltP", layer: "nBolt", shape: "poly", pts: [[0.1, 1.0], [-0.35, 0.05], [-0.02, 0.05], [-0.25, -0.9], [0.4, 0.2], [0.05, 0.2], [0.3, 1.0]], size: [1, 2, 0.08], pos: [R2(NX - 4.2), 3.9, 0], mat: "bolt" });
-actions.nArc = { type: "pulse", _說明: "高壓下矽撐不住：放電／漏電光穿過晶圓（電性崩潰示意，不是裂開）", parts: ["nCrackA", "nCrackB", "nCrackC"], color: "crackC", glow: 1, freq: 3.0, halo: 0 };
+LAY("nCrack", [2, 2, NX - 3.4, 2.3]);
+// 放電／漏電光：從閃電尖端往下穿過矽晶圓的鋸齒折線（電性崩潰示意，不是裂開）＋光暈
+P({ id: "nArc0", layer: "nCrack", shape: "box", size: [0.626, 0.05, 0.02], pos: [R2(NX + -3.225), R2(NSIH + 3.385 - 0.75), 0.06], rot: [0, 0, -53.3], mat: "crack" });
+P({ id: "nArcH0", layer: "nCrack", shape: "box", size: [0.686, 0.16, 0.01], pos: [R2(NX + -3.225), R2(NSIH + 3.385 - 0.75), 0.05], rot: [0, 0, -53.3], mat: "arcHalo" });
+P({ id: "nArc1", layer: "nCrack", shape: "box", size: [0.751, 0.05, 0.02], pos: [R2(NX + -3.325), R2(NSIH + 2.925 - 0.75), 0.06], rot: [0, 0, -140.7], mat: "crack" });
+P({ id: "nArcH1", layer: "nCrack", shape: "box", size: [0.811, 0.16, 0.01], pos: [R2(NX + -3.325), R2(NSIH + 2.925 - 0.75), 0.05], rot: [0, 0, -140.7], mat: "arcHalo" });
+P({ id: "nArc2", layer: "nCrack", shape: "box", size: [0.854, 0.05, 0.02], pos: [R2(NX + -3.300), R2(NSIH + 2.425 - 0.75), 0.06], rot: [0, 0, -42.5], mat: "crack" });
+P({ id: "nArcH2", layer: "nCrack", shape: "box", size: [0.914, 0.16, 0.01], pos: [R2(NX + -3.300), R2(NSIH + 2.425 - 0.75), 0.05], rot: [0, 0, -42.5], mat: "arcHalo" });
+P({ id: "nArc3", layer: "nCrack", shape: "box", size: [0.818, 0.05, 0.02], pos: [R2(NX + -3.275), R2(NSIH + 1.875 - 0.75), 0.06], rot: [0, 0, -135.0], mat: "crack" });
+P({ id: "nArcH3", layer: "nCrack", shape: "box", size: [0.878, 0.16, 0.01], pos: [R2(NX + -3.275), R2(NSIH + 1.875 - 0.75), 0.05], rot: [0, 0, -135.0], mat: "arcHalo" });
+P({ id: "nArc4", layer: "nCrack", shape: "box", size: [0.634, 0.05, 0.02], pos: [R2(NX + -3.375), R2(NSIH + 1.360 - 0.75), 0.06], rot: [0, 0, -53.9], mat: "crack" });
+P({ id: "nArcH4", layer: "nCrack", shape: "box", size: [0.694, 0.16, 0.01], pos: [R2(NX + -3.375), R2(NSIH + 1.360 - 0.75), 0.05], rot: [0, 0, -53.9], mat: "arcHalo" });
+LAY("nBolt", [1, 2, NX - 3.4, 4]);
+P({ id: "nBoltP", layer: "nBolt", shape: "poly", pts: [[0.1, 1.0], [-0.35, 0.05], [-0.02, 0.05], [-0.25, -0.9], [0.4, 0.2], [0.05, 0.2], [0.3, 1.0]], size: [1, 2, 0.08], pos: [R2(NX - 3.4), 3.9, 0], mat: "bolt" });
+actions.nArc = { type: "pulse", _說明: "高壓下矽撐不住：放電／漏電光穿過晶圓（電性崩潰示意，不是裂開）", parts: ["nArc0", "nArc1", "nArc2", "nArc3", "nArc4"], color: "crackC", glow: 1, freq: 3.0, halo: 0 };
 actions.nBoltGlow = { type: "pulse", parts: ["nBoltP"], color: "boltC", glow: 0.9, freq: 2.0, halo: 0 };
 actions.nSicSpin = { type: "rotate", parts: ["nSiCW", "nGaNW"], axis: [0, 1, 0], pivot: [NX, 2.3, 0], rps: 0.0, rampSpin: true };
 delete actions.nSicSpin;
@@ -371,11 +379,11 @@ delete actions.nSicSpin;
 Object.assign(anchors, {
   aWafA: A("aWafer", [AX + 2.6, R2(AWY + 0.1), 2.6], 150, -100), aDieA: A("aWafer", [AX - 1.0, R2(AWY + 0.11), 1.0], -150, -100),
   bDimmA: A("bDimm", [DX0 + 1.0, R2(DMB + DMH), -1.1], -150, -100), bSsdA: A("bSsd", [SX0 + 2.9, R2(SY + 0.2), SZ], -150, -100), bNorA: A("bNor", [NX0, R2(MB + 0.35), NZ], 150, -100),
-  cCapA: A("cArr", [R2(CX + 2.25), R2(CB + CAPH * 0.8), 1.9], 150, -100), cWLA: A("cArr", [R2(CX + 3.2), R2(CY1 + 0.05), 1.88], 150, 100), cCellA: A("cCell", [CX - 3.15, R2(CB + CAPH * 0.5), 1.9], -150, -100),
+  cCapA: A("cArr", [R2(CX + 2.25), R2(CB + CAPH * 0.8), 1.9], 150, -100), cWLA: A("cArr", [R2(CX + 2.75), R2(CY1 + 0.05), 1.62], 150, 100), cCellA: A("cCell", [CX - 3.15, R2(CB + CAPH * 0.5), 1.9], -150, -100),
   dStackA: A("dL8", [DXL + 0.2, DLY(8), 2.0], -150, -100), dHoleA: A("dHole0", [DH_X[3], R2(DTOP - 0.4), 2.01], 150, -100), dFillA: A("dFill", [DH_X[5], R2(DB + DD * 0.5), 2.03], 150, 100), dStairA: A("dStair", [DXR - 1.0, R2(DTOP + 0.6), -1.0], 150, -100),
   eOffA: A("eFab", [OX0 + 2, 4.5, 2.2], -150, -100), eFbA: A("eFab", [FX0 + 6, 2.2, 3.0], 150, -100),
   hFabA: A("hFab", [HX - 3, 2.0, 1.4], -150, -100), hHbmA: A("hHbm", [HX + 6.3, R2(HH + 1.2), 1.55], 150, -100),
-  nSiA: A("nSi", [NX - 4.2, 2.3, 0.1], -150, -100), nSiCA: A("nSiC", [NX, 2.3, 0.1], 150, -100), nGaNA: A("nGaN", [NX + 4.2, 2.3, 0.1], 150, -100),
+  nSiA: A("nSi", [NX - 3.4, 2.3, 0.1], -150, -100), nSiCA: A("nSiC", [NX, 2.3, 0.1], 150, -100), nGaNA: A("nGaN", [NX + 3.4, 2.3, 0.1], 150, -100),
 });
 
 const model = {

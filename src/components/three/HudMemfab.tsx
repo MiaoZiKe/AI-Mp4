@@ -215,7 +215,7 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <g opacity={0.4 + 0.6 * ev}><path d={`M76,${CT + 20} L50,${CT + 76} L72,${CT + 76} L56,${CT + 124} L102,${CT + 60} L80,${CT + 60} L98,${CT + 20} Z`} fill={BOLT} stroke={WOODD} strokeWidth={2} /></g>
     <g opacity={0.4 + 0.6 * Math.max(ev, si)}><circle cx={74} cy={CT + 180} r={38} fill={SIL} stroke={H.text2} strokeWidth={2} />
-      {si > 0.5 ? <path d={`M54,${CT + 154} L74,${CT + 180} L64,${CT + 192} L90,${CT + 212}`} fill="none" stroke={RED} strokeWidth={5} /> : null}</g>
+      {si > 0.5 ? <path d={`M76,${CT + 146} L88,${CT + 162} L66,${CT + 176} L86,${CT + 194} L72,${CT + 210}`} fill="none" stroke="#5BB8F0" strokeWidth={5} strokeLinejoin="round" /> : null}</g>
     <Cap x={74} y={CT + 252} t="矽" />
     <Arr x1={120} y={CT + 180} x2={168} c={H.text2} />
     <g opacity={0.4 + 0.6 * Math.max(nx, sc)}><circle cx={222} cy={CT + 120} r={40} fill={SIC} opacity={0.85} stroke={H.text2} strokeWidth={2} /><circle cx={222} cy={CT + 222} r={40} fill={GAN} stroke={H.text2} strokeWidth={2} /></g>
