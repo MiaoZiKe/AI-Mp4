@@ -228,3 +228,6 @@ Andy 2026/11/24 原話：「往後只要有修正，會被我點出來的地方�
 43. **配音 API 恢復可用，改回 API 配音**（11-28 凌晨，Andy 先說「再試試看配音api」，聽完 3-8 ABF 載板 API 試念 out/tech-abfsub/voice-samples/api1127.wav（Iapetus、tech-b、62.6 秒）後回「配音OK」）
    - 測試：gemini-3.8-flash-tts、gemini-2.5-flash-preview-tts 回 200；gemini-2.5-pro-preview-tts 429（額度用完）。Node 腳本要帶 `NODE_USE_ENV_PROXY=1`（npm run 已帶；直接 node 跑會繞過代理而回「API key not valid」）。
    - 以後：科技片配音先走 API（`bash scripts/three/tts-pitch-take.sh <slug>`，音高關卡照第 41 條），API 額度用完才回到「給我配」（第 36、40 條）。交件照舊附音高、起伏、語速。
+44. **元件細節要加強，並另外評分**（11-28，Andy 看完 3-8 ABF 載板、3-9 BT 載板 v1：「這都OK 但是後續要加的影片規範 細節部分需要加強並評分，電路板要有線路等 類似元件細節要注意」）
+   - 以後：每個主要元件要有看得出「真的長這樣」的細節——電路板／載板／主機板要有走線、銲墊、過孔；晶片要有接腳或錫球、上蓋；纖維布要看得出經緯；機台要有配件與操作面。只有素色方塊或空板子不收。
+   - 擋：機構評審加一欄「元件細節」分數（≥8 才算通過，跟機台、物理分開打），逐件列出「哪個元件、缺什麼細節、怎麼補」；子聊天室開工說明 tech-child-brief.md 已寫入。交件報告附這一欄分數。

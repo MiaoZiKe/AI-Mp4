@@ -20,3 +20,5 @@
 | 2026/11/28 01:38 | 3-5 扇出 | renders/series2:renders/tech-fanout.v1.mp4 |
 | 2026/11/28 01:38 | 3-6 先進封裝設備 | renders/series2:renders/tech-pkgequip.v1.mp4 |
 | 2026/11/28 01:38 | 3-7 ABF 膜 | renders/series2:renders/tech-abf.v1.mp4 |
+| 2026/11/28 04:00 | 3-8 ABF 載板 | renders/series2:renders/tech-abfsub.v1.mp4 |
+| 2026/11/28 04:00 | 3-9 BT 載板 | renders/series2:renders/tech-bt.v1.mp4 |
