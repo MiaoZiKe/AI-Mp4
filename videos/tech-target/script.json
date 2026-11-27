@@ -1,0 +1,2677 @@
+{
+ "slug": "tech-target",
+ "prevEpisode": "2-12：台灣自己的設備廠",
+ "title": "濺鍍靶材（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "languageCode": "cmn-TW",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B（捲舌音要念清楚）；音高關卡 tts-pitch-take.sh（120～135 Hz）；本支尚未配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "平面磁控陰極總成（示意）",
+    "en": "PLANAR MAGNETRON CATHODE",
+    "field": "60 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "機台在打",
+   "什麼？"
+  ],
+  "sub": "濺鍍靶材",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一集的機台，到底在打什麼？一塊要被打碎的金屬板。",
+   "tts": "前一集的機台，到底在打什麼？一塊要被打碎的金屬板。",
+   "subtitle": {
+    "zh": "上一集的機台\n到底在打什麼？\n一塊要被打碎的金屬板",
+    "en": "Last time's machines: | what are they hitting? | A metal plate, to be broken apart."
+   },
+   "keywords": [
+    "打碎",
+    "金屬板"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "上一集"
+    },
+    {
+     "id": "q",
+     "text": "到底在打什麼"
+    },
+    {
+     "id": "plate",
+     "text": "金屬板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "應材集濺鍍原理；專利 US6740212 等"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：台灣自己的設備廠",
+     "title": "機台在打什麼？",
+     "size": 118,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 4.2,
+      "d": 74,
+      "elev": 22,
+      "yaw": -0.2
+     },
+     {
+      "at": "start",
+      "dur": 120,
+      "x": 0.4,
+      "y": 4.4,
+      "d": 66,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "hv",
+      "at": "s3:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lid",
+      "at": "s3:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oring1",
+      "at": "s3:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mag",
+      "at": "s3:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "water",
+      "at": "s4:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "pipes",
+      "at": "s4:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgt",
+      "at": "s8:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "back",
+      "at": "s5:volt-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "solder",
+      "at": "s5:volt-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ins",
+      "at": "s2:open-8",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ins",
+      "at": "s5:volt-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oring2",
+      "at": "s2:open-8",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oring2",
+      "at": "s5:volt-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oring3",
+      "at": "s2:open-8",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oring3",
+      "at": "s5:volt-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "shield",
+      "at": "s2:open-8",
+      "until": "s4:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "shield",
+      "at": "s8:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chamber",
+      "at": "s2:open-8",
+      "until": "s5:start-12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chamber",
+      "at": "s5:volt-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gas",
+      "at": "s2:open-8",
+      "until": "s5:start-12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gas",
+      "at": "s5:volt-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chuck",
+      "at": "s2:open-8",
+      "until": "s5:start-12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chuck",
+      "at": "s8:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wf",
+      "at": "s2:open-8",
+      "until": "s5:start-12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "wf",
+      "at": "s8:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gasEq",
+      "at": "s2:open-8",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "pump",
+      "at": "s2:open-8",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "plasma",
+      "at": "s2:open-6",
+      "until": "s5:volt-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "plasma",
+      "at": "s8:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hitL",
+      "at": "s2:open-6",
+      "until": "s5:volt-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hitL",
+      "at": "s8:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film1",
+      "at": "s1:start-40",
+      "until": "s6:wafer-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film1",
+      "at": "s6:film+20",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film2",
+      "at": "s1:start-40",
+      "until": "s6:film+10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film2",
+      "at": "s6:film+60",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film3",
+      "at": "s1:start-40",
+      "until": "s6:film+50",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film3",
+      "at": "s8:start-6",
+      "until": "s12:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dspBase",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dspBase",
+      "at": "s9:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtDsp",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtDsp",
+      "at": "s9:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD0",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD0",
+      "at": "s8:groove-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD1",
+      "at": "s1:start-40",
+      "until": "s8:groove-2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD1",
+      "at": "s8:deep-2",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD2",
+      "at": "s1:start-40",
+      "until": "s8:deep-2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD2",
+      "at": "s8:deep+22",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD3",
+      "at": "s1:start-40",
+      "until": "s8:deep+22",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtD3",
+      "at": "s9:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtWarn",
+      "at": "s1:start-40",
+      "until": "s8:deep+34",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtWarn",
+      "at": "s9:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtNew",
+      "at": "s1:start-40",
+      "until": "s8:swap-14",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "tgtNew",
+      "at": "s9:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rf",
+      "at": "s1:start-40",
+      "until": "s9:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rf",
+      "at": "s9:furnace-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfElyt",
+      "at": "s1:start-40",
+      "until": "s9:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfElyt",
+      "at": "s9:furnace-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfCath",
+      "at": "s1:start-40",
+      "until": "s9:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfCath",
+      "at": "s9:furnace-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfAnode",
+      "at": "s1:start-40",
+      "until": "s9:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfAnode",
+      "at": "s9:furnace-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfCathThick",
+      "at": "s1:start-40",
+      "until": "s9:refine+10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rfCathThick",
+      "at": "s9:furnace-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fn",
+      "at": "s1:start-40",
+      "until": "s9:furnace-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fn",
+      "at": "s10:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnCoil",
+      "at": "s1:start-40",
+      "until": "s9:furnace-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnCoil",
+      "at": "s10:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnIngot",
+      "at": "s1:start-40",
+      "until": "s9:furnace-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnIngot",
+      "at": "s10:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnPool",
+      "at": "s1:start-40",
+      "until": "s9:furnace-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnPool",
+      "at": "s10:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnHot",
+      "at": "s1:start-40",
+      "until": "s9:furnace-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "fnHot",
+      "at": "s10:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ml",
+      "at": "s1:start-40",
+      "until": "s10:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ml",
+      "at": "s10:lathe-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mlRoll",
+      "at": "s1:start-40",
+      "until": "s10:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mlRoll",
+      "at": "s10:lathe-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mlIn",
+      "at": "s1:start-40",
+      "until": "s10:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mlIn",
+      "at": "s10:lathe-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mlOut",
+      "at": "s1:start-40",
+      "until": "s10:roll+60",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mlOut",
+      "at": "s10:lathe-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lt",
+      "at": "s1:start-40",
+      "until": "s10:lathe-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lt",
+      "at": "s10:bond-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltTab",
+      "at": "s1:start-40",
+      "until": "s10:lathe-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltTab",
+      "at": "s10:bond-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltTool",
+      "at": "s1:start-40",
+      "until": "s10:lathe-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltTool",
+      "at": "s10:bond-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltF1",
+      "at": "s1:start-40",
+      "until": "s10:lathe+30",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltF1",
+      "at": "s10:bond-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltF2",
+      "at": "s1:start-40",
+      "until": "s10:lathe+62",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltF2",
+      "at": "s10:bond-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltF3",
+      "at": "s1:start-40",
+      "until": "s10:lathe+94",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ltF3",
+      "at": "s10:bond-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bd",
+      "at": "s1:start-40",
+      "until": "s10:bond-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bd",
+      "at": "s11:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdBack",
+      "at": "s1:start-40",
+      "until": "s10:bond-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdBack",
+      "at": "s11:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdPress",
+      "at": "s1:start-40",
+      "until": "s10:bond-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdPress",
+      "at": "s11:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdHeat",
+      "at": "s1:start-40",
+      "until": "s10:bond-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdHeat",
+      "at": "s11:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdS0",
+      "at": "s1:start-40",
+      "until": "s10:bond-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdS0",
+      "at": "s10:bond+40",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdS1",
+      "at": "s1:start-40",
+      "until": "s10:bond+30",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdS1",
+      "at": "s10:bond+60",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdS2",
+      "at": "s1:start-40",
+      "until": "s10:bond+52",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bdS2",
+      "at": "s11:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rack",
+      "at": "s1:start-40",
+      "until": "s11:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rack",
+      "at": "s12:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rkJP",
+      "at": "s1:start-40",
+      "until": "s11:jx-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rkJP",
+      "at": "s12:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rkUS",
+      "at": "s1:start-40",
+      "until": "s11:us-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rkUS",
+      "at": "s12:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rkTW",
+      "at": "s1:start-40",
+      "until": "s11:tw-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "rkTW",
+      "at": "s12:start-6",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hv",
+      "at": "s2:open-4",
+      "until": "s5:start+2",
+      "dur": 26,
+      "dy": 10.0
+     },
+     {
+      "layer": "lid",
+      "at": "s2:open-2",
+      "until": "s5:start+2",
+      "dur": 26,
+      "dy": 8.4
+     },
+     {
+      "layer": "oring1",
+      "at": "s2:open-2",
+      "until": "s5:start+2",
+      "dur": 26,
+      "dy": 7.6
+     },
+     {
+      "layer": "mag",
+      "at": "s2:mag-8",
+      "until": "s5:start+2",
+      "dur": 28,
+      "dy": 5.6
+     },
+     {
+      "layer": "water",
+      "at": "s3:water-8",
+      "until": "s5:start+2",
+      "dur": 24,
+      "dy": 2.8
+     },
+     {
+      "layer": "pipes",
+      "at": "s3:water-8",
+      "until": "s5:start+2",
+      "dur": 24,
+      "dy": 2.8
+     },
+     {
+      "layer": "oring2",
+      "at": "s3:water-8",
+      "until": "s5:start+2",
+      "dur": 24,
+      "dy": 1.0
+     },
+     {
+      "layer": "ins",
+      "at": "s3:water-4",
+      "until": "s5:start+2",
+      "dur": 22,
+      "dy": 0.5
+     },
+     {
+      "layer": "oring3",
+      "at": "s3:water-4",
+      "until": "s5:start+2",
+      "dur": 22,
+      "dy": 0.2
+     },
+     {
+      "layer": "back",
+      "at": "s3:back-8",
+      "until": "s5:start+2",
+      "dur": 24,
+      "dy": 1.4
+     },
+     {
+      "layer": "solder",
+      "at": "s3:solder-8",
+      "until": "s5:start+2",
+      "dur": 24,
+      "dy": 0.7
+     },
+     {
+      "layer": "shield",
+      "at": "s4:shield-8",
+      "until": "s5:start+2",
+      "dur": 24,
+      "dy": -2.2
+     }
+    ],
+    "run": [
+     {
+      "id": "plasmaGlow",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-10"
+     },
+     {
+      "id": "magSpin",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:open-8"
+     },
+     {
+      "id": "waterFlow",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:open-8"
+     },
+     {
+      "id": "ion0",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-10"
+     },
+     {
+      "id": "ion2",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-10"
+     },
+     {
+      "id": "ion4",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-10"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-hook",
+      "at": "q",
+      "until": "s2:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 13 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       },
+       "plate": {
+        "at": "plate"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "拆開陰極總成。頂端是高壓供電，接著是磁鐵，磁鐵會轉。",
+   "tts": "拆開陰極總成。頂端是高壓供電，接著是磁鐵，磁鐵會轉。",
+   "subtitle": {
+    "zh": "拆開陰極總成\n頂端是高壓供電\n接著是磁鐵\n磁鐵會轉",
+    "en": "Open the cathode assembly. | At the top, the high-voltage feed; | then the magnets, | and the magnets rotate."
+   },
+   "keywords": [
+    "高壓",
+    "磁鐵"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開"
+    },
+    {
+     "id": "hv",
+     "text": "高壓供電"
+    },
+    {
+     "id": "mag",
+     "text": "接著是磁鐵"
+    },
+    {
+     "id": "spin",
+     "text": "會轉"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "平面磁控陰極通則；專利 US6740212、US5407551"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.2,
+      "y": 9.0,
+      "d": 82,
+      "elev": 26,
+      "yaw": -0.05
+     },
+     {
+      "at": "mag-4",
+      "dur": 36,
+      "x": 0.2,
+      "y": 11.6,
+      "d": 52,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "magSpin",
+      "at": "spin-6",
+      "ramp": 10,
+      "until": "s3:start"
+     },
+     {
+      "id": "drvSpin",
+      "at": "spin-6",
+      "ramp": 10,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hv",
+      "text": "高壓接頭",
+      "en": "HV feed",
+      "color": "amber",
+      "at": "hv-2",
+      "until": "mag+12"
+     },
+     {
+      "part": "mag",
+      "text": "磁鐵組",
+      "en": "Magnets",
+      "color": "blue",
+      "at": "mag+14",
+      "until": "s3:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-top",
+      "at": "start+24",
+      "until": "s3:start-12",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "拆開陰極：供電與磁鐵",
+      "tag": "示意",
+      "t": {
+       "hv": {
+        "at": "hv"
+       },
+       "mag": {
+        "at": "mag"
+       },
+       "spin": {
+        "at": "spin"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.4,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "底下是冷卻水，專門帶走熱。背板靠一層焊料，跟靶材接在一起。",
+   "tts": "底下是冷卻水，專門帶走熱。背板靠一層焊料，跟靶材接在一起。",
+   "subtitle": {
+    "zh": "底下是冷卻水\n專門帶走熱\n背板靠一層焊料\n跟靶材接在一起",
+    "en": "Below it, cooling water | carries the heat away. | A backing plate, bonded with a solder layer, | joins the target."
+   },
+   "keywords": [
+    "冷卻水",
+    "背板",
+    "焊料"
+   ],
+   "cues": [
+    {
+     "id": "water",
+     "text": "冷卻水"
+    },
+    {
+     "id": "heat",
+     "text": "帶走熱"
+    },
+    {
+     "id": "back",
+     "text": "背板"
+    },
+    {
+     "id": "solder",
+     "text": "焊料"
+    },
+    {
+     "id": "tgt",
+     "text": "靶材"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US8342383、US5593082"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.2,
+      "y": 6.2,
+      "d": 52,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "waterFlow",
+      "at": "water-6",
+      "ramp": 8,
+      "until": "s4:start-8"
+     }
+    ],
+    "labels": [
+     {
+      "part": "water",
+      "text": "冷卻水腔",
+      "en": "Water jacket",
+      "color": "blue",
+      "at": "water-2",
+      "until": "back-4"
+     },
+     {
+      "part": "back",
+      "text": "背板",
+      "en": "Backing",
+      "color": "amber",
+      "at": "back-2",
+      "until": "solder+8"
+     },
+     {
+      "part": "solder",
+      "text": "焊層",
+      "en": "Solder",
+      "color": "blue",
+      "at": "solder+10",
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-cool",
+      "at": "start+24",
+      "until": "s4:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "熱怎麼被帶走",
+      "tag": "示意（溫度不是量測）",
+      "t": {
+       "water": {
+        "at": "water"
+       },
+       "heat": {
+        "at": "heat"
+       },
+       "back": {
+        "at": "back"
+       },
+       "solder": {
+        "at": "solder"
+       },
+       "tgt": {
+        "at": "tgt"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "最底下是靶材，周圍一圈遮蔽環，只讓正面被打。",
+   "tts": "最底下是靶材，周圍一圈遮蔽環，只讓正面被打。",
+   "subtitle": {
+    "zh": "最底下是靶材\n周圍一圈遮蔽環\n只讓正面被打",
+    "en": "At the bottom, the target, | with a shield ring around it, | so only its face gets hit."
+   },
+   "keywords": [
+    "靶材",
+    "遮蔽環"
+   ],
+   "cues": [
+    {
+     "id": "tgt",
+     "text": "靶材"
+    },
+    {
+     "id": "shield",
+     "text": "遮蔽環"
+    },
+    {
+     "id": "face",
+     "text": "正面被打"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "暗區遮蔽環通則（專利文獻有此概念，示意）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.2,
+      "y": 3.2,
+      "d": 38,
+      "elev": 16
+     }
+    ],
+    "labels": [
+     {
+      "part": "tgt",
+      "text": "靶材",
+      "en": "Target",
+      "color": "amber",
+      "at": "tgt-2",
+      "until": "shield+6"
+     },
+     {
+      "part": "shield",
+      "text": "遮蔽環",
+      "en": "Shield",
+      "color": "blue",
+      "at": "shield+8",
+      "until": "s5:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-shield",
+      "at": "start+24",
+      "until": "s5:start-14",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "靶材與遮蔽環",
+      "tag": "示意",
+      "t": {
+       "tgt": {
+        "at": "tgt"
+       },
+       "shield": {
+        "at": "shield"
+       },
+       "face": {
+        "at": "face"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.4,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "通入氬氣，再加高壓，氬離子被吸向靶材，一撞，金屬原子就飛出來。",
+   "tts": "通入氬氣，再加高壓，氬離子被吸向靶材，一撞，金屬原子就飛出來。",
+   "subtitle": {
+    "zh": "通入氬氣\n再加高壓\n氬離子被吸向靶材\n一撞\n金屬原子就飛出來",
+    "en": "Argon gas flows in, | high voltage is applied, | argon ions are pulled toward the target, | one hit, | and metal atoms fly out."
+   },
+   "keywords": [
+    "氬氣",
+    "氬離子",
+    "原子"
+   ],
+   "cues": [
+    {
+     "id": "gas",
+     "text": "通入氬氣"
+    },
+    {
+     "id": "volt",
+     "text": "高壓"
+    },
+    {
+     "id": "ion",
+     "text": "氬離子"
+    },
+    {
+     "id": "hit",
+     "text": "一撞"
+    },
+    {
+     "id": "atom",
+     "text": "金屬原子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US6740212（約 2–5 mTorr、數百伏）；教科書通則"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.0,
+      "y": 2.6,
+      "d": 52,
+      "elev": 12,
+      "yaw": 0.05
+     },
+     {
+      "at": "ion-6",
+      "dur": 36,
+      "x": 0.0,
+      "y": 2.2,
+      "d": 34,
+      "elev": 7
+     }
+    ],
+    "run": [
+     {
+      "id": "gas0",
+      "at": "gas-4",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "gas1",
+      "at": "gas-4",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "gas2",
+      "at": "gas-4",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "plasmaGlow",
+      "at": "volt-2",
+      "ramp": 8,
+      "until": "s8:start"
+     },
+     {
+      "id": "ion0",
+      "at": "ion-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "ion1",
+      "at": "ion-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "ion2",
+      "at": "ion-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "ion3",
+      "at": "ion-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "ion4",
+      "at": "ion-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "ion5",
+      "at": "ion-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "hitGlow",
+      "at": "hit-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom0",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom1",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom2",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom3",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom4",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom5",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom6",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom7",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "atom8",
+      "at": "atom-2",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "gas",
+      "text": "氬氣入口",
+      "en": "Argon in",
+      "color": "blue",
+      "at": "gas-2",
+      "until": "volt-4"
+     },
+     {
+      "part": "plasma",
+      "text": "電漿輝光",
+      "en": "Plasma",
+      "color": "amber",
+      "at": "volt-2",
+      "until": "ion+30"
+     },
+     {
+      "part": "ion",
+      "text": "氬離子",
+      "en": "Ar ions",
+      "color": "blue",
+      "at": "ion+32",
+      "until": "hit+20"
+     },
+     {
+      "part": "hit",
+      "text": "撞擊點",
+      "en": "Impact",
+      "color": "amber",
+      "at": "hit+22",
+      "until": "s6:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-sect",
+      "at": "start+40",
+      "until": "s6:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "陰極剖面",
+      "tag": "示意（非實機尺寸）",
+      "t": {
+       "gas": {
+        "at": "gas"
+       },
+       "volt": {
+        "at": "volt"
+       },
+       "ion": {
+        "at": "ion"
+       },
+       "hit": {
+        "at": "hit"
+       },
+       "atom": {
+        "at": "atom"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "原子往四面八方飛，中間最多，旁邊越來越少，落到晶圓，堆成一層薄膜。",
+   "tts": "原子往四面八方飛，中間最多，旁邊越來越少，落到晶圓，堆成一層薄膜。",
+   "subtitle": {
+    "zh": "原子往四面八方飛\n中間最多\n旁邊越來越少\n落到晶圓\n堆成一層薄膜",
+    "en": "Atoms fly in every direction, | most straight ahead, | fewer to the sides, | land on the wafer, | and build up a thin film."
+   },
+   "keywords": [
+    "中間最多",
+    "薄膜"
+   ],
+   "cues": [
+    {
+     "id": "spread",
+     "text": "四面八方"
+    },
+    {
+     "id": "center",
+     "text": "中間最多"
+    },
+    {
+     "id": "side",
+     "text": "旁邊越來越少"
+    },
+    {
+     "id": "wafer",
+     "text": "落到晶圓"
+    },
+    {
+     "id": "film",
+     "text": "薄膜"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US7504006（濺出原子約服從餘弦分布）；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.0,
+      "y": 2.1,
+      "d": 30,
+      "elev": 16
+     },
+     {
+      "at": "wafer-6",
+      "dur": 28,
+      "x": 0.0,
+      "y": 1.7,
+      "d": 22,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "atomScat",
+      "at": "spread",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "atom",
+      "text": "金屬原子",
+      "en": "Atoms",
+      "color": "amber",
+      "at": "spread-2",
+      "until": "wafer-4"
+     },
+     {
+      "part": "wafer",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "blue",
+      "at": "wafer-2",
+      "until": "s7:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-cos",
+      "at": "start+24",
+      "until": "s7:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "原子往哪裡飛",
+      "tag": "示意",
+      "t": {
+       "spread": {
+        "at": "spread"
+       },
+       "center": {
+        "at": "center"
+       },
+       "side": {
+        "at": "side"
+       },
+       "wafer": {
+        "at": "wafer"
+       },
+       "film": {
+        "at": "film"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "磁鐵把電子困在一圈跑道裡打轉，電漿就集中在這一圈。",
+   "tts": "磁鐵把電子困在一圈跑道裡打轉，電漿就集中在這一圈。",
+   "subtitle": {
+    "zh": "磁鐵把電子\n困在一圈跑道裡打轉\n電漿就集中在這一圈",
+    "en": "Magnets trap electrons | circling a racetrack, | so the plasma stays on this ring."
+   },
+   "keywords": [
+    "電子",
+    "跑道"
+   ],
+   "cues": [
+    {
+     "id": "elec",
+     "text": "電子"
+    },
+    {
+     "id": "race",
+     "text": "跑道"
+    },
+    {
+     "id": "conc",
+     "text": "電漿就集中"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US6740212、US5407551（磁場把高能電子困住）；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.0,
+      "y": 2.3,
+      "d": 30,
+      "elev": 13,
+      "yaw": -0.15
+     }
+    ],
+    "run": [
+     {
+      "id": "field0",
+      "at": "race-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "field1",
+      "at": "race-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "field2",
+      "at": "race-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "field3",
+      "at": "race-6",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "elec",
+      "at": "elec-4",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "elec",
+      "text": "電子",
+      "en": "Electrons",
+      "color": "amber",
+      "at": "elec-2",
+      "until": "race+8"
+     },
+     {
+      "part": "field",
+      "text": "磁場線",
+      "en": "Field lines",
+      "color": "blue",
+      "at": "race+10",
+      "until": "s8:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-race",
+      "at": "start+24",
+      "until": "s8:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "磁場跑道（由上往下看）",
+      "tag": "示意",
+      "t": {
+       "elec": {
+        "at": "elec"
+       },
+       "race": {
+        "at": "race"
+       },
+       "conc": {
+        "at": "conc"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "所以這一圈被吃出溝，越吃越深。快見底就得換，一塊大約只用到一到四成。",
+   "tts": "所以這一圈被吃出溝，越吃越深。快見底就得換，一塊大約只用到一到四成。",
+   "subtitle": {
+    "zh": "所以這一圈被吃出溝\n越吃越深\n快見底就得換\n一塊大約只用到一到四成",
+    "en": "So this ring wears into a groove, | deeper and deeper. | Near the bottom, it must be replaced: | roughly 15 to 40 percent gets used."
+   },
+   "keywords": [
+    "吃出溝",
+    "換",
+    "四成"
+   ],
+   "cues": [
+    {
+     "id": "groove",
+     "text": "吃出溝"
+    },
+    {
+     "id": "deep",
+     "text": "越吃越深"
+    },
+    {
+     "id": "swap",
+     "text": "得換"
+    },
+    {
+     "id": "pct",
+     "text": "一到四成"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US5407551（平面磁控靶利用率約 15–40%）；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 34,
+      "x": -20,
+      "y": 0.4,
+      "d": 40,
+      "elev": 30,
+      "yaw": 0.35
+     }
+    ],
+    "shift": [
+     {
+      "layer": "tgtDsp",
+      "at": "swap-6",
+      "until": "s13:start+400",
+      "dur": 30,
+      "dy": 2.8,
+      "opacity": 0
+     },
+     {
+      "layer": "tgtD3",
+      "at": "swap-6",
+      "until": "s13:start+400",
+      "dur": 30,
+      "dy": 2.8,
+      "opacity": 0
+     },
+     {
+      "layer": "tgtWarn",
+      "at": "swap-6",
+      "until": "s13:start+400",
+      "dur": 30,
+      "dy": 2.8,
+      "opacity": 0
+     },
+     {
+      "layer": "tgtNew",
+      "at": "s1:start-40",
+      "until": "swap+2",
+      "dur": 30,
+      "dy": 2.8,
+      "opacity": 0
+     }
+    ],
+    "labels": [
+     {
+      "part": "dsp",
+      "text": "用過的靶",
+      "en": "Used target",
+      "color": "amber",
+      "at": "groove-2",
+      "until": "deep+23"
+     },
+     {
+      "part": "groove",
+      "text": "侵蝕溝",
+      "en": "Groove",
+      "color": "blue",
+      "at": "deep+25",
+      "until": "swap+14"
+     },
+     {
+      "part": "newT",
+      "text": "新靶材",
+      "en": "New target",
+      "color": "amber",
+      "at": "swap+16",
+      "until": "s9:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-groove",
+      "at": "start+24",
+      "until": "s9:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "侵蝕溝一路變深",
+      "tag": "示意（深度不是量測）",
+      "t": {
+       "groove": {
+        "at": "groove"
+       },
+       "deep": {
+        "at": "deep"
+       },
+       "swap": {
+        "at": "swap"
+       },
+       "pct": {
+        "at": "pct"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 9,
+   "narration": "靶材怎麼來？先精煉，把雜質去掉，再放進真空爐融化，倒成金屬塊。",
+   "tts": "靶材怎麼來？先精煉，把雜質去掉，再放進真空爐融化，倒成金屬塊。",
+   "subtitle": {
+    "zh": "靶材怎麼來？\n先精煉，把雜質去掉\n再放進真空爐融化\n倒成金屬塊",
+    "en": "Where does a target come from? | First refining, to remove impurities, | then melting in a vacuum furnace, | cast into a block."
+   },
+   "keywords": [
+    "精煉",
+    "真空爐"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "怎麼來"
+    },
+    {
+     "id": "refine",
+     "text": "精煉"
+    },
+    {
+     "id": "furnace",
+     "text": "真空爐"
+    },
+    {
+     "id": "ingot",
+     "text": "金屬塊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US6451135、US7740717；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 22.8,
+      "y": 1.0,
+      "d": 34,
+      "elev": 24
+     },
+     {
+      "at": "furnace-8",
+      "dur": 36,
+      "x": 33.6,
+      "y": 1.5,
+      "d": 40,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "rfIon0",
+      "at": "refine",
+      "ramp": 6,
+      "until": "furnace-6"
+     },
+     {
+      "id": "rfIon1",
+      "at": "refine",
+      "ramp": 6,
+      "until": "furnace-6"
+     },
+     {
+      "id": "rfIon2",
+      "at": "refine",
+      "ramp": 6,
+      "until": "furnace-6"
+     },
+     {
+      "id": "fnPoolGlow",
+      "at": "furnace-4",
+      "ramp": 8,
+      "until": "s13:start+400"
+     }
+    ],
+    "shift": [
+     {
+      "layer": "fnIngot",
+      "at": "ingot-10",
+      "until": "s13:start+400",
+      "dur": 66,
+      "dy": -0.9
+     },
+     {
+      "layer": "fnHot",
+      "at": "ingot-10",
+      "until": "s13:start+400",
+      "dur": 66,
+      "dy": -0.9
+     }
+    ],
+    "labels": [
+     {
+      "part": "rfTank",
+      "text": "精煉槽",
+      "en": "Refining cell",
+      "color": "blue",
+      "at": "refine-2",
+      "until": "furnace-4"
+     },
+     {
+      "part": "furnace",
+      "text": "真空爐",
+      "en": "Vacuum furnace",
+      "color": "amber",
+      "at": "furnace-2",
+      "until": "ingot-8"
+     },
+     {
+      "part": "ingot",
+      "text": "金屬錠",
+      "en": "Ingot",
+      "color": "blue",
+      "at": "ingot-6",
+      "until": "s10:start+8"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-line",
+      "at": "start+24",
+      "until": "s10:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "靶怎麼做：前半段",
+      "tag": "示意（不標溫度、道次）",
+      "t": {
+       "q": {
+        "at": "q"
+       },
+       "refine": {
+        "at": "refine"
+       },
+       "furnace": {
+        "at": "furnace"
+       },
+       "ingot": {
+        "at": "ingot"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 10,
+   "narration": "接著軋成薄板，晶粒越軋越細。再車成圓盤，最後接合到背板。",
+   "tts": "接著軋成薄板，晶粒越軋越細。再車成圓盤，最後接合到背板。",
+   "subtitle": {
+    "zh": "接著軋成薄板\n晶粒越軋越細\n再車成圓盤\n最後接合到背板",
+    "en": "Next, rolled into a thin plate, | the grains get finer with each pass. | Then turned into a disc, | and finally bonded to the backing plate."
+   },
+   "keywords": [
+    "軋",
+    "晶粒",
+    "接合"
+   ],
+   "cues": [
+    {
+     "id": "roll",
+     "text": "軋成薄板"
+    },
+    {
+     "id": "grain",
+     "text": "晶粒"
+    },
+    {
+     "id": "lathe",
+     "text": "車成圓盤"
+    },
+    {
+     "id": "bond",
+     "text": "接合"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US6451135、US6478902；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 34,
+      "x": 45.4,
+      "y": 2.2,
+      "d": 34,
+      "elev": 22
+     },
+     {
+      "at": "lathe-8",
+      "dur": 38,
+      "x": 57.0,
+      "y": 1.8,
+      "d": 30,
+      "elev": 32
+     },
+     {
+      "at": "bond-8",
+      "dur": 38,
+      "x": 69.0,
+      "y": 2.0,
+      "d": 30,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "rollRU",
+      "at": "roll-4",
+      "ramp": 8,
+      "until": "lathe-4"
+     },
+     {
+      "id": "rollRL",
+      "at": "roll-4",
+      "ramp": 8,
+      "until": "lathe-4"
+     },
+     {
+      "id": "rollBU",
+      "at": "roll-4",
+      "ramp": 8,
+      "until": "lathe-4"
+     },
+     {
+      "id": "rollBL",
+      "at": "roll-4",
+      "ramp": 8,
+      "until": "lathe-4"
+     },
+     {
+      "id": "mlTable",
+      "at": "roll-4",
+      "ramp": 8,
+      "until": "lathe-4"
+     },
+     {
+      "id": "mlSpray",
+      "at": "roll-4",
+      "ramp": 6,
+      "until": "lathe-4"
+     },
+     {
+      "id": "ltSpin",
+      "at": "lathe-6",
+      "ramp": 10,
+      "until": "bond-4"
+     },
+     {
+      "id": "ltCool",
+      "at": "lathe+10",
+      "ramp": 6,
+      "until": "bond-4"
+     },
+     {
+      "id": "ltChip0",
+      "at": "lathe+14",
+      "ramp": 6,
+      "until": "bond-4"
+     },
+     {
+      "id": "ltChip1",
+      "at": "lathe+14",
+      "ramp": 6,
+      "until": "bond-4"
+     },
+     {
+      "id": "ltChip2",
+      "at": "lathe+14",
+      "ramp": 6,
+      "until": "bond-4"
+     },
+     {
+      "id": "bdHeat",
+      "at": "bond-10",
+      "ramp": 12,
+      "until": "s13:start+400"
+     }
+    ],
+    "shift": [
+     {
+      "layer": "mlIn",
+      "at": "s1:start-40",
+      "until": "roll+4",
+      "dur": 70,
+      "dx": -3.2
+     },
+     {
+      "layer": "mlIn",
+      "at": "roll+66",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "mlOut",
+      "at": "roll+60",
+      "until": "s13:start+400",
+      "dur": 80,
+      "dx": 1.5
+     },
+     {
+      "layer": "ltTool",
+      "at": "lathe+8",
+      "until": "s13:start+400",
+      "dur": 110,
+      "dx": 1.9
+     },
+     {
+      "layer": "bdPress",
+      "at": "s1:start-40",
+      "until": "bond+34",
+      "dur": 44,
+      "dy": 3.2
+     }
+    ],
+    "labels": [
+     {
+      "part": "mill",
+      "text": "軋機",
+      "en": "Rolling mill",
+      "color": "amber",
+      "at": "roll-2",
+      "until": "lathe-12"
+     },
+     {
+      "part": "lathe",
+      "text": "立式車床",
+      "en": "Vertical lathe",
+      "color": "blue",
+      "at": "lathe-10",
+      "until": "bond-4"
+     },
+     {
+      "part": "bond",
+      "text": "壓合台",
+      "en": "Bonding press",
+      "color": "amber",
+      "at": "bond-2",
+      "until": "s11:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-grain",
+      "at": "start+24",
+      "until": "s11:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "靶怎麼做：後半段",
+      "tag": "示意（晶粒大小示意）",
+      "t": {
+       "roll": {
+        "at": "roll"
+       },
+       "grain": {
+        "at": "grain"
+       },
+       "lathe": {
+        "at": "lathe"
+       },
+       "bond": {
+        "at": "bond"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 8.5,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 11,
+   "narration": "日本 JX 金屬，據報約占六成；美國有漢威聯合分出的新公司；台灣有光洋科。",
+   "tts": "日本 J X 金屬，據報約占六成；美國有漢威聯合分出的新公司；台灣有光洋科。",
+   "subtitle": {
+    "zh": "日本 JX 金屬\n據報約占六成\n美國有漢威聯合分出的新公司\n台灣有光洋科",
+    "en": "Japan's JX Metals, | reportedly about 60 percent; | in the US, a new company spun out of Honeywell; | in Taiwan, Solar Applied Materials."
+   },
+   "keywords": [
+    "日本",
+    "美國",
+    "台灣"
+   ],
+   "cues": [
+    {
+     "id": "jx",
+     "text": "JX"
+    },
+    {
+     "id": "sixty",
+     "text": "約占六成"
+    },
+    {
+     "id": "us",
+     "text": "美國"
+    },
+    {
+     "id": "tw",
+     "text": "台灣有光洋科"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "技術新報 2026/3/11；Honeywell 新聞稿"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0,
+      "y": 2.0,
+      "d": 44,
+      "elev": 12
+     }
+    ],
+    "labels": [
+     {
+      "part": "rkJX",
+      "text": "JX 金屬",
+      "en": "Japan",
+      "color": "amber",
+      "at": "jx-2",
+      "until": "us-6",
+      "flag": "JP"
+     },
+     {
+      "part": "rkSol",
+      "text": "Solstice",
+      "en": "United States",
+      "color": "blue",
+      "at": "us-2",
+      "until": "tw-6",
+      "flag": "US"
+     },
+     {
+      "part": "rkSolar",
+      "text": "光洋科 1785",
+      "en": "Taiwan",
+      "color": "amber",
+      "at": "tw-2",
+      "until": "s12:start-4",
+      "flag": "TW"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-co",
+      "at": "start+24",
+      "until": "s12:start-5",
+      "x": 64,
+      "y": 1040,
+      "w": 952,
+      "h": 360,
+      "avoid": false,
+      "title": "做靶材的公司",
+      "tag": "技術新報、公司新聞稿、公司資料",
+      "t": {
+       "jx": {
+        "at": "jx"
+       },
+       "sixty": {
+        "at": "sixty"
+       },
+       "us": {
+        "at": "us"
+       },
+       "tw": {
+        "at": "tw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s12",
+   "beat": "cta",
+   "para": 12,
+   "narration": "下一集，更薄的膜改用氣體原料，看前驅物。留言靶材，拿完整資料。",
+   "tts": "下一集，更薄的膜改用氣體原料，看前驅物。留言靶材，拿完整資料。",
+   "subtitle": {
+    "zh": "下一集\n更薄的膜改用氣體原料\n看前驅物\n留言靶材，拿完整資料",
+    "en": "Next episode: | thinner films use gas raw materials, | so we look at precursors. | Comment \"target\" for the full notes."
+   },
+   "keywords": [
+    "氣體原料",
+    "前驅物"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "gas",
+     "text": "氣體原料"
+    },
+    {
+     "id": "pre",
+     "text": "前驅物"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 40,
+      "x": 0.4,
+      "y": 4.4,
+      "d": 74,
+      "elev": 24,
+      "yaw": -0.2
+     }
+    ],
+    "run": [
+     {
+      "id": "gas0",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "gas1",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s13:start+400"
+     },
+     {
+      "id": "gas2",
+      "at": "gas",
+      "ramp": 8,
+      "until": "s13:start+400"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "target-next",
+      "at": "start+24",
+      "until": "s13:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：前驅物",
+      "t": {
+       "next": {
+        "at": "next"
+       },
+       "gas": {
+        "at": "gas"
+       },
+       "pre": {
+        "at": "pre"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.6
+  },
+  {
+   "id": "s13",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "前驅物",
+     "trail": [
+      "氣體原料"
+     ],
+     "comment": "靶材",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
