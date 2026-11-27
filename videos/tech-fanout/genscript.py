@@ -133,7 +133,7 @@ VIS += [mv("dChase", T0, FAR, 1, dy=2.0), mv("dChase", "s5:choco-6", FAR, 14, dy
 vis("dChase", [(F5(POUR + 30), FAR)], 4)
 VIS += [mv("dMold0", "s5:choco+6", FAR, 6, dy=-0.45), mv("dMold1", "s5:choco+6", FAR, 6, dy=-0.25), mv("dMold2", "s5:choco+6", FAR, 6, dy=-0.1)]
 # ── 站 E：製作方向（重組晶圓翻面、重佈線面朝上）：上層依序往上分開 → 外圍銅線長出 → 組回停 0.5 秒 → 錫球從上方落到外圍焊墊
-UPS = {"ePi2": (3.0, "-6"), "eRdl": (2.0, "+4"), "eRdlOut": (2.0, "+4"), "ePi1": (1.0, "+14")}
+UPS = {"ePi2": (2.1, "-6"), "eRdl": (1.4, "+4"), "eRdlOut": (1.4, "+4"), "ePi1": (0.7, "+14")}
 for l, (d, o) in UPS.items(): VIS += [mv(l, "s6:rdl" + o, "s6:outer", 14, dy=d)]
 vis("eRdlOut", [("s6:cord+4", FAR)], 10)
 VIS += [{"layer": "eBall", "at": T0, "until": "s6:outer+14", "dur": 12, "dy": 1.6, "fallIn": True, "bounce": 0.08, "opacity": 0}]
@@ -141,7 +141,8 @@ VIS += [{"layer": "eBall", "at": T0, "until": "s6:outer+14", "dur": 12, "dy": 1.
 NR, FSK = INFO["NR"], INFO["FSK"]
 WY = [round(1.25 * ((k + 0.5) / NR) ** 2, 3) for k in range(NR)]
 for k in range(1, NR): VIS += [mv(f"fR{k}", "s7:warp-4", FAR, 18, dy=WY[k])]
-for l in ("fShift", "fGhost", "fArrow", "fMiss"): VIS += [mv(l, "s7:warp-4", FAR, 18, dy=WY[FSK])]
+for g in INFO["FDGK"]: VIS += [mv(f"fD{g}", "s7:warp-4", FAR, 18, dy=WY[g])]  # 晶片跟著碰到的最高那一圈走，不被切
+for l in ("fShift", "fGhost", "fArrow", "fMiss"): VIS += [mv(l, "s7:warp-4", FAR, 18, dy=WY[INFO["FSKD"]])]
 VIS += [mv("fShift", "s7:shift", FAR, 14, dx=0.95)]
 vis("fGhost", [("s7:shift-2", FAR)], 1); vis("fArrow", [("s7:shift-4", "s7:shift+34")], 4); vis("fMiss", [("s7:miss-8", FAR)], 1)
 # ── 站 G：兩座展台全程不透明；InFO-PoP 記憶體封裝在 info 時疊下來
@@ -156,7 +157,7 @@ P["s2"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "labels": [lab("cPadA", "焊墊越來越多", "More and more pads", "blue", "more-6", "more+39"), lab("cExtraA", "放不下", "No room", "amber", "nofit+2", "nofit+47")],
  "overlay": [card("s2", "fo-fanin", "接點多、晶片小", "示意", {"small": "small", "more": "more", "nofit": "nofit"})]}
 P["s3"] = {"zoom": [{"to": "wafer", "at": CC, "dur": 1}],
- "shot": [shot(CC, BXc - 1.0, 0.0, 38, 40, 1), shot("cut-2", BXc + 2.6, 1.4, 15, 14, 20)],
+ "shot": [shot(CC, BXc - 0.5, -2.2, 32, 40, 1), shot("cut-2", BXc + 2.6, 1.4, 15, 14, 20)],
  "run": [run("bSpin", "start-20", "cut", 6), run("bCoolant", "uncut", "cut", 6)],
  "labels": [lab("bWaferA", "每格晶片已有錫球", "Balls on every die", "blue", "balls-20", "balls+25"), lab("bPickA", "切開＝成品", "Cut = finished", "amber", "cut+20", "cut+65")],
  "overlay": [card("s3", "fo-wlp", "晶圓級封裝", "示意", {"wlp": "wlp", "uncut": "uncut", "balls": "balls", "cut": "cut", "same": "same"})]}
@@ -171,12 +172,12 @@ P["s5"] = {"zoom": [{"to": "panel", "at": CC, "dur": 1}],
  "labels": [lab("dHeadA", "取放頭：一顆一顆放", "Pick-and-place, one by one", "blue", F5(2), F5(47)), lab("dMoldA", "模封料（稠，往外攤開）", "Mold compound flows out", "amber", F5(POUR + 8), F5(POUR + 53)), lab("dChaseA", "上模壓下、加熱", "Mold press + heat", "blue", "choco-2", "choco+43")],
  "overlay": [card("s5", "fo-recon", "餅乾排進烤盤倒巧克力", "示意（晶片先放）", {"place": "place", "fill": "fill", "cookie": "cookie", "new": "new"})]}
 P["s6"] = {"zoom": [{"to": "pkg", "at": CC, "dur": 1}],
- "shot": [shot(CC, EXc, -0.9, 20, 28, 1), shot("outer+2", EXc, 0.0, 17, 30, 12)],
+ "shot": [shot(CC, EXc, -0.2, 18, 28, 1), shot("rdl-6", EXc, 1.1, 20, 28, 16), shot("outer+2", EXc, 0.0, 17, 30, 12)],
  "run": [run("eCuGrow", "cord+4", "outer", 6), run("eCuGrow2", "cord+4", "outer", 6)],
- "labels": [lab("eDieA", "晶片埋在模封料", "Chip in mold", "blue", "rdl-12", "rdl+33"), lab("ePi1A", "介電層＋導通孔", "Dielectric + vias", "amber", "rdl+35", "rdl+80"), lab("eRdlA", "重佈線層（銅線）", "RDL copper lines", "amber", "rdl+82", "rdl+127"), lab("eBallA", "錫球在晶片外圍", "Balls outside the chip", "blue", "outer+30", "outer+75")],
+ "labels": [lab("eDieA", "晶片埋在模封料", "Chip in mold", "blue", "rdl-12", "rdl+33"), lab("ePi1A", "介電層＋導通孔", "Dielectric + vias", "amber", "rdl+35", "rdl+80"), lab("eRdlA", "重佈線層（銅線）", "RDL copper lines", "amber", "rdl+82", "rdl+127"), lab("eBallA", "球下金屬墊＋錫球（晶片外）", "UBM pads + balls, outside the chip", "blue", "outer+30", "outer+75")],
  "overlay": [card("s6", "fo-rdl", "延長線拉到外圍", "示意", {"rdl": "rdl", "cord": "cord", "outer": "outer", "ball": "ball"})]}
 P["s7"] = {"zoom": [{"to": "panel", "at": CC, "dur": 1}],
- "shot": [shot(CC, FXc + 1.5, 0.6, 32, 30, 1)],
+ "shot": [shot(CC, FXc + 0.8, -3.4, 36, 42, 1)],
  "run": [run("fHot", "cte-6", "warp", 6), run("fFlow", "shift-12", "shift+20", 6)],
  "labels": [lab("fWarpA", "整片邊緣翹起", "Edges warp up", "amber", "warp", "warp+45"), lab("fShiftA", "晶片被推離原位", "Chip pushed off", "blue", "shift", "shift+24"), lab("fMissA", "導通孔對不準", "Via misses the pad", "amber", "miss-8", "miss+37")],
  "overlay": [card("s7", "fo-warp", "熱脹冷縮不同", "示意（不標數字）", {"cte": "cte", "warp": "warp", "shift": "shift", "miss": "miss"})]}

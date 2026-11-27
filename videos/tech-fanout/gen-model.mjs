@@ -127,7 +127,7 @@ LAY("aBrk", [12, 0.2, AX0 - 8, 1.85]); BOX("aBrkV1", "aBrk", AX0 - 14.6, AX0 - 1
 P({ id: "aBrkLink", layer: "aBrk", shape: "box", size: [0.6, 0.06, 0.06], pos: [AX0 - 14.2, 2.5, 0.13], mat: "bracket" }); // 載板厚度括弧（s1：載板）
 
 // ═════ 站 B：晶圓級封裝（整片晶圓：每格晶片已有錫球；切割刀；頂出一顆）═════
-const BXc = 36; BACKDROP("bBack", 22, 50, 9.0); PLINTH("bPl", 22, 50, 9);
+const BXc = 36; BACKDROP("bBack", 22, 50, 9.0, -9.4); PLINTH("bPl", 22, 50, 9);
 const WR = 9.0, DP = 2.0; // 晶圓半徑、晶片間距
 const bDies = []; for (let i = -5; i <= 4; i++) for (let j = -5; j <= 4; j++) { const cx = (i + 0.5) * DP, cz = (j + 0.5) * DP; if (Math.hypot(Math.abs(cx) + DP / 2, Math.abs(cz) + DP / 2) < WR - 0.2) bDies.push([cx, cz]); }
 LAY("bWafer", [18, 0.6, BXc, 1.3]); VC("bWfDisc", "bWafer", WR, 1.0, 1.4, "si", { x: BXc }); VT("bWfBevel", "bWafer", WR, WR - 0.15, 1.38, 1.42, "edge", { x: BXc }); BOX("bWfNotch", "bWafer", BXc - 0.3, BXc + 0.3, 1.0, 1.43, WR - 0.3, WR + 0.02, "dark");
@@ -169,7 +169,7 @@ for (let r = 0; r < 7; r++) { LAY(`cRow${r}`, [CD, 1, CXc, 2.2]); P({ id: `cBall
 LAY("cExtra", [CD, 1, CXc, 2.9]); P({ id: "cExtraB", layer: "cExtra", shape: "sphere", size: [0.52], pos: [CXc, 2.9, 4.55], at: [-3.0, -1.8, -0.6, 0.6, 1.8, 3.0].map((x) => [x, 0, 0]), mat: "red" }); // 想再塞一排：壓在最外排與晶片邊上，放不下 // 放不下的錫球（紅）
 
 // ═════ 站 D：重組晶圓（玻璃載盤＋膠帶 → 取放晶片 → 點膠模封 → 上模壓下）═════
-const DXc = 108; BACKDROP("dBack", 94, 122, 11.0); PLINTH("dPl", 94, 122, 9);
+const DXc = 108; BACKDROP("dBack", 94, 122, 11.0, -9.6); PLINTH("dPl", 94, 122, 9); // r1 機台複審：背板退到龍門導軌（z −7.4）後面
 LAY("dCarrier", [18, 0.6, DXc, 1.3]); VC("dGlass", "dCarrier", 9.0, 1.0, 1.4, "carrier", { x: DXc }); VT("dGlassE", "dCarrier", 9.0, 8.88, 1.38, 1.42, "edge", { x: DXc }); VC("dTape", "dCarrier", 8.8, 1.4, 1.46, "tape", { x: DXc });
 P({ id: "dFid", layer: "dCarrier", shape: "cyl", size: [0.25, 0.02], rot: V, pos: [DXc, 1.47, 0], at: [[-7.6, 0, 0], [7.6, 0, 0], [0, 0, -7.6], [0, 0, 7.6]], mat: "markC" in palette ? "mark" : "dark" });
 const DDP = 3.6, DDW = 2.2, DR = [-1.5, -0.5, 0.5, 1.5].map((k) => R2(k * DDP));
@@ -211,14 +211,17 @@ actions.eCuGrow2 = { type: "flow", layer: "eRdl", path: [[EXc + 1.5, 2.64, -2.0]
 LAY("eFoot", [14, 0.1, EXc, 1.95]); // 晶片範圍虛框 BOX("eFootL", "eFoot", EXc - 2.5, EXc - 2.45, 1.0, 4.6, 0.02, 0.06, "bracket"); BOX("eFootR", "eFoot", EXc + 2.45, EXc + 2.5, 1.0, 4.6, 0.02, 0.06, "bracket"); // 晶片範圍（黃虛框）
 
 // ═════ 站 F：翹曲與晶片偏移（重組晶圓，同心環分段）═════
-const FXc = 180; BACKDROP("fBack", 166, 194, 10.0); PLINTH("fPl", 166, 194, 9);
+const FXc = 180; BACKDROP("fBack", 166, 194, 10.0, -9.4); PLINTH("fPl", 166, 194, 9);
 // 重組晶圓：10 圈同心環（每圈高差小，翹起來接近連續彎曲）；晶片照中心點所在的圈，整顆跟著那一圈抬高
 const FR = Array.from({ length: 11 }, (_, k) => R2(k * 0.96)), FY = [1.0, 1.7], NR = 10;
 const FDIES = []; for (let i = -3; i <= 3; i++) for (let j = -3; j <= 3; j++) { const x = i * 2.6, z = j * 2.6, r = Math.hypot(x, z); if (r < 8.4) FDIES.push([x, z, r]); }
 const FSH = [2.6, 5.2]; // 被推歪的那顆（前右）
 for (let k = 0; k < NR; k++) { LAY(`fR${k}`, [R2(FR[k + 1] * 2), 1, FXc, 1.35]); if (k === 0) VC(`fRing${k}`, `fR${k}`, FR[1], FY[0], FY[1], "mold", { x: FXc }); else VT(`fRing${k}`, `fR${k}`, FR[k + 1], FR[k], FY[0], FY[1], "mold", { x: FXc });
-  const dies = FDIES.filter(([x, z, r]) => r >= FR[k] && r < FR[k + 1] && !(x === FSH[0] && z === FSH[1])).map(([x, z]) => [x, 0, z]);
-  if (dies.length) P({ id: `fDie${k}`, layer: `fR${k}`, shape: "box", size: [1.6, 0.05, 1.6], pos: [FXc, 1.72, 0], at: dies, mat: "dieTop" }); }
+}
+// 晶片不掛圈層（r1 物理複審：跨圈的晶片被外圈蓋掉一角）：每顆依「碰到的最高那一圈」分組，自己一層，genscript 給 dy＝那一圈的翹曲量
+const DKMAX = (x, z) => Math.min(NR - 1, Math.floor((Math.hypot(Math.abs(x) + 0.8, Math.abs(z) + 0.8)) / 0.96));
+const FDG = {}; FDIES.forEach(([x, z]) => { if (x === FSH[0] && z === FSH[1]) return; (FDG[DKMAX(x, z)] ??= []).push([x, 0, z]); });
+for (const [g, dies] of Object.entries(FDG)) { LAY(`fD${g}`, [18, 0.2, FXc, 1.74]); P({ id: `fDie${g}`, layer: `fD${g}`, shape: "box", size: [1.6, 0.05, 1.6], pos: [FXc, 1.725, 0], at: dies, mat: "dieTop" }); }
 VT("fEdgeRing", `fR${NR - 1}`, 9.62, 9.5, 1.68, 1.74, "edge", { x: FXc });
 LAY("fFlat", [20, 0.1, FXc, 1.7]); BOX("fFlatL", "fFlat", FXc - 10, FXc + 10, 1.69, 1.73, 9.6, 9.66, "bracket"); // 原本平的參考線
 const FSR = Math.hypot(FSH[0], FSH[1]), FSK = Math.min(NR - 1, Math.floor(FSR / 0.96)); // 那顆所在的圈
@@ -280,7 +283,7 @@ Object.assign(anchors, {
   bWaferA: A("bWafer", [BXc - 4, 1.45, 3], -150, -100), bPickA: A("bPick", [BXc + BPK[0], 1.6, BPK[1]], 150, -110), bSawA: A("bSaw", [BXc - 12, 2.6, SZ + 0.1], -150, -100), bColA: A("bCollet", [BXc + BPK[0], 3.4, BPK[1]], 150, -110),
   cPadA: A("cDie", [CXc + 3.6, 1.88, 3.6], 150, 110), cBallA: A("cRow0", [CXc - 3.6, 2.6, -3.6], -150, -110), cExtraA: A("cExtra", [CXc + 3.0, 3.1, 4.55], 150, -110), cEdgeA: A("cEdge", [CXc - CD / 2, 1.9, CD / 2], -150, 110),
   dCarA: A("dCarrier", [DXc - 7, 1.4, 6], -150, 110), dHeadA: A("dHead", [HX0, 3.0, HZ0], -150, -100), dMoldA: A("dMold0", [DXc + 1.2, 2.75, 1.2], 150, -100), dChaseA: A("dChase", [DXc + 6, 5.6, 4], 150, -100),
-  eBallA: A("eBall", [EXc + 4.5, 3.5, -0.5], 150, -110), eRdlA: A("eRdlOut", [EXc + 4.5, 2.62, -0.5], 150, -60), ePi1A: A("ePi1", [EXc - 6, 2.4, 0], -150, -80), eDieA: A("eDie", [EXc, 1.9, 0], -150, 110), ePi2A: A("ePi2", [EXc - 6, 2.9, 0], -150, -100),
+  eBallA: A("eBall", [EXc + 4.5, 3.5, -0.5], 150, -110), eRdlA: A("eRdlOut", [EXc + 4.5, 2.62, -0.5], 150, 240), ePi1A: A("ePi1", [EXc - 3.2, 2.4, 0], -150, -80), eDieA: A("eDie", [EXc, 1.9, 0], -150, 110), ePi2A: A("ePi2", [EXc - 6, 2.9, 0], -150, -100),
   fWarpA: A(`fR${NR - 1}`, [FXc - 9.2, 1.7, 2], -150, -110), fShiftA: A("fShift", [FXc + FSH[0], 1.78, FSH[1]], 150, -100), fMissA: A("fMiss", [FXc + FSH[0] - 0.4, 1.9, FSH[1]], -150, -120),
   gInfoA: A("gIDie", [GK[0] + 4.5, 3.8, 4.5], -150, -110), gMemA: A("gMem", [GK[0] + 4.5, 7.0, 4.5], 150, -100), gPanelA: A("gPanel", [GPX - GPH, 2.8, GPH], -150, -100),
   hPkgA: A("hPkg", [HXc - 4, 2.4, 4], -150, -110), hToolA: A("hTool", [HXc + 9, 8.6, 2.5], 150, -100),
@@ -291,7 +294,7 @@ const model = {
   layers, parts, anchors, actions,
   pose: { yaw0: 0, yawIso: 0, drift: 0 }, camera: { stand: { d: 70, elev: 24, y: 4 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { NR, FSK, FSH, FSR, FR, AX0, BXc, CXc, DXc, EXc, FXc, GXc, HXc, GK, DR, HX0, HZ0, TRX, TRZ, SZ, BPK, DDW },
+  info: { NR, FSK, FDGK: Object.keys(FDG).map(Number), FSKD: DKMAX(FSH[0] + 0.95, FSH[1]), FSH, FSR, FR, AX0, BXc, CXc, DXc, EXc, FXc, GXc, HXc, GK, DR, HX0, HZ0, TRX, TRZ, SZ, BPK, DDW },
 };
 fs.writeFileSync(path.join(HERE, "model.json"), JSON.stringify(model, null, 1) + "\n");
 console.log(`✔ model.json：${parts.length} 個零件、${parts.reduce((a, p) => a + Math.max(1, (p.at?.length ?? 0)), 0)} 個實體、${layers.length} 層、${Object.keys(actions).length} 個動作`);
