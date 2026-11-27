@@ -5,6 +5,11 @@
 - 把載板中間那塊有機芯板（玻纖布＋樹脂，3-9 BT、3-11 銅箔基板講的那種）換成一片玻璃；上下照樣疊增層線路。來源：Intel 新聞稿 2023/9/18（newsroom.intel.com「Intel Unveils Industry-Leading Glass Substrates」）。
 - 玻璃本身不導電，要讓上下兩面接通，就在玻璃上打穿孔再鍍銅＝**玻璃穿孔（TGV，Through Glass Via）**。多家媒體一致指出 TGV 是整條供應鏈門檻最高的環節（數位時代 2026「玻璃基板概念股盤點」、商業周刊、經理人）。
 
+## 1b. 玻璃穿孔怎麼做（已確定：多個來源一致）
+- 主流做法＝雷射誘導蝕刻（LIDE／SLE）：先用超短脈衝雷射把玻璃上要開孔的地方「改質」（一條貫穿厚度的改質線），再泡蝕刻液（氫氟酸或熱鹼），改質的地方蝕刻得快，孔就開出來。來源：LPKF 官網（LIDE）、MDPI Micromachines 14(9) 1766（2023）、SID Digest BOE 論文。
+- 開好孔後：先鋪一層很薄的銅當底（種子層），再電鍍把孔填滿或鍍滿孔壁；玻璃很光滑、化學上很穩定，銅不容易黏住，是已知難點。來源：USPTO 專利（Corning 相關「Through glass via with a metal wall」）、同上專利摘要。
+- 玻璃脆：LPKF 強調 LIDE「不產生微裂紋」，反過來說傳統鑽孔或直接雷射燒蝕容易在孔邊留下微裂紋（信心：中，來自廠商說法）。念稿「一不小心就裂」＝通則，不標數字。
+
 ## 2. 為什麼被看好（Intel 官方說法＝已確定「Intel 這樣說」；數字是 Intel 自己的宣稱）
 - 更平（ultra-low flatness）、熱與機械穩定性更好、可耐更高溫；圖形變形少一半（50%）；互連密度可到 10 倍。來源：Intel 新聞稿 2023/9/18；Tom's Hardware 2023/9 轉述同數字。
 - 可做更大：Intel 說玻璃基板能做更大的多晶片封裝；2026/1 NEPCON Japan 展示 78×77 mm 厚芯玻璃基板＋EMIB（RCD Advisors「Breaking Glass Ceilings」、多篇媒體一致）。
