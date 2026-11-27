@@ -477,23 +477,16 @@
      },
      {
       "layer": "qBody",
-      "at": "s6:start+2",
-      "until": "s6:start+96",
-      "dur": 16,
-      "dy": 3.4
-     },
-     {
-      "layer": "qPebble",
-      "at": "s6:start+2",
-      "until": "s6:start+96",
-      "dur": 16,
+      "at": "s7:start+2",
+      "until": "s7:start+34",
+      "dur": 10,
       "dy": 3.4
      },
      {
       "layer": "qChip",
-      "at": "s6:start+49",
-      "until": "s6:start+92",
-      "dur": 16,
+      "at": "s7:start+14",
+      "until": "s7:start+30",
+      "dur": 10,
       "dy": 1.0
      },
      {
@@ -506,7 +499,7 @@
      {
       "layer": "bB0",
       "at": "s1:start-40",
-      "until": "s7:ball+0",
+      "until": "s7:ball+12",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -516,7 +509,7 @@
      {
       "layer": "bB1",
       "at": "s1:start-40",
-      "until": "s7:ball+3",
+      "until": "s7:ball+15",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -526,7 +519,7 @@
      {
       "layer": "bB2",
       "at": "s1:start-40",
-      "until": "s7:ball+6",
+      "until": "s7:ball+18",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -536,7 +529,7 @@
      {
       "layer": "bB3",
       "at": "s1:start-40",
-      "until": "s7:ball+9",
+      "until": "s7:ball+21",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -546,7 +539,7 @@
      {
       "layer": "bB4",
       "at": "s1:start-40",
-      "until": "s7:ball+12",
+      "until": "s7:ball+24",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -556,7 +549,7 @@
      {
       "layer": "bB5",
       "at": "s1:start-40",
-      "until": "s7:ball+15",
+      "until": "s7:ball+27",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -566,7 +559,7 @@
      {
       "layer": "bB6",
       "at": "s1:start-40",
-      "until": "s7:ball+18",
+      "until": "s7:ball+30",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -576,7 +569,7 @@
      {
       "layer": "bB7",
       "at": "s1:start-40",
-      "until": "s7:ball+21",
+      "until": "s7:ball+33",
       "dur": 14,
       "dy": 2.4,
       "fallIn": true,
@@ -1296,24 +1289,11 @@
     "labels": [
      {
       "part": "qBodyA",
-      "text": "封裝膠外殼",
-      "en": "Mold-compound shell",
+      "text": "外殼擋住水氣和碰撞",
+      "en": "Shell keeps moisture and knocks out",
       "color": "amber",
-      "at": "s6:start+10",
-      "until": "s6:start+55",
-      "cut": true,
-      "xy": [
-       760,
-       330
-      ]
-     },
-     {
-      "part": "qChipA",
-      "text": "裡面：晶片、金線、導線架",
-      "en": "Inside: chip, wires, lead frame",
-      "color": "blue",
-      "at": "s6:start+57",
-      "until": "s6:start+102",
+      "at": "wet-4",
+      "until": "wet+41",
       "cut": true,
       "xy": [
        600,
@@ -1403,6 +1383,14 @@
      {
       "at": "voice-4",
       "dur": 1,
+      "x": 90.0,
+      "y": 1.4,
+      "d": 42,
+      "elev": 14
+     },
+     {
+      "at": "ball+4",
+      "dur": 1,
       "x": 118.0,
       "y": 0.9,
       "d": 22,
@@ -1427,12 +1415,25 @@
     ],
     "labels": [
      {
+      "part": "qChipA",
+      "text": "拆開：晶片、金線、導線架",
+      "en": "Inside: chip, wires, lead frame",
+      "color": "blue",
+      "at": "s7:start+4",
+      "until": "s7:start+49",
+      "cut": true,
+      "xy": [
+       600,
+       330
+      ]
+     },
+     {
       "part": "bBallA",
       "text": "錫球：零點幾毫米",
       "en": "Solder balls",
       "color": "amber",
-      "at": "ball",
-      "until": "ball+45",
+      "at": "ball+6",
+      "until": "ball+51",
       "cut": true
      },
      {
@@ -1943,13 +1944,13 @@
     "zoom": [
      {
       "to": "unit",
-      "at": "voice-4",
+      "at": "voice+10",
       "dur": 1
      }
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "voice+10",
       "dur": 1,
       "x": 222.0,
       "y": -0.2,
@@ -1988,8 +1989,33 @@
     "overlay": [
      {
       "type": "section",
-      "kind": "pkg-next",
+      "kind": "pkg-co",
       "at": "voice-3",
+      "until": "voice+11",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "封裝材料供應商",
+      "tag": "證交所、財經媒體；截至 2026/11/27",
+      "t": {
+       "lf2": {
+        "at": "s10:lf2"
+       },
+       "cw": {
+        "at": "s10:cw"
+       },
+       "sb": {
+        "at": "s10:sb"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "pkg-next",
+      "at": "voice+11",
       "until": "s12:start",
       "x": 64,
       "y": 1066,

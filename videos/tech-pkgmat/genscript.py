@@ -133,11 +133,13 @@ vis("mWire", [(T0, "s5:mold+30")], 4); vis("mWireS", [("s5:mold+30", FAR)], 4)  
 # ── 站 Q：小石子掉下彈開；爆炸（外殼拿開 → 晶片與金線抬起 → 組回）──
 VIS.append({"layer": "qPebble", "at": T0, "until": "s6:hit-10", "dur": 12, "dy": 3.0, "fallIn": True, "bounce": 0.35, "opacity": 0})
 vis("qPebble", [("s6:hit-12", "s6:shell+20")], 4)
-QE1 = "s6:start+2"; QE2 = "s6:start+49"; QAS = "s6:start+96"   # 第 39 條：爆炸在旁白期間做完並組回（本幕 114 幀，112 幀前全部落回）
-VIS += [mv("qBody", QE1, QAS, 16, dy=3.4), mv("qPebble", QE1, QAS, 16, dy=3.4), mv("qChip", QE2, off(QAS, -4), 16, dy=1.0)]
+# 頻道負責人 11/27：s6 念「擋住濕氣和碰撞」時殼保持完整（水滴、石子打在完整的殼上被擋下）；
+# 拆開看內部改到 s7 開頭「腳太多的」，在 s7 旁白期間做完並組回（第 29 條），再切到植球站
+QE1 = "s7:start+2"; QE2 = "s7:start+14"; QAS = "s7:start+34"
+VIS += [mv("qBody", QE1, QAS, 10, dy=3.4), mv("qChip", QE2, off(QAS, -4), 10, dy=1.0)]   # 組回在 start+44 完成，停 0.6 秒才換鏡
 # ── 站 B：助焊劑點 → 錫球一顆顆落下（重力、小彈）→ 回焊 ──
 vis("bFlux", [("s7:ball-14", FAR)], 4)
-for i in range(8): VIS.append({"layer": f"bB{i}", "at": T0, "until": f"s7:ball+{3 * i}", "dur": 14, "dy": 2.4, "fallIn": True, "bounce": 0.08, "opacity": 0})
+for i in range(8): VIS.append({"layer": f"bB{i}", "at": T0, "until": f"s7:ball+{12 + 3 * i}", "dur": 14, "dy": 2.4, "fallIn": True, "bounce": 0.08, "opacity": 0})
 # ── 站 T：裂縫兩階段 ──
 vis("tCrack0", [("s8:crack-8", FAR)], 2); vis("tCrack1", [("s8:crack-2", FAR)], 2)
 # ── 站 U：針降下點膠、膠逐格被吸進縫（越往內越慢）、膠角 ──
@@ -194,13 +196,13 @@ P["s5"] = {"shot": [S_(CC, M5, 1)],
 P["s6"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
  "shot": [S_(CC, QV, 1)],
  "run": [run("qRain", "wet-4", "shell-6", 4)],
- "labels": [lab("qBodyA", "封裝膠外殼", "Mold-compound shell", "amber", off(QE1, 8), off(QE1, 53), xy=[760, 330]),
-            lab("qChipA", "裡面：晶片、金線、導線架", "Inside: chip, wires, lead frame", "blue", off(QE2, 8), off(QE2, 53), xy=[600, 330])],
+ "labels": [lab("qBodyA", "外殼擋住水氣和碰撞", "Shell keeps moisture and knocks out", "amber", "wet-4", "wet+41", xy=[600, 330])],
  "overlay": [card("s6", "pkg-shell", "外殼擋什麼", "示意（封裝膠導熱不好，散熱靠金屬）", {"wet": "wet", "hit": "hit", "shell": "shell"})]}
 P["s7"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
- "shot": [S_(CC, BJ, 1), S_("pcb-14", BM, 1)],
+ "shot": [S_(CC, QV, 1), S_("ball+4", BJ, 1), S_("pcb-14", BM, 1)],
  "run": [run("bReflow", "mm", "pcb+20", 6)],
- "labels": [lab("bBallA", "錫球：零點幾毫米", "Solder balls", "amber", "ball", "ball+45"),
+ "labels": [lab("qChipA", "拆開：晶片、金線、導線架", "Inside: chip, wires, lead frame", "blue", off(QE1, 2), off(QE1, 47), xy=[600, 330]),
+            lab("bBallA", "錫球：零點幾毫米", "Solder balls", "amber", "ball+6", "ball+51"),
             lab("bPCBA", "焊到電路板", "Soldered to the board", "blue", "pcb-12", "pcb+33")],
  "overlay": [card("s7", "pkg-ball", "腳太多：底部種錫球", "示意", {"many": "many", "ball": "ball", "mm": "mm", "pcb": "pcb"})]}
 P["s8"] = {"zoom": [{"to": "joint", "at": CC, "dur": 1}],
@@ -215,17 +217,27 @@ P["s9"] = {"shot": [S_(CC, UV, 1)],
             lab("uFillA", "毛細作用：自己吸進縫", "Capillary flow", "blue", "uf+47", "uf+92", xy=[420, 300]),
             lab("uBallA", "錫點只微微擺動", "Joints barely move", "amber", "spread-8", "spread+37")],
  "overlay": [card("s9", "pkg-uf", "底部填充：像茶滲進玻璃縫", "示意（不保證不裂，是分散應力）", {"uf": "uf", "tea": "tea", "glue": "glue", "spread": "spread"})]}
+# 頻道負責人 11/27（第 39／40 條衝突，照 tech-pad r7）：念稿不改；公司卡與 s10 的鏡頭延到 s11 開頭（延長期間 s11 鏡頭不動），
+# 整張卡 ≥5.1 秒（153 幀）、「住友電木」念完後 ≥1.0 秒才切 s11。延長幀數依 timeline.json 自動算（配音後重跑本檔即重算）。
+_tl = {x["id"]: x for x in json.load(open(os.path.join(HERE, "timeline.json")))["scenes"]} if os.path.exists(os.path.join(HERE, "timeline.json")) else {}
+if "s10" in _tl and "s11" in _tl:
+    _c0, _c1 = _tl["s10"]["voiceStartFrame"] - 3, _tl["s11"]["voiceStartFrame"] - 3
+    CO_N = max(0, 153 - (_c1 - _c0), (_tl["s10"]["voiceEndFrame"] + 30) - _c1)
+else:
+    CO_N = 0
+EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
+CO = ("pkg-co", "封裝材料供應商", "證交所、財經媒體；截至 2026/11/27")
 P["s10"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, VV, 1)],
  "labels": [lab("vA0", "導線架", "Lead frames", "amber", "lf2", "lf2+45"),
             lab("vA2", "封裝膠料餅", "Mold compound", "blue", "sb", "sb+45")],
- "overlay": [card("s10", "pkg-co", "封裝材料供應商", "證交所、財經媒體；截至 2026/11/27", {"lf2": "lf2", "cw": "cw", "sb": "sb"}, h=392, y=1000)]}
-P["s11"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
- "shot": [S_(CC, FV, 1)],
+ "overlay": [sec(CO[0], C, nxt("s10"), CO[1], CO[2], {"lf2": "lf2", "cw": "cw", "sb": "sb"}, cut=True, h=392, y=1000)]}
+P["s11"] = {"zoom": [{"to": "unit", "at": EXTC, "dur": 1}],
+ "shot": [S_(EXTC, FV, 1)],
  "run": [run("fFlip", "flip-10", "flip+18", 24)],
  "labels": [lab("fChipA", "晶片自己長凸塊", "Chip with its own bumps", "amber", "bump", "bump+45"),
             lab("fSubA", "倒扣到基板", "Flipped onto the substrate", "blue", "flip+40", "flip+85")],
- "overlay": [sec("pkg-next", C, "s12:start", "下一集：覆晶", "留言「錫球」", {"bump": "bump", "flip": "flip", "next": "next", "kw": "kw"}, cut=True)]}
+ "overlay": ([sec(CO[0], C, EXT, CO[1], CO[2], {"lf2": "s10:lf2", "cw": "s10:cw", "sb": "s10:sb"}, cut=True, h=392, y=1000)] if CO_N else []) + [sec("pkg-next", EXT, "s12:start", "下一集：覆晶", "留言「錫球」", {"bump": "bump", "flip": "flip", "next": "next", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
