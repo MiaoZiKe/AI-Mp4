@@ -1525,21 +1525,21 @@
      },
      {
       "layer": "cdsPump",
-      "at": "s4b:water+2",
+      "at": "s4:water+2",
       "until": "s4c:clean+108",
       "dur": 22,
-      "dx": -6.2
+      "dx": -4.8
      },
      {
       "layer": "cdsValve",
-      "at": "s4b:water+2",
+      "at": "s4:water+2",
       "until": "s4c:clean+108",
       "dur": 22,
       "dx": -1.8
      },
      {
       "layer": "cdsFilter",
-      "at": "s4b:water+50",
+      "at": "s4:water+50",
       "until": "s4c:clean+108",
       "dur": 22,
       "dz": 9.0
@@ -1794,23 +1794,23 @@
       "en": "Clean",
       "color": "blue",
       "at": "wash-4",
-      "until": "wash+42"
+      "until": "wash+41"
      },
      {
       "part": "jugB",
       "text": "蝕刻液",
       "en": "Etch",
       "color": "amber",
-      "at": "etch-2",
-      "until": "etch+43"
+      "at": "wash+42",
+      "until": "wash+87"
      },
      {
       "part": "jugC",
       "text": "研磨液",
       "en": "Slurry",
       "color": "blue",
-      "at": "etch+50",
-      "until": "name+13"
+      "at": "name-4",
+      "until": "name+41"
      }
     ],
     "overlay": [
@@ -1994,15 +1994,16 @@
    "id": "s4",
    "beat": "mechanism",
    "para": 4,
-   "narration": "藥水從廠外大槽出發，沿管線送到機台旁，",
-   "tts": "藥水從廠外大槽出發，沿管線送到機台旁，",
+   "narration": "藥水從廠外大槽出發，沿管線送到機台旁，像自來水廠送水，",
+   "tts": "藥水從廠外大槽出發，沿管線送到機台旁，像自來水廠送水，",
    "subtitle": {
-    "zh": "藥水從廠外大槽出發\n沿管線送到機台旁",
-    "en": "Chemicals leave the outdoor tank, | travel by pipe to the tool,"
+    "zh": "藥水從廠外大槽出發\n沿管線送到機台旁\n像自來水廠送水",
+    "en": "Chemicals leave the outdoor tank, | travel by pipe to the tool, | like a water works,"
    },
    "keywords": [
     "大槽",
-    "管線"
+    "管線",
+    "自來水廠"
    ],
    "cues": [
     {
@@ -2016,6 +2017,10 @@
     {
      "id": "desk",
      "text": "機台旁"
+    },
+    {
+     "id": "water",
+     "text": "自來水廠"
     }
    ],
    "component": "ThreeScene",
@@ -2033,7 +2038,7 @@
       "elev": 14
      },
      {
-      "at": "start+58",
+      "at": "pipe-42",
       "dur": 14,
       "x": 14.0,
       "y": 4.5,
@@ -2055,6 +2060,15 @@
       "y": 9.0,
       "d": 60,
       "elev": 22
+     },
+     {
+      "at": "s4:water+2",
+      "dur": 24,
+      "x": 23.5,
+      "y": 7.5,
+      "d": 66,
+      "elev": 22,
+      "yaw": 0.5
      }
     ],
     "run": [
@@ -2074,19 +2088,19 @@
       "id": "cdsFlow",
       "at": "s4:desk-10",
       "ramp": 10,
-      "until": "s4b:water+0"
+      "until": "s4:water+0"
      },
      {
       "id": "pumpBeat",
       "at": "s4:desk-10",
       "ramp": 10,
-      "until": "s4b:water+0"
+      "until": "s4:water+0"
      },
      {
       "id": "pumpLed",
       "at": "s4:desk-10",
       "ramp": 8,
-      "until": "s4b:water+0"
+      "until": "s4:water+0"
      }
     ],
     "labels": [
@@ -2095,8 +2109,8 @@
       "text": "大宗儲槽",
       "en": "Bulk tank",
       "color": "amber",
-      "at": "start+12",
-      "until": "start+57",
+      "at": "tank-40",
+      "until": "tank+5",
       "xy": [
        860,
        300
@@ -2107,19 +2121,31 @@
       "text": "塑膠管線",
       "en": "Plastic piping",
       "color": "blue",
-      "at": "start+74",
-      "until": "start+119"
+      "at": "pipe-26",
+      "until": "pipe+19"
      },
      {
-      "part": "cdsDoorA",
+      "part": "cds",
       "text": "化學品管理櫃",
       "en": "Chemical cabinet",
       "color": "amber",
-      "at": "start+134",
-      "until": "start+179",
+      "at": "s4:desk-5",
+      "until": "s4:desk+40",
       "xy": [
        790,
        270
+      ]
+     },
+     {
+      "part": "pump",
+      "text": "泵與閥島",
+      "en": "Pump & valve island",
+      "color": "blue",
+      "at": "s4:water+14",
+      "until": "s4:water+59",
+      "xy": [
+       300,
+       980
       ]
      }
     ],
@@ -2147,7 +2173,7 @@
         "at": "desk"
        },
        "water": {
-        "at": "s4b:water"
+        "at": "s4:water"
        },
        "clean": {
         "at": "s4c:clean"
@@ -2159,61 +2185,7 @@
      }
     ]
    },
-   "durationSec": 6.0,
-   "holdSec": 0.4,
-   "pauseAfter": 0.4
-  },
-  {
-   "id": "s4b",
-   "beat": "mechanism",
-   "para": 4,
-   "narration": "像自來水廠送水，",
-   "tts": "像自來水廠送水，",
-   "subtitle": {
-    "zh": "像自來水廠送水",
-    "en": "like a water works,"
-   },
-   "keywords": [
-    "自來水廠"
-   ],
-   "cues": [
-    {
-     "id": "water",
-     "text": "自來水廠"
-    }
-   ],
-   "component": "ThreeScene",
-   "sources": [
-    "Air Liquide、3M 文件；示意，不是量測"
-   ],
-   "props": {
-    "shot": [
-     {
-      "at": "s4b:water+40",
-      "dur": 26,
-      "x": 30.0,
-      "y": 8.0,
-      "d": 62,
-      "elev": 22,
-      "yaw": 0.5
-     }
-    ],
-    "labels": [
-     {
-      "part": "pump",
-      "text": "泵與閥島",
-      "en": "Pump & valve island",
-      "color": "blue",
-      "at": "s4b:water-8",
-      "until": "s4b:water+38",
-      "xy": [
-       790,
-       300
-      ]
-     }
-    ]
-   },
-   "durationSec": 1.9,
+   "durationSec": 7.9,
    "holdSec": 0.4,
    "pauseAfter": 0.4
   },
@@ -2400,8 +2372,8 @@
       "text": "過濾器",
       "en": "Filter",
       "color": "amber",
-      "at": "s4b:water+50",
-      "until": "s4b:water+95"
+      "at": "s4:water+60",
+      "until": "s4:water+105"
      },
      {
       "part": "pleats",
@@ -3032,8 +3004,8 @@
       "at": "stir+44",
       "until": "stir+89",
       "xy": [
-       330,
-       1000
+       660,
+       320
       ]
      },
      {

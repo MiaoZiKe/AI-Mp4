@@ -437,7 +437,7 @@ HXC("irWallL", "ironPipe", R5, X5 - 11, X5 - 5, YI, Z5I, "iron"); HXC("irWallR",
 // r2：剖開窗＝鐵管只留後半（切掉前半），露出不透明灰色金屬內壁（不是半透明黃綠）；酸液只剩一窪（後半圓弓形）
 { const N = 18, arc = (r, a0, a1) => Array.from({ length: N + 1 }, (_, k) => { const t = a0 + (a1 - a0) * k / N; return [R2(r * Math.cos(t)), R2(r * Math.sin(t))]; });
   const mid = R2(X5), len = 10;
-  P({ id: "irWall", layer: "ironPipe", shape: "poly", pts: [...arc(R5, -Math.PI / 2, Math.PI / 2), ...arc(R5 - 0.16, Math.PI / 2, -Math.PI / 2)], size: [1, 1, len], rot: HX, pos: [mid, YI, Z5I], mat: "ironDark" });
+  P({ id: "irWall", layer: "ironPipe", shape: "poly", pts: [...arc(R5, -Math.PI / 2, Math.PI / 2), ...arc(R5 - 0.16, Math.PI / 2, -Math.PI / 2)], size: [1, 1, len], rot: HX, pos: [mid, YI, Z5I], mat: "iron" });   // r3：內壁用亮灰金屬（不是深藍、也不是黃綠半透明）
   const ra = R5 - 0.2, h0 = 0.3, t0 = Math.asin(h0 / ra);
   P({ id: "irAcid", layer: "ironAcid", shape: "poly", pts: [[0, -ra], ...arc(ra, -Math.PI / 2, t0), [0, h0]], size: [1, 1, len - 0.2], rot: HX, pos: [mid, YI, Z5I], mat: "acid" }); }
 P({ id: "irWinFr", layer: "ironPipe", shape: "tube", size: [R5 + 0.18, R5 - 0.05, 0.3], rot: HX, pos: [0, YI, Z5I], at: [[X5 - 5, 0, 0], [X5 + 5, 0, 0]], mat: "ironDark" });
@@ -451,6 +451,9 @@ BOX("pfRack", "pfaPipe", X5 - 11, X5 + 11, YP - 0.3, YP + 0.3, -3.4, -2.9, "stee
 // 鐵管內壁的腐蝕斑（三個位置，先後出現）：扁平的紅褐色塊貼在內壁底部＋剝落的鏽塊
 for (const [id, dx] of [["rustA", -3.4], ["rustB", 0], ["rustC", 3.4]]) {
   P({ id: `${id}Patch`, layer: id, shape: "sphere", size: [0.9], scale: [1.4, 0.25, 0.9], pos: [X5 + dx, YI - R5 + 0.28, Z5I], mat: "rust" });
+  // r3：剖開窗的後內壁（液面以上）也有鏽紅凹坑，一眼看出「金屬被咬」
+  P({ id: `${id}Wpit`, layer: id, shape: "sphere", size: [0.32], scale: [1, 1, 0.3], pos: [X5 + dx, YI + 0.5, Z5I - R5 + 0.26], at: [[-0.5, 0.2, 0], [0.4, -0.3, 0], [0.1, 0.9, 0]], mat: "rustDark" });
+  P({ id: `${id}Wstain`, layer: id, shape: "sphere", size: [0.7], scale: [1.3, 0.8, 0.2], pos: [X5 + dx, YI + 0.3, Z5I - R5 + 0.22], mat: "rust" });
   P({ id: `${id}Pit`, layer: id, shape: "sphere", size: [0.3], scale: [1, 0.3, 1], pos: [X5 + dx, YI - R5 + 0.32, Z5I], at: [[-0.7, 0, 0.2], [0.6, 0, -0.3], [0.1, 0, 0.5], [-0.2, 0, -0.5]], mat: "rustDark" });
 }
 actions.irBubbles = { type: "flow", _說明: "酸咬金屬：腐蝕斑冒出小氣泡，向上飄到液面（示意）", layer: "ironAcid", path: [[X5 - 3.4, YI - R5 + 0.5, Z5I], [X5 - 3.4, YI + 1.4, Z5I], [X5, YI - R5 + 0.5, Z5I], [X5, YI + 1.4, Z5I]], n: 8, size: 0.1, shape: "dot", rate: 0.9, color: "bubC", track: false, rise: true, jitter: 0.5, free: true };
