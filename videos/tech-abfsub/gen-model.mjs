@@ -203,7 +203,8 @@ for (let k = 0; k < EN; k++) { const y0 = eY(k);
 const EBAD = 18;      // 核心上方第 8 層出錯
 for (let k = 0; k < EN; k++) { LAY(`eOk${k}`, [16, ET, EX, eY(k)]); BOX(`eOkB${k}`, `eOk${k}`, EX - 8.02, EX + 8.02, R2(eY(k) + 0.04), R2(eY(k) + ET - 0.1), 2.5, 2.54, k === EBAD ? "badGlow" : "okGlow"); }
 LAY("eFail", [16, EN * ET + ECT, EX, EY0 + (EN * ET + ECT) / 2]); BOX("efBox", "eFail", EX - 8.1, EX + 8.1, EY0, R2(EY0 + EN * ET + ECT + 0.05), 2.5, 2.62, "badSolid");
-LAY("eX", [3, 3, EX, EY0 + EN * ET + ECT + 2]); P({ id: "eXa", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + ECT + 2), 2.6], rot: [0, 0, 45], mat: "badSolid" }); P({ id: "eXb", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + EN * ET + ECT + 2), 2.6], rot: [0, 0, -45], mat: "badSolid" });
+// ✗ 蓋在層疊正面中央（不被頁首蓋到）
+LAY("eX", [3, 3, EX, EY0 + (EN * ET + ECT) / 2]); P({ id: "eXa", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + (EN * ET + ECT) / 2), 2.8], rot: [0, 0, 45], mat: "badSolid" }); P({ id: "eXb", layer: "eX", shape: "box", size: [3.2, 0.4, 0.4], pos: [EX, R2(EY0 + (EN * ET + ECT) / 2), 2.8], rot: [0, 0, -45], mat: "badSolid" });
 
 // ═════ 站 F：翹曲（x 240）：連續彎曲的板（poly 剖面沿 z 擠出）；受熱後依序換成越來越彎的四個階段（兩端往上翹，示意） ═════
 const FX = 240, FL = 15, FT = 0.56, FY = 3.0, FDEP = 8;

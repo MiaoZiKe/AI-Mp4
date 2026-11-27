@@ -199,23 +199,23 @@ P["s1"] = {"shot": [shot("start-30", 0.0, 0.2, 64, 34, 1, yaw=0.0), shot("start"
  "overlay": [sec("abs-hook", "start", nxt("s1"), "系列 3・第 8 集", "示意，非實際比例", {"q": "q", "prev": "prev", "film": "film"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-8", "dur": 1}],
  "shot": [shot(CC, 0.0, 0.0, 56, 18, 1), shot("chip", 0.0, -1.6, 46, 16, 30)],
- "labels": [lab("chip", "晶片", "Chip", "blue", C, "chip+30"), lab("sub", "載板（頂面接細密凸塊）", "Substrate: fine bumps on top", "amber", "chip+32", "fine+24"), lab("balls", "大顆錫球，焊到主機板", "Big solder balls to the board", "blue", "fine+26", "ball+28")],
+ "labels": [lab("chip", "晶片", "Chip", "blue", C, "chip+30"), lab("sub", "載板（頂面接細密凸塊）", "Substrate: fine bumps on top", "amber", "chip+32", "fine+24"), lab("balls", "大顆錫球，焊到主機板", "Big solder balls to the board", "blue", "fine+26", "ball+28", xy=[420, 940])],
  "overlay": [card("s2", "abs-role", "晶片底下的轉接板", "示意", {"chip": "chip", "mb": "mb", "fine": "fine", "ball": "ball"})]}
 BX = INFO["BX"]
 P["s3"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, BX, 4.6, 46, 16, 1), shot("plate-6", BX, 3.9, 24, 12, 16)],
  "run": [run("drillSpin", "drill-14", "drill+20", 8), run("drillChips", "drill-4", "drill+20", 4)],
- "labels": [lab("core", "核心板（玻纖＋樹脂）", "Core: glass fiber + resin", "amber", C, "plate-2", xy=[380, 300]), lab("resin", "孔壁鍍銅、樹脂塞平", "Plated hole, resin-filled", "blue", "drill+28", "base+30", xy=[400, 330])],
+ "labels": [lab("core", "核心板（玻纖＋樹脂）", "Core: glass fiber + resin", "amber", C, "plate-2", xy=[380, 880]), lab("resin", "孔壁鍍銅、樹脂塞平", "Plated hole, resin-filled", "blue", "drill+28", "base+30", xy=[400, 330])],
  "overlay": [card("s3", "abs-core", "先打好地基", "示意（不標孔徑）", {"core": "core", "drill": "drill", "plate": "plate", "fill": "fill", "base": "base"})]}
 P["s4"] = {"shot": [shot(CC, BX, 3.9, 30, 12, 1)],
  "labels": [lab("filmT", "兩面同時貼膜", "Film on both sides", "amber", "out-4", "warp+20")],
  "overlay": [card("s4", "abs-sym", "兩邊一樣厚才不翹", "示意", {"two": "two", "out": "out", "even": "even", "warp": "warp"})]}
 P["s5"] = {"shot": [shot(CC, BX + 2.0, 4.0, 40, 12, 1)],
  "run": [run("laserPulseT", "hole-8", "link+8", 4), run("laserPulseB", "hole-8", "link+8", 4)],
- "labels": [lab("via", "雷射打洞，銅填滿", "Laser via, filled with copper", "amber", "hole-4", "link+30", xy=[400, 330])],
+ "labels": [lab("via", "雷射打洞，銅填滿", "Laser via, filled with copper", "amber", "hole-4", "link+30", xy=[330, 1000])],
  "overlay": [card("s5", "abs-layer", "一層三步", "示意（細節見前一集）", {"film": "film", "hole": "hole", "cu": "cu", "link": "link"})]}
 P["s6"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["DX"] - 0.5, -7.6, 64, 42, 1)],
+ "shot": [shot(CC, INFO["DX"] - 1.0, -7.6, 72, 42, 1)],
  "labels": [lab("dSmall", "一般晶片的載板", "A typical substrate", "blue", C, "ai+44"), lab("dBig", "人工智慧晶片的載板", "AI chip substrate", "amber", "ai+46", "ten-2"), lab("dRuler", "接近十公分", "Nearly 10 cm", "amber", "ten", "ten+46")],
  "overlay": [card("s6", "abs-size", "接近十公分見方", "Ibiden 路線圖、Counterpoint；示意", {"ai": "ai", "pins": "pins", "ten": "ten"})]}
 P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
