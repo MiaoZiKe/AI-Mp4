@@ -229,7 +229,7 @@ else:
 EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
 P["s10"] = {"zoom": [{"to": "tool", "at": EXTC, "dur": 1}],
  "shot": [shot(EXTC, 134.0, NY, ND, NE, 1)],
- "labels": [lab("nPadA", "研磨墊", "Polishing pad", "amber", "wear", "wear+46"),
+ "labels": [lab("nPadA", "研磨墊", "Polishing pad", "amber", EXT, "wear+46"),
             lab("nQzA", "石英環", "Quartz ring", "amber", "cham+24", "cham+70"),
             lab("nDiscA", "鑽石碟", "Diamond disc", "blue", "next+18", "next+64")],
  "overlay": ([sec("pad-co", C, EXT, "研磨墊供應商", "DuPont、SEC、富士紡、證交所；截至 2026/11/27", {"intl": "s9:intl", "dp": "s9:dp", "fb": "s9:fb", "tw": "s9:tw", "sh": "s9:sh"}, h=392, y=1000, cut=True)] if CO_N else []) + [sec("pad-next", EXT, "s11:start", "接下來", "下一集：耗材", {"wear": "wear", "next": "next", "kw": "kw"}, cut=True)]}
