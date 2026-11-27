@@ -225,3 +225,6 @@ Andy 2026/11/24 原話：「往後只要有修正，會被我點出來的地方�
    - 「給我配」檔名改「代號-主題名稱.wav」（例：tech-target-濺鍍靶材.wav），因為中文檔名上傳會變成底線，靠英文代號辨識。
    - 40 條補（11-27）：念稿以公司名結尾、念完到下一幕開口不足 1.0 秒時，公司卡延到下一幕開頭補滿（延長期間下一幕鏡頭不動），不違反第 39 條；2-19 無塵室、2-17 研磨墊照此做。新寫念稿時，公司名那句後面最好接半句說明（例：「台灣有頌勝，旗下智勝專做研磨墊」），卡片就不用延。
 42. **省 token 五條＋用量監工**（11-27 晚，Andy：「改善做法 全部幫我處裡最好，並且需要安排時時監控，異常使用量需要有專人優化 找問題 和提醒」）：一主題一新聊天室、做完就收；子聊天室只讀 `docs/channels/tech-child-brief.md`；審片抽格縮小、輸出只印尾巴；主聊天室前文 >25 萬 token 交接換新；同時最多 3 個子聊天室。監控規則與異常紀錄在 tw-rotation `docs/ops/token_saving.md`，每 2 小時由「用量監工」排程檢查。
+43. **配音 API 恢復可用，改回 API 配音**（11-28 凌晨，Andy 先說「再試試看配音api」，聽完 3-8 ABF 載板 API 試念 out/tech-abfsub/voice-samples/api1127.wav（Iapetus、tech-b、62.6 秒）後回「配音OK」）
+   - 測試：gemini-3.8-flash-tts、gemini-2.5-flash-preview-tts 回 200；gemini-2.5-pro-preview-tts 429（額度用完）。Node 腳本要帶 `NODE_USE_ENV_PROXY=1`（npm run 已帶；直接 node 跑會繞過代理而回「API key not valid」）。
+   - 以後：科技片配音先走 API（`bash scripts/three/tts-pitch-take.sh <slug>`，音高關卡照第 41 條），API 額度用完才回到「給我配」（第 36、40 條）。交件照舊附音高、起伏、語速。
