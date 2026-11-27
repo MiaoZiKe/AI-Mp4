@@ -148,7 +148,7 @@ P["s8"] = {"shot": [shot("start-2", X["dbl"] + 1, 5.5, 50, 16, 1)],
 # ── s9 製程腔：先推近流量控制器，再看噴頭與升降銷，最後看抽氣口與泵
 P["s9"] = {"shot": [shot("start-2", 75, 7, 54, 16, 1), shot("shw-8", 77, 5, 52, 18, 24), shot("pump-10", 83, 4, 54, 18, 26)],
  "run": [run(f"shw{i}", "in", "s10:start-4", 6) for i in range(6)] + [run(f"wfOut{i}", "shw", "s10:start-4", 6) for i in range(4)] + [run("plasmaPulse", "shw", "s10:start-4", 6), run("foreline", "pump", "s10:start-4", 6)],
- "labels": [lab("mfc", "質量流量控制器", "Mass flow controller", "blue", "in-2", "in+43"), lab("shw", "噴頭", "Showerhead", "amber", "shw+12", "shw+57"), lab("pump", "乾式泵", "Dry pump", "blue", "pump", "pump+45")],
+ "labels": [lab("mfc", "質量流量控制器", "Mass flow controller", "blue", "in-2", "in+43"), lab("shw", "噴頭", "Showerhead", "amber", "shw+6", "shw+49"), lab("pump", "乾式泵", "Dry pump", "blue", "pump+2", "pump+46")],
  "overlay": [sec("gas-chm", "start+14", "s10:start-18", "氣進腔之後", "示意（腔內壓力很低）", secu(["in", "shw", "pump"]))]}
 # ── s10 尾氣處理器：外殼打開半邊→水槽、燃燒室、水洗段、排氣口由下而上依序分開→組回
 P["s10"] = {"shot": [shot("start-2", X["abt"] + 0.4, 9, 76, 16, 1)],
@@ -159,7 +159,7 @@ P["s10"] = {"shot": [shot("start-2", X["abt"] + 0.4, 9, 76, 16, 1)],
 # ── s11 公司：全線遠景（整條送氣路徑當背景）＋公司卡
 P["s11"] = {"shot": [shot("start-2", 48, 9, 112, 20, 1, yaw=0.15)],
  "run": [run("lineGas", "start", "s12:start-4", 6), run("regOut", "start", "s12:start-4", 6)],
- "overlay": [sec("gas-co", "start-4", "s12:start+14", "做氣體的公司", "公司官網與年報", secu(["lin", "air", "tw"]), h=360, y=1040)]}
+ "overlay": [sec("gas-co", "start-4", "s12:start+14", "做氣體的公司", "公司官網與年報", secu(["lin", "air", "tw"]), h=356, y=1040)]}
 P["s12"] = {"shot": [shot("start+14", 22, 9, 96, 22, 1, yaw=0.0)],
  "run": [run("lineGas", "start", "s13:start-4", 6), run("regOut", "start", "s13:start-4", 6)],
  "overlay": [sec("gas-next", "start+32", "s13:start-18", "接下來", "下一集：濕式化學品與研磨液", secu(["next", "liq", "kw"]))]}
