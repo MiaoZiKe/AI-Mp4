@@ -130,7 +130,7 @@ const Recon: React.FC<P> = ({ o, f, k }) => {
         <rect x={30} y={CT + 150} width={260} height={14} fill="#CFE6F2" stroke={H.text2} strokeWidth={2} />
         <rect x={30} y={CT + 150 - 50 * fi} width={260} height={50 * fi} fill={MOLD} opacity={0.9} />
         {[0, 1, 2, 3].map((i) => <rect key={i} x={46 + i * 64} y={CT + 116} width={36} height={34} fill={SI} stroke={H.text2} strokeWidth={2} opacity={Math.min(1, Math.max(0.25, pl * 4 - i))} />)}
-        <text x={30} y={CT + 214} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * co}>餅乾＝晶片</text><text x={30} y={CT + 254} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * co}>巧克力＝模封料</text>
+        <text x={30} y={CT + 204} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * co}>餅乾＝晶片</text><text x={30} y={CT + 240} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * co}>巧克力＝模封料</text>
         <Sep x={318} />
         <Row x={344} y={CT + 52} t="挑好晶片排進載盤（拉開間距）" c={BLUE} a={pl} />
         <Row x={344} y={CT + 118} t="灌滿模封料（加熱加壓）" c={H.amber} a={fi} />
@@ -166,12 +166,12 @@ const Warp: React.FC<P> = ({ o, f, k }) => {
         <path d={`M30 ${CT + 120 - c} Q160 ${CT + 120 + c} 290 ${CT + 120 - c} L290 ${CT + 140 - c} Q160 ${CT + 140 + c} 30 ${CT + 140 - c} Z`} fill={MOLD} />
         <line x1={30} y1={CT + 120} x2={290} y2={CT + 120} stroke={H.amber} strokeWidth={2} strokeDasharray="8 6" />
         <rect x={150 + 16 * sh} y={CT + 190} width={40} height={30} fill={SI} stroke={H.text2} strokeWidth={2} /><rect x={150} y={CT + 190} width={40} height={30} fill="none" stroke={H.amber} strokeWidth={2} strokeDasharray="6 4" />
-        <text x={152} y={CT + 260} style={zh(36, RED, 900)} opacity={mi}>×</text>
+        <text x={238} y={CT + 218} style={zh(36, RED, 900)} opacity={mi}>×</text>
         <text x={30} y={CT + 70} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * ct}>塑膠脹得比晶片多</text>
         <Sep x={318} />
         <Row x={344} y={CT + 52} t="熱脹冷縮不同" c={H.amber} a={ct} />
         <Row x={344} y={CT + 108} t="整片翹起來" c={RED} a={wp} />
-        <Row x={344} y={CT + 164} t="晶片被擠歪" c={RED} a={sh} />
+        <Row x={344} y={CT + 164} t="晶片被擠歪（模封流動、收縮）" c={RED} a={sh} />
         <Row x={344} y={CT + 220} t="線就對不準" c={RED} a={mi} />
       </svg>
     </Card>
@@ -197,14 +197,14 @@ const Co: React.FC<P> = ({ o, f, k }) => {
 };
 // fo-next：下一集先進封裝設備
 const Next: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, nx = on(f, T(o, "next")), tl = on(f, T(o, "tool")), kw = on(f, T(o, "kw"));
+  const W = o.w ?? 952, Hh = o.h ?? 330, nx = on(f, T(o, "next")), tl = on(f, T(o, "tool")), kw = on(f, T(o, "kw")), mu = on(f, T(o, "multi"));
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <rect x={30} y={CT + 150} width={200} height={40} fill={MOLD} />{[0, 1, 2].map((i) => <rect key={i} x={46 + i * 62} y={CT + 156} width={46} height={28} fill={SI} />)}
         <rect x={240} y={CT + 40} width={60} height={150} fill="#E2E8F0" stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * tl} />
         <Sep x={318} />
-        <Row x={344} y={CT + 56} t="好幾顆晶片封在一起" c={H.text2} a={tl} />
+        <Row x={344} y={CT + 56} t="好幾顆晶片封在一起" c={H.text2} a={mu} />
         <Row x={344} y={CT + 122} t="下一集：先進封裝設備" c={BLUE} a={nx} />
         <Row x={344} y={CT + 188} t="留言「扇出」拿完整資料" c={H.amber} a={kw} />
       </svg>

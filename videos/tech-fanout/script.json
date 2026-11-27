@@ -76,6 +76,17 @@
     "readout": false,
     "note": "查證截至 2026/11/27",
     "noteAlways": true
+   },
+   {
+    "id": "multi",
+    "label": "多晶片封裝與設備（示意）",
+    "en": "MULTI-CHIP PACKAGE",
+    "field": "100 mm",
+    "ruler": "10 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
    }
   ],
   "theme": "dark",
@@ -176,17 +187,108 @@
       "dx": 14.0
      },
      {
-      "layer": "bKerf",
+      "layer": "bKerf0",
       "at": "s1:start-40",
-      "until": "s3:uncut+30",
+      "until": "s3:uncut+10",
       "opacity": 0,
-      "dur": 3
+      "dur": 1
+     },
+     {
+      "layer": "bKerf1",
+      "at": "s1:start-40",
+      "until": "s3:uncut+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf2",
+      "at": "s1:start-40",
+      "until": "s3:uncut+19",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf3",
+      "at": "s1:start-40",
+      "until": "s3:uncut+24",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf4",
+      "at": "s1:start-40",
+      "until": "s3:uncut+28",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf5",
+      "at": "s1:start-40",
+      "until": "s3:uncut+32",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf6",
+      "at": "s1:start-40",
+      "until": "s3:uncut+37",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bKerf7",
+      "at": "s1:start-40",
+      "until": "s3:uncut+41",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCross",
+      "at": "s1:start-40",
+      "until": "s3:uncut+40",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "bCollet",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "dur": 1,
+      "dy": 2.6
+     },
+     {
+      "layer": "bCollet",
+      "at": "s3:cut-8",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": -2.5
+     },
+     {
+      "layer": "bCollet",
+      "at": "s3:cut+8",
+      "until": "s10:start+400",
+      "dur": 16,
+      "dy": 2.4
+     },
+     {
+      "layer": "bEject",
+      "at": "s3:cut",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": 0.3
+     },
+     {
+      "layer": "bEject",
+      "at": "s3:cut+26",
+      "until": "s10:start+400",
+      "dur": 8,
+      "dy": -0.3
      },
      {
       "layer": "bPick",
-      "at": "s3:cut",
+      "at": "s3:cut+8",
       "until": "s10:start+400",
-      "dur": 18,
+      "dur": 16,
       "dy": 2.4
      },
      {
@@ -292,171 +394,329 @@
       "dur": 3
      },
      {
-      "layer": "dRow0",
-      "at": "s1:start-40",
-      "until": "s5:fo+10",
-      "dur": 10,
-      "dy": 1.2,
-      "fallIn": true,
-      "bounce": 0.04,
-      "opacity": 0
+      "layer": "dHead",
+      "at": "s5:fo+0",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -19.8,
+      "dz": 11.6,
+      "dy": 0.0
      },
      {
-      "layer": "dRow1",
-      "at": "s1:start-40",
-      "until": "s5:fo+19",
-      "dur": 10,
-      "dy": 1.2,
-      "fallIn": true,
-      "bounce": 0.04,
-      "opacity": 0
-     },
-     {
-      "layer": "dRow2",
-      "at": "s1:start-40",
-      "until": "s5:fo+28",
-      "dur": 10,
-      "dy": 1.2,
-      "fallIn": true,
-      "bounce": 0.04,
-      "opacity": 0
-     },
-     {
-      "layer": "dRow3",
-      "at": "s1:start-40",
-      "until": "s5:fo+37",
-      "dur": 10,
-      "dy": 1.2,
-      "fallIn": true,
-      "bounce": 0.04,
-      "opacity": 0
+      "layer": "dHeadX",
+      "at": "s5:fo+0",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -19.8
      },
      {
       "layer": "dHead",
-      "at": "s5:fo-6",
+      "at": "s5:fo+12",
       "until": "s10:start+400",
-      "dur": 10,
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
       "dy": -0.5
      },
      {
       "layer": "dHead",
-      "at": "s5:fo+6",
+      "at": "s5:fo+17",
       "until": "s10:start+400",
-      "dur": 30,
-      "dx": 10.8
-     },
-     {
-      "layer": "dHead",
-      "at": "s5:fill-14",
-      "until": "s10:start+400",
-      "dur": 14,
-      "dx": 6.0,
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
       "dy": 0.5
      },
      {
-      "layer": "dHeadDie",
-      "at": "s5:fo-6",
-      "until": "s5:fo+8",
-      "dur": 10,
+      "layer": "dCarry0",
+      "at": "s5:fo+17",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.5
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+21",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 12.0,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+21",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 12.0
+     },
+     {
+      "layer": "dCarry0",
+      "at": "s5:fo+21",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 12.0,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+33",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dCarry0",
+      "at": "s5:fo+33",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+38",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+42",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -12.0,
+      "dz": 2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+42",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": -12.0
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+54",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
       "dy": -0.5
      },
      {
-      "layer": "dHeadDie",
-      "at": "s5:fo+8",
+      "layer": "dHead",
+      "at": "s5:fo+59",
       "until": "s10:start+400",
-      "opacity": 0,
-      "dur": 1
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.5
+     },
+     {
+      "layer": "dCarry1",
+      "at": "s5:fo+59",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.5
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+63",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 15.6,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+63",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 15.6
+     },
+     {
+      "layer": "dCarry1",
+      "at": "s5:fo+63",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 15.6,
+      "dz": -2.2,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+75",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dCarry1",
+      "at": "s5:fo+75",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": -0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+80",
+      "until": "s10:start+400",
+      "dur": 4,
+      "dx": 0.0,
+      "dz": 0.0,
+      "dy": 0.29
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:fo+84",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 5.2,
+      "dz": -9.4,
+      "dy": 0.0
+     },
+     {
+      "layer": "dHeadX",
+      "at": "s5:fo+84",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 5.2
      },
      {
       "layer": "dMold0",
       "at": "s1:start-40",
-      "until": "s5:fill+6",
+      "until": "s5:fo+100",
       "opacity": 0,
-      "dur": 8
+      "dur": 1
      },
      {
       "layer": "dMold1",
       "at": "s1:start-40",
-      "until": "s5:fill+16",
+      "until": "s5:fo+109",
       "opacity": 0,
-      "dur": 8
+      "dur": 1
      },
      {
       "layer": "dMold2",
       "at": "s1:start-40",
-      "until": "s5:fill+26",
+      "until": "s5:fo+118",
       "opacity": 0,
-      "dur": 8
+      "dur": 1
      },
      {
       "layer": "dMold3",
       "at": "s1:start-40",
-      "until": "s5:fill+36",
+      "until": "s5:fo+127",
       "opacity": 0,
-      "dur": 8
+      "dur": 1
      },
      {
       "layer": "dDisp",
       "at": "s1:start-40",
-      "until": "s5:fill-10",
+      "until": "s5:fo+86",
       "opacity": 0,
       "dur": 4
      },
      {
       "layer": "dDisp",
-      "at": "s5:choco+10",
+      "at": "s5:fo+140",
       "until": "s10:start+400",
-      "opacity": 0,
-      "dur": 4
+      "dur": 12,
+      "dx": -12.0
      },
      {
       "layer": "dChase",
       "at": "s1:start-40",
       "until": "s10:start+400",
       "dur": 1,
-      "dy": 4.0
+      "dy": 2.0
      },
      {
       "layer": "dChase",
-      "at": "s5:choco+4",
+      "at": "s5:choco-6",
       "until": "s10:start+400",
-      "dur": 16,
-      "dy": -3.3
+      "dur": 14,
+      "dy": -4.9
+     },
+     {
+      "layer": "dChase",
+      "at": "s5:new-6",
+      "until": "s10:start+400",
+      "dur": 14,
+      "dy": 4.9
      },
      {
       "layer": "dChase",
       "at": "s1:start-40",
-      "until": "s5:choco-6",
+      "until": "s5:fo+126",
       "opacity": 0,
       "dur": 4
      },
      {
-      "layer": "eDie",
-      "at": "s6:rdl-6",
-      "until": "s6:outer+16",
-      "dur": 16,
-      "dy": 3.4
+      "layer": "dMold0",
+      "at": "s5:choco+6",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": -0.45
      },
      {
-      "layer": "ePi1",
-      "at": "s6:rdl+6",
-      "until": "s6:outer+16",
-      "dur": 16,
-      "dy": 2.3
+      "layer": "dMold1",
+      "at": "s5:choco+6",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": -0.25
+     },
+     {
+      "layer": "dMold2",
+      "at": "s5:choco+6",
+      "until": "s10:start+400",
+      "dur": 6,
+      "dy": -0.1
+     },
+     {
+      "layer": "ePi2",
+      "at": "s6:rdl-6",
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 3.0
      },
      {
       "layer": "eRdl",
-      "at": "s6:rdl+14",
-      "until": "s6:outer+16",
-      "dur": 16,
-      "dy": 1.2
+      "at": "s6:rdl+4",
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 2.0
      },
      {
       "layer": "eRdlOut",
+      "at": "s6:rdl+4",
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 2.0
+     },
+     {
+      "layer": "ePi1",
       "at": "s6:rdl+14",
-      "until": "s6:outer+16",
-      "dur": 16,
-      "dy": 1.2
+      "until": "s6:outer",
+      "dur": 14,
+      "dy": 1.0
      },
      {
       "layer": "eRdlOut",
@@ -468,9 +728,9 @@
      {
       "layer": "eBall",
       "at": "s1:start-40",
-      "until": "s6:ball-4",
-      "dur": 14,
-      "dy": 3.0,
+      "until": "s6:outer+14",
+      "dur": 12,
+      "dy": 1.6,
       "fallIn": true,
       "bounce": 0.08,
       "opacity": 0
@@ -480,36 +740,105 @@
       "at": "s7:warp-4",
       "until": "s10:start+400",
       "dur": 18,
-      "dy": 0.12
+      "dy": 0.028
      },
      {
       "layer": "fR2",
       "at": "s7:warp-4",
       "until": "s10:start+400",
       "dur": 18,
-      "dy": 0.38
+      "dy": 0.078
      },
      {
       "layer": "fR3",
       "at": "s7:warp-4",
       "until": "s10:start+400",
       "dur": 18,
-      "dy": 0.75
+      "dy": 0.153
      },
      {
       "layer": "fR4",
       "at": "s7:warp-4",
       "until": "s10:start+400",
       "dur": 18,
-      "dy": 1.25
+      "dy": 0.253
+     },
+     {
+      "layer": "fR5",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.378
+     },
+     {
+      "layer": "fR6",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.528
+     },
+     {
+      "layer": "fR7",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.703
+     },
+     {
+      "layer": "fR8",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.903
+     },
+     {
+      "layer": "fR9",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 1.128
+     },
+     {
+      "layer": "fShift",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.528
+     },
+     {
+      "layer": "fGhost",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.528
+     },
+     {
+      "layer": "fArrow",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.528
+     },
+     {
+      "layer": "fMiss",
+      "at": "s7:warp-4",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 0.528
      },
      {
       "layer": "fShift",
       "at": "s7:shift",
       "until": "s10:start+400",
       "dur": 14,
-      "dx": 0.9,
-      "dz": 0.9
+      "dx": 0.95
+     },
+     {
+      "layer": "fGhost",
+      "at": "s1:start-40",
+      "until": "s7:shift-2",
+      "opacity": 0,
+      "dur": 1
      },
      {
       "layer": "fArrow",
@@ -520,7 +849,7 @@
      },
      {
       "layer": "fArrow",
-      "at": "s7:shift+30",
+      "at": "s7:shift+34",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 4
@@ -528,9 +857,9 @@
      {
       "layer": "fMiss",
       "at": "s1:start-40",
-      "until": "s7:miss-2",
+      "until": "s7:miss-8",
       "opacity": 0,
-      "dur": 4
+      "dur": 1
      },
      {
       "layer": "gMem",
@@ -634,7 +963,7 @@
     "zoom": [
      {
       "to": "micro",
-      "at": "start-14",
+      "at": "voice-4",
       "dur": 1
      }
     ],
@@ -643,7 +972,7 @@
       "at": "voice-4",
       "dur": 1,
       "x": 72,
-      "y": 0.3,
+      "y": -1.2,
       "d": 39.6,
       "elev": 40
      }
@@ -654,8 +983,8 @@
       "text": "焊墊越來越多",
       "en": "More and more pads",
       "color": "blue",
-      "at": "small",
-      "until": "small+45",
+      "at": "more-6",
+      "until": "more+39",
       "cut": true
      },
      {
@@ -663,8 +992,8 @@
       "text": "放不下",
       "en": "No room",
       "color": "amber",
-      "at": "nofit",
-      "until": "nofit+45",
+      "at": "nofit+2",
+      "until": "nofit+47",
       "cut": true
      }
     ],
@@ -755,7 +1084,7 @@
       "at": "voice-4",
       "dur": 1,
       "x": 35.0,
-      "y": 1.0,
+      "y": 0.0,
       "d": 68.4,
       "elev": 40
      },
@@ -788,8 +1117,8 @@
       "text": "每格晶片已有錫球",
       "en": "Balls on every die",
       "color": "blue",
-      "at": "uncut+6",
-      "until": "uncut+51",
+      "at": "balls-20",
+      "until": "balls+25",
       "cut": true
      },
      {
@@ -890,9 +1219,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 72,
-      "y": 0.3,
+      "y": -1.2,
       "d": 39.6,
       "elev": 62
+     }
+    ],
+    "run": [
+     {
+      "id": "cEdgeGlow",
+      "at": "only",
+      "ramp": 6,
+      "until": "full+20"
      }
     ],
     "labels": [
@@ -1000,7 +1337,7 @@
       "at": "voice-4",
       "dur": 1,
       "x": 108,
-      "y": 2.0,
+      "y": 1.0,
       "d": 79.2,
       "elev": 32
      }
@@ -1008,49 +1345,43 @@
     "run": [
      {
       "id": "dPour",
-      "at": "fill-6",
+      "at": "s5:fo+96",
       "ramp": 6,
-      "until": "choco"
-     },
-     {
-      "id": "dSpread",
-      "at": "fill+4",
-      "ramp": 8,
-      "until": "choco+20"
+      "until": "s5:fo+136"
      },
      {
       "id": "dHeat",
-      "at": "choco+20",
+      "at": "choco+8",
       "ramp": 6,
-      "until": "s10:start+400"
+      "until": "new-6"
      }
     ],
     "labels": [
      {
       "part": "dHeadA",
-      "text": "取放頭（挑好晶片）",
-      "en": "Pick-and-place head",
+      "text": "取放頭：一顆一顆放",
+      "en": "Pick-and-place, one by one",
       "color": "blue",
-      "at": "fo",
-      "until": "fo+45",
+      "at": "s5:fo+2",
+      "until": "s5:fo+47",
       "cut": true
      },
      {
       "part": "dMoldA",
-      "text": "模封料（加熱加壓）",
-      "en": "Mold compound",
+      "text": "模封料（稠，往外攤開）",
+      "en": "Mold compound flows out",
       "color": "amber",
-      "at": "fill+12",
-      "until": "fill+57",
+      "at": "s5:fo+104",
+      "until": "s5:fo+149",
       "cut": true
      },
      {
       "part": "dChaseA",
-      "text": "上模壓下＝新晶圓",
-      "en": "Mold press → new wafer",
+      "text": "上模壓下、加熱",
+      "en": "Mold press + heat",
       "color": "blue",
-      "at": "choco+20",
-      "until": "choco+65",
+      "at": "choco-2",
+      "until": "choco+43",
       "cut": true
      }
     ],
@@ -1140,9 +1471,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 144,
-      "y": 2.4,
-      "d": 54.0,
-      "elev": 24
+      "y": -0.9,
+      "d": 36.0,
+      "elev": 28
+     },
+     {
+      "at": "outer+2",
+      "dur": 12,
+      "x": 144,
+      "y": 0.0,
+      "d": 30.6,
+      "elev": 30
      }
     ],
     "run": [
@@ -1150,13 +1489,13 @@
       "id": "eCuGrow",
       "at": "cord+4",
       "ramp": 6,
-      "until": "outer+16"
+      "until": "outer"
      },
      {
       "id": "eCuGrow2",
       "at": "cord+4",
       "ramp": 6,
-      "until": "outer+16"
+      "until": "outer"
      }
     ],
     "labels": [
@@ -1165,8 +1504,17 @@
       "text": "晶片埋在模封料",
       "en": "Chip in mold",
       "color": "blue",
-      "at": "rdl-10",
-      "until": "rdl+35",
+      "at": "rdl-12",
+      "until": "rdl+33",
+      "cut": true
+     },
+     {
+      "part": "ePi1A",
+      "text": "介電層＋導通孔",
+      "en": "Dielectric + vias",
+      "color": "amber",
+      "at": "rdl+35",
+      "until": "rdl+80",
       "cut": true
      },
      {
@@ -1174,8 +1522,8 @@
       "text": "重佈線層（銅線）",
       "en": "RDL copper lines",
       "color": "amber",
-      "at": "cord",
-      "until": "cord+45",
+      "at": "rdl+82",
+      "until": "rdl+127",
       "cut": true
      },
      {
@@ -1183,8 +1531,8 @@
       "text": "錫球在晶片外圍",
       "en": "Balls outside the chip",
       "color": "blue",
-      "at": "ball",
-      "until": "ball+45",
+      "at": "outer+30",
+      "until": "outer+75",
       "cut": true
      }
     ],
@@ -1273,10 +1621,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 180,
-      "y": 1.2,
-      "d": 72.0,
-      "elev": 26
+      "x": 181.5,
+      "y": 0.6,
+      "d": 57.6,
+      "elev": 30
      }
     ],
     "run": [
@@ -1296,11 +1644,20 @@
     "labels": [
      {
       "part": "fWarpA",
-      "text": "整片翹起來",
-      "en": "Wafer warps",
+      "text": "整片邊緣翹起",
+      "en": "Edges warp up",
       "color": "amber",
       "at": "warp",
       "until": "warp+45",
+      "cut": true
+     },
+     {
+      "part": "fShiftA",
+      "text": "晶片被推離原位",
+      "en": "Chip pushed off",
+      "color": "blue",
+      "at": "shift",
+      "until": "shift+24",
       "cut": true
      },
      {
@@ -1357,7 +1714,7 @@
    "tts": "台積電的整合扇出型，二零一六年起用在手機處理器；力成正把它做到方形面板。",
    "subtitle": {
     "zh": "台積電的\n整合扇出型\n2016 年起\n用在手機處理器\n力成正把它\n做到方形面板",
-    "en": "TSMC's | InFO (Integrated Fan-Out) | since 2016 | has been in phone processors; | Powertech is taking it | to square panels."
+    "en": "TSMC's | InFO (Integrated Fan-Out) | since 2016 | has been in phone processors; | Powertech is taking fan-out | to square panels."
    },
    "keywords": [
     "台積電",
@@ -1407,8 +1764,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 216,
-      "y": 2.6,
-      "d": 100.8,
+      "y": 0.4,
+      "d": 90.0,
       "elev": 22
      }
     ],
@@ -1505,9 +1862,17 @@
    "props": {
     "zoom": [
      {
-      "to": "pkg",
+      "to": "multi",
       "at": "voice-4",
       "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "hLamp",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
      }
     ],
     "shot": [
@@ -1515,8 +1880,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 253,
-      "y": 2.4,
-      "d": 90.0,
+      "y": 0.4,
+      "d": 79.2,
       "elev": 22
      }
     ],
@@ -1562,6 +1927,9 @@
        },
        "tool": {
         "at": "tool"
+       },
+       "multi": {
+        "at": "multi"
        }
       },
       "cut": true
