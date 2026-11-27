@@ -12,37 +12,37 @@ INFO = MODEL["info"]
 S = [
 ("s1", "hook", "晶片切好了，電怎麼接出來？前一集切晶圓，這一集看打線。",
  ["晶片切好了", "電怎麼接出來？", "前一集切晶圓", "這一集看打線"], ["The chips are cut.", "How does power get out?", "Last episode: dicing.", "This one: wire bonding."],
- [("chip", "晶片"), ("out", "接出來"), ("prev", "前一集"), ("wb", "打線")], ["電怎麼接出來", "打線"], ["示意動畫，不是量測"], 6.5, 1.3),
+ [("chip", "晶片"), ("out", "接出來"), ("prev", "前一集"), ("wb", "打線")], ["電怎麼接出來", "打線"], ["示意動畫，不是量測"], 5.8, 0.8),
 ("s2", "mechanism", "晶片邊緣的小方塊叫焊墊，要用細線接到外面的金屬腳。",
  ["晶片邊緣的小方塊", "叫焊墊", "要用細線", "接到外面的金屬腳"], ["The small squares at the edge", "are bond pads.", "Fine wires", "connect them to the metal leads."],
- [("edge", "邊緣"), ("pad", "焊墊"), ("wire", "細線"), ("lead", "金屬腳")], ["焊墊", "金屬腳"], ["示意動畫，不是量測"], 6.0, 1.2),
+ [("edge", "邊緣"), ("pad", "焊墊"), ("wire", "細線"), ("lead", "金屬腳")], ["焊墊", "金屬腳"], ["示意動畫，不是量測"], 5.9, 0.8),
 ("s3", "mechanism", "打線機的針叫劈刀，像縫紉機針，線從中間穿出，約頭髮三分之一粗。",
  ["打線機的針", "叫劈刀", "像縫紉機針", "線從中間穿出", "約頭髮三分之一粗"], ["The bonder's needle", "is called a capillary.", "Like a sewing needle,", "the wire comes out the middle,", "about a third of a hair thick."],
- [("bonder", "打線機"), ("cap", "劈刀"), ("sew", "縫紉機"), ("mid", "中間穿出"), ("hair", "頭髮")], ["劈刀", "縫紉機針", "頭髮"], ["Tanaka、Kaisertech 線材型錄；頭髮粗細：BioNumbers"], 10.0, 2.6),
+ [("bonder", "打線機"), ("cap", "劈刀"), ("sew", "縫紉機"), ("mid", "中間穿出"), ("hair", "頭髮")], ["劈刀", "縫紉機針", "頭髮"], ["Tanaka、Kaisertech 線材型錄；頭髮粗細：BioNumbers"], 6.8, 0.8),
 ("s4", "mechanism", "先放電燒線頭，像打火機燒尼龍線，縮成小圓球。",
  ["先放電燒線頭", "像打火機燒尼龍線", "縮成小圓球"], ["First a spark melts the tip,", "like a lighter on nylon thread,", "shrinking into a tiny ball."],
- [("spark", "放電"), ("lighter", "打火機"), ("ball", "小圓球")], ["放電", "小圓球"], ["Waterloo 大學打線研究、美國專利；示意"], 6.0, 1.6),
+ [("spark", "放電"), ("lighter", "打火機"), ("ball", "小圓球")], ["放電", "小圓球"], ["Waterloo 大學打線研究、美國專利；示意"], 5.1, 0.8),
 ("s5", "mechanism", "劈刀把小球壓在焊墊，加熱，再用超音波來回搓。",
  ["劈刀把小球", "壓在焊墊", "加熱再用超音波來回搓"], ["The capillary presses the ball", "onto the pad,", "heats it and scrubs it with ultrasound."],
- [("press", "壓在焊墊"), ("heat", "加熱"), ("us", "超音波"), ("rub", "來回搓")], ["壓在焊墊", "超音波"], ["Fraunhofer、Waterloo 熱超音波接合研究；示意"], 6.2, 1.8),
+ [("press", "壓在焊墊"), ("heat", "加熱"), ("us", "超音波"), ("rub", "來回搓")], ["壓在焊墊", "超音波"], ["Fraunhofer、Waterloo 熱超音波接合研究；示意"], 5.1, 0.8),
 ("s6", "mechanism", "像兩塊黏土搓掉表面的灰，就黏成一塊，不是融化。",
  ["像兩塊黏土", "搓掉表面的灰", "就黏成一塊", "不是融化"], ["Like two lumps of clay,", "rub off the dust,", "and they become one,", "without melting."],
- [("clay", "黏土"), ("dust", "表面的灰"), ("one", "黏成一塊"), ("melt", "不是融化")], ["黏土", "不是融化"], ["Fraunhofer、Waterloo 熱超音波接合研究；示意"], 6.6, 1.8),
+ [("clay", "黏土"), ("dust", "表面的灰"), ("one", "黏成一塊"), ("melt", "不是融化")], ["黏土", "不是融化"], ["Fraunhofer、Waterloo 熱超音波接合研究；示意"], 5.3, 0.8),
 ("s7", "mechanism", "再拉出一道弧線，壓在外面的腳，線夾一拉就斷了。",
  ["再拉出一道弧線", "壓在外面的腳", "線夾一拉", "就斷了"], ["Then it draws a loop,", "presses onto the lead,", "the clamp pulls,", "and the wire snaps."],
- [("arc", "弧線"), ("foot", "外面的腳"), ("clamp", "線夾"), ("cut", "斷了")], ["弧線", "線夾"], ["Waterloo 大學打線研究、美國專利；示意"], 7.8, 2.2),
+ [("arc", "弧線"), ("foot", "外面的腳"), ("clamp", "線夾"), ("cut", "斷了")], ["弧線", "線夾"], ["Waterloo 大學打線研究、美國專利；示意"], 5.3, 0.8),
 ("s8", "payoff", "一秒約打十條，又快又便宜，所以手機、汽車很多晶片還靠它。",
  ["一秒約打十條", "又快又便宜", "所以手機汽車", "很多晶片還靠它"], ["About ten wires a second,", "fast and cheap,", "so many chips in phones and cars", "still rely on it."],
- [("ten", "十條"), ("cheap", "便宜"), ("phone", "手機"), ("still", "還靠它")], ["十條", "便宜"], ["K&S、ASMPT、ESEC 機型與 IEEE 實測"], 7.0, 1.4),
+ [("ten", "十條"), ("cheap", "便宜"), ("phone", "手機"), ("still", "還靠它")], ["十條", "便宜"], ["K&S、ASMPT、ESEC 機型與 IEEE 實測"], 6.2, 0.8),
 ("s9", "mechanism", "線以前用金，因為金太貴，多換成銅，但銅會氧化，要吹保護氣。",
  ["線以前用金", "因為金太貴", "多換成銅", "但銅會氧化", "要吹保護氣"], ["Wires used to be gold.", "Gold is too expensive,", "so many switched to copper.", "But copper oxidizes,", "so it needs shielding gas."],
- [("gold", "用金"), ("pricey", "太貴"), ("cu", "換成銅"), ("ox", "氧化"), ("gas", "保護氣")], ["金", "銅", "保護氣"], ["日月光、安靠公司資料；NTU 銅線打線講義"], 7.6, 1.4),
+ [("gold", "用金"), ("pricey", "太貴"), ("cu", "換成銅"), ("ox", "氧化"), ("gas", "保護氣")], ["金", "銅", "保護氣"], ["日月光、安靠公司資料；NTU 銅線打線講義"], 6.2, 0.8),
 ("s10", "payoff", "封裝廠有日月光、安靠，打線機大廠是庫力索法。",
  ["封裝廠有日月光安靠", "打線機大廠", "是庫力索法"], ["Packaging houses: ASE and Amkor.", "The big bonder maker", "is Kulicke & Soffa."],
- [("ase", "日月光"), ("amkor", "安靠"), ("maker", "打線機大廠"), ("kns", "庫力索法")], ["日月光", "安靠", "庫力索法"], ["日月光、安靠、K&S 官網；截至 11/27"], 5.6, 1.2),
+ [("ase", "日月光"), ("amkor", "安靠"), ("maker", "打線機大廠"), ("kns", "庫力索法")], ["日月光", "安靠", "庫力索法"], ["日月光、安靠、K&S 官網；截至 11/27"], 5.3, 0.85),
 ("s11", "cta", "線接好了，晶片還光著。下一集看封裝材料：導線架、封裝膠、錫球。金線會被銅取代嗎？留言打線，拿完整資料。",
  ["線接好了", "晶片還光著", "下一集看封裝材料", "導線架封裝膠錫球", "金線會被銅取代嗎？", "留言打線", "拿完整資料"], ["The wires are done,", "but the chip is still bare.", "Next: packaging materials,", "lead frames, mold, solder balls.", "Will copper replace gold?", "Comment \"wire bonding\"", "for the full notes."],
- [("done", "接好了"), ("bare", "光著"), ("next", "下一集"), ("mat", "導線架"), ("q", "取代嗎"), ("kw", "留言")], ["封裝材料", "金線", "銅"], ["示意動畫，不是量測"], 9.4, 1.2),
+ [("done", "接好了"), ("bare", "光著"), ("next", "下一集"), ("mat", "導線架"), ("q", "取代嗎"), ("kw", "留言")], ["封裝材料", "金線", "銅"], ["示意動畫，不是量測"], 10.0, 0.8),
 ]
 SAMEPARA = set()
 scenes = []
@@ -115,15 +115,15 @@ C_ALL = [("s4:start-1", "s6:start-1"), ("s7:start-1", "s8:start-1")]
 for l in ["cHeat", "cDie", "cDieBg", "cLead", "cLeadBg", "cEfo", "cCap", "cCapUp", "cJawLl", "cJawRl"]: vis(l, C_ALL)
 # ── s7 劈刀時間表（全部從 s7:arc 起算）：沿線弧線性走（頭尾兩步放慢）→ 第二焊點 → 抬起留線尾（線夾鬆）→ 線夾夾住 → 上拉拉斷 → 線夾鬆開 → 回到打火棒旁放電成球 → 移到下一顆焊墊 ──
 LOOP = INFO["LOOP"]; NL = len(LOOP) - 1
-L0 = "s7:arc-24"
-STEPS = [5, 4] + [3] * (NL - 4) + [4, 5]
+L0 = "s7:start+2"
+STEPS = [4, 3] + [2] * (NL - 4) + [3, 4]
 T_ = [0]
 for d in STEPS: T_.append(T_[-1] + d)
-E7 = T_[-1] - 24                                   # 線弧走完（相對 arc）
-A7 = lambda n: off("s7:arc", E7 + n)              # 從「壓到引腳」起算
-vis("cTail", [("s4:start-1", "s4:spark+3"), (A7(36), A7(74))])
-vis("cBall", [("s4:spark+3", "s5:press"), (A7(74), "s8:start-1")])
-vis("cSpark", [("s4:spark-2", "s4:spark+5"), (A7(70), A7(76))])
+E7 = T_[-1] + 2                                    # 線弧走完（相對 s7:start）
+A7 = lambda n: off("s7:start", E7 + n)            # 從「壓到引腳」起算
+vis("cTail", [("s4:start-1", "s4:spark+3"), ("s7:cut-2", "s8:start-1")])
+vis("cBall", [("s4:spark+3", "s5:press")])
+vis("cSpark", [("s4:spark-2", "s4:spark+5")])
 vis("cBallB", [("s5:press", "s6:start-1"), ("s7:start-1", "s8:start-1")])
 vis("cUS", [("s5:us-4", "s5:rub+30"), (A7(0), A7(16))]); vis("cGlow", [("s5:heat-2", "s6:start-1"), ("s7:start-1", L0)])
 vis("cStitch", [(A7(0), "s8:start-1")]); vis("cTail2", [])
@@ -134,7 +134,7 @@ vis("dOx", [("s6:start-1", "s7:start-1")]); VIS.append(hid("dOx", "s6:dust", "s7
 vis("dImc", [("s6:dust+10", "s7:start-1")], 18); vis("dAtom", [("s6:dust+10", "s7:start-1")], 8)
 E_ALL = [("s9:start-1", "s10:start-1")]
 for l in ["eBase", "eAu", "eCu", "eCu2", "eSpool", "eUp"]: vis(l, E_ALL)
-vis("eCuOx", [("s9:ox-2", "s10:start-1")], 2); vis("eSpk1", [("s9:ox-6", "s9:ox")])
+vis("eCuOx", [("s9:ox-26", "s10:start-1")], 2); vis("eSpk1", [("s9:ox-32", "s9:ox-26")])
 vis("eGas", [("s9:gas-10", "s10:start-1")], 6); vis("eSpk2", [("s9:gas+10", "s9:gas+16")]); vis("eCuOk", [("s9:gas+14", "s10:start-1")], 2); vis("eCrack", [])
 
 vis("moldA", [("s11:next-6", FAR)]); vis("ballsA", [("s11:mat+10", FAR)])
@@ -152,17 +152,15 @@ for i in range(1, NL + 1):                                                    # 
     ny_ = LOOP[i][1] + (0.1 if i == NL else 0.0)
     CAPM += MOVE(off(L0, T_[i - 1]), STEPS[i - 1], dx=LOOP[i][0] - cur[0], dy=ny_ - cur[1], lin=True); cur = [LOOP[i][0], ny_]
 CAPM += MOVE(A7(18), 8, dy=1.0); cur[1] += 1.0                                # 線夾鬆著抬起，留出線尾
-CAPM += [mv("cJawLl", A7(28), FAR, 5, dx=0.2), mv("cJawRl", A7(28), FAR, 5, dx=-0.2)]          # 線夾夾住（停 0.5 秒）
-CAPM += MOVE(A7(36), 8, dy=2.0); cur[1] += 2.0                                # 夾著往上拉 → 線在魚尾根部斷，線尾留在劈刀下
-CAPM += [mv("cJawLl", A7(48), FAR, 5, dx=-0.2), mv("cJawRl", A7(48), FAR, 5, dx=0.2)]          # 線夾鬆開
-CAPM += MOVE(A7(52), 18, dx=CX - cur[0], dy=HOVY - cur[1]); cur = [CX, HOVY]  # 回到打火棒旁（固定位置）
-CAPM += MOVE(A7(84), 14, dx=PAD2X - CX)                                       # 放電成球後，移到下一顆焊墊正上方
+CAPM += [mv("cJawLl", "s7:clamp+8", FAR, 5, dx=0.2), mv("cJawRl", "s7:clamp+8", FAR, 5, dx=-0.2)]  # 線夾夾住（對齊「線夾」）
+CAPM += MOVE("s7:cut-6", 8, dy=2.0); cur[1] += 2.0                          # 夾著往上拉 → 念到「斷了」時線在魚尾根部斷，線尾留在劈刀下
+CAPM += [mv("cJawLl", "s7:cut+8", FAR, 5, dx=-0.2), mv("cJawRl", "s7:cut+8", FAR, 5, dx=0.2)]      # 線夾鬆開
 
+CAPM += [mv("cEfo", "s4:spark+90", FAR, 14, dx=9.0)]                         # 打火棒放完電就往右擺開，不擋劈刀走的路
 # 爆炸分解（s3：打線機焊頭）：①護罩淡出 ②線軸上移 ③換能器＋劈刀往前抽出並略升（側看看得到壓電片疊）④線夾往左 ⑤打火棒往右 ⑥相機往上；標名完才組回
-B3 = "s3:start+238"
+B3 = "s3:start+166"
 EXPL = [hid("bdHood", "s3:bonder+6", B3, 12, 0.12),
-        mv("bdSpool", "s3:start+30", B3, 18, dy=1.6), mv("bdHorn", "s3:start+52", B3, 18, dx=-1.4, dy=0.9), mv("bdCap", "s3:start+52", B3, 18, dx=-1.4, dy=0.9),
-        mv("bdClamp", "s3:start+130", B3, 18, dx=-1.4), mv("bdEfo", "s3:start+176", B3, 18, dx=1.6), mv("bdCam", "s3:start+60", B3, 18, dy=1.4, dx=0.6)]
+        mv("bdHorn", "s3:start+22", B3, 16, dx=-1.4, dy=0.9), mv("bdCap", "s3:start+22", B3, 16, dx=-1.4, dy=0.9), mv("bdClamp", "s3:start+100", B3, 16, dx=-1.2, dy=0.5)]
 P = {}
 X0, X1, X2, X3, X5 = INFO["X0"], INFO["X1"], INFO["X2"], INFO["X3"], INFO["X5"]
 DKY = INFO["DK"]
@@ -177,19 +175,18 @@ P["s2"] = {"shot": [shot("start-1", X0 + 2.0, -2.5, 36, 52, 1), shot("lead-14", 
  "labels": [lab("padA", "焊墊", "Bond pad", "amber", "pad-6", "pad+39"), lab("leadA", "金屬腳（引腳）", "Lead", "blue", "pad+40", "pad+85")],
  "overlay": [sec("wb-path", "start+20", "s3:start-8", "要接起來的兩端", "示意", {"pad": "pad", "wire": "wire", "lead": "lead"})]}
 # ─── s3：打線機＋焊頭爆炸分解 ───
-P["s3"] = {"shot": [shot("start-1", X1, 6.0, 52, 18, 1, yaw=0.0), shot("start+16", X1 - 0.8, DKY + 2.0, 26, 14, 26)],
- "run": [run("bdHeat", "start", "s4:start-2", 6), run("bdSpin", "start+10", "start+44", 8)],
- "labels": [lab("bonder", "打線機", "Wire bonder", "amber", "start+4", "start+49"), lab("capB", "劈刀（陶瓷細針）", "Capillary", "amber", "start+50", "start+95"),
-            lab("horn", "超音波換能器", "Ultrasonic transducer", "blue", "start+98", "start+143"), lab("clamp", "線夾", "Wire clamp", "blue", "start+145", "start+190"),
-            lab("efo", "打火棒", "EFO wand", "blue", "start+192", "start+237")],
+P["s3"] = {"shot": [shot("start-1", X1, 6.0, 52, 18, 1, yaw=0.0), shot("start+2", X1 - 0.8, DKY + 2.0, 26, 14, 18)],
+ "run": [run("bdHeat", "start", "s4:start-2", 6)],
+ "labels": [lab("capB", "劈刀（陶瓷細針）", "Capillary", "amber", "start+26", "start+71"), lab("horn", "超音波換能器", "Ultrasonic transducer", "blue", "start+73", "start+118"),
+            lab("clamp", "線夾", "Wire clamp", "blue", "start+120", "start+165")],
  "overlay": [sec("wb-needle", "start+24", "s4:start-8", "像縫紉機針，但不是刺穿", "示意", {"cap": "cap", "sew": "sew", "mid": "mid", "hair": "hair"})]}
 # ─── s4：放電燒線頭 → 小圓球 ───
-P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 8.6, 34, 8, 20)],
+P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 9.4, 40, 8, 20)],
  "run": [run("cArcFlash", "spark-2", "spark+5", 1), run("cHeatOn", "start", "s6:start-2", 6)],
- "labels": [lab("cEfoA", "打火棒放電", "EFO spark", "blue", "spark-8", "spark+37"), lab("cFabA", "小圓球", "Free air ball", "amber", "spark+38", "spark+83")],
+ "labels": [lab("cEfoA", "打火棒放電", "EFO spark", "blue", "spark-6", "spark+39"), lab("cFabA", "小圓球", "Free air ball", "amber", "spark+41", "spark+86")],
  "overlay": [sec("wb-steps", "start+20", "s6:start-8", "打一條線的步驟", "示意", {"s1": "spark", "s2": "s5:press", "s3": "s7:arc", "s4": "s7:foot", "s5": "s7:cut"})]}
 # ─── s5：壓在焊墊、加熱、超音波 ───
-P["s5"] = {"shot": [shot("start-1", X2 - 0.5, 7.0, 26, 8, 1), shot("press-16", X2 - 1.0, 5.4, 22, 10, 16)],
+P["s5"] = {"shot": [shot("start-1", X2 - 0.5, 7.0, 26, 8, 1), shot("press-16", X2 - 1.0, 6.8, 30, 10, 16)],
  "run": [run("cBondHot", "heat", "s6:start-2", 6), run("cUSvib", "us", "rub+30", 4), run("cUSring", "us", "rub+30", 4)],
  "labels": [lab("cBallA", "第一焊點（壓扁的球）", "First bond (ball)", "amber", "press+4", "press+49"), lab("cCapA", "超音波來回搓", "Ultrasonic scrub", "blue", "us-2", "us+43")]}
 # ─── s6：焊點剖面：搓掉氧化膜、原子擠進去 ───
@@ -199,11 +196,10 @@ P["s6"] = {"shot": [shot("start-1", X3, 6.0, 44, 14, 1, yaw=0.0), shot("dust-10"
  "labels": [lab("dOxA", "表面那層灰（氧化膜）", "Oxide film", "blue", "clay+2", "clay+47"), lab("dImcA", "接合層：原子擠在一起", "Bond layer", "amber", "one-2", "one+43")],
  "overlay": [sec("wb-clay", "start+20", "s7:start-8", "像搓黏土，不是焊錫", "示意（溫度約一百多度）", {"clay": "clay", "dust": "dust", "one": "one", "melt": "melt"})]}
 # ─── s7：拉弧線 → 第二焊點 → 線夾拉斷 ───
-P["s7"] = {"shot": [shot("start-1", X2 + 3.0, 9.0, 58, 10, 1, yaw=0.0), shot(A7(56), X2 + 1.0, 8.4, 56, 10, 24)],
- "run": [run("cUSvib", A7(0), A7(16), 4), run("cUSring", A7(0), A7(16), 4), run("cHeatOn", "start", "s8:start-2", 6), run("cArcFlash", A7(70), A7(76), 1)],
- "labels": [lab("cLoopA", "線弧（從劈刀拉出）", "Wire loop", "amber", off(L0, 6), off(L0, 51)), lab("cStitchA", "第二焊點（魚尾形）", "Second bond (stitch)", "amber", A7(0), A7(45)),
-            lab("cClampA", "線夾夾住、上拉拉斷", "Clamp grips and pulls", "blue", A7(46), A7(91))],
- "overlay": [sec("wb-steps", "start+16", "s8:start-8", "打一條線的步驟", "示意", {"s1": "s4:spark", "s2": "s5:press", "s3": "arc", "s4": A7(0), "s5": A7(36)})]}
+P["s7"] = {"shot": [shot("start-1", X2 + 3.0, 9.0, 58, 10, 1, yaw=0.0), shot(A7(20), X2 + 3.0, 9.4, 58, 10, 20)],
+ "run": [run("cUSvib", A7(0), A7(16), 4), run("cUSring", A7(0), A7(16), 4), run("cHeatOn", "start", "s8:start-2", 6)],
+ "labels": [lab("cLoopA", "線弧（從劈刀拉出）", "Wire loop", "amber", off(L0, 0), off(L0, 45)), lab("cStitchA", "第二焊點（魚尾形）", "Second bond (stitch)", "amber", A7(0), A7(45)),
+            lab("cClampA", "線夾夾住、上拉拉斷", "Clamp grips and pulls", "blue", "clamp+6", "clamp+51")]}
 # ─── s8：一秒約十條，整顆晶片打完 ───
 P["s8"] = {"shot": [shot("start-1", X0, -3.5, 48, 44, 1, yaw=0.0), shot("cheap", X0, -4.0, 56, 40, 60)],
  "run": [run("currentA", "phone", "s9:start-2", 8)],
@@ -211,14 +207,14 @@ P["s8"] = {"shot": [shot("start-1", X0, -3.5, 48, 44, 1, yaw=0.0), shot("cheap",
  "overlay": [sec("wb-speed", "start+20", "s9:start-8", "又快又便宜", "機型資料與實測：每秒約 8.5～17 條", {"ten": "ten", "cheap": "cheap", "phone": "phone", "still": "still"})]}
 # ─── s9：金線 → 銅線，保護氣 ───
 P["s9"] = {"shot": [shot("start-1", X5, 12.0, 80, 10, 1, yaw=0.0), shot("ox-14", X5 + 5.5, 11.0, 66, 10, 30)],
- "run": [run("eSpkF1", "ox-6", "ox", 1), run("eGasA", "gas-8", "s10:start-2", 8), run("eGasB", "gas-8", "s10:start-2", 8), run("eGasIn", "gas-10", "s10:start-2", 8), run("eSpkF2", "gas+10", "gas+16", 1)],
- "labels": [lab("eAuA", "金線：燒出來的球亮", "Gold: bright ball", "amber", "gold-2", "gold+43"), lab("eCuA", "銅線沒保護：球氧化變暗", "Copper, no gas: oxidized", "amber", "ox-2", "ox+43"),
-            lab("eGasA", "先吹保護氣再放電：球亮", "Gas first: bright ball", "blue", "gas+16", "gas+61", xy=[540, 300])],
+ "run": [run("eSpkF1", "ox-32", "ox-26", 1), run("eGasA", "gas-8", "s10:start-2", 8), run("eGasB", "gas-8", "s10:start-2", 8), run("eGasIn", "gas-10", "s10:start-2", 8), run("eSpkF2", "gas+10", "gas+16", 1)],
+ "labels": [lab("eAuA", "金線：燒出來的球亮", "Gold: bright ball", "amber", "gold-2", "gold+43"), lab("eCuA", "銅線沒保護：球氧化變暗", "Copper, no gas: oxidized", "amber", "ox-26", "ox+19"),
+            lab("eGasA", "先吹保護氣再放電：球亮", "Gas first: bright ball", "blue", "ox+21", "ox+66", xy=[540, 300])],
  "overlay": [sec("wb-cu", "start+20", "s10:start-8", "金線換銅線", "日月光、安靠公司資料（示意，不標價格）", {"gold": "gold", "pricey": "pricey", "cu": "cu", "ox": "ox", "gas": "gas"})]}
 # ─── s10：公司 ───
 P["s10"] = {"shot": [shot("start-1", X1, 6.0, 50, 16, 1, yaw=0.0)],
  "run": [run("bdHeat", "start", "s11:start-2", 6), run("bdBob", "start", "s11:start-2", 6)],
- "overlay": [sec("wb-co", "start-4", "s11:start-14", "打線產業", "日月光、安靠、K&S 官網；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
+ "overlay": [sec("wb-co", "start-4", "s11:start-2", "打線產業", "日月光、安靠、K&S 官網；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
 # ─── s11：預告封裝材料 ───
 P["s11"] = {"shot": [shot("start-1", X0 + 2.0, -4.0, 58, 40, 1, yaw=0.0), shot("next-6", X0 + 3.0, -4.0, 66, 38, 40)],
  "shift": [mv("moldA", T0, "s11:next+4", 20, dy=2.5)],
