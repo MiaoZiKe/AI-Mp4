@@ -98,7 +98,8 @@ export const Ops: React.FC<{ model: ProductModel; s: State3D }> = ({ model, s })
         if (d.track !== false && ln === 0) { r.mat.opacity = O.trackO * vis; pts0.slice(1).forEach((p, i) => rod(`${id}-t${i}`, pts0[i], p, O.track, r.mat)); }
         // accel（2026/11/16 tech-offer）：受重力的落下（位置＝u²，越掉越快），水滴、硬幣用
         const at = (u0: number) => {
-          const u = d.accel ? u0 * u0 : u0;
+          // rise（2026/11/27 tech-precursor）：氣泡在液體裡上升，先加速、很快趨近終端速度（前 25% 路徑二次加速，之後等速）
+          const u = d.accel ? u0 * u0 : d.rise ? (u0 < 0.25 ? 2 * u0 * u0 : u0 - 0.125) / 0.875 : u0;
           let dist = u * total, k = 0;
           while (k < seg.length - 1 && dist > seg[k]) { dist -= seg[k]; k++; }
           const dir = pts[k + 1].clone().sub(pts[k]).normalize();

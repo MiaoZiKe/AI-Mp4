@@ -1,0 +1,2931 @@
+{
+ "slug": "tech-precursor",
+ "prevEpisode": "2-13：濺鍍靶材",
+ "title": "前驅物（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B 原句（沉穩專業）；音高關卡 tts-pitch-take.sh；本支尚未配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "前驅物送料系統（示意）",
+    "en": "PRECURSOR DELIVERY",
+    "field": "60 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "co",
+    "label": "前驅物供應商",
+    "en": "PRECURSOR SUPPLIERS",
+    "field": "60 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "前驅物",
+   "怎麼送？"
+  ],
+  "sub": "原子層沉積的原料",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一集說，改用氣體原料。氣體，從哪來？",
+   "tts": "前一集說，改用氣體原料。氣體，從哪來？",
+   "subtitle": {
+    "zh": "上一集說\n改用氣體原料\n氣體，從哪來？",
+    "en": "Last time: switch | to gas raw materials. | Where does gas come from?"
+   },
+   "keywords": [
+    "氣體原料",
+    "從哪來"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "上一集"
+    },
+    {
+     "id": "q",
+     "text": "從哪來"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "前一集（濺鍍靶材）結尾預告；示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：改用氣體原料",
+     "title": "氣體從哪來？",
+     "size": 118,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": -0.5,
+      "y": 4.6,
+      "d": 54,
+      "elev": 12,
+      "yaw": -0.2
+     },
+     {
+      "at": "start",
+      "dur": 150,
+      "x": -0.5,
+      "y": 4.8,
+      "d": 48,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "cabBase",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabBase",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabBase",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabWall",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabWall",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabWall",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbBase",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbBase",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bbBase",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vshell",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vshell",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vshell",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "liq",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "liq",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "liq",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lid",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lid",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "lid",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dip",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dip",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "dip",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "jack",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "jack",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "jack",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gsrc",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gsrc",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "gsrc",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mfc",
+      "at": "s2:cab+16",
+      "until": "s3:start-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mfc",
+      "at": "s4:start+70",
+      "until": "s4:start+242",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mfc",
+      "at": "s6:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampBase",
+      "at": "s1:start-40",
+      "until": "s2:cab+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampBase",
+      "at": "s3:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampShell",
+      "at": "s1:start-40",
+      "until": "s2:cab+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampShell",
+      "at": "s3:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampLid",
+      "at": "s1:start-40",
+      "until": "s2:cab+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampLid",
+      "at": "s3:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT0",
+      "at": "s1:start-40",
+      "until": "s2:cab+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT0",
+      "at": "s3:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT1",
+      "at": "s1:start-40",
+      "until": "s2:cab+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT1",
+      "at": "s3:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT2",
+      "at": "s1:start-40",
+      "until": "s2:cab+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT2",
+      "at": "s3:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT3",
+      "at": "s1:start-40",
+      "until": "s2:cab+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "ampT3",
+      "at": "s3:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hline",
+      "at": "s1:start-40",
+      "until": "s4:start+72",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hline",
+      "at": "s5:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hjk0",
+      "at": "s1:start-40",
+      "until": "s4:start+72",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hjk0",
+      "at": "s5:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hjk1",
+      "at": "s1:start-40",
+      "until": "s4:start+72",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hjk1",
+      "at": "s5:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hjk2",
+      "at": "s1:start-40",
+      "until": "s4:start+72",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hjk2",
+      "at": "s5:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vbox",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vbox",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vbox",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vfront",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vfront",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vfront",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vbase",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vbase",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vbase",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vblock",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vblock",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vblock",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaA",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaA",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaA",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaB",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaB",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaB",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaP",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaP",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vdiaP",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vpipes",
+      "at": "s1:start-40",
+      "until": "s4:start+152",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vpipes",
+      "at": "s5:start-2",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "vpipes",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chb",
+      "at": "s1:start-40",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "chb",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cwf",
+      "at": "s1:start-40",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cwf",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cpump",
+      "at": "s1:start-40",
+      "until": "s7:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cpump",
+      "at": "s8:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hotCmp",
+      "at": "s1:start-40",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "hotCmp",
+      "at": "s7:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "coldCmp",
+      "at": "s1:start-40",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "coldCmp",
+      "at": "s7:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cmpValve",
+      "at": "s1:start-40",
+      "until": "s6:start-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cmpValve",
+      "at": "s7:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "crust1",
+      "at": "s1:start-40",
+      "until": "s6:cold+4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "crust1",
+      "at": "s7:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "crust2",
+      "at": "s1:start-40",
+      "until": "s6:cold+40",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "crust2",
+      "at": "s7:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "crust3",
+      "at": "s1:start-40",
+      "until": "s6:cold+78",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "crust3",
+      "at": "s7:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "sub",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "sub",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "surf",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "surf",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h0",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h0",
+      "at": "s8:one+0",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al0",
+      "at": "s1:start-40",
+      "until": "s8:one+0",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al0",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me0",
+      "at": "s1:start-40",
+      "until": "s8:one+0",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me0",
+      "at": "s8:atom-14",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh20",
+      "at": "s1:start-40",
+      "until": "s8:atom-14",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh20",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h1",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h1",
+      "at": "s8:one+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al1",
+      "at": "s1:start-40",
+      "until": "s8:one+4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al1",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me1",
+      "at": "s1:start-40",
+      "until": "s8:one+4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me1",
+      "at": "s8:atom-10",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh21",
+      "at": "s1:start-40",
+      "until": "s8:atom-10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh21",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h2",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h2",
+      "at": "s8:one+8",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al2",
+      "at": "s1:start-40",
+      "until": "s8:one+8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al2",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me2",
+      "at": "s1:start-40",
+      "until": "s8:one+8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me2",
+      "at": "s8:atom-6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh22",
+      "at": "s1:start-40",
+      "until": "s8:atom-6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh22",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h3",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h3",
+      "at": "s8:one+12",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al3",
+      "at": "s1:start-40",
+      "until": "s8:one+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al3",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me3",
+      "at": "s1:start-40",
+      "until": "s8:one+12",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me3",
+      "at": "s8:atom-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh23",
+      "at": "s1:start-40",
+      "until": "s8:atom-2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh23",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h4",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h4",
+      "at": "s8:one+16",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al4",
+      "at": "s1:start-40",
+      "until": "s8:one+16",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al4",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me4",
+      "at": "s1:start-40",
+      "until": "s8:one+16",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me4",
+      "at": "s8:atom+2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh24",
+      "at": "s1:start-40",
+      "until": "s8:atom+2",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh24",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h5",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h5",
+      "at": "s8:one+20",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al5",
+      "at": "s1:start-40",
+      "until": "s8:one+20",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al5",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me5",
+      "at": "s1:start-40",
+      "until": "s8:one+20",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me5",
+      "at": "s8:atom+6",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh25",
+      "at": "s1:start-40",
+      "until": "s8:atom+6",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh25",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h6",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h6",
+      "at": "s8:one+24",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al6",
+      "at": "s1:start-40",
+      "until": "s8:one+24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al6",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me6",
+      "at": "s1:start-40",
+      "until": "s8:one+24",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me6",
+      "at": "s8:atom+10",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh26",
+      "at": "s1:start-40",
+      "until": "s8:atom+10",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh26",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h7",
+      "at": "s1:start-40",
+      "until": "s8:start-8",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "h7",
+      "at": "s8:one+28",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al7",
+      "at": "s1:start-40",
+      "until": "s8:one+28",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "al7",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me7",
+      "at": "s1:start-40",
+      "until": "s8:one+28",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "me7",
+      "at": "s8:atom+14",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh27",
+      "at": "s1:start-40",
+      "until": "s8:atom+14",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "oh27",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film",
+      "at": "s1:start-40",
+      "until": "s8:atom+22",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "film",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "imp",
+      "at": "s1:start-40",
+      "until": "s9:atom-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "imp",
+      "at": "s10:start-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "cabWall",
+      "at": "s1:start-40",
+      "until": "s1:q+30",
+      "opacity": 0.14,
+      "dur": 10
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s1:start-40",
+      "until": "s2:start-2",
+      "dur": 1,
+      "dx": -12.0
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s1:start-40",
+      "until": "s2:start-2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "vshell",
+      "at": "s1:start-40",
+      "until": "s2:start-2",
+      "opacity": 0.2,
+      "dur": 8
+     },
+     {
+      "layer": "jack",
+      "at": "s1:start-40",
+      "until": "s2:start-2",
+      "opacity": 0.3,
+      "dur": 8
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s3:open-2",
+      "until": "s4:start+272",
+      "dur": 24,
+      "dx": -12.0
+     },
+     {
+      "layer": "cabWall",
+      "at": "s3:open+4",
+      "until": "s6:start-2",
+      "opacity": 0.14,
+      "dur": 14
+     },
+     {
+      "layer": "lid",
+      "at": "s3:open+50",
+      "until": "s4:start+272",
+      "dur": 26,
+      "dy": 8.0
+     },
+     {
+      "layer": "jack",
+      "at": "s3:open+104",
+      "until": "s4:start+272",
+      "dur": 26,
+      "dy": 7.0
+     },
+     {
+      "layer": "dip",
+      "at": "s3:open+158",
+      "until": "s4:start+272",
+      "dur": 26,
+      "dy": 5.0
+     },
+     {
+      "layer": "vshell",
+      "at": "s3:open+212",
+      "until": "s4:start+272",
+      "opacity": 0.18,
+      "dur": 16
+     },
+     {
+      "layer": "mfc",
+      "at": "s4:start+6",
+      "until": "s4:start+272",
+      "dur": 24,
+      "dx": -4.2
+     },
+     {
+      "layer": "hjk0",
+      "at": "s4:start+84",
+      "until": "s4:start+272",
+      "dur": 18,
+      "dy": 1.7
+     },
+     {
+      "layer": "hjk1",
+      "at": "s4:start+96",
+      "until": "s4:start+272",
+      "dur": 18,
+      "dy": 1.7
+     },
+     {
+      "layer": "hjk2",
+      "at": "s4:start+108",
+      "until": "s4:start+272",
+      "dur": 18,
+      "dy": 1.7
+     },
+     {
+      "layer": "vblock",
+      "at": "s4:start+162",
+      "until": "s4:start+272",
+      "dur": 26,
+      "dy": 7.5
+     },
+     {
+      "layer": "vdiaA",
+      "at": "s4:start+166",
+      "until": "s4:start+272",
+      "dur": 24,
+      "dy": 3.8
+     },
+     {
+      "layer": "vdiaB",
+      "at": "s4:start+166",
+      "until": "s4:start+272",
+      "dur": 24,
+      "dy": 3.8
+     },
+     {
+      "layer": "vdiaP",
+      "at": "s4:start+166",
+      "until": "s4:start+272",
+      "dur": 24,
+      "dy": 3.8
+     },
+     {
+      "layer": "vfront",
+      "at": "s4:start+152",
+      "until": "s4:start+272",
+      "opacity": 0.18,
+      "dur": 10
+     },
+     {
+      "layer": "ampLid",
+      "at": "s2:cab+20",
+      "until": "s12:start+400",
+      "dur": 18,
+      "dy": 5.0
+     },
+     {
+      "layer": "ampT3",
+      "at": "s2:cab+30",
+      "until": "s12:start+400",
+      "dur": 18,
+      "dy": 3.6
+     },
+     {
+      "layer": "ampT2",
+      "at": "s2:cab+36",
+      "until": "s12:start+400",
+      "dur": 18,
+      "dy": 2.4
+     },
+     {
+      "layer": "ampT1",
+      "at": "s2:cab+42",
+      "until": "s12:start+400",
+      "dur": 18,
+      "dy": 1.2
+     },
+     {
+      "layer": "ampShell",
+      "at": "s2:cab+48",
+      "until": "s12:start+400",
+      "opacity": 0.2,
+      "dur": 12
+     },
+     {
+      "layer": "vdiaA",
+      "at": "s7:open-2",
+      "until": "s7:close-4",
+      "dur": 7,
+      "dy": 0.32
+     }
+    ],
+    "run": [
+     {
+      "id": "jackGlow",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "liqWarm",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "bubA",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "bubB",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "bubC",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "vapHi",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "ripple",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "carrierIn",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-hook",
+      "at": "q",
+      "until": "s2:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 14 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.2,
+   "holdSec": 2.1,
+   "pauseAfter": 2.1
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "這種原料叫前驅物，像做菜前備好的醬料，裝在氣櫃裡，有液體也有固體。",
+   "tts": "這種原料叫前驅物，像做菜前備好的醬料，裝在氣櫃裡，有液體也有固體。",
+   "subtitle": {
+    "zh": "這種原料叫前驅物\n像做菜前備好\n的醬料\n裝在氣櫃裡\n有液體也有固體",
+    "en": "This raw material is a precursor, | like a sauce prepared | before cooking, | kept in a gas cabinet, | as liquid or solid."
+   },
+   "keywords": [
+    "前驅物",
+    "醬料",
+    "固體"
+   ],
+   "cues": [
+    {
+     "id": "name",
+     "text": "前驅物"
+    },
+    {
+     "id": "sauce",
+     "text": "醬料"
+    },
+    {
+     "id": "cab",
+     "text": "氣櫃"
+    },
+    {
+     "id": "solid",
+     "text": "固體"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "默克（Merck）產品頁；Entegris 部落格；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": 0.0,
+      "y": 5.0,
+      "d": 60,
+      "elev": 18,
+      "yaw": 0.2
+     },
+     {
+      "at": "cab+12",
+      "dur": 1,
+      "x": -26.0,
+      "y": 2.4,
+      "d": 34,
+      "elev": 20,
+      "yaw": -0.1
+     }
+    ],
+    "run": [
+     {
+      "id": "ampHeat",
+      "at": "cab+16",
+      "ramp": 10,
+      "until": "s3:start-2"
+     },
+     {
+      "id": "sublime",
+      "at": "cab+44",
+      "ramp": 8,
+      "until": "s3:start-2"
+     },
+     {
+      "id": "jackGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "cab+14"
+     }
+    ],
+    "labels": [
+     {
+      "part": "amp",
+      "text": "固體：托盤疊層",
+      "en": "Solid: stacked trays",
+      "color": "amber",
+      "at": "cab+54",
+      "until": "s3:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-kinds",
+      "at": "start+20",
+      "until": "s3:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "前驅物：原料的外型",
+      "tag": "示意",
+      "t": {
+       "name": {
+        "at": "name"
+       },
+       "sauce": {
+        "at": "sauce"
+       },
+       "cab": {
+        "at": "cab"
+       },
+       "solid": {
+        "at": "solid"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 7.4,
+   "holdSec": 1.6,
+   "pauseAfter": 1.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "先拆開起泡器，裡面有液體和一根插管。",
+   "tts": "先拆開起泡器，裡面有液體和一根插管。",
+   "subtitle": {
+    "zh": "先拆開起泡器\n裡面有液體\n和一根插管",
+    "en": "First, open the bubbler: | it holds liquid | and one dip tube."
+   },
+   "keywords": [
+    "起泡器",
+    "液體",
+    "插管"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "拆開"
+    },
+    {
+     "id": "bub",
+     "text": "起泡器"
+    },
+    {
+     "id": "liq",
+     "text": "液體"
+    },
+    {
+     "id": "dip",
+     "text": "插管"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Strem 起泡器文章；專利 US7562672；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 0.0,
+      "y": 7.0,
+      "d": 64,
+      "elev": 20,
+      "yaw": 0.1
+     },
+     {
+      "at": "open+52",
+      "dur": 40,
+      "x": 0.0,
+      "y": 8.4,
+      "d": 70,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "bubA",
+      "at": "start",
+      "ramp": 6,
+      "until": "open+210"
+     },
+     {
+      "id": "bubB",
+      "at": "start",
+      "ramp": 6,
+      "until": "open+210"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cab",
+      "text": "氣櫃",
+      "en": "Gas cabinet",
+      "color": "amber",
+      "at": "open-2",
+      "until": "open+46"
+     },
+     {
+      "part": "lid",
+      "text": "進出氣閥",
+      "en": "In/out valves",
+      "color": "blue",
+      "at": "open+56",
+      "until": "open+102"
+     },
+     {
+      "part": "jack",
+      "text": "加熱套",
+      "en": "Heating jacket",
+      "color": "amber",
+      "at": "open+110",
+      "until": "open+156"
+     },
+     {
+      "part": "dip",
+      "text": "插管",
+      "en": "Dip tube",
+      "color": "blue",
+      "at": "open+164",
+      "until": "open+210"
+     },
+     {
+      "part": "liq",
+      "text": "液體",
+      "en": "Liquid",
+      "color": "amber",
+      "at": "open+218",
+      "until": "open+264"
+     },
+     {
+      "part": "headspace",
+      "text": "頂部空間",
+      "en": "Headspace",
+      "color": "blue",
+      "at": "open+270",
+      "until": "open+316"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-bubbler",
+      "at": "start+20",
+      "until": "s4:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "起泡器怎麼拆",
+      "tag": "示意",
+      "t": {
+       "cab": {
+        "at": "open"
+       },
+       "lid": {
+        "at": "open+56"
+       },
+       "jack": {
+        "at": "open+110"
+       },
+       "dip": {
+        "at": "open+164"
+       },
+       "liq": {
+        "at": "open+218"
+       },
+       "head": {
+        "at": "open+270"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 11.4,
+   "holdSec": 8.1,
+   "pauseAfter": 8.1
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "旁邊還有載氣、加熱的管子，和閥。",
+   "tts": "旁邊還有載氣、加熱的管子，和閥。",
+   "subtitle": {
+    "zh": "旁邊還有載氣\n加熱的管子\n和閥",
+    "en": "Beside it: carrier gas, | heated pipes, | and valves."
+   },
+   "keywords": [
+    "載氣",
+    "加熱",
+    "閥"
+   ],
+   "cues": [
+    {
+     "id": "gas",
+     "text": "載氣"
+    },
+    {
+     "id": "pipe",
+     "text": "管子"
+    },
+    {
+     "id": "valve",
+     "text": "閥"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US8518484、WO2004010463、US6941963；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": -4.0,
+      "y": 5.4,
+      "d": 52,
+      "elev": 18
+     },
+     {
+      "at": "start+72",
+      "dur": 1,
+      "x": 13.0,
+      "y": 3.2,
+      "d": 40,
+      "elev": 28
+     },
+     {
+      "at": "start+150",
+      "dur": 1,
+      "x": 24.0,
+      "y": 3.6,
+      "d": 36,
+      "elev": 30
+     },
+     {
+      "at": "start+242",
+      "dur": 1,
+      "x": 6.0,
+      "y": 6.0,
+      "d": 120,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "mfcLed",
+      "at": "start+30",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "tapeGlow",
+      "at": "start+100",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "ledA",
+      "at": "start+190",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "mfc",
+      "text": "載氣流量控制",
+      "en": "Carrier gas MFC",
+      "color": "amber",
+      "at": "start+26",
+      "until": "start+72"
+     },
+     {
+      "part": "hline",
+      "text": "加熱管路",
+      "en": "Heated line",
+      "color": "amber",
+      "at": "start+90",
+      "until": "start+146"
+     },
+     {
+      "part": "vblock",
+      "text": "脈衝閥",
+      "en": "Pulse valve",
+      "color": "blue",
+      "at": "start+180",
+      "until": "start+226"
+     },
+     {
+      "part": "seat",
+      "text": "閥座",
+      "en": "Valve seat",
+      "color": "amber",
+      "at": "start+226",
+      "until": "start+272"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-path",
+      "at": "start+78",
+      "until": "s5:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "送料路徑：一路加熱保溫",
+      "tag": "示意",
+      "t": {
+       "gas": {
+        "at": "start+26"
+       },
+       "pipe": {
+        "at": "start+90"
+       },
+       "valve": {
+        "at": "start+170"
+       },
+       "back": {
+        "at": "s4:start+272"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 12.2,
+   "holdSec": 9.5,
+   "pauseAfter": 9.5
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "載氣吹進液體，像在飲料裡吹泡泡，把香味帶出來。",
+   "tts": "載氣吹進液體，像在飲料裡吹泡泡，把香味帶出來。",
+   "subtitle": {
+    "zh": "載氣吹進液體\n像在飲料裡\n吹泡泡\n把香味帶出來",
+    "en": "Carrier gas blows into the liquid, | like blowing bubbles | in a drink, | carrying the aroma out."
+   },
+   "keywords": [
+    "載氣",
+    "泡泡",
+    "香味"
+   ],
+   "cues": [
+    {
+     "id": "blow",
+     "text": "吹進液體"
+    },
+    {
+     "id": "bubble",
+     "text": "吹泡泡"
+    },
+    {
+     "id": "scent",
+     "text": "香味"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US7562672；氣泡飽和論文；示意動畫"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 0.0,
+      "y": 3.2,
+      "d": 38,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "bubA",
+      "at": "blow-6",
+      "ramp": 8,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "bubB",
+      "at": "blow-6",
+      "ramp": 8,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "bubC",
+      "at": "blow-6",
+      "ramp": 8,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "ripple",
+      "at": "blow-6",
+      "ramp": 8,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "carrierIn",
+      "at": "blow-6",
+      "ramp": 8,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "jackGlow",
+      "at": "start",
+      "ramp": 8,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "liqWarm",
+      "at": "start",
+      "ramp": 8,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "vapLow",
+      "at": "blow-2",
+      "ramp": 8,
+      "until": "scent-10"
+     },
+     {
+      "id": "vapHi",
+      "at": "scent-10",
+      "ramp": 10,
+      "until": "s6:start-4"
+     }
+    ],
+    "shift": [
+     {
+      "layer": "vshell",
+      "at": "start-2",
+      "until": "s6:start-2",
+      "opacity": 0.16,
+      "dur": 8
+     },
+     {
+      "layer": "jack",
+      "at": "start-2",
+      "until": "s6:start-2",
+      "opacity": 0.24,
+      "dur": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "dipTip",
+      "text": "燒結頭：細氣泡",
+      "en": "Sintered tip",
+      "color": "amber",
+      "at": "blow",
+      "until": "bubble-4"
+     },
+     {
+      "part": "liq",
+      "text": "氣泡帶走蒸氣",
+      "en": "Bubbles carry vapor",
+      "color": "blue",
+      "at": "bubble+6",
+      "until": "s6:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-bubble",
+      "at": "start+24",
+      "until": "s6:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "起泡器剖面",
+      "tag": "示意（不標溫度）",
+      "t": {
+       "blow": {
+        "at": "blow"
+       },
+       "bubble": {
+        "at": "bubble"
+       },
+       "scent": {
+        "at": "scent"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "holdSec": 2.0,
+   "pauseAfter": 2.0
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "管子要比瓶子再熱些，蒸氣遇冷，就像冷杯子凝水珠。",
+   "tts": "管子要比瓶子再熱些，蒸氣遇冷，就像冷杯子凝水珠。",
+   "subtitle": {
+    "zh": "管子要比瓶子\n再熱些\n蒸氣遇冷\n就像冷杯子\n凝水珠",
+    "en": "The pipe must run hotter | than the bottle. | Vapor meeting cold | is like a cold glass | beading with water."
+   },
+   "keywords": [
+    "再熱些",
+    "遇冷",
+    "凝水珠"
+   ],
+   "cues": [
+    {
+     "id": "hot",
+     "text": "再熱些"
+    },
+    {
+     "id": "cold",
+     "text": "遇冷"
+    },
+    {
+     "id": "drop",
+     "text": "凝水珠"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 WO2004010463、US8518484；示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 13.4,
+      "y": 2.6,
+      "d": 36,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "tapeGlow",
+      "at": "start",
+      "ramp": 8,
+      "until": "s7:start-4"
+     },
+     {
+      "id": "hotFlow",
+      "at": "hot-10",
+      "ramp": 8,
+      "until": "s7:start-4"
+     },
+     {
+      "id": "coldFlowA",
+      "at": "hot-10",
+      "ramp": 8,
+      "until": "cold+90"
+     },
+     {
+      "id": "coldFlowB",
+      "at": "cold+92",
+      "ramp": 8,
+      "until": "s7:start-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hotL",
+      "text": "有加熱：蒸氣順暢",
+      "en": "Heated: vapor flows",
+      "color": "amber",
+      "at": "hot",
+      "until": "cold-4"
+     },
+     {
+      "part": "coldL",
+      "text": "沒加熱：冷點",
+      "en": "Unheated: cold spot",
+      "color": "blue",
+      "at": "cold+4",
+      "until": "s7:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-cold",
+      "at": "start+24",
+      "until": "s7:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "冷杯子凝水珠",
+      "tag": "示意（不標溫度）",
+      "t": {
+       "hot": {
+        "at": "hot"
+       },
+       "cold": {
+        "at": "cold"
+       },
+       "drop": {
+        "at": "drop"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.8,
+   "holdSec": 1.6,
+   "pauseAfter": 1.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "閥一開一關，每次只送一小團蒸氣進去。",
+   "tts": "閥一開一關，每次只送一小團蒸氣進去。",
+   "subtitle": {
+    "zh": "閥一開一關\n每次只送\n一小團蒸氣進去",
+    "en": "The valve opens and closes, | sending only | a small puff of vapor."
+   },
+   "keywords": [
+    "一開一關",
+    "一小團"
+   ],
+   "cues": [
+    {
+     "id": "open",
+     "text": "一開"
+    },
+    {
+     "id": "close",
+     "text": "一關"
+    },
+    {
+     "id": "puff",
+     "text": "一小團"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US6941963；示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 31.0,
+      "y": 3.4,
+      "d": 54,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "pulseA",
+      "at": "open-2",
+      "ramp": 6,
+      "until": "close+60"
+     },
+     {
+      "id": "purgeN",
+      "at": "close+56",
+      "ramp": 6,
+      "until": "s8:start-6"
+     },
+     {
+      "id": "ledA",
+      "at": "open-6",
+      "ramp": 4,
+      "until": "close+4"
+     },
+     {
+      "id": "tapeGlow",
+      "at": "start",
+      "ramp": 8,
+      "until": "s8:start-4"
+     }
+    ],
+    "shift": [
+     {
+      "layer": "vblock",
+      "at": "start-8",
+      "until": "s8:start-2",
+      "opacity": 0.28,
+      "dur": 8
+     },
+     {
+      "layer": "vfront",
+      "at": "start-8",
+      "until": "s8:start-2",
+      "opacity": 0.12,
+      "dur": 8
+     }
+    ],
+    "labels": [
+     {
+      "part": "vblock",
+      "text": "脈衝閥開",
+      "en": "Valve open",
+      "color": "amber",
+      "at": "open-2",
+      "until": "close-6"
+     },
+     {
+      "part": "chamber",
+      "text": "進腔體",
+      "en": "To chamber",
+      "color": "blue",
+      "at": "puff+12",
+      "until": "s8:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-pulse",
+      "at": "start+30",
+      "until": "s8:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "閥一開一關，一小團",
+      "tag": "示意（不標秒數）",
+      "t": {
+       "open": {
+        "at": "open"
+       },
+       "close": {
+        "at": "close"
+       },
+       "puff": {
+        "at": "puff"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.0,
+   "holdSec": 1.7,
+   "pauseAfter": 1.7
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "到了表面，像刷油漆，一次刷一層，刷滿就停。一圈大約一個原子的厚度。",
+   "tts": "到了表面，像刷油漆，一次刷一層，刷滿就停。一圈大約一個原子的厚度。",
+   "subtitle": {
+    "zh": "到了表面\n像刷油漆\n一次刷一層\n刷滿就停\n一圈大約\n一個原子的厚度",
+    "en": "At the surface, like painting, | one coat at a time, | stop when covered. | Each cycle is about | one atom | thick."
+   },
+   "keywords": [
+    "刷油漆",
+    "刷滿就停",
+    "原子"
+   ],
+   "cues": [
+    {
+     "id": "paint",
+     "text": "刷油漆"
+    },
+    {
+     "id": "one",
+     "text": "一次刷一層"
+    },
+    {
+     "id": "full",
+     "text": "刷滿就停"
+    },
+    {
+     "id": "atom",
+     "text": "一個原子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Puurunen 2005；教學範例；示意動畫"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 58.0,
+      "y": 0.2,
+      "d": 34,
+      "elev": 40
+     },
+     {
+      "at": "one-10",
+      "dur": 30,
+      "x": 58.0,
+      "y": 0.4,
+      "d": 28,
+      "elev": 44
+     },
+     {
+      "at": "atom-30",
+      "dur": 30,
+      "x": 58.0,
+      "y": 0.4,
+      "d": 30,
+      "elev": 38
+     }
+    ],
+    "run": [
+     {
+      "id": "tmaIn",
+      "at": "paint-6",
+      "ramp": 6,
+      "until": "one+44"
+     },
+     {
+      "id": "ch4Out",
+      "at": "one+4",
+      "ramp": 6,
+      "until": "one+60"
+     },
+     {
+      "id": "tmaBnc",
+      "at": "full-16",
+      "ramp": 6,
+      "until": "full+36"
+     },
+     {
+      "id": "purge1",
+      "at": "full+38",
+      "ramp": 6,
+      "until": "full+92"
+     },
+     {
+      "id": "h2oIn",
+      "at": "atom-56",
+      "ramp": 6,
+      "until": "atom-2"
+     },
+     {
+      "id": "ch4Out2",
+      "at": "atom-14",
+      "ramp": 6,
+      "until": "atom+34"
+     },
+     {
+      "id": "purge1",
+      "at": "atom+36",
+      "ramp": 6,
+      "until": "s9:start-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "site",
+      "text": "表面位置",
+      "en": "Surface sites",
+      "color": "blue",
+      "at": "start+6",
+      "until": "paint-2"
+     },
+     {
+      "part": "tma",
+      "text": "鋁原料分子",
+      "en": "Precursor molecule",
+      "color": "amber",
+      "at": "paint+2",
+      "until": "one+30"
+     },
+     {
+      "part": "purgeA",
+      "text": "吹淨",
+      "en": "Purge",
+      "color": "blue",
+      "at": "full+34",
+      "until": "full+68"
+     },
+     {
+      "part": "filmA",
+      "text": "多一層薄片",
+      "en": "One more layer",
+      "color": "amber",
+      "at": "atom+30",
+      "until": "s9:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-ald",
+      "at": "start+24",
+      "until": "s9:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "ALD 一圈：刷一層就停",
+      "tag": "教學範例：鋁原料與水（示意）",
+      "t": {
+       "paint": {
+        "at": "paint"
+       },
+       "one": {
+        "at": "one"
+       },
+       "full": {
+        "at": "full"
+       },
+       "atom": {
+        "at": "atom"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 8.4,
+   "holdSec": 2.8,
+   "pauseAfter": 2.8
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 9,
+   "narration": "原料要非常乾淨，混進一顆雜質金屬原子，晶片就可能出問題。",
+   "tts": "原料要非常乾淨，混進一顆雜質金屬原子，晶片就可能出問題。",
+   "subtitle": {
+    "zh": "原料要非常乾淨\n混進一顆\n雜質金屬原子\n晶片就可能\n出問題",
+    "en": "The material must be very clean: | one stray | metal atom | can make a chip | go wrong."
+   },
+   "keywords": [
+    "乾淨",
+    "雜質",
+    "出問題"
+   ],
+   "cues": [
+    {
+     "id": "clean",
+     "text": "非常乾淨"
+    },
+    {
+     "id": "atom",
+     "text": "雜質"
+    },
+    {
+     "id": "bad",
+     "text": "出問題"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "廠商指南（J&K、Merck）；示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 59.6,
+      "y": 0.2,
+      "d": 26,
+      "elev": 42
+     }
+    ],
+    "run": [
+     {
+      "id": "impDrop",
+      "at": "atom-18",
+      "ramp": 4,
+      "until": "bad+30"
+     },
+     {
+      "id": "impGlow",
+      "at": "atom+10",
+      "ramp": 8,
+      "until": "s10:start-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "impA",
+      "text": "雜質金屬原子",
+      "en": "Stray metal atom",
+      "color": "amber",
+      "at": "atom+12",
+      "until": "s10:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-purity",
+      "at": "start+24",
+      "until": "s10:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "乾淨有兩把尺",
+      "tag": "示意；廠商指南",
+      "t": {
+       "clean": {
+        "at": "clean"
+       },
+       "atom": {
+        "at": "atom"
+       },
+       "bad": {
+        "at": "bad"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.2,
+   "holdSec": 1.3,
+   "pauseAfter": 1.3
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "全球少數幾家供應，德國默克、法國液空，台灣有興櫃的宇川精材。",
+   "tts": "全球少數幾家供應，德國默克、法國液空，台灣有興櫃的宇川精材。",
+   "subtitle": {
+    "zh": "全球少數幾家供應\n德國默克\n法國液空\n台灣有興櫃的\n宇川精材",
+    "en": "Only a few suppliers worldwide: | Merck of Germany, | Air Liquide of France, | and Taiwan's Pentapro, | listed on the emerging board."
+   },
+   "keywords": [
+    "德國",
+    "法國",
+    "台灣"
+   ],
+   "cues": [
+    {
+     "id": "few",
+     "text": "少數幾家"
+    },
+    {
+     "id": "de",
+     "text": "默克"
+    },
+    {
+     "id": "fr",
+     "text": "液空"
+    },
+    {
+     "id": "tw",
+     "text": "宇川"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Merck、Air Liquide、櫃買中心；截至 2026/11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 40.0,
+      "y": 2.6,
+      "d": 56,
+      "elev": 24
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-co",
+      "at": "start-4",
+      "until": "s11:start-14",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 400,
+      "avoid": false,
+      "title": "供應商",
+      "tag": "Merck 官網、Air Liquide 新聞稿、櫃買中心；截至 2026/11/27",
+      "t": {
+       "few": {
+        "at": "few"
+       },
+       "de": {
+        "at": "de"
+       },
+       "fr": {
+        "at": "fr"
+       },
+       "tw": {
+        "at": "tw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "holdSec": 1.2,
+   "pauseAfter": 1.2
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "下一集，製程用的氣體，看特用氣體。留言前驅物，拿完整資料。",
+   "tts": "下一集，製程用的氣體，看特用氣體。留言前驅物，拿完整資料。",
+   "subtitle": {
+    "zh": "下一集\n製程用的氣體\n看特用氣體\n留言前驅物\n拿完整資料",
+    "en": "Next episode: | the gases used in process, | specialty gases. | Comment \"precursor\" | for the full notes."
+   },
+   "keywords": [
+    "特用氣體",
+    "前驅物"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "gas",
+     "text": "特用氣體"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-4",
+      "dur": 1,
+      "x": 0.0,
+      "y": 4.8,
+      "d": 54,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "bubA",
+      "at": "start-8",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "bubB",
+      "at": "start-8",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "jackGlow",
+      "at": "start-8",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "liqWarm",
+      "at": "start-8",
+      "ramp": 6,
+      "until": "s12:start+400"
+     },
+     {
+      "id": "vapHi",
+      "at": "start-8",
+      "ramp": 6,
+      "until": "s12:start+400"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "precursor-next",
+      "at": "start+24",
+      "until": "s12:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：特用氣體",
+      "t": {
+       "next": {
+        "at": "next"
+       },
+       "gas": {
+        "at": "gas"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.2,
+   "holdSec": 1.0
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "特用氣體",
+     "trail": [
+      "製程用的氣體"
+     ],
+     "comment": "前驅物",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

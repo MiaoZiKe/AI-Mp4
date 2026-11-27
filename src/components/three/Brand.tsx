@@ -72,6 +72,8 @@ export const FLAGS: Record<string, FlagDef> = {
   JP: { name: "日本", w: 3, h: 2, draw: () => <><rect width={3} height={2} fill="#FFFFFF" /><circle cx={1.5} cy={1} r={0.6} fill="#BC002D" /></> },
   // 荷蘭：2:3 紅白藍三等分；紅 #AE1C28、藍 #21468B（荷蘭政府標準色）
   NL: { name: "荷蘭", w: 3, h: 2, draw: () => <><rect width={3} height={2 / 3} fill="#AE1C28" /><rect y={2 / 3} width={3} height={2 / 3} fill="#FFFFFF" /><rect y={4 / 3} width={3} height={2 / 3} fill="#21468B" /></> },
+  // 法國：2:3 藍白紅直三等分；藍 #0055A4、紅 #EF4135（法國政府標準色）
+  FR: { name: "法國", w: 3, h: 2, draw: () => <><rect width={1} height={2} fill="#0055A4" /><rect x={1} width={1} height={2} fill="#FFFFFF" /><rect x={2} width={1} height={2} fill="#EF4135" /></> },
   // 德國：3:5 黑紅金；#000000、#DD0000、#FFCE00（聯邦政府設計規範）
   DE: { name: "德國", w: 5, h: 3, draw: () => <><rect width={5} height={1} fill="#000000" /><rect y={1} width={5} height={1} fill="#DD0000" /><rect y={2} width={5} height={1} fill="#FFCE00" /></> },
   // 中華民國（台灣）：2:3 紅地 #FE0000、左上青天 #000095 佔 1/4（寬 1/2、高 1/2）、白日 12 道光芒（國旗法；以 240×160 繪製）
