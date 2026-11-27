@@ -38,7 +38,7 @@ const materials = {
   lampY: M("std", "lampY", { emissive: "lampY", ei: 0.4, rough: 0.4, metal: 0 }), lampG: M("std", "lampG", { emissive: "lampG", ei: 0.45, rough: 0.4, metal: 0 }),
   lampR: M("std", "lampR", { emissive: "lampR", ei: 0.35, rough: 0.4, metal: 0 }), estop: M("std", "estop", { rough: 0.4, metal: 0, emissive: "estop", ei: 0.15 }),
   screen: M("std", "screen", { emissive: "screen", ei: 0.5, rough: 0.3, metal: 0 }), warnY: M("std", "warnY", { rough: 0.5, metal: 0, emissive: "warnY", ei: 0.2 }),
-  pcb: M("std", "pcbC", { rough: 0.45, metal: 0.05, env: 0.35 }), pcbD: M("std", "pcbD", { rough: 0.5, metal: 0.05 }), mask: M("std", "maskC", { rough: 0.35, metal: 0.05, env: 0.4 }),
+  pcb: M("std", "pcbC", { rough: 0.8, metal: 0, env: 0.08 }) /* 防焊綠漆：霧面，翻面正對鏡頭時不反白 */, pcbD: M("std", "pcbD", { rough: 0.5, metal: 0.05 }), mask: M("std", "maskC", { rough: 0.35, metal: 0.05, env: 0.4 }),
   cap: M("std", "capC", { rough: 0.5, metal: 0.1 }), res: M("std", "resC", { rough: 0.5, metal: 0.1 }), ic: M("std", "icC", { rough: 0.35, metal: 0.2, env: 0.3 }),
   conn: M("std", "connC", { rough: 0.6, metal: 0 }), label: M("std", "labelC", { rough: 0.7, metal: 0 }),
   ceram: M("std", "ceramC", { rough: 0.5, metal: 0, env: 0.3 }), gp: M("std", "gpC", { rough: 0.4, metal: 0.2, env: 0.4 }),
