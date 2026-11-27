@@ -1,0 +1,1952 @@
+{
+ "slug": "tech-parts",
+ "prevEpisode": "2-17：研磨墊",
+ "title": "零組件耗材（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：2.5＋Iapetus＋說明 B 原句；Andy 在 AI Studio 錄音；本支不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "tool",
+    "label": "蝕刻腔體（示意）",
+    "en": "ETCH CHAMBER",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "micro",
+    "label": "零件剖面（示意）",
+    "en": "PART CROSS-SECTION",
+    "field": "10 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "耗材供應商",
+    "en": "SUPPLIERS",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "aux",
+    "label": "週邊設備（示意）",
+    "en": "SUPPORT EQUIPMENT",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "room",
+    "label": "無塵室（示意）",
+    "en": "CLEANROOM",
+    "field": "10 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "零件",
+   "一直被打薄"
+  ],
+  "sub": "腔體裡被消耗的零件",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "機台腔體裡，還有哪些零件一直被消耗？前一集，研磨墊磨壞就換。",
+   "tts": "機台腔體裡，還有哪些零件一直被消耗？前一集，研磨墊磨壞就換。",
+   "subtitle": {
+    "zh": "機台腔體裡\n還有哪些零件\n一直被消耗？\n前一集\n研磨墊磨壞\n就換",
+    "en": "Inside the chamber, | which parts keep | getting used up? | Last episode: | a worn pad | gets replaced."
+   },
+   "keywords": [
+    "腔體",
+    "消耗",
+    "研磨墊"
+   ],
+   "cues": [
+    {
+     "id": "cham",
+     "text": "腔體"
+    },
+    {
+     "id": "used",
+     "text": "消耗"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "pad",
+     "text": "研磨墊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：研磨墊磨壞就換",
+     "title": "一直被打薄",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.4,
+      "y": 3.0,
+      "d": 72.0,
+      "elev": 28
+     },
+     {
+      "at": "start",
+      "dur": 140,
+      "x": 0.4,
+      "y": 3.0,
+      "d": 68.4,
+      "elev": 26
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bSl3",
+      "at": "s2:reef+6",
+      "until": "s3:start-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "bSl2",
+      "at": "s2:out+12",
+      "until": "s3:start-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "bSl1",
+      "at": "s2:thin",
+      "until": "s3:start-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "bSl0",
+      "at": "s2:thin+35",
+      "until": "s3:start-2",
+      "opacity": 0,
+      "dur": 20
+     },
+     {
+      "layer": "bGauge0",
+      "at": "s2:reef+6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bGauge1",
+      "at": "s1:start-40",
+      "until": "s2:reef+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bGauge1",
+      "at": "s2:out+12",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bGauge2",
+      "at": "s1:start-40",
+      "until": "s2:out+12",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bGauge2",
+      "at": "s2:thin",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bGauge3",
+      "at": "s1:start-40",
+      "until": "s2:thin",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bGauge3",
+      "at": "s3:start-2",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bTopLine",
+      "at": "s1:start-40",
+      "until": "s2:reef+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bTopLine",
+      "at": "s3:start-2",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bSpark",
+      "at": "s1:start-40",
+      "until": "s2:reef-2",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "bSpark",
+      "at": "s3:start-2",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "sWafer",
+      "at": "s1:start-40",
+      "until": "s4:lie",
+      "dur": 22,
+      "dy": 4.0,
+      "fallIn": true,
+      "bounce": 0.07
+     },
+     {
+      "layer": "sWafer",
+      "at": "s4:clamp",
+      "until": "s4:end-34",
+      "dur": 26,
+      "dy": 4.6
+     },
+     {
+      "layer": "sTop",
+      "at": "s4:clamp",
+      "until": "s4:end-34",
+      "dur": 26,
+      "dy": 2.2
+     },
+     {
+      "layer": "sHe",
+      "at": "s4:cer+30",
+      "until": "s4:end-34",
+      "dur": 24,
+      "dy": -0.5
+     },
+     {
+      "layer": "sCool",
+      "at": "s4:cer+30",
+      "until": "s4:end-34",
+      "dur": 24,
+      "dy": -1.6
+     },
+     {
+      "layer": "sArrows",
+      "at": "s1:start-40",
+      "until": "s4:clamp-4",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "sArrows",
+      "at": "s4:clamp+40",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "pins",
+      "at": "s3:wafer",
+      "until": "s3:table-34",
+      "dur": 22,
+      "dy": 1.0
+     },
+     {
+      "layer": "wafer",
+      "at": "s3:wafer",
+      "until": "s3:table-34",
+      "dur": 22,
+      "dy": 1.0
+     },
+     {
+      "layer": "ring",
+      "at": "s3:ring",
+      "until": "s3:table-30",
+      "dur": 24,
+      "dy": 2.4
+     },
+     {
+      "layer": "liner",
+      "at": "s5:start+12",
+      "until": "s5:resist-6",
+      "dur": 26,
+      "dz": 3.2
+     },
+     {
+      "layer": "cArm",
+      "at": "s1:start-40",
+      "until": "s10:start+400",
+      "dur": 1,
+      "dy": 4.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time-6",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dy": -4.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s1:start-40",
+      "until": "s6:time-10",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cORing",
+      "at": "s6:time+20",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": 3.0
+     },
+     {
+      "layer": "cOldCrumb",
+      "at": "s6:time+20",
+      "until": "s10:start+400",
+      "dur": 24,
+      "dy": 3.0
+     },
+     {
+      "layer": "cArm",
+      "at": "s6:time+40",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": 9.0
+     },
+     {
+      "layer": "cORing",
+      "at": "s6:time+40",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": 9.0,
+      "throw": 1.0
+     },
+     {
+      "layer": "cOldCrumb",
+      "at": "s6:time+40",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": 9.0
+     },
+     {
+      "layer": "cORing",
+      "at": "s6:time+68",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "cOldCrumb",
+      "at": "s6:time+68",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "cNewRing",
+      "at": "s1:start-40",
+      "until": "s6:time+62",
+      "dur": 20,
+      "dy": 5.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "cPlO0",
+      "at": "s6:plasma",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cPlO1",
+      "at": "s1:start-40",
+      "until": "s6:plasma",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cPlO1S",
+      "at": "s1:start-40",
+      "until": "s6:plasma",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cEdgeLine",
+      "at": "s1:start-40",
+      "until": "s6:plasma",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cBrO",
+      "at": "s1:start-40",
+      "until": "s6:slow+10",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "cBrN",
+      "at": "s1:start-40",
+      "until": "s6:slow+10",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "kA",
+      "at": "s1:start-40",
+      "until": "s8:toto-4",
+      "opacity": 0.3,
+      "dur": 6
+     },
+     {
+      "layer": "kB",
+      "at": "s1:start-40",
+      "until": "s8:tw-4",
+      "opacity": 0.3,
+      "dur": 6
+     },
+     {
+      "layer": "kC",
+      "at": "s1:start-40",
+      "until": "s8:xm-4",
+      "opacity": 0.3,
+      "dur": 6
+     },
+     {
+      "layer": "rParts",
+      "at": "s1:start-40",
+      "until": "s9:parts-2",
+      "opacity": 0.3,
+      "dur": 4
+     },
+     {
+      "layer": "rTool",
+      "at": "s1:start-40",
+      "until": "s9:mach-2",
+      "dur": 22,
+      "dy": 6.0,
+      "fallIn": true,
+      "bounce": 0.06,
+      "opacity": 0
+     },
+     {
+      "layer": "rTool",
+      "at": "s10:start+14",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "rParts",
+      "at": "s10:start+14",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     }
+    ],
+    "run": [
+     {
+      "id": "ionA0",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "ionA1",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "ionA2",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "plasmaGlow",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start+6"
+     },
+     {
+      "id": "liningHot",
+      "at": "used",
+      "ramp": 8,
+      "until": "prev"
+     },
+     {
+      "id": "ringHot",
+      "at": "used",
+      "ramp": 8,
+      "until": "prev"
+     }
+    ],
+    "labels": [
+     {
+      "part": "ringA",
+      "text": "邊緣環",
+      "en": "Edge ring",
+      "color": "amber",
+      "at": "used",
+      "until": "used+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 18 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "pad": {
+        "at": "pad"
+       },
+       "used": {
+        "at": "used"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "holdSec": 1.2,
+   "pauseAfter": 1.2
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "蝕刻時腔體裡有電漿，像海浪不停拍礁石，晶圓之外，零件也一起被打薄。",
+   "tts": "蝕刻時腔體裡有電漿，像海浪不停拍礁石，晶圓之外，零件也一起被打薄。",
+   "subtitle": {
+    "zh": "蝕刻時\n腔體裡有電漿\n像海浪\n不停拍礁石\n晶圓之外\n零件也一起\n被打薄",
+    "en": "During etching, | the chamber holds plasma, | like waves | pounding a reef. | Beyond the wafer, | parts get | thinned too."
+   },
+   "keywords": [
+    "電漿",
+    "海浪",
+    "打薄"
+   ],
+   "cues": [
+    {
+     "id": "plasma",
+     "text": "電漿"
+    },
+    {
+     "id": "wave",
+     "text": "海浪"
+    },
+    {
+     "id": "reef",
+     "text": "礁石"
+    },
+    {
+     "id": "out",
+     "text": "之外"
+    },
+    {
+     "id": "thin",
+     "text": "被打薄"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "CoorsTek 蝕刻應用頁；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "start-14",
+      "dur": 1
+     },
+     {
+      "to": "micro",
+      "at": "reef-2",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 0.4,
+      "y": 3.0,
+      "d": 68.4,
+      "elev": 26
+     },
+     {
+      "at": "start+8",
+      "dur": 40,
+      "x": 0.4,
+      "y": 3.2,
+      "d": 57.6,
+      "elev": 24
+     },
+     {
+      "at": "reef-2",
+      "dur": 1,
+      "x": 33.4,
+      "y": 1.0,
+      "d": 46.8,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "ionA0",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "reef-2"
+     },
+     {
+      "id": "ionA1",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "reef-2"
+     },
+     {
+      "id": "ionA2",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "reef-2"
+     },
+     {
+      "id": "plasmaGlow",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "reef-2"
+     },
+     {
+      "id": "bIon0",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bIon1",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bIon2",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bIon3",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bIon4",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bSparkP",
+      "at": "reef-2",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bDebris",
+      "at": "reef+6",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bDebris2",
+      "at": "reef+16",
+      "ramp": 6,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "plasmaA",
+      "text": "電漿",
+      "en": "Plasma",
+      "color": "blue",
+      "at": "plasma",
+      "until": "plasma+46",
+      "cut": true
+     },
+     {
+      "part": "bSpark",
+      "text": "離子撞擊",
+      "en": "Ion impact",
+      "color": "amber",
+      "at": "reef+3",
+      "until": "reef+47",
+      "cut": true
+     },
+     {
+      "part": "bRing",
+      "text": "邊緣環",
+      "en": "Edge ring",
+      "color": "blue",
+      "at": "out+27",
+      "until": "out+73",
+      "cut": true
+     },
+     {
+      "part": "bLineA",
+      "text": "被打掉的部分",
+      "en": "Material lost",
+      "color": "amber",
+      "at": "thin+34",
+      "until": "thin+80",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-wave",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "電漿像海浪拍礁石",
+      "tag": "示意",
+      "t": {
+       "plasma": {
+        "at": "plasma"
+       },
+       "wave": {
+        "at": "wave"
+       },
+       "reef": {
+        "at": "reef"
+       },
+       "thin": {
+        "at": "thin"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.0,
+   "holdSec": 2.9,
+   "headSec": 0.3,
+   "pauseAfter": 2.9
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "晶圓外圍有一圈環，用石英或矽做成。像把桌面往外多接一圈，邊緣的電漿才跟中間一樣均勻。",
+   "tts": "晶圓外圍有一圈環，用石英或細做成。像把桌面往外多接一圈，邊緣的電漿才跟中間一樣均勻。",
+   "subtitle": {
+    "zh": "晶圓外圍有一圈環\n用石英或矽做成\n像把桌面\n往外多接一圈\n邊緣的電漿\n才跟中間一樣均勻",
+    "en": "Around the wafer sits a ring, | made of quartz or silicon. | Like extending a table | outward by one more ring, | so the edge plasma | matches the middle."
+   },
+   "keywords": [
+    "圈環",
+    "桌面",
+    "均勻"
+   ],
+   "cues": [
+    {
+     "id": "wafer",
+     "text": "晶圓"
+    },
+    {
+     "id": "ring",
+     "text": "一圈環"
+    },
+    {
+     "id": "quartz",
+     "text": "石英"
+    },
+    {
+     "id": "table",
+     "text": "桌面"
+    },
+    {
+     "id": "ext",
+     "text": "往外"
+    },
+    {
+     "id": "even",
+     "text": "均勻"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "CoorsTek 蝕刻頁、Market Publishers 石英環報告；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "micro",
+      "at": "table-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0.2,
+      "y": 2.4,
+      "d": 57.6,
+      "elev": 30
+     },
+     {
+      "at": "table-4",
+      "dur": 1,
+      "x": 33.4,
+      "y": 1.0,
+      "d": 46.8,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "ionA0",
+      "at": "start",
+      "ramp": 4,
+      "until": "table-30"
+     },
+     {
+      "id": "plasmaGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "table-30"
+     },
+     {
+      "id": "bField0",
+      "at": "table+6",
+      "ramp": 8,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bField1",
+      "at": "table+16",
+      "ramp": 8,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bRingGlow",
+      "at": "even",
+      "ramp": 8,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "waferA",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "blue",
+      "at": "wafer-4",
+      "until": "wafer+42",
+      "cut": true
+     },
+     {
+      "part": "ringA",
+      "text": "邊緣環（石英或矽）",
+      "en": "Edge ring (quartz or silicon)",
+      "color": "amber",
+      "at": "ring+14",
+      "until": "table-11",
+      "cut": true
+     },
+     {
+      "part": "bStep",
+      "text": "階梯內緣",
+      "en": "Stepped inner edge",
+      "color": "blue",
+      "at": "table+10",
+      "until": "table+56",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-ring",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "桌面往外多接一圈",
+      "tag": "示意（等位線為示意）",
+      "t": {
+       "table": {
+        "at": "table"
+       },
+       "ext": {
+        "at": "ext"
+       },
+       "even": {
+        "at": "even"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 10.0,
+   "holdSec": 2.2,
+   "headSec": 0.3,
+   "pauseAfter": 2.2
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "晶圓躺在靜電吸盤，被靜電吸住，像摩擦過的氣球黏在牆。吸盤表面是陶瓷。",
+   "tts": "晶圓躺在靜電吸盤，被靜電吸住，像摩擦過的氣球黏在牆。吸盤表面是陶瓷。",
+   "subtitle": {
+    "zh": "晶圓躺在\n靜電吸盤\n被靜電吸住\n像摩擦過的\n氣球黏在牆\n吸盤表面\n是陶瓷",
+    "en": "The wafer lies | on the chuck, | held by static, | like a rubbed | balloon on a wall. | The chuck's surface | is ceramic."
+   },
+   "keywords": [
+    "靜電",
+    "氣球",
+    "陶瓷"
+   ],
+   "cues": [
+    {
+     "id": "lie",
+     "text": "躺在"
+    },
+    {
+     "id": "chuck",
+     "text": "靜電吸盤"
+    },
+    {
+     "id": "clamp",
+     "text": "吸住"
+    },
+    {
+     "id": "balloon",
+     "text": "氣球"
+    },
+    {
+     "id": "face",
+     "text": "表面"
+    },
+    {
+     "id": "cer",
+     "text": "陶瓷"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TechNews 2025/2/5 TOTO 靜電吸盤報導；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 96,
+      "y": 0.6,
+      "d": 46.8,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "sHeFlow",
+      "at": "lie+20",
+      "ramp": 8,
+      "until": "s4:end+30"
+     },
+     {
+      "id": "sHeFlow2",
+      "at": "lie+20",
+      "ramp": 8,
+      "until": "s4:end+30"
+     },
+     {
+      "id": "sPlusGlow",
+      "at": "clamp+10",
+      "ramp": 6,
+      "until": "s4:end+30"
+     },
+     {
+      "id": "sMinusGlow",
+      "at": "clamp+10",
+      "ramp": 6,
+      "until": "s4:end+30"
+     },
+     {
+      "id": "sArrowP",
+      "at": "clamp-4",
+      "ramp": 4,
+      "until": "clamp+40"
+     },
+     {
+      "id": "sWaterFlow",
+      "at": "cer+30",
+      "ramp": 8,
+      "until": "s4:end+30"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sWafer",
+      "text": "晶圓",
+      "en": "Wafer",
+      "color": "blue",
+      "at": "lie",
+      "until": "lie+46",
+      "cut": true
+     },
+     {
+      "part": "sTop",
+      "text": "靜電吸盤",
+      "en": "Electrostatic chuck",
+      "color": "amber",
+      "at": "chuck+44",
+      "until": "chuck+90",
+      "cut": true
+     },
+     {
+      "part": "sElec",
+      "text": "電極",
+      "en": "Electrode",
+      "color": "blue",
+      "at": "clamp+54",
+      "until": "clamp+100",
+      "cut": true
+     },
+     {
+      "part": "sTop",
+      "text": "陶瓷盤面",
+      "en": "Ceramic face",
+      "color": "amber",
+      "at": "cer+4",
+      "until": "cer+50",
+      "cut": true
+     },
+     {
+      "part": "sHeA",
+      "text": "氦氣冷卻",
+      "en": "Helium cooling",
+      "color": "blue",
+      "at": "cer+56",
+      "until": "cer+102",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-esc",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "氣球黏牆：靜電吸附",
+      "tag": "示意（施加電壓）",
+      "t": {
+       "lie": {
+        "at": "lie"
+       },
+       "clamp": {
+        "at": "clamp"
+       },
+       "balloon": {
+        "at": "balloon"
+       },
+       "cer": {
+        "at": "cer"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 10.0,
+   "holdSec": 3.7,
+   "headSec": 0.3,
+   "pauseAfter": 3.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "陶瓷也貼在腔體內壁，因為耐電漿，不容易掉渣。",
+   "tts": "陶瓷也貼在腔體內壁，因為耐電漿，不容易掉渣。",
+   "subtitle": {
+    "zh": "陶瓷也貼在\n腔體內壁\n因為耐電漿\n不容易掉渣",
+    "en": "Ceramic also lines | the chamber wall, | because it resists plasma | and rarely sheds grit."
+   },
+   "keywords": [
+    "陶瓷",
+    "耐電漿",
+    "掉渣"
+   ],
+   "cues": [
+    {
+     "id": "wall",
+     "text": "內壁"
+    },
+    {
+     "id": "resist",
+     "text": "耐電漿"
+    },
+    {
+     "id": "shed",
+     "text": "掉渣"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "CoorsTek 蝕刻應用頁；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tool",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "micro",
+      "at": "resist-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0.2,
+      "y": 3.4,
+      "d": 64.8,
+      "elev": 24
+     },
+     {
+      "at": "resist-4",
+      "dur": 1,
+      "x": 128.0,
+      "y": 0.6,
+      "d": 68.4,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "ionA0",
+      "at": "start",
+      "ramp": 4,
+      "until": "resist-4"
+     },
+     {
+      "id": "plasmaGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "resist-4"
+     },
+     {
+      "id": "eIonC",
+      "at": "resist-4",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "eIonM",
+      "at": "resist-4",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "eBounceC",
+      "at": "resist",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "eDebrisM",
+      "at": "shed-20",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "eSparkC",
+      "at": "resist",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "eSparkM",
+      "at": "resist",
+      "ramp": 6,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "linerA",
+      "text": "陶瓷內襯",
+      "en": "Ceramic liner",
+      "color": "amber",
+      "at": "start+8",
+      "until": "start+54",
+      "cut": true
+     },
+     {
+      "part": "eCerA",
+      "text": "陶瓷：平整",
+      "en": "Ceramic: smooth",
+      "color": "blue",
+      "at": "resist+4",
+      "until": "resist+50",
+      "cut": true
+     },
+     {
+      "part": "eMetA",
+      "text": "金屬：被打花",
+      "en": "Metal: pitted",
+      "color": "amber",
+      "at": "shed+13",
+      "until": "shed+59",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-liner",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "耐電漿、不掉渣",
+      "tag": "示意",
+      "t": {
+       "wall": {
+        "at": "wall"
+       },
+       "resist": {
+        "at": "resist"
+       },
+       "shed": {
+        "at": "shed"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "holdSec": 1.8,
+   "headSec": 0.3,
+   "pauseAfter": 1.8
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "這些零件被電漿慢慢打薄，尺寸一變，電漿就跟著變，所以用一段時間就要換。",
+   "tts": "這些零件被電漿慢慢打薄，尺寸一變，電漿就跟著變，所以用一段時間就要換。",
+   "subtitle": {
+    "zh": "這些零件\n被電漿慢慢打薄\n尺寸一變\n電漿就跟著變\n所以用一段時間\n就要換",
+    "en": "These parts are | slowly thinned by plasma. | Once the size changes, | the plasma changes too, | so after a while | they must be replaced."
+   },
+   "keywords": [
+    "打薄",
+    "尺寸",
+    "要換"
+   ],
+   "cues": [
+    {
+     "id": "slow",
+     "text": "慢慢"
+    },
+    {
+     "id": "size",
+     "text": "尺寸"
+    },
+    {
+     "id": "plasma",
+     "text": "跟著變"
+    },
+    {
+     "id": "time",
+     "text": "一段時間"
+    },
+    {
+     "id": "swap",
+     "text": "要換"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 62.9,
+      "y": 0.9,
+      "d": 61.2,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "cPlPulseN",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "cPlPulseO",
+      "at": "start",
+      "ramp": 6,
+      "until": "plasma"
+     },
+     {
+      "id": "cPlPulseP",
+      "at": "plasma",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "cIonN",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "cIonO",
+      "at": "start",
+      "ramp": 6,
+      "until": "time"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cNew",
+      "text": "新環",
+      "en": "New ring",
+      "color": "blue",
+      "at": "slow+2",
+      "until": "slow+48",
+      "cut": true
+     },
+     {
+      "part": "cOld",
+      "text": "舊環",
+      "en": "Old ring",
+      "color": "amber",
+      "at": "size+30",
+      "until": "size+76",
+      "cut": true
+     },
+     {
+      "part": "cPlO",
+      "text": "電漿邊緣偏移",
+      "en": "Plasma edge shifts",
+      "color": "amber",
+      "at": "size+82",
+      "until": "size+128",
+      "cut": true
+     },
+     {
+      "part": "cArmA",
+      "text": "夾具換環",
+      "en": "Gripper swaps ring",
+      "color": "blue",
+      "at": "size+134",
+      "until": "size+180",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-wear",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "尺寸變了，電漿跟著變",
+      "tag": "示意（不標壽命時數）",
+      "t": {
+       "slow": {
+        "at": "slow"
+       },
+       "size": {
+        "at": "size"
+       },
+       "plasma": {
+        "at": "plasma"
+       },
+       "swap": {
+        "at": "swap"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.0,
+   "holdSec": 2.5,
+   "headSec": 0.3,
+   "pauseAfter": 2.5
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "旁邊的真空泵、閥門和電源，也要定期保養。",
+   "tts": "旁邊的真空泵、閥門和電源，也要定期保養。",
+   "subtitle": {
+    "zh": "旁邊的真空泵\n閥門和電源\n也要定期保養",
+    "en": "Nearby, the vacuum pump, | valves and power supply | also need regular service."
+   },
+   "keywords": [
+    "真空泵",
+    "閥門",
+    "電源"
+   ],
+   "cues": [
+    {
+     "id": "pump",
+     "text": "真空泵"
+    },
+    {
+     "id": "valve",
+     "text": "閥門"
+    },
+    {
+     "id": "power",
+     "text": "電源"
+    },
+    {
+     "id": "serv",
+     "text": "保養"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "aux",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 162.5,
+      "y": 0.2,
+      "d": 72.0,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "pFan",
+      "at": "start",
+      "ramp": 8,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "pExhaust",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "pPumpHot",
+      "at": "pump",
+      "ramp": 6,
+      "until": "valve"
+     },
+     {
+      "id": "pValveHot",
+      "at": "valve",
+      "ramp": 6,
+      "until": "power"
+     },
+     {
+      "id": "pWheel",
+      "at": "valve",
+      "ramp": 8,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "pPowerHot",
+      "at": "power",
+      "ramp": 6,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pPumpA",
+      "text": "真空泵",
+      "en": "Vacuum pump",
+      "color": "blue",
+      "at": "pump-12",
+      "until": "pump+34",
+      "cut": true
+     },
+     {
+      "part": "pValveA",
+      "text": "閥門",
+      "en": "Valve",
+      "color": "amber",
+      "at": "pump+34",
+      "until": "pump+80",
+      "cut": true
+     },
+     {
+      "part": "pPowerA",
+      "text": "射頻電源",
+      "en": "RF power supply",
+      "color": "blue",
+      "at": "pump+80",
+      "until": "pump+126",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-aux",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "週邊也要定期保養",
+      "tag": "示意",
+      "t": {
+       "pump": {
+        "at": "pump"
+       },
+       "valve": {
+        "at": "valve"
+       },
+       "power": {
+        "at": "power"
+       },
+       "serv": {
+        "at": "serv"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.5,
+   "holdSec": 2.7,
+   "headSec": 0.3,
+   "pauseAfter": 2.7
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "日本有東陶，台灣有台灣精材和翔名，都做這類耗材。",
+   "tts": "日本有東陶，台灣有台灣精材和翔名，都做這類耗材。",
+   "subtitle": {
+    "zh": "日本有東陶\n台灣有\n台灣精材\n和翔名\n都做這類耗材",
+    "en": "Japan has TOTO, | Taiwan has | Forcera Materials | and Feedback Technology, | all making such parts."
+   },
+   "keywords": [
+    "東陶",
+    "台灣精材",
+    "翔名"
+   ],
+   "cues": [
+    {
+     "id": "jp",
+     "text": "日本"
+    },
+    {
+     "id": "toto",
+     "text": "東陶"
+    },
+    {
+     "id": "tw",
+     "text": "台灣精材"
+    },
+    {
+     "id": "xm",
+     "text": "翔名"
+    },
+    {
+     "id": "kind",
+     "text": "這類"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "TechNews 2025/2/5、2/20；Money Weekly"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 210,
+      "y": 0.3,
+      "d": 55.8,
+      "elev": 22
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-co",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "零組件耗材供應商",
+      "tag": "TechNews、Money Weekly；截至 2026/11/27",
+      "t": {
+       "jp": {
+        "at": "jp"
+       },
+       "toto": {
+        "at": "toto"
+       },
+       "tw": {
+        "at": "tw"
+       },
+       "xm": {
+        "at": "xm"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.5,
+   "holdSec": 2.0,
+   "headSec": 0.3,
+   "pauseAfter": 2.0
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "零件和機台，都放在一個超乾淨的房間。下一集，看無塵室。留言耗材，拿完整資料。",
+   "tts": "零件和機台，都放在一個超乾淨的房間。下一集，看無塵室。留言耗材，拿完整資料。",
+   "subtitle": {
+    "zh": "零件和機台\n都放在一個\n超乾淨的房間\n下一集\n看無塵室\n留言耗材\n拿完整資料",
+    "en": "Parts and tools | all sit in | an ultra-clean room. | Next episode: | the cleanroom. | Comment \"parts\" | for the full notes."
+   },
+   "keywords": [
+    "超乾淨",
+    "無塵室",
+    "耗材"
+   ],
+   "cues": [
+    {
+     "id": "parts",
+     "text": "零件"
+    },
+    {
+     "id": "mach",
+     "text": "機台"
+    },
+    {
+     "id": "clean",
+     "text": "超乾淨"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言耗材"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 265,
+      "y": 0.5,
+      "d": 72.0,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "rAir0",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "rAir1",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "rAir2",
+      "at": "start-30",
+      "ramp": 8,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "rFfuPulse",
+      "at": "clean",
+      "ramp": 8,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "rPartsA",
+      "text": "零件推車",
+      "en": "Parts cart",
+      "color": "amber",
+      "at": "parts",
+      "until": "parts+46",
+      "cut": true
+     },
+     {
+      "part": "rToolA",
+      "text": "機台",
+      "en": "Tool",
+      "color": "blue",
+      "at": "mach+30",
+      "until": "mach+76",
+      "cut": true
+     },
+     {
+      "part": "rFfuA",
+      "text": "潔淨空氣往下送",
+      "en": "Clean air flows down",
+      "color": "amber",
+      "at": "clean+40",
+      "until": "clean+86",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "parts-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：無塵室",
+      "t": {
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       },
+       "clean": {
+        "at": "clean"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.4,
+   "holdSec": 1.8,
+   "headSec": 0.2
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "無塵室",
+     "trail": [
+      "零件會壞，工廠要乾淨"
+     ],
+     "comment": "耗材",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
