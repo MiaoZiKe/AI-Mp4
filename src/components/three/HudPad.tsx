@@ -52,8 +52,8 @@ const Hook: React.FC<P> = ({ o, f, k }) => {
         <path d={`M30 ${CT + 150} L60 ${CT + 150} L60 ${CT + 112} L112 ${CT + 112} L112 ${CT + 150} L150 ${CT + 150} L150 ${CT + 96} L215 ${CT + 96} L215 ${CT + 150} L260 ${CT + 150} L260 ${CT + 120} L282 ${CT + 120} L282 ${CT + 150} L290 ${CT + 150} L290 ${CT + 196} L30 ${CT + 196} Z`} fill={ORG} opacity={0.35 + 0.65 * q} stroke={H.text2} strokeWidth={3} />
         <text x={160} y={CT + 70} textAnchor="middle" style={zh(60, RED, 900)} opacity={q * (0.6 + 0.4 * pu)}>？</text>
         <Sep x={318} />
-        <Row x={344} y={CT + 56} t="前一集：研磨液備好了" c={H.text2} a={pv} />
-        <Row x={344} y={CT + 122} t="誰來把晶圓真正磨平？" c={BLUE} a={q} />
+        <Row x={344} y={CT + 56} t="誰來把晶圓真正磨平？" c={BLUE} a={q} />
+        <Row x={344} y={CT + 122} t="前一集：研磨液備好了" c={H.text2} a={pv} />
         <Row x={344} y={CT + 188} t="線索：一塊會轉的墊子" c={H.amber} a={q} />
       </svg>
     </Card>

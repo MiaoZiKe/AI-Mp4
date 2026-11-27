@@ -79,25 +79,25 @@
    "id": "s1",
    "beat": "hook",
    "para": 1,
-   "narration": "上一集，研磨液把表面準備好了。可是，誰來把晶圓真正磨平？",
-   "tts": "前一集，研磨液把表面準備好了。可是，誰來把晶圓真正磨平？",
+   "narration": "誰來把晶圓真正磨平？前一集，研磨液把表面準備好了。",
+   "tts": "誰來把晶圓真正磨平？前一集，研磨液把表面準備好了。",
    "subtitle": {
-    "zh": "上一集\n研磨液把表面\n準備好了\n可是\n誰來把晶圓\n真正磨平？",
-    "en": "Last episode: | slurry prepped | the surface. | But | who really | flattens the wafer?"
+    "zh": "誰來把晶圓\n真正磨平？\n前一集\n研磨液把表面\n準備好了",
+    "en": "Who really | flattens the wafer? | Last episode: | slurry prepped | the surface."
    },
    "keywords": [
-    "研磨液",
     "誰來",
-    "磨平"
+    "磨平",
+    "研磨液"
    ],
    "cues": [
     {
-     "id": "prev",
-     "text": "上一集"
-    },
-    {
      "id": "q",
      "text": "磨平"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
     }
    ],
    "component": "ThreeScene",
@@ -342,42 +342,42 @@
      {
       "layer": "head",
       "at": "s2:start+4",
-      "until": "s2:pad+176",
+      "until": "s2:end+50",
       "dur": 26,
       "dx": 6.3
      },
      {
       "layer": "padAdh",
       "at": "s2:pad",
-      "until": "s2:pad+170",
+      "until": "s2:end+44",
       "dur": 26,
       "dy": 2.4
      },
      {
       "layer": "padSub",
       "at": "s2:pad",
-      "until": "s2:pad+170",
+      "until": "s2:end+44",
       "dur": 26,
       "dy": 2.4
      },
      {
       "layer": "padTop",
       "at": "s2:pad",
-      "until": "s2:pad+170",
+      "until": "s2:end+44",
       "dur": 26,
       "dy": 2.4
      },
      {
       "layer": "padSub",
-      "at": "s2:pad+45",
-      "until": "s2:pad+166",
+      "at": "s2:soft+9",
+      "until": "s2:end+40",
       "dur": 24,
       "dy": 1.2
      },
      {
       "layer": "padTop",
-      "at": "s2:pad+45",
-      "until": "s2:pad+166",
+      "at": "s2:soft+9",
+      "until": "s2:end+40",
       "dur": 24,
       "dy": 2.4
      },
@@ -503,13 +503,13 @@
      {
       "layer": "mGrains",
       "at": "s1:start-40",
-      "until": "s2:pad+94",
+      "until": "s2:end-32",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "mGrains",
-      "at": "s2:pad+164",
+      "at": "s2:end+38",
       "until": "s4:start-8",
       "opacity": 0,
       "dur": 3
@@ -524,13 +524,13 @@
      {
       "layer": "mAF0",
       "at": "s1:start-40",
-      "until": "s2:pad+94",
+      "until": "s2:end-32",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "mAF0",
-      "at": "s2:pad+164",
+      "at": "s2:end+38",
       "until": "s4:start-8",
       "opacity": 0,
       "dur": 3
@@ -566,13 +566,13 @@
      {
       "layer": "mAF1",
       "at": "s1:start-40",
-      "until": "s2:pad+94",
+      "until": "s2:end-32",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "mAF1",
-      "at": "s2:pad+164",
+      "at": "s2:end+38",
       "until": "s4:start-8",
       "opacity": 0,
       "dur": 3
@@ -608,13 +608,13 @@
      {
       "layer": "mAF2",
       "at": "s1:start-40",
-      "until": "s2:pad+94",
+      "until": "s2:end-32",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "mAF2",
-      "at": "s2:pad+164",
+      "at": "s2:end+38",
       "until": "s4:start-8",
       "opacity": 0,
       "dur": 3
@@ -780,7 +780,7 @@
      {
       "type": "section",
       "kind": "pad-hook",
-      "at": "q",
+      "at": "start+6",
       "until": "s2:start-5",
       "x": 64,
       "y": 1066,
@@ -801,8 +801,8 @@
     ]
    },
    "durationSec": 6.0,
-   "holdSec": 1.2,
-   "pauseAfter": 1.2
+   "holdSec": 1.6,
+   "pauseAfter": 1.6
   },
   {
    "id": "s2",
@@ -854,12 +854,12 @@
      },
      {
       "to": "micro",
-      "at": "pad+96",
+      "at": "end-30",
       "dur": 1
      },
      {
       "to": "tool",
-      "at": "pad+158",
+      "at": "end+32",
       "dur": 1
      }
     ],
@@ -889,7 +889,7 @@
       "elev": 34
      },
      {
-      "at": "pad+42",
+      "at": "soft+6",
       "dur": 24,
       "x": 0.4,
       "y": 2.7,
@@ -897,7 +897,7 @@
       "elev": 30
      },
      {
-      "at": "pad+97",
+      "at": "end-29",
       "dur": 1,
       "x": 36.2,
       "y": 0.8,
@@ -905,7 +905,7 @@
       "elev": 32
      },
      {
-      "at": "pad+159",
+      "at": "end+33",
       "dur": 1,
       "x": 0.6,
       "y": 2.0,
@@ -922,43 +922,43 @@
      },
      {
       "id": "padSpin",
-      "at": "pad+192",
+      "at": "end+66",
       "ramp": 10,
       "until": "s3:sand-8"
      },
      {
       "id": "headSpin",
-      "at": "pad+192",
+      "at": "end+66",
       "ramp": 10,
       "until": "s3:sand-8"
      },
      {
       "id": "headSweep",
-      "at": "pad+192",
+      "at": "end+66",
       "ramp": 10,
       "until": "s3:sand-8"
      },
      {
       "id": "slSpread",
-      "at": "pad+192",
+      "at": "end+66",
       "ramp": 4,
       "until": "s3:sand-8"
      },
      {
       "id": "slDrop",
-      "at": "pad+192",
+      "at": "end+66",
       "ramp": 4,
       "until": "s3:sand-8"
      },
      {
       "id": "slOutA",
-      "at": "pad+192",
+      "at": "end+66",
       "ramp": 6,
       "until": "s3:sand-8"
      },
      {
       "id": "slOutB",
-      "at": "pad+192",
+      "at": "end+66",
       "ramp": 6,
       "until": "s3:sand-8"
      }
@@ -985,16 +985,16 @@
       "text": "研磨層",
       "en": "Polishing layer",
       "color": "amber",
-      "at": "pad+50",
-      "until": "pad+96"
+      "at": "soft+14",
+      "until": "end-30"
      },
      {
       "part": "pore",
       "text": "細孔",
       "en": "Pores",
       "color": "blue",
-      "at": "pad+100",
-      "until": "pad+146"
+      "at": "end-26",
+      "until": "end+20"
      }
     ],
     "overlay": [

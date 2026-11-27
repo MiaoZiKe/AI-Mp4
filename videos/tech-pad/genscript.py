@@ -11,9 +11,9 @@ MODEL = json.load(open(os.path.join(HERE, "model.json")))
 INFO = MODEL["info"]
 # (id, beat, 旁白, 中文字幕行, 英文字幕行, cues[(id,文字)], keywords, sources, 無聲幕長秒, 開口前只有畫面秒, 念完後最少只有畫面秒)
 S = [
-("s1", "hook", "上一集，研磨液把表面準備好了。可是，誰來把晶圓真正磨平？",
- ["上一集", "研磨液把表面", "準備好了", "可是", "誰來把晶圓", "真正磨平？"], ["Last episode:", "slurry prepped", "the surface.", "But", "who really", "flattens the wafer?"],
- [("prev", "上一集"), ("q", "磨平")], ["研磨液", "誰來", "磨平"], ["示意動畫，不是量測"], 6.0, 0.0, 1.2),
+("s1", "hook", "誰來把晶圓真正磨平？前一集，研磨液把表面準備好了。",
+ ["誰來把晶圓", "真正磨平？", "前一集", "研磨液把表面", "準備好了"], ["Who really", "flattens the wafer?", "Last episode:", "slurry prepped", "the surface."],
+ [("q", "磨平"), ("prev", "前一集")], ["誰來", "磨平", "研磨液"], ["示意動畫，不是量測"], 6.0, 0.0, 1.2),
 ("s2", "mechanism", "答案是研磨墊，一塊有彈性的塑膠圓墊，鋪在會旋轉的圓台。",
  ["答案是研磨墊", "一塊有彈性的", "塑膠圓墊", "鋪在會旋轉的", "圓台"], ["The answer: the pad,", "a springy", "plastic round mat,", "laid on a", "rotating platen."],
  [("ans", "答案"), ("pad", "研磨墊"), ("soft", "彈性"), ("round", "圓墊"), ("platen", "圓台")], ["研磨墊", "彈性", "圓台"], ["專利 USPTO 10625393、11053339；示意"], 9.2, 1.5, 2.6),
@@ -100,7 +100,7 @@ def vis(lay, wins, dur=3):
         prev = b
     if prev != FAR: VIS.append(hid(lay, prev, FAR, dur))
 # ── 站 A 的狀態層 ──
-BACKHEAD = "s2:pad+176"      # 研磨頭回到墊子正上方（s2 組回）
+BACKHEAD = "s2:end+50"      # 研磨頭回到墊子正上方（s2 組回）
 # 新墊：s7 才出現（fallIn 落下）；滾輪：s7 壓平時才出現；拉絲：撕墊時三個階段
 vis("newPad", [("s7:swap+86", FAR)])
 vis("roller", [("s7:swap+114", "s7:swap+190")])
@@ -116,8 +116,8 @@ VIS += [mv("roller", T0, FAR, 1, dz=-4.4), mv("roller", "s7:swap+118", "s7:swap+
 VIS += [{"layer": "newPad", "at": "s7:swap+86", "until": "s7:swap+116", "dur": 22, "dy": 7.0, "fallIn": True, "bounce": 0.07, "opacity": 0}]
 # ── s2 爆炸分解（5 步：研磨頭移開 → 墊子掀起 → 三層分開 → 研磨層局部放大 → 組回）──
 VIS += [mv("head", "s2:start+4", BACKHEAD, 26, dx=6.3)]
-VIS += [mv(l, "s2:pad", "s2:pad+170", 26, dy=2.4) for l in ("padAdh", "padSub", "padTop")]       # 步驟 2：整片墊子掀起
-VIS += [mv("padSub", "s2:pad+45", "s2:pad+166", 24, dy=1.2), mv("padTop", "s2:pad+45", "s2:pad+166", 24, dy=2.4)]   # 步驟 3：三層分開
+VIS += [mv(l, "s2:pad", "s2:end+44", 26, dy=2.4) for l in ("padAdh", "padSub", "padTop")]       # 步驟 2：整片墊子掀起
+VIS += [mv("padSub", "s2:soft+9", "s2:end+40", 24, dy=1.2), mv("padTop", "s2:soft+9", "s2:end+40", 24, dy=2.4)]   # 步驟 3：三層分開
 # 組回後研磨頭回到原位；s3 前半（一起旋轉）頭殼半透明，看得見倒扣的晶圓
 VIS += [hid("head", "s3:start", "s3:sand-6", 14, 0.32)]
 # ── 站 W：晶圓剖面（s3 後半）──
@@ -128,9 +128,9 @@ for k in range(3): vis(f"wB{k}", [(("s3:start-8" if k == 0 else SW[k - 1]), SW[k
 WSI = [-0.52, -0.84, -1.05]
 VIS += [mv("wSi", SW[k], FAR, 26, dy=WSI[k]) for k in range(3)]
 # ── 站 M：墊子顯微剖面（s2 局部放大、s4、s5、s6 後半）──
-vis("mGrains", [("s2:pad+94", "s2:pad+164"), ("s4:start-8", "s5:slick")])
+vis("mGrains", [("s2:end-32", "s2:end+38"), ("s4:start-8", "s5:slick")])
 for i in range(3):
-    vis(f"mAF{i}", [("s2:pad+94", "s2:pad+164"), ("s4:start-8", "s5:slick")])
+    vis(f"mAF{i}", [("s2:end-32", "s2:end+38"), ("s4:start-8", "s5:slick")])
     vis(f"mAG{i}", [("s5:slick", ["s6:rough+8", "s6:rough+20", "s6:rough+94"][i])])
     vis(f"mAR{i}", [(["s6:rough+8", "s6:rough+20", "s6:rough+94"][i], FAR)])
 VIS += [hid("mTool", T0, "s6:rough-2", 4, 0), mv("mTool", T0, "s6:rough+10", 20, dy=4.0)]
@@ -147,16 +147,16 @@ P["s1"] = {"shot": [shot("start-30", AX, AY, 44, 36, 1, yaw=0.0), shot("start", 
  "shift": VIS,
  "run": [run("padSpin", "start-30", "s2:start+6", 8), run("headSpin", "start-30", "s2:start+6", 8), run("headSweep", "start-30", "s2:start+6", 8), run("slDrop", "start-30", "s2:start+6", 4), run("slSpread", "start-30", "s2:start+6", 4),
          run("slOutA", "start-30", "s2:start+6", 6), run("slOutB", "start-30", "s2:start+6", 6)],
- "overlay": [sec("pad-hook", "q", "s2:start-5", "系列 2・第 17 集", "示意，非實際比例", {"prev": "prev", "q": "q"})]}
-P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}, {"to": "micro", "at": "pad+96", "dur": 1}, {"to": "tool", "at": "pad+158", "dur": 1}],
- "shot": [shot("start", AX, AY, 41, 34, 1), shot("start+8", 3.2, 2.0, 40, 38, 30), shot("pad-4", 0.4, 2.3, 40, 34, 26), shot("pad+42", 0.4, 2.7, 44, 30, 24),
-          shot("pad+97", 36.2, 0.8, 32, 32, 1, yaw=0.0), shot("pad+159", 0.6, 2.0, 40, 32, 1)],
- "run": [run("slDrop", "start-4", "s2:pad-2", 4), run("padSpin", "pad+192", "s3:sand-8", 10), run("headSpin", "pad+192", "s3:sand-8", 10), run("headSweep", "pad+192", "s3:sand-8", 10), run("slSpread", "pad+192", "s3:sand-8", 4),
-         run("slDrop", "pad+192", "s3:sand-8", 4), run("slOutA", "pad+192", "s3:sand-8", 6), run("slOutB", "pad+192", "s3:sand-8", 6)],
+ "overlay": [sec("pad-hook", "start+6", "s2:start-5", "系列 2・第 17 集", "示意，非實際比例", {"prev": "prev", "q": "q"})]}
+P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}, {"to": "micro", "at": "end-30", "dur": 1}, {"to": "tool", "at": "end+32", "dur": 1}],
+ "shot": [shot("start", AX, AY, 41, 34, 1), shot("start+8", 3.2, 2.0, 40, 38, 30), shot("pad-4", 0.4, 2.3, 40, 34, 26), shot("soft+6", 0.4, 2.7, 44, 30, 24),
+          shot("end-29", 36.2, 0.8, 32, 32, 1, yaw=0.0), shot("end+33", 0.6, 2.0, 40, 32, 1)],
+ "run": [run("slDrop", "start-4", "s2:pad-2", 4), run("padSpin", "end+66", "s3:sand-8", 10), run("headSpin", "end+66", "s3:sand-8", 10), run("headSweep", "end+66", "s3:sand-8", 10), run("slSpread", "end+66", "s3:sand-8", 4),
+         run("slDrop", "end+66", "s3:sand-8", 4), run("slOutA", "end+66", "s3:sand-8", 6), run("slOutB", "end+66", "s3:sand-8", 6)],
  "labels": [lab("head", "研磨頭", "Carrier head", "blue", "start+2", "start+48"),
             lab("padA", "研磨墊", "Polishing pad", "amber", "pad", "pad+46"),
-            lab("padTop", "研磨層", "Polishing layer", "amber", "pad+50", "pad+96"),
-            lab("pore", "細孔", "Pores", "blue", "pad+100", "pad+146")],
+            lab("padTop", "研磨層", "Polishing layer", "amber", "soft+14", "end-30"),
+            lab("pore", "細孔", "Pores", "blue", "end-26", "end+20")],
  "overlay": [sec("pad-what", "start+20", "s3:start-5", "研磨墊：三層疊起來", "示意", {"ans": "ans", "pad": "pad", "soft": "soft", "round": "round"})]}
 P["s3"] = {"zoom": [{"to": "tool", "at": "start-2", "dur": 1}, {"to": "micro", "at": "sand-6", "dur": 1}],
  "shot": [shot("start-2", AX, 1.4, 38, 42, 1), shot("sand-6", 18.0, 1.0, 37, 31, 1)],
