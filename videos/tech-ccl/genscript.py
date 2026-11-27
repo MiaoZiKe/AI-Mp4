@@ -7,9 +7,9 @@ subprocess.run(["node", os.path.join(HERE, "gen-model.mjs")], check=True)
 MODEL = json.load(open(os.path.join(HERE, "model.json")))
 INFO = MODEL["info"]
 S = [
-("s1", "hook", "電路板是什麼做的？前一集看玻璃基板，這集看最常見的銅箔基板。",
- ["電路板是什麼做的？", "前一集看玻璃基板", "這集看最常見的", "銅箔基板"], ["What is a circuit board made of?", "Last episode: glass substrates.", "This time, the most common one:", "copper-clad laminate."],
- [("q", "什麼做的"), ("prev", "前一集"), ("ccl", "銅箔基板")], ["電路板", "前一集", "銅箔基板"], ["示意動畫，不是量測"]),
+("s1", "hook", "載板看完了，主機板又是什麼做的？前一集看玻璃基板，這集看最常見的銅箔基板。",
+ ["載板看完了", "主機板又是什麼做的？", "前一集看玻璃基板", "這集看最常見的", "銅箔基板"], ["Done with substrates.", "So what is a motherboard made of?", "Last episode: glass substrates.", "This time, the most common one:", "copper-clad laminate."],
+ [("sub", "載板"), ("q", "什麼做的"), ("prev", "前一集"), ("ccl", "銅箔基板")], ["主機板", "前一集", "銅箔基板"], ["示意動畫，不是量測"]),
 ("s2", "mechanism", "它像夾心餅乾，中間是浸過樹脂的玻纖布，兩面貼銅箔。",
  ["它像夾心餅乾", "中間是浸過樹脂的", "玻纖布", "兩面貼銅箔"], ["It's like a sandwich cookie:", "in the middle, resin-soaked", "glass fabric,", "with copper foil on both sides."],
  [("cookie", "夾心餅乾"), ("fab", "玻纖布"), ("cu", "兩面貼銅箔")], ["夾心餅乾", "樹脂", "銅箔"], ["數位時代、專利 USPTO 4918812；示意（厚度放大）"]),
@@ -30,10 +30,10 @@ S = [
  [("ai", "人工智慧伺服器"), ("fast", "又快又多"), ("eat", "吃掉訊號"), ("mud", "泥巴路")], ["人工智慧伺服器", "吃掉訊號", "泥巴路"], ["Altium、NextPCB 技術文章；示意動畫，不是量測"]),
 ("s8", "twist", "所以換成低損耗樹脂，吃掉的只剩大約十分之一，像把泥巴路鋪成跑道。",
  ["所以換成低損耗樹脂", "吃掉的只剩", "大約十分之一", "像把泥巴路鋪成跑道"], ["So switch to low-loss resin:", "the loss drops to", "about one tenth,", "like paving the mud into a track."],
- [("low", "低損耗樹脂"), ("tenth", "十分之一"), ("track", "跑道")], ["低損耗", "十分之一", "跑道"], ["Altium、NextPCB、JLCPCB 技術文章（依材料與頻率而異）；示意"]),
+ [("low", "低損耗樹脂"), ("tenth", "十分之一"), ("track", "跑道")], ["低損耗", "十分之一", "跑道"], ["Altium、NextPCB 技術文章；依材料與頻率而異"]),
 ("s9", "payoff", "台灣有台光電、聯茂、台燿，都在做這種高階基板。",
  ["台灣有台光電 聯茂 台燿", "都在做這種高階基板"], ["Taiwan has Elite Material, ITEQ and TUC,", "all making these high-end laminates."],
- [("tw", "台灣"), ("emc", "台光電"), ("tuc", "台燿"), ("hi", "高階基板")], ["台光電", "聯茂", "台燿"], ["公司官網、財經媒體；截至 2026/11/27"]),
+ [("tw", "台灣"), ("emc", "台光電"), ("iteq", "聯茂"), ("tuc", "台燿"), ("hi", "高階基板")], ["台光電", "聯茂", "台燿"], ["公司官網、財經媒體；截至 2026/11/28"]),
 ("s10", "cta", "樹脂換了，布和銅也得一起升級。布要多平、銅要多光滑？下一集看銅箔與玻纖布。留言銅箔基板，拿完整資料。",
  ["樹脂換了", "布和銅也得一起升級", "布要多平", "銅要多光滑？", "下一集看銅箔與玻纖布", "留言銅箔基板", "拿完整資料"],
  ["The resin has changed,", "so cloth and copper must upgrade too.", "How flat must the cloth be,", "how smooth the copper?", "Next: copper foil and glass fabric.", "Comment \"copper-clad laminate\"", "for the full notes."],
@@ -64,7 +64,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
 md = open(os.path.join(HERE, "script.md")).read().split("---")[0].split("\n\n")[1:]
 paras = [p.strip() for p in md if p.strip()]
 assert [s["tts"] for s in scenes] == paras, ("念稿與 script.md 不同", [s["tts"] for s in scenes], paras)
-scenes[0]["props"]["hook"] = {"kicker": "接上集：電路板的原料", "title": "電路板是什麼做的？", "size": 104, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "接上集：電路板的原料", "title": "主機板是什麼做的？", "size": 92, "top": 236}
 scenes.append({"id": "s11", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "銅箔與玻纖布", "trail": ["銅箔基板：銅箔＋膠片＋銅箔"], "comment": "銅箔基板", "logoAnim": "transparent"}}})
 
@@ -140,18 +140,18 @@ drop("sLaneB", "s8:low", dy=1.2, dur=12, bounce=0.05); drop("sRxB", "s8:low", dy
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 KV1 = (0.0, -0.6, 30, 38)     # 鉤子：做好的電路板
 KV2 = (1.6, 1.4, 28, 16)      # 夾心爆炸（低角度看分層）
-GV = (30.0, 0.2, 18, 46)      # 玻纖布織紋
+GV = (30.0, -1.2, 24, 46)      # 玻纖布織紋
 RV = (61.4, 1.9, 33, 10)      # 含浸線側面
-HV = (96.0, 3.4, 26, 8)       # 熱壓機
+HV = (96.0, 2.6, 36, 8)       # 熱壓機
 EV = (125.0, 0.6, 24, 42)     # 蝕刻線
 SV = (155.0, 0.4, 30, 36)     # 損耗對照
-VV = (185.0, 0.2, 34, 14)     # 供應商
+VV = (185.0, 1.9, 36, 12)     # 供應商
 NV = (215.0, 0.6, 26, 22)     # 下一集
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
 P["s1"] = {"shot": [S_("start-30", KV1, 1, yaw=0.0)], "shift": VIS,
  "run": [run("kSig", "start-30", "s2:start", 4)],
- "overlay": [sec("ccl-hook", "start", nxt("s1"), "系列 3・第 11 集", "示意", {"q": "q", "prev": "prev", "ccl": "ccl"}, cut=True)]}
+ "overlay": [sec("ccl-hook", "start", nxt("s1"), "系列 3・第 11 集", "示意", {"sub": "sub", "q": "q", "prev": "prev", "ccl": "ccl"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "start", "at": "start-10", "dur": 1}, {"to": "pcb", "at": CC, "dur": 1}],
  "shot": [S_(CC, KV2, 1)],
  "labels": [lab("kCuTA", "銅箔：導電，之後做成線路", "Copper foil", "amber", "cookie+8", "cookie+53"),
@@ -160,8 +160,8 @@ P["s2"] = {"zoom": [{"to": "start", "at": "start-10", "dur": 1}, {"to": "pcb", "
 P["s3"] = {"zoom": [{"to": "glass", "at": CC, "dur": 1}],
  "shot": [S_(CC, GV, 1)],
  "run": [run("gGlow", "hold-4", "s4:start", 6)],
- "labels": [lab("gFilA", "一根紗＝幾百根玻璃絲", "Yarn = many glass filaments", "amber", "glass", "glass+45"),
-            lab("gWarpA", "經紗緯紗上下交錯", "Warp and weft interlace", "blue", "screen+2", "screen+47")],
+ "labels": [lab("gFilA", "一根紗＝很多根玻璃絲", "Yarn = many glass filaments", "amber", "glass-3", "screen+1"),
+            lab("gWarpA", "經紗緯紗上下交錯", "Warp and weft interlace", "blue", "screen+3", "screen+48")],
  "overlay": [card("s3", "ccl-fab", "玻纖布：玻璃絲織成，像紗窗", "示意（放大，不按比例）", {"glass": "glass", "screen": "screen", "hold": "hold"})]}
 P["s4"] = {"zoom": [{"to": "treat", "at": CC, "dur": 1}],
  "shot": [S_(CC, RV, 1)],
@@ -173,9 +173,9 @@ P["s4"] = {"zoom": [{"to": "treat", "at": CC, "dur": 1}],
 P["s5"] = {"zoom": [{"to": "press", "at": CC, "dur": 1}],
  "shot": [S_(CC, HV, 1)],
  "run": [run("hHeat", "press-8", "s6:start", 8), run("hStackHot", "press+4", "glue", 8)],
- "labels": [lab("hPPA", "膠片四張，兩面鋪銅箔", "Prepreg stack + copper foil", "amber", "stack", "stack+45"),
-            lab("hTopA", "熱板壓下：又熱又壓", "Heated platens press", "blue", "press+2", "press+47"),
-            lab("hBleedA", "樹脂融了擠出一點，再變硬", "Resin flows, then cures", "amber", "glue-6", "glue+39")],
+ "labels": [lab("hPPA", "膠片四張，兩面鋪銅箔", "Prepreg stack + copper foil", "amber", "stack", "stack+45", xy=[400, 990]),
+            lab("hTopA", "熱板壓下：又熱又壓", "Heated platens press", "blue", "press+2", "press+47", xy=[400, 990]),
+            lab("hBleedA", "樹脂融了擠出一點，再變硬", "Resin flows, then cures", "amber", "glue-6", "glue+39", xy=[470, 990])],
  "overlay": [card("s5", "ccl-press", "熱壓：樹脂先融、再變硬", "示意（不標溫度與壓力）", {"stack": "stack", "foil": "foil", "press": "press", "melt": "melt", "glue": "glue"})]}
 P["s6"] = {"zoom": [{"to": "etch", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
@@ -201,21 +201,21 @@ if "s9" in _tl and "s10" in _tl:
 else:
     CO_N = 0
 EXT, EXTC = f"voice{CO_N - 3:+d}", f"voice{CO_N - 4:+d}"
-CO = ("ccl-co", "銅箔基板供應商（台灣）", "公司官網、財經媒體；截至 2026/11/27")
+CO = ("ccl-co", "銅箔基板供應商（台灣）", "公司官網、財經媒體；截至 2026/11/28")
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [S_(CC, VV, 1)],
  "labels": [lab("vA1", "高階銅箔基板（示意）", "High-end laminates", "amber", "hi-6", "hi+39")],
- "overlay": [sec(CO[0], C, nxt("s9"), CO[1], CO[2], {"emc": "emc", "tuc": "tuc", "hi": "hi"}, cut=True, h=392, y=1000)]}
+ "overlay": [sec(CO[0], C, nxt("s9"), CO[1], CO[2], {"emc": "emc", "iteq": "iteq", "tuc": "tuc", "hi": "hi"}, cut=True, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "next", "at": EXTC, "dur": 1}],
  "shot": [S_(EXTC, NV, 1)],
  "run": [run("nCuSpin", EXT, "s11:start", 10), run("nGlSpin", EXT, "s11:start", 10)],
  "labels": [lab("nGlA", "玻纖布：要多平？", "Glass fabric: how flat?", "blue", "flat-4", "flat+41"),
             lab("nCuA", "銅箔：要多光滑？", "Copper foil: how smooth?", "amber", "flat+43", "flat+88")],
- "overlay": ([sec(CO[0], C, EXT, CO[1], CO[2], {"emc": "s9:emc", "tuc": "s9:tuc", "hi": "s9:hi"}, cut=True, h=392, y=1000)] if CO_N else []) + [sec("ccl-next", EXT, "s11:start", "下一集：銅箔與玻纖布", "留言「銅箔基板」", {"up": "up", "flat": "flat", "next": "next", "kw": "kw"}, cut=True)]}
+ "overlay": ([sec(CO[0], C, EXT, CO[1], CO[2], {"emc": "s9:emc", "iteq": "s9:iteq", "tuc": "s9:tuc", "hi": "s9:hi"}, cut=True, h=392, y=1000)] if CO_N else []) + [sec("ccl-next", EXT, "s11:start", "下一集：銅箔與玻纖布", "留言「銅箔基板」", {"up": "up", "flat": "flat", "smooth": "smooth", "next": "next", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
-lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": False, "note": "查證截至 2026/11/27", "noteAlways": True}
+lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": False, "note": "查證截至 2026/11/28", "noteAlways": True}
 levels = [lv("start", "電路板（示意）", "CIRCUIT BOARD", "10 cm", "1 cm"), lv("pcb", "銅箔基板（示意，厚度放大）", "COPPER-CLAD LAMINATE", "10 cm", "1 cm"),
           lv("glass", "玻纖布放大（示意）", "GLASS FABRIC", "1 mm", "0.1 mm"), lv("treat", "含浸線（示意）", "PREPREG TREATER", "10 m", "1 m"),
           lv("press", "熱壓機（示意）", "LAMINATION PRESS", "5 m", "1 m"), lv("etch", "蝕刻成線路（示意）", "ETCHING", "50 cm", "5 cm"),

@@ -1,0 +1,1821 @@
+{
+ "slug": "tech-ccl",
+ "prevEpisode": "3-10：玻璃基板",
+ "title": "銅箔基板（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指第三版；本支子聊天室不送 TTS，由頻道負責人配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "start",
+    "label": "電路板（示意）",
+    "en": "CIRCUIT BOARD",
+    "field": "10 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "pcb",
+    "label": "銅箔基板（示意，厚度放大）",
+    "en": "COPPER-CLAD LAMINATE",
+    "field": "10 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "glass",
+    "label": "玻纖布放大（示意）",
+    "en": "GLASS FABRIC",
+    "field": "1 mm",
+    "ruler": "0.1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "treat",
+    "label": "含浸線（示意）",
+    "en": "PREPREG TREATER",
+    "field": "10 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "press",
+    "label": "熱壓機（示意）",
+    "en": "LAMINATION PRESS",
+    "field": "5 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "etch",
+    "label": "蝕刻成線路（示意）",
+    "en": "ETCHING",
+    "field": "50 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "loss",
+    "label": "損耗對照（示意）",
+    "en": "SIGNAL LOSS",
+    "field": "50 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "銅箔基板供應商",
+    "en": "SUPPLIERS",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "銅箔與玻纖布（下一集）",
+    "en": "NEXT",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "銅箔基板",
+   "電路板的原料"
+  ],
+  "sub": "銅箔＋膠片＋銅箔",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "載板看完了，主機板又是什麼做的？前一集看玻璃基板，這集看最常見的銅箔基板。",
+   "tts": "載板看完了，主機板又是什麼做的？前一集看玻璃基板，這集看最常見的銅箔基板。",
+   "subtitle": {
+    "zh": "載板看完了\n主機板又是什麼做的？\n前一集看玻璃基板\n這集看最常見的\n銅箔基板",
+    "en": "Done with substrates. | So what is a motherboard made of? | Last episode: glass substrates. | This time, the most common one: | copper-clad laminate."
+   },
+   "keywords": [
+    "主機板",
+    "前一集",
+    "銅箔基板"
+   ],
+   "cues": [
+    {
+     "id": "sub",
+     "text": "載板"
+    },
+    {
+     "id": "q",
+     "text": "什麼做的"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "ccl",
+     "text": "銅箔基板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：電路板的原料",
+     "title": "主機板是什麼做的？",
+     "size": 92,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.0,
+      "y": -0.6,
+      "d": 30,
+      "elev": 38
+     }
+    ],
+    "shift": [
+     {
+      "layer": "kPCB",
+      "at": "s2:voice-4",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "kCuB",
+      "at": "s1:start-40",
+      "until": "s2:voice-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "kPP0",
+      "at": "s1:start-40",
+      "until": "s2:voice-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "kPP1",
+      "at": "s1:start-40",
+      "until": "s2:voice-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "kPP2",
+      "at": "s1:start-40",
+      "until": "s2:voice-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "kCuT",
+      "at": "s1:start-40",
+      "until": "s2:voice-4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "kCookie",
+      "at": "s1:start-40",
+      "until": "s2:cookie-4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "kPP0",
+      "at": "s2:cookie+2",
+      "until": "s2:cu+9",
+      "dur": 12,
+      "dy": 0.7
+     },
+     {
+      "layer": "kPP1",
+      "at": "s2:cookie+5",
+      "until": "s2:cu+6",
+      "dur": 12,
+      "dy": 1.4
+     },
+     {
+      "layer": "kPP2",
+      "at": "s2:cookie+8",
+      "until": "s2:cu+3",
+      "dur": 12,
+      "dy": 2.1
+     },
+     {
+      "layer": "kCuT",
+      "at": "s2:cookie+11",
+      "until": "s2:cu+0",
+      "dur": 12,
+      "dy": 2.9
+     },
+     {
+      "layer": "gF0",
+      "at": "s1:start-40",
+      "until": "s3:voice+4",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gF1",
+      "at": "s1:start-40",
+      "until": "s3:voice+11",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gF2",
+      "at": "s1:start-40",
+      "until": "s3:voice+18",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gF3",
+      "at": "s1:start-40",
+      "until": "s3:voice+25",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gF4",
+      "at": "s1:start-40",
+      "until": "s3:voice+32",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gF5",
+      "at": "s1:start-40",
+      "until": "s3:voice+39",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gF6",
+      "at": "s1:start-40",
+      "until": "s3:voice+46",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gF7",
+      "at": "s1:start-40",
+      "until": "s3:voice+53",
+      "dur": 10,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "gFil",
+      "at": "s1:start-40",
+      "until": "s3:glass-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "rPP0",
+      "at": "s1:start-40",
+      "until": "s4:pp-30",
+      "dur": 6,
+      "dy": 0.5,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rCutter",
+      "at": "s4:pp-36",
+      "until": "s4:pp-33",
+      "dur": 3,
+      "dy": -0.55,
+      "fallOut": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "rPP1",
+      "at": "s1:start-40",
+      "until": "s4:pp-24",
+      "dur": 6,
+      "dy": 0.5,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rCutter",
+      "at": "s4:pp-30",
+      "until": "s4:pp-27",
+      "dur": 3,
+      "dy": -0.55,
+      "fallOut": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "rPP2",
+      "at": "s1:start-40",
+      "until": "s4:pp-18",
+      "dur": 6,
+      "dy": 0.5,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rCutter",
+      "at": "s4:pp-24",
+      "until": "s4:pp-21",
+      "dur": 3,
+      "dy": -0.55,
+      "fallOut": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "rPP3",
+      "at": "s1:start-40",
+      "until": "s4:pp-12",
+      "dur": 6,
+      "dy": 0.5,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rCutter",
+      "at": "s4:pp-18",
+      "until": "s4:pp-15",
+      "dur": 3,
+      "dy": -0.55,
+      "fallOut": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "rPP4",
+      "at": "s1:start-40",
+      "until": "s4:pp-6",
+      "dur": 6,
+      "dy": 0.5,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rCutter",
+      "at": "s4:pp-12",
+      "until": "s4:pp-9",
+      "dur": 3,
+      "dy": -0.55,
+      "fallOut": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "rPP5",
+      "at": "s1:start-40",
+      "until": "s4:pp-0",
+      "dur": 6,
+      "dy": 0.5,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
+     },
+     {
+      "layer": "rCutter",
+      "at": "s4:pp-6",
+      "until": "s4:pp-3",
+      "dur": 3,
+      "dy": -0.55,
+      "fallOut": true,
+      "bounce": 0.02
+     },
+     {
+      "layer": "hCuB",
+      "at": "s1:start-40",
+      "until": "s5:voice",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "hPP0",
+      "at": "s1:start-40",
+      "until": "s5:stack+2",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "hPP1",
+      "at": "s1:start-40",
+      "until": "s5:stack+7",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "hPP2",
+      "at": "s1:start-40",
+      "until": "s5:stack+12",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "hPP3",
+      "at": "s1:start-40",
+      "until": "s5:stack+17",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "hCuT",
+      "at": "s1:start-40",
+      "until": "s5:foil",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "hPlT",
+      "at": "s1:start-40",
+      "until": "s5:foil+8",
+      "dur": 10,
+      "dy": 1.4,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0
+     },
+     {
+      "layer": "hTop",
+      "at": "s5:press-4",
+      "until": "s11:start+400",
+      "dur": 16,
+      "dy": -2.34
+     },
+     {
+      "layer": "hBleed",
+      "at": "s1:start-40",
+      "until": "s5:melt",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hCore",
+      "at": "s1:start-40",
+      "until": "s5:glue-4",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "eCu0",
+      "at": "s6:etch+18",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "eTr",
+      "at": "s1:start-40",
+      "until": "s6:etch+6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sLaneB",
+      "at": "s1:start-40",
+      "until": "s8:low",
+      "dur": 12,
+      "dy": 1.2,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "sRxB",
+      "at": "s1:start-40",
+      "until": "s8:low",
+      "dur": 12,
+      "dy": 1.2,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     }
+    ],
+    "run": [
+     {
+      "id": "kSig",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:start"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 11 集",
+      "tag": "示意",
+      "t": {
+       "sub": {
+        "at": "sub"
+       },
+       "q": {
+        "at": "q"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "ccl": {
+        "at": "ccl"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.1,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "它像夾心餅乾，中間是浸過樹脂的玻纖布，兩面貼銅箔。",
+   "tts": "它像夾心餅乾，中間是浸過樹脂的玻纖布，兩面貼銅箔。",
+   "subtitle": {
+    "zh": "它像夾心餅乾\n中間是浸過樹脂的\n玻纖布\n兩面貼銅箔",
+    "en": "It's like a sandwich cookie: | in the middle, resin-soaked | glass fabric, | with copper foil on both sides."
+   },
+   "keywords": [
+    "夾心餅乾",
+    "樹脂",
+    "銅箔"
+   ],
+   "cues": [
+    {
+     "id": "cookie",
+     "text": "夾心餅乾"
+    },
+    {
+     "id": "fab",
+     "text": "玻纖布"
+    },
+    {
+     "id": "cu",
+     "text": "兩面貼銅箔"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "數位時代、專利 USPTO 4918812；示意（厚度放大）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "start",
+      "at": "start-10",
+      "dur": 1
+     },
+     {
+      "to": "pcb",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 1.6,
+      "y": 1.4,
+      "d": 28,
+      "elev": 16
+     }
+    ],
+    "labels": [
+     {
+      "part": "kCuTA",
+      "text": "銅箔：導電，之後做成線路",
+      "en": "Copper foil",
+      "color": "amber",
+      "at": "cookie+8",
+      "until": "cookie+53",
+      "cut": true
+     },
+     {
+      "part": "kPPA",
+      "text": "膠片：玻纖布＋樹脂",
+      "en": "Prepreg: glass fabric + resin",
+      "color": "blue",
+      "at": "fab",
+      "until": "fab+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-sand",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像夾心餅乾：銅箔／膠片／銅箔",
+      "tag": "示意（厚度放大）",
+      "t": {
+       "cookie": {
+        "at": "cookie"
+       },
+       "fab": {
+        "at": "fab"
+       },
+       "cu": {
+        "at": "cu"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "玻纖布是玻璃絲織的布，像紗窗，撐住形狀。",
+   "tts": "玻纖布是玻璃絲織的布，像紗窗，撐住形狀。",
+   "subtitle": {
+    "zh": "玻纖布是\n玻璃絲織的布\n像紗窗\n撐住形狀",
+    "en": "Glass fabric is | cloth woven from glass yarn, | like a window screen, | holding the shape."
+   },
+   "keywords": [
+    "玻璃絲",
+    "紗窗",
+    "撐住"
+   ],
+   "cues": [
+    {
+     "id": "glass",
+     "text": "玻璃絲"
+    },
+    {
+     "id": "screen",
+     "text": "紗窗"
+    },
+    {
+     "id": "hold",
+     "text": "撐住形狀"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Isola 玻纖布型錄、IPC-4412；示意（放大）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "glass",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 30.0,
+      "y": -1.2,
+      "d": 24,
+      "elev": 46
+     }
+    ],
+    "run": [
+     {
+      "id": "gGlow",
+      "at": "hold-4",
+      "ramp": 6,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "gFilA",
+      "text": "一根紗＝很多根玻璃絲",
+      "en": "Yarn = many glass filaments",
+      "color": "amber",
+      "at": "glass-3",
+      "until": "screen+1",
+      "cut": true
+     },
+     {
+      "part": "gWarpA",
+      "text": "經紗緯紗上下交錯",
+      "en": "Warp and weft interlace",
+      "color": "blue",
+      "at": "screen+3",
+      "until": "screen+48",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-fab",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "玻纖布：玻璃絲織成，像紗窗",
+      "tag": "示意（放大，不按比例）",
+      "t": {
+       "glass": {
+        "at": "glass"
+       },
+       "screen": {
+        "at": "screen"
+       },
+       "hold": {
+        "at": "hold"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.4,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "布先泡樹脂，像紙巾吸飽醬汁，烘到半乾變膠片。",
+   "tts": "布先泡樹脂，像紙巾吸飽醬汁，烘到半乾變膠片。",
+   "subtitle": {
+    "zh": "布先泡樹脂\n像紙巾吸飽醬汁\n烘到半乾變膠片",
+    "en": "The cloth is soaked in resin, | like a paper towel soaking up sauce, | then baked half-dry into prepreg."
+   },
+   "keywords": [
+    "泡樹脂",
+    "紙巾",
+    "膠片"
+   ],
+   "cues": [
+    {
+     "id": "soak",
+     "text": "泡樹脂"
+    },
+    {
+     "id": "towel",
+     "text": "紙巾"
+    },
+    {
+     "id": "dry",
+     "text": "烘到半乾"
+    },
+    {
+     "id": "pp",
+     "text": "膠片"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 4918812、11414532；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "treat",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 61.4,
+      "y": 1.9,
+      "d": 33,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "rUnSpin",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "rWebDryF",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "rWebWetF",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "rDrip",
+      "at": "towel-6",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "rHeatGlow",
+      "at": "dry-6",
+      "ramp": 8,
+      "until": "s5:start"
+     },
+     {
+      "id": "rHotAir",
+      "at": "dry-4",
+      "ramp": 6,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "rTankA",
+      "text": "樹脂槽：布整片泡進去",
+      "en": "Resin bath",
+      "color": "amber",
+      "at": "soak",
+      "until": "soak+45",
+      "cut": true
+     },
+     {
+      "part": "rOvenA",
+      "text": "烘箱：烘到半固化",
+      "en": "Oven: half-cured",
+      "color": "blue",
+      "at": "dry-8",
+      "until": "dry+37",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-pp",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "含浸：像紙巾吸飽醬汁",
+      "tag": "示意（半乾＝半固化）",
+      "t": {
+       "soak": {
+        "at": "soak"
+       },
+       "towel": {
+        "at": "towel"
+       },
+       "dry": {
+        "at": "dry"
+       },
+       "pp": {
+        "at": "pp"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.8,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "疊好膠片、鋪好銅箔，又熱又壓，樹脂融了再變硬，整片黏成一塊。",
+   "tts": "疊好膠片、鋪好銅箔，又熱又壓，樹脂融了再變硬，整片黏成一塊。",
+   "subtitle": {
+    "zh": "疊好膠片\n鋪好銅箔\n又熱又壓\n樹脂融了再變硬\n整片黏成一塊",
+    "en": "Stack the prepreg, | lay the copper foil, | heat and press: | the resin melts, then hardens, | bonding it all into one sheet."
+   },
+   "keywords": [
+    "膠片",
+    "又熱又壓",
+    "黏成一塊"
+   ],
+   "cues": [
+    {
+     "id": "stack",
+     "text": "疊好膠片"
+    },
+    {
+     "id": "foil",
+     "text": "鋪好銅箔"
+    },
+    {
+     "id": "press",
+     "text": "又熱又壓"
+    },
+    {
+     "id": "melt",
+     "text": "融了"
+    },
+    {
+     "id": "glue",
+     "text": "黏成一塊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 4918812、11414532；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "press",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 96.0,
+      "y": 2.6,
+      "d": 36,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "hHeat",
+      "at": "press-8",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "hStackHot",
+      "at": "press+4",
+      "ramp": 8,
+      "until": "glue"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hPPA",
+      "text": "膠片四張，兩面鋪銅箔",
+      "en": "Prepreg stack + copper foil",
+      "color": "amber",
+      "at": "stack",
+      "until": "stack+45",
+      "cut": true,
+      "xy": [
+       400,
+       990
+      ]
+     },
+     {
+      "part": "hTopA",
+      "text": "熱板壓下：又熱又壓",
+      "en": "Heated platens press",
+      "color": "blue",
+      "at": "press+2",
+      "until": "press+47",
+      "cut": true,
+      "xy": [
+       400,
+       990
+      ]
+     },
+     {
+      "part": "hBleedA",
+      "text": "樹脂融了擠出一點，再變硬",
+      "en": "Resin flows, then cures",
+      "color": "amber",
+      "at": "glue-6",
+      "until": "glue+39",
+      "cut": true,
+      "xy": [
+       470,
+       990
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-press",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "熱壓：樹脂先融、再變硬",
+      "tag": "示意（不標溫度與壓力）",
+      "t": {
+       "stack": {
+        "at": "stack"
+       },
+       "foil": {
+        "at": "foil"
+       },
+       "press": {
+        "at": "press"
+       },
+       "melt": {
+        "at": "melt"
+       },
+       "glue": {
+        "at": "glue"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "板廠再把銅蝕刻成線路，訊號就沿著線路跑。",
+   "tts": "板廠再把銅蝕刻成線路，訊號就沿著線路跑。",
+   "subtitle": {
+    "zh": "板廠再把銅\n蝕刻成線路\n訊號就沿著線路跑",
+    "en": "The board maker then | etches the copper into traces, | and signals run along them."
+   },
+   "keywords": [
+    "蝕刻",
+    "線路",
+    "訊號"
+   ],
+   "cues": [
+    {
+     "id": "etch",
+     "text": "蝕刻"
+    },
+    {
+     "id": "run",
+     "text": "訊號就沿著"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "數位時代、專利 USPTO 4918812；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "etch",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 125.0,
+      "y": 0.6,
+      "d": 24,
+      "elev": 42
+     }
+    ],
+    "run": [
+     {
+      "id": "eSpray",
+      "at": "etch-10",
+      "ramp": 4,
+      "until": "etch+30"
+     },
+     {
+      "id": "eSig0",
+      "at": "run-4",
+      "ramp": 4,
+      "until": "s7:start"
+     },
+     {
+      "id": "eSig1",
+      "at": "run-4",
+      "ramp": 4,
+      "until": "s7:start"
+     },
+     {
+      "id": "eSig2",
+      "at": "run-4",
+      "ramp": 4,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eSprayA",
+      "text": "藥水把多的銅吃掉",
+      "en": "Etchant removes copper",
+      "color": "amber",
+      "at": "etch-6",
+      "until": "etch+39",
+      "cut": true
+     },
+     {
+      "part": "eSigA",
+      "text": "訊號沿著線路跑",
+      "en": "Signals run on the traces",
+      "color": "blue",
+      "at": "run",
+      "until": "run+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-etch",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "板廠：銅蝕刻成線路",
+      "tag": "示意",
+      "t": {
+       "etch": {
+        "at": "etch"
+       },
+       "run": {
+        "at": "run"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "但人工智慧伺服器的訊號又快又多，一般材料會吃掉訊號，像在泥巴路跑步。",
+   "tts": "但人工智慧伺服器的訊號又快又多，一般材料會吃掉訊號，像在泥巴路跑步。",
+   "subtitle": {
+    "zh": "但人工智慧伺服器的\n訊號又快又多\n一般材料會吃掉訊號\n像在泥巴路跑步",
+    "en": "But in AI servers, | signals are fast and many; | ordinary material eats the signal, | like running on a muddy road."
+   },
+   "keywords": [
+    "人工智慧伺服器",
+    "吃掉訊號",
+    "泥巴路"
+   ],
+   "cues": [
+    {
+     "id": "ai",
+     "text": "人工智慧伺服器"
+    },
+    {
+     "id": "fast",
+     "text": "又快又多"
+    },
+    {
+     "id": "eat",
+     "text": "吃掉訊號"
+    },
+    {
+     "id": "mud",
+     "text": "泥巴路"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Altium、NextPCB 技術文章；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "loss",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 155.0,
+      "y": 0.4,
+      "d": 30,
+      "elev": 36
+     }
+    ],
+    "run": [
+     {
+      "id": "sA0",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sA1",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sA2",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sSrvLed",
+      "at": "start-10",
+      "ramp": 4,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sLaneAA",
+      "text": "一般材料",
+      "en": "Ordinary material",
+      "color": "amber",
+      "at": "fast",
+      "until": "fast+45",
+      "cut": true
+     },
+     {
+      "part": "sRxAA",
+      "text": "訊號被吃掉，到這只剩一點",
+      "en": "Signal fades",
+      "color": "blue",
+      "at": "eat",
+      "until": "eat+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-mud",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "一般材料：像在泥巴路跑步",
+      "tag": "示意（光點大小＝訊號強弱）",
+      "t": {
+       "ai": {
+        "at": "ai"
+       },
+       "fast": {
+        "at": "fast"
+       },
+       "eat": {
+        "at": "eat"
+       },
+       "mud": {
+        "at": "mud"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "twist",
+   "para": 8,
+   "narration": "所以換成低損耗樹脂，吃掉的只剩大約十分之一，像把泥巴路鋪成跑道。",
+   "tts": "所以換成低損耗樹脂，吃掉的只剩大約十分之一，像把泥巴路鋪成跑道。",
+   "subtitle": {
+    "zh": "所以換成低損耗樹脂\n吃掉的只剩\n大約十分之一\n像把泥巴路鋪成跑道",
+    "en": "So switch to low-loss resin: | the loss drops to | about one tenth, | like paving the mud into a track."
+   },
+   "keywords": [
+    "低損耗",
+    "十分之一",
+    "跑道"
+   ],
+   "cues": [
+    {
+     "id": "low",
+     "text": "低損耗樹脂"
+    },
+    {
+     "id": "tenth",
+     "text": "十分之一"
+    },
+    {
+     "id": "track",
+     "text": "跑道"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Altium、NextPCB 技術文章；依材料與頻率而異"
+   ],
+   "props": {
+    "run": [
+     {
+      "id": "sB",
+      "at": "low+10",
+      "ramp": 4,
+      "until": "s9:start"
+     },
+     {
+      "id": "sRxBGlow",
+      "at": "low+30",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sLaneBA",
+      "text": "低損耗樹脂",
+      "en": "Low-loss resin",
+      "color": "blue",
+      "at": "low",
+      "until": "low+45",
+      "cut": true
+     },
+     {
+      "part": "sRxBA",
+      "text": "到終點幾乎不減",
+      "en": "Arrives almost intact",
+      "color": "amber",
+      "at": "tenth+2",
+      "until": "tenth+47",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-track",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "低損耗：吃掉的只剩約十分之一",
+      "tag": "介電損耗；依材料與頻率而異",
+      "t": {
+       "low": {
+        "at": "low"
+       },
+       "tenth": {
+        "at": "tenth"
+       },
+       "track": {
+        "at": "track"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "台灣有台光電、聯茂、台燿，都在做這種高階基板。",
+   "tts": "台灣有台光電、聯茂、台耀，都在做這種高階基板。",
+   "subtitle": {
+    "zh": "台灣有台光電 聯茂 台燿\n都在做這種高階基板",
+    "en": "Taiwan has Elite Material, ITEQ and TUC, | all making these high-end laminates."
+   },
+   "keywords": [
+    "台光電",
+    "聯茂",
+    "台燿"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "emc",
+     "text": "台光電"
+    },
+    {
+     "id": "iteq",
+     "text": "聯茂"
+    },
+    {
+     "id": "tuc",
+     "text": "台燿"
+    },
+    {
+     "id": "hi",
+     "text": "高階基板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "公司官網、財經媒體；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 185.0,
+      "y": 1.9,
+      "d": 36,
+      "elev": 12
+     }
+    ],
+    "labels": [
+     {
+      "part": "vA1",
+      "text": "高階銅箔基板（示意）",
+      "en": "High-end laminates",
+      "color": "amber",
+      "at": "hi-6",
+      "until": "hi+39",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-co",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "銅箔基板供應商（台灣）",
+      "tag": "公司官網、財經媒體；截至 2026/11/28",
+      "t": {
+       "emc": {
+        "at": "emc"
+       },
+       "iteq": {
+        "at": "iteq"
+       },
+       "tuc": {
+        "at": "tuc"
+       },
+       "hi": {
+        "at": "hi"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.8,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "樹脂換了，布和銅也得一起升級。布要多平、銅要多光滑？下一集看銅箔與玻纖布。留言銅箔基板，拿完整資料。",
+   "tts": "樹脂換了，布和銅也得一起升級。布要多平、銅要多光滑？下一集看銅箔與玻纖布。留言銅箔基板，拿完整資料。",
+   "subtitle": {
+    "zh": "樹脂換了\n布和銅也得一起升級\n布要多平\n銅要多光滑？\n下一集看銅箔與玻纖布\n留言銅箔基板\n拿完整資料",
+    "en": "The resin has changed, | so cloth and copper must upgrade too. | How flat must the cloth be, | how smooth the copper? | Next: copper foil and glass fabric. | Comment \"copper-clad laminate\" | for the full notes."
+   },
+   "keywords": [
+    "銅箔",
+    "玻纖布",
+    "銅箔基板"
+   ],
+   "cues": [
+    {
+     "id": "up",
+     "text": "一起升級"
+    },
+    {
+     "id": "flat",
+     "text": "布要多平"
+    },
+    {
+     "id": "smooth",
+     "text": "銅要多光滑"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言銅箔基板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice+5",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice+5",
+      "dur": 1,
+      "x": 215.0,
+      "y": 0.6,
+      "d": 26,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "nCuSpin",
+      "at": "voice+6",
+      "ramp": 10,
+      "until": "s11:start"
+     },
+     {
+      "id": "nGlSpin",
+      "at": "voice+6",
+      "ramp": 10,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nGlA",
+      "text": "玻纖布：要多平？",
+      "en": "Glass fabric: how flat?",
+      "color": "blue",
+      "at": "flat-4",
+      "until": "flat+41",
+      "cut": true
+     },
+     {
+      "part": "nCuA",
+      "text": "銅箔：要多光滑？",
+      "en": "Copper foil: how smooth?",
+      "color": "amber",
+      "at": "flat+43",
+      "until": "flat+88",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "ccl-co",
+      "at": "voice-3",
+      "until": "voice+6",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "銅箔基板供應商（台灣）",
+      "tag": "公司官網、財經媒體；截至 2026/11/28",
+      "t": {
+       "emc": {
+        "at": "s9:emc"
+       },
+       "iteq": {
+        "at": "s9:iteq"
+       },
+       "tuc": {
+        "at": "s9:tuc"
+       },
+       "hi": {
+        "at": "s9:hi"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "ccl-next",
+      "at": "voice+6",
+      "until": "s11:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：銅箔與玻纖布",
+      "tag": "留言「銅箔基板」",
+      "t": {
+       "up": {
+        "at": "up"
+       },
+       "flat": {
+        "at": "flat"
+       },
+       "smooth": {
+        "at": "smooth"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.4,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "銅箔與玻纖布",
+     "trail": [
+      "銅箔基板：銅箔＋膠片＋銅箔"
+     ],
+     "comment": "銅箔基板",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

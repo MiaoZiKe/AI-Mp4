@@ -50,3 +50,11 @@
 - 不念英文縮寫：CCL、AI、Df、PCB、M8 都不念；「AI 伺服器」念成「人工智慧伺服器」。
 - 避開「上」（Andy 第 14、21 條）：「上下貼」→「兩面貼」、「蓋上」→「鋪好」、「跟上」→「一起升級」。
 - 「台燿」念稿寫「台耀」（同音，避免罕用字念錯）。
+
+## 七、公司說法補查證（2026/11/28，WebSearch standard；片中只念「都在做這種高階基板」）
+| 公司 | 說法 | 狀態 | 出處 |
+|---|---|---|---|
+| 台光電 | 董事長：2025 主流 M8，預計 2026 下半年生產 M9；高盛稱 M9 已獲客戶認證（外資說法） | 公司說法＋法人 | https://money.udn.com/money/story/5607/9039207 ；https://finance.technews.tw/2025/09/04/ccl-rubin/ ；https://news.tvbs.com.tw/money/4031829 |
+| 聯茂 | M9 Low CTE 基板 2025 下半年通過美系 AI GPU 大廠與數家 PCB 廠認證；泰國廠一期月產能 30 萬張 | 公司說法（媒體轉述） | https://uanalyze.com.tw/articles/6459336339 ；https://finance.technews.tw/2026/09/19/m9-surpasses-competitors-elite-material-different-strategy-chen-jin-cai/ ；https://udn.com/news/story/7253/9482925 |
+| 台燿 | M8 材料用於 AI 伺服器 UBB 與 800G 交換器板；泰國廠二期 2026/7 試產、預計第四季量產（截至 2026/11/28 未查到量產確認） | 媒體／法人 | https://wantrich.chinatimes.com/news/20260721900101-420101 ；https://today.line.me/tw/v2/article/7N7R3Qn ；https://news.tvbs.com.tw/money/4031829 |
+結論：三家都有做 AI 伺服器／交換器等級高速 CCL 的公開報導，念稿「都在做這種高階基板」成立；不排名、不念市占與營收。

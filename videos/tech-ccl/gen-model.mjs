@@ -4,6 +4,7 @@
 //   H 熱壓機：膠片＋銅箔疊好、上下熱板壓（x 95）｜E 蝕刻成線路＋訊號沿線跑（x 125）｜S 損耗對照：一般材料 vs 低損耗（x 155）｜V 供應商展示台（x 185）｜N 下一集：銅箔捲與玻纖布捲（x 215）
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const R2 = (x) => Math.round(x * 1000) / 1000;
 const D2R = Math.PI / 180;
@@ -240,11 +241,38 @@ P({ id: "ssLed", layer: "sServer", shape: "sphere", size: [0.07], pos: [0, 0, -4
 
 // ═════ 站 V：供應商展示台（x 185）：三座台子各放一疊銅箔基板 ═════
 const VX = 185;
-for (const [k, dx] of [[0, -5], [1, 0], [2, 5]]) {
-  const id = `vP${k}`, x = VX + dx; LAY(id, [3.6, 3, x, 1.5]);
+// 每座：檯座正面貼公司文字名牌＋國旗（不是商標）；檯面一疊 5 張銅箔基板（銅面＋米色膠片邊、看得到布紋點，張與張略錯位）；後面立一片蝕刻好的樣板（走線、銲墊、過孔）
+const VSIGNS = [["cclemc", "台光電|2383"], ["ccliteq", "聯茂|6213"], ["ccltuc", "台燿|6274"]];
+{ const r = spawnSync("node", [path.join(HERE, "..", "..", "scripts", "three", "make-brand-tex.mjs"), "tech-ccl", "flag:TW", ...VSIGNS.map(([id, t]) => `text:${id}=${t}`)], { encoding: "utf8" }); if (r.status !== 0) { console.error(r.stderr); process.exit(1); } }
+VSIGNS.forEach(([id]) => { materials[`t_${id}`] = { kind: "unlit", color: "#FFFFFF", img: `tex/brand/sign-${id}.png` }; });
+materials.flag_TW = { kind: "unlit", color: "#FFFFFF", img: "tex/brand/flag-TW.png" };
+for (const [k, dx] of [[0, -4.1], [1, 0], [2, 4.1]]) {
+  const id = `vP${k}`, x = VX + dx; LAY(id, [3.6, 3.4, x, 1.7]);
   BOX(`${id}Pl`, id, x - 1.8, x + 1.8, 0, 1.1, -1.6, 1.6, "band"); BOX(`${id}Top`, id, x - 1.8, x + 1.8, 1.1, 1.15, -1.6, 1.6, "panel2");
-  for (let s = 0; s < 5; s++) { BOX(`${id}S${s}`, id, x - 1.4, x + 1.4, R2(1.15 + s * 0.16), R2(1.27 + s * 0.16), -1.2, 1.2, "core"); BOX(`${id}C${s}`, id, x - 1.4, x + 1.4, R2(1.27 + s * 0.16), R2(1.31 + s * 0.16), -1.2, 1.2, "cuHi"); }
-  BOX(`${id}Tag`, id, x - 0.8, x + 0.8, 0.5, 0.8, 1.6, 1.64, "white");
+  BOX(`${id}Kick`, id, x - 1.85, x + 1.85, 0, 0.12, -1.65, 1.65, "darker");
+  for (let s = 0; s < 5; s++) {
+    const jx = R2(((s * 37 + k * 11) % 7 - 3) * 0.025), jz = R2(((s * 53 + k * 7) % 5 - 2) * 0.03), y = 1.15 + s * 0.17;
+    BOX(`${id}Cb${s}`, id, x - 1.4 + jx, x + 1.4 + jx, R2(y), R2(y + 0.025), -1.2 + jz, 0.9 + jz, "cu");
+    BOX(`${id}S${s}`, id, x - 1.4 + jx, x + 1.4 + jx, R2(y + 0.025), R2(y + 0.145), -1.2 + jz, 0.9 + jz, "core");
+    P({ id: `${id}W${s}`, layer: id, shape: "box", size: [0.07, 0.03, 0.012], pos: [0, R2(y + 0.085), R2(0.9 + jz + 0.004)], at: Array.from({ length: 14 }, (_, i) => [R2(x - 1.3 + jx + i * 0.2), 0, 0]), mat: "yarn" });
+    BOX(`${id}C${s}`, id, x - 1.4 + jx, x + 1.4 + jx, R2(y + 0.145), R2(y + 0.17), -1.2 + jz, 0.9 + jz, "cuHi");
+  }
+  // 後面的蝕刻樣板（立在小架子上，朝前）
+  const by = 2.75, bz = -1.35;
+  BOX(`${id}Easel`, id, x - 0.08, x + 0.08, 1.15, 2.0, R2(bz - 0.12), R2(bz - 0.02), "dark");
+  BOX(`${id}Bd`, id, x - 1.2, x + 1.2, R2(by - 0.8), R2(by + 0.8), R2(bz - 0.02), R2(bz + 0.04), "pcb");
+  for (let t = 0; t < 4; t++) {
+    const ty = R2(by - 0.55 + t * 0.36);
+    BOX(`${id}Tr${t}a`, id, x - 1.0, x + 0.1, ty, R2(ty + 0.045), R2(bz + 0.04), R2(bz + 0.055), "padGold");
+    BOX(`${id}Tr${t}b`, id, x + 0.1, x + 0.95, R2(ty + 0.16), R2(ty + 0.205), R2(bz + 0.04), R2(bz + 0.055), "padGold");
+    BOX(`${id}Tr${t}c`, id, x + 0.08, x + 0.14, ty, R2(ty + 0.205), R2(bz + 0.04), R2(bz + 0.055), "padGold");
+    BOX(`${id}Pd${t}`, id, x - 1.1, x - 0.94, R2(ty - 0.05), R2(ty + 0.095), R2(bz + 0.04), R2(bz + 0.06), "padGold");
+    P({ id: `${id}Via${t}`, layer: id, shape: "cyl", size: [0.07, 0.03], rot: [Math.PI / 2, 0, 0], pos: [R2(x + 0.98), R2(ty + 0.18), R2(bz + 0.06)], mat: "padGold" });
+    P({ id: `${id}ViaH${t}`, layer: id, shape: "cyl", size: [0.03, 0.035], rot: [Math.PI / 2, 0, 0], pos: [R2(x + 0.98), R2(ty + 0.18), R2(bz + 0.065)], mat: "darker" });
+  }
+  BOX(`${id}Ic`, id, x - 0.35, x + 0.25, R2(by + 0.45), R2(by + 0.72), R2(bz + 0.04), R2(bz + 0.12), "chip");
+  P({ id: `${id}Sign`, layer: id, shape: "plane", size: [2.2, 0.7], pos: [R2(x + 0.25), 0.6, 1.62], mat: `t_${VSIGNS[k][0]}`, uv01: true });
+  P({ id: `${id}Flag`, layer: id, shape: "plane", size: [0.72, 0.48], pos: [R2(x - 1.3), 0.6, 1.62], mat: "flag_TW", uv01: true });
 }
 
 // ═════ 站 N：下一集（x 215）：銅箔捲（亮面，拉出一段）＋玻纖布捲（拉出一段，看得到織紋） ═════
@@ -268,7 +296,7 @@ actions.rWebDryF = { type: "flow", _說明: "乾布往前走（白色標記點�
 actions.rWebWetF = { type: "flow", _說明: "布浸過樹脂後往前走，經擠壓輥、進烘箱（琥珀色標記點）", layer: "rWebWet", path: [[RX - 2.5, 1.5, 1.0], [RX - 1.8, 0.66, 1.0], [RX + 0.4, 2.65, 1.0], [OV0, 2.65, 1.0], [OV1, 2.65, 1.0], [RX + 8.6, 2.65, 1.0]], n: 8, size: 0.09, shape: "dot", rate: 0.3, color: "ppC", track: false };
 actions.rDrip = { type: "flow", _說明: "擠壓輥擠掉多的樹脂，滴回槽裡（受重力加速）", layer: "rFrame", path: [[RX + 0.1, 2.3, 0.6], [RX - 0.6, 1.45, 0.6]], n: 3, lanes: 2, laneDir: [0, 0, -1], laneGap: 0.9, size: 0.08, shape: "dot", rate: 1.1, color: "resinL", track: false, accel: true, free: true };
 actions.rHeatGlow = { type: "pulse", _說明: "烘箱加熱管發紅（把樹脂烘到半固化）", parts: ["rHeat"], color: "heatC", glow: 0.8, freq: 0.8, halo: 0 };
-actions.rHotAir = { type: "flow", _說明: "烘箱裡熱風往上吹", layer: "rFrame", path: [[OV0 + 1.4, 1.9, 0], [OV0 + 1.4, 3.6, 0]], n: 3, lanes: 4, laneDir: [1, 0, 0], laneGap: 1.1, size: 0.12, shape: "arrow", rate: 0.9, color: "hotC", track: false };
+actions.rHotAir = { type: "flow", _說明: "烘箱裡熱風貼著布面吹過（布在 y2.6）", layer: "rFrame", path: [[OV0 + 0.4, 2.76, 0], [OV1 - 0.4, 2.76, 0]], n: 4, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.8, size: 0.12, shape: "arrow", rate: 0.9, color: "hotC", track: false };
 actions.hHeat = { type: "pulse", _說明: "上下熱板加熱（示意，不標溫度）", parts: ["hBotHeat", "htHeat"], color: "heatC", glow: 0.9, freq: 0.8, halo: 0 };
 actions.hStackHot = { type: "pulse", _說明: "膠片受熱（樹脂變軟、流動）", parts: ["hPP0b", "hPP1b", "hPP2b", "hPP3b"], color: "hotC", glow: 0.35, freq: 1.0, halo: 0 };
 actions.eSpray = { type: "flow", _說明: "蝕刻藥水往下噴（受重力加速）", layer: "eLine", path: [[EX - 3.6, 3.0, 0], [EX - 3.6, 1.5, 0]], n: 3, lanes: 7, laneDir: [1, 0, 0], laneGap: 1.2, size: 0.09, shape: "dot", rate: 1.2, color: "glassC", track: false, accel: true, free: true };
@@ -294,7 +322,7 @@ Object.assign(anchors, {
   hBleedA: A("hBleed", [HX0 + 2.9, 2.33, 1.4], 150, 100), hCoreA: A("hCore", [HX0 - 2.8, 2.33, 1.5], -150, 100),
   eSprayA: A("eLine", [EX - 1.2, 3.14, 0], -150, -100), eTrA: A("eTr", [EX + 2.4, 1.44, -0.6], 150, 100), eSigA: A("eTr", [EX + 0.4, 1.44, 0.2], 150, -100),
   sLaneAA: A("sLaneA", [SX - 2, 0.96, LA - 0.9], -150, -100), sRxAA: A("sRxA", [SX + SL - 0.3, 1.55, LA], 150, -100), sLaneBA: A("sLaneB", [SX + 2, 0.96, LB + 0.9], 150, 100), sRxBA: A("sRxB", [SX + SL - 0.3, 1.55, LB], 150, -100),
-  vA0: A("vP0", [VX - 5, 2.0, 1.2], -150, -100), vA1: A("vP1", [VX, 2.0, 1.2], 150, -100), vA2: A("vP2", [VX + 5, 2.0, 1.2], 150, -100),
+  vA0: A("vP0", [VX - 4.1, 2.0, 1.2], -150, -100), vA1: A("vP1", [VX, 2.0, 1.2], 150, -100), vA2: A("vP2", [VX + 4.1, 2.0, 1.2], 150, -100),
   nCuA: A("nCuRoll", [NX - 3, 3.1, -0.6], -150, -100), nGlA: A("nGlRoll", [NX + 3, 3.1, -0.6], 150, -100),
 });
 
