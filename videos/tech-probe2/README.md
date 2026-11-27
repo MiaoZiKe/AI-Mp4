@@ -1,7 +1,7 @@
 # tech-probe2：探針卡-2 誰在做（系列 2 第 22 集收尾；前一集 2-21 探針卡-1；下一個系列 3 第一集「晶圓切割與薄化」）
 - 狀態（2026/11/27 台北）：無聲完整版（子聊天室製作），未配音、未渲染整片。12/24 發，留言關鍵字「探針卡廠」。
 - 產生：`python3 videos/tech-probe2/genscript.py`（自動先跑 gen-model.mjs）→ `node scripts/three/silent-timeline.mjs tech-probe2` → 再跑一次 genscript。配音後：align 產生新 timeline.json，再跑 genscript（cue 都綁在念稿字上）。
-- 9 幕＋片尾卡；念稿 238 字（script.md 一字未改；字幕寫「旺矽」，念稿 tts 寫「旺細」）；無聲估 72.2 秒（每幕 6.6～9.4 秒，≤10）。
+- 9 幕＋片尾卡；念稿 238 字（script.md 一字未改；字幕寫「旺矽」，念稿 tts 寫「旺細」）；無聲片長 59.1 秒（2026/11/27 依第 39、40 條重排：每幕念完留白 0.7 秒、s9 0.8 秒；相鄰幕無聲 0.9～1.0 秒，>1 秒 0 個；公司卡全顯 s2 7.4、s4 6.1、s5 6.0 秒，念完公司名到換幕 ≥4.9 秒，卡片期間單一靜止鏡頭）。
 - 2D 卡：`src/components/three/HudProbe2.tsx`（9 張，kind `probe2-*`）；Hud.tsx 只加 import 與一行登記。
 - 規格對照：visual-spec.md（站點、模組 13 項的做法、爆炸 8 步與製作順序、運作動畫、比喻）；素材來源：assets.md（LOGO 三類來源都抓不到 → 文字名牌）。
 
@@ -12,7 +12,7 @@ validate 0 error、layout-check 0 error、card-overlap 0 error、kinematics-chec
 - 公司 LOGO：Commons 查無；FormFactor、旺矽、精測官網與維基百科在本環境被網路代理擋下（403）。要換官方 LOGO 需頻道負責人放原檔並在 Brand.tsx 登記。
 - physics-spec 模組 3、4（MEMS 針與電鍍製針）沒做：念稿沒講 MEMS；模組 12 的出貨箭頭沒做：念稿沒講出貨。
 - 「旺矽在新竹」「FormFactor 在加州 Livermore」研究稿標「既有知識待核」；畫面寫「旺矽（新竹）」、FormFactor 只寫「美國探針卡廠」。
-- 配音後 s6「保養」「更換」兩字相隔很近，清針與換針都放在念完後的留白（holdSec 3.1）；配音後若留白變短，要把換針動作提前或縮短。
+- 第 39 條：s6 清針（念到「鉛筆」開始）與換針（「保養」夾走舊針、「更換」放新針）都在念的期間做完；配音後要照實際 cue 檢查換針動作沒有超出念完。
 
 ## 雙審結果（2026/11/27）
 | 輪 | 機台擬真度（docs/reviews/2026-11-27-probe2-mech.md） | 物理專業度＋品管（docs/reviews/2026-11-27-probe2-physics.md） |
