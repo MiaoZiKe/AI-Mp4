@@ -124,6 +124,7 @@
   "oxC": "#6B7380",
   "gasC": "#9FD8C8",
   "crackC": "#E5484D",
+  "arcC": "#0B57E8",
   "moldC": "#22252B",
   "epoxyC": "#D8DCE2",
   "boardC": "#2F4A3A",
@@ -1087,6 +1088,14 @@
    "emissive": "usC",
    "ei": 0.8,
    "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "arc": {
+   "kind": "std",
+   "color": "arcC",
+   "emissive": "arcC",
+   "ei": 0.7,
    "rough": 1,
    "metal": 0
   },
@@ -23388,108 +23397,100 @@
    "layer": "cSpark",
    "shape": "cyl",
    "size": [
-    0.09,
-    0.408
+    0.075,
+    0.475
    ],
    "rot": [
-    -45,
+    -54.462,
     -90,
     0
    ],
    "pos": [
-    120.575,
-    8.925,
-    0.05
+    120.475,
+    8.975,
+    0.35
    ],
-   "mat": "sparkHot"
+   "mat": "arc"
   },
   {
    "id": "cArc1",
    "layer": "cSpark",
    "shape": "cyl",
    "size": [
-    0.09,
-    0.526
+    0.075,
+    0.677
    ],
    "rot": [
-    57.995,
+    71.565,
     -90,
     0
    ],
    "pos": [
-    120.325,
+    120.25,
     8.85,
-    0.05
+    0.35
    ],
-   "mat": "sparkHot"
+   "mat": "arc"
   },
   {
    "id": "cArc2",
    "layer": "cSpark",
    "shape": "cyl",
    "size": [
-    0.09,
-    0.408
+    0.075,
+    0.55
    ],
    "rot": [
-    -45,
+    -62.928,
     -90,
     0
    ],
    "pos": [
-    120.075,
+    120.035,
     8.775,
-    0.05
+    0.35
    ],
-   "mat": "sparkHot"
+   "mat": "arc"
   },
   {
    "id": "cArc3",
    "layer": "cSpark",
    "shape": "cyl",
    "size": [
-    0.09,
-    0.484
+    0.075,
+    0.63
    ],
    "rot": [
-    54.462,
+    70.017,
     -90,
     0
    ],
    "pos": [
-    119.825,
+    119.82,
     8.725,
-    0.05
-   ],
-   "mat": "sparkHot"
-  },
-  {
-   "id": "cArcGlow",
-   "layer": "cSpark",
-   "shape": "sphere",
-   "size": [
-    0.75
-   ],
-   "pos": [
-    120.2,
-    8.75,
-    0
-   ],
-   "mat": "spark"
-  },
-  {
-   "id": "cArcCore",
-   "layer": "cSpark",
-   "shape": "sphere",
-   "size": [
     0.35
    ],
-   "pos": [
-    120.2,
-    8.75,
+   "mat": "arc"
+  },
+  {
+   "id": "cArc4",
+   "layer": "cSpark",
+   "shape": "cyl",
+   "size": [
+    0.075,
+    0.307
+   ],
+   "rot": [
+    -49.635,
+    -90,
     0
    ],
-   "mat": "sparkHot"
+   "pos": [
+    119.635,
+    8.55,
+    0.35
+   ],
+   "mat": "arc"
   },
   {
    "id": "cBallFlat",
@@ -23548,7 +23549,7 @@
    "shape": "cyl",
    "size": [
     0.16,
-    1.1
+    1.15
    ],
    "rot": [
     90,
@@ -23557,7 +23558,7 @@
    ],
    "pos": [
     127.2,
-    3.25,
+    3.275,
     0
    ],
    "mat": "au"
@@ -25000,60 +25001,124 @@
    "mat": "cuW"
   },
   {
-   "id": "eSpk1G",
+   "id": "eSpk1A0",
    "layer": "eSpk1",
-   "shape": "sphere",
+   "shape": "cyl",
    "size": [
-    0.7
+    0.075,
+    0.545
+   ],
+   "rot": [
+    -36.87,
+    -90,
+    0
+   ],
+   "pos": [
+    251.3,
+    8.35,
+    0.3
+   ],
+   "mat": "arc"
+  },
+  {
+   "id": "eSpk1A1",
+   "layer": "eSpk1",
+   "shape": "cyl",
+   "size": [
+    0.075,
+    0.586
+   ],
+   "rot": [
+    56.31,
+    -90,
+    0
+   ],
+   "pos": [
+    250.95,
+    8.275,
+    0.3
+   ],
+   "mat": "arc"
+  },
+  {
+   "id": "eSpk1A2",
+   "layer": "eSpk1",
+   "shape": "cyl",
+   "size": [
+    0.075,
+    0.517
+   ],
+   "rot": [
+    -32.005,
+    -90,
+    0
    ],
    "pos": [
     250.6,
-    8.2,
-    0
-   ],
-   "mat": "spark"
-  },
-  {
-   "id": "eSpk1C",
-   "layer": "eSpk1",
-   "shape": "sphere",
-   "size": [
+    8.175,
     0.3
    ],
-   "pos": [
-    250.6,
-    8.2,
-    0
-   ],
-   "mat": "sparkHot"
+   "mat": "arc"
   },
   {
-   "id": "eSpk2G",
+   "id": "eSpk2A0",
    "layer": "eSpk2",
-   "shape": "sphere",
+   "shape": "cyl",
    "size": [
-    0.7
+    0.075,
+    0.545
+   ],
+   "rot": [
+    -36.87,
+    -90,
+    0
+   ],
+   "pos": [
+    262.3,
+    8.35,
+    0.3
+   ],
+   "mat": "arc"
+  },
+  {
+   "id": "eSpk2A1",
+   "layer": "eSpk2",
+   "shape": "cyl",
+   "size": [
+    0.075,
+    0.586
+   ],
+   "rot": [
+    56.31,
+    -90,
+    0
+   ],
+   "pos": [
+    261.95,
+    8.275,
+    0.3
+   ],
+   "mat": "arc"
+  },
+  {
+   "id": "eSpk2A2",
+   "layer": "eSpk2",
+   "shape": "cyl",
+   "size": [
+    0.075,
+    0.517
+   ],
+   "rot": [
+    -32.005,
+    -90,
+    0
    ],
    "pos": [
     261.6,
-    8.2,
-    0
-   ],
-   "mat": "spark"
-  },
-  {
-   "id": "eSpk2C",
-   "layer": "eSpk2",
-   "shape": "sphere",
-   "size": [
+    8.175,
     0.3
    ],
-   "pos": [
-    261.6,
-    8.2,
-    0
-   ],
-   "mat": "sparkHot"
+   "mat": "arc"
   },
   {
    "id": "eGasRing",
@@ -25541,11 +25606,11 @@
    "dy": 90
   },
   "cEfoA": {
-   "layer": "cSpark",
+   "layer": "cEfo",
    "p": [
-    120.2,
-    8.75,
-    0.1
+    124,
+    8.799999999999999,
+    0.2
    ],
    "dx": 150,
    "dy": 90
@@ -25993,21 +26058,6 @@
    "steady": true,
    "halo": 0
   },
-  "cArcFlash": {
-   "type": "pulse",
-   "parts": [
-    "cArcGlow",
-    "cArcCore",
-    "cArc0",
-    "cArc1",
-    "cArc2",
-    "cArc3"
-   ],
-   "color": "sparkC",
-   "glow": 1,
-   "freq": 9,
-   "halo": 1.6
-  },
   "cBondHot": {
    "type": "pulse",
    "parts": [
@@ -26280,28 +26330,6 @@
    "track": false,
    "jitter": 0.15,
    "free": true
-  },
-  "eSpkF1": {
-   "type": "pulse",
-   "parts": [
-    "eSpk1G",
-    "eSpk1C"
-   ],
-   "color": "sparkC",
-   "glow": 1,
-   "freq": 9,
-   "halo": 1.4
-  },
-  "eSpkF2": {
-   "type": "pulse",
-   "parts": [
-    "eSpk2G",
-    "eSpk2C"
-   ],
-   "color": "sparkC",
-   "glow": 1,
-   "freq": 9,
-   "halo": 1.4
   }
  },
  "pose": {

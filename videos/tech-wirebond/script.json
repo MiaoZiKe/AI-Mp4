@@ -943,7 +943,7 @@
      },
      {
       "layer": "cSpark",
-      "at": "s4:spark+5",
+      "at": "s4:spark+6",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -1028,6 +1028,13 @@
      {
       "layer": "cTail2",
       "at": "s1:start-40",
+      "until": "s7:start+70",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "cTail2",
+      "at": "s7:cut-4",
       "until": "s12:start+400",
       "opacity": 0,
       "dur": 1
@@ -3631,12 +3638,6 @@
     ],
     "run": [
      {
-      "id": "cArcFlash",
-      "at": "spark-2",
-      "ramp": 1,
-      "until": "spark+5"
-     },
-     {
       "id": "cHeatOn",
       "at": "start",
       "ramp": 6,
@@ -3650,7 +3651,11 @@
       "en": "EFO spark",
       "color": "blue",
       "at": "spark-6",
-      "until": "spark+39"
+      "until": "spark+39",
+      "xy": [
+       820,
+       980
+      ]
      },
      {
       "part": "cFabA",
@@ -4250,12 +4255,6 @@
     ],
     "run": [
      {
-      "id": "eSpkF1",
-      "at": "ox-32",
-      "ramp": 1,
-      "until": "ox-26"
-     },
-     {
       "id": "eGasA",
       "at": "gas-8",
       "ramp": 8,
@@ -4272,12 +4271,6 @@
       "at": "gas-10",
       "ramp": 8,
       "until": "s10:start-2"
-     },
-     {
-      "id": "eSpkF2",
-      "at": "gas+10",
-      "ramp": 1,
-      "until": "gas+16"
      }
     ],
     "labels": [
@@ -4361,7 +4354,7 @@
    "narration": "封裝廠有日月光、安靠，打線機大廠是庫力索法。",
    "tts": "封裝廠有日月光、安靠，打線機大廠是庫力索法。",
    "subtitle": {
-    "zh": "封裝廠有日月光安靠\n打線機大廠\n是庫力索法",
+    "zh": "封裝廠有日月光、安靠\n打線機大廠\n是庫力索法",
     "en": "Packaging houses: ASE and Amkor. | The big bonder maker | is Kulicke & Soffa."
    },
    "keywords": [
@@ -4389,7 +4382,7 @@
    ],
    "component": "ThreeScene",
    "sources": [
-    "日月光、安靠、K&S 官網；截至 11/27"
+    "日月光、安靠官網、K&S 年報；截至 11/27"
    ],
    "props": {
     "shot": [
@@ -4421,14 +4414,14 @@
       "type": "section",
       "kind": "wb-co",
       "at": "start-4",
-      "until": "s11:start-2",
+      "until": "s11:start-6",
       "x": 64,
       "y": 1000,
       "w": 952,
       "h": 392,
       "avoid": false,
       "title": "打線產業",
-      "tag": "日月光、安靠、K&S 官網；截至 11/27",
+      "tag": "日月光、安靠官網、K&S 年報；截至 11/27",
       "t": {
        "ase": {
         "at": "ase"

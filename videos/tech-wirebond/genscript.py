@@ -38,8 +38,8 @@ S = [
  ["線以前用金", "因為金太貴", "多換成銅", "但銅會氧化", "要吹保護氣"], ["Wires used to be gold.", "Gold is too expensive,", "so many switched to copper.", "But copper oxidizes,", "so it needs shielding gas."],
  [("gold", "用金"), ("pricey", "太貴"), ("cu", "換成銅"), ("ox", "氧化"), ("gas", "保護氣")], ["金", "銅", "保護氣"], ["日月光、安靠公司資料；NTU 銅線打線講義"], 6.2, 0.8),
 ("s10", "payoff", "封裝廠有日月光、安靠，打線機大廠是庫力索法。",
- ["封裝廠有日月光安靠", "打線機大廠", "是庫力索法"], ["Packaging houses: ASE and Amkor.", "The big bonder maker", "is Kulicke & Soffa."],
- [("ase", "日月光"), ("amkor", "安靠"), ("maker", "打線機大廠"), ("kns", "庫力索法")], ["日月光", "安靠", "庫力索法"], ["日月光、安靠、K&S 官網；截至 11/27"], 5.3, 0.85),
+ ["封裝廠有日月光、安靠", "打線機大廠", "是庫力索法"], ["Packaging houses: ASE and Amkor.", "The big bonder maker", "is Kulicke & Soffa."],
+ [("ase", "日月光"), ("amkor", "安靠"), ("maker", "打線機大廠"), ("kns", "庫力索法")], ["日月光", "安靠", "庫力索法"], ["日月光、安靠官網、K&S 年報；截至 11/27"], 5.3, 0.85),
 ("s11", "cta", "線接好了，晶片還光著。下一集看封裝材料：導線架、封裝膠、錫球。金線會被銅取代嗎？留言打線，拿完整資料。",
  ["線接好了", "晶片還光著", "下一集看封裝材料", "導線架封裝膠錫球", "金線會被銅取代嗎？", "留言打線", "拿完整資料"], ["The wires are done,", "but the chip is still bare.", "Next: packaging materials,", "lead frames, mold, solder balls.", "Will copper replace gold?", "Comment \"wire bonding\"", "for the full notes."],
  [("done", "接好了"), ("bare", "光著"), ("next", "下一集"), ("mat", "導線架"), ("q", "取代嗎"), ("kw", "留言")], ["封裝材料", "金線", "銅"], ["示意動畫，不是量測"], 10.0, 0.8),
@@ -123,10 +123,10 @@ E7 = T_[-1] + 2                                    # 線弧走完（相對 s7:st
 A7 = lambda n: off("s7:start", E7 + n)            # 從「壓到引腳」起算
 vis("cTail", [("s4:start-1", "s4:spark+3"), ("s7:cut-2", "s8:start-1")])
 vis("cBall", [("s4:spark+3", "s5:press")])
-vis("cSpark", [("s4:spark-2", "s4:spark+5")])
+vis("cSpark", [("s4:spark-2", "s4:spark+6")])
 vis("cBallB", [("s5:press", "s6:start-1"), ("s7:start-1", "s8:start-1")])
 vis("cUS", [("s5:us-4", "s5:rub+30"), (A7(0), A7(16))]); vis("cGlow", [("s5:heat-2", "s6:start-1"), ("s7:start-1", L0)])
-vis("cStitch", [(A7(0), "s8:start-1")]); vis("cTail2", [])
+vis("cStitch", [(A7(0), "s8:start-1")]); vis("cTail2", [(A7(22), "s7:cut-4")])
 for i in range(NL): vis(f"cW{i}", [(off(L0, T_[i + 1] - 1), "s8:start-1")])
 D_ALL = [("s6:start-1", "s7:start-1")]
 for l in ["dSi", "dPad", "dBall", "dNeckL", "dHeat", "dArrow"]: vis(l, D_ALL)
@@ -182,8 +182,8 @@ P["s3"] = {"shot": [shot("start-1", X1, 6.0, 52, 18, 1, yaw=0.0), shot("start+2"
  "overlay": [sec("wb-needle", "start+24", "s4:start-8", "像縫紉機針，但不是刺穿", "示意", {"cap": "cap", "sew": "sew", "mid": "mid", "hair": "hair"})]}
 # ─── s4：放電燒線頭 → 小圓球 ───
 P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 9.4, 40, 8, 20)],
- "run": [run("cArcFlash", "spark-2", "spark+5", 1), run("cHeatOn", "start", "s6:start-2", 6)],
- "labels": [lab("cEfoA", "打火棒放電", "EFO spark", "blue", "spark-6", "spark+39"), lab("cFabA", "小圓球", "Free air ball", "amber", "spark+41", "spark+86")],
+ "run": [run("cHeatOn", "start", "s6:start-2", 6)],
+ "labels": [lab("cEfoA", "打火棒放電", "EFO spark", "blue", "spark-6", "spark+39", xy=[820, 980]), lab("cFabA", "小圓球", "Free air ball", "amber", "spark+41", "spark+86")],
  "overlay": [sec("wb-steps", "start+20", "s6:start-8", "打一條線的步驟", "示意", {"s1": "spark", "s2": "s5:press", "s3": "s7:arc", "s4": "s7:foot", "s5": "s7:cut"})]}
 # ─── s5：壓在焊墊、加熱、超音波 ───
 P["s5"] = {"shot": [shot("start-1", X2 - 0.5, 7.0, 26, 8, 1), shot("press-16", X2 - 1.0, 6.8, 30, 10, 16)],
@@ -207,14 +207,14 @@ P["s8"] = {"shot": [shot("start-1", X0, -3.5, 48, 44, 1, yaw=0.0), shot("cheap",
  "overlay": [sec("wb-speed", "start+20", "s9:start-8", "又快又便宜", "機型資料與實測：每秒約 8.5～17 條", {"ten": "ten", "cheap": "cheap", "phone": "phone", "still": "still"})]}
 # ─── s9：金線 → 銅線，保護氣 ───
 P["s9"] = {"shot": [shot("start-1", X5, 12.0, 80, 10, 1, yaw=0.0), shot("ox-14", X5 + 5.5, 11.0, 66, 10, 30)],
- "run": [run("eSpkF1", "ox-32", "ox-26", 1), run("eGasA", "gas-8", "s10:start-2", 8), run("eGasB", "gas-8", "s10:start-2", 8), run("eGasIn", "gas-10", "s10:start-2", 8), run("eSpkF2", "gas+10", "gas+16", 1)],
+ "run": [run("eGasA", "gas-8", "s10:start-2", 8), run("eGasB", "gas-8", "s10:start-2", 8), run("eGasIn", "gas-10", "s10:start-2", 8)],
  "labels": [lab("eAuA", "金線：燒出來的球亮", "Gold: bright ball", "amber", "gold-2", "gold+43"), lab("eCuA", "銅線沒保護：球氧化變暗", "Copper, no gas: oxidized", "amber", "ox-26", "ox+19"),
             lab("eGasA", "先吹保護氣再放電：球亮", "Gas first: bright ball", "blue", "ox+21", "ox+66", xy=[540, 300])],
  "overlay": [sec("wb-cu", "start+20", "s10:start-8", "金線換銅線", "日月光、安靠公司資料（示意，不標價格）", {"gold": "gold", "pricey": "pricey", "cu": "cu", "ox": "ox", "gas": "gas"})]}
 # ─── s10：公司 ───
 P["s10"] = {"shot": [shot("start-1", X1, 6.0, 50, 16, 1, yaw=0.0)],
  "run": [run("bdHeat", "start", "s11:start-2", 6), run("bdBob", "start", "s11:start-2", 6)],
- "overlay": [sec("wb-co", "start-4", "s11:start-2", "打線產業", "日月光、安靠、K&S 官網；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
+ "overlay": [sec("wb-co", "start-4", "s11:start-6", "打線產業", "日月光、安靠官網、K&S 年報；截至 11/27", {"ase": "ase", "amkor": "amkor", "maker": "maker", "kns": "kns"}, h=392, y=1000)]}
 # ─── s11：預告封裝材料 ───
 P["s11"] = {"shot": [shot("start-1", X0 + 2.0, -4.0, 58, 40, 1, yaw=0.0), shot("next-6", X0 + 3.0, -4.0, 66, 38, 40)],
  "shift": [mv("moldA", T0, "s11:next+4", 20, dy=2.5)],

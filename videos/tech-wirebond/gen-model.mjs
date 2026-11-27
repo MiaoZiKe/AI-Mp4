@@ -89,7 +89,7 @@ const PIPE = (id, layer, pts, r, mat, o = {}) => {
 Object.assign(palette, {
   auC: "#E2B33C", auHiC: "#F6D36B", cuWC: "#D07A45", cuOxC: "#5A3424", alPadC: "#C9CED6", dieC: "#2B3A55", dieTopC: "#3D5378", dieEdgeC: "#1D2638", lfC: "#C98A5A", lfAgC: "#E6EAF0",
   pasC: "#8FB4D9", capC: "#F4F1EA", capTipC: "#D9D3C7", hornC: "#AEB8C6", piezoA: "#D9A441", piezoB: "#4A5466", sparkC: "#BFE3FF", sparkHot: "#FFFFFF", heatC: "#F28A3C", imcC: "#B78BE0",
-  siC: "#5E6F8A", oxC: "#6B7380", gasC: "#9FD8C8", crackC: "#E5484D", moldC: "#22252B", epoxyC: "#D8DCE2", boardC: "#2F4A3A", ballAtC: "#F6D36B", alAtC: "#9FB0C8", usC: "#4FA3FF",
+  siC: "#5E6F8A", oxC: "#6B7380", gasC: "#9FD8C8", crackC: "#E5484D", arcC: "#0B57E8", moldC: "#22252B", epoxyC: "#D8DCE2", boardC: "#2F4A3A", ballAtC: "#F6D36B", alAtC: "#9FB0C8", usC: "#4FA3FF",
 });
 Object.assign(materials, {
   au: M("std", "auC", { rough: 0.2, metal: 0.95, env: 0.9 }), auHi: M("std", "auHiC", { rough: 0.15, metal: 0.95, env: 1.0, emissive: "auC", ei: 0.12 }),
@@ -103,7 +103,7 @@ Object.assign(materials, {
   spark: glowM("sparkC", 0.95, 1.4), sparkHot: glowM("sparkHot", 0.95, 1.6), heat: glowM("heatC", 0.55, 0.8), heatPlate: M("std", "heatC", { rough: 0.4, metal: 0.7, env: 0.5, emissive: "heatC", ei: 0.18 }),
   imc: glowM("imcC", 0.85, 0.7), si: M("std", "siC", { rough: 0.45, metal: 0.3, env: 0.4 }), ox: M("std", "oxC", { rough: 0.8, metal: 0.1, opacity: 0.85 }), gas: glowM("gasC", 0.5, 0.4),
   crack: glowM("crackC", 0.95, 0.8), mold: M("std", "moldC", { rough: 0.85, metal: 0.05, env: 0.15 }), epoxy: M("std", "epoxyC", { rough: 0.5, metal: 0.6, env: 0.5 }), board: M("std", "boardC", { rough: 0.6, metal: 0.1 }),
-  us: glowM("usC", 0.85, 0.8), pfaT: M("phys", "glassC", { rough: 0.25, metal: 0, clearcoat: 1, opacity: 0.4, env: 0.5 }),
+  us: glowM("usC", 0.85, 0.8), arc: M("std", "arcC", { emissive: "arcC", ei: 0.7, rough: 1, metal: 0 }), pfaT: M("phys", "glassC", { rough: 0.25, metal: 0, clearcoat: 1, opacity: 0.4, env: 0.5 }),
 });
 /** 任意方向的細圓柱（兩點之間）：cyl 沿 z，rotateX(a)→rotateY(b)：方向＝(cos a sin b, −sin a, cos a cos b) */
 const SEG = (id, layer, p0, p1, r, mat, o = {}) => {
@@ -288,12 +288,12 @@ SPH("cFab", "cBall", 0.46, CX, HOVY - 0.44, 0, "auHi");
 BOX("cEfoBase", "cEfo", X2 + 9.0, X2 + 13.0, HOVY - 1.8, HOVY + 0.2, -1.2, 1.2, "dark"); SEG("cEfoRod", "cEfo", [X2 + 9.0, HOVY - 0.8, 0], [CX + 1.4, HOVY - 0.8, 0], 0.22, "steel");
 SPH("cEfoTip", "cEfo", 0.3, CX + 1.35, HOVY - 0.8, 0, "steel");
 // 放電電弧：亮藍白鋸齒＋光暈（閃 3～4 幀）
-const ARC = [[CX + 1.2, HOVY - 0.8, 0.05], [CX + 0.95, HOVY - 0.55, 0.05], [CX + 0.7, HOVY - 0.95, 0.05], [CX + 0.45, HOVY - 0.7, 0.05], [CX + 0.2, HOVY - 1.05, 0.05]];
-for (let i = 0; i < ARC.length - 1; i++) SEG(`cArc${i}`, "cSpark", ARC[i], ARC[i + 1], 0.09, "sparkHot");
-SPH("cArcGlow", "cSpark", 0.75, CX + 0.7, HOVY - 0.85, 0, "spark"); SPH("cArcCore", "cSpark", 0.35, CX + 0.7, HOVY - 0.85, 0, "sparkHot");
+const ARC = [[CX + 1.1, HOVY - 0.8, 0.35], [CX + 0.85, HOVY - 0.45, 0.35], [CX + 0.65, HOVY - 1.05, 0.35], [CX + 0.42, HOVY - 0.6, 0.35], [CX + 0.22, HOVY - 1.15, 0.35], [CX + 0.05, HOVY - 0.95, 0.35]];
+for (let i = 0; i < ARC.length - 1; i++) { SEG(`cArc${i}`, "cSpark", ARC[i], ARC[i + 1], 0.075, "arc"); }
+
 P({ id: "cBallFlat", layer: "cBallB", shape: "sphere", size: [0.6], scale: [1, 0.42, 1], pos: [CX, PADY + 0.22, 0], mat: "auHi" });
 P({ id: "cStitchF", layer: "cStitch", shape: "box", size: [1.1, 0.12, 0.7], pos: [LEADX + 0.15, LEADY + 0.08, 0], mat: "auHi" }); P({ id: "cStitchT", layer: "cStitch", shape: "box", size: [0.5, 0.1, 0.3], pos: [LEADX + 0.85, LEADY + 0.07, 0], mat: "au" });
-VC("cTailBreak", "cTail2", R_W, LEADY + 0.15, LEADY + 1.25, "au", { x: LEADX });
+VC("cTailBreak", "cTail2", R_W, LEADY + 0.15, LEADY + 1.3, "au", { x: LEADX });   // 劈刀抬起 1.0 時，線從魚尾連到劈刀孔口
 // 超音波圈：定義在懸停位置（尖端上方 0.75），跟著劈刀一起走
 P({ id: "cUSWave", layer: "cUS", shape: "tube", size: [0.8, 0.7, 0.06], rot: [0, 90, 0], pos: [CX, HOVY + 0.75, 0], at: [[-1.6, 0, 0], [-2.4, 0, 0], [1.6, 0, 0], [2.4, 0, 0]], mat: "us" });
 P({ id: "cBondGlow", layer: "cGlow", shape: "cyl", size: [1.0, 0.05], rot: V, pos: [CX, PADY + 0.08, 0], mat: "heat" });
@@ -304,9 +304,8 @@ for (let i = 0; i < NL; i++) { LAY(`cW${i}`, [1, 1, (LOOP[i][0] + LOOP[i + 1][0]
 actions.cUSvib = { type: "vibrate", _說明: "超音波：劈刀尖端沿換能器方向（x）微振（示意，放大很多）", parts: ["cCapCone", "cCapChamf", "cBallFlat"], axis: [1, 0, 0], amp: 0.06, freq: 12 };
 actions.cUSring = { type: "pulse", parts: ["cUSWave"], color: "usC", glow: 0.9, freq: 4, halo: 0 };
 actions.cHeatOn = { type: "pulse", _說明: "加熱台發熱（約一百多度，示意）", parts: ["cHeatB", "cHeatSide"], color: "heatC", glow: 0.55, steady: true, halo: 0 };
-actions.cArcFlash = { type: "pulse", parts: ["cArcGlow", "cArcCore", ...ARC.slice(1).map((_, i) => `cArc${i}`)], color: "sparkC", glow: 1, freq: 9, halo: 1.6 };
 actions.cBondHot = { type: "pulse", parts: ["cBondGlow"], color: "heatC", glow: 1, freq: 2, halo: 0.6 };
-Object.assign(anchors, { cCapA: A("cCapUp", [CX + 1.0, HOVY + 2.5, 0], 150, -90), cFabA: A("cBall", [CX - 0.3, HOVY - 0.5, 0], -150, 90), cEfoA: A("cSpark", [CX + 0.7, HOVY - 0.85, 0.1], 150, 90),
+Object.assign(anchors, { cCapA: A("cCapUp", [CX + 1.0, HOVY + 2.5, 0], 150, -90), cFabA: A("cBall", [CX - 0.3, HOVY - 0.5, 0], -150, 90), cEfoA: A("cEfo", [CX + 4.5, HOVY - 0.8, 0.2], 150, 90),
   cPadA: A("cDie", [CX - 0.6, PADY + 0.05, 0.6], -150, 100), cBallA: A("cBallB", [CX - 0.4, PADY + 0.25, 0.3], -150, 100), cLoopA: A(`cW${Math.floor(NL / 2)}`, LOOP[Math.floor(NL / 2)], 150, -100),
   cStitchA: A("cStitch", [LEADX + 0.6, LEADY + 0.1, 0.3], 150, 100), cClampA: A("cJawLl", [CX - 0.8, HOVY + CJ + 0.5, 0.7], -150, -90), cHornA: A("cCapUp", [CX - 6.0, HOVY + 6.4, 0.8], -150, -90), cHeatA: A("cHeat", [X2 + 6, 1.0, 6], 150, 100) });
 
@@ -354,14 +353,13 @@ for (const [i, lay, wm] of [[0, "eAu", "au"], [1, "eCu", "cuW"], [2, "eCu2", "cu
 SPH("eAuFab", "eAu", 0.46, EXS[0], EY - 0.44, 0, "auHi");
 P({ id: "eCuOxBall", layer: "eCuOx", shape: "sphere", size: [0.48], scale: [1.05, 0.9, 1], pos: [EXS[1], EY - 0.44, 0], mat: "cuOx" });
 SPH("eCuOkBall", "eCuOk", 0.46, EXS[2], EY - 0.44, 0, "cuW");
-for (const [lay, x] of [["eSpk1", EXS[1]], ["eSpk2", EXS[2]]]) { SPH(`${lay}G`, lay, 0.7, x + 0.6, EY - 0.8, 0, "spark"); SPH(`${lay}C`, lay, 0.3, x + 0.6, EY - 0.8, 0, "sparkHot"); }
+for (const [lay, x] of [["eSpk1", EXS[1]], ["eSpk2", EXS[2]]]) { const z = [[x + 1.5, EY - 0.8, 0.3], [x + 1.1, EY - 0.5, 0.3], [x + 0.8, EY - 0.95, 0.3], [x + 0.4, EY - 0.7, 0.3]]; for (let i = 0; i < 3; i++) { SEG(`${lay}A${i}`, lay, z[i], z[i + 1], 0.075, "arc"); }   }
 // 保護氣罩：環形噴口＋進氣管；氣流用大量細粒子從噴口錐狀散開、繞過劈刀尖
 VT("eGasRing", "eGas", 2.0, 1.55, EY - 1.4, EY - 1.0, "steel", { x: EXS[2] }); SEG("eGasPipe", "eGas", [EXS[2] + 2.0, EY - 1.2, 0], [EXS[2] + 5.5, EY + 1.8, 0], 0.25, "steel");
 P({ id: "eGasNozzle", layer: "eGas", shape: "cyl", size: [0.12, 0.3], rot: V, pos: [EXS[2], EY - 1.45, 0], at: [0, 60, 120, 180, 240, 300].map((d) => { const [x, z] = pol(d, 1.78); return [x, 0, z]; }), mat: "dark" });
 SEG("eCr0", "eCrack", [EXS[1] - 0.7, 4.43, 0.3], [EXS[1], 4.43, -0.2], 0.05, "crack"); SEG("eCr1", "eCrack", [EXS[1], 4.43, -0.2], [EXS[1] + 0.7, 4.43, 0.4], 0.05, "crack");
 for (const [k, sgn] of [["A", -1], ["B", 1]]) actions[`eGas${k}`] = { type: "flow", _說明: "保護氣（氮＋氫）從環形噴口錐狀往下散開、繞過劈刀尖與球（細粒子）", layer: "eGas", path: [[EXS[2] + sgn * 1.8, EY - 1.45, 0], [EXS[2] + sgn * 1.0, EY - 1.0, 0], [EXS[2] + sgn * 0.7, EY - 1.6, 0], [EXS[2] + sgn * 1.6, EY - 3.2, 0]], n: 26, lanes: 3, laneDir: [0, 0, 1], laneGap: 0.6, size: 0.07, shape: "dot", rate: 0.55, color: "gasC", track: false, jitter: 0.35, free: true };
 actions.eGasIn = { type: "flow", layer: "eGas", path: [[EXS[2] + 5.5, EY + 1.8, 0], [EXS[2] + 2.0, EY - 1.2, 0]], n: 12, size: 0.07, shape: "dot", rate: 0.5, color: "gasC", track: false, jitter: 0.15, free: true };
-actions.eSpkF1 = { type: "pulse", parts: ["eSpk1G", "eSpk1C"], color: "sparkC", glow: 1, freq: 9, halo: 1.4 }; actions.eSpkF2 = { type: "pulse", parts: ["eSpk2G", "eSpk2C"], color: "sparkC", glow: 1, freq: 9, halo: 1.4 };
 Object.assign(anchors, { eAuA: A("eAu", [EXS[0] - 0.3, EY - 0.6, 0.4], -150, 90), eCuA: A("eCuOx", [EXS[1] - 0.3, EY - 0.6, 0.4], -150, 90), eGasA: A("eGas", [EXS[2] + 1.6, EY - 2.6, 0.4], 150, 90), eOkA: A("eCuOk", [EXS[2] + 0.3, EY - 0.6, 0.4], 150, 90) });
 
 // ═════ A 站預告：封裝膠從上方蓋下來＋旁邊另一片小載板上的錫球（另一種封裝，下一集） ═════
