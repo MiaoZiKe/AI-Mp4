@@ -337,8 +337,7 @@ P["s8"] = {"shot": [shot("start", 22.5, 9.5, 128, 20, 30, yaw=0.05), shot("start
  "capNote": [{"at": EB(-4), "until": "start+170", "zh": "電控箱：控制整套動作", "en": "Electrical cabinet: runs the whole sequence"}],
  "run": [run("chemFlow", FL0, FL1, 8), run("chemFlow2", add(FL0, 6), FL1, 8), run("pumpBeat", "pump-4", FAR, 6), run("ebDoorOpen", EB(-12), "s9:start", 22), run("ebBlink", EB(0), "s9:start", 6)],
  "labels": [lab_("tank", "藥液桶（PE）", "Chemical drums", "blue", "start+30", "start+75"),
-            lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "start+80", "start+125"),
-            lab_("eb", "電控箱（門打開）", "Electrical cabinet", "blue", "start+118", "start+163")],   # 混合閥島那張拿掉（放不下 4 張）；一次一張、每張 45 幀
+            lab_("pump", "幫浦＋濾芯", "Pump & filter", "amber", "start+80", "start+125")],   # 電控箱那張標籤拿掉：s9 開場切景（s9:start-8）會讓標籤蓋到中央，改用 capNote 說明；混合閥島也拿掉（放不下，一次一張×45 幀）
  "overlay": [sec("twequip-chem", "start+24", "s9:start-5", "藥液怎麼送進腔", "示意（配比不標數字）", {"tank": "tank", "pump": "pump", "mix": "mix", "eb": EB(-4)})]}
 P["s9"] = {"shot": [shot("start-10", 45, 5.2, 105, 24, 22, yaw=-0.05), shot("start+46", TKX_C, -0.5, 50, 30, 30)],
  "run": [run(f"bbOver{i}", "start", FAR, 6) for i in range(2)] + [run("bbIpa", "start", FAR, 6), run("bbDrip", "start+92", FAR, 6)],
