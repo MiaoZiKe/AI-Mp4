@@ -28,7 +28,7 @@ const prev = fs.existsSync(tlPath) ? JSON.parse(fs.readFileSync(tlPath, "utf8"))
 const OPENAI_KEY = process.env.OPENAI_API_KEY || "injected-by-proxy";
 let PROVIDER = process.env.ALIGN_PROVIDER || "auto";
 const FPS = 30, LEAD = 0.3, TAIL = 0.5, TAIL_END = 1.2, MIN = 3;
-const SILENCE_MAX = Number(process.env.ALIGN_SILENCE_MAX ?? 1.0);   // 旁白之間最長無聲（秒），見上方 2026-11-27 註
+const SILENCE_MAX = Number(process.env.ALIGN_SILENCE_MAX ?? 0.95);   // 旁白之間最長無聲（秒），見上方 2026-11-27 註
 // styleVersion 2（時間軸 v2）：換幕人聲間隔 GAP 秒；轉場 TRANS 幀＝前一幕出場與本幕進場重疊，轉場結束＝本幕開口
 // styleVersion 3 沿用時間軸 v2 的格式（timeline.version 仍是 2），另外兩件事只在 v3 生效（v1／v2 舊片輸出不變）：
 //   1. 整篇一鏡到底的配音（tts-take.mjs）：換幕人聲間隔＝原始錄音裡的間隔（manifest 的 gapAfter，上限 GAP_MAX 秒）；
