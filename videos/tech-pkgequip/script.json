@@ -1,0 +1,1584 @@
+{
+ "slug": "tech-pkgequip",
+ "prevEpisode": "3-5：扇出型與晶圓級封裝",
+ "title": "先進封裝設備（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "AI 晶片怎麼做",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：照 docs/prompts/tech-旁白金手指.md；本支子聊天室不配音、不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "room",
+    "label": "先進封裝設備（示意）",
+    "en": "ADVANCED PACKAGING TOOLS",
+    "field": "2 m",
+    "ruler": "50 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "co",
+    "label": "先進封裝設備廠",
+    "en": "TOOL MAKERS",
+    "field": "2 m",
+    "ruler": "50 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "先進封裝",
+   "靠哪些機台？"
+  ],
+  "sub": "接合、熱壓、點膠、壓烤、檢測",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶片怎麼精準疊在一起？前一集說，晶片封在一起，需要更精密的機台。",
+   "tts": "晶片怎麼精準疊在一起？前一集說，晶片封在一起，需要更精密的機台。",
+   "subtitle": {
+    "zh": "晶片怎麼精準\n疊在一起？\n前一集說\n晶片封在一起\n需要更精密的機台",
+    "en": "How do chips get stacked | so precisely? | Last episode said | packing chips together | needs more precise tools."
+   },
+   "keywords": [
+    "精準",
+    "前一集",
+    "精密的機台"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "精準"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "tool",
+     "text": "精密的機台"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：好幾顆晶片封在一起",
+     "title": "記憶體疊 12 層",
+     "size": 110,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "room",
+      "at": "start",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.0,
+      "y": 0.17,
+      "d": 39,
+      "elev": 30
+     },
+     {
+      "at": "start",
+      "dur": 170,
+      "x": 0.0,
+      "y": 0.17,
+      "d": 36.5,
+      "elev": 30
+     }
+    ],
+    "shift": [
+     {
+      "layer": "wDies",
+      "at": "s1:tool",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": -1.15
+     },
+     {
+      "layer": "lnFoup",
+      "at": "s2:voice",
+      "until": "s10:start+400",
+      "dur": 110,
+      "dx": 17.5
+     },
+     {
+      "layer": "bHood",
+      "at": "s3:voice-3",
+      "until": "s10:start+400",
+      "dur": 18,
+      "dy": 5.5
+     },
+     {
+      "layer": "bCam",
+      "at": "s3:align-2",
+      "until": "s3:align+40",
+      "dur": 14,
+      "dz": 1.6
+     },
+     {
+      "layer": "bPick",
+      "at": "s3:flip-6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bFlipDie",
+      "at": "s1:start-40",
+      "until": "s3:flip-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bFlipDie",
+      "at": "s3:flip+22",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bCarry",
+      "at": "s1:start-40",
+      "until": "s3:flip+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "bHead",
+      "at": "s3:flip+24",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dx": 2.05,
+      "dz": -0.2
+     },
+     {
+      "layer": "bCarry",
+      "at": "s3:flip+24",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dx": 2.05,
+      "dz": -0.2
+     },
+     {
+      "layer": "bHead",
+      "at": "s3:hair-14",
+      "until": "s3:hair+8",
+      "dur": 12,
+      "dy": -0.9
+     },
+     {
+      "layer": "bCarry",
+      "at": "s3:hair-14",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dy": -0.9
+     },
+     {
+      "layer": "tCoverL",
+      "at": "s4:voice-3",
+      "until": "s4:heat-6",
+      "dur": 16,
+      "dx": -1.3
+     },
+     {
+      "layer": "tCoverR",
+      "at": "s4:voice-3",
+      "until": "s4:heat-6",
+      "dur": 16,
+      "dx": 1.3
+     },
+     {
+      "layer": "tHead",
+      "at": "s4:tcb+0",
+      "until": "s4:tcb+12",
+      "dur": 8,
+      "dy": -1.86
+     },
+     {
+      "layer": "tCoverL",
+      "at": "s4:tcb+0",
+      "until": "s4:tcb+12",
+      "dur": 8,
+      "dy": -1.86
+     },
+     {
+      "layer": "tCoverR",
+      "at": "s4:tcb+0",
+      "until": "s4:tcb+12",
+      "dur": 8,
+      "dy": -1.86
+     },
+     {
+      "layer": "tL8",
+      "at": "s1:start-40",
+      "until": "s4:tcb+0",
+      "dur": 8,
+      "dy": 1.86,
+      "fallIn": true,
+      "bounce": 0.0,
+      "opacity": 0,
+      "press": [
+       "tL7"
+      ],
+      "pressAmt": 0.03
+     },
+     {
+      "layer": "tHead",
+      "at": "s4:tcb+24",
+      "until": "s4:tcb+36",
+      "dur": 8,
+      "dy": -1.64
+     },
+     {
+      "layer": "tCoverL",
+      "at": "s4:tcb+24",
+      "until": "s4:tcb+36",
+      "dur": 8,
+      "dy": -1.64
+     },
+     {
+      "layer": "tCoverR",
+      "at": "s4:tcb+24",
+      "until": "s4:tcb+36",
+      "dur": 8,
+      "dy": -1.64
+     },
+     {
+      "layer": "tL9",
+      "at": "s1:start-40",
+      "until": "s4:tcb+24",
+      "dur": 8,
+      "dy": 1.64,
+      "fallIn": true,
+      "bounce": 0.0,
+      "opacity": 0,
+      "press": [
+       "tL8"
+      ],
+      "pressAmt": 0.03
+     },
+     {
+      "layer": "tHead",
+      "at": "s4:tcb+48",
+      "until": "s4:tcb+60",
+      "dur": 8,
+      "dy": -1.42
+     },
+     {
+      "layer": "tCoverL",
+      "at": "s4:tcb+48",
+      "until": "s4:tcb+60",
+      "dur": 8,
+      "dy": -1.42
+     },
+     {
+      "layer": "tCoverR",
+      "at": "s4:tcb+48",
+      "until": "s4:tcb+60",
+      "dur": 8,
+      "dy": -1.42
+     },
+     {
+      "layer": "tL10",
+      "at": "s1:start-40",
+      "until": "s4:tcb+48",
+      "dur": 8,
+      "dy": 1.42,
+      "fallIn": true,
+      "bounce": 0.0,
+      "opacity": 0,
+      "press": [
+       "tL9"
+      ],
+      "pressAmt": 0.03
+     },
+     {
+      "layer": "tHead",
+      "at": "s4:tcb+72",
+      "until": "s4:tcb+84",
+      "dur": 8,
+      "dy": -1.2
+     },
+     {
+      "layer": "tCoverL",
+      "at": "s4:tcb+72",
+      "until": "s4:tcb+84",
+      "dur": 8,
+      "dy": -1.2
+     },
+     {
+      "layer": "tCoverR",
+      "at": "s4:tcb+72",
+      "until": "s4:tcb+84",
+      "dur": 8,
+      "dy": -1.2
+     },
+     {
+      "layer": "tL11",
+      "at": "s1:start-40",
+      "until": "s4:tcb+72",
+      "dur": 8,
+      "dy": 1.2,
+      "fallIn": true,
+      "bounce": 0.0,
+      "opacity": 0,
+      "press": [
+       "tL10"
+      ],
+      "pressAmt": 0.03
+     },
+     {
+      "layer": "dHead",
+      "at": "s5:disp",
+      "until": "s10:start+400",
+      "dur": 70,
+      "dz": -3.6
+     },
+     {
+      "layer": "dUf0",
+      "at": "s1:start-40",
+      "until": "s5:disp+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dUf1",
+      "at": "s1:start-40",
+      "until": "s5:disp+18",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dUf2",
+      "at": "s1:start-40",
+      "until": "s5:disp+30",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dUf3",
+      "at": "s1:start-40",
+      "until": "s5:disp+44",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dUf4",
+      "at": "s1:start-40",
+      "until": "s5:disp+60",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dUf5",
+      "at": "s1:start-40",
+      "until": "s5:disp+78",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dFilL",
+      "at": "s1:start-40",
+      "until": "s5:disp+6",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dFilR",
+      "at": "s1:start-40",
+      "until": "s5:disp+84",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cRoller",
+      "at": "s6:lam-10",
+      "until": "s10:start+400",
+      "dur": 46,
+      "dx": 6.4
+     },
+     {
+      "layer": "cCarrier",
+      "at": "s6:flat+6",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": 6.4,
+      "dy": 0.4
+     },
+     {
+      "layer": "cWafL",
+      "at": "s6:flat+6",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": 6.4,
+      "dy": 0.4
+     },
+     {
+      "layer": "cWafR",
+      "at": "s6:flat+6",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": 6.4,
+      "dy": 0.4
+     },
+     {
+      "layer": "aFlag",
+      "at": "s1:start-40",
+      "until": "s7:ng-4",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "sPkg",
+      "at": "s1:start-40",
+      "until": "s9:done-6",
+      "dur": 14,
+      "dy": 2.5,
+      "fallIn": true,
+      "bounce": 0.04,
+      "opacity": 0,
+      "press": [
+       "sSub"
+      ],
+      "pressAmt": 0.03
+     },
+     {
+      "layer": "sAbfGlow",
+      "at": "s1:start-40",
+      "until": "s9:sub+48",
+      "opacity": 0,
+      "dur": 4
+     }
+    ],
+    "run": [
+     {
+      "id": "wAlign",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wDie",
+      "text": "晶片對位中",
+      "en": "Chips being aligned",
+      "color": "amber",
+      "at": "q+6",
+      "until": "q+52",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 6 集",
+      "tag": "示意，非特定廠牌",
+      "t": {
+       "q": {
+        "at": "q"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "tool": {
+        "at": "tool"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.4,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "先進封裝像組電腦，每一步都有專門的機台。",
+   "tts": "先進封裝像組電腦，每一步都有專門的機台。",
+   "subtitle": {
+    "zh": "先進封裝像組電腦\n每一步都有\n專門的機台",
+    "en": "Packaging is like building a PC; | every step has | its own machine."
+   },
+   "keywords": [
+    "先進封裝",
+    "組電腦"
+   ],
+   "cues": [
+    {
+     "id": "pc",
+     "text": "組電腦"
+    },
+    {
+     "id": "step",
+     "text": "每一步"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiAnalysis CoWoS 供應鏈分析；USPTO 11967546；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-18",
+      "dur": 1
+     },
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 34.0,
+      "y": -2.22,
+      "d": 64.5,
+      "elev": 32
+     }
+    ],
+    "run": [
+     {
+      "id": "lnFlow",
+      "at": "voice",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "lnLamp",
+      "at": "pc",
+      "ramp": 6,
+      "until": "s3:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "line0",
+      "text": "封裝線：五站",
+      "en": "Packaging line: 5 stations",
+      "color": "blue",
+      "at": "pc",
+      "until": "pc+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-line",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像組電腦：一站一台機台",
+      "tag": "示意",
+      "t": {
+       "pc": {
+        "at": "pc"
+       },
+       "step": {
+        "at": "step"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.5,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "接合機吸起晶片翻面，對準中介層放下，誤差比頭髮細得多。",
+   "tts": "接合機吸起晶片翻面，對準中介層放下，誤差比頭髮細得多。",
+   "subtitle": {
+    "zh": "接合機吸起晶片翻面\n對準中介層放下\n誤差比頭髮細得多",
+    "en": "The bonder picks up and flips the chip, | aligns it to the interposer, | with error far finer than a hair."
+   },
+   "keywords": [
+    "接合機",
+    "翻面",
+    "頭髮"
+   ],
+   "cues": [
+    {
+     "id": "bond",
+     "text": "接合機"
+    },
+    {
+     "id": "flip",
+     "text": "翻面"
+    },
+    {
+     "id": "align",
+     "text": "對準"
+    },
+    {
+     "id": "hair",
+     "text": "頭髮"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASMPT 覆晶接合機規格；SemiAnalysis；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 78.0,
+      "y": 2.58,
+      "d": 49.5,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "bPinUp",
+      "at": "flip-24",
+      "ramp": 6,
+      "until": "flip-4"
+     },
+     {
+      "id": "bFlipTurn",
+      "at": "flip-4",
+      "ramp": 14,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "bSuck",
+      "at": "flip-8",
+      "ramp": 4,
+      "until": "s4:start+4"
+     },
+     {
+      "id": "bCamGlow",
+      "at": "align+2",
+      "ramp": 4,
+      "until": "align+40"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bHood",
+      "text": "接合機（外殼掀開）",
+      "en": "Flip-chip bonder",
+      "color": "blue",
+      "at": "voice-2",
+      "until": "voice+44",
+      "cut": true,
+      "xy": [
+       390,
+       962
+      ]
+     },
+     {
+      "part": "bCam",
+      "text": "對位相機",
+      "en": "Alignment camera",
+      "color": "amber",
+      "at": "align",
+      "until": "align+46",
+      "cut": true
+     },
+     {
+      "part": "bWafer",
+      "text": "放到中介層：誤差比頭髮細",
+      "en": "Placed far finer than a hair",
+      "color": "blue",
+      "at": "hair",
+      "until": "hair+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-flip",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "翻面、對位、放下",
+      "tag": "示意（不標精度數字）",
+      "t": {
+       "bond": {
+        "at": "bond"
+       },
+       "flip": {
+        "at": "flip"
+       },
+       "align": {
+        "at": "align"
+       },
+       "hair": {
+        "at": "hair"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "記憶體要疊十幾層，熱壓接合機邊加熱邊加壓，像熨斗燙貼布，一層一層壓好。",
+   "tts": "記憶體要疊十幾層，熱壓接合機邊加熱邊加壓，像熨斗燙貼布，一層一層壓好。",
+   "subtitle": {
+    "zh": "記憶體要疊十幾層\n熱壓接合機\n邊加熱邊加壓\n像熨斗燙貼布\n一層一層壓好",
+    "en": "Memory stacks a dozen-plus layers; | the thermo-compression bonder | heats and presses at once, | like ironing on a patch, | layer by layer."
+   },
+   "keywords": [
+    "十幾層",
+    "熱壓接合機",
+    "熨斗"
+   ],
+   "cues": [
+    {
+     "id": "mem",
+     "text": "記憶體"
+    },
+    {
+     "id": "tcb",
+     "text": "熱壓接合機"
+    },
+    {
+     "id": "heat",
+     "text": "邊加熱"
+    },
+    {
+     "id": "iron",
+     "text": "熨斗"
+    },
+    {
+     "id": "layer",
+     "text": "一層一層"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SemiAnalysis；USPTO 9252130；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 112.0,
+      "y": 3.25,
+      "d": 49.5,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "tHeat",
+      "at": "tcb-6",
+      "ramp": 10,
+      "until": "s5:start+4"
+     },
+     {
+      "id": "tFilGlow",
+      "at": "tcb+8",
+      "ramp": 6,
+      "until": "s5:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "tHeater",
+      "text": "加熱器（外罩分開）",
+      "en": "Heater",
+      "color": "amber",
+      "at": "voice-2",
+      "until": "voice+44",
+      "cut": true
+     },
+     {
+      "part": "tNcf",
+      "text": "加熱＋加壓：膠膜擠出膠邊",
+      "en": "Heat + pressure",
+      "color": "amber",
+      "at": "heat+4",
+      "until": "heat+50",
+      "cut": true
+     },
+     {
+      "part": "tStack",
+      "text": "記憶體疊層（示意 12 層）",
+      "en": "Memory stack (12 layers)",
+      "color": "blue",
+      "at": "layer+2",
+      "until": "layer+48",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-tcb",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像熨斗燙貼布：加熱又加壓",
+      "tag": "示意（不標溫度、壓力）",
+      "t": {
+       "mem": {
+        "at": "mem"
+       },
+       "tcb": {
+        "at": "tcb"
+       },
+       "heat": {
+        "at": "heat"
+       },
+       "iron": {
+        "at": "iron"
+       },
+       "ly": {
+        "at": "layer"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "晶片底下的縫要補膠，點膠機沿邊滴膠，膠自己鑽進縫裡，像水滲進磁磚縫。",
+   "tts": "晶片底下的縫要補膠，點膠機沿邊滴膠，膠自己鑽進縫裡，像水滲進磁磚縫。",
+   "subtitle": {
+    "zh": "晶片底下的縫要補膠\n點膠機沿邊滴膠\n膠自己鑽進縫裡\n像水滲進磁磚縫",
+    "en": "The gap under the chip needs glue; | the dispenser drips along the edge, | the glue wicks into the gap, | like water seeping into tile grout."
+   },
+   "keywords": [
+    "補膠",
+    "點膠機",
+    "磁磚縫"
+   ],
+   "cues": [
+    {
+     "id": "gap",
+     "text": "縫要補膠"
+    },
+    {
+     "id": "disp",
+     "text": "點膠機"
+    },
+    {
+     "id": "wick",
+     "text": "鑽進"
+    },
+    {
+     "id": "tile",
+     "text": "磁磚"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 8546191（毛細底部填膠）；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 142.0,
+      "y": 1.45,
+      "d": 41.0,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "dDrop",
+      "at": "disp",
+      "ramp": 4,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "dWick",
+      "at": "disp+8",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "dHot",
+      "at": "start",
+      "ramp": 6,
+      "until": "s6:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dNeedle",
+      "text": "點膠針頭",
+      "en": "Dispensing needle",
+      "color": "amber",
+      "at": "disp",
+      "until": "disp+46",
+      "cut": true
+     },
+     {
+      "part": "dUf",
+      "text": "膠自己鑽進縫（毛細作用）",
+      "en": "Capillary flow",
+      "color": "blue",
+      "at": "disp+50",
+      "until": "disp+96",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-uf",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像水滲進磁磚縫",
+      "tag": "示意（縫放大）",
+      "t": {
+       "gap": {
+        "at": "gap"
+       },
+       "disp": {
+        "at": "disp"
+       },
+       "wick": {
+        "at": "wick"
+       },
+       "tile": {
+        "at": "tile"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.8,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "有些晶圓得先貼到載板，再壓膜、烘烤，讓整片不翹。",
+   "tts": "有些晶圓得先貼到載板，再壓膜、烘烤，讓整片不翹。",
+   "subtitle": {
+    "zh": "有些晶圓得先貼到載板\n再壓膜、烘烤\n讓整片不翹",
+    "en": "Some wafers first go onto a carrier, | then get laminated and baked | so the whole wafer stays flat."
+   },
+   "keywords": [
+    "載板",
+    "壓膜、烘烤",
+    "不翹"
+   ],
+   "cues": [
+    {
+     "id": "car",
+     "text": "載板"
+    },
+    {
+     "id": "lam",
+     "text": "壓膜"
+    },
+    {
+     "id": "flat",
+     "text": "不翹"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 11967546；工商時報 2026/4/10；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 170.2,
+      "y": -0.26,
+      "d": 54.0,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "cRoll",
+      "at": "lam-10",
+      "ramp": 6,
+      "until": "lam+36"
+     },
+     {
+      "id": "cFlatL",
+      "at": "lam+2",
+      "ramp": 12,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "cFlatR",
+      "at": "lam+22",
+      "ramp": 12,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "cOvenHeat",
+      "at": "flat",
+      "ramp": 6,
+      "until": "s7:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cWafer",
+      "text": "晶圓貼到玻璃載板",
+      "en": "Wafer on a glass carrier",
+      "color": "blue",
+      "at": "car-2",
+      "until": "car+44",
+      "cut": true
+     },
+     {
+      "part": "cRoll",
+      "text": "壓膜滾輪：翹起的地方被壓平",
+      "en": "Laminating roller",
+      "color": "amber",
+      "at": "car+48",
+      "until": "car+94",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-warp",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "壓膜、烘烤：讓整片不翹",
+      "tag": "示意（不標溫度）",
+      "t": {
+       "car": {
+        "at": "car"
+       },
+       "lam": {
+        "at": "lam"
+       },
+       "flat": {
+        "at": "flat"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.9,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "每做完一步，光學檢測機就拍照比對，揪出歪掉、缺膠的地方，像海關驗行李。",
+   "tts": "每做完一步，光學檢測機就拍照比對，揪出歪掉、缺膠的地方，像海關驗行李。",
+   "subtitle": {
+    "zh": "每做完一步\n光學檢測機就拍照比對\n揪出歪掉、缺膠的地方\n像海關驗行李",
+    "en": "After every step, | the optical inspector shoots and compares, | catching shifted chips and missing glue, | like customs checking luggage."
+   },
+   "keywords": [
+    "光學檢測機",
+    "歪掉、缺膠",
+    "海關"
+   ],
+   "cues": [
+    {
+     "id": "step",
+     "text": "每做完"
+    },
+    {
+     "id": "aoi",
+     "text": "光學檢測機"
+    },
+    {
+     "id": "ng",
+     "text": "歪掉"
+    },
+    {
+     "id": "customs",
+     "text": "海關"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "萬潤、均豪公開資料；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 208.0,
+      "y": 2.1,
+      "d": 44.0,
+      "elev": 25
+     }
+    ],
+    "run": [
+     {
+      "id": "aScan",
+      "at": "start",
+      "ramp": 10,
+      "until": "s8:start+4"
+     },
+     {
+      "id": "aRing",
+      "at": "aoi",
+      "ramp": 4,
+      "until": "s8:start+4"
+     },
+     {
+      "id": "aNg",
+      "at": "ng-4",
+      "ramp": 4,
+      "until": "s8:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aCam",
+      "text": "相機頭（來回掃描）",
+      "en": "Camera head",
+      "color": "blue",
+      "at": "aoi",
+      "until": "aoi+46",
+      "cut": true
+     },
+     {
+      "part": "aNg",
+      "text": "歪掉、缺膠（紅框）",
+      "en": "Shifted / missing glue",
+      "color": "amber",
+      "at": "ng+4",
+      "until": "ng+50",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-aoi",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像海關驗行李：拍照比對",
+      "tag": "示意",
+      "t": {
+       "step": {
+        "at": "step"
+       },
+       "aoi": {
+        "at": "aoi"
+       },
+       "ng": {
+        "at": "ng"
+       },
+       "customs": {
+        "at": "customs"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.8,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "韓國韓美做記憶體的熱壓接合機；台灣有萬潤做點膠和檢測，志聖做壓膜烘烤。",
+   "tts": "韓國韓美做記憶體的熱壓接合機；台灣有萬潤做點膠和檢測，志聖做壓膜烘烤。",
+   "subtitle": {
+    "zh": "韓國韓美做記憶體的\n熱壓接合機\n台灣有萬潤\n做點膠和檢測\n志聖做壓膜烘烤",
+    "en": "Korea's Hanmi makes memory | thermo-compression bonders; | in Taiwan, All Ring | does dispensing and inspection, | C Sun does lamination and baking."
+   },
+   "keywords": [
+    "韓美",
+    "萬潤",
+    "志聖"
+   ],
+   "cues": [
+    {
+     "id": "kr",
+     "text": "韓美"
+    },
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "ar",
+     "text": "萬潤"
+    },
+    {
+     "id": "cs",
+     "text": "志聖"
+    },
+    {
+     "id": "bake",
+     "text": "壓膜烘烤"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Asia Economy、TrendForce、工商時報"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 242.0,
+      "y": -1.08,
+      "d": 53.0,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "kGlow",
+      "at": "kr",
+      "ramp": 6,
+      "until": "s9:start+60"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-co",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "先進封裝設備廠",
+      "tag": "報導；截至 2026/11/27",
+      "t": {
+       "kr": {
+        "at": "kr"
+       },
+       "tw": {
+        "at": "tw"
+       },
+       "ar": {
+        "at": "ar"
+       },
+       "cs": {
+        "at": "cs"
+       },
+       "bake": {
+        "at": "bake"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "封好了，訊號還要靠載板拉出去。下一集，看載板裡的絕緣膜。留言封裝設備，拿完整資料。",
+   "tts": "封好了，訊號還要靠載板拉出去。下一集，看載板裡的絕緣膜。留言封裝設備，拿完整資料。",
+   "subtitle": {
+    "zh": "封好了\n訊號還要靠載板拉出去\n下一集\n看載板裡的絕緣膜\n留言封裝設備\n拿完整資料",
+    "en": "Once packaged, | signals exit through the substrate. | Next episode: | the insulating film inside it. | Comment \"packaging tools\" | for the full notes."
+   },
+   "keywords": [
+    "載板",
+    "絕緣膜",
+    "封裝設備"
+   ],
+   "cues": [
+    {
+     "id": "done",
+     "text": "封好了"
+    },
+    {
+     "id": "sub",
+     "text": "載板拉"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言封裝設備"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 276.0,
+      "y": -0.75,
+      "d": 41.0,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "sSig",
+      "at": "sub",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "sAbf",
+      "at": "sub+48",
+      "ramp": 6,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "sPkg",
+      "text": "封好的晶片放到載板",
+      "en": "Package onto the substrate",
+      "color": "blue",
+      "at": "sub",
+      "until": "sub+46",
+      "cut": true
+     },
+     {
+      "part": "sAbf",
+      "text": "載板裡的絕緣膜（下一集）",
+      "en": "Insulating film (next)",
+      "color": "amber",
+      "at": "sub+50",
+      "until": "sub+96",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pe-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：ABF 膜",
+      "t": {
+       "done": {
+        "at": "done"
+       },
+       "sub": {
+        "at": "sub"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.8,
+   "holdSec": 0.85
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "ABF 膜",
+     "trail": [
+      "封好了，訊號靠載板拉出去"
+     ],
+     "comment": "封裝設備",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
