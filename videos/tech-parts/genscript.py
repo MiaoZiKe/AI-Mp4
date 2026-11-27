@@ -105,7 +105,7 @@ VIS += [{"layer": "sWafer", "at": T0, "until": "s4:lie", "dur": 22, "dy": 4.0, "
 # s4 爆炸（physics-spec §2.2）：①chuck 盤面＋晶圓一起上移（晶圓被吸在盤面上）→②clamp 電極露出、正負電荷亮、向下箭頭 →③balloon 電極層上移、露出氦氣層 →④balloon+18 氦氣層上移、與冷卻基座分開 →⑤face 組回（晶圓仍被吸住），face+24 起再壓一次
 UP = ["sWafer", "sTop", "sArrows"]
 VIS += [mv(l, "s4:chuck+10", "s4:cer+64", 22, dy=1.5) for l in UP]
-VIS += [mv(l, "s4:chuck+10", "s4:cer+64", 22, dy=0.6) for l in ("sWafer", "sArrows")]  # 晶圓比盤面多抬一點：從側面看得到晶圓底面的相反電荷與氦氣縫隙
+VIS += [mv(l, "s4:chuck+10", "s4:cer+64", 22, dy=1.0) for l in ("sWafer", "sArrows")]  # 晶圓比盤面多抬一點：從側面看得到晶圓底面的相反電荷與氦氣縫隙
 VIS += [mv(l, "s4:balloon", "s4:cer+64", 20, dy=0.9) for l in UP + ["sElec"]]
 VIS += [mv(l, "s4:balloon+18", "s4:cer+64", 20, dy=0.8) for l in UP + ["sElec", "sHe"]]
 vis("sArrows", [("s4:clamp-4", "s4:clamp+40"), ("s4:cer+80", "s4:cer+120")])
@@ -114,17 +114,17 @@ VIS += [mv("pins", "s3:wafer", "s3:even+18", 22, dy=1.0), mv("wafer", "s3:wafer"
 vis("bEq", [("s3:table+6", "s3:even+6")])
 VIS += [mv("liner", "s5:start+12", "s5:resist-6", 26, dz=3.2)]
 # C 站：更換（夾具與舊環一起抬起、移開；備用新環落到舊環位置）
-def W(n): return f"s6:time{n - 14:+d}"  # 換環流程起點＝time−14
+def W(n): return f"s6:time{n + 10:+d}"  # 換環流程起點＝time+10（「電漿邊緣偏移」標籤收掉後才熄電漿）
 # ①熄電漿 ②夾具從右側伸入 ③下降吸住舊環 ④抬起 ⑤帶出畫面 ⑥帶新環伸入 ⑦下降放好、停住 ⑧抬起退出 ⑨電漿重新點亮、鞘層變平
 VIS += [mv("cArm", T0, FAR, 1, dx=11.0, dy=2.0), hid("cArm", T0, W(-2), 1, 0)]
-VIS += [mv("cArm", W(0), FAR, 14, dx=-11.0), mv("cArm", W(14), FAR, 12, dy=-2.0)]
-VIS += [mv(l, W(30), FAR, 12, dy=2.0) for l in ("cArm", "cORing", "cOldCrumb")] + [mv(l, W(44), FAR, 14, dx=11.0) for l in ("cArm", "cORing", "cOldCrumb")]
-VIS += [hid("cORing", W(60), FAR, 1, 0), hid("cOldCrumb", W(60), FAR, 1, 0)]
-VIS += [mv("cNewRing", T0, FAR, 1, dx=11.0, dy=2.0), hid("cNewRing", T0, W(60), 1, 0)]
-VIS += [mv(l, W(62), FAR, 14, dx=-11.0) for l in ("cArm", "cNewRing")] + [mv(l, W(78), FAR, 12, dy=-2.0) for l in ("cArm", "cNewRing")]
-VIS += [mv("cArm", W(94), FAR, 10, dy=2.0), mv("cArm", W(106), FAR, 12, dx=11.0)]
-vis("cPlO0", [(T0, "s6:plasma"), (W(100), FAR)]); vis("cPlO1", [("s6:plasma", W(-4))]); vis("cPlO1S", [("s6:plasma", W(-4))]); vis("cEdgeLine", [("s6:plasma", W(-4))])
-vis("cBrO", [("s6:slow+10", W(28))]); vis("cBrN", [("s6:slow+10", FAR)]); vis("cBrO2", [(W(92), FAR)])
+VIS += [mv("cArm", W(0), FAR, 12, dx=-11.0), mv("cArm", W(12), FAR, 10, dy=-2.0)]
+VIS += [mv(l, W(24), FAR, 10, dy=2.0) for l in ("cArm", "cORing", "cOldCrumb")] + [mv(l, W(36), FAR, 12, dx=11.0) for l in ("cArm", "cORing", "cOldCrumb")]
+VIS += [hid("cORing", W(50), FAR, 1, 0), hid("cOldCrumb", W(50), FAR, 1, 0)]
+VIS += [mv("cNewRing", T0, FAR, 1, dx=11.0, dy=2.0), hid("cNewRing", T0, W(50), 1, 0)]
+VIS += [mv(l, W(52), FAR, 12, dx=-11.0) for l in ("cArm", "cNewRing")] + [mv(l, W(66), FAR, 10, dy=-2.0) for l in ("cArm", "cNewRing")]
+VIS += [mv("cArm", W(80), FAR, 8, dy=2.0), mv("cArm", W(90), FAR, 10, dx=11.0)]
+vis("cPlO0", [(T0, "s6:plasma"), (W(82), FAR)]); vis("cPlO1", [("s6:plasma", W(-2))]); vis("cPlO1S", [("s6:plasma", W(-2))]); vis("cEdgeLine", [("s6:plasma", W(-2))])
+vis("cBrO", [("s6:slow+10", W(24))]); vis("cBrN", [("s6:slow+10", FAR)]); vis("cBrO2", [(W(76), FAR)])
 # K 站：念到才從幽靈變實體
 # K 站：三座展台全程不透明（LOGO、國旗不准半透明）；念到哪家，哪家台面亮一下（kAHot／kBHot／kCHot）
 # R 站：零件與機台
@@ -161,8 +161,8 @@ P["s5"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "r
  "overlay": [card("s5", "parts-liner", "耐電漿、不掉渣", "示意", {"wall": "wall", "resist": "resist", "shed": "shed"})]}
 P["s6"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 63.0, 0.1, 32, 22, 1)],
- "run": [run("cPlPulseN", "start", FAR, 6), run("cPlPulseO", "start", "plasma", 6), run("cPlPulseP", "plasma", W(-4), 6), run("cIonN", "start", FAR, 6), run("cIonO", "start", W(-6), 6), run("cPlPulseO", W(100), FAR, 6), run("cIonN2", W(104), FAR, 6)],
- "labels": [lab("cNew", "新環", "New ring", "blue", "slow-28", "slow+17"), lab("cOld", "舊環", "Old ring", "amber", "size-3", "size+42"), lab("cPlO", "電漿邊緣偏移", "Plasma edge shifts", "amber", "plasma+3", "plasma+48"), lab("cArmA", "夾具放入新環", "Gripper sets new ring", "blue", "time+48", "time+93")],
+ "run": [run("cPlPulseN", "start", FAR, 6), run("cPlPulseO", "start", "plasma", 6), run("cPlPulseP", "plasma", W(-2), 6), run("cIonN", "start", FAR, 6), run("cIonO", "start", W(-2), 6), run("cPlPulseO", W(82), FAR, 6), run("cIonN2", W(86), FAR, 6)],
+ "labels": [lab("cNew", "新環", "New ring", "blue", "slow-30", "slow+15"), lab("cOld", "舊環", "Old ring", "amber", "size-5", "size+40"), lab("cPlO", "電漿邊緣偏移", "Plasma edge shifts", "amber", "plasma+1", "plasma+46"), lab("cArmA", "夾具放入新環", "Gripper sets new ring", "blue", "time+62", "time+107")],
  "overlay": [card("s6", "parts-wear", "尺寸變了，電漿跟著變", "示意（不標壽命時數）", {"slow": "slow", "size": "size", "plasma": "plasma", "swap": "swap"})]}
 P["s7"] = {"zoom": [{"to": "aux", "at": CC, "dur": 1}],
  "shot": [shot(CC, XP - 0.6, 0.0, 25.5, 20, 1)],

@@ -95,7 +95,7 @@ P({ id: "chExBolt", layer: "chamber", shape: "cyl", size: [0.07, 0.06], rot: V, 
 PIPE("chGas", "chamber", [[0, 9.5, 0], [0, 10.8, 0], [-6.4, 10.8, 0]], 0.2, "steel2"); BOX("chGasValve", "chamber", -5.2, -4.2, 10.4, 11.2, -0.45, 0.45, "panel"); VC("chGasKnob", "chamber", 0.22, 11.2, 11.5, "mark", { x: -4.7 });
 for (let i = 0; i < 3; i++) VT(`chCoil${i}`, "chamber", 3.5, 3.3, 9.5 + i * 0.4, 9.65 + i * 0.4, "cu");
 BOX("chCoilLead", "chamber", 3.3, 4.2, 9.5, 9.65, -0.1, 0.1, "cu");
-LAY("topE", [10, 1.4, 0, 8.6]); VC("teDisc", "topE", 3.45, 8.0, 9.2, "quartz"); VT("teEdge", "topE", 3.46, 3.36, 9.16, 9.22, "edge"); VT("teFlange", "topE", 4.95, 3.45, 9.2, 9.36, "steel"); VT("teSeal", "topE", 3.6, 3.45, 9.36, 9.4, "rubber");
+LAY("topE", [10, 1.4, 0, 8.6]); VC("teDisc", "topE", 3.45, 8.0, 9.2, "window"); VT("teEdge", "topE", 3.5, 3.3, 9.16, 9.24, "eq"); VT("teFlange", "topE", 4.95, 3.45, 9.2, 9.36, "steel"); VT("teSeal", "topE", 3.6, 3.45, 9.36, 9.4, "rubber");
 P({ id: "teBolt", layer: "topE", shape: "cyl", size: [0.09, 0.08], rot: V, pos: [0, 9.42, 0], at: RING(12, 4.2, 15), mat: "steel" }); VC("teInj", "topE", 0.35, 7.8, 9.5, "steel2"); VC("teInjTip", "topE", 0.22, 7.6, 7.8, "dark");
 P({ id: "teHole", layer: "topE", shape: "cyl", size: [0.05, 0.03], rot: V, pos: [0, 7.59, 0], at: RING(6, 0.12), mat: "dark" });
 // 陶瓷內襯（s5 拉開）：背板（開觀察窗）、左板（開閘縫）、右板
@@ -183,6 +183,7 @@ P({ id: "shPin", layer: "sHe", shape: "cyl", size: [0.1, 0.9], rot: V, pos: [SX,
 LAY("sElec", [7, 1, SX, 2.5]); VC("seBase", "sElec", SR, 2.38, 2.44, "dark", { x: SX });
 for (let i = -4; i <= 4; i++) { if (i === 0) continue; const x = i * 0.6 - Math.sign(i) * 0.3, len = 2 * Math.sqrt(2.85 * 2.85 - x * x); BOX(`seS${i}`, "sElec", R2(SX + x - 0.22), R2(SX + x + 0.22), 2.44, 2.54, R2(-len / 2), R2(len / 2), x < 0 ? "cuD" : "cu"); }
 BOX("seBusL", "sElec", R2(SX - 2.7), R2(SX - 0.3), 2.44, 2.54, -2.7, -2.5, "cuD"); BOX("seBusR", "sElec", R2(SX + 0.3), R2(SX + 2.7), 2.44, 2.54, 2.5, 2.7, "cu");
+const QF = (xs) => xs.flatMap((x) => [1.5, 2.3].map((z) => [x, 0, z])); // 晶圓底面電荷放在靠鏡頭那一側、垂在底面下，縫隙裡看得到
 const QPOS = (xs) => xs.flatMap((x) => [-1.2, 0, 1.2].map((z) => [x, 0, z]));
 // 雙極吸盤：右半梳齒接正、左半接負；晶圓底面感應出相反電荷（右半負、左半正）
 P({ id: "sePlus", layer: "sElec", shape: "sphere", size: [0.11], pos: [SX, 2.64, 0], at: QPOS([2.1, 1.5, 0.9]), mat: "plus" }); P({ id: "seMinus", layer: "sElec", shape: "sphere", size: [0.11], pos: [SX, 2.64, 0], at: QPOS([-2.1, -1.5, -0.9]), mat: "minus" });
@@ -191,7 +192,7 @@ for (const r of [2.2, 1.4, 0.6]) VT(`stGroove${r * 10}`, "sTop", r + 0.05, r - 0
 P({ id: "stHole", layer: "sTop", shape: "cyl", size: [0.12, 0.02], rot: V, pos: [SX, 3.01, 0], at: RING(3, 1.2, 30), mat: "dark" });
 P({ id: "stMesa", layer: "sTop", shape: "cyl", size: [0.07, 0.02], rot: V, pos: [SX, 3.02, 0], at: RING(18, 2.6).concat(RING(12, 1.9, 7), RING(8, 1.0, 11)), mat: "cerD" });
 LAY("sWafer", [7, 1, SX, 3.4]); VC("swDisc", "sWafer", 3.25, 3.04, 3.12, "si", { x: SX }); BOX("swNotch", "sWafer", R2(SX + 3.1), R2(SX + 3.3), 3.045, 3.125, -0.14, 0.14, "dark");
-P({ id: "swMinus", layer: "sWafer", shape: "sphere", size: [0.11], pos: [SX, 2.96, 0], at: QPOS([2.1, 1.5, 0.9]), mat: "minus" }); P({ id: "swPlus", layer: "sWafer", shape: "sphere", size: [0.11], pos: [SX, 2.96, 0], at: QPOS([-2.1, -1.5, -0.9]), mat: "plus" });
+P({ id: "swMinus", layer: "sWafer", shape: "sphere", size: [0.15], pos: [SX, 2.72, 0], at: QF([2.0, 1.4, 0.8]), mat: "minus" }); P({ id: "swPlus", layer: "sWafer", shape: "sphere", size: [0.15], pos: [SX, 2.72, 0], at: QF([-2.0, -1.4, -0.8]), mat: "plus" });
 LAY("sArrows", [7, 1.4, SX, 4.0]); P({ id: "saShaft", layer: "sArrows", shape: "cyl", size: [0.09, 0.8], rot: V, pos: [SX, 4.2, 0], at: [[-2.2, 0, 0], [-0.7, 0, 0], [0.8, 0, 0], [2.3, 0, 0]], mat: "mark" });
 P({ id: "saHead", layer: "sArrows", shape: "cone", size: [0.01, 0.26, 0.34], rot: V, pos: [SX, 3.68, 0], at: [[-2.2, 0, 0], [-0.7, 0, 0], [0.8, 0, 0], [2.3, 0, 0]], mat: "mark" });
 actions.sHeFlow = { type: "flow", _說明: "氦氣在晶圓背面環槽內流動、傳走熱（淡藍細點沿環槽）", layer: "sTop", path: RING(13, 2.2).map(([x, , z], i) => [R2(SX + x), 3.03, z]).concat([[R2(SX + 2.2), 3.03, 0]]), n: 10, size: 0.06, shape: "dot", rate: 0.12, color: "heC", track: false, free: true, jitter: 0.04 };
@@ -219,10 +220,10 @@ LAY("cBrO2", [1, 3, 71.3, 2.6]); BOX("cBrO2V", "cBrO2", 71.25, 71.35, 1.8, 3.3, 
 LAY("cBrO", [1, 3, 71.3, 2.2]); BOX("cBrOV", "cBrO", 71.25, 71.35, 1.8, 2.6, 2.0, 2.1, "bracket"); BOX("cBrOT", "cBrO", 71.0, 71.6, 2.56, 2.64, 2.0, 2.1, "bracket"); BOX("cBrOB", "cBrO", 71.0, 71.6, 1.76, 1.84, 2.0, 2.1, "bracket");
 // 更換用夾具（機械手臂末端）：立桿、橫臂、兩爪；與新環（備用環，落到舊環的位置）
 LAY("cArm", [6, 6.2, co.xb + 1.7, 6.3]); const AX = R2(co.xb + 1.7);
-BOX("caMast", "cArm", R2(AX - 0.2), R2(AX + 0.2), 6.4, 9.4, -0.2, 0.2, "panel"); BOX("caHead", "cArm", R2(AX - 0.9), R2(AX + 0.9), 5.9, 6.4, -0.7, 0.7, "dark");
+BOX("caMast", "cArm", R2(AX - 0.2), R2(AX + 0.2), 6.4, 8.6, -0.2, 0.2, "panel"); BOX("caHead", "cArm", R2(AX - 0.9), R2(AX + 0.9), 5.9, 6.4, -0.7, 0.7, "dark");
 BOX("caClawL", "cArm", R2(AX - 1.9), R2(AX - 1.6), 2.78, 5.9, -0.5, 0.5, "steel2"); BOX("caClawR", "cArm", R2(AX + 1.3), R2(AX + 1.6), 2.78, 5.9, -0.5, 0.5, "steel2"); BOX("caPadL", "cArm", R2(AX - 1.95), R2(AX - 1.55), 2.62, 2.78, -0.55, 0.55, "rubber"); BOX("caPadR", "cArm", R2(AX + 1.25), R2(AX + 1.65), 2.62, 2.78, -0.55, 0.55, "rubber"); // 末端真空吸墊貼在環頂
-BOX("caCarriage", "cArm", R2(AX - 0.7), R2(AX + 0.7), 8.6, 9.1, -0.5, 0.5, "dark"); P({ id: "caJoint", layer: "cArm", shape: "cyl", size: [0.32, 1.2], pos: [AX, 6.4, 0], mat: "steel" }); P({ id: "caScrew", layer: "cArm", shape: "cyl", size: [0.08, 0.06], pos: [AX, 0, 0.62], at: [[-0.45, 8.75, 0], [0.45, 8.75, 0], [-0.45, 8.95, 0], [0.45, 8.95, 0]], mat: "steel2" }); BOX("caMotor", "cArm", 71.0, 72.2, 8.5, 9.9, -0.6, 0.6, "pump"); PIPE("caCableP", "cArm", [[R2(AX + 0.7), 9.5, 0.35], [71.0, 9.5, 0.35]], 0.09, "rubber");
-BOX("caLed", "cArm", R2(AX + 0.3), R2(AX + 0.6), 6.0, 6.2, 0.7, 0.76, "lampG"); BOX("caArmBar", "cArm", R2(AX - 0.9), 72.0, 9.1, 9.4, -0.3, 0.3, "panel");
+BOX("caCarriage", "cArm", R2(AX - 0.7), R2(AX + 0.7), 7.8, 8.3, -0.5, 0.5, "dark"); P({ id: "caJoint", layer: "cArm", shape: "cyl", size: [0.32, 1.2], pos: [AX, 6.4, 0], mat: "steel" }); P({ id: "caScrew", layer: "cArm", shape: "cyl", size: [0.08, 0.06], pos: [AX, 0, 0.62], at: [[-0.45, 7.95, 0], [0.45, 7.95, 0], [-0.45, 8.15, 0], [0.45, 8.15, 0]], mat: "steel2" }); BOX("caMotor", "cArm", 70.2, 71.2, 7.7, 8.9, -0.6, 0.6, "pump"); PIPE("caCableP", "cArm", [[R2(AX + 0.7), 8.75, 0.35], [70.2, 8.75, 0.35]], 0.09, "rubber");
+BOX("caLed", "cArm", R2(AX + 0.3), R2(AX + 0.6), 6.0, 6.2, 0.7, 0.76, "lampG"); BOX("caArmBar", "cArm", R2(AX - 0.9), 71.2, 8.3, 8.6, -0.3, 0.3, "panel");
 LAY("cNewRing", [R2(co.xe - co.xl), 2, R2((co.xl + co.xe) / 2), 2.8]);
 P({ id: "cNewRingP", layer: "cNewRing", shape: "poly", size: [1, 1, R2(2 * BZ)], pts: [[co.xl, 1.8], [co.xe, 1.8], [co.xe, 3.3], [co.xb, 3.3], [co.xb, 2.85], [co.xl, 2.85]].map(([a, b]) => [R2(a), R2(b)]), pos: [0, 0, 0], mat: "quartz" });
 actions.cPlPulseN = { type: "pulse", parts: ["cPlNHalo"], color: "plasmaC", glow: 0.8, freq: 2.2, halo: 0 }; actions.cPlPulseO = { type: "pulse", parts: ["cPlO0Halo"], color: "plasmaC", glow: 0.8, freq: 2.2, halo: 0 }; actions.cPlPulseP = { type: "pulse", parts: ["cPlO1Halo", "cPlO1Dip"], color: "plasmaPC", glow: 0.9, freq: 2.6, halo: 0 };
