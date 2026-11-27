@@ -133,7 +133,7 @@ const Foup: React.FC<P> = ({ o, f, k }) => {
         {Array.from({ length: n }, (_, i) => <circle key={i} cx={712 + i * 26} cy={CT + 92} r={9} fill={i === gap ? (sl > 0.5 ? RED : "#FFFFFF") : (sweep * n > i ? OK : "#FFFFFF")} stroke={i === gap ? RED : OK} strokeWidth={2.5} />)}
         <text x={704} y={CT + 156} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sl}>缺一片也看得出來</text>
         <text x={704} y={CT + 202} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sl}>也抓得到疊片</text>
-        <text x={30} y={CT + 282} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * dr}>片數、片距為示意</text>
+        <text x={704} y={CT + 248} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * dr}>片數為示意</text>
       </svg>
     </Card>
   );
@@ -176,7 +176,7 @@ const Chamber: React.FC<P> = ({ o, f, k }) => {
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <rect x={cx - 50} y={wy + 16} width={100} height={22} fill="#C9D3E3" stroke={WAF_D} strokeWidth={2} />
         <rect x={cx - 14} y={wy + 38} width={28} height={62} fill="#9AA6BC" />
-        <rect x={cx - 40} y={wy + 100} width={80} height={36} fill={H.text2} />
+        <rect x={cx - 40} y={wy + 100} width={80} height={30} fill={H.text2} />
         {[-R - 8, R + 8].map((x, i) => <rect key={i} x={cx + x - 5} y={wy + 4} width={10} height={14} fill={H.text2} />)}
         <rect x={cx - R} y={wy} width={2 * R} height={10} fill={WAF} stroke={WAF_D} strokeWidth={2} />
         {fm > 0 ? <path d={`M${cx - R} ${wy} L${cx - R} ${wy - 3} Q${cx - R * 0.6} ${wy - 4 - 12 * gap} ${cx} ${wy - 3 - 18 * gap} Q${cx + R * 0.6} ${wy - 4 - 12 * gap} ${cx + R} ${wy - 3} L${cx + R} ${wy} Z`} fill={LIQ} opacity={0.7 * fm} /> : null}
@@ -186,7 +186,7 @@ const Chamber: React.FC<P> = ({ o, f, k }) => {
         {fl > 0 ? [0, 1, 2, 3].map((i) => { const t = fr(f / 22 + i * 0.25); return <g key={i} opacity={fl}>
           <circle cx={cx + R + t * 66} cy={wy - 4 + t * t * 22} r={5} fill={LIQ} /><circle cx={cx - R - t * 66} cy={wy - 4 + t * t * 22} r={5} fill={LIQ} /></g>; }) : null}
         <ellipse cx={cx} cy={wy + 24} rx={R + 22} ry={14} fill="none" stroke={BLUE} strokeWidth={5} strokeDasharray="14 10" strokeDashoffset={-((f * 3) % 24)} opacity={sp} />
-        <text x={cx} y={wy + 164} textAnchor="middle" style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>吸盤＋抓取銷</text>
+        <text x={cx} y={wy + 172} textAnchor="middle" style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>吸盤＋抓取銷</text>
         <Sep x={560} y1={330} />
         <Row x={590} y={CT + 52} t="轉動：離心力往外" c={sp > 0.5 ? H.amber : H.lineSoft} a={sp} />
         <Row x={590} y={CT + 112} t="一條液柱落在中心" c={st > 0.5 ? H.amber : H.lineSoft} a={st} />

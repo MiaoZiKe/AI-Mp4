@@ -376,7 +376,7 @@ const EBX0 = 10.5, EBX1 = 13.7, EBZ0 = -3.5, EBZ1 = 0.5, EBH = 14;
 LAY("ebox", [3.2, EBH, 12.1, EBH / 2]); LAY("ebDoor", [3.2, EBH, 12.1, EBH / 2]); LAY("ebIn", [3, 10, 12.1, 8]);
 BOX("ebBack", "ebox", EBX0, EBX1, 0.6, EBH, EBZ0, EBZ0 + 0.12, "panel"); BOX("ebSideL", "ebox", EBX0, EBX0 + 0.12, 0.6, EBH, EBZ0, EBZ1, "panel"); BOX("ebSideR", "ebox", EBX1 - 0.12, EBX1, 0.6, EBH, EBZ0, EBZ1, "panel");
 BOX("ebTop", "ebox", EBX0, EBX1, EBH - 0.12, EBH, EBZ0, EBZ1, "panel"); BOX("ebBase", "ebox", EBX0, EBX1, 0, 0.6, EBZ0, EBZ1, "band");
-BOX("ebFrame", "ebox", EBX0, EBX1, 0.6, EBH, EBZ1 - 0.06, EBZ1, "dark");
+BOX("ebFrame", "ebox", EBX0, EBX1, 0.6, 0.8, EBZ1 - 0.06, EBZ1, "dark", { at: [[0, EBH - 0.8, 0]] }); BOX("ebFrameV", "ebox", EBX0, EBX0 + 0.2, 0.6, EBH, EBZ1 - 0.06, EBZ1, "dark", { at: [[EBX1 - EBX0 - 0.2, 0, 0]] });
 // 門（繞右緣鉸鍊轉開）：金屬面板、橫向通風百葉、把手、銘板（只寫「示意」）、三顆指示燈、鉸鍊
 const EBP = [EBX1, 7, EBZ1 + 0.06];
 BOX("ebDoorP", "ebDoor", EBX0, EBX1, 0.7, EBH - 0.1, EBZ1, EBZ1 + 0.12, "panel2");
