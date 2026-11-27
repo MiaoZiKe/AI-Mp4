@@ -62,7 +62,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     if i < len(S) - 1: sc["pauseAfter"] = hold
     scenes.append(sc)
 assert "".join(s["narration"] for s in scenes) == "".join(open(os.path.join(HERE, "script.md")).read().split("\n\n")[2:]).replace("\n", "") or True
-scenes[0]["props"]["hook"] = {"kicker": "接上集：研磨液備好了", "title": "誰來磨平？", "size": 120, "top": 236}
+scenes[0]["props"]["hook"] = {"kicker": "接上集：研磨液備好了", "title": "誰來磨平？", "size": 120, "top": 272}
 scenes.append({"id": "s11", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
                "props": {"endCard": {"next": "耗材", "trail": ["墊子會壞，零件也一樣"], "comment": "研磨墊", "logoAnim": "transparent"}}})
 
@@ -153,8 +153,8 @@ VIS += [hid(l, "s11:start+14", FAR, 4, 0.0) for l in ("nPad", "nDisc", "nQuartz"
 # ═════ 各幕 ═════
 MY, MY6, MD = -0.5, 0.2, 31.5          # 站 M 鏡頭（看向高度、距離）：s4／s5／s2 微觀 與 s6 修整頭（頭在上方，鏡頭略高）
 TY, TD, TE = -0.9, 29, 38              # 站 T
-VY, VD, VE = -1.15, 33, 38              # 站 V
-NY, ND, NE = -2.2, 46, 50              # 站 N
+VY, VD, VE = -1.4, 33, 38              # 站 V
+NY, ND, NE = -3.6, 46, 50              # 站 N
 AX, AY, AY1 = 0.9, 1.95, 2.6    # AY1＝s1 鏡頭（比 AY 低，機台往下移約 40px，鉤子大字不蓋研磨頭轉軸）      # 站 A 看向的位置（AY 比 r0 高：機台往下移約 60px，鉤子大字不蓋研磨頭轉軸）
 P = {}
 P["s1"] = {"shot": [shot("start-30", AX, AY1, 44, 36, 1, yaw=0.0), shot("start", AX, AY1, 41, 34, 140)],
