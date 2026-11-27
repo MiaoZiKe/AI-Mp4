@@ -51,6 +51,8 @@ import { TelSection } from "./HudTel";
 import { KlaSection } from "./HudKla";
 import { TargetSection } from "./HudTarget";
 import { PrecursorSection } from "./HudPrecursor";
+import { ChemSection } from "./HudChem";
+import { PadSection } from "./HudPad";
 import { GasSection } from "./HudGas";
 import { TwequipSection } from "./HudTwequip";
 import { EpiSection } from "./HudEpi";
@@ -730,6 +732,8 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("kla-")) return <KlaSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-kla（HudKla.tsx）
   if (String((o as any).kind ?? "").startsWith("gas-")) return <GasSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-gas（HudGas.tsx）
   if (String((o as any).kind ?? "").startsWith("precursor-")) return <PrecursorSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-precursor（HudPrecursor.tsx）
+  if (String((o as any).kind ?? "").startsWith("chem-")) return <ChemSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-chem（HudChem.tsx）
+  if (String((o as any).kind ?? "").startsWith("pad-")) return <PadSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-pad（HudPad.tsx）
   if (String((o as any).kind ?? "").startsWith("target-")) return <TargetSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-target（HudTarget.tsx）
   if (String((o as any).kind ?? "").startsWith("twequip-")) return <TwequipSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/27 tech-twequip（HudTwequip.tsx）
   if (String((o as any).kind ?? "").startsWith("tel-")) return <TelSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/26 tech-tel（HudTel.tsx）
