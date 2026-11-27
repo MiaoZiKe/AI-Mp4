@@ -1,0 +1,2180 @@
+{
+ "slug": "tech-cleanroom",
+ "prevEpisode": "2-18：耗材",
+ "title": "無塵室（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：照 docs/prompts/tech-旁白金手指.md；本支子聊天室不配音、不送 TTS"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "room",
+    "label": "無塵室（示意）",
+    "en": "CLEANROOM",
+    "field": "10 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "fiber",
+    "label": "濾網纖維放大（示意）",
+    "en": "FILTER FIBERS",
+    "field": "20 µm",
+    "ruler": "5 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "無塵室工程公司",
+    "en": "CLEANROOM BUILDERS",
+    "field": "10 m",
+    "ruler": "1 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠房"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "無塵室",
+   "多乾淨？"
+  ],
+  "sub": "衣櫃大的空氣只准十顆灰塵",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "機台住的那間房，到底有多乾淨？前一集說，機台都放在超乾淨的房間。",
+   "tts": "機台住的那間房，到底有多乾淨？前一集說，機台都放在超乾淨的房間。",
+   "subtitle": {
+    "zh": "機台住的那間房\n到底有多乾淨？\n前一集說\n機台都放在\n超乾淨的房間",
+    "en": "The room the tools live in: | how clean is it? | Last episode said | the tools all sit | in an ultra-clean room."
+   },
+   "keywords": [
+    "多乾淨",
+    "前一集",
+    "超乾淨"
+   ],
+   "cues": [
+    {
+     "id": "room",
+     "text": "那間房"
+    },
+    {
+     "id": "clean",
+     "text": "多乾淨"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：超乾淨的房間也分等級",
+     "title": "最乾淨一級：10 顆",
+     "size": 104,
+     "top": 236
+    },
+    "zoom": [
+     {
+      "to": "room",
+      "at": "start",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.75,
+      "y": 0.35,
+      "d": 106,
+      "elev": 15
+     },
+     {
+      "at": "start",
+      "dur": 170,
+      "x": 0.75,
+      "y": 0.35,
+      "d": 102,
+      "elev": 15
+     }
+    ],
+    "shift": [
+     {
+      "layer": "frontL",
+      "at": "s2:cr-2",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": -14.0
+     },
+     {
+      "layer": "frontR",
+      "at": "s2:cr-2",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dx": 14.0
+     },
+     {
+      "layer": "frontL",
+      "at": "s2:cr+30",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "frontR",
+      "at": "s2:cr+30",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "yard",
+      "at": "s2:closet-6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "ffuArr",
+      "at": "s3:ffu-4",
+      "until": "s3:ffu+40",
+      "dur": 18,
+      "dy": 1.5
+     },
+     {
+      "layer": "ffuFront",
+      "at": "s3:ffu-4",
+      "until": "s3:ffu+40",
+      "dur": 18,
+      "dy": 1.5
+     },
+     {
+      "layer": "oneFrame",
+      "at": "s3:ffu-4",
+      "until": "s3:ffu+40",
+      "dur": 18,
+      "dy": 1.5
+     },
+     {
+      "layer": "oneFan",
+      "at": "s3:ffu-4",
+      "until": "s3:ffu+40",
+      "dur": 18,
+      "dy": 1.5
+     },
+     {
+      "layer": "oneHepa",
+      "at": "s3:ffu-4",
+      "until": "s3:ffu+40",
+      "dur": 18,
+      "dy": 1.5
+     },
+     {
+      "layer": "roof",
+      "at": "s3:ffu-10",
+      "until": "s3:down-6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "roofTop",
+      "at": "s3:ffu-10",
+      "until": "s3:down-6",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "oneFan",
+      "at": "s4:voice-3",
+      "until": "s4:maze+30",
+      "dur": 20,
+      "dy": 1.1
+     },
+     {
+      "layer": "oneHepa",
+      "at": "s4:voice-3",
+      "until": "s4:maze+30",
+      "dur": 20,
+      "dy": -0.8
+     },
+     {
+      "layer": "rFloor",
+      "at": "s4:floor-2",
+      "until": "s4:again+2",
+      "dur": 18,
+      "dy": -0.6
+     },
+     {
+      "layer": "slab",
+      "at": "s4:floor-2",
+      "until": "s4:again+2",
+      "dur": 18,
+      "dy": -0.6
+     },
+     {
+      "layer": "tools",
+      "at": "s4:floor-2",
+      "until": "s4:again+2",
+      "dur": 18,
+      "dy": 0.5
+     },
+     {
+      "layer": "hSpark",
+      "at": "s1:start-40",
+      "until": "s7:static+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "hSpark",
+      "at": "s7:static+24",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "utilW",
+      "at": "s1:start-40",
+      "until": "s9:w-4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "utilG",
+      "at": "s1:start-40",
+      "until": "s9:w+10",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "utilP",
+      "at": "s1:start-40",
+      "until": "s9:w+24",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "fStuck0",
+      "at": "s1:start-40",
+      "until": "s4:stick-6",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fStuck0",
+      "at": "s4:floor-4",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fStuck1",
+      "at": "s1:start-40",
+      "until": "s4:stick+14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fStuck1",
+      "at": "s4:floor-4",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fStuck2",
+      "at": "s1:start-40",
+      "until": "s4:stick+34",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fStuck2",
+      "at": "s4:floor-4",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "person",
+      "at": "s5:suit+11",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "suitBody",
+      "at": "s1:start-40",
+      "until": "s5:suit-6",
+      "dur": 16,
+      "dy": 1.6,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "suitHood",
+      "at": "s1:start-40",
+      "until": "s5:suit-4",
+      "dur": 16,
+      "dy": 1.2,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "suitGlove",
+      "at": "s1:start-40",
+      "until": "s5:suit-2",
+      "dur": 16,
+      "dy": 2.0,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "suitBoot",
+      "at": "s1:start-40",
+      "until": "s5:suit",
+      "dur": 16,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "bMod0",
+      "at": "s8:uis-4",
+      "until": "s8:uis+8",
+      "dur": 8,
+      "dy": 0.6
+     },
+     {
+      "layer": "bMod1",
+      "at": "s8:lk-4",
+      "until": "s8:lk+8",
+      "dur": 8,
+      "dy": 0.6
+     },
+     {
+      "layer": "bMod2",
+      "at": "s8:yk-4",
+      "until": "s8:yk+8",
+      "dur": 8,
+      "dy": 0.6
+     },
+     {
+      "layer": "shell",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "tools",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "rFloor",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "slab",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "subfab",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "roofTop",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "roof",
+      "at": "s4:voice-4",
+      "until": "s4:floor-7",
+      "opacity": 0,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "ffuLed",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "roofSpin",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:closet"
+     },
+     {
+      "id": "flagWave",
+      "at": "start-30",
+      "ramp": 4,
+      "until": "s2:closet"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 19 集",
+      "tag": "示意，非特定廠房",
+      "t": {
+       "room": {
+        "at": "room"
+       },
+       "clean": {
+        "at": "clean"
+       },
+       "prev": {
+        "at": "prev"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.4,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "這間房叫無塵室。最乾淨那一級，衣櫃大的空氣，最多只准十顆灰塵。",
+   "tts": "這間房叫無塵室。最乾淨那一級，衣櫃大的空氣，最多只准十顆灰塵。",
+   "subtitle": {
+    "zh": "這間房叫無塵室\n最乾淨那一級\n衣櫃大的空氣\n最多只准\n十顆灰塵",
+    "en": "It's called a cleanroom. | In the cleanest class, | a closet's worth of air | may hold at most | ten dust particles."
+   },
+   "keywords": [
+    "無塵室",
+    "最乾淨",
+    "十顆灰塵"
+   ],
+   "cues": [
+    {
+     "id": "cr",
+     "text": "無塵室"
+    },
+    {
+     "id": "top",
+     "text": "最乾淨"
+    },
+    {
+     "id": "closet",
+     "text": "衣櫃"
+    },
+    {
+     "id": "ten",
+     "text": "十顆灰塵"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ISO 14644-1（Class 1 約 10 顆／m³）；HORIBA、igus"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-18",
+      "dur": 1
+     },
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0.5,
+      "y": 0.95,
+      "d": 81,
+      "elev": 15
+     },
+     {
+      "at": "cr+4",
+      "dur": 30,
+      "x": 0.0,
+      "y": 0.28,
+      "d": 67.5,
+      "elev": 12
+     },
+     {
+      "at": "closet-6",
+      "dur": 1,
+      "x": 41.85,
+      "y": 1.63,
+      "d": 32,
+      "elev": 14
+     },
+     {
+      "at": "closet",
+      "dur": 60,
+      "x": 41.85,
+      "y": 1.63,
+      "d": 30.5,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "kBrown0",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown1",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown2",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown3",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown4",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown5",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown6",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown7",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown8",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kBrown9",
+      "at": "closet-8",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kGlow",
+      "at": "ten-2",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "kSample",
+      "at": "top",
+      "ramp": 6,
+      "until": "s3:start+4"
+     },
+     {
+      "id": "ffuSpin",
+      "at": "cr+10",
+      "ramp": 8,
+      "until": "s2:closet-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "room",
+      "text": "無塵室",
+      "en": "Cleanroom",
+      "color": "blue",
+      "at": "cr",
+      "until": "closet-8",
+      "cut": true,
+      "xy": [
+       300,
+       320
+      ]
+     },
+     {
+      "part": "closet",
+      "text": "一立方公尺（衣櫃大）",
+      "en": "1 cubic meter",
+      "color": "amber",
+      "at": "closet+2",
+      "until": "closet+48",
+      "cut": true
+     },
+     {
+      "part": "dust1",
+      "text": "灰塵（放大圈）",
+      "en": "Dust (circled)",
+      "color": "blue",
+      "at": "ten-4",
+      "until": "ten+34",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-class",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "最乾淨那一級",
+      "tag": "ISO 14644-1",
+      "t": {
+       "cr": {
+        "at": "cr"
+       },
+       "top": {
+        "at": "top"
+       },
+       "closet": {
+        "at": "closet"
+       },
+       "ten": {
+        "at": "ten"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.2,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "空氣怎麼乾淨？天花板鋪滿風扇加濾網，把乾淨空氣往下吹，像一道瀑布。",
+   "tts": "空氣怎麼乾淨？天花板鋪滿風扇加濾網，把乾淨空氣往下吹，像一道瀑布。",
+   "subtitle": {
+    "zh": "空氣怎麼乾淨？\n天花板鋪滿\n風扇加濾網\n把乾淨空氣\n往下吹\n像一道瀑布",
+    "en": "How is the air cleaned? | The ceiling is covered | with fan filter units, | pushing clean air | straight down, | like a waterfall."
+   },
+   "keywords": [
+    "天花板",
+    "風扇加濾網",
+    "瀑布"
+   ],
+   "cues": [
+    {
+     "id": "how",
+     "text": "怎麼乾淨"
+    },
+    {
+     "id": "ceil",
+     "text": "天花板"
+    },
+    {
+     "id": "ffu",
+     "text": "風扇加濾網"
+    },
+    {
+     "id": "down",
+     "text": "往下吹"
+    },
+    {
+     "id": "fall",
+     "text": "瀑布"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "ASHRAE ch.18；Wikipedia：Fan filter unit；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0.0,
+      "y": 0.28,
+      "d": 67.5,
+      "elev": 12
+     },
+     {
+      "at": "ffu-10",
+      "dur": 24,
+      "x": 0.0,
+      "y": 4.01,
+      "d": 63.0,
+      "elev": 36
+     },
+     {
+      "at": "down-6",
+      "dur": 30,
+      "x": 0.0,
+      "y": 3.8,
+      "d": 44.0,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "ffuSpin",
+      "at": "ceil-6",
+      "ramp": 10,
+      "until": "s4:end+60"
+     },
+     {
+      "id": "ffuLed",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "airDown0",
+      "at": "down",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     },
+     {
+      "id": "airDown1",
+      "at": "down",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     },
+     {
+      "id": "airDown2",
+      "at": "down",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     },
+     {
+      "id": "airDot0",
+      "at": "down+4",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     },
+     {
+      "id": "airDot1",
+      "at": "down+4",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     },
+     {
+      "id": "airDot2",
+      "at": "down+4",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     },
+     {
+      "id": "airWake",
+      "at": "down+10",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     },
+     {
+      "id": "dustDown",
+      "at": "down+6",
+      "ramp": 1,
+      "until": "s4:voice-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "ffu",
+      "text": "風扇濾網（一台台排滿）",
+      "en": "Fan filter units",
+      "color": "amber",
+      "at": "ffu",
+      "until": "ffu+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-fall",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像一道瀑布：往下吹",
+      "tag": "示意（不標風速）",
+      "t": {
+       "ceil": {
+        "at": "ceil"
+       },
+       "ffu": {
+        "at": "ffu"
+       },
+       "down": {
+        "at": "down"
+       },
+       "fall": {
+        "at": "fall"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.6,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "濾網裡是一團纖維迷宮，灰塵撞到就黏住。空氣再從地板孔洞抽回，重新過濾。",
+   "tts": "濾網裡是一團纖維迷宮，灰塵撞到就黏住。空氣再從地板孔洞抽回，重新過濾。",
+   "subtitle": {
+    "zh": "濾網裡是\n一團纖維迷宮\n灰塵撞到就黏住\n空氣再從\n地板孔洞抽回\n重新過濾",
+    "en": "Inside the filter is | a maze of fibers; | dust hits and sticks. | Then the air | is pulled back through floor holes | and filtered again."
+   },
+   "keywords": [
+    "濾網",
+    "纖維迷宮",
+    "地板孔洞"
+   ],
+   "cues": [
+    {
+     "id": "filt",
+     "text": "濾網"
+    },
+    {
+     "id": "maze",
+     "text": "纖維迷宮"
+    },
+    {
+     "id": "stick",
+     "text": "黏住"
+    },
+    {
+     "id": "floor",
+     "text": "地板孔洞"
+    },
+    {
+     "id": "again",
+     "text": "重新過濾"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "HEPA 濾材原理（IEST）；USPTO 9115910；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     },
+     {
+      "to": "fiber",
+      "at": "maze+16",
+      "dur": 1
+     },
+     {
+      "to": "room",
+      "at": "floor-6",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": -0.8,
+      "y": 6.2,
+      "d": 21.5,
+      "elev": 22
+     },
+     {
+      "at": "voice+2",
+      "dur": 30,
+      "x": -0.8,
+      "y": 6.1,
+      "d": 19.5,
+      "elev": 22
+     },
+     {
+      "at": "maze+16",
+      "dur": 1,
+      "x": 70.0,
+      "y": 2.41,
+      "d": 35.0,
+      "elev": 6
+     },
+     {
+      "at": "floor-6",
+      "dur": 1,
+      "x": 0.0,
+      "y": 0.28,
+      "d": 67.5,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "oneSpin",
+      "at": "start",
+      "ramp": 8,
+      "until": "maze+16"
+     },
+     {
+      "id": "ffuSpin",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "fAir",
+      "at": "maze-6",
+      "ramp": 6,
+      "until": "floor-4"
+     },
+     {
+      "id": "fOut",
+      "at": "maze",
+      "ramp": 6,
+      "until": "floor-4"
+     },
+     {
+      "id": "fDust0",
+      "at": "maze+4",
+      "ramp": 4,
+      "until": "floor-4"
+     },
+     {
+      "id": "fDust1",
+      "at": "maze+11",
+      "ramp": 4,
+      "until": "floor-4"
+     },
+     {
+      "id": "fDust2",
+      "at": "maze+18",
+      "ramp": 4,
+      "until": "floor-4"
+     },
+     {
+      "id": "fDust3",
+      "at": "maze+25",
+      "ramp": 4,
+      "until": "floor-4"
+     },
+     {
+      "id": "fDust4",
+      "at": "maze+32",
+      "ramp": 4,
+      "until": "floor-4"
+     },
+     {
+      "id": "fDust5",
+      "at": "maze+39",
+      "ramp": 4,
+      "until": "floor-4"
+     },
+     {
+      "id": "floorSuck",
+      "at": "floor+4",
+      "ramp": 6,
+      "until": "s5:start+4"
+     },
+     {
+      "id": "loopL",
+      "at": "floor+10",
+      "ramp": 8,
+      "until": "s5:start+4"
+     },
+     {
+      "id": "loopR",
+      "at": "floor+10",
+      "ramp": 8,
+      "until": "s5:start+4"
+     },
+     {
+      "id": "airDown0",
+      "at": "floor-6",
+      "ramp": 1,
+      "until": "s5:start+4"
+     },
+     {
+      "id": "airDown1",
+      "at": "floor-6",
+      "ramp": 1,
+      "until": "s5:start+4"
+     },
+     {
+      "id": "airDown2",
+      "at": "floor-6",
+      "ramp": 1,
+      "until": "s5:start+4"
+     },
+     {
+      "id": "dustDown",
+      "at": "floor-6",
+      "ramp": 1,
+      "until": "s5:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hepa",
+      "text": "濾網（褶成 V 形）",
+      "en": "Filter, V-pleated",
+      "color": "amber",
+      "at": "voice-2",
+      "until": "voice+44",
+      "cut": true,
+      "xy": [
+       340,
+       968
+      ]
+     },
+     {
+      "part": "stuck",
+      "text": "纖維黏住灰塵",
+      "en": "Fibers trap dust",
+      "color": "amber",
+      "at": "maze+18",
+      "until": "maze+64",
+      "cut": true
+     },
+     {
+      "part": "ret",
+      "text": "回風（地板下）",
+      "en": "Return air",
+      "color": "blue",
+      "at": "floor+8",
+      "until": "floor+54",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-maze",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "纖維迷宮＋回風循環",
+      "tag": "示意",
+      "t": {
+       "filt": {
+        "at": "filt"
+       },
+       "maze": {
+        "at": "maze"
+       },
+       "stick": {
+        "at": "stick"
+       },
+       "floor": {
+        "at": "floor"
+       },
+       "again": {
+        "at": "again"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.0,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "最大的灰塵來源，其實是人。所以要穿無塵衣，像連身雨衣，把皮屑和頭髮都包住。",
+   "tts": "最大的灰塵來源，其實是人。所以要穿無塵衣，像連身雨衣，把皮屑和頭髮都包住。",
+   "subtitle": {
+    "zh": "最大的灰塵來源\n其實是人\n所以要穿無塵衣\n像連身雨衣\n把皮屑和頭髮\n都包住",
+    "en": "The biggest dust source | is actually people. | So they wear cleanroom suits, | like a one-piece raincoat, | keeping skin flakes and hair | all sealed in."
+   },
+   "keywords": [
+    "是人",
+    "無塵衣",
+    "連身雨衣"
+   ],
+   "cues": [
+    {
+     "id": "src",
+     "text": "灰塵來源"
+    },
+    {
+     "id": "ppl",
+     "text": "是人"
+    },
+    {
+     "id": "suit",
+     "text": "無塵衣"
+    },
+    {
+     "id": "rain",
+     "text": "連身雨衣"
+    },
+    {
+     "id": "hair",
+     "text": "皮屑"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "RSSL、Prudential（供應商估計）；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 100.0,
+      "y": 3.08,
+      "d": 43.0,
+      "elev": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "walkL",
+      "at": "start",
+      "ramp": 10,
+      "until": "suit-6"
+     },
+     {
+      "id": "walkR",
+      "at": "start",
+      "ramp": 10,
+      "until": "suit-6"
+     },
+     {
+      "id": "armL",
+      "at": "start",
+      "ramp": 10,
+      "until": "suit-6"
+     },
+     {
+      "id": "armR",
+      "at": "start",
+      "ramp": 10,
+      "until": "suit-6"
+     },
+     {
+      "id": "shed0",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed1",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed2",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed3",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed4",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed5",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed6",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed7",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed8",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed9",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed10",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "shed11",
+      "at": "start+2",
+      "ramp": 4,
+      "until": "suit+4"
+     },
+     {
+      "id": "leak0",
+      "at": "hair-4",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "leak1",
+      "at": "hair-4",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "leak2",
+      "at": "hair-4",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "leak3",
+      "at": "hair-4",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "leak4",
+      "at": "hair-4",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "leak5",
+      "at": "hair-4",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "leakGlow",
+      "at": "hair-4",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "pDown",
+      "at": "start",
+      "ramp": 6,
+      "until": "s6:start+4"
+     },
+     {
+      "id": "walkL",
+      "at": "hair",
+      "ramp": 12,
+      "until": "s6:start+4",
+      "gain": 0.6
+     },
+     {
+      "id": "walkR",
+      "at": "hair",
+      "ramp": 12,
+      "until": "s6:start+4",
+      "gain": 0.6
+     },
+     {
+      "id": "armL",
+      "at": "hair",
+      "ramp": 12,
+      "until": "s6:start+4",
+      "gain": 0.6
+     },
+     {
+      "id": "armR",
+      "at": "hair",
+      "ramp": 12,
+      "until": "s6:start+4",
+      "gain": 0.6
+     }
+    ],
+    "labels": [
+     {
+      "part": "person",
+      "text": "皮屑、頭髮",
+      "en": "Skin flakes, hair",
+      "color": "amber",
+      "at": "src",
+      "until": "src+46",
+      "cut": true
+     },
+     {
+      "part": "suit",
+      "text": "無塵衣",
+      "en": "Cleanroom suit",
+      "color": "blue",
+      "at": "suit+18",
+      "until": "suit+64",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-suit",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "人是最大的灰塵來源",
+      "tag": "示意（供應商估計，不標數字）",
+      "t": {
+       "src": {
+        "at": "src"
+       },
+       "ppl": {
+        "at": "ppl"
+       },
+       "suit": {
+        "at": "suit"
+       },
+       "rain": {
+        "at": "rain"
+       },
+       "hair": {
+        "at": "hair"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "房間氣壓比外面高，像輪胎的氣，門一開，風只往外吹，髒空氣進不來。",
+   "tts": "房間氣壓比外面高，像輪胎的氣，門一開，風只往外吹，髒空氣進不來。",
+   "subtitle": {
+    "zh": "房間氣壓\n比外面高\n像輪胎的氣\n門一開\n風只往外吹\n髒空氣進不來",
+    "en": "The room's air pressure | is higher than outside, | like air in a tire. | When a door opens, | air only blows out; | dirty air can't get in."
+   },
+   "keywords": [
+    "氣壓",
+    "輪胎",
+    "往外吹"
+   ],
+   "cues": [
+    {
+     "id": "pres",
+     "text": "氣壓"
+    },
+    {
+     "id": "tire",
+     "text": "輪胎"
+    },
+    {
+     "id": "door",
+     "text": "門一開"
+    },
+    {
+     "id": "out",
+     "text": "往外吹"
+    },
+    {
+     "id": "dirty",
+     "text": "進不來"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia: Cleanroom；ASHRAE ch.18；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 129.0,
+      "y": 0.54,
+      "d": 51,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "gGaugeGlow",
+      "at": "pres",
+      "ramp": 6,
+      "until": "tire+10"
+     },
+     {
+      "id": "gLockB",
+      "at": "door-20",
+      "ramp": 4,
+      "until": "door+16"
+     },
+     {
+      "id": "doorB",
+      "at": "door-22",
+      "ramp": 12,
+      "until": "door+6"
+     },
+     {
+      "id": "gOutB",
+      "at": "door-18",
+      "ramp": 6,
+      "until": "door+18"
+     },
+     {
+      "id": "gShower",
+      "at": "door-18",
+      "ramp": 4,
+      "until": "door+30"
+     },
+     {
+      "id": "gShower2",
+      "at": "door-18",
+      "ramp": 4,
+      "until": "door+30"
+     },
+     {
+      "id": "gAnteGlow",
+      "at": "door-20",
+      "ramp": 6,
+      "until": "door+40"
+     },
+     {
+      "id": "gLockA",
+      "at": "door+14",
+      "ramp": 4,
+      "until": "s7:start+4"
+     },
+     {
+      "id": "doorA",
+      "at": "door+14",
+      "ramp": 14,
+      "until": "s7:start+4"
+     },
+     {
+      "id": "gOutA",
+      "at": "door+22",
+      "ramp": 6,
+      "until": "s7:start+4"
+     },
+     {
+      "id": "gDustBack",
+      "at": "door+26",
+      "ramp": 6,
+      "until": "s7:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "gauge",
+      "text": "壓差表：裡面比外面高",
+      "en": "Pressure gauges",
+      "color": "amber",
+      "at": "pres",
+      "until": "pres+46",
+      "cut": true
+     },
+     {
+      "part": "ante",
+      "text": "前室（風淋）",
+      "en": "Anteroom, air shower",
+      "color": "blue",
+      "at": "door-18",
+      "until": "door+28",
+      "cut": true
+     },
+     {
+      "part": "press",
+      "text": "正壓：風只往外",
+      "en": "Positive pressure: air out",
+      "color": "amber",
+      "at": "door+30",
+      "until": "door+76",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-tire",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像輪胎的氣：只往外漏",
+      "tag": "示意（不標壓差數字）",
+      "t": {
+       "pres": {
+        "at": "pres"
+       },
+       "tire": {
+        "at": "tire"
+       },
+       "door": {
+        "at": "door"
+       },
+       "out": {
+        "at": "out"
+       },
+       "dirty": {
+        "at": "dirty"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.2,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "溫度、濕度也被固定，不然材料會脹縮，靜電也會亂跑。",
+   "tts": "溫度、濕度也被固定，不然材料會脹縮，靜電也會亂跑。",
+   "subtitle": {
+    "zh": "溫度、濕度\n也被固定\n不然材料會脹縮\n靜電也會亂跑",
+    "en": "Temperature and humidity | are held fixed too, | or materials swell and shrink | and static runs wild."
+   },
+   "keywords": [
+    "溫度、濕度",
+    "靜電"
+   ],
+   "cues": [
+    {
+     "id": "temp",
+     "text": "溫度"
+    },
+    {
+     "id": "hum",
+     "text": "濕度"
+    },
+    {
+     "id": "fix",
+     "text": "固定"
+    },
+    {
+     "id": "exp",
+     "text": "脹縮"
+    },
+    {
+     "id": "static",
+     "text": "靜電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Semiconductor Digest 環境控制；示意（不標溫濕度數值）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 160.6,
+      "y": 1.84,
+      "d": 39.0,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "hDialGlow",
+      "at": "temp",
+      "ramp": 6,
+      "until": "exp"
+     },
+     {
+      "id": "hExpL",
+      "at": "exp-4",
+      "ramp": 8,
+      "until": "static+20"
+     },
+     {
+      "id": "hExpBrL",
+      "at": "exp-4",
+      "ramp": 8,
+      "until": "static+20"
+     },
+     {
+      "id": "hExpR",
+      "at": "exp-4",
+      "ramp": 8,
+      "until": "static+20"
+     },
+     {
+      "id": "hSparkFlash",
+      "at": "static+2",
+      "ramp": 2,
+      "until": "static+24"
+     },
+     {
+      "id": "hDustPull",
+      "at": "static+4",
+      "ramp": 6,
+      "until": "s8:start+4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dial",
+      "text": "溫度表、濕度表",
+      "en": "Temp & humidity gauges",
+      "color": "blue",
+      "at": "temp",
+      "until": "temp+46",
+      "cut": true
+     },
+     {
+      "part": "wafer",
+      "text": "圖案跟著脹縮（放大示意）",
+      "en": "Pattern swells and shrinks",
+      "color": "amber",
+      "at": "exp-4",
+      "until": "exp+42",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-env",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "溫度、濕度都固定",
+      "tag": "示意（不標溫濕度數值）",
+      "t": {
+       "temp": {
+        "at": "temp"
+       },
+       "hum": {
+        "at": "hum"
+       },
+       "fix": {
+        "at": "fix"
+       },
+       "exp": {
+        "at": "exp"
+       },
+       "static": {
+        "at": "static"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.1,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "台灣有漢唐、亞翔、洋基工程，專門蓋這種房間。",
+   "tts": "台灣有漢唐、亞翔、洋基工程，專門蓋這種房間。",
+   "subtitle": {
+    "zh": "台灣有漢唐\n亞翔、洋基工程\n專門蓋這種房間",
+    "en": "In Taiwan: UIS, | L&K, and Yankey Engineering | build these rooms."
+   },
+   "keywords": [
+    "漢唐",
+    "亞翔、洋基工程"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "uis",
+     "text": "漢唐"
+    },
+    {
+     "id": "lk",
+     "text": "亞翔"
+    },
+    {
+     "id": "yk",
+     "text": "洋基"
+    },
+    {
+     "id": "build",
+     "text": "專門蓋"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "經濟日報、工商時報、自由時報報導；截至 2026/11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 190.0,
+      "y": -1.02,
+      "d": 49.0,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "bHook",
+      "at": "start",
+      "ramp": 6,
+      "until": "s9:start+60"
+     },
+     {
+      "id": "bGlow",
+      "at": "build-2",
+      "ramp": 6,
+      "until": "s9:start+60"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-co",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "無塵室工程公司（台灣）",
+      "tag": "報導；截至 2026/11/27",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "uis": {
+        "at": "uis"
+       },
+       "lk": {
+        "at": "lk"
+       },
+       "yk": {
+        "at": "yk"
+       },
+       "build": {
+        "at": "build"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.5,
+   "holdSec": 0.85,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "房間乾淨了，機台還需要水、氣、電。下一集，看廠務的水氣電。留言無塵室，拿完整資料。",
+   "tts": "房間乾淨了，機台還需要水、氣、電。下一集，看廠務的水氣電。留言無塵室，拿完整資料。",
+   "subtitle": {
+    "zh": "房間乾淨了\n機台還需要\n水、氣、電\n下一集\n看廠務的水氣電\n留言無塵室\n拿完整資料",
+    "en": "The room is clean, | but the tools still need | water, gas, and power. | Next episode: | the fab's water, gas and power. | Comment \"cleanroom\" | for the full notes."
+   },
+   "keywords": [
+    "水、氣、電",
+    "下一集",
+    "無塵室"
+   ],
+   "cues": [
+    {
+     "id": "clean",
+     "text": "乾淨了"
+    },
+    {
+     "id": "need",
+     "text": "還需要"
+    },
+    {
+     "id": "w",
+     "text": "水、氣、電"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言無塵室"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "room",
+      "at": "voice+2",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice+2",
+      "dur": 1,
+      "x": 0.0,
+      "y": 0.28,
+      "d": 67.5,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "ffuSpin",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "airDown0",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "airDown1",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "airDown2",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "loopL",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "loopR",
+      "at": "start",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "uWaterFlow",
+      "at": "w",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "uGasFlow",
+      "at": "w+12",
+      "ramp": 6,
+      "until": "s10:start+400"
+     },
+     {
+      "id": "uPowerFlow",
+      "at": "w+26",
+      "ramp": 6,
+      "until": "s10:start+400"
+     }
+    ],
+    "labels": [
+     {
+      "part": "water",
+      "text": "水（超純水）",
+      "en": "Water",
+      "color": "blue",
+      "at": "w",
+      "until": "w+46",
+      "cut": true
+     },
+     {
+      "part": "gas",
+      "text": "氣（各種氣體）",
+      "en": "Gas",
+      "color": "blue",
+      "at": "w+48",
+      "until": "w+94",
+      "cut": true
+     },
+     {
+      "part": "power",
+      "text": "電",
+      "en": "Power",
+      "color": "amber",
+      "at": "w+96",
+      "until": "w+142",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cr-co",
+      "at": "voice-3",
+      "until": "voice+3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "無塵室工程公司（台灣）",
+      "tag": "報導；截至 2026/11/27",
+      "t": {
+       "tw": {
+        "at": "s8:tw"
+       },
+       "uis": {
+        "at": "s8:uis"
+       },
+       "lk": {
+        "at": "s8:lk"
+       },
+       "yk": {
+        "at": "s8:yk"
+       },
+       "build": {
+        "at": "s8:build"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "cr-next",
+      "at": "voice+3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：廠務的水氣電",
+      "t": {
+       "clean": {
+        "at": "clean"
+       },
+       "need": {
+        "at": "need"
+       },
+       "w": {
+        "at": "w"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "holdSec": 0.65
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "廠務的水氣電",
+     "trail": [
+      "房間乾淨了，還要水氣電"
+     ],
+     "comment": "無塵室",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
