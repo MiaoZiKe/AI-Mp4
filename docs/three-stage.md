@@ -382,3 +382,25 @@ python3 scripts/three/sfx-styles.py plot <旁白.wav> out/<slug>/sfx-ABC.png A=<
   3. 之後照原流程渲染，旁白合成用補好的檔。
 - 驗證：合成 10 秒正弦波＋三幕假邊界，補完 15.80 秒＝原 10 秒＋補的 5.80 秒（s1＋1.14、s2＋4.2、s3＋0.46），與公式相符。
 - 第一支使用：`videos/tech-twequip/`（無聲估計總長 84.9 秒；爆炸幕 s2／s6／s8 的 holdSec 較長，這三幕錄音末尾請留白或交給 pad-recording 補）。
+
+## 十五、交審前預檢 `scripts/three/precheck.mjs`（2026/11/27）
+
+目的：把審查員最常退件的項目變成程式自動擋，減少審查來回。統計來源：`docs/channels/tech-review-deductions.md` 與 `docs/reviews/2026-11-27-*.md`（空景 46 次、前一集／上一集 36 次、引線與錨點 37 次、殘留 17 次、出處列、英文字幕段數）。獨立一支，不動 validate。
+
+```
+node scripts/three/precheck.mjs <slug>              # 靜態檢查＋抽幕界幀（約 1～4 分鐘，4 核機器請 nice 並避開別人渲染）
+node scripts/three/precheck.mjs <slug> --no-frames  # 只跑靜態檢查（秒級）
+# 選用：--json、--scale 0.5（抽幀倍率）；環境變數 PRECHECK_EMPTY=0.012（空景門檻）
+```
+
+| 規則 | 檢查 | 等級 |
+|---|---|---|
+| S1 | 各幕出處列含內部名稱（tech-xxx、查證、series_plan、上一集／前一集／預告、「通例」「系列」等非來源字） | error |
+| S2 | 英文字幕段數（以 `\|` 分）與中文行數不同，或時間軸有中文短語沒有英文 | error |
+| S3 | 字幕或旁白寫「上一集」但 tts 念「前一集」（或反過來） | error |
+| S4 | 單幕 >10 秒且最後一個畫面事件（鏡頭／動作／疊層／標籤）後還有 >4 秒沒事件 | warning |
+| S5 | 疊層、標籤、鉤子的 until 比本幕結束晚 >4 幀、又沒撐滿下一幕（舊卡殘留）；有意跨幕就把 until 設到下一幕結束 | error |
+| S6 | 標籤 `part` 不是錨點也不是零件、或錨點綁在不存在的層（靜態；引線尖端是否真的落在零件上仍要人工抽 cue+20 幀看） | error |
+| F1 | 換幕空景：每個幕界抽 start、start+2、start+4 三幀（0.5 倍），主畫面區「有彩度或深色」的像素比例 <0.012＝只剩灰地板／格線；三幀都空 error，只有第 1 幀空 warning。最後一幕（片尾卡）不檢查 | error |
+
+輸出 error／warning 清單與證據幀路徑：`out/<slug>/precheck/f<幀>.png`、報告 `out/<slug>/precheck.json`（含每個幕界的像素比例）；有 error 結束碼 1。已知限制：S4 只看 shot／run／overlay／labels／kin 的 `at`，不看 shift 與爆炸步驟，爆炸幕可能誤報（所以只給 warning）；F1 只量「有沒有主素材」，不判斷舊 2D 卡殘影（交給 S5 與人工看幕界）。

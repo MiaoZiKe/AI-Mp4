@@ -58,6 +58,7 @@
 ## 五、指令順序
 
     npm run validate <slug>                      # 0 error 才往下（含版面檢查 layout-check）
+    node scripts/three/precheck.mjs <slug>        # 交審前跑 precheck，0 error 才交（空景、出處列、en 段數、上一集／前一集、殘留；說明見 three-stage.md 第十五節）
     node scripts/three/layout-check.mjs <slug>   # 只跑版面檢查（幾秒，不渲染）
     node scripts/ui/silent-timeline.mjs <slug>   # 無聲時間軸，先看畫面
     node scripts/v3/peek.mjs <slug> ...          # 抽看關鍵時刻
