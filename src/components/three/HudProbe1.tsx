@@ -111,7 +111,7 @@ const Pitch: React.FC<P> = ({ o, f, k }) => {
         <Sep x={RX - 26} />
         <Row x={RX} y={CT + 52} t="最密處接點間距 < 50 微米" c={BLUE} a={gp} />
         <Row x={RX} y={CT + 122} t="一根頭髮約 50～100 微米" c={H.amber} a={hr} />
-        <Row x={RX} y={CT + 192} t="比頭髮還窄（專利、論文）" c={H.text2} a={hr} />
+        <Row x={RX} y={CT + 192} t="比頭髮還窄（專利例）" c={H.text2} a={hr} />
       </svg>
     </Card>
   );
@@ -134,7 +134,7 @@ const Spring: React.FC<P> = ({ o, f, k }) => {
         </g>
         {xs.map((x, i) => { const top = CT + 40, tip = CT + 150 + hs[i] * (1 - bd) - 6 * bd, bow = 6 + 14 * bd * (1 - hs[i] / 20);
           return <g key={x} opacity={0.4 + 0.6 * sp}><path d={`M${x} ${top} Q${x - bow} ${(top + tip) / 2} ${x} ${tip}`} fill="none" stroke={GOLD} strokeWidth={6} />
-            <circle cx={x} cy={tip} r={7} fill={bd > 0.6 ? OK : RED} /></g>; })}
+            <circle cx={x} cy={tip} r={7} fill={bd > 0.6 ? "#F2B632" : RED} /></g>; })}
         <rect x={160} y={CT + 156} width={140} height={20} fill={AL} stroke={H.text2} strokeWidth={2} />
         {xs.map((x, i) => <rect key={x} x={x - 8} y={CT + 236 - 40 * (ev > 0.5 ? 1 : 0.5 + i * 0.25)} width={16} height={40 * (ev > 0.5 ? 1 : 0.5 + i * 0.25)} fill={ev > 0.5 ? OK : ORG} opacity={0.3 + 0.7 * bd} />)}
         <Sep x={RX - 26} />
@@ -245,9 +245,9 @@ const Next: React.FC<P> = ({ o, f, k }) => {
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <Wafer cx={166} cy={CT + 124} r={122} col={(i, j) => (bad.has(`${i}_${j}`) && mk > 0.5 ? GRY : fa > 0.5 ? OK : DIE)} op={0.5 + 0.5 * fa} />
+        <Wafer cx={166} cy={CT + 124} r={122} col={(i, j) => (bad.has(`${i}_${j}`) && mk > 0.5 ? RED : fa > 0.5 ? OK : DIE)} op={0.5 + 0.5 * fa} />
         <Sep x={RX - 26} />
-        <Row x={RX} y={CT + 52} t="沒通過的晶片被標記" c={RED} a={mk} />
+        <Row x={RX} y={CT + 52} t="沒通過的晶片被標記（紅）" c={RED} a={mk} />
         <Row x={RX} y={CT + 122} t="下一集：誰做探針卡" c={H.text2} a={nx} />
         <Row x={RX} y={CT + 192} t="留言「探針卡」拿完整資料" c={H.amber} a={kw} />
       </svg>

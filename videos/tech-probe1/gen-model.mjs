@@ -46,7 +46,7 @@ const materials = {
   epoxy: M("std", "epoxyC", { rough: 0.6, metal: 0 }), ni: M("std", "niC", { rough: 0.3, metal: 0.9, env: 0.7 }), hair: M("std", "hairC", { rough: 0.7, metal: 0 }),
   ink: M("std", "inkC", { rough: 0.6, metal: 0, emissive: "inkC", ei: 0.25 }), cable: M("std", "cableC", { rough: 0.55, metal: 0 }), warnY: M("std", "warnY", { rough: 0.5, metal: 0, emissive: "warnY", ei: 0.2 }),
   pink: M("std", "pinkC", { rough: 0.9, metal: 0 }), white: M("std", "whiteP", { rough: 0.7, metal: 0 }), mark: M("std", "markC", { rough: 0.5, metal: 0, emissive: "markC", ei: 0.25 }),
-  tipOk: glowM("okC", 1, 0.8), tipNg: glowM("ngC", 1, 0.8), site: glowM("siteC", 0.95, 0.8), stiff: M("std", "stiffC", { rough: 0.45, metal: 0.6, env: 0.5 }),
+  tipOk: glowM("lampY", 1, 0.8), tipNg: glowM("ngC", 1, 0.8), site: glowM("siteC", 0.95, 0.8), stiff: M("std", "stiffC", { rough: 0.45, metal: 0.6, env: 0.5 }),
   plane: M("phys", "glassC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.22, env: 0.6 }), debris: glowM("debrisC", 0.95, 0.2),
 };
 const parts = [], layers = [], anchors = {}, actions = {};
@@ -160,7 +160,7 @@ LAY("aMan", [2, 13, -9, 6.5]);
 BOX("amCol", "aMan", -9.8, -8.4, 0.3, 13.2, -1.0, 1.0, "panel"); BOX("amFoot", "aMan", -10.4, -7.8, 0, 0.3, -1.6, 1.6, "band");
 BOX("amArm", "aMan", -8.4, -3.6, 10.6, 11.5, -0.6, 0.6, "panel2"); VC("amPivot", "aMan", 0.5, 10.4, 11.7, "dark", { x: -4.1, z: 0 });
 for (let i = 0; i < 5; i++) BOX(`amSeam${i}`, "aMan", -9.82, -8.38, 2 + i * 2.2, 2.04 + i * 2.2, 1.0, 1.02, "seam");
-BOX("amPlate", "aMan", -9.5, -8.7, 8.5, 9.1, 1.0, 1.04, "warnY");
+BOX("amPlate", "aMan", -9.5, -8.7, 8.5, 9.1, 1.0, 1.04, "warnY"); P({ id: "amBolt", layer: "aMan", shape: "cyl", size: [0.07, 0.04], pos: [0, 0, 1.02], at: [[-9.6, 1.0, 0], [-8.6, 1.0, 0], [-9.6, 12.8, 0], [-8.6, 12.8, 0]], mat: "steel" }); BOX("amChain", "aMan", -8.35, -8.1, 1.0, 10.6, -0.4, 0.4, "rubber"); for (let i = 0; i < 12; i++) BOX(`amChainL${i}`, "aMan", -8.36, -8.09, 1.4 + i * 0.8, 1.46 + i * 0.8, -0.42, 0.42, "dark");
 // 測試機機櫃
 LAY("aTester", [4.4, 12, 11.2, 6]);
 BOX("atBody", "aTester", 9, 13.4, 0.2, 12, -3, 3, "panel"); BOX("atKick", "aTester", 9, 13.4, 0, 0.2, -3, 3, "rubber");
@@ -218,13 +218,13 @@ const EX = 60;
 const EY = { tip: 2.6, lg0: 2.85, lg1: 2.97, ug0: 3.3, ug1: 3.42, st0: 3.55, st1: 3.9, ip0: 3.9, ip1: 4.1, pcb0: 4.1, pcb1: 4.28, sf0: 4.28, sf1: 4.6, dk0: 4.8, dk1: 5.3 };
 // 測試頭接口（對接環、彈簧針塔、線束頭）
 LAY("eDock", [7.4, 1.6, EX, 5.4]);
-VT("edRing", "eDock", 3.7, 3.15, EY.dk0, EY.dk1, "steel"); VT("edRingTop", "eDock", 3.72, 3.5, EY.dk1 - 0.04, EY.dk1 + 0.02, "steel2");
+VT("edRing", "eDock", 3.7, 3.15, EY.dk0, EY.dk1, "steel", { x: EX }); VT("edRingTop", "eDock", 3.72, 3.5, EY.dk1 - 0.04, EY.dk1 + 0.02, "steel2", { x: EX });
 P({ id: "edLatch", layer: "eDock", shape: "box", size: [0.4, 0.5, 0.4], pos: [EX, 5.05, 0], at: [0, 90, 180, 270].map((a) => [R2(3.7 * Math.cos(a * D2R)), 0, R2(3.7 * Math.sin(a * D2R))]), mat: "dark" });
 P({ id: "edPogo", layer: "eDock", shape: "cyl", size: [0.05, 0.4], rot: V, pos: [EX, 4.7, 0], at: Array.from({ length: 48 }, (_, i) => { const a = i * 7.5 * D2R; return [R2(3.4 * Math.cos(a)), 0, R2(3.4 * Math.sin(a))]; }), mat: "gold" });
 for (const [k, a] of [[0, 30], [1, 150], [2, 270]]) { const x = R2(EX + 3.4 * Math.cos(a * D2R)), z = R2(3.4 * Math.sin(a * D2R)); VC(`edCab${k}`, "eDock", 0.22, EY.dk1, 6.4, "cable", { x, z }); VT(`edCabNut${k}`, "eDock", 0.3, 0.22, EY.dk1, EY.dk1 + 0.25, "dark", { x, z }); }
 // 加固板（黑色陽極鋁：外環＋中心轂＋六根輻條＋減重孔）與 8 顆螺栓
 LAY("eStiff", [6, 0.4, EX, 4.45]);
-VT("esRing", "eStiff", 3.0, 2.5, EY.sf0, EY.sf1, "stiff"); VC("esHub", "eStiff", 0.9, EY.sf0, EY.sf1, "stiff", { x: EX });
+VT("esRing", "eStiff", 3.0, 2.5, EY.sf0, EY.sf1, "stiff", { x: EX }); VC("esHub", "eStiff", 0.9, EY.sf0, EY.sf1, "stiff", { x: EX });
 for (let i = 0; i < 6; i++) { const a = i * 60 + 30; P({ id: `esSpoke${i}`, layer: "eStiff", shape: "box", size: [1.7, 0.3, 0.32], pos: [R2(EX + 1.7 * Math.cos(a * D2R)), R2((EY.sf0 + EY.sf1) / 2), R2(1.7 * Math.sin(a * D2R))], rot: [0, -a, 0], mat: "stiff" }); }
 P({ id: "esHole", layer: "eStiff", shape: "cyl", size: [0.14, 0.34], rot: V, pos: [EX, 4.44, 0], at: Array.from({ length: 12 }, (_, i) => { const a = (i * 30 + 15) * D2R; return [R2(2.75 * Math.cos(a)), 0, R2(2.75 * Math.sin(a))]; }), mat: "darker" });
 BOX("esMark", "eStiff", EX + 2.5, EX + 3.0, EY.sf1, EY.sf1 + 0.02, -0.12, 0.12, "mark");
@@ -279,18 +279,18 @@ P({ id: "enTip", layer: "eNdl", shape: "sphere", size: [0.018], pos: [EX + 0.05,
 // 不平的針尖（第 8 幕：針越多越難壓得一樣平）：幾根針尖紅色發亮＋針尖平面
 LAY("eTipHi", [1.6, 0.2, EX, 2.6]);
 const hiIdx = [5, 22, 40, 61, 77, 95, 118, 133];
-P({ id: "etHi", layer: "eTipHi", shape: "sphere", size: [0.03], pos: [EX + 0.05, EY.tip, 0], at: hiIdx.map((k) => NG[k]), mat: "tipNg" });
+P({ id: "etHi", layer: "eTipHi", shape: "sphere", size: [0.045], pos: [EX + 0.05, EY.tip, 0], at: hiIdx.map((k) => NG[k]), mat: "tipNg" });
 P({ id: "etPlane", layer: "eTipHi", shape: "box", size: [1.6, 0.006, 1.6], pos: [EX + 0.05, EY.tip - 0.02, 0], mat: "plane" });
 // 頭髮（第 4 幕對照：比最密的針距還寬）
 LAY("eHair", [0.2, 0.2, EX, 2.5]);
 ZC("ehHair", "eHair", 0.085, -1.1, 1.1, EX + 0.05, EY.tip - 0.1, "hair");
 
 // ═════ 站 N：針尖剖面（五根垂直針，放大示意：1＝約 10 µm） ═════
-const NX = [86, 88, 90, 92, 94], NDEL = [0.06, -0.1, 0, 0.14, -0.04], NT = { st0: 7.6, ug0: 6.6, ug1: 7.1, lg0: 3.7, lg1: 4.2, tip0: 3.15, pad: 2.45 };
-const OFF = 0.5, BOW0 = 0.32, NW = 0.2, GAP = 0.6, OD = 0.55, NSTEP = 8, SCRUB = 0.6;
+const NX = [86, 88, 90, 92, 94], NDEL = [0.06, -0.1, 0, 0.14, -0.04], NT = { st0: 7.9, ug0: 6.9, ug1: 7.4, lg0: 4.0, lg1: 4.5, tip0: 3.15, pad: 2.45 };
+const OFF = 0.5, BOW0 = 0.32, NW = 0.2, GAP = 0.6, OD = 0.55, NSTEP = 8, SCRUB = 1.0;
 LAY("nST", [14, 1, 90, 8.1]);
-BOX("nstBody", "nST", 83.4, 96.6, NT.st0, 8.6, -1, 1, "ceram"); for (const x of NX) BOX(`nstPad${x}`, "nST", x - 0.3, x + 0.3, NT.st0 - 0.06, NT.st0, -0.9, 0.9, "padGold");
-for (let i = 0; i < 6; i++) BOX(`nstVia${i}`, "nST", 84.5 + i * 2.2, 84.6 + i * 2.2, NT.st0 + 0.1, 8.5, 1.0, 1.02, "padGold");
+BOX("nstBody", "nST", 83.4, 96.6, NT.st0, NT.st0 + 1.0, -1, 1, "ceram"); for (const x of NX) BOX(`nstPad${x}`, "nST", x - 0.3, x + 0.3, NT.st0 - 0.06, NT.st0, -0.9, 0.9, "padGold");
+for (let i = 0; i < 6; i++) BOX(`nstVia${i}`, "nST", 84.5 + i * 2.2, 84.6 + i * 2.2, NT.st0 + 0.1, NT.st0 + 0.9, 1.0, 1.02, "padGold");
 const plate = (id, x0s, y0, y1) => { const xs = [83.4, ...x0s.flatMap((x) => [x - 0.2, x + 0.2]), 96.6]; for (let i = 0; i < xs.length; i += 2) BOX(`${id}${i / 2}`, id, xs[i], xs[i + 1], y0, y1, -1, 1, "ceramD"); };
 LAY("nUG", [14, 0.5, 90, 6.85]); plate("nUG", NX, NT.ug0, NT.ug1);
 LAY("nLG", [14, 0.5, 90, 3.95]); plate("nLG", NX.map((x) => x + OFF), NT.lg0, NT.lg1);
@@ -322,7 +322,7 @@ for (const [k, x] of NX.entries()) if (k !== 2) BOX(`noOx${x}`, "nOx", x + OFF -
 // 中間那根（i＝2）的墊子：氧化膜分兩半（刮開處會露出亮金屬）、刮痕逐格變長、碎屑
 LAY("nOx2", [1.4, 0.2, 90.5, 2.42]); BOX("noOx2", "nOx2", NX[2] + OFF - 0.7, NX[2] + OFF + 0.7, NT.pad - 0.08, NT.pad, -1.0, 1.0, "ox");
 for (let k = 1; k <= NSTEP; k++) { const c = comp(2, k), s0 = SCRUB * comp(2, 0), s = SCRUB * c; LAY(`nScr${k}`, [1, 0.2, 90.6, 2.42]);
-  BOX(`nscr${k}`, `nScr${k}`, R2(NX[2] + OFF + s0 - 0.08), R2(NX[2] + OFF + s + 0.08), NT.pad - 0.08, NT.pad + 0.012, -0.35, 0.35, "alShine"); }
+  BOX(`nscr${k}`, `nScr${k}`, R2(NX[2] + OFF + s0 - 0.08), R2(NX[2] + OFF + s + 0.08), NT.pad - 0.08, NT.pad + 0.03, -0.6, 0.6, "alShine"); }
 const NIDS = ["nDie", "nOx", "nOx2", ...Array.from({ length: NSTEP }, (_, k) => `nScr${k + 1}`)];
 
 // ═════ 站 K：三種針型（懸臂式、垂直式、微機電） ═════
@@ -339,7 +339,7 @@ for (const [k, z] of CZ.entries()) { SEG(`kcN${k}`, "kCant", [111.8, 5.7, z], [1
 kPads("kcDie", 111.0, 115.3, CZ.map((z) => [114.12, 0, z]), 0.55);
 // 垂直式：上板＋上下導板（半透明陶瓷）、五根中段有弧度的針
 LAY("kVert", [5, 3, 120, 4.5]);
-BOX("kvST", "kVert", 117.6, 122.4, 5.8, 6.4, -1.4, 1.4, "ceram"); BOX("kvUG", "kVert", 117.8, 122.2, 5.3, 5.5, -1.2, -0.3, "ceramD"); BOX("kvLG", "kVert", 117.8, 122.2, 3.6, 3.8, -1.2, -0.3, "ceramD");
+BOX("kvST", "kVert", 117.6, 122.4, 5.8, 6.4, -1.4, 1.4, "ceram"); BOX("kvUG", "kVert", 117.8, 122.2, 5.3, 5.5, -1.2, -0.3, "ceramD"); BOX("kvLG", "kVert", 117.8, 122.2, 3.6, 3.8, -1.2, -0.3, "ceramD"); P({ id: "kvPost", layer: "kVert", shape: "box", size: [0.16, 2.0, 0.16], pos: [0, 4.8, -1.0], at: [[117.9, 0, 0], [122.1, 0, 0]], mat: "steel" });
 const VXs = [118.9, 119.45, 120, 120.55, 121.1];
 for (const [k, x] of VXs.entries()) for (const z of [-0.5, 0.5]) { const q = `${k}${z > 0 ? "f" : "b"}`; SEG(`kvA${q}`, "kVert", [x, 5.8, z], [x, 5.3, z], 0.035, "needle"); SEG(`kvB${q}`, "kVert", [x, 5.3, z], [x - 0.12, 4.55, z], 0.035, "needle"); SEG(`kvC${q}`, "kVert", [x - 0.12, 4.55, z], [x + 0.15, 3.8, z], 0.035, "needle"); SEG(`kvD${q}`, "kVert", [x + 0.15, 3.8, z], [x + 0.15, 2.95, z], 0.035, "needle"); }
 kPads("kvDie", 117.6, 122.4, VXs.flatMap((x) => [-0.5, 0.5].map((z) => [x + 0.15, 0, z])), 0.32);
@@ -375,7 +375,7 @@ actions.sigUp = { type: "flow", layer: "aCable", _說明: "晶片回應（作答
 actions.thLed = { type: "pulse", parts: ["athLed", "atLed0", "atLed1", "atLed2"], color: "lampG", glow: 1, freq: 3, halo: 0 };
 // 刮破氧化膜：碎屑從針尖往前噴、掉落；接通後電流（綠）沿針往上
 const tipC = centerline(2, comp(2, NSTEP)), tipEnd = tipC.at(-1);
-actions.nDebris = { type: "flow", _說明: "針尖刮動時刮下的氧化膜碎屑往刮動方向飛出、受重力落在墊面（拋物線）", layer: "nOx2", path: [[R2(tipEnd[0] - 0.05), NT.pad + 0.02, 0.3], [R2(tipEnd[0] + 0.35), NT.pad + 0.2, 0.5], [R2(tipEnd[0] + 0.62), NT.pad + 0.03, 0.6]], n: 6, size: 0.05, shape: "dot", rate: 0.9, color: "oxC", track: false, free: true, jitter: 0.05, accel: true };
+actions.nDebris = { type: "flow", _說明: "針尖刮動時刮下的氧化膜碎屑往刮動方向飛出、受重力落在墊面（拋物線）", layer: "nOx2", path: [[R2(tipEnd[0] - 0.05), NT.pad + 0.02, 0.3], [R2(tipEnd[0] + 0.35), NT.pad + 0.2, 0.5], [R2(tipEnd[0] + 0.62), NT.pad + 0.03, 0.6]], n: 8, size: 0.085, shape: "dot", rate: 0.9, color: "oxC", track: false, free: true, jitter: 0.05, accel: true };
 actions.nCurrent = { type: "flow", layer: "nST", _說明: "接通後電流從晶片接點沿針往上到空間轉換器（綠點）", path: [...tipC].reverse().filter((_, k) => k % 2 === 0).map(([x, y]) => [R2(x), R2(y), 0.15]), n: 7, size: 0.1, shape: "dot", rate: 0.7, color: "okC", track: false, trail: 2, trailGap: 0.4 };
 actions.nGlowOk = { type: "pulse", parts: ["ndPad90"], color: "okC", glow: 0.7, freq: 1.5, halo: 0 };
 // 三種針型各壓一下：墊片往上頂、針微震

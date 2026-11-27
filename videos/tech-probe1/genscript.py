@@ -21,7 +21,7 @@ S = [
  [("card", "探針卡"), ("stamp", "印章"), ("down", "蓋下去"), ("each", "每根針")], ["探針卡", "印章", "接點"], ["專利 USPTO 5909121、6130545；示意動畫，不是量測"], 8.4, 0.3, 1.6),
 ("s4", "mechanism", "接點的間距，小到比一根頭髮還窄。",
  ["接點的間距", "小到比一根頭髮還窄"], ["The pad spacing", "is narrower than a hair."],
- [("gap", "間距"), ("hair", "頭髮")], ["間距", "頭髮"], ["專利 US9194887；BioNumbers 106856；示意"], 10.0, 0.0, 1.2),
+ [("gap", "間距"), ("hair", "頭髮")], ["間距", "頭髮"], ["專利 US9194887；BioNumbers 106856；示意"], 6.9, 0.0, 1.2),
 ("s5", "mechanism", "針有彈性，像彈簧筆，壓下去會彎。這樣每根針的壓力才平均。",
  ["針有彈性", "像彈簧筆", "壓下去會彎", "這樣每根針的", "壓力才平均"], ["The needles are springy,", "like a spring-loaded pen:", "they bend when pressed,", "so every needle's", "force evens out."],
  [("spring", "彈性"), ("pen", "彈簧筆"), ("bend", "壓下去"), ("even", "平均")], ["彈性", "彈簧筆", "平均"], ["專利 USPTO 5909121（探針受壓彎曲）；示意動畫，不是量測"], 7.6, 0.3, 1.3),
@@ -33,13 +33,13 @@ S = [
  [("evo", "進化"), ("cant", "斜插"), ("vert", "垂直"), ("mems", "微針")], ["斜插", "垂直", "微針"], ["數位時代 84752；專利 US9194887；示意"], 7.8, 0.3, 1.2),
 ("s8", "mechanism", "一張卡的針，可以多到好幾萬根。針越多，越難壓得一樣平。",
  ["一張卡的針", "可以多到好幾萬根", "針越多", "越難壓得一樣平"], ["One card's needles", "can reach tens of thousands.", "The more needles,", "the harder to press them evenly."],
- [("card8", "一張卡"), ("many", "好幾萬根"), ("more", "針越多"), ("flat", "一樣平")], ["好幾萬根", "針越多", "一樣平"], ["數位時代 84752（報導）；示意"], 9.8, 0.3, 1.5),
+ [("card8", "一張卡"), ("many", "好幾萬根"), ("more", "針越多"), ("flat", "一樣平")], ["好幾萬根", "針越多", "一樣平"], ["數位時代 84752（報導）；示意"], 7.8, 0.3, 1.5),
 ("s9", "mechanism", "針的後面是測試機。像出題老師，送訊號進去，看晶片答對沒有。",
  ["針的後面", "是測試機", "像出題老師", "送訊號進去", "看晶片答對沒有"], ["Behind the needles", "is the tester,", "like a teacher setting questions:", "it sends signals in", "and checks the chip's answers."],
  [("tester", "測試機"), ("teacher", "出題老師"), ("send", "送訊號"), ("ans", "答對")], ["測試機", "出題老師", "答對"], ["專利 USPTO 5909121、6130545；示意動畫，不是量測"], 7.4, 0.3, 1.3),
 ("s10", "cta", "沒通過的晶片，會被標記起來。這麼精細的卡，誰做的？下一集看。留言探針卡，拿完整資料。",
  ["沒通過的晶片", "會被標記起來", "這麼精細的卡", "誰做的？", "下一集看", "留言探針卡", "拿完整資料"], ["Chips that fail", "get marked.", "Such a precise card:", "who makes it?", "Next episode.", "Comment \"probe card\"", "for the full notes."],
- [("fail", "沒通過"), ("mark", "標記"), ("who", "誰做的"), ("next", "下一集"), ("kw", "留言探針卡")], ["沒通過", "標記", "探針卡"], ["專利 USPTO 5455605、4928002；示意"], 8.2, 0.2, 1.2),
+ [("fail", "沒通過"), ("mark", "標記"), ("who", "誰做的"), ("next", "下一集"), ("kw", "留言探針卡")], ["沒通過", "標記", "探針卡"], ["專利 USPTO 4928002；示意"], 8.2, 0.2, 1.2),
 ]
 def TTS(t):
     for a, b in [("上一集", "前一集"), ("量測", "測量"), ("矽", "細"), ("光罩", "光照")]:
@@ -139,8 +139,8 @@ for lay, w in NWIN.items():
 for k in range(1, NS + 1): vis(f"nScr{k}", [(off("s6:scrub-2", 5 * (k - 1) + 2), FAR)], 1)
 
 # ── 站 E：探針卡爆炸分解（s4：接口、加固板、主板、彈簧針板；s8：空間轉換器、導板、針林、組回）──
-E1 = "s4:hair+48"; E2 = off(E1, 48); E3 = off(E2, 48); E4 = off(E3, 48)
-F1 = "s8:card8"; F2 = off(F1, 48); F3 = "s8:many+56"; FT = off(F3, 48); ASM = off(FT, 48)
+E1 = "s4:hair+47"; E2 = off(E1, 16); E3 = "s4:hair+94"; E4 = off(E3, 16)   # 一張標籤兩步：接口＋加固板、主板＋彈簧針板（各步仍分開動、各自停住）
+F1 = "s8:card8"; F2 = off(F1, 16); F3 = "s8:card8+47"; FT = "s8:card8+94"; ASM = "s8:card8+150"   # 第 5、6 步一張標籤（各自分開動）
 VIS += [mv("eDock", E1, off(ASM, 9), 24, dy=5.0)]
 VIS += [mv("eScrew", E2, off(ASM, 16), 12, dy=0.5), mv("eScrew", off(E2, 14), off(ASM, 7), 22, dy=3.4), mv("eStiff", off(E2, 14), off(ASM, 7), 22, dy=3.4)]
 VIS += [mv("ePCB", E3, off(ASM, 5), 22, dy=2.2), mv("eIP", E4, off(ASM, 3), 22, dy=1.2)]
@@ -155,9 +155,11 @@ XY = ["aXcar", "aY", "aZ"]
 VIS += [mv(l, "s2:cut-4", "s2:cut+28", 20, dx=-4.6) for l in XY]
 ZUP = []
 for k, b in enumerate(["s2:each+22", "s2:each+54", "s2:each+86"]):
-    VIS.append(mv("aZ", b, off(b, 18), 10, dy=0.75)); ZUP.append(b)
-    if k < 2: VIS += [mv(l, off(b, 24), FAR, 6, dx=0.19) for l in XY]
+    VIS.append(mv("aZ", b, off(b, 16), 8, dy=0.75)); ZUP.append(b)
+    if k < 2: VIS += [mv(l, off(b, 25), FAR, 6, dx=0.19) for l in XY]
 VIS.append(mv("aZ", "s3:down-8", "s4:start+20", 10, dy=0.75))
+VIS.append(mv("aZ", "s9:send-14", "s10:start+20", 10, dy=0.75))
+VIS += [hid(l, "s9:send-14", "s10:start", 8, 0.25) for l in ("aBase", "aRail", "aMan", "aTester")]
 
 # ── 站 W：測試位置框沿一列步進、壞晶片打墨點（s10）──
 WS = INFO["WSTEPS"]; WP = INFO["WP"]
@@ -177,16 +179,20 @@ for l, cue in [("kcDie", "s7:cant"), ("kvDie", "s7:vert"), ("kmDie", "s7:mems")]
 VIS += [hid(l, "s3:card+20", "s4:start", 1, 0.25) for l in ("aBase", "aRail", "aMan", "aTester", "aCable")]
 VIS += [hid(l, "s4:start-12", "s4:hair+34", 10, 0.25) for l in ("eDock", "eScrew", "eStiff")] + [hid("ePCB", "s4:start-12", "s4:hair+34", 10, 0.28)]
 VIS += [hid("nST", "s6:start-2", "s7:start", 1, 0.25)]
+VIS += [hid(l, "s8:voice-8", off(ASM, -4), 1, 0.25) for l in ("eDock", "eScrew", "eStiff", "ePCB", "eIP")]
 # ═════ 各幕 ═════
 AO = (2.0, 3.2, 80, 14)          # 站 A 全景（看向 x, y, 距離, 仰角）
+AT = (1.2, 7.9, 30, 3)           # 站 A 測試時推近腔體（測試頭、探針卡、吸盤頂著）
 AC = (0.2, 7.3, 34, -3)           # 站 A 吸盤與探針卡近景（前方低角度）
 WV = (30.0, -1.2, 36, 58)        # 站 W 晶圓俯視
-EU = (60.05, 3.2, 8, -9)        # 站 E 針尖底面近景
+EU = (60.05, 2.75, 8.5, -9)        # 站 E 針尖底面近景
 EO = (60.0, 4.6, 42, 12)         # 站 E 爆炸全景
-EO8 = (60.0, 4.1, 42, 12)
+EC = (60.05, 1.95, 15, 10)       # 站 E 拆開後的下半部近景（空間轉換器、導板、針林）
+EA = (60.0, 5.4, 30, 12)         # 站 E 組回途中（上面幾層從高處落回）
+EA2 = (60.0, 4.5, 28, 12)        # 站 E 組回後推近
 NV = (90.3, 2.6, 42, 4)          # 站 N 五根針
-NC = (90.7, 3.1, 26, 6)          # 站 N 中間那根針尖近景
-KV = (120.0, 2.6, 43, 14)        # 站 K 三種針型
+NC = (90.8, 3.2, 22, 6)          # 站 N 中間那根針尖近景
+KV = (120.0, 2.6, 46, 14)        # 站 K 三種針型
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
 P["s1"] = {"shot": [S_("start-30", (30.0, 0.2, 50, 58), 1, yaw=0.0)], "shift": VIS,
@@ -206,10 +212,8 @@ P["s3"] = {"shot": [S_(CC, AO, 1), S_("card+20", AC, 28)],
 P["s4"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
  "shot": [S_(CC, EU, 1), S_("hair+20", EO, 24)],
  "labels": [lab("eHairA", "一根頭髮（比針距寬）", "A hair: wider than the pitch", "amber", "hair", "hair+45", xy=[700, 990]),
-            lab("eDockA", "測試頭接口：訊號從這裡來", "Test-head interface", "blue", E1, off(E1, 45)),
-            lab("eStiffA", "加固板：撐住針的總壓力", "Stiffener", "amber", E2, off(E2, 45)),
-            lab("ePCBA", "主板（多層電路板）", "Main PCB", "blue", E3, off(E3, 45)),
-            lab("eIPA", "彈簧針板", "Spring-pin interposer", "amber", E4, off(E4, 45))],
+            lab("eDockA", "測試頭接口、加固板（撐住總壓力）", "Test-head interface & stiffener", "blue", E1, off(E1, 45)),
+            lab("ePCBA", "主板、彈簧針板", "Main PCB & spring-pin interposer", "amber", E3, off(E3, 45))],
  "overlay": [card("s4", "probe1-pitch", "接點間距 vs 一根頭髮", "最密處；示意，不按比例", {"gap": "gap", "hair": "hair"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [S_(CC, NV, 1)],
@@ -219,7 +223,7 @@ P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
 P["s6"] = {"shot": [S_(CC, NC, 1)],
  "run": [run("nDebris", "scrub+8", "scrub+44", 4), run("nCurrent", "on", "s7:start", 6), run("nGlowOk", "on", "s7:start", 6)],
  "labels": [lab("nOxA", "氧化膜（不導電）", "Oxide film: insulating", "blue", "ox", "ox+46"),
-            lab("nScrA", "刮開處露出金屬", "Scrubbed: bare metal", "amber", "scrub+38", "scrub+84"),
+            lab("nScrA", "刮開處露出金屬", "Scrubbed: bare metal", "amber", "scrub+24", "scrub+69"),
             lab("nOnA", "接通", "Contact made", "blue", "on", "on+46")],
  "overlay": [card("s6", "probe1-scrub", "像用指甲刮掉生鏽處", "示意（不標刮痕尺寸）", {"ox": "ox", "insul": "insul", "scrub": "scrub", "nail": "nail", "on": "on"})]}
 P["s7"] = {"zoom": [{"to": "types", "at": CC, "dur": 1}],
@@ -230,23 +234,22 @@ P["s7"] = {"zoom": [{"to": "types", "at": CC, "dur": 1}],
             lab("kMemsA", "微機電：半導體製程做的", "MEMS", "amber", "mems", "mems+46")],
  "overlay": [card("s7", "probe1-types", "針的做法在進化", "示意", {"evo": "evo", "cant": "cant", "vert": "vert", "mems": "mems"})]}
 P["s8"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
- "shot": [S_(CC, EO, 1), S_(off(F3, -4), EO8, 20)],
+ "shot": [S_(CC, EC, 1), S_(off(ASM, -4), EA, 1), S_(off(ASM, 30), EA2, 14)],
  "run": [run("etHiPulse", off(FT, -2), off(ASM, 40), 4)],
- "labels": [lab("eSTA", "空間轉換器：把間距縮小", "Space transformer", "blue", F1, off(F1, 45)),
-            lab("eLGA", "上下導板：孔位錯開", "Upper & lower guide plates", "amber", F2, off(F2, 45)),
-            lab("eNdlA", "探針：可多到好幾萬根（報導）", "Probes: tens of thousands", "blue", F3, off(F3, 45)),
-            lab("eTipA", "針尖高低不一（示意放大）", "Uneven tip heights", "amber", FT, off(FT, 46))],
+ "labels": [lab("eSTA", "空間轉換器、上下導板（孔位錯開）", "Space transformer & guide plates", "blue", F1, off(F1, 45), xy=[540, 985]),
+            lab("eNdlA", "探針：可多到好幾萬根（報導）", "Probes: tens of thousands", "blue", F3, off(F3, 45), xy=[540, 985]),
+            lab("eTipA", "針尖高低不一（示意放大）", "Uneven tip heights", "amber", FT, off(FT, 45), xy=[540, 985])],
  "overlay": [card("s8", "probe1-count", "針越多，越難壓平", "數位時代報導；示意", {"card8": "card8", "many": "many", "more": "more", "flat": "flat"})]}
 P["s9"] = {"zoom": [{"to": "prober", "at": CC, "dur": 1}],
- "shot": [S_(CC, AO, 1)],
- "run": [run("sigDown", "send-4", "s10:start", 6), run("sigUp", "ans-6", "s10:start", 6), run("thLed", "send", "s10:start", 4)],
+ "shot": [S_(CC, AO, 1), S_("send-14", AT, 24)],
+ "run": [run("sigDown", "send-4", "s10:start", 6), run("sigUp", "ans-6", "s10:start", 6), run("thLed", "send", "s10:start", 4), run("aTipGlow", "send-4", "s10:start", 4)],
  "labels": [lab("aTester", "測試機", "Tester", "amber", "tester", "tester+46"),
             lab("aCable", "訊號走排線、經探針卡到針", "Signals via cables & card", "blue", "send", "send+46")],
  "overlay": [card("s9", "probe1-tester", "測試機像出題老師", "示意", {"tester": "tester", "teacher": "teacher", "send": "send", "ans": "ans"})]}
 P["s10"] = {"zoom": [{"to": "wafer", "at": CC, "dur": 1}],
  "shot": [S_(CC, WV, 1)],
  "run": [run("wSitePulse", "start", "s11:start", 4)],
- "labels": [lab("wInkA", "沒通過：打上墨點", "Failed: ink dot", "amber", "mark", "mark+46")],
+ "labels": [lab("wInkA", "沒通過：標記起來（示意）", "Failed: marked", "amber", "mark", "mark+46")],
  "overlay": [sec("probe1-next", C, "s11:start", "沒通過的會被標記", "下一集：誰做探針卡", {"fail": "fail", "mark": "mark", "who": "who", "next": "next", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
