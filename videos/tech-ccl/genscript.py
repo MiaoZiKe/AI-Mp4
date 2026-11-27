@@ -118,7 +118,7 @@ vis("kPCB", [(T0, "s2:voice-4")], 1)
 for l in ["kCuB", "kPP0", "kPP1", "kPP2", "kCuT"]: vis(l, [("s2:voice-4", FAR)], 1)
 vis("kCookie", [("s2:cookie-4", FAR)], 6)
 for k, (l, dy) in enumerate([("kPP0", 0.7), ("kPP1", 1.4), ("kPP2", 2.1), ("kCuT", 2.9)]):
-    VIS.append(mv(l, f"s2:cookie+{2 + 3 * k}", f"s2:cu+{9 - 3 * k}", 12, dy=dy))   # 由上往下依序疊回：先落銅箔前的膠片…最後上銅箔
+    VIS.append(mv(l, f"s2:cookie+{2 + 3 * (3 - k)}", f"s2:cu+{3 * k}", 12, dy=dy))   # 抬起由上往下（上銅箔先走、底層最後），疊回由下往上（底層先落、上銅箔最後）：位移永遠上層 ≥ 下層，層與層不互穿
 # ── 站 G：緯紗一根根織進去（從上方落下就位），念到「撐住形狀」整片亮一下 ──
 for j in range(INFO["GN"]): drop(f"gF{j}", f"s3:voice+{4 + 7 * j}", dy=0.8, dur=10, bounce=0.04)
 vis("gFil", [("s3:glass-6", FAR)], 6)
@@ -134,8 +134,9 @@ VIS.append(mv("hTop", "s5:press-4", FAR, 16, dy=-HPRESS))
 vis("hBleed", [("s5:melt", FAR)], 10); vis("hCore", [("s5:glue-4", FAR)], 12)
 # ── 站 E：整片銅 → 噴藥 → 只剩線路 ──
 for k in range(8): vis(f"eCu{k}", [(T0, f"s6:etch+{2 + 3 * k}")], 4)
-vis("eTr", [(T0, FAR)], 1); vis("eFilm", [(T0, "s6:run-6")], 6); vis("eChips", [(T0, "s5:end"), ("s6:start+42", FAR)], 4)
-for l in ["ePanel", "eTr", "eFilm", "eChips"] + [f"eCu{k}" for k in range(8)]: VIS.append(mv(l, T0, "s6:start+4", 36, dx=-3.0))
+vis("eTr", [(T0, FAR)], 1); vis("eFilm", [(T0, "s6:run-6")], 6); vis("eChips", [(T0, "s5:end"), ("s6:run-4", FAR)], 4)   # 送收晶片等乾膜剝掉、板子做好才放上
+drop("eIcL", "s6:run-4", dy=0.8, dur=8, bounce=0.03)   # 板中間那顆晶片：蝕刻完才落到銲墊上
+for l in ["ePanel", "eTr", "eFilm", "eChips", "eIcL"] + [f"eCu{k}" for k in range(8)]: VIS.append(mv(l, T0, "s6:start+4", 36, dx=-3.0))
 # ── 站 S：s7 只有一般材料那道；s8 念到「低損耗」才放上低損耗那道 ──
 drop("sLaneB", "s8:low", dy=1.2, dur=12, bounce=0.05); drop("sRxB", "s8:low", dy=1.2, dur=12, bounce=0.05)
 
@@ -143,13 +144,13 @@ drop("sLaneB", "s8:low", dy=1.2, dur=12, bounce=0.05); drop("sRxB", "s8:low", dy
 KV1 = (0.0, -0.6, 30, 38)     # 鉤子：做好的電路板
 KV2 = (1.6, 1.2, 38, 22)      # 夾心爆炸（低角度看分層）
 GV = (30.0, -1.2, 24, 46)      # 玻纖布織紋
-RV = (62.6, 1.0, 46, 12)
-RV2 = (66.4, 1.4, 29, 12)    # 念到「烘到半乾」推近：烘箱到裁刀      # 含浸線側面
+RV = (62.6, -1.9, 44, 12)
+RV2 = (66.4, 0.4, 28, 12)    # 念到「烘到半乾」推近：烘箱到裁刀      # 含浸線側面
 HV = (96.0, 2.6, 36, 8)       # 熱壓機
 EV = (125.0, 0.6, 24, 42)     # 蝕刻線
 SV = (155.0, 0.2, 35, 34)     # 損耗對照
 VV = (185.0, -0.3, 31, 18)     # 供應商
-NV = (215.0, -0.2, 31, 22)     # 下一集
+NV = (215.0, -1.8, 32, 22)     # 下一集
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
 P["s1"] = {"shot": [S_("start-30", KV1, 1, yaw=0.0)], "shift": VIS,
@@ -164,7 +165,7 @@ P["s2"] = {"zoom": [{"to": "start", "at": "start-10", "dur": 1}, {"to": "pcb", "
 P["s3"] = {"zoom": [{"to": "glass", "at": CC, "dur": 1}],
  "shot": [S_(CC, GV, 1)],
  "run": [run("gGlow", "hold-4", "s4:start", 6)],
- "labels": [lab("gFilA", "一根紗＝很多根玻璃絲", "Yarn = many glass filaments", "amber", "glass-3", "screen+1", xy=[560, 1000]),
+ "labels": [lab("gFilA", "一根紗＝很多根玻璃絲", "Yarn = many glass filaments", "amber", "glass-3", "screen+1", xy=[560, 990]),
             lab("gWarpA", "經紗緯紗上下交錯", "Warp and weft interlace", "blue", "screen+3", "screen+48")],
  "overlay": [card("s3", "ccl-fab", "玻纖布：玻璃絲織成，像紗窗", "示意（放大，不按比例）", {"glass": "glass", "screen": "screen", "hold": "hold"})]}
 P["s4"] = {"zoom": [{"to": "treat", "at": CC, "dur": 1}],

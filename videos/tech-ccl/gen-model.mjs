@@ -12,7 +12,7 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60", darker: "#2A3142",
   lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", rubber: "#2B2F36", gold: "#C9A24A", warnY: "#F2B632",
   cuC: "#C8794A", cuHi: "#E39A68", chipC: "#4C5568", chipTop: "#6B7690", padGold: "#E0B84E",
-  yarnC: "#EEF2F6", yarnS: "#C9D3DE", ppC: "#E0A43A", ppD: "#B9822A", coreC: "#9C7A3C", resinL: "#D8962A", heatC: "#E5484D", hotC: "#E5602B",
+  yarnC: "#EEF2F6", filC: "#3E7FC1", yarnS: "#C9D3DE", ppC: "#E0A43A", ppD: "#B9822A", coreC: "#9C7A3C", resinL: "#D8962A", heatC: "#E5484D", hotC: "#E5602B",
   pcbC: "#1E6B4E", pcbD: "#16523B", silk: "#F4F6FA", capC: "#C8A46A", mudC: "#6B5236", mudD: "#4E3B27", trackC: "#3D7BD9", trackL: "#F4F7FB",
   sigC: "#2FD3E0", sigW: "#8FA1B8", glassC: "#BFD3F2", markC: "#E8613C", okC: "#14A38B", whiteP: "#FFFFFF",
 };
@@ -31,7 +31,7 @@ const materials = {
   warnY: M("std", "warnY", { rough: 0.5, metal: 0, emissive: "warnY", ei: 0.2 }),
   cu: M("std", "cuC", { rough: 0.3, metal: 0.9, env: 0.9 }), cuHi: M("std", "cuHi", { rough: 0.2, metal: 0.9, env: 1.1 }),
   chip: M("std", "chipC", { rough: 0.3, metal: 0.5, env: 0.8 }), chipTop: M("std", "chipTop", { rough: 0.2, metal: 0.5, env: 0.9, tex: "traces", texScale: 0.6 }),
-  yarn: M("std", "yarnC", { rough: 0.45, metal: 0, env: 0.5 }), yarnS: M("std", "yarnS", { rough: 0.5, metal: 0, env: 0.4 }),
+  yarn: M("std", "yarnC", { rough: 0.45, metal: 0, env: 0.5 }), yarnS: M("std", "yarnS", { rough: 0.5, metal: 0, env: 0.4 }), fil: M("std", "filC", { rough: 0.25, metal: 0, env: 0.7 }),
   pp: M("phys", "ppC", { rough: 0.25, metal: 0, clearcoat: 0.6, opacity: 0.72, env: 0.5 }), ppD: M("std", "ppD", { rough: 0.4, metal: 0, env: 0.3 }),
   core: M("std", "coreC", { rough: 0.5, metal: 0, env: 0.25 }), resinL: M("phys", "resinL", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.8, env: 0.8 }),
   heat: glowM("heatC", 1, 0.8), hot: glowM("hotC", 1, 0.6),
@@ -113,7 +113,7 @@ P({ id: "gFoot", layer: "gBase", shape: "box", size: [0.5, 0.1, 0.5], pos: [GX, 
 // 經紗（沿 z，固定）＋緯紗（沿 x，一根根織進去）；上下交錯
 const GN = 8, GP = 0.8, GY = 1.35, GA = 0.13, GR = 0.16;
 // 紗是扁平的一束：截面扁橢圓（寬約為厚的 2.7 倍；SEG3 先縮放再轉，局部 x＝布面內寬向、y＝厚度）
-const GS = [1.6, 0.6, 1], GSJ = [1.6, 0.6, 1.6];
+const GS = [1.6, 0.6, 1], GSJW = [1.6, 0.6, 0.7], GSJF = [0.7, 0.6, 1.6];   // 接點只補轉折縫，沿紗方向不鼓出圓盤
 const gx = (i) => R2(GX + (i - (GN - 1) / 2) * GP), gz = (j) => R2((j - (GN - 1) / 2) * GP);
 LAY("gWarp", [7, 0.5, GX, GY]);
 const sg = (i, j) => ((i + j) % 2 === 0 ? 1 : -1);   // 交叉點：緯紗在上（+）或在下（−）
@@ -121,12 +121,12 @@ for (let i = 0; i < GN; i++) for (let j = 0; j < GN - 1; j++) SEG3(`gW${i}_${j}`
 for (let j = 0; j < GN; j++) {
   const id = `gF${j}`; LAY(id, [7, 0.4, GX, GY]);
   for (let i = 0; i < GN - 1; i++) SEG3(`${id}_${i}`, id, [gx(i), R2(GY + GA * sg(i, j)), gz(j)], [gx(i + 1), R2(GY + GA * sg(i + 1, j)), gz(j)], GR, "yarnS", { scale: GS });
-  P({ id: `${id}J`, layer: id, shape: "sphere", size: [GR], scale: GSJ, pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => [gx(i), R2(GY + GA * sg(i, j)), gz(j)]), mat: "yarnS" });
+  P({ id: `${id}J`, layer: id, shape: "sphere", size: [GR], scale: GSJF, pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => [gx(i), R2(GY + GA * sg(i, j)), gz(j)]), mat: "yarnS" });
 }
-P({ id: "gWJ", layer: "gWarp", shape: "sphere", size: [GR], scale: GSJ, pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => Array.from({ length: GN }, (_, j) => [gx(i), R2(GY - GA * sg(i, j)), gz(j)])).flat(), mat: "yarn" });
+P({ id: "gWJ", layer: "gWarp", shape: "sphere", size: [GR], scale: GSJW, pos: [0, 0, 0], at: Array.from({ length: GN }, (_, i) => Array.from({ length: GN }, (_, j) => [gx(i), R2(GY - GA * sg(i, j)), gz(j)])).flat(), mat: "yarn" });
 // 一根紗拆開＝很多根玻璃絲（散開的尾端）
 LAY("gFil", [2, 1, GX + 4, GY]);
-for (let k = 0; k < 15; k++) { const t = (k - 7) / 7, u = ((k * 5) % 7 - 3) / 3; SEG3(`gFl${k}`, "gFil", [GX, R2(GY + 0.2), R2(gz(GN - 1) + 0.2)], [R2(GX + 1.1 * t), R2(GY + 1.2 + 0.4 * u), R2(gz(GN - 1) + 2.0)], 0.05, "yarn"); }
+for (let k = 0; k < 15; k++) { const t = (k - 7) / 7, u = ((k * 5) % 7 - 3) / 3; SEG3(`gFl${k}`, "gFil", [GX, R2(GY + 0.25), R2(gz(GN - 1) + 0.2)], [R2(GX + 1.7 * t), R2(GY + 1.4 + 0.4 * u), R2(gz(GN - 1) + 1.6)], 0.075, "fil"); }
 // 後面一捲布
 LAY("gRoll", [8, 2, GX, 2]);
 HXC("grRoll", "gRoll", 0.9, GX - 4, GX + 4, 1.85, -5.6, "yarn"); HXC("grCore", "gRoll", 0.25, GX - 4.4, GX + 4.4, 1.85, -5.6, "steel");
@@ -222,7 +222,7 @@ ETR.forEach((pts, k) => { for (let i = 0; i < pts.length - 1; i++) { const [x0, 
   for (const [x, z] of [pts[0], pts[pts.length - 1]]) P({ id: `ePad${k}_${x > 0 ? 1 : 0}_${z}`, layer: "eTr", shape: "cyl", size: [0.22, 0.04], rot: V, pos: [R2(EX + x), 1.42, z], mat: "cuHi" }); });
 P({ id: "eVia", layer: "eTr", shape: "cyl", size: [0.07, 0.05], rot: V, pos: [0, 1.43, 0], at: ETR.flatMap((pts) => [pts[0], pts[pts.length - 1]]).map(([x, z]) => [R2(EX + x), 0, z]), mat: "darker" });
 // 中央一顆有接腳的晶片（QFP）
-BOX("eIc", "eTr", EX + 1.6, EX + 2.6, 1.44, 1.6, 1.0, 1.7, "chip"); P({ id: "eIcPin", layer: "eTr", shape: "box", size: [0.06, 0.03, 0.18], pos: [0, 1.45, 0], at: [0, 1, 2, 3, 4, 5, 6].flatMap((i) => [[R2(EX + 1.7 + i * 0.14), 0, 0.9], [R2(EX + 1.7 + i * 0.14), 0, 1.8]]), mat: "padGold" });
+LAY("eIcL", [1, 0.2, EX + 2.1, 1.5]); BOX("eIc", "eIcL", EX + 1.6, EX + 2.6, 1.44, 1.6, 1.0, 1.7, "chip"); P({ id: "eIcPin", layer: "eIcL", shape: "box", size: [0.06, 0.03, 0.18], pos: [0, 1.45, 0], at: [0, 1, 2, 3, 4, 5, 6].flatMap((i) => [[R2(EX + 1.7 + i * 0.14), 0, 0.9], [R2(EX + 1.7 + i * 0.14), 0, 1.8]]), mat: "padGold" });
 // 乾膜：蝕刻前蓋住要留下的線路（藍色），蝕刻完剝掉
 LAY("eFilm", [8, 0.1, EX, 1.46]);
 ETR.forEach((pts, k) => { for (let i = 0; i < pts.length - 1; i++) { const [x0, z0] = pts[i], [x1, z1] = pts[i + 1], L = Math.hypot(x1 - x0, z1 - z0), ang = -Math.atan2(z1 - z0, x1 - x0) / D2R;
@@ -346,7 +346,7 @@ actions.nGlSpin = { type: "rotate", parts: ["ngRoll", "ngWv", "ngRingE", "ngRing
 Object.assign(anchors, {
   kBoardA: A("kPCB", [3.6, 1.06, 2.2], 150, -100), kChipA: A("kPCB", [1.2, 1.36, 1.2], 150, -100),
   kCuTA: A("kCuT", [3.8, R2(KTOP + 0.08), 2.6], 150, -100), kPPA: A("kPP1", [-3.8, R2(0.85 + KCU + 1.5 * KPP), 3.2], -150, -100), kCuBA: A("kCuB", [3.8, 0.93, 3.2], 150, 100), kCookieA: A("kCookie", [CKX, 1.53, 0.6], 150, -100),
-  gWarpA: A("gWarp", [gx(2), GY, gz(GN - 1)], -150, -100), gFilA: A("gFil", [R2(GX + 1.1), R2(GY + 1.2), R2(gz(GN - 1) + 2.4)], 150, -100), gRollA: A("gRoll", [GX + 2, 2.75, -5.6], 150, -100),
+  gWarpA: A("gWarp", [gx(2), GY, gz(GN - 1)], -150, -100), gFilA: A("gFil", [R2(GX + 1.2), R2(GY + 1.6), R2(gz(GN - 1) + 1.1)], 150, -100), gRollA: A("gRoll", [GX + 2, 2.75, -5.6], 150, -100),
   rTankA: A("rFrame", [RX - 1.8, 1.45, 1.3], -150, 100), rSqzA: A("rFrame", [RX + 0.4, 2.95, 1.3], -150, -100), rOvenA: A("rFrame", [RX + 4.6, 4.3, 1.5], 150, -100), rPPA: A("rPP5", [RX + 9.6, 1.42, 1.2], 150, -100),
   hPPA: A("hPP2", [HX0 + 2.8, R2((HSY.hPP2[0] + HSY.hPP2[1]) / 2), 1.5], 150, -100), hCuA: A("hCuT", [HX0 - 2.8, R2(HSY.hCuT[1]), 1.5], -150, -100), hTopA: A("hTop", [HX0 + 3.2, 5.5, 1.8], 150, -100),
   hBleedA: A("hBleed", [HX0 + 2.9, 2.33, 1.4], 150, 100), hCoreA: A("hCore", [HX0 - 2.8, 2.33, 1.5], -150, 100),

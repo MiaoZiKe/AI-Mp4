@@ -248,29 +248,29 @@
      },
      {
       "layer": "kPP0",
-      "at": "s2:cookie+2",
-      "until": "s2:cu+9",
+      "at": "s2:cookie+11",
+      "until": "s2:cu+0",
       "dur": 12,
       "dy": 0.7
      },
      {
       "layer": "kPP1",
-      "at": "s2:cookie+5",
-      "until": "s2:cu+6",
+      "at": "s2:cookie+8",
+      "until": "s2:cu+3",
       "dur": 12,
       "dy": 1.4
      },
      {
       "layer": "kPP2",
-      "at": "s2:cookie+8",
-      "until": "s2:cu+3",
+      "at": "s2:cookie+5",
+      "until": "s2:cu+6",
       "dur": 12,
       "dy": 2.1
      },
      {
       "layer": "kCuT",
-      "at": "s2:cookie+11",
-      "until": "s2:cu+0",
+      "at": "s2:cookie+2",
+      "until": "s2:cu+9",
       "dur": 12,
       "dy": 2.9
      },
@@ -632,9 +632,19 @@
      {
       "layer": "eChips",
       "at": "s5:end",
-      "until": "s6:start+42",
+      "until": "s6:run-4",
       "opacity": 0,
       "dur": 4
+     },
+     {
+      "layer": "eIcL",
+      "at": "s1:start-40",
+      "until": "s6:run-4",
+      "dur": 8,
+      "dy": 0.8,
+      "fallIn": true,
+      "bounce": 0.03,
+      "opacity": 0
      },
      {
       "layer": "ePanel",
@@ -659,6 +669,13 @@
      },
      {
       "layer": "eChips",
+      "at": "s1:start-40",
+      "until": "s6:start+4",
+      "dur": 36,
+      "dx": -3.0
+     },
+     {
+      "layer": "eIcL",
       "at": "s1:start-40",
       "until": "s6:start+4",
       "dur": 36,
@@ -976,7 +993,7 @@
       "cut": true,
       "xy": [
        560,
-       1000
+       990
       ]
      },
      {
@@ -1072,16 +1089,16 @@
       "at": "voice-4",
       "dur": 1,
       "x": 62.6,
-      "y": 1.0,
-      "d": 46,
+      "y": -1.9,
+      "d": 44,
       "elev": 12
      },
      {
       "at": "dry-12",
       "dur": 24,
       "x": 66.4,
-      "y": 1.4,
-      "d": 29,
+      "y": 0.4,
+      "d": 28,
       "elev": 12
      }
     ],
@@ -2015,8 +2032,8 @@
       "at": "voice+5",
       "dur": 1,
       "x": 215.0,
-      "y": -0.2,
-      "d": 31,
+      "y": -1.8,
+      "d": 32,
       "elev": 22
      }
     ],
