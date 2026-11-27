@@ -316,6 +316,7 @@ LAST_IMPACT = None   # render_cues 最後一次產生的 impact 分軌（與總�
 def cls_of(c):
     k = c.get('class')
     if k in ('impact', 'bed'): return k
+    if c['kind'] in ('thump', 'slide') and float(c.get('dur') or 0) > 0.6: return 'bed'   # 長的悶響／滑動是持續低頻聲，當鋪陳深壓（前驅物 s5 ripple 5.5 秒）
     return 'impact' if (c['kind'] in IMPACT_KINDS or IMPACT_RE.search(c['kind'])) else 'bed'
 
 
@@ -555,6 +556,13 @@ def cmd_check(argv):
     if abs(lag) > 0: f = np.roll(f, -lag, axis=1)
     k = (f * v).sum() / (v * v).sum()
     res = f - k * v; hop = int(0.02 * SR); m = n // hop
+    if '--vref' in argv:   # 旁白走同一條後製鏈（同 loudnorm 參數＋限幅器）的參考：限幅削峰的失真一起扣掉，殘差只剩音效＋AAC 誤差
+        r = read_wav(argv[argv.index('--vref') + 1])
+        if r.shape[0] == 1: r = np.vstack([r, r])
+        r = np.pad(r, ((0, 0), (0, max(0, n - r.shape[1]))))[:, :n]
+        if abs(lag) > 0: r = np.roll(r, 0, axis=1)
+        k2 = (f * r).sum() / (r * r).sum()
+        res = f - k2 * r
     ve = frame_rms(k * v, hop); se = frame_rms(res, hop)
     lim = int((end if end is not None else n / SR) * SR) // hop
     spk = np.zeros(len(ve), bool); spk[:lim] = ve[:lim] > ve[:lim].max() * db(-26)

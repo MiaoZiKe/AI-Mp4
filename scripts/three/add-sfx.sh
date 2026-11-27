@@ -51,7 +51,10 @@ ffmpeg -loglevel error -y -i "$TMP/mix.wav" -af "loudnorm=I=-16:TP=-1.5:LRA=11:m
 ffmpeg -loglevel error -y -i "$IN" -i "$TMP/final.wav" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -ar 48000 "$OUT"
 # 成片解碼後關卡（Andy 聽的是成片）：解碼成片音軌，講話窗逐窗殘差（sfx＋AAC 誤差）要比旁白低 ≥14 dB，不過就刪掉成品。
 ffmpeg -loglevel error -y -i "$OUT" -vn -ac 2 -ar 48000 -c:a pcm_s16le "$TMP/dec.wav"
-if [ -n "$STYLE" ]; then CHK=(python3 "$D/sfx-styles.py" check "$STYLE" "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END} --report "${OUT%.mp4}.sfx-$STYLE.final.json"); else CUES="${OUT%.mp4}.sfx-cues.json"; CHK=(python3 "$D/sfx-synth.py" check "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END}); [ -f "$CUES" ] && [ -f "$TMP/mix.wav.sfxref.wav" ] && CHK+=(--cues "$CUES" --ref "$TMP/mix.wav.sfxref.wav"); fi
+# 2026-11-27：限幅器會削到旁白峰值，純旁白（音效全靜音）走同一條鏈也會被判 <14 dB（前驅物實測 13.0）。
+# 做一份「只有旁白、同一組 loudnorm 參數＋同一個限幅器」的參考（不經 AAC，避免多疊一份編碼雜訊），check 用它扣掉，殘差才只剩音效。
+ffmpeg -loglevel error -y -i "$TMP/voice.wav" -af "loudnorm=I=-16:TP=-1.5:LRA=11:measured_I=$(g input_i):measured_TP=$(g input_tp):measured_LRA=$(g input_lra):measured_thresh=$(g input_thresh):offset=$(g target_offset):linear=true,aresample=48000,alimiter=limit=0.63:attack=3:release=60:level=disabled:latency=1" -ac 2 -ar 48000 -c:a pcm_s16le "$TMP/vref.wav"
+if [ -n "$STYLE" ]; then CHK=(python3 "$D/sfx-styles.py" check "$STYLE" "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END} --report "${OUT%.mp4}.sfx-$STYLE.final.json"); else CUES="${OUT%.mp4}.sfx-cues.json"; CHK=(python3 "$D/sfx-synth.py" check "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END}); [ -f "$TMP/vref.wav" ] && CHK+=(--vref "$TMP/vref.wav"); [ -f "$CUES" ] && [ -f "$TMP/mix.wav.sfxref.wav" ] && CHK+=(--cues "$CUES" --ref "$TMP/mix.wav.sfxref.wav"); fi
 if ! "${CHK[@]}"; then rm -f "$OUT"; echo "錯誤：成片解碼後講話段有 sfx 太大聲（<14 dB）或有音效被壓到聽不見，已刪除 $OUT"; exit 1; fi
 echo "完成：$OUT"
 [ -n "$SUMMARY" ] && python3 -c "import json;d=json.load(open('$SUMMARY'));print('音效',d['count'],d.get('byType',''))"
