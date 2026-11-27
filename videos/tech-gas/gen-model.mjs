@@ -13,7 +13,7 @@ const palette = {
   glassC: "#BFD3F2", lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", rubber: "#2B2F36", gold: "#C9A24A", knurl: "#5C6678", estop: "#D93A2B",
   pneu: "#2F7FE0", bottleC: "#8A97AB", ringA: "#2FBF9B", ringB: "#F28C28", pcbC: "#1F6B45", chipC: "#1C1F26", traceC: "#C9A24A", connC: "#2A2D33", warnC: "#F2B632",
   gasC: "#3FD0B8", impC: "#FF8A2B", n2C: "#5BB6FF", wasteC: "#E8D27A", fireIn: "#4DA3FF", fireOut: "#FF8A2B", ashC: "#B8BEC9", waterC: "#4DA3FF", plasmaC: "#9B7BFF",
-  hotC: "#E5602B", beadC: "#D9B36B", waferC: "#B4C2DA", detC: "#F4F6F9", markA: "#E8613C",
+  hotC: "#E5602B", refrC: "#5A4038", beadC: "#D9B36B", waferC: "#B4C2DA", detC: "#F4F6F9", markA: "#E8613C",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const glowM = (c, op, ei = 1) => M("std", c, { emissive: c, ei, opacity: op, rough: 1, metal: 0 });
@@ -36,7 +36,7 @@ const materials = {
   gas: glowM("gasC", 0.85), imp: glowM("impC", 0.95), n2: glowM("n2C", 0.9), waste: glowM("wasteC", 0.85), ash: glowM("ashC", 0.7, 0.5),
   fireIn: glowM("fireIn", 0.85, 1.2), fireOut: glowM("fireOut", 0.7, 1.2), droplet: glowM("waterC", 0.9, 0.8), plasma: glowM("plasmaC", 0.5, 1.2),
   water: M("phys", "waterC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.4, env: 0.5 }), bead: M("std", "beadC", { rough: 0.7, metal: 0.1 }), wafer: M("std", "waferC", { rough: 0.2, metal: 0.8, env: 0.9 }),
-  hot: M("std", "hotC", { emissive: "hotC", ei: 0.55, rough: 0.5, metal: 0.4 }), heat: glowM("hotC", 0.85, 1),
+  refract: M("std", "refrC", { rough: 0.9, metal: 0.05 }), hot: M("std", "hotC", { emissive: "hotC", ei: 0.55, rough: 0.5, metal: 0.4 }), heat: glowM("hotC", 0.85, 1),
   led: glowM("lampR", 0.95, 0.9), ledG: glowM("lampG", 0.95, 0.9),
 };
 const parts = [], layers = [], anchors = {}, actions = {};
@@ -143,8 +143,9 @@ const BOT = (id, layer, x, ring) => {
 BOT("bA", "botA", -2.2, "ringA"); BOT("bB", "botB", 2.2, "ringB");
 BOX("bAChain", "botA", -4.7, -1.1, 6.6, 6.78, 1.1, 1.22, "steel"); P({ id: "bAChainLk", layer: "botA", shape: "box", size: [0.16, 0.26, 0.16], pos: [0, 6.7, 1.16], at: Array.from({ length: 7 }, (_, i) => [-4.4 + i * 0.5, 0, 0]), mat: "dark" });
 BOX("bBChain", "botB", 1.1, 4.7, 6.6, 6.78, 1.1, 1.22, "steel"); P({ id: "bBChainLk", layer: "botB", shape: "box", size: [0.16, 0.26, 0.16], pos: [0, 6.7, 1.16], at: Array.from({ length: 7 }, (_, i) => [1.4 + i * 0.5, 0, 0]), mat: "dark" });
-// 瓶帽（取下放在櫃底）
-VC("bCap", "cabShell", 0.8, 1.35, 3.0, "bottle", { x: 0.0, z: 2.4 }); P({ id: "bCapDome", layer: "cabShell", shape: "sphere", size: [0.8], scale: [1, 0.6, 1], pos: [0, 3.0, 2.4], mat: "bottle" });
+// 瓶帽（運輸時護住瓶閥；鋼瓶上升時落到櫃底）
+LAY("bcap", [2, 2, -2.2, 13]);
+VC("bCap", "bcap", 0.85, 12.3, 14.1, "bottle", { x: -2.2, z: 0 }); P({ id: "bCapDome", layer: "bcap", shape: "sphere", size: [0.85], scale: [1, 0.55, 1], pos: [-2.2, 14.1, 0], mat: "bottle" }); VT("bCapRim", "bcap", 0.9, 0.8, 12.3, 12.6, "knurl", { x: -2.2, z: 0 }); BOX("bCapWin", "bcap", -2.9, -1.5, 13.2, 13.6, 0.8, 0.9, "dark");
 // 調節器（兩段式）：黃銅本體、T 型旋鈕、高壓表＋低壓表、出口、洩壓口、流量限制孔、盤管
 const REG = (id, layer, x, a0H) => {
   const z = -1.4;
@@ -229,14 +230,19 @@ PIPE("vbOut", "vmbShell", [[VX1 - 0.1, LY, 0], [VX1 + 1.0, LY, 0]], 0.2, "steel2
 
 // ═════ 4 雙套管（x＝58，橫剖特寫）：內管、外套管（可抽開）、端封、支撐環、偵測點、氣動閥 ═════
 const XD = X.dbl, DL = XD - 8, DR = XD + 8;
-LAY("dblPipe", [18, 3, XD, LY]); LAY("dblJacket", [14, 3, XD, LY]); LAY("dblSkin", [14, 3, XD, LY]); LAY("dblDet", [4, 5, XD + 4, 10]); LAY("dblHole", [1, 1, XD, LY + 0.5]); LAY("dblValve", [3, 5, XD - 9, LY + 1]); LAY("dblValveAct", [3, 5, XD - 9, LY + 2]);
+LAY("dblPipe", [18, 3, XD, LY]); LAY("dblJacket", [14, 3, XD, LY]); LAY("dblSkin", [14, 3, XD, LY]); LAY("dblCut", [14, 3, XD, LY + 1]); LAY("dblSealL", [2, 3, DL, LY]); LAY("dblSealR", [2, 3, DR, LY]); LAY("dblDet", [4, 5, XD + 4, 10]); LAY("dblHole", [1, 1, XD, LY + 0.5]); LAY("dblValve", [3, 5, XD - 9, LY + 1]); LAY("dblValveAct", [3, 5, XD - 9, LY + 2]);
 HXC("dbIn", "dblPipe", 0.45, DL - 0.6, DR + 0.6, LY, 0, "steel2"); P({ id: "dbWeld", layer: "dblPipe", shape: "tube", size: [0.5, 0.44, 0.12], rot: HX, pos: [XD, LY, 0], at: [[-6, 0, 0], [-3, 0, 0], [0, 0, 0], [3, 0, 0], [6, 0, 0]], mat: "knurl" });
 P({ id: "dbSupport", layer: "dblPipe", shape: "tube", size: [0.86, 0.44, 0.14], rot: HX, pos: [XD, LY, 0], at: [[-6.2, 0, 0], [-2.1, 0, 0], [2.1, 0, 0], [6.2, 0, 0]], mat: "rubber" });
 P({ id: "dbArrow", layer: "dblPipe", shape: "box", size: [1.1, 0.04, 0.3], pos: [XD - 4.2, LY + 0.46, 0], mat: "lampY" }); P({ id: "dbBand", layer: "dblPipe", shape: "tube", size: [0.5, 0.44, 0.25], rot: HX, pos: [XD - 7.2, LY, 0], mat: "ringA" });
-HXT("dbSealL", "dblPipe", 1.12, 0.46, DL - 0.5, DL + 0.5, LY, 0, "steel"); HXT("dbSealR", "dblPipe", 1.12, 0.46, DR - 0.5, DR + 0.5, LY, 0, "steel"); P({ id: "dbSealBolt", layer: "dblPipe", shape: "cyl", size: [0.07, 0.12], rot: HX, pos: [0, LY, 0], at: [...RING(8, 1.0).map(([y, , z]) => [DL - 0.55, z, y].map((v, i) => (i === 1 ? R2(LY + v) : v))), ...RING(8, 1.0).map(([y, , z]) => [DR + 0.55, z, y].map((v, i) => (i === 1 ? R2(LY + v) : v)))], mat: "steel" });
+HXT("dbSealL", "dblSealL", 1.12, 0.46, DL - 0.5, DL + 0.5, LY, 0, "steel"); HXT("dbSealR", "dblSealR", 1.12, 0.46, DR - 0.5, DR + 0.5, LY, 0, "steel");
+P({ id: "dbSealBolt", layer: "dblSealL", shape: "cyl", size: [0.07, 0.12], rot: HX, pos: [DL - 0.55, LY, 0], at: RING(8, 1.0).map(([y, , z]) => [0, R2(z), R2(y)]), mat: "steel" });
+P({ id: "dbSealBoltR", layer: "dblSealR", shape: "cyl", size: [0.07, 0.12], rot: HX, pos: [DR + 0.55, LY, 0], at: RING(8, 1.0).map(([y, , z]) => [0, R2(z), R2(y)]), mat: "steel" });
 P({ id: "dbStand", layer: "dblPipe", shape: "box", size: [0.3, LY - 1.1, 0.3], pos: [0, (LY - 1.1) / 2, 0], at: [[XD - 5, 0, 0], [XD + 5, 0, 0]].map(([x, y, z]) => [x, y, z]), mat: "band" }); P({ id: "dbSaddle", layer: "dblPipe", shape: "box", size: [1.4, 0.2, 1.3], pos: [0, LY - 1.15, 0], at: [[XD - 5, 0, 0], [XD + 5, 0, 0]], mat: "steel" }); P({ id: "dbFoot", layer: "dblPipe", shape: "box", size: [1.4, 0.12, 1.4], pos: [0, 0.06, 0], at: [[XD - 5, 0, 0], [XD + 5, 0, 0]], mat: "dark" });
-HXT("djSleeve", "dblJacket", 0.95, 0.85, DL + 0.3, DR - 0.3, LY, 0, "window"); HXT("djSteel", "dblSkin", 1.0, 0.94, DL + 0.5, DR - 0.5, LY, 0, "steel2"); P({ id: "djWeld", layer: "dblJacket", shape: "tube", size: [1.06, 0.94, 0.14], rot: HX, pos: [XD, LY, 0], at: [[-6.6, 0, 0], [-3.3, 0, 0], [0, 0, 0], [3.3, 0, 0], [6.6, 0, 0]], mat: "knurl" });
-P({ id: "djClamp", layer: "dblSkin", shape: "tube", size: [1.12, 0.98, 0.2], rot: HX, pos: [XD, LY, 0], at: [[-5, 0, 0], [5, 0, 0]], mat: "knurl" }); P({ id: "djBand", layer: "dblSkin", shape: "tube", size: [1.02, 0.96, 0.4], rot: HX, pos: [XD - 1.6, LY, 0], mat: "ringB" }); P({ id: "djArrow", layer: "dblSkin", shape: "box", size: [1.2, 0.04, 0.34], pos: [XD + 3.0, LY + 1.02, 0], mat: "lampY" });
+HXT("djSleeve", "dblJacket", 0.95, 0.85, DL + 0.3, DR - 0.3, LY, 0, "window"); for (let k = 0; k < 24; k++) { const a = k * 15, cut = a >= 15 && a <= 90; P({ id: `djStave${k}`, layer: cut ? "dblCut" : "dblSkin", shape: "box", size: [14.8, 0.06, 0.27], pos: [XD, R2(LY + 1.0 * Math.sin(a * D2R)), R2(1.0 * Math.cos(a * D2R))], rot: [90 - a, 0, 0], mat: "steel2" }); }
+P({ id: "djCutBolt", layer: "dblCut", shape: "sphere", size: [0.07], pos: [XD, R2(LY + 1.06 * Math.sin(15 * D2R)), R2(1.06 * Math.cos(15 * D2R))], at: Array.from({ length: 8 }, (_, i) => [-6.4 + i * 1.8, 0, 0]), mat: "steel" });
+P({ id: "djCutBolt2", layer: "dblCut", shape: "sphere", size: [0.07], pos: [XD, R2(LY + 1.06), 0], at: Array.from({ length: 8 }, (_, i) => [-6.4 + i * 1.8, 0, 0]), mat: "steel" });
+P({ id: "djSkinBolt", layer: "dblSkin", shape: "sphere", size: [0.07], pos: [XD, R2(LY - 1.06), 0], at: Array.from({ length: 8 }, (_, i) => [-6.4 + i * 1.8, 0, 0]), mat: "steel" }); 
+P({ id: "djBand", layer: "dblSkin", shape: "tube", size: [1.03, 0.97, 0.4], rot: HX, pos: [XD - 5.6, LY, 0], mat: "ringB" }); P({ id: "djArrow", layer: "dblCut", shape: "box", size: [1.2, 0.04, 0.34], pos: [XD + 3.0, LY + 1.02, 0], mat: "lampY" });
 ZC("ddTap", "dblDet", 0.14, 0, 0, 0, 0, "steel2", { size: [0.14, 0.01] }); parts.pop();
 PIPE("ddPipe", "dblDet", [[XD + 4, LY + 0.9, 0], [XD + 4, LY + 2.6, 0], [XD + 4, LY + 2.6, 0.01]], 0.12, "steel2", { noClamp: true }); BOX("ddBox", "dblDet", XD + 3.1, XD + 4.9, LY + 2.6, LY + 4.3, -0.7, 0.7, "det");
 P({ id: "ddMesh", layer: "dblDet", shape: "sphere", size: [0.5], scale: [1, 0.5, 1], pos: [XD + 4, LY + 4.3, 0], mat: "knurl" }); P({ id: "ddLed", layer: "dblDet", shape: "sphere", size: [0.11], pos: [XD + 3.5, LY + 3.7, 0.72], at: [[0, 0, 0], [0.5, 0, 0], [1.0, 0, 0]].map(([a, b, c]) => [a, b, c]), mat: "ledG" });
@@ -269,8 +275,8 @@ PIPE("pmOut", "pmp", [[X.pmp, 3.6, 0], [X.pmp, 5.0, 0], [X.abt - 3.4, 5.0, 0]], 
 
 // ═════ 6 尾氣處理器（x＝97）：水槽、燃燒室（燒嘴、火焰）、水洗段（噴淋環、液滴）、排氣管、控制櫃 ═════
 const XA = X.abt;
-LAY("abTank", [6, 4, XA, 2.3]); LAY("abBurn", [5, 5, XA, 6.5]); LAY("abWash", [5, 5, XA, 11.5]); LAY("abStack", [3, 5, XA, 16]); LAY("abCab", [3, 5, XA + 5, 3]);
-VT("tkWall", "abTank", 2.8, 2.65, 0.4, 4.0, "window", { x: XA }); VC("tkWater", "abTank", 2.6, 0.5, 2.6, "water", { x: XA }); VC("tkBase", "abTank", 3.1, 0, 0.4, "band", { x: XA }); VT("tkFl", "abTank", 3.2, 2.5, 3.9, 4.2, "steel2", { x: XA }); P({ id: "tkBolt", layer: "abTank", shape: "cyl", size: [0.1, 0.12], rot: V, pos: [XA, 4.25, 0], at: RING(16, 2.95), mat: "steel" });
+LAY("abTank", [6, 4, XA, 2.3]); LAY("abBase", [7, 1, XA, 0.2]); LAY("abDoor", [6, 14, XA, 7.5]); LAY("abBurn", [5, 5, XA, 6.5]); LAY("abWash", [5, 5, XA, 11.5]); LAY("abStack", [3, 5, XA, 16]); LAY("abCab", [3, 5, XA + 5, 3]);
+VT("tkWall", "abTank", 2.8, 2.65, 0.4, 4.0, "window", { x: XA }); VC("tkWater", "abTank", 2.6, 0.5, 2.6, "water", { x: XA }); VC("tkBase", "abBase", 3.1, 0, 0.4, "band", { x: XA }); VT("tkFl", "abTank", 3.2, 2.5, 3.9, 4.2, "steel2", { x: XA }); P({ id: "tkBolt", layer: "abTank", shape: "cyl", size: [0.1, 0.12], rot: V, pos: [XA, 4.25, 0], at: RING(16, 2.95), mat: "steel" });
 BOX("tkGlass", "abTank", XA - 0.3, XA + 0.3, 0.7, 3.0, 2.85, 2.95, "steel2"); P({ id: "tkLevel", layer: "abTank", shape: "box", size: [0.3, 0.3, 0.02], pos: [XA, 0, 2.97], at: [[0, 1.2, 0], [0, 1.9, 0]], mat: "lampY" }); HXC("tkDrain", "abTank", 0.25, XA + 2.8, XA + 4.2, 0.9, 0, "steel2"); VC("tkValve", "abTank", 0.3, 0.9, 1.5, "pneu", { x: XA + 4.0, z: 0 });
 PIPE("abIn", "abTank", [[XA - 3.4, 5.0, 0], [XA - 2.6, 5.0, 0]], 0.3, "steel2", { noClamp: true }); HXT("abInFl", "abTank", 0.55, 0.3, XA - 3.0, XA - 2.7, 5.0, 0, "steel", { });
 VT("bnWall", "abBurn", 2.6, 2.45, 4.2, 9.0, "window", { x: XA }); VT("bnFl", "abBurn", 3.0, 2.3, 8.9, 9.2, "steel2", { x: XA }); P({ id: "bnBolt", layer: "abBurn", shape: "cyl", size: [0.1, 0.12], rot: V, pos: [XA, 9.25, 0], at: RING(16, 2.75), mat: "steel" });
@@ -280,8 +286,12 @@ VT("wsWall", "abWash", 2.6, 2.45, 9.2, 14.0, "window", { x: XA }); VT("wsFl", "a
 VT("wsSpray", "abWash", 2.0, 1.8, 12.2, 12.4, "pneu", { x: XA }); P({ id: "wsNozzle", layer: "abWash", shape: "cyl", size: [0.08, 0.3], rot: V, pos: [XA, 12.1, 0], at: RING(10, 1.9), mat: "knurl" }); PIPE("wsFeed", "abWash", [[XA + 2.0, 12.3, 0], [XA + 3.4, 12.3, 0], [XA + 3.4, 10.0, 0]], 0.14, "pneu"); VT("wsPack", "abWash", 2.4, 0.9, 10.2, 10.6, "dark", { x: XA }); VT("wsPack2", "abWash", 2.4, 0.9, 10.7, 11.1, "dark", { x: XA }); VT("wsMist", "abWash", 2.4, 1.0, 13.2, 13.5, "knurl", { x: XA });
 VC("skDuct", "abStack", 1.3, 14.2, 17.8, "steel2", { x: XA }); VT("skFl", "abStack", 1.9, 1.2, 14.2, 14.5, "steel", { x: XA }); P({ id: "skBolt", layer: "abStack", shape: "cyl", size: [0.09, 0.12], rot: V, pos: [XA, 14.55, 0], at: RING(10, 1.65), mat: "steel" }); VT("skClamp", "abStack", 1.38, 1.28, 16.0, 16.3, "knurl", { x: XA }); VT("skCap", "abStack", 1.45, 1.1, 17.7, 18.0, "steel", { x: XA }); BOX("skTag", "abStack", XA - 0.5, XA + 0.5, 15.0, 15.8, 1.28, 1.32, "lampY");
 BOX("acBody", "abCab", XA + 3.8, XA + 6.2, 0, 6, -1.0, 1.0, "cab"); BOX("acScr", "abCab", XA + 4.1, XA + 5.9, 3.6, 4.8, 1.0, 1.04, "screen"); P({ id: "acLed", layer: "abCab", shape: "sphere", size: [0.08], pos: [XA + 4.3, 5.3, 1.04], at: [[0, 0, 0], [0.4, 0, 0], [0.8, 0, 0]], mat: "lampG" }); P({ id: "acVent", layer: "abCab", shape: "box", size: [1.6, 0.08, 0.04], pos: [XA + 5, 0, 1.03], at: Array.from({ length: 5 }, (_, i) => [0, 1.0 + i * 0.3, 0]), mat: "dark" }); HXC("acHose", "abCab", 0.1, XA + 2.7, XA + 3.8, 2.0, 0, "conn");
+VT("bnLiner", "abBurn", 2.45, 2.2, 4.3, 8.9, "refract", { x: XA }); P({ id: "bnBrick", layer: "abBurn", shape: "box", size: [0.5, 0.5, 0.12], pos: [XA, 0, 0], at: (() => { const o = []; for (let y = 4.7; y < 8.8; y += 0.55) for (let i = 0; i < 12; i++) { const [x, z] = pol(i * 30 + ((y * 2) % 2) * 15, 2.2); o.push([x, y, z]); } return o; })(), rot: [0, 0, 0], mat: "refract" });
+VT("wsBand", "abWash", 2.68, 2.45, 9.4, 9.65, "steel2", { x: XA }); VT("wsBand2", "abWash", 2.68, 2.45, 13.5, 13.75, "steel2", { x: XA }); VC("wsSight", "abWash", 0.16, 9.6, 12.6, "window", { x: XA + 2.9, z: 0.3 }); VC("wsSightFl", "abWash", 0.16, 9.4, 12.8, "water", { x: XA + 2.9, z: 0.3 }); P({ id: "wsSightCap", layer: "abWash", shape: "tube", size: [0.26, 0.12, 0.16], rot: V, pos: [XA + 2.9, 9.5, 0.3], at: [[0, 0, 0], [0, 3.2, 0]], mat: "knurl" }); VT("wsSprayN", "abWash", 2.05, 1.75, 12.0, 12.15, "pneu", { x: XA });
+P({ id: "tkHandwheel", layer: "abTank", shape: "tube", size: [0.34, 0.26, 0.07], pos: [XA + 4.0, 1.9, 0], rot: V, mat: "knurl" }); P({ id: "tkGasket", layer: "abTank", shape: "tube", size: [3.25, 2.5, 0.1], rot: V, pos: [XA, 3.95, 0], mat: "rubber" });
+BOX("adPanel", "abDoor", XA - 2.9, XA + 2.9, 0.6, 14.0, 2.78, 2.9, "cab"); BOX("adHandle", "abDoor", XA + 2.2, XA + 2.4, 6, 9, 2.9, 3.3, "steel2"); P({ id: "adHinge", layer: "abDoor", shape: "cyl", size: [0.14, 1.2], rot: V, pos: [XA - 2.95, 0, 2.85], at: [[0, 2, 0], [0, 7.3, 0], [0, 12.5, 0]], mat: "steel" }); P({ id: "adLouver", layer: "abDoor", shape: "box", size: [3.6, 0.1, 0.06], pos: [XA, 0, 2.93], at: Array.from({ length: 6 }, (_, i) => [0, 1.4 + i * 0.3, 0]), mat: "dark" }); BOX("adLabel", "abDoor", XA - 1.4, XA + 1.4, 11.0, 12.4, 2.9, 2.94, "warn"); P({ id: "adScrew", layer: "abDoor", shape: "cyl", size: [0.07, 0.05], pos: [XA, 0, 2.92], at: grid(-2.6, 2.6, 6, 0.9, 13.6, 4, 0).map(([a, b]) => [a, b, 0]), mat: "steel" });
 // 火焰（內焰藍、外焰橘，會閃動）與燃燒後的熱氣
-P({ id: "flOut", layer: "abBurn", shape: "sphere", size: [0.9], scale: [1, 1.9, 1], pos: [XA, 6.9, 0], mat: "fireOut" }); P({ id: "flIn", layer: "abBurn", shape: "sphere", size: [0.55], scale: [1, 1.6, 1], pos: [XA, 6.5, 0], mat: "fireIn" });
+P({ id: "flOut", layer: "abBurn", shape: "sphere", size: [1.3], scale: [1, 1.9, 1], pos: [XA, 6.9, 0], mat: "fireOut" }); P({ id: "flIn", layer: "abBurn", shape: "sphere", size: [0.8], scale: [1, 1.6, 1], pos: [XA, 6.5, 0], mat: "fireIn" });
 P({ id: "flSide", layer: "abBurn", shape: "sphere", size: [0.3], scale: [1, 1.7, 1], pos: [XA, 6.2, 0], at: RING(6, 1.2, 10), mat: "fireOut" });
 // 加熱與電漿示意（機台內，示意）
 P({ id: "plasmaGl", layer: "chShw", shape: "cyl", size: [1.9, 1.0], rot: V, pos: [XC, 6.2, 0], mat: "plasma" });
@@ -292,6 +302,7 @@ LAY("fl", [100, 20, 48, 8]);
 const pt = (x, y, z) => [R2(x), R2(y), R2(z)];
 actions.needleHigh = { type: "rotate", _說明: "高壓表指針緩降（瓶壓隨使用慢慢下降；示意，不標數值）", parts: ["rAGHNd"], axis: [0, 0, 1], pivot: [R2(-2.2 - 0.95), 14.6, 0], pivots: { rAGHNd: [R2(-2.2 - 0.95), 14.6, -0.9] }, rps: 0.018, rampSpin: true };
 actions.lowJit = { type: "vibrate", _說明: "低壓表指針只輕微抖動（出口壓力穩定）", parts: ["rAGLNd"], axis: [0, 1, 0], amp: 0.02, freq: 3 };
+actions.estopFlash = { type: "pulse", parts: ["cfEstop"], color: "estop", glow: 1, freq: 3, halo: 1.4 };
 actions.fanBeacon = { type: "pulse", parts: ["cbBeaconG"], color: "lampG", glow: 1, freq: 1.0, halo: 0 };
 actions.ctlLed = { type: "pulse", parts: ["cfLed"], color: "lampG", glow: 1, freq: 1.2, halo: 0 };
 // 氣體：瓶 A 閥 → 盤管 → 調節器（上游密）→ 出口（下游疏）
@@ -306,8 +317,8 @@ actions.impLeak = { type: "flow", layer: "fl", path: [pt(XP + 0.2, 4.2, 0.3), pt
 // 雙套管：內管氣體流動；破洞噴出錐狀氣體；環空往兩端擴散；偵測；關閥；氮氣吹淨
 actions.dblFlow = { type: "flow", layer: "fl", path: [pt(XD - 10, LY, 0), pt(XD + 9, LY, 0)], n: 12, size: 0.1, shape: "dot", rate: 0.35, color: "gasC", track: false, free: true, jitter: 0.12 };
 actions.leakJet = { type: "flow", layer: "fl", path: [pt(XD - 1.5, LY + 0.45, 0), pt(XD - 1.7, LY + 0.88, 0.05)], n: 14, size: 0.12, shape: "dot", rate: 1.1, color: "gasC", track: false, free: true, jitter: 0.5 };
-actions.annL = { type: "flow", layer: "fl", path: [pt(XD - 1.6, LY + 0.7, 0), pt(XD - 4, LY + 0.7, 0), pt(XD - 7, LY + 0.7, 0)], n: 6, size: 0.07, shape: "dot", rate: 0.2, color: "gasC", track: false, free: true, jitter: 0.1 };
-actions.annR = { type: "flow", layer: "fl", path: [pt(XD - 1.4, LY + 0.7, 0), pt(XD + 2, LY + 0.7, 0), pt(XD + 4, LY + 0.7, 0), pt(XD + 4, LY + 2.5, 0)], n: 6, size: 0.07, shape: "dot", rate: 0.25, color: "gasC", track: false, free: true, jitter: 0.1 };
+actions.annL = { type: "flow", layer: "fl", path: [pt(XD - 1.6, LY + 0.7, 0), pt(XD - 4, LY + 0.7, 0), pt(XD - 7, LY + 0.7, 0)], n: 6, size: 0.14, shape: "dot", rate: 0.2, color: "gasC", track: false, free: true, jitter: 0.1 };
+actions.annR = { type: "flow", layer: "fl", path: [pt(XD - 1.4, LY + 0.7, 0), pt(XD + 2, LY + 0.7, 0), pt(XD + 4, LY + 0.7, 0), pt(XD + 4, LY + 2.5, 0)], n: 6, size: 0.14, shape: "dot", rate: 0.25, color: "gasC", track: false, free: true, jitter: 0.1 };
 actions.dblPurge = { type: "flow", layer: "fl", path: [pt(DR - 1.0, LY + 0.7, 0), pt(DL + 1, LY + 0.7, 0)], n: 12, size: 0.08, shape: "dot", rate: 0.4, color: "n2C", track: false, free: true, jitter: 0.1 };
 actions.detBlink = { type: "pulse", parts: ["ddLedR"], color: "lampR", glow: 1, freq: 3.2, halo: 1.6 };
 actions.valveAct = { type: "pulse", parts: ["dvInd"], color: "lampY", glow: 1, freq: 2, halo: 0 };
@@ -330,8 +341,8 @@ Object.assign(anchors, {
   purge: A("purge", [PX, 7.6, PZ + 1.8], -150, 80), ctl: A("ctl", [3.7, 14.4, 4.4], 150, -80), estopA: A("ctlDoor", [3.7, 9.2, 4.8], 150, 80), pcb: A("ctlPcb", [3.7, 14.8, 3.7], 150, -90),
   pur: A("purCan", [XP + 1.8, 9.2, 0.5], 150, -90), bed: A("purBed", [XP, 4.2, 0.9], 150, 90), filt: A("purFilt", [XP + 5.8, 7.5, 0.4], 150, 80),
   vmb: A("vmbShell", [VX1, 12.5, 0.5], 150, -80), stk: A("stk", [XV, LY + 0.4, 0.8], 0, -150), vInlet: A("vc1", [XV - 5.2, LY + 1.1, 0], -150, -90), vFilter: A("vc2", [XV - 2.6, LY, 0.5], -120, 120), vReg: A("vc3", [XV, LY + 1.4, 0], 0, -140), vPt: A("vc4", [XV + 2.6, LY + 1.5, 0], 120, -110), vOut: A("vc5", [XV + 5.2, LY + 1.1, 0], 150, -90),
-  dblInner: A("dblPipe", [XD - 5.0, LY, 0.3], -150, 100), dblOuter: A("dblSkin", [XD + 4, LY + 1.0, 0.4], 150, -90), det: A("dblDet", [XD + 4, LY + 3.4, 0.7], 150, -80), hole: A("dblHole", [XD - 1.5, LY + 0.5, 0], -150, -90), dvalve: A("dblValve", [XD - 9.3, LY + 2.2, 0], -150, -90), annulus: A("dblJacket", [XD + 3.0, LY + 0.9, 0.2], 150, 80),
-  chm: A("chm", [XC + 3.5, 6.0, 0.3], 150, -90), shw: A("chShw", [XC + 1.8, 7.0, 0.3], 150, -100), pump: A("pmp", [X.pmp + 2, 3.6, 2.0], 150, -90), mfc: A("chMfc", [XC - 2.6, 13.2, 0.4], -150, -80),
+  dblInner: A("dblPipe", [XD - 5.0, LY, 0.3], -150, 160), dblOuter: A("dblCut", [XD + 3, LY + 0.7, 0.7], 150, -150), det: A("dblDet", [XD + 4, LY + 3.4, 0.7], 150, -80), hole: A("dblHole", [XD - 1.5, LY + 0.5, 0], -150, -90), dvalve: A("dblValve", [XD - 9.3, LY + 2.2, 0], -150, -90), annulus: A("dblJacket", [XD + 3.0, LY + 0.9, 0.2], 150, 80),
+  chm: A("chm", [XC + 3.5, 6.0, 0.3], 150, -90), shw: A("chShw", [XC + 1.8, 7.0, 0.3], 150, -100), pump: A("pmp", [X.pmp + 2, 3.6, 2.0], 150, -90), pins: A("chWf", [XC + 1.3, 3.4, 1.0], -150, 90), seal: A("dblSealL", [DL, LY + 1.0, 0.5], -150, -90), mfc: A("chMfc", [XC - 2.6, 13.2, 0.4], -110, -130),
   abTank: A("abTank", [XA - 2.7, 1.5, 0.6], -150, 80), abBurn: A("abBurn", [XA - 2.6, 7.2, 0.6], -150, 70), abWash: A("abWash", [XA - 2.6, 12.0, 0.6], -150, 70), abStack: A("abStack", [XA - 1.3, 16.2, 0.6], -150, -70), flame: A("abBurn", [XA + 0.7, 6.9, 0.4], 150, 80),
 });
 const model = {

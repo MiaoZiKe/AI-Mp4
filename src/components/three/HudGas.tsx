@@ -40,7 +40,7 @@ const Chip: React.FC<{ x: number; y: number; w: number; t: string; a: number }> 
 );
 const Plate: React.FC<{ x: number; y: number; w: number; t: string; a: number; code?: string }> = ({ x, y, w, t, a, code }) => (
   <g><rect x={x} y={y} width={w} height={50} fill="#FFFFFF" stroke={a > 0.5 ? H.amber : H.lineSoft} strokeWidth={a > 0.5 ? 4 : 1.5} />
-    <text x={x + 14} y={y + 36} style={zh(32, "#1F3A5F", 900)}>{t}</text>
+    <text x={x + 14} y={y + 36} opacity={0.4 + 0.6 * a} style={zh(30, "#1F3A5F", 900)}>{t}</text>
     {code ? <g><rect x={x + w + 10} y={y + 7} width={50} height={36} fill="none" stroke={a > 0.5 ? H.amber : H.lineSoft} strokeWidth={a > 0.5 ? 4 : 1.5} /><Flag code={code} h={28} x={x + w + 14} y={y + 11} asSvg /></g> : null}</g>
 );
 const Bottle: React.FC<{ x: number; y: number; c: string }> = ({ x, y, c }) => (
@@ -91,7 +91,7 @@ const Ppb: React.FC<P> = ({ o, f, k }) => {
         <rect x={34} y={CT + 40} width={360} height={150} fill="#BFDDFB" stroke="#4DA3FF" strokeWidth={4} opacity={0.4 + 0.6 * pl} />
         {[0, 1, 2].map((i) => <path key={i} d={`M${50 + i * 110} ${CT + 90 + i * 18} q 25 -14 50 0 t 50 0`} stroke="#4DA3FF" strokeWidth={3} fill="none" opacity={0.6 * pl} />)}
         <circle cx={214} cy={CT + 20 + 60 * drop} r={9} fill={IMP} opacity={sp} />
-        <text x={34} y={CT + 232} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * pl}>一座游泳池</text>
+        <text x={34} y={CT + 232} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * pl}>標準泳池（約 2,500 噸）</text>
         <Sep x={430} />
         <Row x={460} y={CT + 56} t="水氣、氧只要一點點" c={IMP} a={q} />
         <Row x={460} y={CT + 122} t="也會傷到一層膜" c={RED} a={sp} />
@@ -162,7 +162,7 @@ const Pur: React.FC<P> = ({ o, f, k }) => {
 // ── gas-dbl：雙套管橫剖＋偵測鏈 ──
 const Dbl: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, ou = on(f, T(o, "out")), pi = on(f, T(o, "pipe")), lk = on(f, T(o, "leak")), vl = on(f, T(o, "valve"));
-  const chain: [string, number][] = [["偵測", lk], ["警報", lk], ["關閥", vl], ["排氣", vl]];
+  const chain: [string, number][] = [["偵測", lk], ["警報", lk], ["關閥", vl], ["吹淨", vl]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
@@ -212,7 +212,7 @@ const Burn: React.FC<P> = ({ o, f, k }) => {
         <Col x={30} head="燃燒式" mid="火焰" c={FIRE} a={b} />
         <Col x={500} head="電漿式" mid="電漿" c="#9B7BFF" a={l} />
         <Row x={30} y={CT + 196} t="先分解有害的，再用水吸收" c={H.amber} a={w} />
-        <Row x={30} y={CT + 240} t="像排油煙機加淨水，示意不標效率" c={BLUE} a={l} />
+        <Row x={30} y={CT + 240} t="像焚化爐，燒完的煙再用水沖一遍" c={BLUE} a={l} />
       </svg>
     </Card>
   );
@@ -221,14 +221,15 @@ const Burn: React.FC<P> = ({ o, f, k }) => {
 const Co: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 360, li = on(f, T(o, "lin")), ai = on(f, T(o, "air")), tw = on(f, T(o, "tw"));
   const L: [string, string | undefined, number][] = [["林德（全球）", undefined, li], ["液化空氣", "FR", ai], ["大陽日酸", "JP", ai]];
-  const R: [string, number][] = [["台特化 4772", tw], ["聯華實業 1229", tw], ["兆捷 6959", tw]];
+  const R: [string, number][] = [["台特化 4772", tw], ["聯華實業 1229", tw], ["兆捷（創新板）", tw]];
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
         <text x={30} y={CT + 26} style={zh(30, H.text2, 800)}>國際</text><text x={500} y={CT + 26} style={zh(30, H.text2, 800)}>台灣</text>
-        {L.map(([n, c, a], i) => <g key={n} opacity={0.4 + 0.6 * a}><Plate x={30} y={CT + 42 + i * 72} w={300} t={n} a={a} code={c} /></g>)}
-        {R.map(([n, a], i) => <g key={n} opacity={0.4 + 0.6 * a}><Plate x={500} y={CT + 42 + i * 72} w={300} t={n} a={a} code="TW" /></g>)}
-        <Sep x={470} />
+        {L.map(([n, c, a], i) => <Plate key={n} x={30} y={CT + 40 + i * 64} w={290} t={n} a={a} code={c} />)}
+        {R.map(([n, a], i) => <Plate key={n} x={500} y={CT + 40 + i * 64} w={290} t={n} a={a} code="TW" />)}
+        <text x={30} y={CT + 262} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * tw}>聯華實業＝轉投資聯華林德；台特化為媒體報導</text>
+        <line x1={470} y1={CT + 4} x2={470} y2={CT + 200} stroke={H.lineSoft} strokeWidth={3} />
       </svg>
     </Card>
   );

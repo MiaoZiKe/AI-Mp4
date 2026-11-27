@@ -11,7 +11,7 @@ S = [
 ("s1", "hook", "上一集說，原料要先變成氣。那氣本身呢？一瓶氣，怎麼安全送進廠？",
  ["上一集說", "原料要先變成氣", "那氣本身呢？", "一瓶氣", "怎麼安全送進廠？"],
  ["Last time:", "raw materials turn into gas.", "What about the gas itself?", "One bottle of gas,", "how does it reach the fab safely?"],
- [("prev", "上一集"), ("q", "那氣本身呢"), ("bot", "一瓶氣")], ["氣", "安全"], ["上一集前驅物：液態原料汽化"], 0.5),
+ [("prev", "上一集"), ("q", "那氣本身呢"), ("bot", "一瓶氣")], ["氣", "安全"], ["示意動畫，不是量測"], 0.5),
 ("s2", "mechanism", "蝕刻、鍍膜、摻雜，每一步都要用氣體。",
  ["蝕刻、鍍膜", "摻雜", "每一步都要", "用氣體"], ["Etching, deposition,", "doping:", "every step needs", "gas."],
  [("etch", "蝕刻"), ("dep", "鍍膜"), ("dop", "摻雜"), ("all", "每一步")], ["蝕刻", "氣體"], ["林德、液化空氣技術說明；示意"], 0.5),
@@ -25,24 +25,24 @@ S = [
 ("s5", "mechanism", "瓶裡壓力很大，調節器分兩段降壓，出口壓力不動。",
  ["瓶裡壓力很大", "調節器", "分兩段降壓", "出口壓力不動"], ["The bottle is under high pressure;", "a regulator", "steps it down in two stages;", "outlet pressure holds steady."],
  [("big", "壓力很大"), ("reg", "調節器"), ("two", "兩段"), ("out", "出口壓力不動")], ["降壓", "調節器"], ["壓力調節器一般原理；示意"], 1.4),
-("s6", "mechanism", "再到閥箱，一個氣源在這裡，分給好幾台機台。",
- ["再到閥箱", "一個氣源在這裡", "分給好幾台機台"], ["Next, the valve box:", "one gas source here", "is shared among several tools."],
- [("vmb", "閥箱"), ("src", "一個氣源"), ("split", "分給好幾台")], ["閥箱", "分給"], ["液化空氣閥箱型錄；示意"], 1.4),
-("s7", "mechanism", "進機台前，過一次純化器，像濾水器，把雜質濾掉。",
- ["進機台前", "過一次純化器", "像濾水器", "把雜質濾掉"], ["Before the tool,", "the gas passes a purifier,", "like a water filter,", "that strips out the impurities."],
+("s6", "mechanism", "出櫃先過純化器，像濾水器，把雜質濾掉。",
+ ["出櫃先過", "純化器", "像濾水器", "把雜質濾掉"], ["Out of the cabinet,", "first a purifier,", "like a water filter,", "that strips out the impurities."],
  [("pur", "純化器"), ("like", "濾水器"), ("imp", "雜質"), ("clean", "濾掉")], ["純化器", "濾"], ["Mott、Entegris 技術說明；示意"], 1.3),
+("s7", "mechanism", "再到閥箱，一個氣源在這裡，分給好幾台機台。",
+ ["再到閥箱", "一個氣源在這裡", "分給好幾台機台"], ["Next, the valve box:", "one gas source here", "is shared among several tools."],
+ [("vmb", "閥箱"), ("src", "一個氣源"), ("split", "分給好幾台")], ["閥箱", "分給"], ["液化空氣閥箱型錄；示意"], 2.6),
 ("s8", "mechanism", "管子外面，再套一根抓漏的管，漏了就自動關閥。",
  ["管子外面", "再套一根", "抓漏的管", "漏了就", "自動關閥"], ["Around the pipe,", "another pipe", "that catches leaks;", "if it leaks,", "the valve closes by itself."],
  [("out", "管子外面"), ("pipe", "抓漏的管"), ("leak", "漏了"), ("valve", "自動關閥")], ["抓漏", "關閥"], ["液化空氣閥箱與雙套管說明；示意"], 1.5),
 ("s9", "mechanism", "氣進機台，從噴頭均勻灑下，再被泵抽走。",
  ["氣進機台", "從噴頭", "均勻灑下", "再被泵抽走"], ["Gas enters the tool,", "from a showerhead", "falls evenly,", "then a pump draws it away."],
  [("in", "氣進機台"), ("shw", "噴頭"), ("pump", "泵抽走")], ["噴頭", "泵"], ["半導體製程腔通則；示意"], 1.3),
-("s10", "mechanism", "用過的氣，先燒掉有害的，再用水洗，像排油煙機加淨水。",
- ["用過的氣", "先燒掉有害的", "再用水洗", "像排油煙機", "加淨水"], ["Used gas is", "first burned to remove the harmful part,", "then washed with water,", "like a range hood", "plus a water purifier."],
- [("used", "用過的氣"), ("burn", "燒掉"), ("wash", "水洗"), ("like", "排油煙機")], ["燒掉", "水洗"], ["美國環保署含氟氣體說明；示意"], 1.4),
+("s10", "mechanism", "用過的氣，先燒掉有害的，再用水洗，像焚化爐，燒完的煙再用水沖一遍。",
+ ["用過的氣", "先燒掉有害的", "再用水洗", "像焚化爐", "燒完的煙", "再用水沖一遍"], ["Used gas is", "first burned to remove the harmful part,", "then washed with water,", "like an incinerator,", "whose smoke", "is rinsed with water again."],
+ [("used", "用過的氣"), ("burn", "燒掉"), ("wash", "水洗"), ("like", "焚化爐")], ["燒掉", "水洗"], ["美國環保署含氟氣體說明；示意"], 1.4),
 ("s11", "payoff", "全球有林德、液化空氣，台灣有台特化。",
  ["全球有林德", "液化空氣", "台灣有台特化"], ["Globally, Linde", "and Air Liquide;", "in Taiwan, Taiwan Specialty Chemicals."],
- [("lin", "林德"), ("air", "液化空氣"), ("tw", "台特化")], ["林德", "台特化"], ["公司官網與年報（Linde、Air Liquide、台特化）"], 0.5),
+ [("lin", "林德"), ("air", "液化空氣"), ("tw", "台特化")], ["林德", "台特化"], ["林德、液化空氣官網；台特化為媒體報導"], 0.5),
 ("s12", "cta", "下一集，氣體之外，換看液體。留言氣體，拿資料。",
  ["下一集", "氣體之外", "換看液體", "留言氣體", "拿資料"], ["Next episode:", "beyond gases,", "we look at liquids.", "Comment \"gas\"", "for the notes."],
  [("next", "下一集"), ("liq", "換看液體"), ("kw", "留言")], ["液體", "氣體"], ["示意動畫，不是量測"], 0.5),
@@ -91,84 +91,86 @@ P = {}
 # ── s1 鉤子：全線遠景，開場就在動（調節器出口氣流、指針、警示燈）
 P["s1"] = {"shot": [shot("start-30", 18, 9, 96, 20, 1, yaw=-0.18), shot("start", 22, 9, 90, 22, 140)],
  "run": [run("regOut", "start-30", "s2:start-6", 1), run("lineGas", "start-30", "s2:start-6", 1), run("fanBeacon", "start-30", "s2:start-6", 1), run("ctlLed", "start-30", "s2:start-6", 1)],
- "overlay": [sec("gas-hook", "q", "s2:start-5", "系列 2・第 15 集", "示意，非實際比例", secu(["prev", "q", "bot"]))]}
+ "overlay": [sec("gas-hook", "q", "s2:start-18", "系列 2・第 15 集", "示意，非實際比例", secu(["prev", "q", "bot"]))]}
 # ── s2 氣體做什麼：製程腔＋噴頭灑氣
 P["s2"] = {"zoom": [{"to": "sys", "at": "start-4", "dur": 1}], "shot": [shot("start-2", 79, 3, 58, 20, 1, yaw=-0.1)],
  "run": [run(f"shw{i}", "start", "s3:start-6", 6) for i in range(6)] + [run(f"wfOut{i}", "start", "s3:start-6", 6) for i in range(4)] + [run("plasmaPulse", "etch", "s3:start-6", 6)],
- "overlay": [sec("gas-use", "start+14", "s3:start-5", "氣體在晶片製程做什麼", "示意", secu(["etch", "dep", "dop", "all"]))]}
+ "overlay": [sec("gas-use", "start+14", "s3:start-18", "氣體在晶片製程做什麼", "示意", secu(["etch", "dep", "dop", "all"]))]}
 # ── s3 純度：純化器近景，少量橘色雜質
 P["s3"] = {"shot": [shot("start-2", X["pur"], 3, 58, 16, 1)],
  "run": [run("impIn", "start", "s4:start-4", 6), run("cleanOut", "start", "s4:start-4", 6), run("impLeak", "pool", "s4:start-4", 6)],
- "overlay": [sec("gas-ppb", "start+14", "s4:start-5", "多乾淨才夠", "示意（比喻為換算）", secu(["q", "pool", "spoon"]))]}
-# ── s4 氣瓶櫃爆炸分解（六步：開門→瓶升→調節器出→吹淨抽出→控制器開蓋→組回）
+ "overlay": [sec("gas-ppb", "start+14", "s4:start-18", "多乾淨才夠", "示意（比喻為換算）", secu(["q", "pool", "spoon"]))]}
+# ── s4 氣瓶櫃爆炸分解（六步：開門→瓶升＋瓶帽落下→調節器出→吹淨抽出→控制器開蓋→組回＋緊急停止鈕閃）
 BACK4 = "ctl+52"
 P["s4"] = {"shot": [shot("start-2", 0.5, 10, 62, 24, 1, yaw=0.0), shot("open-10", 0.6, 10.5, 58, 26, 34)],
  "shift": [mv("cabDoor", "open-4", "s5:start+40", 24, dx=-10, dz=3.4),
-           mv("botA", "bv+2", BACK4, 24, dy=5.2), mv("regA", "like-18", BACK4, 24, dz=4.8, dy=0.4),
+           mv("botA", "bv+2", BACK4, 24, dy=5.2), mv("bcap", "bv-2", BACK4, 18, dy=-10.9, dx=2.6, fallOut=True, bounce=0.06), mv("regA", "like-18", BACK4, 24, dz=4.8, dy=0.4),
            mv("purge", "gas-6", BACK4, 24, dz=4.6), mv("ctlDoor", "ctl-2", BACK4, 22, dx=3.4, dz=1.6)],
- "run": [run("purgeN2", "gas+10", BACK4, 6)],
+ "run": [run("purgeN2", "gas+10", BACK4, 6), run("estopFlash", "ctl+56", "ctl+80", 4)],
  "labels": [lab("cab", "氣瓶櫃", "Gas cabinet", "amber", "cab-2", "cab+43"),
             lab("bottle", "鋼瓶＋瓶閥", "Bottle + valve", "blue", "bv+4", "bv+49"),
             lab("reg", "調節器", "Regulator", "amber", "like-16", "like+29"),
             lab("purge", "吹淨支路", "Purge line", "blue", "gas-4", "gas+41"),
             lab("pcb", "控制器電路板", "Controller board", "amber", "ctl+2", "ctl+47")]}
 # ── s5 調節器：歸位後近拍，高壓表緩降、低壓表不動，上游氣粒密、下游疏
-P["s5"] = {"shift": [hid(l, "start-6", "s6:start-1", 4, 0.0) for l in ("botA", "botB", "purge", "ctl", "ctlDoor", "ctlPcb", "cabDoor")] + [hid("cabShell", "start-6", "s6:start-1", 4, 0.18)], "shot": [shot("start", -1.0, 12.5, 40, 10, 30, yaw=0.0)],
+P["s5"] = {"shift": [hid(l, "start-6", "s6:start-1", 4, 0.0) for l in ("botA", "botB", "purge", "ctl", "ctlDoor", "ctlPcb", "cabDoor", "bcap")] + [hid("cabShell", "start-6", "s6:start-1", 4, 0.18)],
+ "shot": [shot("start", -1.0, 12.5, 40, 10, 30, yaw=0.0)],
  "run": [run("regIn", "start", "s6:start-4", 6), run("regOut", "start", "s6:start-4", 6), run("needleHigh", "two-6", "s6:start-4", 10), run("lowJit", "two-6", "s6:start-4", 10)],
  "labels": [lab("reg", "兩段調節器", "Two-stage regulator", "amber", "reg-30", "reg+15"),
             lab("gH", "高壓表（降）", "High side falls", "blue", "two-11", "two+34"),
             lab("gL", "低壓表（穩）", "Low side holds", "amber", "out+9", "out+54")],
- "overlay": [sec("gas-reg", "start+20", "s6:start-5", "壓力怎麼降下來", "示意（不標壓力數值）", secu(["big", "reg", "two", "out"]))]}
-# ── s6 閥箱：窗門移開、一條支路抽出、五個元件依序分開
-P["s6"] = {"shot": [shot("start-2", X["vmb"] + 2, 5, 64, 18, 1)],
- "shift": [mv("vmbDoor", "vmb+14", "split+66", 22, dx=16, dz=2.4), mv("stk", "src+22", "split+66", 22, dz=6),
-           *[mv(f"vc{i+1}", "src+22", "split+66", 22, dz=6) for i in range(5)],
-           *[mv(f"vc{i+1}", f"split+{4+i*10}", "split+66", 16, dx=(i - 2) * 1.2) for i in range(5)]],
- "run": [run("lineGas", "start", "s7:start-4", 6)],
- "labels": [lab("vmb", "閥箱（閥門歧管箱 VMB）", "Valve manifold box", "amber", "vmb-2", "vmb+43"),
-            lab("stk", "一條支路", "One branch", "blue", "split-14", "split+31")],
- "overlay": [sec("gas-chain", "start+14", "s7:start-5", "氣體走過的路", "示意", secu(["vmb", "src", "split"]))]}
-# ── s7 純化器：罐子上抽，露出吸附顆粒；雜質被留住，乾淨的氣離開
-P["s7"] = {"shot": [shot("start-2", X["pur"] + 1.5, 8, 66, 16, 1)],
+ "overlay": [sec("gas-reg", "start+20", "s6:start-18", "壓力怎麼降下來", "示意（不標壓力數值）", secu(["big", "reg", "two", "out"]))]}
+# ── s6 純化器：罐身沿軸從管路上抽起，露出吸附顆粒；雜質被留住，乾淨的氣離開
+P["s6"] = {"shot": [shot("start-2", X["pur"] + 1.5, 6, 66, 16, 1), shot("pur+2", X["pur"] + 1.5, 9.5, 70, 16, 26)],
  "shift": [mv("purCan", "pur+6", "clean+34", 26, dy=9.5)],
- "run": [run("impIn", "pur+30", "s8:start-4", 6), run("cleanOut", "pur+30", "s8:start-4", 6), run("impLeak", "imp", "s8:start-4", 6)],
+ "run": [run("impIn", "pur+30", "s7:start-4", 6), run("cleanOut", "pur+30", "s7:start-4", 6), run("impLeak", "imp", "s7:start-4", 6)],
  "labels": [lab("pur", "純化器", "Purifier", "amber", "pur-2", "pur+43"),
             lab("bed", "吸附顆粒", "Adsorbent beads", "blue", "like+19", "like+64")],
- "overlay": [sec("gas-pur", "start+14", "s8:start-5", "雜質怎麼被留下", "示意", secu(["pur", "like", "imp", "clean"]))]}
-# ── s8 雙套管：外套管沿軸抽開→組回→破洞噴出→偵測→關閥→氮氣吹淨
-P["s8"] = {"shot": [shot("start-2", X["dbl"] + 3, 5, 46, 16, 1)],
- "shift": [mv("dblSkin", "out-2", "pipe+20", 26, dx=7), hid("dblSkin", "leak-16", "s9:start", 12, 0.1), hid("dblHole", T0, "leak-8", 6), mv("dblValveAct", "valve+2", "s9:start", 6, dy=-0.4)],
+ "overlay": [sec("gas-pur", "start+14", "s7:start-18", "雜質怎麼被留下", "示意", secu(["pur", "like", "imp", "clean"]))]}
+# ── s7 閥箱：窗門移開、一條支路抽出、五個元件每 0.67 秒依序分開、組回
+P["s7"] = {"shot": [shot("start-2", X["vmb"] + 2, 5, 64, 18, 1)],
+ "shift": [mv("vmbDoor", "vmb+14", "split+92", 22, dx=16, dz=2.4), mv("stk", "src+22", "split+92", 22, dz=6),
+           *[mv(f"vc{i+1}", "src+22", "split+92", 22, dz=6) for i in range(5)],
+           *[mv(f"vc{i+1}", (f"split{i*20-8:+d}"), "split+92", 16, dx=(i - 2) * 1.2) for i in range(5)]],
+ "run": [run("lineGas", "start", "s8:start-4", 6)],
+ "labels": [lab("vmb", "閥箱（閥門歧管箱 VMB）", "Valve manifold box", "amber", "vmb-2", "vmb+43"),
+            lab("stk", "一條支路", "One branch", "blue", "split-14", "split+31")],
+ "overlay": [sec("gas-chain", "start+14", "s8:start-18", "氣體走過的路", "示意", secu(["vmb", "src", "split"]))]}
+# ── s8 雙套管：外套縱向剖開約 45°（楔形板條掀起）、兩端封口件外移 → 組回閉合 → 破洞噴出 → 偵測 → 關閥 → 氮氣吹淨
+P["s8"] = {"shot": [shot("start-2", X["dbl"] + 1, 5.5, 50, 16, 1)],
+ "shift": [mv("dblCut", "out-2", "pipe+20", 26, dy=1.6, dz=0.8), mv("dblSealL", "out-2", "pipe+20", 22, dx=-1.6), mv("dblSealR", "out-2", "pipe+20", 22, dx=1.6),
+           hid("dblSkin", "leak-16", "s9:start", 12, 0.1), hid("dblCut", "leak-16", "s9:start", 12, 0.1), hid("dblHole", T0, "leak-8", 6), mv("dblValveAct", "valve+2", "s9:start", 6, dy=-0.4)],
  "run": [run("dblFlow", "start", "valve+4", 6), run("leakJet", "leak-4", "valve+4", 4), run("annL", "leak", "valve+30", 6), run("annR", "leak", "valve+30", 6), run("detBlink", "leak+22", "s9:start-4", 6), run("valveAct", "valve", "s9:start-4", 6), run("dblPurge", "valve+22", "s9:start-4", 6)],
- "labels": [lab("dblOuter", "外套管", "Outer sleeve", "amber", "out", "out+45"),
+ "labels": [lab("dblOuter", "外套管（剖開）", "Outer sleeve (cut open)", "amber", "out", "out+45"),
             lab("dblInner", "內管", "Inner pipe", "blue", "out+48", "pipe+40"),
             lab("det", "偵測點", "Detector", "amber", "leak+16", "leak+61")],
- "overlay": [sec("gas-dbl", "start+14", "s9:start-5", "漏了怎麼辦", "示意（不標靈敏度）", secu(["out", "pipe", "leak", "valve"]))]}
-# ── s9 製程腔：噴頭錐狀均勻噴出→沿晶圓向外→抽走
-P["s9"] = {"shot": [shot("start-2", 81, 3, 58, 20, 1)],
- "run": [run(f"shw{i}", "in", "s10:start-4", 6) for i in range(6)] + [run(f"wfOut{i}", "shw", "s10:start-4", 6) for i in range(4)] + [run("plasmaPulse", "shw", "s10:start-4", 6), run("foreline", "pump", "s10:start-4", 6)] ,
- "labels": [lab("shw", "噴頭", "Showerhead", "amber", "shw-2", "shw+43"), lab("pump", "乾式泵", "Dry pump", "blue", "pump-2", "pump+43")],
- "overlay": [sec("gas-chm", "start+14", "s10:start-5", "氣進腔之後", "示意（腔內壓力很低）", secu(["in", "shw", "pump"]))]}
-# ── s10 尾氣處理器：廢氣進燒、燃燒室往上拉開、水洗段、排氣口
-P["s10"] = {"shot": [shot("start-2", X["abt"] + 0.4, 9, 74, 16, 1)],
- "shift": [mv("abBurn", "used+10", "wash+66", 24, dy=2.6), mv("abWash", "used+22", "wash+66", 24, dy=5.2), mv("abStack", "used+34", "wash+66", 24, dy=7.8)],
+ "overlay": [sec("gas-dbl", "start+14", "s9:start-18", "漏了怎麼辦", "示意（不標靈敏度）", secu(["out", "pipe", "leak", "valve"]))]}
+# ── s9 製程腔：先推近流量控制器，再看噴頭與升降銷，最後看抽氣口與泵
+P["s9"] = {"shot": [shot("start-2", 75, 7, 54, 16, 1), shot("shw-8", 77, 5, 52, 18, 24), shot("pump-10", 83, 4, 54, 18, 26)],
+ "run": [run(f"shw{i}", "in", "s10:start-4", 6) for i in range(6)] + [run(f"wfOut{i}", "shw", "s10:start-4", 6) for i in range(4)] + [run("plasmaPulse", "shw", "s10:start-4", 6), run("foreline", "pump", "s10:start-4", 6)],
+ "labels": [lab("mfc", "質量流量控制器", "Mass flow controller", "blue", "in-2", "in+43"), lab("shw", "噴頭", "Showerhead", "amber", "shw+12", "shw+57"), lab("pump", "乾式泵", "Dry pump", "blue", "pump+6", "pump+51")],
+ "overlay": [sec("gas-chm", "start+14", "s10:start-18", "氣進腔之後", "示意（腔內壓力很低）", secu(["in", "shw", "pump"]))]}
+# ── s10 尾氣處理器：外殼打開半邊→水槽、燃燒室、水洗段、排氣口由下而上依序分開→組回
+P["s10"] = {"shot": [shot("start-2", X["abt"] + 0.4, 9, 76, 16, 1)],
+ "shift": [mv("abDoor", "used-2", "wash+66", 20, dx=6.4), mv("abTank", "used+4", "wash+66", 24, dy=1.2), mv("abBurn", "used+16", "wash+66", 24, dy=3.6), mv("abWash", "used+28", "wash+66", 24, dy=6.0), mv("abStack", "used+40", "wash+66", 24, dy=8.4)],
  "run": [run("abBurnIn", "start", "s11:start-4", 6), run("abFlame", "burn-6", "s11:start-4", 8), run("abPilot", "start", "s11:start-4", 6), run("abAsh", "burn+8", "s11:start-4", 6), run("abClean", "wash+4", "s11:start-4", 6)] + [run(f"abDrop{i}", "wash-6", "s11:start-4", 6) for i in range(6)],
  "labels": [lab("abBurn", "燃燒室", "Burn chamber", "amber", "burn-2", "burn+43"), lab("abWash", "水洗段", "Wet scrubber", "blue", "wash-4", "wash+41")],
- "overlay": [sec("gas-burn", "start+14", "s11:start-5", "兩種尾氣處理", "示意（不標效率）", secu(["used", "burn", "wash", "like"]))]}
+ "overlay": [sec("gas-burn", "start+14", "s11:start-18", "兩種尾氣處理", "示意（不標效率）", secu(["used", "burn", "wash", "like"]))]}
 # ── s11 公司：全線遠景（整條送氣路徑當背景）＋公司卡
 P["s11"] = {"shot": [shot("start-2", 48, 9, 112, 20, 1, yaw=0.15)],
  "run": [run("lineGas", "start", "s12:start-4", 6), run("regOut", "start", "s12:start-4", 6)],
- "overlay": [sec("gas-co", "lin-6", "s12:start-5", "做氣體的公司", "公司官網與年報", secu(["lin", "air", "tw"]), h=360, y=1040)]}
+ "overlay": [sec("gas-co", "lin-6", "s12:start-18", "做氣體的公司", "公司官網與年報", secu(["lin", "air", "tw"]), h=360, y=1040)]}
 P["s12"] = {"shot": [shot("start-2", 22, 9, 96, 22, 1, yaw=0.0)],
  "run": [run("lineGas", "start", "s13:start-4", 6), run("regOut", "start", "s13:start-4", 6)],
- "overlay": [sec("gas-next", "start+14", "s13:start-5", "接下來", "下一集：濕式化學品與研磨液", secu(["next", "liq", "kw"]))]}
+ "overlay": [sec("gas-next", "start+14", "s13:start-18", "接下來", "下一集：濕式化學品與研磨液", secu(["next", "liq", "kw"]))]}
 
 # ── 各站只在講到它的幕出現（其餘淡出，主素材框才不會被整條線撐大）；換幕那一幀鏡頭硬切，新舊 ≤4 幀交叉淡化
-ST = {"CAB": (["cabShell", "cabDoor", "botA", "botB", "regA", "regB", "purge", "ctl", "ctlDoor", "ctlPcb"], ["s1", "s4", "s5", "s11", "s12"]),
-      "PUR": (["purBase", "purCan", "purBed", "purFilt"], ["s1", "s3", "s7", "s11", "s12"]),
-      "VMB": (["vmbShell", "vmbDoor", "vmbStx", "stk", "vc1", "vc2", "vc3", "vc4", "vc5"], ["s1", "s6", "s11", "s12"]),
-      "DBL": (["dblPipe", "dblJacket", "dblSkin", "dblDet", "dblHole", "dblValve", "dblValveAct"], ["s8", "s11", "s12"]),
+ST = {"CAB": (["cabShell", "cabDoor", "botA", "botB", "bcap", "regA", "regB", "purge", "ctl", "ctlDoor", "ctlPcb"], ["s1", "s4", "s5", "s11", "s12"]),
+      "PUR": (["purBase", "purCan", "purFilt"], ["s1", "s3", "s6", "s11", "s12"]),
+      "VMB": (["vmbShell", "vmbDoor", "vmbStx", "stk", "vc1", "vc2", "vc3", "vc4", "vc5"], ["s1", "s7", "s11", "s12"]),
+      "DBL": (["dblPipe", "dblJacket", "dblSkin", "dblCut", "dblSealL", "dblSealR", "dblDet", "dblHole", "dblValve", "dblValveAct"], ["s8", "s11", "s12"]),
       "CHM": (["chm", "chShw", "chMfc", "chWf", "pmp"], ["s2", "s9", "s11", "s12"]),
-      "ABT": (["abTank", "abBurn", "abWash", "abStack", "abCab"], ["s10", "s11", "s12"]),
+      "ABT": (["abTank", "abBase", "abDoor", "abBurn", "abWash", "abStack", "abCab"], ["s10", "s11", "s12"]),
       "LN": (["line"], ["s1", "s11", "s12"])}
 ORDER = [s["id"] for s in scenes]
 VIS = []
@@ -185,6 +187,7 @@ for lays, shown in ST.values():
             if a > 0: VIS.append(hid(lay, prev, st, 4))
             prev = f"{ORDER[b + 1]}:start-4" if b + 1 < len(ORDER) else FAR
         if prev != FAR: VIS.append(hid(lay, prev, FAR, 4))
+VIS += [hid("purBed", T0, "s6:pur+14", 6), hid("purBed", "s6:clean+64", FAR, 6)]
 P["s1"]["shift"] = VIS
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
