@@ -185,8 +185,8 @@ P["s8"] = {"zoom": [{"to": "mu", "at": CC, "dur": 1}],
 P["s9"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],
  "shot": [S_(CC, NV, 1)],
  "run": [run("nBoltGlow", "ev", "s10:start", 6), run("nArc", "si-2", "s10:start", 3)],
- "labels": [lab("nSiA", "耐壓不夠（示意）", "Breaks down at high voltage", "amber", "si-2", "si+40"),
-            lab("nSiCA", "碳化矽", "Silicon carbide", "blue", "sic-2", "sic+43", xy=[400, 330]), lab("nGaNA", "氮化鎵", "Gallium nitride", "blue", "sic+50", "sic+95", xy=[760, 330])],
+ "labels": [lab("nSiA", "耐壓不夠（示意）", "Breaks down at high voltage", "amber", "si-2", "si+36"),
+            lab("nSiCA", "碳化矽", "Silicon carbide", "blue", "sic+2", "sic+47", xy=[470, 830]), lab("nGaNA", "氮化鎵", "Gallium nitride", "blue", "sic+50", "sic+95", xy=[790, 830])],
  "overlay": [sec("memfab-next", C, "s10:start", "下一集：碳化矽與氮化鎵", "留言「記憶體廠」", {"ev": "ev", "si": "si", "next": "next", "sic": "sic", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
