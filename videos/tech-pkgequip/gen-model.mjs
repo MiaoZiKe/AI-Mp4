@@ -287,8 +287,8 @@ BOX("coSlotFrame", "cOven", OX - 2.66, OX - 2.6, SLOT0, SLOT1, -2.9, 2.9, "dark"
 BOX("coFrontL", "cOven", OX - 2.6, OX - 1.6, OY0, OY1, 2.7, 3.0, "oven"); BOX("coFrontR", "cOven", OX + 1.6, OX + 2.6, OY0, OY1, 2.7, 3.0, "oven");
 BOX("coFrontT", "cOven", OX - 1.6, OX + 1.6, OY1 - 1.4, OY1, 2.7, 3.0, "oven"); BOX("coFrontB", "cOven", OX - 1.6, OX + 1.6, OY0, OY0 + 0.6, 2.7, 3.0, "oven");
 BOX("coDoorWin", "cOven", OX - 1.6, OX + 1.6, OY0 + 0.6, OY1 - 1.4, 2.8, 2.84, "window");
-P({ id: "coHeater", layer: "cOven", shape: "cyl", size: [0.08, 4.0], rot: HX, pos: [OX, 0, -2.0], at: [[0, OY1 - 0.6, 0], [0, OY1 - 0.6, 1.0], [0, OY1 - 0.6, -1.0], [0, OY1 - 2.3, -2.2]], mat: "heat" });
-P({ id: "coShelf", layer: "cOven", shape: "box", size: [4.4, 0.05, 5.0], pos: [OX, OY1 - 1.9, 0], mat: "steel" });
+P({ id: "coHeater", layer: "cOven", shape: "cyl", size: [0.08, 4.0], rot: HX, pos: [OX, 0, 0], at: [[0, OY1 - 2.6, 1.9], [0, OY1 - 2.6, 1.1], [0, OY1 - 2.6, 0.3], [0, OY1 - 2.6, -0.5]], mat: "heat" });   // 加熱管放在窗後、窗的高度（r1 物理審：原本被前框擋住）
+P({ id: "coShelf", layer: "cOven", shape: "box", size: [0.06, 0.12, 5.0], pos: [OX, OY1 - 2.45, 0], at: [[-2.1, 0, 0], [2.1, 0, 0]], mat: "steel" });   // 加熱管兩端的支架
 VC("coGauge", "cOven", 0.35, 0, 0.06, "white", { x: OX + 2.0, z: 3.05, pos: [OX + 2.0, OY1 - 0.7, 3.03], rot: [0, 0, 0] }); P({ id: "coNeedle", layer: "cOven", shape: "box", size: [0.04, 0.26, 0.02], pos: [OX + 2.0, OY1 - 0.6, 3.08], rot: [0, 0, -30], mat: "lampR" });
 BOX("coHandle", "cOven", OX - 1.5, OX - 1.3, OY0 + 1.6, OY0 + 2.8, 3.0, 3.25, "steel2"); SPH("coLed", "cOven", 0.1, OX - 2.0, OY1 - 0.7, 3.06, "lampG");
 // 送料軌（從台面延伸進烤箱入口）
@@ -364,7 +364,7 @@ actions.dHot = { type: "pulse", _說明: "加熱台保溫（膠比較好流）",
 actions.cRoll = { type: "rotate", _說明: "壓膜滾輪由後往前滾過晶圓（表面速度≈前進速度）", parts: ["crRoll", "crMark", "crAxle"], axis: [1, 0, 0], pivot: [0, CWY + 0.72, -3.0], rps: 0.9 };
 actions.cFlatB = { type: "rotate", _說明: "翹起的晶圓後半被滾輪壓平（繞 x 軸轉回水平）", parts: ["cwB", "cwBd"], axis: [1, 0, 0], pivot: [CWX, CWY + 0.3, 0], angle: -6, hold: true };
 actions.cFlatF = { type: "rotate", parts: ["cwF", "cwFd"], axis: [1, 0, 0], pivot: [CWX, CWY + 0.3, 0], angle: 6, hold: true };
-actions.cOvenHeat = { type: "pulse", _說明: "烤箱加熱管亮橘", parts: ["coHeater"], color: "hotC", glow: 1, freq: 0.7, halo: 0.3 };
+actions.cOvenHeat = { type: "pulse", _說明: "烤箱加熱管亮橘", parts: ["coHeater"], color: "hotC", glow: 1, freq: 0.7, halo: 0.12 };
 actions.aRing = { type: "pulse", _說明: "環形燈打光拍照", parts: ["acRing", "acGlass"], color: "edgeC", glow: 1, freq: 2.2, halo: 0.3 };
 actions.aNg = { type: "pulse", _說明: "異常處（歪掉的晶片、缺膠）紅框閃", parts: ["afBox", "afBox2", "abNoUf"], color: "ngC", glow: 1, freq: 1.6, halo: 0.4 };
 actions.kGlow = { type: "pulse", parts: ["k0Acc", "k1Acc", "k2Acc", "k0Heat", "k2Glow"], color: "lampY", glow: 0.7, freq: 0.9, halo: 0 };

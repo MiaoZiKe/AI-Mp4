@@ -161,9 +161,9 @@ P["s2"] = {"zoom": [{"to": "room", "at": "voice-18", "dur": 1}, {"to": "room", "
  "labels": [lab("line0", "封裝線：五站", "Packaging line: 5 stations", "blue", "pc", "pc+46")],
  "overlay": [card("s2", "pe-line", "像組電腦：一站一台機台", "示意", {"pc": "pc", "step": "step"})]}
 P["s3"] = {"zoom": [{"to": "room", "at": CC, "dur": 1}],
- "shot": [shot(CC, 77.0, 2.3, 40.0, 28, 1), shot("flip+24", 78.0, 2.21, 48.5, 30, 26)],   # 先近看頂針與翻轉器（翻面看得清楚），接手後拉遠看移動、對位、放下
+ "shot": [shot(CC, 77.0, 2.3, 40.0, 28, 1), shot("flip-10", 75.0, 2.7, 24.0, 26, 10), shot("flip+24", 78.0, 2.21, 48.5, 30, 26)],   # 先近看頂針與翻轉器（翻面看得清楚），接手後拉遠看移動、對位、放下
  "run": [run("bPinUp", "flip-24", "flip-4", 6), run("bFlipTurn", "flip-4", FAR, 14), run("bSuck", "flip-8", "s4:start+4", 4), run("bCamGlow", "align+2", "align+40", 4)],
- "labels": [lab("bDeck", "接合機（外殼掀開）", "Flip-chip bonder", "blue", "voice+8", "voice+50", xy=[400, 430]),
+ "labels": [lab("bDeck", "接合機（外殼掀開）", "Flip-chip bonder", "blue", "voice+8", "flip-12", xy=[400, 430]),
             lab("bCam", "對位相機", "Alignment camera", "amber", "align", "align+46"),
             lab("bWafer", "放到中介層：誤差比頭髮細", "Placed far finer than a hair", "blue", "hair", "hair+46")],
  "overlay": [card("s3", "pe-flip", "翻面、對位、放下", "示意（不標精度數字）", {"bond": "bond", "flip": "flip", "align": "align", "hair": "hair"})]}
