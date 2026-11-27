@@ -1,4 +1,20 @@
-# 科技透明圈旁白「金手指」（2026/11/27 Andy 定案說明句＋兩奈米的音高語速，蓋掉下面所有舊版）
+# 科技透明圈旁白「金手指」第二版（2026/11/27 晚 Andy 定案，蓋掉下面所有舊版）
+
+Andy 11-27 原話：說明句＋「Pace : Rapid Fire、Accent : American (Gen)，以後 Follow 這方式」。
+
+| 項目 | 鎖定值（不准再改，要改先問 Andy） |
+|---|---|
+| 地點 | Google AI Studio 語音生成頁（Composer），由 Andy 用 Claude 擴充功能配；配音包 `docs/prompts/AIStudio-配音包.md` |
+| 模型／音色 | Gemini 2.5 Flash Preview TTS／Iapetus（Speaker 1 only），Temperature 1 |
+| Audio Profile（說明句） | **「用台灣人平常講話的口音，不特別捲舌、不兒化，聲音明亮、有精神，像在跟一個好奇的朋友介紹自己很熟的東西，講得很有把握、很篤定，問句自然上揚，講到答案時肯定一點，直接說：」**（scripts/voice-profile.mjs TECH_B_LINE；語速那段拿掉，改由 Pace 控制） |
+| Director's note | Style 不選；**Pace＝Rapid Fire**；**Accent＝American (Gen)** |
+| Scene／Sample Context | 留空 |
+| API 配音 | API 沒有 Pace／Accent 欄位；要用 API 配之前，先拿 Andy 的「Get code」內容，照網站組提示詞的格式寫進 tts-take.mjs，比對過音高語速一致才准用 |
+| 音高 | f0 中位數 131 Hz，允許 126–136；IQR ≥55；不准移調 |
+| 語速 | 目標兩奈米含停頓 4.71 字／秒；不足才整篇 atempo（上限 1.12），不剪停頓 |
+| 每支交件 | 附音高中位數、IQR、含停頓字／秒 vs 兩奈米 |
+
+# （第一版，已被上面取代）科技透明圈旁白「金手指」（2026/11/27 Andy 定案說明句＋兩奈米的音高語速，蓋掉下面所有舊版）
 
 Andy 11-27（聽完四支滿意過的旁白比對後）：「兩奈米，記得鎖住音高、語速，避免後續旁白要重新設定」。
 基準：`tw-rotation/social/tc/queue/20261115_2nm/tech-2nm.mp4` 的旁白（Andy 11/15 在 AI Studio 用 Iapetus＋說明 B 錄、沒加速）。
