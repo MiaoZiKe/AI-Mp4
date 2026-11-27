@@ -33,7 +33,7 @@ S = [
  [("evo", "進化"), ("cant", "斜插"), ("vert", "垂直"), ("mems", "微針")], ["斜插", "垂直", "微針"], ["數位時代 84752；專利 US9194887；示意"], 7.8, 0.3, 1.2),
 ("s8", "mechanism", "一張卡的針，可以多到好幾萬根。針越多，越難壓得一樣平。",
  ["一張卡的針", "可以多到好幾萬根", "針越多", "越難壓得一樣平"], ["One card's needles", "can reach tens of thousands.", "The more needles,", "the harder to press them evenly."],
- [("card8", "一張卡"), ("many", "好幾萬根"), ("more", "針越多"), ("flat", "一樣平")], ["好幾萬根", "針越多", "一樣平"], ["數位時代 84752（報導）；示意"], 7.8, 0.3, 1.5),
+ [("card8", "一張卡"), ("many", "好幾萬根"), ("more", "針越多"), ("flat", "一樣平")], ["好幾萬根", "針越多", "一樣平"], ["數位時代 84752（報導）；示意"], 8.0, 0.3, 1.5),
 ("s9", "mechanism", "針的後面是測試機。像出題老師，送訊號進去，看晶片答對沒有。",
  ["針的後面", "是測試機", "像出題老師", "送訊號進去", "看晶片答對沒有"], ["Behind the needles", "is the tester,", "like a teacher setting questions:", "it sends signals in", "and checks the chip's answers."],
  [("tester", "測試機"), ("teacher", "出題老師"), ("send", "送訊號"), ("ans", "答對")], ["測試機", "出題老師", "答對"], ["專利 USPTO 5909121、6130545；示意動畫，不是量測"], 7.4, 0.3, 1.3),
@@ -148,7 +148,7 @@ VIS += [mv("eST", F1, off(ASM, 2), 18, dy=0.55), mv("eLG", F2, off(ASM, 1), 18, 
 VIS += [mv("eNdl", F3, ASM, 20, dy=-1.0), mv("eTipHi", F3, ASM, 20, dy=-1.0)]
 vis("eTipHi", [(off(FT, -2), off(ASM, 40))], 4)
 VIS += [mv("eHair", T0, "s4:hair-12", 14, dx=-3.0)]
-vis("eHair", [("s4:hair-14", "s4:hair+60")], 6)
+vis("eHair", [("s4:hair-14", "s4:hair+44")], 4)
 
 # ── 站 A：吸盤 XY 平台與 Z（s2 對位→一顆顆測；s3 印章蓋下去）──
 XY = ["aXcar", "aY", "aZ"]
@@ -179,7 +179,7 @@ for l, cue in [("kcDie", "s7:cant"), ("kvDie", "s7:vert"), ("kmDie", "s7:mems")]
 VIS += [hid(l, "s3:card+20", "s4:start", 1, 0.25) for l in ("aBase", "aRail", "aMan", "aTester", "aCable")]
 VIS += [hid(l, "s4:start-12", "s4:hair+34", 10, 0.25) for l in ("eDock", "eScrew", "eStiff")] + [hid("ePCB", "s4:start-12", "s4:hair+34", 10, 0.28)]
 VIS += [hid("nST", "s6:start-2", "s7:start", 1, 0.25)]
-VIS += [hid(l, "s8:voice-8", off(ASM, -4), 1, 0.25) for l in ("eDock", "eScrew", "eStiff", "ePCB", "eIP")]
+VIS += [hid(l, "s8:voice-8", off(ASM, -4), 1, 0.0) for l in ("eDock", "eScrew", "eStiff", "ePCB", "eIP")]   # 近景時畫面外（頁首後面）的層全收，不從 LOGO 列透出
 # ═════ 各幕 ═════
 AO = (2.0, 3.2, 80, 14)          # 站 A 全景（看向 x, y, 距離, 仰角）
 AT = (1.2, 7.9, 30, 3)           # 站 A 測試時推近腔體（測試頭、探針卡、吸盤頂著）
@@ -210,7 +210,7 @@ P["s3"] = {"shot": [S_(CC, AO, 1), S_("card+20", AC, 28)],
             lab("aChuck", "吸盤把晶圓頂到針尖", "Chuck lifts wafer to the tips", "blue", "down+2", "down+48")],
  "overlay": [card("s3", "probe1-stamp", "像一枚針很多的印章", "示意（不標針數）", {"card": "card", "stamp": "stamp", "down": "down", "each": "each"})]}
 P["s4"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
- "shot": [S_(CC, EU, 1), S_("hair+20", EO, 24)],
+ "shot": [S_(CC, EU, 1), S_("hair+26", EO, 18)],
  "labels": [lab("eHairA", "一根頭髮（比針距寬）", "A hair: wider than the pitch", "amber", "hair", "hair+45", xy=[700, 990]),
             lab("eDockA", "測試頭接口、加固板（撐住總壓力）", "Test-head interface & stiffener", "blue", E1, off(E1, 45)),
             lab("ePCBA", "主板、彈簧針板", "Main PCB & spring-pin interposer", "amber", E3, off(E3, 45))],
@@ -234,7 +234,7 @@ P["s7"] = {"zoom": [{"to": "types", "at": CC, "dur": 1}],
             lab("kMemsA", "微機電：半導體製程做的", "MEMS", "amber", "mems", "mems+46")],
  "overlay": [card("s7", "probe1-types", "針的做法在進化", "示意", {"evo": "evo", "cant": "cant", "vert": "vert", "mems": "mems"})]}
 P["s8"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
- "shot": [S_(CC, EC, 1), S_(off(ASM, -4), EA, 1), S_(off(ASM, 30), EA2, 14)],
+ "shot": [S_(CC, EC, 1), S_(off(ASM, -4), EA, 1), S_(off(ASM, 22), EA2, 12)],
  "run": [run("etHiPulse", off(FT, -2), off(ASM, 40), 4)],
  "labels": [lab("eSTA", "空間轉換器、上下導板（孔位錯開）", "Space transformer & guide plates", "blue", F1, off(F1, 45), xy=[540, 985]),
             lab("eNdlA", "探針：可多到好幾萬根（報導）", "Probes: tens of thousands", "blue", F3, off(F3, 45), xy=[540, 985]),
