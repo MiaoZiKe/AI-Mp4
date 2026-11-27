@@ -51,7 +51,7 @@ ffmpeg -loglevel error -y -i "$TMP/mix.wav" -af "loudnorm=I=-16:TP=-1.5:LRA=11:m
 ffmpeg -loglevel error -y -i "$IN" -i "$TMP/final.wav" -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -ar 48000 "$OUT"
 # 成片解碼後關卡（Andy 聽的是成片）：解碼成片音軌，講話窗逐窗殘差（sfx＋AAC 誤差）要比旁白低 ≥14 dB，不過就刪掉成品。
 ffmpeg -loglevel error -y -i "$OUT" -vn -ac 2 -ar 48000 -c:a pcm_s16le "$TMP/dec.wav"
-if [ -n "$STYLE" ]; then CHK=(python3 "$D/sfx-styles.py" check "$STYLE" "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END} --report "${OUT%.mp4}.sfx-$STYLE.final.json"); else CHK=(python3 "$D/sfx-synth.py" check "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END}); fi
-if ! "${CHK[@]}"; then rm -f "$OUT"; echo "錯誤：成片解碼後講話段有 sfx 太大聲（<14 dB），已刪除 $OUT"; exit 1; fi
+if [ -n "$STYLE" ]; then CHK=(python3 "$D/sfx-styles.py" check "$STYLE" "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END} --report "${OUT%.mp4}.sfx-$STYLE.final.json"); else CUES="${OUT%.mp4}.sfx-cues.json"; CHK=(python3 "$D/sfx-synth.py" check "$TMP/voice.wav" "$TMP/dec.wav" ${END:+--end $END}); [ -f "$CUES" ] && [ -f "$TMP/mix.wav.sfxref.wav" ] && CHK+=(--cues "$CUES" --ref "$TMP/mix.wav.sfxref.wav"); fi
+if ! "${CHK[@]}"; then rm -f "$OUT"; echo "錯誤：成片解碼後講話段有 sfx 太大聲（<14 dB）或有音效被壓到聽不見，已刪除 $OUT"; exit 1; fi
 echo "完成：$OUT"
 [ -n "$SUMMARY" ] && python3 -c "import json;d=json.load(open('$SUMMARY'));print('音效',d['count'],d.get('byType',''))"

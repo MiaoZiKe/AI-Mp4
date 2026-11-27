@@ -402,6 +402,7 @@ def frame_rms(x, hop):
 
 
 MIN_GAP_DB = 14.0         # 硬門檻：旁白講話的每一窗，sfx 要比旁白低至少這麼多 dB（Andy 2026/11/27：「不要影響旁白聲」）
+VANISH_DB = 20.0          # cue 在成片的殘差比設計音量低超過這麼多＝被壓到消失（④ 2026-11-27 建議）
 GUARD_MARGIN_DB = 1.5     # 逐窗天花板多留的餘裕
 
 def sp_full(speech, nf):
@@ -496,6 +497,8 @@ def cmd_mix(argv):
     if worst < MIN_GAP_DB:
         sys.exit(f'錯誤：講話段有 sfx 只比旁白低 {worst:.1f} dB（<{MIN_GAP_DB}），不輸出')
     write_wav(out, mix)
+    # 2026-11-27 ④回報：音效被壓到消失。把「設計音量（壓低前）」的音效軌另存，給成片解碼後的 check 比對每個 cue 的殘差。
+    write_wav(out + '.sfxref.wav', np.clip(s2, -1, 1))
     info = dict(voice_rms_db=round(20 * math.log10(voice_rms), 1), sfx_rms_db=round(20 * math.log10(sfx_rms * g), 1),
                 gain=round(g, 4), duck_db=DUCK_DB, level_below_db=LEVEL_BELOW)
     print(json.dumps(info, ensure_ascii=False))
@@ -518,7 +521,25 @@ def cmd_check(argv):
     gap = 20 * np.log10(ve[spk] / np.maximum(se[spk], 1e-9)); worst = float(gap.min())
     w = int(np.where(spk)[0][int(gap.argmin())]) * 0.02
     print(f'成片解碼後講話段逐窗最小差距 {worst:.1f} dB（在 {w:.2f} 秒；門檻 {MIN_GAP_DB} dB；<14 的窗 {(gap < MIN_GAP_DB).sum()} 個；對齊偏移 {lag} 樣本）')
-    if worst < MIN_GAP_DB: sys.exit(1)
+    bad = worst < MIN_GAP_DB
+    # 2026-11-27 ④回報：落在字尾的撞擊音效被壓到聽不見，14 dB 關卡卻照樣合格。
+    # --cues <sfx-cues.json> --ref <mix 產的 .sfxref.wav>：逐個 cue 比「成片殘差」對「設計音量 × 整體增益 k」，衰減超過 VANISH_DB 就算消失。
+    if '--cues' in argv and '--ref' in argv:
+        rec = json.load(open(argv[argv.index('--cues') + 1])); rec = rec['cues'] if isinstance(rec, dict) else rec
+        r = read_wav(argv[argv.index('--ref') + 1])
+        if r.shape[0] == 1: r = np.vstack([r, r])
+        r = np.pad(r, ((0, 0), (0, max(0, n - r.shape[1]))))[:, :n] * k
+        gone = []
+        for c in rec:
+            a0 = int(c['t'] * SR); a1 = min(n, int(max(c.get('t_end', c['t'] + 0.2), c['t'] + 0.1) * SR))
+            if a1 - a0 < hop: continue
+            er = np.sqrt((r[:, a0:a1] ** 2).mean() + 1e-12); es = np.sqrt((res[:, a0:a1] ** 2).mean() + 1e-12)
+            if er < 1e-5: continue
+            att = 20 * math.log10(es / er)
+            if att < -VANISH_DB: gone.append((c['t'], c.get('type', ''), att))
+        print(f'cue 殘差檢查：{len(rec)} 個 cue，被壓超過 {VANISH_DB:.0f} dB（聽不見）的 {len(gone)} 個' + ''.join(f'\n  {t:.2f} 秒 {ty}：{a:.1f} dB' for t, ty, a in gone))
+        if gone and not os.environ.get('SFX_ALLOW_VANISH'): bad = True
+    if bad: sys.exit(1)
 
 
 def main():
