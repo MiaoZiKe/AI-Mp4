@@ -29,3 +29,8 @@
 - 英文字幕段數與中文一致（s5、s12 已併／拆行，storyboard 逐幕核對）。
 - 檢查：validate 0 error、layout-check 0、card-overlap 0、flow-check 0、kinematics 0。無聲估計 95.5 秒（配音後約 82–84 秒）。
 - 未做（可改）：磁鐵偏心跑道、高壓接頭縮小、s11 小標示牌。
+
+## r2（機台複審 7.8 的 3 條必改＋物理可改）
+- 吸盤改淺灰金屬＋深色邊環，三支升降銷（凸出 3.4 cm）、密封環、一條線纜；s6 推近 d28。s5 開頭 24 幀淡出遮蔽環與絕緣環（22%／25%）看到背板在上、靶面朝下。s4 遮蔽環拉出後鏡頭推到 d26 停 ≥2 秒。
+- 磁鐵轉軸移離中心 0.5（偏心）；頁首 s9 改「靶材怎麼做」、s11 改「做靶材的公司」；光洋科標籤提前 8 幀收；s10 運鏡提前 9 幀。
+- 檢查：validate／layout-check／card-overlap／flow-check／kinematics 全 0 error。keyframes：out/tech-target/rounds/keyframes-r2.png。

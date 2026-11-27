@@ -157,7 +157,7 @@ BACKALL = ("s12:start-8", FAR)
 for l in ("hv", "lid", "oring1", "mag"): vis(l, [(T0, "s3:start-6")] + ASM + [BACKALL])
 for l in ("water", "pipes"): vis(l, [(T0, "s4:start-6")] + ASM + [BACKALL])
 vis("tgt", [(T0, "s8:start-2"), BACKALL])
-VIS.append(hid("shield", "s5:start+14", "s5:volt+10", 12, 0.22))   # 靶座外殼先淡出，看得到背板在上、靶面朝下
+VIS.append(hid("shield", "s5:start+4", "s5:volt+10", 24, 0.22)); VIS.append(hid("ins", "s5:start+4", "s5:volt+10", 24, 0.25))   # 靶座外殼先淡出，看得到背板在上、靶面朝下
 for l in ("back", "solder"): vis(l, [(T0, "s8:start-2"), BACKALL])
 for l in ("ins", "oring2", "oring3"): vis(l, [(T0, "s2:open-8"), ("s3:start-6", "s8:start-2"), BACKALL])
 vis("shield", [(T0, "s2:open-8"), ("s4:start-6", "s8:start-2"), BACKALL])
@@ -197,11 +197,11 @@ EXPLODE = [mv("hv", "s2:open-4", BACK, 26, dy=10.0), mv("lid", "s2:open-2", BACK
 P = {}
 P["s1"] = {"shot": [shot("start-30", 0, 4.2, 74, 22, 1, yaw=-0.2), shot("start", 0.4, 4.4, 66, 24, 120)],
  "shift": VIS + EXPLODE,
- "run": [run("plasmaGlow", "start-30", "s2:start-10", 1), run("magSpin", "start-30", "s2:open-8", 1), run("waterFlow", "start-30", "s2:open-8", 1), run("ion0", "start-30", "s2:start-10", 1), run("ion2", "start-30", "s2:start-10", 1), run("ion4", "start-30", "s2:start-10", 1)],
+ "run": [run("plasmaGlow", "start-30", "s2:start-10", 1), run("magSpin", "start-30", "s2:open-8", 1), run("magShaftSpin", "start-30", "s2:open-8", 1), run("waterFlow", "start-30", "s2:open-8", 1), run("ion0", "start-30", "s2:start-10", 1), run("ion2", "start-30", "s2:start-10", 1), run("ion4", "start-30", "s2:start-10", 1)],
  "overlay": [sec("target-hook", "q", "s2:start-5", "系列 2・第 13 集", "示意，非實際比例", {"prev": "prev", "q": "q", "plate": "plate"})]}
 P["s2"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}],
  "shot": [shot("start", 0.2, 9.0, 82, 26, 30, yaw=-0.25), shot("mag-4", 0.2, 11.6, 52, 22, 36)],
- "run": [run("magSpin", "spin-6", "s3:start", 10), run("drvSpin", "spin-6", "s3:start", 10)],
+ "run": [run("magSpin", "spin-6", "s3:start", 10), run("magShaftSpin", "spin-6", "s3:start", 10), run("drvSpin", "spin-6", "s3:start", 10)],
  "labels": [lab("hv", "高壓接頭", "HV feed", "amber", "hv-2", "mag+12"),
             lab("mag", "磁鐵組", "Magnets", "blue", "mag+14", "s3:start-4")],
  "overlay": [sec("target-top", "start+24", "s3:start-12", "拆開陰極：供電與磁鐵", "示意", {"hv": "hv", "mag": "mag", "spin": "spin"})]}
@@ -211,7 +211,7 @@ P["s3"] = {"shot": [shot("start", 0.2, 6.2, 52, 24, 30)],
             lab("back", "背板", "Backing", "amber", "back-2", "solder+8"),
             lab("solder", "焊層", "Solder", "blue", "solder+10", "s4:start-4")],
  "overlay": [sec("target-cool", "start+24", "s4:start-5", "熱怎麼被帶走", "示意（溫度不是量測）", {"water": "water", "heat": "heat", "back": "back", "solder": "solder", "tgt": "tgt"})]}
-P["s4"] = {"shot": [shot("start", 0.2, 3.2, 38, 16, 30)],
+P["s4"] = {"shot": [shot("start", 0.2, 3.2, 38, 16, 30), shot("shield-6", 0.2, 1.8, 26, 14, 30)],
  "labels": [lab("tgt", "靶材", "Target", "amber", "tgt-2", "shield+6"),
             lab("shield", "遮蔽環", "Shield", "blue", "shield+8", "s5:start-4")],
  "overlay": [sec("target-shield", "start+24", "s5:start-14", "靶材與遮蔽環", "示意", {"tgt": "tgt", "shield": "shield", "face": "face"})]}
@@ -222,7 +222,7 @@ P["s5"] = {"shot": [shot("start", 0.0, 2.5, 50, 6, 30, yaw=-0.2), shot("pla-6", 
             lab("ion", "氬離子", "Ar ions", "blue", "ion+26", "hit+30"),
             lab("hit", "撞擊點", "Impact", "amber", "hit+32", "s6:start-4")],
  "overlay": [sec("target-sect", "start+40", "s6:start-5", "陰極剖面", "示意（非實機尺寸）", {"gas": "gas", "volt": "volt", "pla": "pla", "ion": "ion", "hit": "hit", "atom": "atom"})]}
-P["s6"] = {"shot": [shot("start", 0.0, 2.0, 40, 8, 30), shot("wafer-6", 0.0, 1.8, 36, 14, 28)],
+P["s6"] = {"shot": [shot("start", 0.0, 2.0, 40, 8, 30), shot("wafer-6", 0.0, 1.3, 28, 14, 28)],
  "run": [run("atomScat", "spread", "s8:start-8", 6)],
  "labels": [lab("atom", "金屬原子", "Atoms", "amber", "spread-2", "wafer-4"),
             lab("wafer", "晶圓", "Wafer", "blue", "wafer-2", "s7:start-4")],
@@ -238,14 +238,14 @@ P["s8"] = {"shot": [shot("start-4", DX, 0.4, 40, 30, 1, yaw=0.0)],
             lab("groove", "侵蝕溝", "Groove", "blue", "deep+24", "swap+15"),
             lab("newT", "新靶材", "New target", "amber", "swap+17", "s9:start-14")],
  "overlay": [sec("target-groove", "start+24", "s9:start-14", "侵蝕溝一路變深", "示意（深度不是量測）", {"groove": "groove", "deep": "deep", "swap": "swap", "pct": "pct"})]}
-P["s9"] = {"shot": [shot("start-4", SX["rf"] + 0.8, 1.0, 34, 24, 1), shot("furnace-8", SX["fn"] + 0.6, 1.5, 40, 22, 36), shot("forge-12", SX["fg"] + 0.4, 2.2, 40, 20, 36)],
+P["s9"] = {"zoom": [{"to": "line", "at": "start-4", "dur": 1}], "shot": [shot("start-4", SX["rf"] + 0.8, 1.0, 34, 24, 1), shot("furnace-8", SX["fn"] + 0.6, 1.5, 40, 22, 36), shot("forge-12", SX["fg"] + 0.4, 2.2, 40, 20, 36)],
  "run": [run(f"rfIon{i}", "refine", "furnace+20", 6) for i in range(3)] + [run("fnPoolGlow", "furnace-4", "forge+10", 8)],
  "shift": [mv("fnIngot", "ingot-10", FAR, 66, dy=-0.9), mv("fnHot", "ingot-10", FAR, 66, dy=-0.9), mv("fgRam", "forge+6", "forge+20", 9, dy=-1.3), mv("fgRam", "forge+36", "forge+48", 9, dy=-1.3)],
  "labels": [lab("rfTank", "精煉槽", "Refining cell", "blue", "refine-2", "furnace+14"),
             lab("furnace", "真空爐", "Vacuum furnace", "amber", "furnace+16", "forge-6"),
             lab("forge", "鍛壓機", "Forging press", "blue", "forge-4", "s10:start-14")],
  "overlay": [sec("target-line", "start+24", "s10:start-14", "靶怎麼做：前半段", "示意（不標溫度、道次）", {"q": "q", "refine": "refine", "furnace": "furnace", "ingot": "ingot", "forge": "forge"})]}
-P["s10"] = {"shot": [shot("start", SX["ml"] + 0.4, 2.2, 34, 22, 36), shot("anneal-8", SX["an"], 1.4, 36, 20, 36), shot("lathe-8", SX["lt"], 1.8, 30, 32, 38), shot("bond-8", SX["bd"], 2.0, 30, 22, 38)],
+P["s10"] = {"shot": [shot("start", SX["ml"] + 0.4, 2.2, 34, 22, 36), shot("anneal-17", SX["an"], 1.4, 36, 20, 36), shot("lathe-17", SX["lt"], 1.8, 30, 32, 38), shot("bond-17", SX["bd"], 2.0, 30, 22, 38)],
  "run": [run("rollRU", "roll-4", "anneal-4", 8), run("rollRL", "roll-4", "anneal-4", 8), run("rollBU", "roll-4", "anneal-4", 8), run("rollBL", "roll-4", "anneal-4", 8), run("mlTable", "roll-4", "anneal-4", 8), run("mlSpray", "roll-4", "anneal-4", 6), run("anHeat", "anneal-6", "lathe-4", 12),
          run("ltSpin", "lathe-6", "bond-4", 10), run("ltCool", "lathe+10", "bond-4", 6)] + [run(f"ltChip{i}", "lathe+14", "bond-4", 6) for i in range(3)] + [run("bdHeat", "bond-10", FAR, 12)],
  "shift": [mv("mlIn", "s1:start-40", "roll+4", 70, dx=-3.2), hid("mlIn", "roll+66", FAR, 6), mv("mlOut", "roll+60", FAR, 80, dx=1.5),
@@ -255,19 +255,19 @@ P["s10"] = {"shot": [shot("start", SX["ml"] + 0.4, 2.2, 34, 22, 36), shot("annea
             lab("lathe", "立式車床", "Vertical lathe", "amber", "lathe-12", "bond-4"),
             lab("bond", "壓合台", "Bonding press", "blue", "bond-2", "s11:start-14")],
  "overlay": [sec("target-grain", "start+24", "s11:start-14", "靶怎麼做：後半段", "示意（晶粒大小示意）", {"roll": "roll", "anneal": "anneal", "grain": "grain", "lathe": "lathe", "bond": "bond"})]}
-P["s11"] = {"shot": [shot("start-4", 0, 2.0, 44, 12, 1)],
+P["s11"] = {"zoom": [{"to": "co", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 0, 2.0, 44, 12, 1)],
  "labels": [lab("rkJX", "JX 金屬", "Japan", "amber", "jx-2", "us-6", flag="JP"),
-            lab("rkSol", "Solstice", "United States", "blue", "us-2", "tw-8", flag="US"),
-            lab("rkSolar", "光洋科 1785", "Taiwan", "amber", "tw-6", "s12:start-6", flag="TW")],
+            lab("rkSol", "Solstice", "United States", "blue", "us-2", "tw-10", flag="US"),
+            lab("rkSolar", "光洋科 1785", "Taiwan", "amber", "tw-8", "s12:start-8", flag="TW")],
  "overlay": [sec("target-co", "start+24", "s12:start-14", "做靶材的公司", "技術新報、公司新聞稿、公司資料", {"jx": "jx", "sixty": "sixty", "us": "us", "tw": "tw"}, h=360, y=1040)]}
-P["s12"] = {"shot": [shot("start-4", 0.4, 4.4, 74, 24, 1, yaw=-0.2)],
+P["s12"] = {"zoom": [{"to": "tool", "at": "start-4", "dur": 1}], "shot": [shot("start-4", 0.4, 4.4, 74, 24, 1, yaw=-0.2)],
  "run": [run(f"gas{i}", "gas", FAR, 8) for i in range(4)],
  "overlay": [sec("target-next", "start+24", "s13:start-5", "接下來", "下一集：前驅物", {"next": "next", "gas": "gas", "pre": "pre", "kw": "kw"})]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": False, "note": "查證截至 2026/11/27", "noteAlways": True}
-levels = [lv("tool", "平面磁控陰極總成（示意）", "PLANAR MAGNETRON CATHODE", "60 cm", "10 cm")]
+levels = [lv("tool", "平面磁控陰極總成（示意）", "PLANAR MAGNETRON CATHODE", "60 cm", "10 cm"), lv("line", "靶材怎麼做（示意）", "HOW A TARGET IS MADE", "60 cm", "10 cm"), lv("co", "做靶材的公司", "TARGET MAKERS", "60 cm", "10 cm")]
 levels[0]["handoff3D"] = True
 out = {"slug": "tech-target", "prevEpisode": "2-12：台灣自己的設備廠", "title": "濺鍍靶材（科技透明圈）", "asOf": "2026/11/27", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light",

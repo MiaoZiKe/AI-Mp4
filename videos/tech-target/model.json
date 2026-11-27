@@ -39,6 +39,7 @@
   "magS": "#2F7FE0",
   "yokeC": "#8D97A8",
   "plasmaC": "#9B7BFF",
+  "chuckC": "#D5DCE6",
   "plasmaE": "#C9B8FF",
   "ionC": "#7EC8FF",
   "eleC": "#FFE08A",
@@ -326,6 +327,15 @@
    "opacity": 0.75,
    "rough": 1,
    "metal": 0
+  },
+  "chuckM": {
+   "kind": "std",
+   "color": "chuckC",
+   "rough": 0.3,
+   "metal": 0.85,
+   "env": 0.8,
+   "tex": "brushed",
+   "texScale": 1.5
   },
   "shieldM": {
    "kind": "std",
@@ -2097,7 +2107,7 @@
     0.76,
     0
    ],
-   "mat": "steel"
+   "mat": "chuckM"
   },
   {
    "id": "chuckRim",
@@ -2187,7 +2197,76 @@
    "layer": "chuck",
    "shape": "cyl",
    "size": [
-    0.05,
+    0.09,
+    0.34
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.55,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     1.66
+    ],
+    [
+     -1.438,
+     0,
+     -0.83
+    ],
+    [
+     1.438,
+     0,
+     -0.83
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "chuckPinTip",
+   "layer": "chuck",
+   "shape": "sphere",
+   "size": [
+    0.09
+   ],
+   "pos": [
+    0,
+    1.73,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     1.66
+    ],
+    [
+     -1.438,
+     0,
+     -0.83
+    ],
+    [
+     1.438,
+     0,
+     -0.83
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "chuckSealO",
+   "layer": "chuck",
+   "shape": "tube",
+   "size": [
+    1.82,
+    1.74,
     0.12
    ],
    "rot": [
@@ -2197,36 +2276,80 @@
    ],
    "pos": [
     0,
-    1.46,
+    1.01,
     0
    ],
-   "at": [
-    [
-     0,
-     0,
-     1.2
-    ],
-    [
-     -1.039,
-     0,
-     -0.6
-    ],
-    [
-     1.039,
-     0,
-     -0.6
-    ]
+   "mat": "rubber"
+  },
+  {
+   "id": "chuckCableOut",
+   "layer": "chuck",
+   "shape": "cyl",
+   "size": [
+    0.13,
+    2.4
    ],
-   "mat": "gold"
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    1.7,
+    -0.3,
+    0.35
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "chuckCableDown",
+   "layer": "chuck",
+   "shape": "cyl",
+   "size": [
+    0.13,
+    1.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.9,
+    -0.85,
+    0.35
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "chuckCableClip",
+   "layer": "chuck",
+   "shape": "tube",
+   "size": [
+    0.2,
+    0.13,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    1.7,
+    -0.3,
+    0.35
+   ],
+   "mat": "steel"
   },
   {
    "id": "chuckOuter",
    "layer": "chuck",
    "shape": "tube",
    "size": [
-    1.84,
-    1.76,
-    0.2
+    1.86,
+    1.74,
+    0.24
    ],
    "rot": [
     90,
@@ -16340,7 +16463,7 @@
   },
   "magSpin": {
    "type": "rotate",
-   "_說明": "磁鐵組旋轉（起轉、停轉有加減速；轉動讓溝較寬較平順）",
+   "_說明": "磁鐵組偏心旋轉（轉軸離磁鐵板中心 0.5，磁鐵繞軸掃過靶背；轉動讓溝較寬較平順）",
    "parts": [
     "yoke",
     "yokeRim",
@@ -16352,7 +16475,81 @@
     "magScrew",
     "magMark",
     "magTopN",
-    "magTopS",
+    "magTopS"
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "pivot": [
+    0.5,
+    5.2,
+    0
+   ],
+   "pivots": {
+    "yoke": [
+     0.5,
+     5.2,
+     0
+    ],
+    "yokeRim": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magOuter": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magOuterCap": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magCenter": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magCenterCap": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magInner": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magScrew": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magMark": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magTopN": [
+     0.5,
+     5.2,
+     0
+    ],
+    "magTopS": [
+     0.5,
+     5.2,
+     0
+    ]
+   },
+   "rps": 0.28,
+   "rampSpin": true
+  },
+  "magShaftSpin": {
+   "type": "rotate",
+   "parts": [
     "magShaft",
     "magPulley",
     "magPulleyRim",
@@ -16369,61 +16566,6 @@
     0
    ],
    "pivots": {
-    "yoke": [
-     0,
-     5.2,
-     0
-    ],
-    "yokeRim": [
-     0,
-     5.2,
-     0
-    ],
-    "magOuter": [
-     0,
-     5.2,
-     0
-    ],
-    "magOuterCap": [
-     0,
-     5.2,
-     0
-    ],
-    "magCenter": [
-     0,
-     5.2,
-     0
-    ],
-    "magCenterCap": [
-     0,
-     5.2,
-     0
-    ],
-    "magInner": [
-     0,
-     5.2,
-     0
-    ],
-    "magScrew": [
-     0,
-     5.2,
-     0
-    ],
-    "magMark": [
-     0,
-     5.2,
-     0
-    ],
-    "magTopN": [
-     0,
-     5.2,
-     0
-    ],
-    "magTopS": [
-     0,
-     5.2,
-     0
-    ],
     "magShaft": [
      0,
      5.2,

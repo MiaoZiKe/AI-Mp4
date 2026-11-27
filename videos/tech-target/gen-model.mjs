@@ -14,7 +14,7 @@ const palette = {
   floorC: "#C9D2DE", panel: "#F3F5F8", panel2: "#E2E8F0", seam: "#8E9BB0", band: "#24324C", steel: "#7D8CA6", steel2: "#A9B5C7", dark: "#3E4A60",
   glassC: "#BFD3F2", lampY: "#F2B632", lampG: "#2FBF71", lampR: "#E5484D", screen: "#5B8DEF", rubber: "#2B2F36", gold: "#C9A24A", knurl: "#5C6678", estop: "#D93A2B",
   tgtC: "#D2793F", tgtFaceC: "#F0A066", tgtDarkC: "#8C4A22", solderC: "#E8ECF2", backC: "#B9C2CF", ceramic: "#F1EEE6", copperC: "#C9794A", waterC: "#4DA3FF", waterD: "#2F7FE0",
-  magBody: "#2B2F36", magN: "#E0472F", magS: "#2F7FE0", yokeC: "#8D97A8", plasmaC: "#9B7BFF", plasmaE: "#C9B8FF", ionC: "#7EC8FF", eleC: "#FFE08A", argonC: "#9FD8FF", hitC: "#FFB45A",
+  magBody: "#2B2F36", magN: "#E0472F", magS: "#2F7FE0", yokeC: "#8D97A8", plasmaC: "#9B7BFF", chuckC: "#D5DCE6", plasmaE: "#C9B8FF", ionC: "#7EC8FF", eleC: "#FFE08A", argonC: "#9FD8FF", hitC: "#FFB45A",
   filmC: "#C47A4E", scanC: "#4FA3FF", fieldC: "#5BE0C0", moltenC: "#FF8A2B", hotC: "#E5602B", pcbC: "#1F6B45", chipC: "#1C1F26", traceC: "#C9A24A", connC: "#2A2D33", elecT: "#7FD0C0", pipeB: "#3E7BD6", pipeR: "#D9534F",
   warnC: "#F2B632", plateDark: "#4A525F", cuBright: "#E39A64", chipFlake: "#C9794A", markA: "#E8613C",
 };
@@ -36,7 +36,7 @@ const materials = {
   ceramic: M("std", "ceramic", { rough: 0.6, metal: 0, env: 0.3 }), copper: M("std", "copperC", { rough: 0.3, metal: 0.95, env: 0.7 }),
   water: M("phys", "waterC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.38, env: 0.5 }), pipeB: M("std", "pipeB", { rough: 0.35, metal: 0.6, env: 0.4 }), pipeR: M("std", "pipeR", { rough: 0.35, metal: 0.6, env: 0.4 }),
   magBody: M("std", "magBody", { rough: 0.45, metal: 0.5, env: 0.4 }), magN: M("std", "magN", { rough: 0.5, metal: 0.2, emissive: "magN", ei: 0.25 }), magS: M("std", "magS", { rough: 0.5, metal: 0.2, emissive: "magS", ei: 0.25 }), yoke: M("std", "yokeC", { rough: 0.35, metal: 0.85, env: 0.5, tex: "brushed", texScale: 2 }),
-  plasma: glowM("plasmaC", 0.5, 1.2), plasmaIn: glowM("plasmaE", 0.75, 1.3), shieldM: M("std", "seam", { rough: 0.85, metal: 0.45, env: 0.3 }), ion: glowM("ionC", 0.95), ele: glowM("eleC", 0.95), argon: glowM("argonC", 0.7), hit: glowM("hitC", 0.9), field: glowM("fieldC", 0.8),
+  plasma: glowM("plasmaC", 0.5, 1.2), plasmaIn: glowM("plasmaE", 0.75, 1.3), chuckM: M("std", "chuckC", { rough: 0.3, metal: 0.85, env: 0.8, tex: "brushed", texScale: 1.5 }), shieldM: M("std", "seam", { rough: 0.85, metal: 0.45, env: 0.3 }), ion: glowM("ionC", 0.95), ele: glowM("eleC", 0.95), argon: glowM("argonC", 0.7), hit: glowM("hitC", 0.9), field: glowM("fieldC", 0.8),
   atom: glowM("tgtFaceC", 0.95), film: M("std", "filmC", { rough: 0.3, metal: 0.85, env: 0.8 }), warn: glowM("warnC", 0.9, 0.9),
   molten: M("std", "moltenC", { emissive: "moltenC", ei: 1, rough: 0.6, metal: 0.2 }), hot: M("std", "hotC", { emissive: "hotC", ei: 0.55, rough: 0.5, metal: 0.4 }), heatRing: glowM("hotC", 0.85, 1),
   electrolyte: M("phys", "elecT", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.4, env: 0.5 }), plateDark: M("std", "plateDark", { rough: 0.55, metal: 0.5, env: 0.4 }),
@@ -87,11 +87,16 @@ P({ id: "chViewBolt", layer: "chamber", shape: "cyl", size: [0.05, 0.06], pos: [
 // 吸盤＋晶圓（在靶下方，靶面朝下對著晶圓）
 LAY("chuck", [4, 2.2, 0, 0.6]); LAY("wf", [3.2, 0.2, 0, WY - 0.03]);
 VC("chuckStem", "chuck", 0.55, -0.8, 0.14, "steel2");
-VC("chuckBody", "chuck", 1.78, 0.14, 1.38, "steel");
+VC("chuckBody", "chuck", 1.78, 0.14, 1.38, "chuckM");
 VT("chuckRim", "chuck", 1.78, 1.55, 1.38, 1.44, "steel2");
 P({ id: "chuckBolt", layer: "chuck", shape: "cyl", size: [0.07, 0.05], rot: V, pos: [0, 1.42, 0], at: RING(8, 1.67), mat: "steel" });
-P({ id: "chuckLiftPin", layer: "chuck", shape: "cyl", size: [0.05, 0.12], rot: V, pos: [0, 1.46, 0], at: RING(3, 1.2, 90), mat: "gold" });
-VT("chuckOuter", "chuck", 1.84, 1.76, 1.2, 1.4, "dark");
+P({ id: "chuckLiftPin", layer: "chuck", shape: "cyl", size: [0.09, 0.34], rot: V, pos: [0, 1.55, 0], at: RING(3, 1.66, 90), mat: "gold" });
+P({ id: "chuckPinTip", layer: "chuck", shape: "sphere", size: [0.09], pos: [0, 1.73, 0], at: RING(3, 1.66, 90), mat: "gold" });
+VT("chuckSealO", "chuck", 1.82, 1.74, 0.95, 1.07, "rubber");
+HXC("chuckCableOut", "chuck", 0.13, 0.5, 2.9, -0.3, 0.35, "conn");
+VC("chuckCableDown", "chuck", 0.13, FY, -0.3, "conn", { x: 2.9, z: 0.35 });
+P({ id: "chuckCableClip", layer: "chuck", shape: "tube", size: [0.2, 0.13, 0.1], rot: HX, pos: [1.7, -0.3, 0.35], mat: "steel" });
+VT("chuckOuter", "chuck", 1.86, 1.74, 1.18, 1.42, "dark");
 VT("chuckSeal", "chuck", 0.8, 0.64, 0.5, 0.6, "rubber");
 HXC("chuckCable", "chuck", 0.07, 0.4, 1.8, 0.0, 0.0, "conn", { rot: [0, 90, 0] });
 HXC("chuckHeatPort", "chuck", 0.14, 0.4, 0.7, 0.4, 0.3, "trace", { rot: [0, 90, 0] });
@@ -515,7 +520,9 @@ actions.elec = { type: "flow", _說明: "二次電子沿磁場跑道轉圈（示
   actions[`field${i}`] = { type: "flow", _說明: "磁場線（示意）：從外環磁鐵出、繞到中心磁鐵", layer: "plasma", path, n: 2, size: 0.08, shape: "arrow", rate: 0.35, phase: i * 0.12, color: "fieldC", track: true, free: true };
 });
 const MAGP = ["yoke", "yokeRim", "magOuter", "magOuterCap", "magCenter", "magCenterCap", "magInner", "magScrew", "magMark", "magTopN", "magTopS", "magShaft", "magPulley", "magPulleyRim", "magPulleyRim2"];
-actions.magSpin = { type: "rotate", _說明: "磁鐵組旋轉（起轉、停轉有加減速；轉動讓溝較寬較平順）", parts: MAGP, axis: [0, 1, 0], pivot: [0, 5.2, 0], pivots: Object.fromEntries(MAGP.map((k) => [k, [0, 5.2, 0]])), rps: 0.28, rampSpin: true };
+const MAGE = MAGP.filter((k) => !/Shaft|Pulley/.test(k));
+actions.magSpin = { type: "rotate", _說明: "磁鐵組偏心旋轉（轉軸離磁鐵板中心 0.5，磁鐵繞軸掃過靶背；轉動讓溝較寬較平順）", parts: MAGE, axis: [0, 1, 0], pivot: [0.5, 5.2, 0], pivots: Object.fromEntries(MAGE.map((k) => [k, [0.5, 5.2, 0]])), rps: 0.28, rampSpin: true };
+actions.magShaftSpin = { type: "rotate", parts: ["magShaft", "magPulley", "magPulleyRim", "magPulleyRim2"], axis: [0, 1, 0], pivot: [0, 5.2, 0], pivots: Object.fromEntries(["magShaft", "magPulley", "magPulleyRim", "magPulleyRim2"].map((k) => [k, [0, 5.2, 0]])), rps: 0.28, rampSpin: true };
 actions.drvSpin = { type: "rotate", parts: ["drvPulley"], axis: [0, 1, 0], pivot: [1.55, 7.0, 0], pivots: { drvPulley: [1.55, 7.0, 0] }, rps: 0.5, rampSpin: true };
 // 冷卻水：進水管 → 水套（繞一圈）→ 出水管（藍色顆粒、受泵壓沿管流）
 const SPIRAL = Array.from({ length: 14 }, (_, i) => { const a = i * 38, r = 2.7 - i * 0.025, [x, z] = pol(a, r); return [x, 4.9 + 0.12 * Math.sin(i), z]; });
