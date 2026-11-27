@@ -1,0 +1,4293 @@
+{
+ "slug": "tech-probe1",
+ "prevEpisode": "2-20：水氣電",
+ "title": "探針卡-1（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指第三版；本支子聊天室不送 TTS，由頻道負責人配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "wafer",
+    "label": "晶圓（示意）",
+    "en": "WAFER",
+    "field": "300 mm",
+    "ruler": "30 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "prober",
+    "label": "針測機台（示意）",
+    "en": "WAFER PROBER",
+    "field": "200 cm",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "card",
+    "label": "探針卡分解（示意，放大）",
+    "en": "PROBE CARD",
+    "field": "30 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "micro",
+    "label": "針尖剖面（示意，放大）",
+    "en": "PROBE TIP SECTION",
+    "field": "140 µm",
+    "ruler": "10 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "types",
+    "label": "三種探針（示意）",
+    "en": "PROBE TYPES",
+    "field": "5 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "探針卡",
+   "幾萬根針一次蓋"
+  ],
+  "sub": "哪顆晶片是好的？",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "哪顆晶片是好的，怎麼知道？前一集水氣電備齊，晶圓做完了，一片有好幾百顆晶片。",
+   "tts": "哪顆晶片是好的，怎麼知道？前一集水氣電備齊，晶圓做完了，一片有好幾百顆晶片。",
+   "subtitle": {
+    "zh": "哪顆晶片是好的\n怎麼知道？\n前一集水氣電備齊\n晶圓做完了\n一片有好幾百顆晶片",
+    "en": "Which chips are good? | How do we know? | Last episode: utilities in place, | the wafers are done, | each holds hundreds of chips."
+   },
+   "keywords": [
+    "哪顆",
+    "前一集",
+    "好幾百顆"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "哪顆"
+    },
+    {
+     "id": "know",
+     "text": "怎麼知道"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "done",
+     "text": "晶圓做完"
+    },
+    {
+     "id": "many",
+     "text": "好幾百顆"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測（每片晶片數依晶片大小而異）"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：水氣電備齊",
+     "title": "哪顆是好的？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 30.0,
+      "y": 0.2,
+      "d": 50,
+      "elev": 58
+     }
+    ],
+    "shift": [
+     {
+      "layer": "nDie",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend-16",
+      "until": "s5:end+10",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+0",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+3",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+6",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+9",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+12",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+15",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+18",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s5:bend+21",
+      "until": "s5:end+10",
+      "dur": 3,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nDie",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nOx2",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr1",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr2",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr3",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr4",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr5",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr6",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr7",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub-18",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 0.6
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub-2",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub+3",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub+8",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub+13",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub+18",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub+23",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub+28",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nScr8",
+      "at": "s6:scrub+33",
+      "until": "s11:start+400",
+      "dur": 5,
+      "dy": 0.0688
+     },
+     {
+      "layer": "nN0_r",
+      "at": "s5:bend-1",
+      "until": "s5:end+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_r",
+      "at": "s6:scrub-3",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_0",
+      "at": "s1:start-40",
+      "until": "s5:bend-1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_0",
+      "at": "s5:bend+1",
+      "until": "s6:scrub-3",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_0",
+      "at": "s6:scrub+0",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_1",
+      "at": "s1:start-40",
+      "until": "s5:bend+1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_1",
+      "at": "s5:bend+4",
+      "until": "s6:scrub+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_1",
+      "at": "s6:scrub+5",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_2",
+      "at": "s1:start-40",
+      "until": "s5:bend+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_2",
+      "at": "s5:bend+7",
+      "until": "s6:scrub+5",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_2",
+      "at": "s6:scrub+10",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_3",
+      "at": "s1:start-40",
+      "until": "s5:bend+7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_3",
+      "at": "s5:bend+10",
+      "until": "s6:scrub+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_3",
+      "at": "s6:scrub+15",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_4",
+      "at": "s1:start-40",
+      "until": "s5:bend+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_4",
+      "at": "s5:bend+13",
+      "until": "s6:scrub+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_4",
+      "at": "s6:scrub+20",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_5",
+      "at": "s1:start-40",
+      "until": "s5:bend+13",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_5",
+      "at": "s5:bend+16",
+      "until": "s6:scrub+20",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_5",
+      "at": "s6:scrub+25",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_6",
+      "at": "s1:start-40",
+      "until": "s5:bend+16",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_6",
+      "at": "s5:bend+19",
+      "until": "s6:scrub+25",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_6",
+      "at": "s6:scrub+30",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_7",
+      "at": "s1:start-40",
+      "until": "s5:bend+19",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_7",
+      "at": "s5:bend+22",
+      "until": "s6:scrub+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_7",
+      "at": "s6:scrub+35",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_8",
+      "at": "s1:start-40",
+      "until": "s5:bend+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN0_8",
+      "at": "s5:end+12",
+      "until": "s6:scrub+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_r",
+      "at": "s5:bend-1",
+      "until": "s5:end+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_r",
+      "at": "s6:scrub-3",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_0",
+      "at": "s1:start-40",
+      "until": "s5:bend-1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_0",
+      "at": "s5:bend+1",
+      "until": "s6:scrub-3",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_0",
+      "at": "s6:scrub+0",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_1",
+      "at": "s1:start-40",
+      "until": "s5:bend+1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_1",
+      "at": "s5:bend+4",
+      "until": "s6:scrub+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_1",
+      "at": "s6:scrub+5",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_2",
+      "at": "s1:start-40",
+      "until": "s5:bend+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_2",
+      "at": "s5:bend+7",
+      "until": "s6:scrub+5",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_2",
+      "at": "s6:scrub+10",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_3",
+      "at": "s1:start-40",
+      "until": "s5:bend+7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_3",
+      "at": "s5:bend+10",
+      "until": "s6:scrub+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_3",
+      "at": "s6:scrub+15",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_4",
+      "at": "s1:start-40",
+      "until": "s5:bend+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_4",
+      "at": "s5:bend+13",
+      "until": "s6:scrub+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_4",
+      "at": "s6:scrub+20",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_5",
+      "at": "s1:start-40",
+      "until": "s5:bend+13",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_5",
+      "at": "s5:bend+16",
+      "until": "s6:scrub+20",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_5",
+      "at": "s6:scrub+25",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_6",
+      "at": "s1:start-40",
+      "until": "s5:bend+16",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_6",
+      "at": "s5:bend+19",
+      "until": "s6:scrub+25",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_6",
+      "at": "s6:scrub+30",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_7",
+      "at": "s1:start-40",
+      "until": "s5:bend+19",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_7",
+      "at": "s5:bend+22",
+      "until": "s6:scrub+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_7",
+      "at": "s6:scrub+35",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_8",
+      "at": "s1:start-40",
+      "until": "s5:bend+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN1_8",
+      "at": "s5:end+12",
+      "until": "s6:scrub+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_r",
+      "at": "s5:bend-1",
+      "until": "s5:end+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_r",
+      "at": "s6:scrub-3",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_0",
+      "at": "s1:start-40",
+      "until": "s5:bend-1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_0",
+      "at": "s5:bend+1",
+      "until": "s6:scrub-3",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_0",
+      "at": "s6:scrub+0",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_1",
+      "at": "s1:start-40",
+      "until": "s5:bend+1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_1",
+      "at": "s5:bend+4",
+      "until": "s6:scrub+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_1",
+      "at": "s6:scrub+5",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_2",
+      "at": "s1:start-40",
+      "until": "s5:bend+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_2",
+      "at": "s5:bend+7",
+      "until": "s6:scrub+5",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_2",
+      "at": "s6:scrub+10",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_3",
+      "at": "s1:start-40",
+      "until": "s5:bend+7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_3",
+      "at": "s5:bend+10",
+      "until": "s6:scrub+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_3",
+      "at": "s6:scrub+15",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_4",
+      "at": "s1:start-40",
+      "until": "s5:bend+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_4",
+      "at": "s5:bend+13",
+      "until": "s6:scrub+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_4",
+      "at": "s6:scrub+20",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_5",
+      "at": "s1:start-40",
+      "until": "s5:bend+13",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_5",
+      "at": "s5:bend+16",
+      "until": "s6:scrub+20",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_5",
+      "at": "s6:scrub+25",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_6",
+      "at": "s1:start-40",
+      "until": "s5:bend+16",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_6",
+      "at": "s5:bend+19",
+      "until": "s6:scrub+25",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_6",
+      "at": "s6:scrub+30",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_7",
+      "at": "s1:start-40",
+      "until": "s5:bend+19",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_7",
+      "at": "s5:bend+22",
+      "until": "s6:scrub+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_7",
+      "at": "s6:scrub+35",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_8",
+      "at": "s1:start-40",
+      "until": "s5:bend+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN2_8",
+      "at": "s5:end+12",
+      "until": "s6:scrub+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_r",
+      "at": "s5:bend-1",
+      "until": "s5:end+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_r",
+      "at": "s6:scrub-3",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_0",
+      "at": "s1:start-40",
+      "until": "s5:bend-1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_0",
+      "at": "s5:bend+1",
+      "until": "s6:scrub-3",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_0",
+      "at": "s6:scrub+0",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_1",
+      "at": "s1:start-40",
+      "until": "s5:bend+1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_1",
+      "at": "s5:bend+4",
+      "until": "s6:scrub+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_1",
+      "at": "s6:scrub+5",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_2",
+      "at": "s1:start-40",
+      "until": "s5:bend+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_2",
+      "at": "s5:bend+7",
+      "until": "s6:scrub+5",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_2",
+      "at": "s6:scrub+10",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_3",
+      "at": "s1:start-40",
+      "until": "s5:bend+7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_3",
+      "at": "s5:bend+10",
+      "until": "s6:scrub+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_3",
+      "at": "s6:scrub+15",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_4",
+      "at": "s1:start-40",
+      "until": "s5:bend+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_4",
+      "at": "s5:bend+13",
+      "until": "s6:scrub+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_4",
+      "at": "s6:scrub+20",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_5",
+      "at": "s1:start-40",
+      "until": "s5:bend+13",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_5",
+      "at": "s5:bend+16",
+      "until": "s6:scrub+20",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_5",
+      "at": "s6:scrub+25",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_6",
+      "at": "s1:start-40",
+      "until": "s5:bend+16",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_6",
+      "at": "s5:bend+19",
+      "until": "s6:scrub+25",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_6",
+      "at": "s6:scrub+30",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_7",
+      "at": "s1:start-40",
+      "until": "s5:bend+19",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_7",
+      "at": "s5:bend+22",
+      "until": "s6:scrub+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_7",
+      "at": "s6:scrub+35",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_8",
+      "at": "s1:start-40",
+      "until": "s5:bend+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN3_8",
+      "at": "s5:end+12",
+      "until": "s6:scrub+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_r",
+      "at": "s5:bend-1",
+      "until": "s5:end+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_r",
+      "at": "s6:scrub-3",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_0",
+      "at": "s1:start-40",
+      "until": "s5:bend-1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_0",
+      "at": "s5:bend+1",
+      "until": "s6:scrub-3",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_0",
+      "at": "s6:scrub+0",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_1",
+      "at": "s1:start-40",
+      "until": "s5:bend+1",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_1",
+      "at": "s5:bend+4",
+      "until": "s6:scrub+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_1",
+      "at": "s6:scrub+5",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_2",
+      "at": "s1:start-40",
+      "until": "s5:bend+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_2",
+      "at": "s5:bend+7",
+      "until": "s6:scrub+5",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_2",
+      "at": "s6:scrub+10",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_3",
+      "at": "s1:start-40",
+      "until": "s5:bend+7",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_3",
+      "at": "s5:bend+10",
+      "until": "s6:scrub+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_3",
+      "at": "s6:scrub+15",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_4",
+      "at": "s1:start-40",
+      "until": "s5:bend+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_4",
+      "at": "s5:bend+13",
+      "until": "s6:scrub+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_4",
+      "at": "s6:scrub+20",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_5",
+      "at": "s1:start-40",
+      "until": "s5:bend+13",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_5",
+      "at": "s5:bend+16",
+      "until": "s6:scrub+20",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_5",
+      "at": "s6:scrub+25",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_6",
+      "at": "s1:start-40",
+      "until": "s5:bend+16",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_6",
+      "at": "s5:bend+19",
+      "until": "s6:scrub+25",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_6",
+      "at": "s6:scrub+30",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_7",
+      "at": "s1:start-40",
+      "until": "s5:bend+19",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_7",
+      "at": "s5:bend+22",
+      "until": "s6:scrub+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_7",
+      "at": "s6:scrub+35",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_8",
+      "at": "s1:start-40",
+      "until": "s5:bend+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nN4_8",
+      "at": "s5:end+12",
+      "until": "s6:scrub+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr1",
+      "at": "s1:start-40",
+      "until": "s6:scrub+0",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr2",
+      "at": "s1:start-40",
+      "until": "s6:scrub+5",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr3",
+      "at": "s1:start-40",
+      "until": "s6:scrub+10",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr4",
+      "at": "s1:start-40",
+      "until": "s6:scrub+15",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr5",
+      "at": "s1:start-40",
+      "until": "s6:scrub+20",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr6",
+      "at": "s1:start-40",
+      "until": "s6:scrub+25",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr7",
+      "at": "s1:start-40",
+      "until": "s6:scrub+30",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "nScr8",
+      "at": "s1:start-40",
+      "until": "s6:scrub+35",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "eDock",
+      "at": "s4:hair+48",
+      "until": "s8:many+161",
+      "dur": 24,
+      "dy": 5.0
+     },
+     {
+      "layer": "eScrew",
+      "at": "s4:hair+96",
+      "until": "s8:many+168",
+      "dur": 12,
+      "dy": 0.5
+     },
+     {
+      "layer": "eScrew",
+      "at": "s4:hair+110",
+      "until": "s8:many+159",
+      "dur": 22,
+      "dy": 3.4
+     },
+     {
+      "layer": "eStiff",
+      "at": "s4:hair+110",
+      "until": "s8:many+159",
+      "dur": 22,
+      "dy": 3.4
+     },
+     {
+      "layer": "ePCB",
+      "at": "s4:hair+144",
+      "until": "s8:many+157",
+      "dur": 22,
+      "dy": 2.2
+     },
+     {
+      "layer": "eIP",
+      "at": "s4:hair+192",
+      "until": "s8:many+155",
+      "dur": 22,
+      "dy": 1.2
+     },
+     {
+      "layer": "eST",
+      "at": "s8:card8",
+      "until": "s8:many+154",
+      "dur": 18,
+      "dy": 0.55
+     },
+     {
+      "layer": "eLG",
+      "at": "s8:card8+48",
+      "until": "s8:many+153",
+      "dur": 18,
+      "dy": -0.35
+     },
+     {
+      "layer": "eUG",
+      "at": "s8:card8+48",
+      "until": "s8:many+153",
+      "dur": 18,
+      "dy": 0.12
+     },
+     {
+      "layer": "eNdl",
+      "at": "s8:many+56",
+      "until": "s8:many+152",
+      "dur": 20,
+      "dy": -1.0
+     },
+     {
+      "layer": "eTipHi",
+      "at": "s8:many+56",
+      "until": "s8:many+152",
+      "dur": 20,
+      "dy": -1.0
+     },
+     {
+      "layer": "eTipHi",
+      "at": "s1:start-40",
+      "until": "s8:many+102",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eTipHi",
+      "at": "s8:many+192",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eHair",
+      "at": "s1:start-40",
+      "until": "s4:hair-12",
+      "dur": 14,
+      "dx": -3.0
+     },
+     {
+      "layer": "eHair",
+      "at": "s1:start-40",
+      "until": "s4:hair-14",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "eHair",
+      "at": "s4:hair+60",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "aXcar",
+      "at": "s2:cut-4",
+      "until": "s2:cut+28",
+      "dur": 20,
+      "dx": -4.6
+     },
+     {
+      "layer": "aY",
+      "at": "s2:cut-4",
+      "until": "s2:cut+28",
+      "dur": 20,
+      "dx": -4.6
+     },
+     {
+      "layer": "aZ",
+      "at": "s2:cut-4",
+      "until": "s2:cut+28",
+      "dur": 20,
+      "dx": -4.6
+     },
+     {
+      "layer": "aZ",
+      "at": "s2:each+22",
+      "until": "s2:each+40",
+      "dur": 10,
+      "dy": 0.75
+     },
+     {
+      "layer": "aXcar",
+      "at": "s2:each+46",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dx": 0.19
+     },
+     {
+      "layer": "aY",
+      "at": "s2:each+46",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dx": 0.19
+     },
+     {
+      "layer": "aZ",
+      "at": "s2:each+46",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dx": 0.19
+     },
+     {
+      "layer": "aZ",
+      "at": "s2:each+54",
+      "until": "s2:each+72",
+      "dur": 10,
+      "dy": 0.75
+     },
+     {
+      "layer": "aXcar",
+      "at": "s2:each+78",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dx": 0.19
+     },
+     {
+      "layer": "aY",
+      "at": "s2:each+78",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dx": 0.19
+     },
+     {
+      "layer": "aZ",
+      "at": "s2:each+78",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dx": 0.19
+     },
+     {
+      "layer": "aZ",
+      "at": "s2:each+86",
+      "until": "s2:each+104",
+      "dur": 10,
+      "dy": 0.75
+     },
+     {
+      "layer": "aZ",
+      "at": "s3:down-8",
+      "until": "s4:start+20",
+      "dur": 10,
+      "dy": 0.75
+     },
+     {
+      "layer": "wSite",
+      "at": "s1:start-40",
+      "until": "s10:start-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wInkDone",
+      "at": "s1:start-40",
+      "until": "s10:start-6",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+18",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+32",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+46",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+60",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+74",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+88",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+102",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wSite",
+      "at": "s10:start+116",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dx": 1.0
+     },
+     {
+      "layer": "wStep0",
+      "at": "s1:start-40",
+      "until": "s10:start+20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep1",
+      "at": "s1:start-40",
+      "until": "s10:start+34",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep2",
+      "at": "s1:start-40",
+      "until": "s10:start+48",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep3",
+      "at": "s1:start-40",
+      "until": "s10:start+62",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep4",
+      "at": "s1:start-40",
+      "until": "s10:start+76",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep5",
+      "at": "s1:start-40",
+      "until": "s10:start+90",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep6",
+      "at": "s1:start-40",
+      "until": "s10:start+104",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep7",
+      "at": "s1:start-40",
+      "until": "s10:start+118",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wStep8",
+      "at": "s1:start-40",
+      "until": "s10:start+134",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "wQ",
+      "at": "s2:start",
+      "until": "s11:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "kCant",
+      "at": "s1:start-40",
+      "until": "s7:cant-6",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "kcDie",
+      "at": "s1:start-40",
+      "until": "s7:cant-6",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "kVert",
+      "at": "s1:start-40",
+      "until": "s7:vert-6",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "kvDie",
+      "at": "s1:start-40",
+      "until": "s7:vert-6",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "kMems",
+      "at": "s1:start-40",
+      "until": "s7:mems-6",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "kmDie",
+      "at": "s1:start-40",
+      "until": "s7:mems-6",
+      "opacity": 0.22,
+      "dur": 6
+     },
+     {
+      "layer": "kcDie",
+      "at": "s7:cant+4",
+      "until": "s7:cant+22",
+      "dur": 8,
+      "dy": 0.12,
+      "spring": {
+       "tau": 4,
+       "period": 10
+      }
+     },
+     {
+      "layer": "kvDie",
+      "at": "s7:vert+4",
+      "until": "s7:vert+22",
+      "dur": 8,
+      "dy": 0.12,
+      "spring": {
+       "tau": 4,
+       "period": 10
+      }
+     },
+     {
+      "layer": "kmDie",
+      "at": "s7:mems+4",
+      "until": "s7:mems+22",
+      "dur": 8,
+      "dy": 0.12,
+      "spring": {
+       "tau": 4,
+       "period": 10
+      }
+     },
+     {
+      "layer": "aBase",
+      "at": "s3:card+20",
+      "until": "s4:start",
+      "opacity": 0.25,
+      "dur": 1
+     },
+     {
+      "layer": "aRail",
+      "at": "s3:card+20",
+      "until": "s4:start",
+      "opacity": 0.25,
+      "dur": 1
+     },
+     {
+      "layer": "aMan",
+      "at": "s3:card+20",
+      "until": "s4:start",
+      "opacity": 0.25,
+      "dur": 1
+     },
+     {
+      "layer": "aTester",
+      "at": "s3:card+20",
+      "until": "s4:start",
+      "opacity": 0.25,
+      "dur": 1
+     },
+     {
+      "layer": "aCable",
+      "at": "s3:card+20",
+      "until": "s4:start",
+      "opacity": 0.25,
+      "dur": 1
+     },
+     {
+      "layer": "eDock",
+      "at": "s4:start-12",
+      "until": "s4:hair+34",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "eScrew",
+      "at": "s4:start-12",
+      "until": "s4:hair+34",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "eStiff",
+      "at": "s4:start-12",
+      "until": "s4:hair+34",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "ePCB",
+      "at": "s4:start-12",
+      "until": "s4:hair+34",
+      "opacity": 0.28,
+      "dur": 10
+     },
+     {
+      "layer": "nST",
+      "at": "s6:start-2",
+      "until": "s7:start",
+      "opacity": 0.25,
+      "dur": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "wQPulse",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 21 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "q": {
+        "at": "q"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "done": {
+        "at": "done"
+       },
+       "many": {
+        "at": "many"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.9,
+   "holdSec": 1.4,
+   "pauseAfter": 1.4
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "切開之前，先一顆顆通電測試，叫晶圓測試。",
+   "tts": "切開之前，先一顆顆通電測試，叫晶圓測試。",
+   "subtitle": {
+    "zh": "切開之前\n先一顆顆通電測試\n叫晶圓測試",
+    "en": "Before dicing, | each chip is powered and tested, | called wafer test."
+   },
+   "keywords": [
+    "切開之前",
+    "通電測試",
+    "晶圓測試"
+   ],
+   "cues": [
+    {
+     "id": "cut",
+     "text": "切開"
+    },
+    {
+     "id": "each",
+     "text": "一顆顆"
+    },
+    {
+     "id": "name",
+     "text": "晶圓測試"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5909121、6130545；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "start-10",
+      "dur": 1
+     },
+     {
+      "to": "prober",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 2.0,
+      "y": 3.2,
+      "d": 80,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "aTipGlow",
+      "at": "s2:each+32",
+      "ramp": 3,
+      "until": "s2:each+40"
+     },
+     {
+      "id": "aTipGlow",
+      "at": "s2:each+64",
+      "ramp": 3,
+      "until": "s2:each+72"
+     },
+     {
+      "id": "aTipGlow",
+      "at": "s2:each+96",
+      "ramp": 3,
+      "until": "s2:each+104"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aCamA",
+      "text": "對位相機",
+      "en": "Alignment camera",
+      "color": "blue",
+      "at": "cut+6",
+      "until": "cut+52",
+      "cut": true
+     },
+     {
+      "part": "aWafer",
+      "text": "晶圓（還沒切開）",
+      "en": "Wafer, not yet diced",
+      "color": "amber",
+      "at": "name",
+      "until": "name+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-flow",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "晶圓測試：切開之前先測",
+      "tag": "示意",
+      "t": {
+       "cut": {
+        "at": "cut"
+       },
+       "each": {
+        "at": "each"
+       },
+       "name": {
+        "at": "name"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "holdSec": 1.8,
+   "headSec": 0.3,
+   "pauseAfter": 1.8
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "靠的是探針卡。它像一枚針很多的印章，一次蓋下去，每根針碰一個接點。",
+   "tts": "靠的是探針卡。它像一枚針很多的印章，一次蓋下去，每根針碰一個接點。",
+   "subtitle": {
+    "zh": "靠的是探針卡\n它像一枚\n針很多的印章\n一次蓋下去\n每根針碰一個接點",
+    "en": "It relies on the probe card. | It's like a | stamp full of needles: | press once, | and each needle touches one pad."
+   },
+   "keywords": [
+    "探針卡",
+    "印章",
+    "接點"
+   ],
+   "cues": [
+    {
+     "id": "card",
+     "text": "探針卡"
+    },
+    {
+     "id": "stamp",
+     "text": "印章"
+    },
+    {
+     "id": "down",
+     "text": "蓋下去"
+    },
+    {
+     "id": "each",
+     "text": "每根針"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5909121、6130545；示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 2.0,
+      "y": 3.2,
+      "d": 80,
+      "elev": 14
+     },
+     {
+      "at": "card+20",
+      "dur": 28,
+      "x": 0.2,
+      "y": 7.3,
+      "d": 34,
+      "elev": -3
+     }
+    ],
+    "run": [
+     {
+      "id": "aTipGlow",
+      "at": "down+2",
+      "ramp": 4,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aCardA",
+      "text": "探針卡",
+      "en": "Probe card",
+      "color": "amber",
+      "at": "card",
+      "until": "card+46",
+      "cut": true
+     },
+     {
+      "part": "aChuck",
+      "text": "吸盤把晶圓頂到針尖",
+      "en": "Chuck lifts wafer to the tips",
+      "color": "blue",
+      "at": "down+2",
+      "until": "down+48",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-stamp",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像一枚針很多的印章",
+      "tag": "示意（不標針數）",
+      "t": {
+       "card": {
+        "at": "card"
+       },
+       "stamp": {
+        "at": "stamp"
+       },
+       "down": {
+        "at": "down"
+       },
+       "each": {
+        "at": "each"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.4,
+   "holdSec": 2.3,
+   "headSec": 0.3,
+   "pauseAfter": 2.3
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "接點的間距，小到比一根頭髮還窄。",
+   "tts": "接點的間距，小到比一根頭髮還窄。",
+   "subtitle": {
+    "zh": "接點的間距\n小到比一根頭髮還窄",
+    "en": "The pad spacing | is narrower than a hair."
+   },
+   "keywords": [
+    "間距",
+    "頭髮"
+   ],
+   "cues": [
+    {
+     "id": "gap",
+     "text": "間距"
+    },
+    {
+     "id": "hair",
+     "text": "頭髮"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US9194887；BioNumbers 106856；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "card",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 60.05,
+      "y": 3.2,
+      "d": 8,
+      "elev": -9
+     },
+     {
+      "at": "hair+20",
+      "dur": 24,
+      "x": 60.0,
+      "y": 4.6,
+      "d": 42,
+      "elev": 12
+     }
+    ],
+    "labels": [
+     {
+      "part": "eHairA",
+      "text": "一根頭髮（比針距寬）",
+      "en": "A hair: wider than the pitch",
+      "color": "amber",
+      "at": "hair",
+      "until": "hair+45",
+      "cut": true,
+      "xy": [
+       700,
+       990
+      ]
+     },
+     {
+      "part": "eDockA",
+      "text": "測試頭接口：訊號從這裡來",
+      "en": "Test-head interface",
+      "color": "blue",
+      "at": "s4:hair+48",
+      "until": "s4:hair+93",
+      "cut": true
+     },
+     {
+      "part": "eStiffA",
+      "text": "加固板：撐住針的總壓力",
+      "en": "Stiffener",
+      "color": "amber",
+      "at": "s4:hair+96",
+      "until": "s4:hair+141",
+      "cut": true
+     },
+     {
+      "part": "ePCBA",
+      "text": "主板（多層電路板）",
+      "en": "Main PCB",
+      "color": "blue",
+      "at": "s4:hair+144",
+      "until": "s4:hair+189",
+      "cut": true
+     },
+     {
+      "part": "eIPA",
+      "text": "彈簧針板",
+      "en": "Spring-pin interposer",
+      "color": "amber",
+      "at": "s4:hair+192",
+      "until": "s4:hair+237",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-pitch",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接點間距 vs 一根頭髮",
+      "tag": "最密處；示意，不按比例",
+      "t": {
+       "gap": {
+        "at": "gap"
+       },
+       "hair": {
+        "at": "hair"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 10.0,
+   "holdSec": 7.1,
+   "pauseAfter": 7.1
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "針有彈性，像彈簧筆，壓下去會彎。這樣每根針的壓力才平均。",
+   "tts": "針有彈性，像彈簧筆，壓下去會彎。這樣每根針的壓力才平均。",
+   "subtitle": {
+    "zh": "針有彈性\n像彈簧筆\n壓下去會彎\n這樣每根針的\n壓力才平均",
+    "en": "The needles are springy, | like a spring-loaded pen: | they bend when pressed, | so every needle's | force evens out."
+   },
+   "keywords": [
+    "彈性",
+    "彈簧筆",
+    "平均"
+   ],
+   "cues": [
+    {
+     "id": "spring",
+     "text": "彈性"
+    },
+    {
+     "id": "pen",
+     "text": "彈簧筆"
+    },
+    {
+     "id": "bend",
+     "text": "壓下去"
+    },
+    {
+     "id": "even",
+     "text": "平均"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5909121（探針受壓彎曲）；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "micro",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90.3,
+      "y": 2.6,
+      "d": 42,
+      "elev": 4
+     }
+    ],
+    "labels": [
+     {
+      "part": "nNdlA",
+      "text": "探針（有彈性）",
+      "en": "Probe: springy",
+      "color": "amber",
+      "at": "spring-6",
+      "until": "spring+40",
+      "cut": true
+     },
+     {
+      "part": "nTipNg",
+      "text": "最晚碰到的那根",
+      "en": "Last one to touch",
+      "color": "blue",
+      "at": "bend+10",
+      "until": "bend+56",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-spring",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像彈簧筆：壓下去會彎",
+      "tag": "示意（不標力量）",
+      "t": {
+       "spring": {
+        "at": "spring"
+       },
+       "pen": {
+        "at": "pen"
+       },
+       "bend": {
+        "at": "bend"
+       },
+       "even": {
+        "at": "even"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.6,
+   "holdSec": 2.5,
+   "headSec": 0.3,
+   "pauseAfter": 2.5
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "接點表面有層氧化膜，不導電。針會輕輕刮動，像用指甲刮掉生鏽處，才接通電。",
+   "tts": "接點表面有層氧化膜，不導電。針會輕輕刮動，像用指甲刮掉生鏽處，才接通電。",
+   "subtitle": {
+    "zh": "接點表面\n有層氧化膜\n不導電\n針會輕輕刮動\n像用指甲\n刮掉生鏽處\n才接通電",
+    "en": "The pad surface | has an oxide film | that doesn't conduct. | The needle scrubs gently, | like a fingernail | scraping off rust, | and then current flows."
+   },
+   "keywords": [
+    "氧化膜",
+    "刮動",
+    "指甲"
+   ],
+   "cues": [
+    {
+     "id": "ox",
+     "text": "氧化膜"
+    },
+    {
+     "id": "insul",
+     "text": "不導電"
+    },
+    {
+     "id": "scrub",
+     "text": "刮動"
+    },
+    {
+     "id": "nail",
+     "text": "指甲"
+    },
+    {
+     "id": "on",
+     "text": "接通電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5909121、6121058；示意動畫"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90.7,
+      "y": 3.1,
+      "d": 26,
+      "elev": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "nDebris",
+      "at": "scrub+8",
+      "ramp": 4,
+      "until": "scrub+44"
+     },
+     {
+      "id": "nCurrent",
+      "at": "on",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "nGlowOk",
+      "at": "on",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nOxA",
+      "text": "氧化膜（不導電）",
+      "en": "Oxide film: insulating",
+      "color": "blue",
+      "at": "ox",
+      "until": "ox+46",
+      "cut": true
+     },
+     {
+      "part": "nScrA",
+      "text": "刮開處露出金屬",
+      "en": "Scrubbed: bare metal",
+      "color": "amber",
+      "at": "scrub+38",
+      "until": "scrub+84",
+      "cut": true
+     },
+     {
+      "part": "nOnA",
+      "text": "接通",
+      "en": "Contact made",
+      "color": "blue",
+      "at": "on",
+      "until": "on+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-scrub",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "像用指甲刮掉生鏽處",
+      "tag": "示意（不標刮痕尺寸）",
+      "t": {
+       "ox": {
+        "at": "ox"
+       },
+       "insul": {
+        "at": "insul"
+       },
+       "scrub": {
+        "at": "scrub"
+       },
+       "nail": {
+        "at": "nail"
+       },
+       "on": {
+        "at": "on"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.6,
+   "holdSec": 2.1,
+   "headSec": 0.3,
+   "pauseAfter": 2.1
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "針的做法在進化，從斜插的粗針，到垂直站著，再到半導體技術做的微針。",
+   "tts": "針的做法在進化，從斜插的粗針，到垂直站著，再到半導體技術做的微針。",
+   "subtitle": {
+    "zh": "針的做法在進化\n從斜插的粗針\n到垂直站著\n再到半導體\n技術做的微針",
+    "en": "Needle designs evolved: | from slanted thick needles, | to needles standing upright, | and then to | chip-process micro needles."
+   },
+   "keywords": [
+    "斜插",
+    "垂直",
+    "微針"
+   ],
+   "cues": [
+    {
+     "id": "evo",
+     "text": "進化"
+    },
+    {
+     "id": "cant",
+     "text": "斜插"
+    },
+    {
+     "id": "vert",
+     "text": "垂直"
+    },
+    {
+     "id": "mems",
+     "text": "微針"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "數位時代 84752；專利 US9194887；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "types",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 120.0,
+      "y": 2.6,
+      "d": 43,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "kcBuzz",
+      "at": "cant+4",
+      "ramp": 4,
+      "until": "cant+24"
+     }
+    ],
+    "labels": [
+     {
+      "part": "kCantA",
+      "text": "懸臂式：斜插的粗針",
+      "en": "Cantilever",
+      "color": "amber",
+      "at": "cant-12",
+      "until": "cant+34",
+      "cut": true
+     },
+     {
+      "part": "kVertA",
+      "text": "垂直式：站著的針",
+      "en": "Vertical",
+      "color": "blue",
+      "at": "vert+2",
+      "until": "vert+48",
+      "cut": true
+     },
+     {
+      "part": "kMemsA",
+      "text": "微機電：半導體製程做的",
+      "en": "MEMS",
+      "color": "amber",
+      "at": "mems",
+      "until": "mems+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-types",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "針的做法在進化",
+      "tag": "示意",
+      "t": {
+       "evo": {
+        "at": "evo"
+       },
+       "cant": {
+        "at": "cant"
+       },
+       "vert": {
+        "at": "vert"
+       },
+       "mems": {
+        "at": "mems"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.8,
+   "holdSec": 1.7,
+   "headSec": 0.3,
+   "pauseAfter": 1.7
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "一張卡的針，可以多到好幾萬根。針越多，越難壓得一樣平。",
+   "tts": "一張卡的針，可以多到好幾萬根。針越多，越難壓得一樣平。",
+   "subtitle": {
+    "zh": "一張卡的針\n可以多到好幾萬根\n針越多\n越難壓得一樣平",
+    "en": "One card's needles | can reach tens of thousands. | The more needles, | the harder to press them evenly."
+   },
+   "keywords": [
+    "好幾萬根",
+    "針越多",
+    "一樣平"
+   ],
+   "cues": [
+    {
+     "id": "card8",
+     "text": "一張卡"
+    },
+    {
+     "id": "many",
+     "text": "好幾萬根"
+    },
+    {
+     "id": "more",
+     "text": "針越多"
+    },
+    {
+     "id": "flat",
+     "text": "一樣平"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "數位時代 84752（報導）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "card",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 60.0,
+      "y": 4.6,
+      "d": 42,
+      "elev": 12
+     },
+     {
+      "at": "s8:many+52",
+      "dur": 20,
+      "x": 60.0,
+      "y": 4.1,
+      "d": 42,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "etHiPulse",
+      "at": "s8:many+102",
+      "ramp": 4,
+      "until": "s8:many+192"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eSTA",
+      "text": "空間轉換器：把間距縮小",
+      "en": "Space transformer",
+      "color": "blue",
+      "at": "s8:card8",
+      "until": "s8:card8+45",
+      "cut": true
+     },
+     {
+      "part": "eLGA",
+      "text": "上下導板：孔位錯開",
+      "en": "Upper & lower guide plates",
+      "color": "amber",
+      "at": "s8:card8+48",
+      "until": "s8:card8+93",
+      "cut": true
+     },
+     {
+      "part": "eNdlA",
+      "text": "探針：可多到好幾萬根（報導）",
+      "en": "Probes: tens of thousands",
+      "color": "blue",
+      "at": "s8:many+56",
+      "until": "s8:many+101",
+      "cut": true
+     },
+     {
+      "part": "eTipA",
+      "text": "針尖高低不一（示意放大）",
+      "en": "Uneven tip heights",
+      "color": "amber",
+      "at": "s8:many+104",
+      "until": "s8:many+150",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-count",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "針越多，越難壓平",
+      "tag": "數位時代報導；示意",
+      "t": {
+       "card8": {
+        "at": "card8"
+       },
+       "many": {
+        "at": "many"
+       },
+       "more": {
+        "at": "more"
+       },
+       "flat": {
+        "at": "flat"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.8,
+   "holdSec": 4.9,
+   "headSec": 0.3,
+   "pauseAfter": 4.9
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 9,
+   "narration": "針的後面是測試機。像出題老師，送訊號進去，看晶片答對沒有。",
+   "tts": "針的後面是測試機。像出題老師，送訊號進去，看晶片答對沒有。",
+   "subtitle": {
+    "zh": "針的後面\n是測試機\n像出題老師\n送訊號進去\n看晶片答對沒有",
+    "en": "Behind the needles | is the tester, | like a teacher setting questions: | it sends signals in | and checks the chip's answers."
+   },
+   "keywords": [
+    "測試機",
+    "出題老師",
+    "答對"
+   ],
+   "cues": [
+    {
+     "id": "tester",
+     "text": "測試機"
+    },
+    {
+     "id": "teacher",
+     "text": "出題老師"
+    },
+    {
+     "id": "send",
+     "text": "送訊號"
+    },
+    {
+     "id": "ans",
+     "text": "答對"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5909121、6130545；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "prober",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 2.0,
+      "y": 3.2,
+      "d": 80,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "sigDown",
+      "at": "send-4",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "sigUp",
+      "at": "ans-6",
+      "ramp": 6,
+      "until": "s10:start"
+     },
+     {
+      "id": "thLed",
+      "at": "send",
+      "ramp": 4,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aTester",
+      "text": "測試機",
+      "en": "Tester",
+      "color": "amber",
+      "at": "tester",
+      "until": "tester+46",
+      "cut": true
+     },
+     {
+      "part": "aCable",
+      "text": "訊號走排線、經探針卡到針",
+      "en": "Signals via cables & card",
+      "color": "blue",
+      "at": "send",
+      "until": "send+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-tester",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "測試機像出題老師",
+      "tag": "示意",
+      "t": {
+       "tester": {
+        "at": "tester"
+       },
+       "teacher": {
+        "at": "teacher"
+       },
+       "send": {
+        "at": "send"
+       },
+       "ans": {
+        "at": "ans"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.4,
+   "holdSec": 2.1,
+   "headSec": 0.3,
+   "pauseAfter": 2.1
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "沒通過的晶片，會被標記起來。這麼精細的卡，誰做的？下一集看。留言探針卡，拿完整資料。",
+   "tts": "沒通過的晶片，會被標記起來。這麼精細的卡，誰做的？下一集看。留言探針卡，拿完整資料。",
+   "subtitle": {
+    "zh": "沒通過的晶片\n會被標記起來\n這麼精細的卡\n誰做的？\n下一集看\n留言探針卡\n拿完整資料",
+    "en": "Chips that fail | get marked. | Such a precise card: | who makes it? | Next episode. | Comment \"probe card\" | for the full notes."
+   },
+   "keywords": [
+    "沒通過",
+    "標記",
+    "探針卡"
+   ],
+   "cues": [
+    {
+     "id": "fail",
+     "text": "沒通過"
+    },
+    {
+     "id": "mark",
+     "text": "標記"
+    },
+    {
+     "id": "who",
+     "text": "誰做的"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言探針卡"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5455605、4928002；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "wafer",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 30.0,
+      "y": -1.2,
+      "d": 36,
+      "elev": 58
+     }
+    ],
+    "run": [
+     {
+      "id": "wSitePulse",
+      "at": "start",
+      "ramp": 4,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "wInkA",
+      "text": "沒通過：打上墨點",
+      "en": "Failed: ink dot",
+      "color": "amber",
+      "at": "mark",
+      "until": "mark+46",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "probe1-next",
+      "at": "voice-3",
+      "until": "s11:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "沒通過的會被標記",
+      "tag": "下一集：誰做探針卡",
+      "t": {
+       "fail": {
+        "at": "fail"
+       },
+       "mark": {
+        "at": "mark"
+       },
+       "who": {
+        "at": "who"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.2,
+   "holdSec": 1.2,
+   "headSec": 0.2
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "誰做探針卡",
+     "trail": [
+      "幾萬根針，一次蓋下去"
+     ],
+     "comment": "探針卡",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
