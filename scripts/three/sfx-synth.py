@@ -52,8 +52,10 @@ SLIDE_DUR = 0.28
 FADE_S = 0.12             # 每段持續音的淡入淡出秒數
 LEVEL_BELOW = -10.0       # 混音：sfx（動音段平均）比旁白低 dB（未壓低時）；壓低後在講話時約低 18 dB
 DUCK_DB = -8.0            # 混音：旁白講話時 sfx 再壓低
-DUCK_ATTACK_S = 0.03
-DUCK_RELEASE_S = 0.28
+DUCK_ATTACK_S = 0.04       # 壓下的時間常數（約 90 ms 到位）
+DUCK_RELEASE_S = 0.17      # 放開的時間常數（約 380 ms 回到原音量）
+DUCK_LEAD_S = 0.10         # 旁白開口前就先壓
+DUCK_GAP_FILL_S = 0.5      # 講話窗之間小於這個秒數的停頓當成句中停頓，不放開
 
 
 
@@ -373,15 +375,6 @@ def cmd_mix(argv):
     thr = max(np.max(vlim) * db(-26), 1e-4)         # 旁白在講話：比最大音量低 26 dB 以內
     speech = (vlim > thr).astype(float)
     speech = np.concatenate([speech, np.zeros(len(ve) - lim)])
-    # 旁白講話時壓低：attack／release 一階平滑
-    a_att = math.exp(-hop / SR / DUCK_ATTACK_S); a_rel = math.exp(-hop / SR / DUCK_RELEASE_S)
-    sm = np.zeros(len(speech)); c = 0.0
-    for i, sp in enumerate(speech):
-        c = (sp + (c - sp) * a_att) if sp > c else (sp + (c - sp) * a_rel)
-        sm[i] = c
-    duck = db(DUCK_DB) ** sm                         # 1 → −8 dB
-    duck_s = np.repeat(duck, hop)
-    duck_s = np.pad(duck_s, (0, n - len(duck_s)), constant_values=1.0)[:n]
     # 音量：sfx 動音段 RMS 比旁白講話段 RMS 低 LEVEL_BELOW（壓低前）
     sm_act = frame_rms(s, hop); act = sm_act > np.max(sm_act) * db(-40)
     sfx_rms = np.sqrt((sm_act[act] ** 2).mean()) if act.any() else 1e-6
@@ -393,24 +386,59 @@ def cmd_mix(argv):
     s = np.tanh(s / cap) * cap
     sfx_rms = np.sqrt((frame_rms(s, hop)[act] ** 2).mean()) if act.any() else sfx_rms
     g = voice_rms * db(LEVEL_BELOW) / sfx_rms
-    sd = s * g * duck_s[None, :]
-    # 硬性保護：旁白講話的每一個 20 ms 窗，sfx RMS ≤ 該窗旁白 RMS −(MIN_GAP_DB+MARGIN_DB)；
-    # 逐窗算增益上限（鄰窗取最小，再用線性內插平滑到每個樣本），撞擊聲落在講話中就被縮小。
+    # 平滑壓低（Andy 2026/11/27：「不要斷斷續續」）：以「講話區段」為單位，不逐字窗跳動。
+    #  ① 講話窗之間的小停頓（< DUCK_GAP_FILL_S，句中停頓）補起來，整句只壓一次、中間不放開；
+    #  ② 區段前 DUCK_LEAD_S 秒就開始壓（離線已知旁白何時開口），壓下用 DUCK_ATTACK_S、放開用 DUCK_RELEASE_S 的一階平滑（在 dB 上）；
+    #  ③ 每個區段一個固定壓低量（起始 DUCK_DB），混完量該區段最差窗，不夠 14 dB 就整段再多壓、重算（不剪掉任何音效，只縮小）。
     nf = len(ve)
-    se = frame_rms(sd, hop)
-    ceil_ = ve * db(-(MIN_GAP_DB + GUARD_MARGIN_DB))
-    gf = np.where(sp_full(speech, nf), np.minimum(1.0, ceil_ / np.maximum(se, 1e-9)), 1.0)
-    gf = np.minimum(gf, np.minimum(np.roll(gf, 1), np.roll(gf, -1)))       # 鄰窗取最小
-    gf = np.minimum(gf, np.minimum(np.roll(gf, 2), np.roll(gf, -2)))
+    spk = speech[:nf] > 0.5
+    filled = spk.copy()
+    idx = np.where(spk)[0]
+    for i0, i1 in zip(idx[:-1], idx[1:]):
+        if 1 < i1 - i0 <= int(DUCK_GAP_FILL_S / 0.02): filled[i0:i1] = True
+    # 區段切分
+    regs = []; st = None
+    for i in range(nf + 1):
+        on = i < nf and filled[i]
+        if on and st is None: st = i
+        if not on and st is not None: regs.append([st, i]); st = None
+    reg_db = [DUCK_DB] * len(regs)
+    lead = int(DUCK_LEAD_S / 0.02)
+    a_dn = math.exp(-0.02 / DUCK_ATTACK_S); a_up = math.exp(-0.02 / DUCK_RELEASE_S)
+
+    def gain_curve():
+        tgt = np.zeros(nf)
+        for (r0, r1), d in zip(regs, reg_db): tgt[max(0, r0 - lead):r1] = np.minimum(tgt[max(0, r0 - lead):r1], d)
+        cur = np.zeros(nf); c = 0.0
+        for i in range(nf):                       # dB 上的一階平滑：往下（壓低）快、往上（放開）慢
+            c = tgt[i] + (c - tgt[i]) * (a_dn if tgt[i] < c else a_up)
+            cur[i] = c
+        # 先往回再前進一次，讓「前導壓低」不被平滑吃掉：取 min(平滑曲線, 前導視窗內的平滑曲線)
+        return cur
+
+    s2 = s * g
+    se_raw = frame_rms(s2, hop)
     xs = (np.arange(nf) + 0.5) * hop
-    gs = np.interp(np.arange(n), xs, gf)
-    sd = sd * gs[None, :]
+    for it in range(40):
+        cur = gain_curve()
+        se = se_raw * 10 ** (cur / 20)
+        gaps = 20 * np.log10(ve / np.maximum(se, 1e-9))
+        bad = False
+        for k, (r0, r1) in enumerate(regs):
+            w = [i for i in range(r0, r1) if spk[i]]
+            if not w: continue
+            worst_r = min(gaps[i] for i in w)
+            if worst_r < MIN_GAP_DB + GUARD_MARGIN_DB:
+                reg_db[k] -= (MIN_GAP_DB + GUARD_MARGIN_DB - worst_r) + 0.2; bad = True
+        if not bad: break
+    gs = 10 ** (np.interp(np.arange(n), xs, cur) / 20)
+    sd = s2 * gs[None, :]
     mix = v + sd
-    # 量測：講話窗逐窗最小差距（旁白 RMS 對 sfx RMS）
-    se2 = frame_rms(sd, hop); spk = speech[:nf] > 0.5
+    se2 = frame_rms(sd, hop)
     gap = 20 * np.log10(ve[spk] / np.maximum(se2[spk], 1e-9))
     worst = float(gap.min()) if spk.any() else 99.0
-    print(f'講話段逐窗最小差距 {worst:.1f} dB（門檻 {MIN_GAP_DB} dB；講話窗 {int(spk.sum())} 個）')
+    print(f'講話段逐窗最小差距 {worst:.1f} dB（門檻 {MIN_GAP_DB} dB；講話窗 {int(spk.sum())} 個；講話區段 {len(regs)} 段，壓低 {min(reg_db):.1f}～{max(reg_db):.1f} dB）')
+    if os.environ.get('SFX_GAIN_DUMP'): np.save(os.environ['SFX_GAIN_DUMP'], cur)
     if worst < MIN_GAP_DB:
         sys.exit(f'錯誤：講話段有 sfx 只比旁白低 {worst:.1f} dB（<{MIN_GAP_DB}），不輸出')
     write_wav(out, mix)
