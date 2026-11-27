@@ -1,0 +1,2699 @@
+{
+ "slug": "tech-gas",
+ "prevEpisode": "2-14：前驅物",
+ "title": "特用氣體（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指：兩奈米鎖定表（docs/prompts/tech-旁白金手指.md）；本支尚未配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "sys",
+    "label": "特用氣體送氣系統（示意）",
+    "en": "SPECIALTY GAS DELIVERY",
+    "field": "100 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "特用氣體",
+   "怎麼送？"
+  ],
+  "sub": "特用氣體",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "上一集說，原料要先變成氣。那氣本身呢？一瓶氣，怎麼安全送進廠？",
+   "tts": "前一集說，原料要先變成氣。那氣本身呢？一瓶氣，怎麼安全送進廠？",
+   "subtitle": {
+    "zh": "上一集說\n原料要先變成氣\n那氣本身呢？\n一瓶氣\n怎麼安全送進廠？",
+    "en": "Last time: | raw materials turn into gas. | What about the gas itself? | One bottle of gas, | how does it reach the fab safely?"
+   },
+   "keywords": [
+    "氣",
+    "安全"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "上一集"
+    },
+    {
+     "id": "q",
+     "text": "那氣本身呢"
+    },
+    {
+     "id": "bot",
+     "text": "一瓶氣"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "上一集前驅物：液態原料汽化"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：前驅物先汽化",
+     "title": "氣怎麼送進廠？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 18,
+      "y": 9,
+      "d": 96,
+      "elev": 20,
+      "yaw": -0.18
+     },
+     {
+      "at": "start",
+      "dur": 140,
+      "x": 22,
+      "y": 9,
+      "d": 90,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "regOut",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-6"
+     },
+     {
+      "id": "lineGas",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-6"
+     },
+     {
+      "id": "fanBeacon",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-6"
+     },
+     {
+      "id": "ctlLed",
+      "at": "start-30",
+      "ramp": 1,
+      "until": "s2:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-hook",
+      "at": "q",
+      "until": "s2:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 2・第 15 集",
+      "tag": "示意，非實際比例",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       },
+       "bot": {
+        "at": "bot"
+       }
+      }
+     }
+    ],
+    "shift": [
+     {
+      "layer": "cabShell",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cabShell",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cabShell",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cabDoor",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "botA",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "botA",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "botA",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "botB",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "botB",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "botB",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "regA",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "regA",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "regA",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "regB",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "regB",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "regB",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purge",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purge",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purge",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctl",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctl",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctl",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlDoor",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlDoor",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlDoor",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlPcb",
+      "at": "s2:start-4",
+      "until": "s4:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlPcb",
+      "at": "s6:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlPcb",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBase",
+      "at": "s2:start-4",
+      "until": "s3:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBase",
+      "at": "s4:start-4",
+      "until": "s7:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBase",
+      "at": "s8:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBase",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purCan",
+      "at": "s2:start-4",
+      "until": "s3:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purCan",
+      "at": "s4:start-4",
+      "until": "s7:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purCan",
+      "at": "s8:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purCan",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBed",
+      "at": "s2:start-4",
+      "until": "s3:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBed",
+      "at": "s4:start-4",
+      "until": "s7:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBed",
+      "at": "s8:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purBed",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purFilt",
+      "at": "s2:start-4",
+      "until": "s3:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purFilt",
+      "at": "s4:start-4",
+      "until": "s7:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purFilt",
+      "at": "s8:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "purFilt",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbShell",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbShell",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbShell",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbDoor",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbDoor",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbDoor",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbStx",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbStx",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vmbStx",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "stk",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "stk",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "stk",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc1",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc1",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc1",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc2",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc2",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc2",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc3",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc3",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc3",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc4",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc4",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc4",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc5",
+      "at": "s2:start-4",
+      "until": "s6:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc5",
+      "at": "s7:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "vc5",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblPipe",
+      "at": "s1:start-40",
+      "until": "s8:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblPipe",
+      "at": "s9:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblPipe",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblJacket",
+      "at": "s1:start-40",
+      "until": "s8:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblJacket",
+      "at": "s9:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblJacket",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblSkin",
+      "at": "s1:start-40",
+      "until": "s8:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblSkin",
+      "at": "s9:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblSkin",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblDet",
+      "at": "s1:start-40",
+      "until": "s8:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblDet",
+      "at": "s9:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblDet",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblHole",
+      "at": "s1:start-40",
+      "until": "s8:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblHole",
+      "at": "s9:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblHole",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblValve",
+      "at": "s1:start-40",
+      "until": "s8:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblValve",
+      "at": "s9:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblValve",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblValveAct",
+      "at": "s1:start-40",
+      "until": "s8:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblValveAct",
+      "at": "s9:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "dblValveAct",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chm",
+      "at": "s1:start-40",
+      "until": "s2:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chm",
+      "at": "s3:start-4",
+      "until": "s9:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chm",
+      "at": "s10:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chm",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chShw",
+      "at": "s1:start-40",
+      "until": "s2:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chShw",
+      "at": "s3:start-4",
+      "until": "s9:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chShw",
+      "at": "s10:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chShw",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chMfc",
+      "at": "s1:start-40",
+      "until": "s2:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chMfc",
+      "at": "s3:start-4",
+      "until": "s9:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chMfc",
+      "at": "s10:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chMfc",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chWf",
+      "at": "s1:start-40",
+      "until": "s2:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chWf",
+      "at": "s3:start-4",
+      "until": "s9:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chWf",
+      "at": "s10:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "chWf",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "pmp",
+      "at": "s1:start-40",
+      "until": "s2:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "pmp",
+      "at": "s3:start-4",
+      "until": "s9:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "pmp",
+      "at": "s10:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "pmp",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abTank",
+      "at": "s1:start-40",
+      "until": "s10:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abTank",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abBurn",
+      "at": "s1:start-40",
+      "until": "s10:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abBurn",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abWash",
+      "at": "s1:start-40",
+      "until": "s10:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abWash",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abStack",
+      "at": "s1:start-40",
+      "until": "s10:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abStack",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abCab",
+      "at": "s1:start-40",
+      "until": "s10:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "abCab",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "line",
+      "at": "s2:start-4",
+      "until": "s11:start-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "line",
+      "at": "s13:start-4",
+      "until": "s13:start+400",
+      "opacity": 0,
+      "dur": 4
+     }
+    ]
+   },
+   "durationSec": 6.7,
+   "pauseAfter": 0.5
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "蝕刻、鍍膜、摻雜，每一步都要用氣體。",
+   "tts": "蝕刻、鍍膜、摻雜，每一步都要用氣體。",
+   "subtitle": {
+    "zh": "蝕刻、鍍膜\n摻雜\n每一步都要\n用氣體",
+    "en": "Etching, deposition, | doping: | every step needs | gas."
+   },
+   "keywords": [
+    "蝕刻",
+    "氣體"
+   ],
+   "cues": [
+    {
+     "id": "etch",
+     "text": "蝕刻"
+    },
+    {
+     "id": "dep",
+     "text": "鍍膜"
+    },
+    {
+     "id": "dop",
+     "text": "摻雜"
+    },
+    {
+     "id": "all",
+     "text": "每一步"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "林德、液化空氣技術說明；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "sys",
+      "at": "start-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 79,
+      "y": 3,
+      "d": 58,
+      "elev": 20,
+      "yaw": 0.08
+     }
+    ],
+    "run": [
+     {
+      "id": "shw0",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "shw1",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "shw2",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "shw3",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "shw4",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "shw5",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "wfOut0",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "wfOut1",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "wfOut2",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "wfOut3",
+      "at": "start",
+      "ramp": 6,
+      "until": "s3:start-6"
+     },
+     {
+      "id": "plasmaPulse",
+      "at": "etch",
+      "ramp": 6,
+      "until": "s3:start-6"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-use",
+      "at": "start+14",
+      "until": "s3:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "氣體在晶片製程做什麼",
+      "tag": "示意",
+      "t": {
+       "etch": {
+        "at": "etch"
+       },
+       "dep": {
+        "at": "dep"
+       },
+       "dop": {
+        "at": "dop"
+       },
+       "all": {
+        "at": "all"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.5,
+   "pauseAfter": 0.5
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "氣要多乾淨？像一座游泳池，只能混進一小匙雜質。",
+   "tts": "氣要多乾淨？像一座游泳池，只能混進一小匙雜質。",
+   "subtitle": {
+    "zh": "氣要多乾淨？\n像一座游泳池\n只能混進\n一小匙雜質",
+    "en": "How clean must gas be? | Like a swimming pool | with only one spoonful | of impurity."
+   },
+   "keywords": [
+    "乾淨",
+    "雜質"
+   ],
+   "cues": [
+    {
+     "id": "q",
+     "text": "氣要多乾淨"
+    },
+    {
+     "id": "pool",
+     "text": "一座游泳池"
+    },
+    {
+     "id": "spoon",
+     "text": "一小匙"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Entegris、Mott 技術說明；比喻為換算"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 20,
+      "y": 3,
+      "d": 58,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "impIn",
+      "at": "start",
+      "ramp": 6,
+      "until": "s4:start-4"
+     },
+     {
+      "id": "cleanOut",
+      "at": "start",
+      "ramp": 6,
+      "until": "s4:start-4"
+     },
+     {
+      "id": "impLeak",
+      "at": "pool",
+      "ramp": 6,
+      "until": "s4:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-ppb",
+      "at": "start+14",
+      "until": "s4:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "多乾淨才夠",
+      "tag": "示意（比喻為換算）",
+      "t": {
+       "q": {
+        "at": "q"
+       },
+       "pool": {
+        "at": "pool"
+       },
+       "spoon": {
+        "at": "spoon"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "氣瓶住進氣瓶櫃，門一開，瓶和閥都在。它像一個會自己關閥的瓦斯桶櫃，還有控制器看著。",
+   "tts": "氣瓶住進氣瓶櫃，門一開，瓶和閥都在。它像一個會自己關閥的瓦斯桶櫃，還有控制器看著。",
+   "subtitle": {
+    "zh": "氣瓶住進氣瓶櫃\n門一開\n瓶和閥都在\n它像一個會\n自己關閥的\n瓦斯桶櫃\n還有控制器看著",
+    "en": "The bottle sits in a gas cabinet. | Open the door: | bottle and valve inside. | It is like a gas-tank cabinet | that shuts its own valve, | with a controller | watching over it."
+   },
+   "keywords": [
+    "氣瓶櫃",
+    "關閥"
+   ],
+   "cues": [
+    {
+     "id": "cab",
+     "text": "氣瓶櫃"
+    },
+    {
+     "id": "open",
+     "text": "門一開"
+    },
+    {
+     "id": "bv",
+     "text": "瓶和閥"
+    },
+    {
+     "id": "like",
+     "text": "自己關閥"
+    },
+    {
+     "id": "gas",
+     "text": "瓦斯桶櫃"
+    },
+    {
+     "id": "ctl",
+     "text": "控制器"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 US4989160、液化空氣型錄；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 0.5,
+      "y": 10,
+      "d": 62,
+      "elev": 24,
+      "yaw": 0.1
+     },
+     {
+      "at": "open-10",
+      "dur": 34,
+      "x": 0.6,
+      "y": 10.5,
+      "d": 58,
+      "elev": 26
+     }
+    ],
+    "shift": [
+     {
+      "layer": "cabDoor",
+      "at": "open-4",
+      "until": "s5:start+40",
+      "dur": 24,
+      "dx": -10,
+      "dz": 3.4
+     },
+     {
+      "layer": "botA",
+      "at": "bv+2",
+      "until": "ctl+52",
+      "dur": 24,
+      "dy": 5.2
+     },
+     {
+      "layer": "regA",
+      "at": "like-18",
+      "until": "ctl+52",
+      "dur": 24,
+      "dz": 4.8,
+      "dy": 0.4
+     },
+     {
+      "layer": "purge",
+      "at": "gas-6",
+      "until": "ctl+52",
+      "dur": 24,
+      "dz": 4.6
+     },
+     {
+      "layer": "ctlDoor",
+      "at": "ctl-2",
+      "until": "ctl+52",
+      "dur": 22,
+      "dx": 3.4,
+      "dz": 1.6
+     }
+    ],
+    "run": [
+     {
+      "id": "purgeN2",
+      "at": "gas+10",
+      "ramp": 6,
+      "until": "ctl+52"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cab",
+      "text": "氣瓶櫃",
+      "en": "Gas cabinet",
+      "color": "amber",
+      "at": "cab-2",
+      "until": "cab+43"
+     },
+     {
+      "part": "bottle",
+      "text": "鋼瓶＋瓶閥",
+      "en": "Bottle + valve",
+      "color": "blue",
+      "at": "bv+4",
+      "until": "bv+49"
+     },
+     {
+      "part": "reg",
+      "text": "調節器",
+      "en": "Regulator",
+      "color": "amber",
+      "at": "like-16",
+      "until": "like+29"
+     },
+     {
+      "part": "purge",
+      "text": "吹淨支路",
+      "en": "Purge line",
+      "color": "blue",
+      "at": "gas-4",
+      "until": "gas+41"
+     },
+     {
+      "part": "pcb",
+      "text": "控制器電路板",
+      "en": "Controller board",
+      "color": "amber",
+      "at": "ctl+2",
+      "until": "ctl+47"
+     }
+    ]
+   },
+   "durationSec": 9.9,
+   "pauseAfter": 1.4
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "瓶裡壓力很大，調節器分兩段降壓，出口壓力不動。",
+   "tts": "瓶裡壓力很大，調節器分兩段降壓，出口壓力不動。",
+   "subtitle": {
+    "zh": "瓶裡壓力很大\n調節器\n分兩段降壓\n出口壓力不動",
+    "en": "The bottle is under high pressure; | a regulator | steps it down in two stages; | outlet pressure holds steady."
+   },
+   "keywords": [
+    "降壓",
+    "調節器"
+   ],
+   "cues": [
+    {
+     "id": "big",
+     "text": "壓力很大"
+    },
+    {
+     "id": "reg",
+     "text": "調節器"
+    },
+    {
+     "id": "two",
+     "text": "兩段"
+    },
+    {
+     "id": "out",
+     "text": "出口壓力不動"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "壓力調節器一般原理；示意"
+   ],
+   "props": {
+    "shift": [
+     {
+      "layer": "botA",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "botB",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "purge",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "ctl",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlDoor",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "ctlPcb",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "cabDoor",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.0,
+      "dur": 4
+     },
+     {
+      "layer": "cabShell",
+      "at": "start-6",
+      "until": "s6:start-1",
+      "opacity": 0.18,
+      "dur": 4
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 30,
+      "x": -1.0,
+      "y": 12.5,
+      "d": 40,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "regIn",
+      "at": "start",
+      "ramp": 6,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "regOut",
+      "at": "start",
+      "ramp": 6,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "needleHigh",
+      "at": "two-6",
+      "ramp": 10,
+      "until": "s6:start-4"
+     },
+     {
+      "id": "lowJit",
+      "at": "two-6",
+      "ramp": 10,
+      "until": "s6:start-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "reg",
+      "text": "兩段調節器",
+      "en": "Two-stage regulator",
+      "color": "amber",
+      "at": "reg-30",
+      "until": "reg+15"
+     },
+     {
+      "part": "gH",
+      "text": "高壓表（降）",
+      "en": "High side falls",
+      "color": "blue",
+      "at": "two-11",
+      "until": "two+34"
+     },
+     {
+      "part": "gL",
+      "text": "低壓表（穩）",
+      "en": "Low side holds",
+      "color": "amber",
+      "at": "out+9",
+      "until": "out+54"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-reg",
+      "at": "start+20",
+      "until": "s6:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "壓力怎麼降下來",
+      "tag": "示意（不標壓力數值）",
+      "t": {
+       "big": {
+        "at": "big"
+       },
+       "reg": {
+        "at": "reg"
+       },
+       "two": {
+        "at": "two"
+       },
+       "out": {
+        "at": "out"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "pauseAfter": 1.4
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "再到閥箱，一個氣源在這裡，分給好幾台機台。",
+   "tts": "再到閥箱，一個氣源在這裡，分給好幾台機台。",
+   "subtitle": {
+    "zh": "再到閥箱\n一個氣源在這裡\n分給好幾台機台",
+    "en": "Next, the valve box: | one gas source here | is shared among several tools."
+   },
+   "keywords": [
+    "閥箱",
+    "分給"
+   ],
+   "cues": [
+    {
+     "id": "vmb",
+     "text": "閥箱"
+    },
+    {
+     "id": "src",
+     "text": "一個氣源"
+    },
+    {
+     "id": "split",
+     "text": "分給好幾台"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "液化空氣閥箱型錄；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 40,
+      "y": 5,
+      "d": 64,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "vmbDoor",
+      "at": "vmb+14",
+      "until": "split+66",
+      "dur": 22,
+      "dx": 16,
+      "dz": 2.4
+     },
+     {
+      "layer": "stk",
+      "at": "src+22",
+      "until": "split+66",
+      "dur": 22,
+      "dz": 6
+     },
+     {
+      "layer": "vc1",
+      "at": "src+22",
+      "until": "split+66",
+      "dur": 22,
+      "dz": 6
+     },
+     {
+      "layer": "vc2",
+      "at": "src+22",
+      "until": "split+66",
+      "dur": 22,
+      "dz": 6
+     },
+     {
+      "layer": "vc3",
+      "at": "src+22",
+      "until": "split+66",
+      "dur": 22,
+      "dz": 6
+     },
+     {
+      "layer": "vc4",
+      "at": "src+22",
+      "until": "split+66",
+      "dur": 22,
+      "dz": 6
+     },
+     {
+      "layer": "vc5",
+      "at": "src+22",
+      "until": "split+66",
+      "dur": 22,
+      "dz": 6
+     },
+     {
+      "layer": "vc1",
+      "at": "split+4",
+      "until": "split+66",
+      "dur": 16,
+      "dx": -2.4
+     },
+     {
+      "layer": "vc2",
+      "at": "split+14",
+      "until": "split+66",
+      "dur": 16,
+      "dx": -1.2
+     },
+     {
+      "layer": "vc3",
+      "at": "split+24",
+      "until": "split+66",
+      "dur": 16,
+      "dx": 0.0
+     },
+     {
+      "layer": "vc4",
+      "at": "split+34",
+      "until": "split+66",
+      "dur": 16,
+      "dx": 1.2
+     },
+     {
+      "layer": "vc5",
+      "at": "split+44",
+      "until": "split+66",
+      "dur": 16,
+      "dx": 2.4
+     }
+    ],
+    "run": [
+     {
+      "id": "lineGas",
+      "at": "start",
+      "ramp": 6,
+      "until": "s7:start-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "vmb",
+      "text": "閥箱（閥門歧管箱 VMB）",
+      "en": "Valve manifold box",
+      "color": "amber",
+      "at": "vmb-2",
+      "until": "vmb+43"
+     },
+     {
+      "part": "stk",
+      "text": "一條支路",
+      "en": "One branch",
+      "color": "blue",
+      "at": "split-14",
+      "until": "split+31"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-chain",
+      "at": "start+14",
+      "until": "s7:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "氣體走過的路",
+      "tag": "示意",
+      "t": {
+       "vmb": {
+        "at": "vmb"
+       },
+       "src": {
+        "at": "src"
+       },
+       "split": {
+        "at": "split"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.9,
+   "pauseAfter": 1.4
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "進機台前，過一次純化器，像濾水器，把雜質濾掉。",
+   "tts": "進機台前，過一次純化器，像濾水器，把雜質濾掉。",
+   "subtitle": {
+    "zh": "進機台前\n過一次純化器\n像濾水器\n把雜質濾掉",
+    "en": "Before the tool, | the gas passes a purifier, | like a water filter, | that strips out the impurities."
+   },
+   "keywords": [
+    "純化器",
+    "濾"
+   ],
+   "cues": [
+    {
+     "id": "pur",
+     "text": "純化器"
+    },
+    {
+     "id": "like",
+     "text": "濾水器"
+    },
+    {
+     "id": "imp",
+     "text": "雜質"
+    },
+    {
+     "id": "clean",
+     "text": "濾掉"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Mott、Entegris 技術說明；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 21.5,
+      "y": 8,
+      "d": 66,
+      "elev": 16
+     }
+    ],
+    "shift": [
+     {
+      "layer": "purCan",
+      "at": "pur+6",
+      "until": "clean+34",
+      "dur": 26,
+      "dy": 9.5
+     }
+    ],
+    "run": [
+     {
+      "id": "impIn",
+      "at": "pur+30",
+      "ramp": 6,
+      "until": "s8:start-4"
+     },
+     {
+      "id": "cleanOut",
+      "at": "pur+30",
+      "ramp": 6,
+      "until": "s8:start-4"
+     },
+     {
+      "id": "impLeak",
+      "at": "imp",
+      "ramp": 6,
+      "until": "s8:start-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pur",
+      "text": "純化器",
+      "en": "Purifier",
+      "color": "amber",
+      "at": "pur-2",
+      "until": "pur+43"
+     },
+     {
+      "part": "bed",
+      "text": "吸附顆粒",
+      "en": "Adsorbent beads",
+      "color": "blue",
+      "at": "like+19",
+      "until": "like+64"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-pur",
+      "at": "start+14",
+      "until": "s8:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "雜質怎麼被留下",
+      "tag": "示意",
+      "t": {
+       "pur": {
+        "at": "pur"
+       },
+       "like": {
+        "at": "like"
+       },
+       "imp": {
+        "at": "imp"
+       },
+       "clean": {
+        "at": "clean"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "pauseAfter": 1.3
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "管子外面，再套一根抓漏的管，漏了就自動關閥。",
+   "tts": "管子外面，再套一根抓漏的管，漏了就自動關閥。",
+   "subtitle": {
+    "zh": "管子外面\n再套一根\n抓漏的管\n漏了就\n自動關閥",
+    "en": "Around the pipe, | another pipe | that catches leaks; | if it leaks, | the valve closes by itself."
+   },
+   "keywords": [
+    "抓漏",
+    "關閥"
+   ],
+   "cues": [
+    {
+     "id": "out",
+     "text": "管子外面"
+    },
+    {
+     "id": "pipe",
+     "text": "抓漏的管"
+    },
+    {
+     "id": "leak",
+     "text": "漏了"
+    },
+    {
+     "id": "valve",
+     "text": "自動關閥"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "液化空氣閥箱與雙套管說明；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 61,
+      "y": 5,
+      "d": 46,
+      "elev": 16
+     }
+    ],
+    "shift": [
+     {
+      "layer": "dblSkin",
+      "at": "out-2",
+      "until": "pipe+20",
+      "dur": 26,
+      "dx": 7
+     },
+     {
+      "layer": "dblSkin",
+      "at": "leak-16",
+      "until": "s9:start",
+      "opacity": 0.1,
+      "dur": 12
+     },
+     {
+      "layer": "dblHole",
+      "at": "s1:start-40",
+      "until": "leak-8",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dblValveAct",
+      "at": "valve+2",
+      "until": "s9:start",
+      "dur": 6,
+      "dy": -0.4
+     }
+    ],
+    "run": [
+     {
+      "id": "dblFlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "valve+4"
+     },
+     {
+      "id": "leakJet",
+      "at": "leak-4",
+      "ramp": 4,
+      "until": "valve+4"
+     },
+     {
+      "id": "annL",
+      "at": "leak",
+      "ramp": 6,
+      "until": "valve+30"
+     },
+     {
+      "id": "annR",
+      "at": "leak",
+      "ramp": 6,
+      "until": "valve+30"
+     },
+     {
+      "id": "detBlink",
+      "at": "leak+22",
+      "ramp": 6,
+      "until": "s9:start-4"
+     },
+     {
+      "id": "valveAct",
+      "at": "valve",
+      "ramp": 6,
+      "until": "s9:start-4"
+     },
+     {
+      "id": "dblPurge",
+      "at": "valve+22",
+      "ramp": 6,
+      "until": "s9:start-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dblOuter",
+      "text": "外套管",
+      "en": "Outer sleeve",
+      "color": "amber",
+      "at": "out",
+      "until": "out+45"
+     },
+     {
+      "part": "dblInner",
+      "text": "內管",
+      "en": "Inner pipe",
+      "color": "blue",
+      "at": "out+48",
+      "until": "pipe+40"
+     },
+     {
+      "part": "det",
+      "text": "偵測點",
+      "en": "Detector",
+      "color": "amber",
+      "at": "leak+16",
+      "until": "leak+61"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-dbl",
+      "at": "start+14",
+      "until": "s9:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "漏了怎麼辦",
+      "tag": "示意（不標靈敏度）",
+      "t": {
+       "out": {
+        "at": "out"
+       },
+       "pipe": {
+        "at": "pipe"
+       },
+       "leak": {
+        "at": "leak"
+       },
+       "valve": {
+        "at": "valve"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.2,
+   "pauseAfter": 1.5
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 9,
+   "narration": "氣進機台，從噴頭均勻灑下，再被泵抽走。",
+   "tts": "氣進機台，從噴頭均勻灑下，再被泵抽走。",
+   "subtitle": {
+    "zh": "氣進機台\n從噴頭\n均勻灑下\n再被泵抽走",
+    "en": "Gas enters the tool, | from a showerhead | falls evenly, | then a pump draws it away."
+   },
+   "keywords": [
+    "噴頭",
+    "泵"
+   ],
+   "cues": [
+    {
+     "id": "in",
+     "text": "氣進機台"
+    },
+    {
+     "id": "shw",
+     "text": "噴頭"
+    },
+    {
+     "id": "pump",
+     "text": "泵抽走"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "半導體製程腔通則；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 81,
+      "y": 3,
+      "d": 58,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "shw0",
+      "at": "in",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "shw1",
+      "at": "in",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "shw2",
+      "at": "in",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "shw3",
+      "at": "in",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "shw4",
+      "at": "in",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "shw5",
+      "at": "in",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "wfOut0",
+      "at": "shw",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "wfOut1",
+      "at": "shw",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "wfOut2",
+      "at": "shw",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "wfOut3",
+      "at": "shw",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "plasmaPulse",
+      "at": "shw",
+      "ramp": 6,
+      "until": "s10:start-4"
+     },
+     {
+      "id": "foreline",
+      "at": "pump",
+      "ramp": 6,
+      "until": "s10:start-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "shw",
+      "text": "噴頭",
+      "en": "Showerhead",
+      "color": "amber",
+      "at": "shw-2",
+      "until": "shw+43"
+     },
+     {
+      "part": "pump",
+      "text": "乾式泵",
+      "en": "Dry pump",
+      "color": "blue",
+      "at": "pump-2",
+      "until": "pump+43"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-chm",
+      "at": "start+14",
+      "until": "s10:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "氣進腔之後",
+      "tag": "示意（腔內壓力很低）",
+      "t": {
+       "in": {
+        "at": "in"
+       },
+       "shw": {
+        "at": "shw"
+       },
+       "pump": {
+        "at": "pump"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.3,
+   "pauseAfter": 1.3
+  },
+  {
+   "id": "s10",
+   "beat": "mechanism",
+   "para": 10,
+   "narration": "用過的氣，先燒掉有害的，再用水洗，像排油煙機加淨水。",
+   "tts": "用過的氣，先燒掉有害的，再用水洗，像排油煙機加淨水。",
+   "subtitle": {
+    "zh": "用過的氣\n先燒掉有害的\n再用水洗\n像排油煙機\n加淨水",
+    "en": "Used gas is | first burned to remove the harmful part, | then washed with water, | like a range hood | plus a water purifier."
+   },
+   "keywords": [
+    "燒掉",
+    "水洗"
+   ],
+   "cues": [
+    {
+     "id": "used",
+     "text": "用過的氣"
+    },
+    {
+     "id": "burn",
+     "text": "燒掉"
+    },
+    {
+     "id": "wash",
+     "text": "水洗"
+    },
+    {
+     "id": "like",
+     "text": "排油煙機"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "美國環保署含氟氣體說明；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 97.4,
+      "y": 9,
+      "d": 74,
+      "elev": 16
+     }
+    ],
+    "shift": [
+     {
+      "layer": "abBurn",
+      "at": "used+10",
+      "until": "wash+66",
+      "dur": 24,
+      "dy": 2.6
+     },
+     {
+      "layer": "abWash",
+      "at": "used+22",
+      "until": "wash+66",
+      "dur": 24,
+      "dy": 5.2
+     },
+     {
+      "layer": "abStack",
+      "at": "used+34",
+      "until": "wash+66",
+      "dur": 24,
+      "dy": 7.8
+     }
+    ],
+    "run": [
+     {
+      "id": "abBurnIn",
+      "at": "start",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abFlame",
+      "at": "burn-6",
+      "ramp": 8,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abPilot",
+      "at": "start",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abAsh",
+      "at": "burn+8",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abClean",
+      "at": "wash+4",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abDrop0",
+      "at": "wash-6",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abDrop1",
+      "at": "wash-6",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abDrop2",
+      "at": "wash-6",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abDrop3",
+      "at": "wash-6",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abDrop4",
+      "at": "wash-6",
+      "ramp": 6,
+      "until": "s11:start-4"
+     },
+     {
+      "id": "abDrop5",
+      "at": "wash-6",
+      "ramp": 6,
+      "until": "s11:start-4"
+     }
+    ],
+    "labels": [
+     {
+      "part": "abBurn",
+      "text": "燃燒室",
+      "en": "Burn chamber",
+      "color": "amber",
+      "at": "burn-2",
+      "until": "burn+43"
+     },
+     {
+      "part": "abWash",
+      "text": "水洗段",
+      "en": "Wet scrubber",
+      "color": "blue",
+      "at": "wash-4",
+      "until": "wash+41"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-burn",
+      "at": "start+14",
+      "until": "s11:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "兩種尾氣處理",
+      "tag": "示意（不標效率）",
+      "t": {
+       "used": {
+        "at": "used"
+       },
+       "burn": {
+        "at": "burn"
+       },
+       "wash": {
+        "at": "wash"
+       },
+       "like": {
+        "at": "like"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 6.8,
+   "pauseAfter": 1.4
+  },
+  {
+   "id": "s11",
+   "beat": "payoff",
+   "para": 11,
+   "narration": "全球有林德、液化空氣，台灣有台特化。",
+   "tts": "全球有林德、液化空氣，台灣有台特化。",
+   "subtitle": {
+    "zh": "全球有林德\n液化空氣\n台灣有台特化",
+    "en": "Globally, Linde | and Air Liquide; | in Taiwan, Taiwan Specialty Chemicals."
+   },
+   "keywords": [
+    "林德",
+    "台特化"
+   ],
+   "cues": [
+    {
+     "id": "lin",
+     "text": "林德"
+    },
+    {
+     "id": "air",
+     "text": "液化空氣"
+    },
+    {
+     "id": "tw",
+     "text": "台特化"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "公司官網與年報（Linde、Air Liquide、台特化）"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 48,
+      "y": 9,
+      "d": 112,
+      "elev": 20,
+      "yaw": 0.15
+     }
+    ],
+    "run": [
+     {
+      "id": "lineGas",
+      "at": "start",
+      "ramp": 6,
+      "until": "s12:start-4"
+     },
+     {
+      "id": "regOut",
+      "at": "start",
+      "ramp": 6,
+      "until": "s12:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-co",
+      "at": "lin-6",
+      "until": "s12:start-5",
+      "x": 64,
+      "y": 1040,
+      "w": 952,
+      "h": 360,
+      "avoid": false,
+      "title": "做氣體的公司",
+      "tag": "公司官網與年報",
+      "t": {
+       "lin": {
+        "at": "lin"
+       },
+       "air": {
+        "at": "air"
+       },
+       "tw": {
+        "at": "tw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 4.5,
+   "pauseAfter": 0.5
+  },
+  {
+   "id": "s12",
+   "beat": "cta",
+   "para": 12,
+   "narration": "下一集，氣體之外，換看液體。留言氣體，拿資料。",
+   "tts": "下一集，氣體之外，換看液體。留言氣體，拿資料。",
+   "subtitle": {
+    "zh": "下一集\n氣體之外\n換看液體\n留言氣體\n拿資料",
+    "en": "Next episode: | beyond gases, | we look at liquids. | Comment \"gas\" | for the notes."
+   },
+   "keywords": [
+    "液體",
+    "氣體"
+   ],
+   "cues": [
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "liq",
+     "text": "換看液體"
+    },
+    {
+     "id": "kw",
+     "text": "留言"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "start-2",
+      "dur": 1,
+      "x": 22,
+      "y": 9,
+      "d": 96,
+      "elev": 22,
+      "yaw": -0.15
+     }
+    ],
+    "run": [
+     {
+      "id": "lineGas",
+      "at": "start",
+      "ramp": 6,
+      "until": "s13:start-4"
+     },
+     {
+      "id": "regOut",
+      "at": "start",
+      "ramp": 6,
+      "until": "s13:start-4"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "gas-next",
+      "at": "start+14",
+      "until": "s13:start-5",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "接下來",
+      "tag": "下一集：濕式化學品與研磨液",
+      "t": {
+       "next": {
+        "at": "next"
+       },
+       "liq": {
+        "at": "liq"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      }
+     }
+    ]
+   },
+   "durationSec": 5.0,
+   "pauseAfter": 0.5
+  },
+  {
+   "id": "s13",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "濕式化學品與研磨液",
+     "trail": [
+      "清洗與研磨"
+     ],
+     "comment": "氣體",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

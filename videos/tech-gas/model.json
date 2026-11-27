@@ -1,0 +1,15863 @@
+{
+ "name": "示意 特用氣體送氣系統（爆炸分解）：氣瓶櫃（雙瓶、兩段調節器、吹淨支路、控制器含電路板）→ 純化器 → 閥箱 VMB（可抽出的支路）→ 雙套管（外套可抽開）→ 製程腔（噴頭孔陣、晶圓）與乾式泵 → 尾氣處理器（水槽、燃燒室、水洗段、排氣）（tech-gas）",
+ "unit": "示意（1＝10 cm）",
+ "size": {
+  "w": 40,
+  "h": 18,
+  "r": 0.6,
+  "t": 30
+ },
+ "palette": {
+  "floorC": "#C9D2DE",
+  "panel": "#F3F5F8",
+  "panel2": "#E4E8EE",
+  "cab": "#EDE9DD",
+  "cab2": "#D9D4C4",
+  "seam": "#8E9BB0",
+  "band": "#24324C",
+  "steel": "#7D8CA6",
+  "steel2": "#B4BFCF",
+  "dark": "#3E4A60",
+  "glassC": "#BFD3F2",
+  "lampY": "#F2B632",
+  "lampG": "#2FBF71",
+  "lampR": "#E5484D",
+  "screen": "#5B8DEF",
+  "rubber": "#2B2F36",
+  "gold": "#C9A24A",
+  "knurl": "#5C6678",
+  "estop": "#D93A2B",
+  "pneu": "#2F7FE0",
+  "bottleC": "#8A97AB",
+  "ringA": "#2FBF9B",
+  "ringB": "#F28C28",
+  "pcbC": "#1F6B45",
+  "chipC": "#1C1F26",
+  "traceC": "#C9A24A",
+  "connC": "#2A2D33",
+  "warnC": "#F2B632",
+  "gasC": "#3FD0B8",
+  "impC": "#FF8A2B",
+  "n2C": "#5BB6FF",
+  "wasteC": "#E8D27A",
+  "fireIn": "#4DA3FF",
+  "fireOut": "#FF8A2B",
+  "ashC": "#B8BEC9",
+  "waterC": "#4DA3FF",
+  "plasmaC": "#9B7BFF",
+  "hotC": "#E5602B",
+  "beadC": "#D9B36B",
+  "waferC": "#B4C2DA",
+  "detC": "#F4F6F9",
+  "markA": "#E8613C"
+ },
+ "materials": {
+  "floor": {
+   "kind": "std",
+   "color": "floorC",
+   "rough": 0.7,
+   "metal": 0.3,
+   "tex": "brushed",
+   "texScale": 3
+  },
+  "panel": {
+   "kind": "std",
+   "color": "panel",
+   "rough": 0.55,
+   "metal": 0.05,
+   "env": 0.25
+  },
+  "panel2": {
+   "kind": "std",
+   "color": "panel2",
+   "rough": 0.6,
+   "metal": 0.05,
+   "env": 0.2
+  },
+  "cab": {
+   "kind": "std",
+   "color": "cab",
+   "rough": 0.5,
+   "metal": 0.05,
+   "env": 0.25
+  },
+  "cab2": {
+   "kind": "std",
+   "color": "cab2",
+   "rough": 0.55,
+   "metal": 0.05,
+   "env": 0.2
+  },
+  "seam": {
+   "kind": "std",
+   "color": "seam",
+   "rough": 0.6,
+   "metal": 0.3
+  },
+  "band": {
+   "kind": "std",
+   "color": "band",
+   "rough": 0.4,
+   "metal": 0.3,
+   "env": 0.4
+  },
+  "steel": {
+   "kind": "std",
+   "color": "steel",
+   "rough": 0.35,
+   "metal": 0.85,
+   "env": 0.5
+  },
+  "steel2": {
+   "kind": "std",
+   "color": "steel2",
+   "rough": 0.25,
+   "metal": 0.9,
+   "env": 0.7,
+   "tex": "brushed",
+   "texScale": 2
+  },
+  "dark": {
+   "kind": "std",
+   "color": "dark",
+   "rough": 0.5,
+   "metal": 0.4,
+   "env": 0.3
+  },
+  "rubber": {
+   "kind": "std",
+   "color": "rubber",
+   "rough": 0.9,
+   "metal": 0
+  },
+  "gold": {
+   "kind": "std",
+   "color": "gold",
+   "rough": 0.3,
+   "metal": 0.9,
+   "env": 0.8
+  },
+  "knurl": {
+   "kind": "std",
+   "color": "knurl",
+   "rough": 0.4,
+   "metal": 0.8,
+   "env": 0.5
+  },
+  "window": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.22,
+   "env": 0.6
+  },
+  "glassDoor": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.3,
+   "env": 0.6
+  },
+  "lampY": {
+   "kind": "std",
+   "color": "lampY",
+   "emissive": "lampY",
+   "ei": 0.4,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "lampG": {
+   "kind": "std",
+   "color": "lampG",
+   "emissive": "lampG",
+   "ei": 0.35,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "lampR": {
+   "kind": "std",
+   "color": "lampR",
+   "emissive": "lampR",
+   "ei": 0.25,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "estop": {
+   "kind": "std",
+   "color": "estop",
+   "rough": 0.4,
+   "metal": 0,
+   "emissive": "estop",
+   "ei": 0.15
+  },
+  "screen": {
+   "kind": "std",
+   "color": "screen",
+   "emissive": "screen",
+   "ei": 0.5,
+   "rough": 0.3,
+   "metal": 0
+  },
+  "pneu": {
+   "kind": "std",
+   "color": "pneu",
+   "rough": 0.4,
+   "metal": 0.4,
+   "env": 0.4
+  },
+  "bottle": {
+   "kind": "std",
+   "color": "bottleC",
+   "rough": 0.35,
+   "metal": 0.8,
+   "env": 0.7
+  },
+  "ringA": {
+   "kind": "std",
+   "color": "ringA",
+   "rough": 0.5,
+   "metal": 0.2
+  },
+  "ringB": {
+   "kind": "std",
+   "color": "ringB",
+   "rough": 0.5,
+   "metal": 0.2
+  },
+  "pcb": {
+   "kind": "std",
+   "color": "pcbC",
+   "rough": 0.5,
+   "metal": 0.1
+  },
+  "chip": {
+   "kind": "std",
+   "color": "chipC",
+   "rough": 0.35,
+   "metal": 0.2,
+   "env": 0.4
+  },
+  "trace": {
+   "kind": "std",
+   "color": "traceC",
+   "rough": 0.3,
+   "metal": 0.9,
+   "env": 0.6
+  },
+  "conn": {
+   "kind": "std",
+   "color": "connC",
+   "rough": 0.5,
+   "metal": 0.2
+  },
+  "warn": {
+   "kind": "std",
+   "color": "warnC",
+   "rough": 0.5,
+   "metal": 0.1
+  },
+  "det": {
+   "kind": "std",
+   "color": "detC",
+   "rough": 0.5,
+   "metal": 0.05,
+   "env": 0.3
+  },
+  "gas": {
+   "kind": "std",
+   "color": "gasC",
+   "emissive": "gasC",
+   "ei": 1,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "imp": {
+   "kind": "std",
+   "color": "impC",
+   "emissive": "impC",
+   "ei": 1,
+   "opacity": 0.95,
+   "rough": 1,
+   "metal": 0
+  },
+  "n2": {
+   "kind": "std",
+   "color": "n2C",
+   "emissive": "n2C",
+   "ei": 1,
+   "opacity": 0.9,
+   "rough": 1,
+   "metal": 0
+  },
+  "waste": {
+   "kind": "std",
+   "color": "wasteC",
+   "emissive": "wasteC",
+   "ei": 1,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "ash": {
+   "kind": "std",
+   "color": "ashC",
+   "emissive": "ashC",
+   "ei": 0.5,
+   "opacity": 0.7,
+   "rough": 1,
+   "metal": 0
+  },
+  "fireIn": {
+   "kind": "std",
+   "color": "fireIn",
+   "emissive": "fireIn",
+   "ei": 1.2,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "fireOut": {
+   "kind": "std",
+   "color": "fireOut",
+   "emissive": "fireOut",
+   "ei": 1.2,
+   "opacity": 0.7,
+   "rough": 1,
+   "metal": 0
+  },
+  "droplet": {
+   "kind": "std",
+   "color": "waterC",
+   "emissive": "waterC",
+   "ei": 0.8,
+   "opacity": 0.9,
+   "rough": 1,
+   "metal": 0
+  },
+  "plasma": {
+   "kind": "std",
+   "color": "plasmaC",
+   "emissive": "plasmaC",
+   "ei": 1.2,
+   "opacity": 0.5,
+   "rough": 1,
+   "metal": 0
+  },
+  "water": {
+   "kind": "phys",
+   "color": "waterC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.4,
+   "env": 0.5
+  },
+  "bead": {
+   "kind": "std",
+   "color": "beadC",
+   "rough": 0.7,
+   "metal": 0.1
+  },
+  "wafer": {
+   "kind": "std",
+   "color": "waferC",
+   "rough": 0.2,
+   "metal": 0.8,
+   "env": 0.9
+  },
+  "hot": {
+   "kind": "std",
+   "color": "hotC",
+   "emissive": "hotC",
+   "ei": 0.55,
+   "rough": 0.5,
+   "metal": 0.4
+  },
+  "heat": {
+   "kind": "std",
+   "color": "hotC",
+   "emissive": "hotC",
+   "ei": 1,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "led": {
+   "kind": "std",
+   "color": "lampR",
+   "emissive": "lampR",
+   "ei": 0.9,
+   "opacity": 0.95,
+   "rough": 1,
+   "metal": 0
+  },
+  "ledG": {
+   "kind": "std",
+   "color": "lampG",
+   "emissive": "lampG",
+   "ei": 0.9,
+   "opacity": 0.95,
+   "rough": 1,
+   "metal": 0
+  }
+ },
+ "partNames": {
+  "cab": "氣瓶櫃",
+  "bottle": "鋼瓶",
+  "reg": "調節器",
+  "purge": "吹淨支路",
+  "ctl": "控制器",
+  "pur": "純化器",
+  "vmb": "閥箱",
+  "stk": "支路",
+  "dblInner": "內管",
+  "dblOuter": "外套管",
+  "det": "偵測點",
+  "chm": "製程腔",
+  "pump": "乾式泵"
+ },
+ "layers": [
+  {
+   "id": "floor",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    116,
+    2,
+    48,
+    0
+   ],
+   "bg": true
+  },
+  {
+   "id": "line",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    100,
+    6,
+    50,
+    7.5
+   ]
+  },
+  {
+   "id": "cabShell",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    10,
+    23,
+    0,
+    11.5
+   ]
+  },
+  {
+   "id": "cabDoor",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    8,
+    18,
+    -1,
+    10
+   ]
+  },
+  {
+   "id": "botA",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    15,
+    -2.2,
+    7.5
+   ]
+  },
+  {
+   "id": "botB",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    15,
+    2.2,
+    7.5
+   ]
+  },
+  {
+   "id": "regA",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    7,
+    -2.2,
+    15
+   ]
+  },
+  {
+   "id": "regB",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    7,
+    2.2,
+    15
+   ]
+  },
+  {
+   "id": "purge",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    10,
+    -4,
+    8
+   ]
+  },
+  {
+   "id": "ctl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    10,
+    3.7,
+    12.5
+   ]
+  },
+  {
+   "id": "ctlDoor",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    10,
+    3.7,
+    12.5
+   ]
+  },
+  {
+   "id": "ctlPcb",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    9,
+    3.7,
+    12.5
+   ]
+  },
+  {
+   "id": "purBase",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    3,
+    20,
+    1
+   ]
+  },
+  {
+   "id": "purCan",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    13,
+    20,
+    7
+   ]
+  },
+  {
+   "id": "purBed",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    5,
+    20,
+    4.2
+   ]
+  },
+  {
+   "id": "purFilt",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    3,
+    25,
+    7.5
+   ]
+  },
+  {
+   "id": "vmbShell",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    14,
+    17,
+    38,
+    8.5
+   ]
+  },
+  {
+   "id": "vmbDoor",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    14,
+    17,
+    38,
+    8.5
+   ]
+  },
+  {
+   "id": "vmbStx",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    14,
+    12,
+    38,
+    7.5
+   ]
+  },
+  {
+   "id": "stk",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    13,
+    1,
+    38,
+    7.5
+   ]
+  },
+  {
+   "id": "vc1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    3,
+    32.8,
+    7.5
+   ]
+  },
+  {
+   "id": "vc2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    3,
+    35.4,
+    7.5
+   ]
+  },
+  {
+   "id": "vc3",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    3,
+    38,
+    7.5
+   ]
+  },
+  {
+   "id": "vc4",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    3,
+    40.6,
+    7.5
+   ]
+  },
+  {
+   "id": "vc5",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    3,
+    43.2,
+    7.5
+   ]
+  },
+  {
+   "id": "dblPipe",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    18,
+    3,
+    58,
+    7.5
+   ]
+  },
+  {
+   "id": "dblJacket",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    14,
+    3,
+    58,
+    7.5
+   ]
+  },
+  {
+   "id": "dblSkin",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    14,
+    3,
+    58,
+    7.5
+   ]
+  },
+  {
+   "id": "dblDet",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    5,
+    62,
+    10
+   ]
+  },
+  {
+   "id": "dblHole",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    1,
+    58,
+    8
+   ]
+  },
+  {
+   "id": "dblValve",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    5,
+    49,
+    8.5
+   ]
+  },
+  {
+   "id": "dblValveAct",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    5,
+    49,
+    9.5
+   ]
+  },
+  {
+   "id": "chm",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    8,
+    11,
+    76,
+    5
+   ]
+  },
+  {
+   "id": "chShw",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5.2,
+    1,
+    76,
+    7.3
+   ]
+  },
+  {
+   "id": "chMfc",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    3,
+    74,
+    12.4
+   ]
+  },
+  {
+   "id": "chWf",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.4,
+    1,
+    76,
+    3.1
+   ]
+  },
+  {
+   "id": "pmp",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    5,
+    87,
+    2.2
+   ]
+  },
+  {
+   "id": "abTank",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    4,
+    97,
+    2.3
+   ]
+  },
+  {
+   "id": "abBurn",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    5,
+    97,
+    6.5
+   ]
+  },
+  {
+   "id": "abWash",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    5,
+    97,
+    11.5
+   ]
+  },
+  {
+   "id": "abStack",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    5,
+    97,
+    16
+   ]
+  },
+  {
+   "id": "abCab",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    5,
+    102,
+    3
+   ]
+  },
+  {
+   "id": "fl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    100,
+    20,
+    48,
+    8
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "floor",
+   "layer": "floor",
+   "shape": "slab",
+   "size": [
+    118,
+    0.5,
+    26
+   ],
+   "r": 0.2,
+   "pos": [
+    48,
+    -0.25,
+    0
+   ],
+   "mat": "floor"
+  },
+  {
+   "id": "floorSeam",
+   "layer": "floor",
+   "shape": "slab",
+   "size": [
+    118,
+    0.04,
+    0.12
+   ],
+   "pos": [
+    48,
+    0.01,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -9
+    ],
+    [
+     0,
+     0,
+     -6
+    ],
+    [
+     0,
+     0,
+     -3
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     3
+    ],
+    [
+     0,
+     0,
+     6
+    ],
+    [
+     0,
+     0,
+     9
+    ]
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "ln11",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    5.8,
+    7.5,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln12",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.4
+   ],
+   "pos": [
+    6.4,
+    7.5,
+    -0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln13",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    11.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    12.3,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln1Cl3",
+   "layer": "line",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    12.3,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "ln1E0",
+   "layer": "line",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    6.4,
+    7.5,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln1E1",
+   "layer": "line",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    6.4,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln21",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    9.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    26.4,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln2Cl1",
+   "layer": "line",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    26.4,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "ln31",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    5.6
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    47.8,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln3Cl1",
+   "layer": "line",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    47.8,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "ln41",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    68.4,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln4Cl1",
+   "layer": "line",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    68.4,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "ln42",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    4.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    70.4,
+    9.95,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln4Cl2",
+   "layer": "line",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    70.4,
+    9.95,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "ln43",
+   "layer": "line",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    71.3,
+    12.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln4E0",
+   "layer": "line",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    70.4,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ln4E1",
+   "layer": "line",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    70.4,
+    12.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stand10",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    0.3,
+    7.25,
+    0.5
+   ],
+   "pos": [
+    10,
+    3.625,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "standFoot10",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.12,
+    1.2
+   ],
+   "pos": [
+    10,
+    0.06,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "standSaddle10",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1,
+    0.1,
+    0.8
+   ],
+   "pos": [
+    10,
+    7.25,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stand26",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    0.3,
+    7.25,
+    0.5
+   ],
+   "pos": [
+    26,
+    3.625,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "standFoot26",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.12,
+    1.2
+   ],
+   "pos": [
+    26,
+    0.06,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "standSaddle26",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1,
+    0.1,
+    0.8
+   ],
+   "pos": [
+    26,
+    7.25,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stand48",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    0.3,
+    7.25,
+    0.5
+   ],
+   "pos": [
+    48,
+    3.625,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "standFoot48",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.12,
+    1.2
+   ],
+   "pos": [
+    48,
+    0.06,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "standSaddle48",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1,
+    0.1,
+    0.8
+   ],
+   "pos": [
+    48,
+    7.25,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stand69",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    0.3,
+    7.25,
+    0.5
+   ],
+   "pos": [
+    69,
+    3.625,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "standFoot69",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.12,
+    1.2
+   ],
+   "pos": [
+    69,
+    0.06,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "standSaddle69",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1,
+    0.1,
+    0.8
+   ],
+   "pos": [
+    69,
+    7.25,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "lnArrow8.3",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1,
+    0.3,
+    0.04
+   ],
+   "pos": [
+    9.55,
+    7.6,
+    0.34
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "lnArrow24.4",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1,
+    0.3,
+    0.04
+   ],
+   "pos": [
+    26.9,
+    7.6,
+    0.34
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "lnArrow47.2",
+   "layer": "line",
+   "shape": "box",
+   "size": [
+    1,
+    0.3,
+    0.04
+   ],
+   "pos": [
+    48.2,
+    7.6,
+    0.34
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "cbPlinth",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    10,
+    1.2,
+    7
+   ],
+   "pos": [
+    0,
+    0.6,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "cbVent",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.14,
+    0.05
+   ],
+   "pos": [
+    0,
+    0.6,
+    3.52
+   ],
+   "at": [
+    [
+     -3.6,
+     0,
+     0
+    ],
+    [
+     -2.7,
+     0,
+     0
+    ],
+    [
+     -1.8,
+     0,
+     0
+    ],
+    [
+     -0.8999999999999999,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.8999999999999999,
+     0,
+     0
+    ],
+    [
+     1.8000000000000003,
+     0,
+     0
+    ],
+    [
+     2.6999999999999997,
+     0,
+     0
+    ],
+    [
+     3.6,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cbFoot",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.28,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.15,
+    0
+   ],
+   "at": [
+    [
+     -4.6,
+     0,
+     -3.1
+    ],
+    [
+     4.6,
+     0,
+     -3.1
+    ],
+    [
+     -4.6,
+     0,
+     3.1
+    ],
+    [
+     4.6,
+     0,
+     3.1
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbBack",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    10,
+    18.8,
+    0.2
+   ],
+   "pos": [
+    0,
+    10.6,
+    -3.4
+   ],
+   "mat": "cab2"
+  },
+  {
+   "id": "cbL",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    0.2,
+    18.8,
+    7
+   ],
+   "pos": [
+    -4.9,
+    10.6,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "cbR",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    0.2,
+    18.8,
+    7
+   ],
+   "pos": [
+    4.9,
+    10.6,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "cbTop",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    10,
+    0.4,
+    7
+   ],
+   "pos": [
+    0,
+    19.8,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "cbFloor",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    9.6,
+    0.15,
+    6.6
+   ],
+   "pos": [
+    0,
+    1.275,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbPostL",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    0.4,
+    18.4,
+    0.2
+   ],
+   "pos": [
+    -4.8,
+    10.4,
+    3.4
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "cbPostR",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    0.4,
+    18.4,
+    0.2
+   ],
+   "pos": [
+    4.8,
+    10.4,
+    3.4
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "cbRailT",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    10,
+    0.8,
+    0.2
+   ],
+   "pos": [
+    0,
+    19.2,
+    3.4
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "cbRailB",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    10,
+    0.8,
+    0.2
+   ],
+   "pos": [
+    0,
+    1.6,
+    3.4
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "cbScrew",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.05
+   ],
+   "pos": [
+    0,
+    0,
+    3.52
+   ],
+   "at": [
+    [
+     -4.8,
+     19.2,
+     0
+    ],
+    [
+     -3.429,
+     19.2,
+     0
+    ],
+    [
+     -2.057,
+     19.2,
+     0
+    ],
+    [
+     -0.686,
+     19.2,
+     0
+    ],
+    [
+     0.686,
+     19.2,
+     0
+    ],
+    [
+     2.057,
+     19.2,
+     0
+    ],
+    [
+     3.429,
+     19.2,
+     0
+    ],
+    [
+     4.8,
+     19.2,
+     0
+    ],
+    [
+     -4.8,
+     1.6,
+     0
+    ],
+    [
+     -3.429,
+     1.6,
+     0
+    ],
+    [
+     -2.057,
+     1.6,
+     0
+    ],
+    [
+     -0.686,
+     1.6,
+     0
+    ],
+    [
+     0.686,
+     1.6,
+     0
+    ],
+    [
+     2.057,
+     1.6,
+     0
+    ],
+    [
+     3.429,
+     1.6,
+     0
+    ],
+    [
+     4.8,
+     1.6,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbDuct",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    1,
+    3.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.5,
+    21.6,
+    -1
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cbDuctFl",
+   "layer": "cabShell",
+   "shape": "tube",
+   "size": [
+    1.45,
+    0.9,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.5,
+    20.15,
+    -1
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbDuctBolt",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.5,
+    20.35,
+    -1
+   ],
+   "at": [
+    [
+     1.25,
+     0,
+     0
+    ],
+    [
+     0.884,
+     0,
+     0.884
+    ],
+    [
+     0,
+     0,
+     1.25
+    ],
+    [
+     -0.884,
+     0,
+     0.884
+    ],
+    [
+     -1.25,
+     0,
+     0
+    ],
+    [
+     -0.884,
+     0,
+     -0.884
+    ],
+    [
+     0,
+     0,
+     -1.25
+    ],
+    [
+     0.884,
+     0,
+     -0.884
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbDuctClamp",
+   "layer": "cabShell",
+   "shape": "tube",
+   "size": [
+    1.1,
+    1,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.5,
+    21.75,
+    -1
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "cbDuctClamp2",
+   "layer": "cabShell",
+   "shape": "tube",
+   "size": [
+    1.1,
+    1,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.5,
+    22.75,
+    -1
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "cbWarn",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    1.3,
+    1,
+    0.05
+   ],
+   "pos": [
+    3.85,
+    18.1,
+    3.525
+   ],
+   "mat": "warn"
+  },
+  {
+   "id": "cbWarnTxt",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.08,
+    0.02
+   ],
+   "pos": [
+    3.85,
+    18.1,
+    3.56
+   ],
+   "at": [
+    [
+     0,
+     0.22,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -0.22,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cbBeaconG",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.35,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    3.6,
+    20.3,
+    0
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "cbBeaconY",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.35,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    3.6,
+    20.9,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "cbBeaconR",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.35,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    3.6,
+    21.5,
+    0
+   ],
+   "mat": "lampR"
+  },
+  {
+   "id": "cbPlateA",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    2.8,
+    5.6,
+    0.15
+   ],
+   "pos": [
+    0,
+    15.6,
+    -3.225
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbPlateB",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    3.3,
+    5.6,
+    0.15
+   ],
+   "pos": [
+    -2.25,
+    15.6,
+    -3.225
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbPlateB2",
+   "layer": "cabShell",
+   "shape": "box",
+   "size": [
+    3.3,
+    5.6,
+    0.15
+   ],
+   "pos": [
+    2.25,
+    15.6,
+    -3.225
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cbHdr1",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    6.7
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0.4,
+    10.85,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cbHdrCl1",
+   "layer": "cabShell",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0.4,
+    10.85,
+    -1.4
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "cbHdr2",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    4.5
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    2.65,
+    7.5,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cbHdrCl2",
+   "layer": "cabShell",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    2.65,
+    7.5,
+    -1.4
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "cbHdrE0",
+   "layer": "cabShell",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    0.4,
+    7.5,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cbHdrNut",
+   "layer": "cabShell",
+   "shape": "tube",
+   "size": [
+    0.34,
+    0.2,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    4.6,
+    7.5,
+    -1.4
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "dTop",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    7.2,
+    3.2,
+    0.35
+   ],
+   "pos": [
+    -1,
+    17.6,
+    3.675
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "dBot",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    7.2,
+    2.2,
+    0.35
+   ],
+   "pos": [
+    -1,
+    2.9,
+    3.675
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "dL",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    1,
+    12,
+    0.35
+   ],
+   "pos": [
+    -4.1,
+    10,
+    3.675
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "dR",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    1,
+    12,
+    0.35
+   ],
+   "pos": [
+    2.1,
+    10,
+    3.675
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "dGlass",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    5.2,
+    12,
+    0.08
+   ],
+   "pos": [
+    -1,
+    10,
+    3.66
+   ],
+   "mat": "glassDoor"
+  },
+  {
+   "id": "dTrim0",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.2,
+    0.08
+   ],
+   "pos": [
+    -1,
+    16,
+    3.88
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dTrim1",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.2,
+    0.08
+   ],
+   "pos": [
+    -1,
+    4,
+    3.88
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dTrim2",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    0.2,
+    12,
+    0.08
+   ],
+   "pos": [
+    -3.6,
+    10,
+    3.88
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dTrim3",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    0.2,
+    12,
+    0.08
+   ],
+   "pos": [
+    1.6,
+    10,
+    3.88
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dHandle",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    0.2,
+    4,
+    0.4
+   ],
+   "pos": [
+    2,
+    10,
+    4.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dHandleStand",
+   "layer": "cabDoor",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    0.2
+   ],
+   "pos": [
+    2,
+    0,
+    3.95
+   ],
+   "at": [
+    [
+     0,
+     8.4,
+     0
+    ],
+    [
+     0,
+     11.6,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dLock",
+   "layer": "cabDoor",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.25
+   ],
+   "pos": [
+    2,
+    7.2,
+    3.975
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "dHinge",
+   "layer": "cabDoor",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    1.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.7,
+    0,
+    3.9
+   ],
+   "at": [
+    [
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     10.5,
+     0
+    ],
+    [
+     0,
+     17.5,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dLouver",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    4.8,
+    0.1,
+    0.05
+   ],
+   "pos": [
+    -1,
+    0,
+    3.87
+   ],
+   "at": [
+    [
+     0,
+     2.2,
+     0
+    ],
+    [
+     0,
+     2.5500000000000003,
+     0
+    ],
+    [
+     0,
+     2.9000000000000004,
+     0
+    ],
+    [
+     0,
+     3.25,
+     0
+    ],
+    [
+     0,
+     3.6,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "dName",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    2.6,
+    1.2,
+    0.05
+   ],
+   "pos": [
+    -1.9,
+    17.8,
+    3.875
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "dNameTxt",
+   "layer": "cabDoor",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.08,
+    0.02
+   ],
+   "pos": [
+    -1.9,
+    17.8,
+    3.91
+   ],
+   "at": [
+    [
+     0,
+     0.2,
+     0
+    ],
+    [
+     0,
+     -0.2,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bABody",
+   "layer": "botA",
+   "shape": "cyl",
+   "size": [
+    1.1,
+    9.85
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    6.275,
+    0
+   ],
+   "mat": "bottle"
+  },
+  {
+   "id": "bAShoulder",
+   "layer": "botA",
+   "shape": "sphere",
+   "size": [
+    1.1
+   ],
+   "scale": [
+    1,
+    0.55,
+    1
+   ],
+   "pos": [
+    -2.2,
+    11.2,
+    0
+   ],
+   "mat": "bottle"
+  },
+  {
+   "id": "bANeck",
+   "layer": "botA",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    11.9,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bAValve",
+   "layer": "botA",
+   "shape": "box",
+   "size": [
+    1.1,
+    1.1,
+    1
+   ],
+   "pos": [
+    -2.2,
+    12.85,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "bAWheel",
+   "layer": "botA",
+   "shape": "tube",
+   "size": [
+    0.62,
+    0.5,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    13.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "bASpoke",
+   "layer": "botA",
+   "shape": "box",
+   "size": [
+    1.1,
+    0.1,
+    0.12
+   ],
+   "pos": [
+    -2.2,
+    13.5,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bASpoke2",
+   "layer": "botA",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.1,
+    1.1
+   ],
+   "pos": [
+    -2.2,
+    13.5,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bAOut",
+   "layer": "botA",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.2,
+    12.9,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "bANut",
+   "layer": "botA",
+   "shape": "tube",
+   "size": [
+    0.36,
+    0.2,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.05,
+    12.9,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "bARelief",
+   "layer": "botA",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.5
+   ],
+   "pos": [
+    -2.2,
+    12.9,
+    0.65
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bARing",
+   "layer": "botA",
+   "shape": "tube",
+   "size": [
+    1.13,
+    1,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    10,
+    0
+   ],
+   "mat": "ringA"
+  },
+  {
+   "id": "bALabel",
+   "layer": "botA",
+   "shape": "box",
+   "size": [
+    1.2,
+    3.2,
+    0.04
+   ],
+   "pos": [
+    -2.2,
+    6.6,
+    1.08
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "bALabelTxt",
+   "layer": "botA",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.08,
+    0.02
+   ],
+   "pos": [
+    -2.2,
+    7.4,
+    1.11
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -0.35,
+     0
+    ],
+    [
+     0,
+     -0.7,
+     0
+    ],
+    [
+     0,
+     -1.8,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bABase",
+   "layer": "botA",
+   "shape": "tube",
+   "size": [
+    1.22,
+    1,
+    0.55
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    1.625,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bBBody",
+   "layer": "botB",
+   "shape": "cyl",
+   "size": [
+    1.1,
+    9.85
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    6.275,
+    0
+   ],
+   "mat": "bottle"
+  },
+  {
+   "id": "bBShoulder",
+   "layer": "botB",
+   "shape": "sphere",
+   "size": [
+    1.1
+   ],
+   "scale": [
+    1,
+    0.55,
+    1
+   ],
+   "pos": [
+    2.2,
+    11.2,
+    0
+   ],
+   "mat": "bottle"
+  },
+  {
+   "id": "bBNeck",
+   "layer": "botB",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    11.9,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bBValve",
+   "layer": "botB",
+   "shape": "box",
+   "size": [
+    1.1,
+    1.1,
+    1
+   ],
+   "pos": [
+    2.2,
+    12.85,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "bBWheel",
+   "layer": "botB",
+   "shape": "tube",
+   "size": [
+    0.62,
+    0.5,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    13.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "bBSpoke",
+   "layer": "botB",
+   "shape": "box",
+   "size": [
+    1.1,
+    0.1,
+    0.12
+   ],
+   "pos": [
+    2.2,
+    13.5,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bBSpoke2",
+   "layer": "botB",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.1,
+    1.1
+   ],
+   "pos": [
+    2.2,
+    13.5,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bBOut",
+   "layer": "botB",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    3.2,
+    12.9,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "bBNut",
+   "layer": "botB",
+   "shape": "tube",
+   "size": [
+    0.36,
+    0.2,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    3.35,
+    12.9,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "bBRelief",
+   "layer": "botB",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.5
+   ],
+   "pos": [
+    2.2,
+    12.9,
+    0.65
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bBRing",
+   "layer": "botB",
+   "shape": "tube",
+   "size": [
+    1.13,
+    1,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    10,
+    0
+   ],
+   "mat": "ringB"
+  },
+  {
+   "id": "bBLabel",
+   "layer": "botB",
+   "shape": "box",
+   "size": [
+    1.2,
+    3.2,
+    0.04
+   ],
+   "pos": [
+    2.2,
+    6.6,
+    1.08
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "bBLabelTxt",
+   "layer": "botB",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.08,
+    0.02
+   ],
+   "pos": [
+    2.2,
+    7.4,
+    1.11
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -0.35,
+     0
+    ],
+    [
+     0,
+     -0.7,
+     0
+    ],
+    [
+     0,
+     -1.8,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bBBase",
+   "layer": "botB",
+   "shape": "tube",
+   "size": [
+    1.22,
+    1,
+    0.55
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    1.625,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bAChain",
+   "layer": "botA",
+   "shape": "box",
+   "size": [
+    3.6,
+    0.18,
+    0.12
+   ],
+   "pos": [
+    -2.9,
+    6.69,
+    1.16
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bAChainLk",
+   "layer": "botA",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.26,
+    0.16
+   ],
+   "pos": [
+    0,
+    6.7,
+    1.16
+   ],
+   "at": [
+    [
+     -4.4,
+     0,
+     0
+    ],
+    [
+     -3.9000000000000004,
+     0,
+     0
+    ],
+    [
+     -3.4000000000000004,
+     0,
+     0
+    ],
+    [
+     -2.9000000000000004,
+     0,
+     0
+    ],
+    [
+     -2.4000000000000004,
+     0,
+     0
+    ],
+    [
+     -1.9000000000000004,
+     0,
+     0
+    ],
+    [
+     -1.4000000000000004,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bBChain",
+   "layer": "botB",
+   "shape": "box",
+   "size": [
+    3.6,
+    0.18,
+    0.12
+   ],
+   "pos": [
+    2.9,
+    6.69,
+    1.16
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bBChainLk",
+   "layer": "botB",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.26,
+    0.16
+   ],
+   "pos": [
+    0,
+    6.7,
+    1.16
+   ],
+   "at": [
+    [
+     1.4,
+     0,
+     0
+    ],
+    [
+     1.9,
+     0,
+     0
+    ],
+    [
+     2.4,
+     0,
+     0
+    ],
+    [
+     2.9,
+     0,
+     0
+    ],
+    [
+     3.4,
+     0,
+     0
+    ],
+    [
+     3.9,
+     0,
+     0
+    ],
+    [
+     4.4,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bCap",
+   "layer": "cabShell",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    1.65
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.175,
+    2.4
+   ],
+   "mat": "bottle"
+  },
+  {
+   "id": "bCapDome",
+   "layer": "cabShell",
+   "shape": "sphere",
+   "size": [
+    0.8
+   ],
+   "scale": [
+    1,
+    0.6,
+    1
+   ],
+   "pos": [
+    0,
+    3,
+    2.4
+   ],
+   "mat": "bottle"
+  },
+  {
+   "id": "rABody",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    14.7,
+    -1.4
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rAIn",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    12.9,
+    -1.4
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rABonnet",
+   "layer": "regA",
+   "shape": "tube",
+   "size": [
+    0.72,
+    0.5,
+    0.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.2,
+    16.65,
+    -1.4
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "rAKnob",
+   "layer": "regA",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.2,
+    0.3
+   ],
+   "pos": [
+    -2.2,
+    17.2,
+    -1.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rAOut",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.05
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.125,
+    14.2,
+    -1.4
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rAVent",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.4
+   ],
+   "pos": [
+    -2.2,
+    15.8,
+    -2.1
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rARfo",
+   "layer": "regA",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.2,
+    0.5
+   ],
+   "pos": [
+    -2.2,
+    13,
+    -1.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rAGHHs",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.85,
+    0.4
+   ],
+   "pos": [
+    -3.15,
+    14.6,
+    -0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rAGHRim",
+   "layer": "regA",
+   "shape": "tube",
+   "size": [
+    0.901,
+    0.799,
+    0.07
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    -3.15,
+    14.6,
+    -0.48
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "rAGHFace",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.782,
+    0.02
+   ],
+   "pos": [
+    -3.15,
+    14.6,
+    -0.49
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "rAGHTick",
+   "layer": "regA",
+   "shape": "sphere",
+   "size": [
+    0.04
+   ],
+   "pos": [
+    -3.15,
+    14.6,
+    -0.45
+   ],
+   "at": [
+    [
+     -0.433,
+     -0.433,
+     0
+    ],
+    [
+     -0.6,
+     -0.119,
+     0
+    ],
+    [
+     -0.565,
+     0.234,
+     0
+    ],
+    [
+     -0.34,
+     0.509,
+     0
+    ],
+    [
+     0,
+     0.612,
+     0
+    ],
+    [
+     0.34,
+     0.509,
+     0
+    ],
+    [
+     0.565,
+     0.234,
+     0
+    ],
+    [
+     0.6,
+     -0.119,
+     0
+    ],
+    [
+     0.433,
+     -0.433,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rAGHNd",
+   "layer": "regA",
+   "shape": "box",
+   "size": [
+    0.663,
+    0.07,
+    0.04
+   ],
+   "pos": [
+    -2.85,
+    14.46,
+    -0.43
+   ],
+   "rot": [
+    0,
+    0,
+    -25
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "rAGHHub",
+   "layer": "regA",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    -3.15,
+    14.6,
+    -0.42
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rAGHStem",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -3.15,
+    13.6,
+    -0.7
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rAGLHs",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.85,
+    0.4
+   ],
+   "pos": [
+    -1.25,
+    15.9,
+    -0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rAGLRim",
+   "layer": "regA",
+   "shape": "tube",
+   "size": [
+    0.901,
+    0.799,
+    0.07
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    -1.25,
+    15.9,
+    -0.48
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "rAGLFace",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.782,
+    0.02
+   ],
+   "pos": [
+    -1.25,
+    15.9,
+    -0.49
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "rAGLTick",
+   "layer": "regA",
+   "shape": "sphere",
+   "size": [
+    0.04
+   ],
+   "pos": [
+    -1.25,
+    15.9,
+    -0.45
+   ],
+   "at": [
+    [
+     -0.433,
+     -0.433,
+     0
+    ],
+    [
+     -0.6,
+     -0.119,
+     0
+    ],
+    [
+     -0.565,
+     0.234,
+     0
+    ],
+    [
+     -0.34,
+     0.509,
+     0
+    ],
+    [
+     0,
+     0.612,
+     0
+    ],
+    [
+     0.34,
+     0.509,
+     0
+    ],
+    [
+     0.565,
+     0.234,
+     0
+    ],
+    [
+     0.6,
+     -0.119,
+     0
+    ],
+    [
+     0.433,
+     -0.433,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rAGLNd",
+   "layer": "regA",
+   "shape": "box",
+   "size": [
+    0.663,
+    0.07,
+    0.04
+   ],
+   "pos": [
+    -1.164,
+    16.22,
+    -0.43
+   ],
+   "rot": [
+    0,
+    0,
+    75
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "rAGLHub",
+   "layer": "regA",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    -1.25,
+    15.9,
+    -0.42
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rAGLStem",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -1.25,
+    14.9,
+    -0.7
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rAPig1",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    1.4
+   ],
+   "pos": [
+    -0.7,
+    12.9,
+    -0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rAPig2",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    1.5
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.45,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rAPigE0",
+   "layer": "regA",
+   "shape": "sphere",
+   "size": [
+    0.208
+   ],
+   "pos": [
+    -0.7000000000000002,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rACoil0",
+   "layer": "regA",
+   "shape": "tube",
+   "size": [
+    0.46,
+    0.3,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.65,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rACoil1",
+   "layer": "regA",
+   "shape": "tube",
+   "size": [
+    0.46,
+    0.3,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -1.3,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rACoil2",
+   "layer": "regA",
+   "shape": "tube",
+   "size": [
+    0.46,
+    0.3,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -0.95,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rAHdr1",
+   "layer": "regA",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -0.1,
+    14.2,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBBody",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    14.7,
+    -1.4
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rBIn",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    12.9,
+    -1.4
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rBBonnet",
+   "layer": "regB",
+   "shape": "tube",
+   "size": [
+    0.72,
+    0.5,
+    0.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    2.2,
+    16.65,
+    -1.4
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "rBKnob",
+   "layer": "regB",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.2,
+    0.3
+   ],
+   "pos": [
+    2.2,
+    17.2,
+    -1.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rBOut",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.05
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    3.275,
+    14.2,
+    -1.4
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rBVent",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.4
+   ],
+   "pos": [
+    2.2,
+    15.8,
+    -2.1
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBRfo",
+   "layer": "regB",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.2,
+    0.5
+   ],
+   "pos": [
+    2.2,
+    13,
+    -1.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rBGHHs",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.85,
+    0.4
+   ],
+   "pos": [
+    1.25,
+    14.6,
+    -0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBGHRim",
+   "layer": "regB",
+   "shape": "tube",
+   "size": [
+    0.901,
+    0.799,
+    0.07
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    1.25,
+    14.6,
+    -0.48
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "rBGHFace",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.782,
+    0.02
+   ],
+   "pos": [
+    1.25,
+    14.6,
+    -0.49
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "rBGHTick",
+   "layer": "regB",
+   "shape": "sphere",
+   "size": [
+    0.04
+   ],
+   "pos": [
+    1.25,
+    14.6,
+    -0.45
+   ],
+   "at": [
+    [
+     -0.433,
+     -0.433,
+     0
+    ],
+    [
+     -0.6,
+     -0.119,
+     0
+    ],
+    [
+     -0.565,
+     0.234,
+     0
+    ],
+    [
+     -0.34,
+     0.509,
+     0
+    ],
+    [
+     0,
+     0.612,
+     0
+    ],
+    [
+     0.34,
+     0.509,
+     0
+    ],
+    [
+     0.565,
+     0.234,
+     0
+    ],
+    [
+     0.6,
+     -0.119,
+     0
+    ],
+    [
+     0.433,
+     -0.433,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rBGHNd",
+   "layer": "regB",
+   "shape": "box",
+   "size": [
+    0.663,
+    0.07,
+    0.04
+   ],
+   "pos": [
+    1.55,
+    14.46,
+    -0.43
+   ],
+   "rot": [
+    0,
+    0,
+    -25
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "rBGHHub",
+   "layer": "regB",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    1.25,
+    14.6,
+    -0.42
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rBGHStem",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    1.25,
+    13.6,
+    -0.7
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rBGLHs",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.85,
+    0.4
+   ],
+   "pos": [
+    3.15,
+    15.9,
+    -0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBGLRim",
+   "layer": "regB",
+   "shape": "tube",
+   "size": [
+    0.901,
+    0.799,
+    0.07
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    3.15,
+    15.9,
+    -0.48
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "rBGLFace",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.782,
+    0.02
+   ],
+   "pos": [
+    3.15,
+    15.9,
+    -0.49
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "rBGLTick",
+   "layer": "regB",
+   "shape": "sphere",
+   "size": [
+    0.04
+   ],
+   "pos": [
+    3.15,
+    15.9,
+    -0.45
+   ],
+   "at": [
+    [
+     -0.433,
+     -0.433,
+     0
+    ],
+    [
+     -0.6,
+     -0.119,
+     0
+    ],
+    [
+     -0.565,
+     0.234,
+     0
+    ],
+    [
+     -0.34,
+     0.509,
+     0
+    ],
+    [
+     0,
+     0.612,
+     0
+    ],
+    [
+     0.34,
+     0.509,
+     0
+    ],
+    [
+     0.565,
+     0.234,
+     0
+    ],
+    [
+     0.6,
+     -0.119,
+     0
+    ],
+    [
+     0.433,
+     -0.433,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rBGLNd",
+   "layer": "regB",
+   "shape": "box",
+   "size": [
+    0.663,
+    0.07,
+    0.04
+   ],
+   "pos": [
+    3.236,
+    16.22,
+    -0.43
+   ],
+   "rot": [
+    0,
+    0,
+    75
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "rBGLHub",
+   "layer": "regB",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    3.15,
+    15.9,
+    -0.42
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "rBGLStem",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    3.15,
+    14.9,
+    -0.7
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "rBPig1",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    1.4
+   ],
+   "pos": [
+    0.7,
+    12.9,
+    -0.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBPig2",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    1.5
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    1.45,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBPigE0",
+   "layer": "regB",
+   "shape": "sphere",
+   "size": [
+    0.208
+   ],
+   "pos": [
+    0.7000000000000002,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBCoil0",
+   "layer": "regB",
+   "shape": "tube",
+   "size": [
+    0.46,
+    0.3,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    1.85,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBCoil1",
+   "layer": "regB",
+   "shape": "tube",
+   "size": [
+    0.46,
+    0.3,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    1.5,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBCoil2",
+   "layer": "regB",
+   "shape": "tube",
+   "size": [
+    0.46,
+    0.3,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    1.15,
+    12.9,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "rBHdr1",
+   "layer": "regB",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    0.5,
+    14.2,
+    -1.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgN1",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -4.75,
+    11.8,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgN2",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    7.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.1,
+    7.9,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgNCl2",
+   "layer": "purge",
+   "shape": "tube",
+   "size": [
+    0.21,
+    0.14,
+    0.16
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -4.1,
+    7.9,
+    -2.2
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pgNE0",
+   "layer": "purge",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    -4.1,
+    11.8,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgNLabel",
+   "layer": "purge",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.5,
+    0.5
+   ],
+   "pos": [
+    -4.85,
+    11.8,
+    -2.2
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "pgV0",
+   "layer": "purge",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "pos": [
+    -4.1,
+    10.2,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgAct0",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.1
+   ],
+   "pos": [
+    -4.1,
+    10.2,
+    -1.25
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "pgInd0",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.4
+   ],
+   "pos": [
+    -4.1,
+    10.2,
+    -0.5
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "pgV1",
+   "layer": "purge",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "pos": [
+    -4.1,
+    7.6,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgAct1",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.1
+   ],
+   "pos": [
+    -4.1,
+    7.6,
+    -1.25
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "pgInd1",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.4
+   ],
+   "pos": [
+    -4.1,
+    7.6,
+    -0.5
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "pgV2",
+   "layer": "purge",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "pos": [
+    -4.1,
+    5.2,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgAct2",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.1
+   ],
+   "pos": [
+    -4.1,
+    5.2,
+    -1.25
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "pgInd2",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.4
+   ],
+   "pos": [
+    -4.1,
+    5.2,
+    -0.5
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "pgVen",
+   "layer": "purge",
+   "shape": "box",
+   "size": [
+    1,
+    1,
+    1
+   ],
+   "pos": [
+    -4.1,
+    3.5,
+    -2.2
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pgVenTube",
+   "layer": "purge",
+   "shape": "tube",
+   "size": [
+    0.28,
+    0.16,
+    1.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -5.15,
+    3.5,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgOut1",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    1.5
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    -3.35,
+    9,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgOut2",
+   "layer": "purge",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    -2.6,
+    10.5,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgOutE0",
+   "layer": "purge",
+   "shape": "sphere",
+   "size": [
+    0.156
+   ],
+   "pos": [
+    -2.6,
+    9,
+    -2.2
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ctlBack",
+   "layer": "ctl",
+   "shape": "box",
+   "size": [
+    1.8,
+    9,
+    0.15
+   ],
+   "pos": [
+    3.7,
+    12.5,
+    3.375
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "ctlL",
+   "layer": "ctl",
+   "shape": "box",
+   "size": [
+    0.15,
+    9,
+    1
+   ],
+   "pos": [
+    2.875,
+    12.5,
+    3.8
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "ctlR",
+   "layer": "ctl",
+   "shape": "box",
+   "size": [
+    0.15,
+    9,
+    1
+   ],
+   "pos": [
+    4.525,
+    12.5,
+    3.8
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "ctlT",
+   "layer": "ctl",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.15,
+    1
+   ],
+   "pos": [
+    3.7,
+    16.925,
+    3.8
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "ctlB",
+   "layer": "ctl",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.15,
+    1
+   ],
+   "pos": [
+    3.7,
+    8.075,
+    3.8
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "ctlGland",
+   "layer": "ctl",
+   "shape": "cyl",
+   "size": [
+    0.13,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    3.2,
+    17.15,
+    3.8
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.4,
+     0,
+     0
+    ],
+    [
+     0.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "ctlAir1",
+   "layer": "ctl",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    4.2,
+    18,
+    3.8
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "cfPlate",
+   "layer": "ctlDoor",
+   "shape": "box",
+   "size": [
+    1.8,
+    9,
+    0.15
+   ],
+   "pos": [
+    3.7,
+    12.5,
+    4.375
+   ],
+   "mat": "cab2"
+  },
+  {
+   "id": "cfScr",
+   "layer": "ctlDoor",
+   "shape": "box",
+   "size": [
+    1.4,
+    2,
+    0.05
+   ],
+   "pos": [
+    3.7,
+    14.4,
+    4.475
+   ],
+   "mat": "screen"
+  },
+  {
+   "id": "cfLed",
+   "layer": "ctlDoor",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.05
+   ],
+   "pos": [
+    3.2,
+    16.2,
+    4.47
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.45,
+     0,
+     0
+    ],
+    [
+     0.9,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "cfLedA",
+   "layer": "ctlDoor",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.05
+   ],
+   "pos": [
+    3.2,
+    12.9,
+    4.47
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.45,
+     0,
+     0
+    ],
+    [
+     0.9,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "cfKey",
+   "layer": "ctlDoor",
+   "shape": "cyl",
+   "size": [
+    0.13,
+    0.08
+   ],
+   "pos": [
+    3.2,
+    11.4,
+    4.48
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -0.533,
+     0
+    ],
+    [
+     0,
+     -1.067,
+     0
+    ],
+    [
+     0,
+     -1.6,
+     0
+    ],
+    [
+     0.45,
+     0,
+     0
+    ],
+    [
+     0.45,
+     -0.533,
+     0
+    ],
+    [
+     0.45,
+     -1.067,
+     0
+    ],
+    [
+     0.45,
+     -1.6,
+     0
+    ],
+    [
+     0.9,
+     0,
+     0
+    ],
+    [
+     0.9,
+     -0.533,
+     0
+    ],
+    [
+     0.9,
+     -1.067,
+     0
+    ],
+    [
+     0.9,
+     -1.6,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cfEstop",
+   "layer": "ctlDoor",
+   "shape": "cyl",
+   "size": [
+    0.4,
+    0.35
+   ],
+   "pos": [
+    3.7,
+    9.2,
+    4.625
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "cfEstopRing",
+   "layer": "ctlDoor",
+   "shape": "tube",
+   "size": [
+    0.55,
+    0.4,
+    0.06
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    3.7,
+    9.2,
+    4.47
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "cfBolt",
+   "layer": "ctlDoor",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.05
+   ],
+   "pos": [
+    0,
+    0,
+    4.47
+   ],
+   "at": [
+    [
+     2.95,
+     8.15,
+     0
+    ],
+    [
+     4.45,
+     8.15,
+     0
+    ],
+    [
+     2.95,
+     16.85,
+     0
+    ],
+    [
+     4.45,
+     16.85,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pcbBoard",
+   "layer": "ctlPcb",
+   "shape": "slab",
+   "size": [
+    1.5,
+    7.5,
+    0.1
+   ],
+   "r": 0.03,
+   "pos": [
+    3.7,
+    12.5,
+    3.52
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "pcbChip",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.9,
+    0.1
+   ],
+   "pos": [
+    3.65,
+    14.85,
+    3.62
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "pcbChipPin",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.02,
+    0.02
+   ],
+   "pos": [
+    3.65,
+    14.85,
+    3.6
+   ],
+   "at": [
+    [
+     0,
+     0.5,
+     0
+    ],
+    [
+     0,
+     -0.5,
+     0
+    ],
+    [
+     0,
+     0.35,
+     0
+    ],
+    [
+     0,
+     -0.35,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcbCap",
+   "layer": "ctlPcb",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.28
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    3.2,
+    0,
+    3.64
+   ],
+   "at": [
+    [
+     0,
+     13.3,
+     0
+    ],
+    [
+     0.5,
+     13.3,
+     0
+    ],
+    [
+     1,
+     13.3,
+     0
+    ],
+    [
+     0,
+     12.9,
+     0
+    ],
+    [
+     0.5,
+     12.9,
+     0
+    ]
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "pcbRelay",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.9,
+    0.43
+   ],
+   "pos": [
+    3.7,
+    11.65,
+    3.785
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "pcbRelay2",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.9,
+    0.43
+   ],
+   "pos": [
+    3.7,
+    10.45,
+    3.785
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "pcbTerm",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.7,
+    0.33
+   ],
+   "pos": [
+    3.7,
+    8.95,
+    3.735
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "pcbTermScr",
+   "layer": "ctlPcb",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.04
+   ],
+   "pos": [
+    3.3,
+    8.95,
+    3.9
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.4,
+     0,
+     0
+    ],
+    [
+     0.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pcbTrace",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    0.04,
+    1.5,
+    0.02
+   ],
+   "pos": [
+    3.7,
+    12.5,
+    3.58
+   ],
+   "at": [
+    [
+     -0.5,
+     1.3,
+     0
+    ],
+    [
+     -0.25,
+     1.6,
+     0
+    ],
+    [
+     0.25,
+     1.3,
+     0
+    ],
+    [
+     0.5,
+     1.6,
+     0
+    ],
+    [
+     0,
+     -1,
+     0
+    ]
+   ],
+   "mat": "trace"
+  },
+  {
+   "id": "pcbConn",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    1,
+    0.5,
+    0.28
+   ],
+   "pos": [
+    3.7,
+    16.25,
+    3.71
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcbWire",
+   "layer": "ctlPcb",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.8,
+    0.06
+   ],
+   "pos": [
+    3.4,
+    16.9,
+    3.7
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.3,
+     0,
+     0
+    ],
+    [
+     0.6,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampR"
+  },
+  {
+   "id": "pbPlate",
+   "layer": "purBase",
+   "shape": "box",
+   "size": [
+    6,
+    0.6,
+    5
+   ],
+   "pos": [
+    20,
+    0.3,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "pbBolt",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    0.7,
+    0
+   ],
+   "at": [
+    [
+     -2.6,
+     0,
+     -2.1
+    ],
+    [
+     2.6,
+     0,
+     -2.1
+    ],
+    [
+     -2.6,
+     0,
+     2.1
+    ],
+    [
+     2.6,
+     0,
+     2.1
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pbSkid",
+   "layer": "purBase",
+   "shape": "box",
+   "size": [
+    6.8,
+    0.15,
+    5.8
+   ],
+   "pos": [
+    20,
+    0.075,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pbLeg",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.25,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    0.3,
+    0
+   ],
+   "at": [
+    [
+     -2.9,
+     0,
+     -2.5
+    ],
+    [
+     2.9,
+     0,
+     -2.5
+    ],
+    [
+     -2.9,
+     0,
+     2.5
+    ],
+    [
+     2.9,
+     0,
+     2.5
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pcLower",
+   "layer": "purCan",
+   "shape": "cyl",
+   "size": [
+    1.8,
+    6.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    3.8,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcUpper",
+   "layer": "purCan",
+   "shape": "cyl",
+   "size": [
+    1.8,
+    4.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    9.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcDomeT",
+   "layer": "purCan",
+   "shape": "sphere",
+   "size": [
+    1.8
+   ],
+   "scale": [
+    1,
+    0.45,
+    1
+   ],
+   "pos": [
+    20,
+    11.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcDomeB",
+   "layer": "purCan",
+   "shape": "sphere",
+   "size": [
+    1.8
+   ],
+   "scale": [
+    1,
+    0.35,
+    1
+   ],
+   "pos": [
+    20,
+    0.6,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcFlange",
+   "layer": "purCan",
+   "shape": "tube",
+   "size": [
+    2.3,
+    1.6,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    7.15,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pcFlBolt",
+   "layer": "purCan",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.45
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    7.15,
+    0
+   ],
+   "at": [
+    [
+     2,
+     0,
+     0
+    ],
+    [
+     1.732,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     1.732
+    ],
+    [
+     0,
+     0,
+     2
+    ],
+    [
+     -1,
+     0,
+     1.732
+    ],
+    [
+     -1.732,
+     0,
+     1
+    ],
+    [
+     -2,
+     0,
+     0
+    ],
+    [
+     -1.732,
+     0,
+     -1
+    ],
+    [
+     -1,
+     0,
+     -1.732
+    ],
+    [
+     0,
+     0,
+     -2
+    ],
+    [
+     1,
+     0,
+     -1.732
+    ],
+    [
+     1.732,
+     0,
+     -1
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pcHeater",
+   "layer": "purCan",
+   "shape": "tube",
+   "size": [
+    1.88,
+    1.8,
+    3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    4,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pcHeatStrap",
+   "layer": "purCan",
+   "shape": "tube",
+   "size": [
+    1.92,
+    1.8,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    4,
+    0
+   ],
+   "at": [
+    [
+     0,
+     -1.2,
+     0
+    ],
+    [
+     0,
+     1.2,
+     0
+    ]
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pcHeatCable1",
+   "layer": "purCan",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.7
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    22.25,
+    5,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcHeatCable2",
+   "layer": "purCan",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    22.6,
+    3.5,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcHeatCableE0",
+   "layer": "purCan",
+   "shape": "sphere",
+   "size": [
+    0.091
+   ],
+   "pos": [
+    22.6,
+    5,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "pcPlate",
+   "layer": "purCan",
+   "shape": "box",
+   "size": [
+    1.2,
+    1.2,
+    0.06
+   ],
+   "pos": [
+    20,
+    9.2,
+    1.81
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "pcPlateTxt",
+   "layer": "purCan",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.07,
+    0.02
+   ],
+   "pos": [
+    20,
+    9.2,
+    1.85
+   ],
+   "at": [
+    [
+     0,
+     0.3,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     -0.3,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pcIn",
+   "layer": "purCan",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    18,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcInNut",
+   "layer": "purCan",
+   "shape": "tube",
+   "size": [
+    0.36,
+    0.2,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    18.05,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pcOut",
+   "layer": "purCan",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    22,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcOutNut",
+   "layer": "purCan",
+   "shape": "tube",
+   "size": [
+    0.36,
+    0.2,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    21.95,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pgInHs",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    0.4
+   ],
+   "pos": [
+    18.5,
+    9.8,
+    1.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgInRim",
+   "layer": "purBase",
+   "shape": "tube",
+   "size": [
+    0.636,
+    0.564,
+    0.07
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    18.5,
+    9.8,
+    1.92
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pgInFace",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.552,
+    0.02
+   ],
+   "pos": [
+    18.5,
+    9.8,
+    1.91
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "pgInTick",
+   "layer": "purBase",
+   "shape": "sphere",
+   "size": [
+    0.04
+   ],
+   "pos": [
+    18.5,
+    9.8,
+    1.95
+   ],
+   "at": [
+    [
+     -0.305,
+     -0.305,
+     0
+    ],
+    [
+     -0.424,
+     -0.084,
+     0
+    ],
+    [
+     -0.399,
+     0.165,
+     0
+    ],
+    [
+     -0.24,
+     0.359,
+     0
+    ],
+    [
+     0,
+     0.432,
+     0
+    ],
+    [
+     0.24,
+     0.359,
+     0
+    ],
+    [
+     0.399,
+     0.165,
+     0
+    ],
+    [
+     0.424,
+     -0.084,
+     0
+    ],
+    [
+     0.305,
+     -0.305,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pgInNd",
+   "layer": "purBase",
+   "shape": "box",
+   "size": [
+    0.46799999999999997,
+    0.07,
+    0.04
+   ],
+   "pos": [
+    18.72,
+    9.88,
+    1.97
+   ],
+   "rot": [
+    0,
+    0,
+    20
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "pgInHub",
+   "layer": "purBase",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    18.5,
+    9.8,
+    1.98
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pgInStem",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    18.5,
+    9.05,
+    1.7
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "pgOutHs",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    0.4
+   ],
+   "pos": [
+    21.5,
+    9.8,
+    1.7
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pgOutRim",
+   "layer": "purBase",
+   "shape": "tube",
+   "size": [
+    0.636,
+    0.564,
+    0.07
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "pos": [
+    21.5,
+    9.8,
+    1.92
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pgOutFace",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.552,
+    0.02
+   ],
+   "pos": [
+    21.5,
+    9.8,
+    1.91
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "pgOutTick",
+   "layer": "purBase",
+   "shape": "sphere",
+   "size": [
+    0.04
+   ],
+   "pos": [
+    21.5,
+    9.8,
+    1.95
+   ],
+   "at": [
+    [
+     -0.305,
+     -0.305,
+     0
+    ],
+    [
+     -0.424,
+     -0.084,
+     0
+    ],
+    [
+     -0.399,
+     0.165,
+     0
+    ],
+    [
+     -0.24,
+     0.359,
+     0
+    ],
+    [
+     0,
+     0.432,
+     0
+    ],
+    [
+     0.24,
+     0.359,
+     0
+    ],
+    [
+     0.399,
+     0.165,
+     0
+    ],
+    [
+     0.424,
+     -0.084,
+     0
+    ],
+    [
+     0.305,
+     -0.305,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pgOutNd",
+   "layer": "purBase",
+   "shape": "box",
+   "size": [
+    0.46799999999999997,
+    0.07,
+    0.04
+   ],
+   "pos": [
+    21.72,
+    9.88,
+    1.97
+   ],
+   "rot": [
+    0,
+    0,
+    20
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "pgOutHub",
+   "layer": "purBase",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    21.5,
+    9.8,
+    1.98
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pgOutStem",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.16,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    21.5,
+    9.05,
+    1.7
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "pcGaugeLn1",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.6
+   ],
+   "pos": [
+    18.5,
+    9.1,
+    0.8
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcGaugeLn2",
+   "layer": "purBase",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    18.5,
+    8.3,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcGaugeLnE0",
+   "layer": "purBase",
+   "shape": "sphere",
+   "size": [
+    0.091
+   ],
+   "pos": [
+    18.5,
+    9.1,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pcBead",
+   "layer": "purBed",
+   "shape": "sphere",
+   "size": [
+    0.17
+   ],
+   "pos": [
+    20,
+    4,
+    0
+   ],
+   "at": [
+    [
+     0,
+     -2.5,
+     0
+    ],
+    [
+     0.526,
+     -2.5,
+     0.161
+    ],
+    [
+     0,
+     -2.35,
+     0.55
+    ],
+    [
+     -0.526,
+     -2.5,
+     -0.161
+    ],
+    [
+     0,
+     -2.35,
+     -0.55
+    ],
+    [
+     0.956,
+     -2.5,
+     0.292
+    ],
+    [
+     0.623,
+     -2.35,
+     0.782
+    ],
+    [
+     -0.498,
+     -2.5,
+     0.867
+    ],
+    [
+     -0.901,
+     -2.35,
+     0.434
+    ],
+    [
+     -0.735,
+     -2.5,
+     -0.678
+    ],
+    [
+     -0.223,
+     -2.35,
+     -0.975
+    ],
+    [
+     0.825,
+     -2.5,
+     -0.565
+    ],
+    [
+     1.35,
+     -2.5,
+     0
+    ],
+    [
+     0.735,
+     -2.35,
+     1.132
+    ],
+    [
+     0.234,
+     -2.5,
+     1.329
+    ],
+    [
+     -0.987,
+     -2.35,
+     0.921
+    ],
+    [
+     -1.269,
+     -2.5,
+     0.462
+    ],
+    [
+     -1.078,
+     -2.35,
+     -0.812
+    ],
+    [
+     -0.675,
+     -2.5,
+     -1.169
+    ],
+    [
+     0.613,
+     -2.35,
+     -1.203
+    ],
+    [
+     1.034,
+     -2.5,
+     -0.868
+    ],
+    [
+     0,
+     -2,
+     0
+    ],
+    [
+     0.55,
+     -2,
+     0
+    ],
+    [
+     -0.161,
+     -1.85,
+     0.526
+    ],
+    [
+     -0.55,
+     -2,
+     0
+    ],
+    [
+     0.161,
+     -1.85,
+     -0.526
+    ],
+    [
+     1,
+     -2,
+     0
+    ],
+    [
+     0.368,
+     -1.85,
+     0.93
+    ],
+    [
+     -0.223,
+     -2,
+     0.975
+    ],
+    [
+     -0.988,
+     -1.85,
+     0.152
+    ],
+    [
+     -0.901,
+     -2,
+     -0.434
+    ],
+    [
+     0.072,
+     -1.85,
+     -0.997
+    ],
+    [
+     0.623,
+     -2,
+     -0.782
+    ],
+    [
+     1.291,
+     -2,
+     0.395
+    ],
+    [
+     1.034,
+     -1.85,
+     0.868
+    ],
+    [
+     -0.165,
+     -2,
+     1.34
+    ],
+    [
+     -0.675,
+     -1.85,
+     1.169
+    ],
+    [
+     -1.348,
+     -2,
+     0.071
+    ],
+    [
+     -1.269,
+     -1.85,
+     -0.462
+    ],
+    [
+     -0.304,
+     -2,
+     -1.315
+    ],
+    [
+     0.234,
+     -1.85,
+     -1.329
+    ],
+    [
+     1.243,
+     -2,
+     -0.527
+    ],
+    [
+     0,
+     -1.5,
+     0
+    ],
+    [
+     0.526,
+     -1.5,
+     0.161
+    ],
+    [
+     0,
+     -1.35,
+     0.55
+    ],
+    [
+     -0.526,
+     -1.5,
+     -0.161
+    ],
+    [
+     0,
+     -1.35,
+     -0.55
+    ],
+    [
+     0.956,
+     -1.5,
+     0.292
+    ],
+    [
+     0.623,
+     -1.35,
+     0.782
+    ],
+    [
+     -0.498,
+     -1.5,
+     0.867
+    ],
+    [
+     -0.901,
+     -1.35,
+     0.434
+    ],
+    [
+     -0.735,
+     -1.5,
+     -0.678
+    ],
+    [
+     -0.223,
+     -1.35,
+     -0.975
+    ],
+    [
+     0.825,
+     -1.5,
+     -0.565
+    ],
+    [
+     1.35,
+     -1.5,
+     0
+    ],
+    [
+     0.735,
+     -1.35,
+     1.132
+    ],
+    [
+     0.234,
+     -1.5,
+     1.329
+    ],
+    [
+     -0.987,
+     -1.35,
+     0.921
+    ],
+    [
+     -1.269,
+     -1.5,
+     0.462
+    ],
+    [
+     -1.078,
+     -1.35,
+     -0.812
+    ],
+    [
+     -0.675,
+     -1.5,
+     -1.169
+    ],
+    [
+     0.613,
+     -1.35,
+     -1.203
+    ],
+    [
+     1.034,
+     -1.5,
+     -0.868
+    ],
+    [
+     0,
+     -1,
+     0
+    ],
+    [
+     0.55,
+     -1,
+     0
+    ],
+    [
+     -0.161,
+     -0.85,
+     0.526
+    ],
+    [
+     -0.55,
+     -1,
+     0
+    ],
+    [
+     0.161,
+     -0.85,
+     -0.526
+    ],
+    [
+     1,
+     -1,
+     0
+    ],
+    [
+     0.368,
+     -0.85,
+     0.93
+    ],
+    [
+     -0.223,
+     -1,
+     0.975
+    ],
+    [
+     -0.988,
+     -0.85,
+     0.152
+    ],
+    [
+     -0.901,
+     -1,
+     -0.434
+    ],
+    [
+     0.072,
+     -0.85,
+     -0.997
+    ],
+    [
+     0.623,
+     -1,
+     -0.782
+    ],
+    [
+     1.291,
+     -1,
+     0.395
+    ],
+    [
+     1.034,
+     -0.85,
+     0.868
+    ],
+    [
+     -0.165,
+     -1,
+     1.34
+    ],
+    [
+     -0.675,
+     -0.85,
+     1.169
+    ],
+    [
+     -1.348,
+     -1,
+     0.071
+    ],
+    [
+     -1.269,
+     -0.85,
+     -0.462
+    ],
+    [
+     -0.304,
+     -1,
+     -1.315
+    ],
+    [
+     0.234,
+     -0.85,
+     -1.329
+    ],
+    [
+     1.243,
+     -1,
+     -0.527
+    ],
+    [
+     0,
+     -0.5,
+     0
+    ],
+    [
+     0.526,
+     -0.5,
+     0.161
+    ],
+    [
+     0,
+     -0.35,
+     0.55
+    ],
+    [
+     -0.526,
+     -0.5,
+     -0.161
+    ],
+    [
+     0,
+     -0.35,
+     -0.55
+    ],
+    [
+     0.956,
+     -0.5,
+     0.292
+    ],
+    [
+     0.623,
+     -0.35,
+     0.782
+    ],
+    [
+     -0.498,
+     -0.5,
+     0.867
+    ],
+    [
+     -0.901,
+     -0.35,
+     0.434
+    ],
+    [
+     -0.735,
+     -0.5,
+     -0.678
+    ],
+    [
+     -0.223,
+     -0.35,
+     -0.975
+    ],
+    [
+     0.825,
+     -0.5,
+     -0.565
+    ],
+    [
+     1.35,
+     -0.5,
+     0
+    ],
+    [
+     0.735,
+     -0.35,
+     1.132
+    ],
+    [
+     0.234,
+     -0.5,
+     1.329
+    ],
+    [
+     -0.987,
+     -0.35,
+     0.921
+    ],
+    [
+     -1.269,
+     -0.5,
+     0.462
+    ],
+    [
+     -1.078,
+     -0.35,
+     -0.812
+    ],
+    [
+     -0.675,
+     -0.5,
+     -1.169
+    ],
+    [
+     0.613,
+     -0.35,
+     -1.203
+    ],
+    [
+     1.034,
+     -0.5,
+     -0.868
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.55,
+     0,
+     0
+    ],
+    [
+     -0.161,
+     0.15,
+     0.526
+    ],
+    [
+     -0.55,
+     0,
+     0
+    ],
+    [
+     0.161,
+     0.15,
+     -0.526
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0.368,
+     0.15,
+     0.93
+    ],
+    [
+     -0.223,
+     0,
+     0.975
+    ],
+    [
+     -0.988,
+     0.15,
+     0.152
+    ],
+    [
+     -0.901,
+     0,
+     -0.434
+    ],
+    [
+     0.072,
+     0.15,
+     -0.997
+    ],
+    [
+     0.623,
+     0,
+     -0.782
+    ],
+    [
+     1.291,
+     0,
+     0.395
+    ],
+    [
+     1.034,
+     0.15,
+     0.868
+    ],
+    [
+     -0.165,
+     0,
+     1.34
+    ],
+    [
+     -0.675,
+     0.15,
+     1.169
+    ],
+    [
+     -1.348,
+     0,
+     0.071
+    ],
+    [
+     -1.269,
+     0.15,
+     -0.462
+    ],
+    [
+     -0.304,
+     0,
+     -1.315
+    ],
+    [
+     0.234,
+     0.15,
+     -1.329
+    ],
+    [
+     1.243,
+     0,
+     -0.527
+    ],
+    [
+     0,
+     0.5,
+     0
+    ],
+    [
+     0.526,
+     0.5,
+     0.161
+    ],
+    [
+     0,
+     0.65,
+     0.55
+    ],
+    [
+     -0.526,
+     0.5,
+     -0.161
+    ],
+    [
+     0,
+     0.65,
+     -0.55
+    ],
+    [
+     0.956,
+     0.5,
+     0.292
+    ],
+    [
+     0.623,
+     0.65,
+     0.782
+    ],
+    [
+     -0.498,
+     0.5,
+     0.867
+    ],
+    [
+     -0.901,
+     0.65,
+     0.434
+    ],
+    [
+     -0.735,
+     0.5,
+     -0.678
+    ],
+    [
+     -0.223,
+     0.65,
+     -0.975
+    ],
+    [
+     0.825,
+     0.5,
+     -0.565
+    ],
+    [
+     1.35,
+     0.5,
+     0
+    ],
+    [
+     0.735,
+     0.65,
+     1.132
+    ],
+    [
+     0.234,
+     0.5,
+     1.329
+    ],
+    [
+     -0.987,
+     0.65,
+     0.921
+    ],
+    [
+     -1.269,
+     0.5,
+     0.462
+    ],
+    [
+     -1.078,
+     0.65,
+     -0.812
+    ],
+    [
+     -0.675,
+     0.5,
+     -1.169
+    ],
+    [
+     0.613,
+     0.65,
+     -1.203
+    ],
+    [
+     1.034,
+     0.5,
+     -0.868
+    ],
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0.55,
+     1,
+     0
+    ],
+    [
+     -0.161,
+     1.15,
+     0.526
+    ],
+    [
+     -0.55,
+     1,
+     0
+    ],
+    [
+     0.161,
+     1.15,
+     -0.526
+    ],
+    [
+     1,
+     1,
+     0
+    ],
+    [
+     0.368,
+     1.15,
+     0.93
+    ],
+    [
+     -0.223,
+     1,
+     0.975
+    ],
+    [
+     -0.988,
+     1.15,
+     0.152
+    ],
+    [
+     -0.901,
+     1,
+     -0.434
+    ],
+    [
+     0.072,
+     1.15,
+     -0.997
+    ],
+    [
+     0.623,
+     1,
+     -0.782
+    ],
+    [
+     1.291,
+     1,
+     0.395
+    ],
+    [
+     1.034,
+     1.15,
+     0.868
+    ],
+    [
+     -0.165,
+     1,
+     1.34
+    ],
+    [
+     -0.675,
+     1.15,
+     1.169
+    ],
+    [
+     -1.348,
+     1,
+     0.071
+    ],
+    [
+     -1.269,
+     1.15,
+     -0.462
+    ],
+    [
+     -0.304,
+     1,
+     -1.315
+    ],
+    [
+     0.234,
+     1.15,
+     -1.329
+    ],
+    [
+     1.243,
+     1,
+     -0.527
+    ],
+    [
+     0,
+     1.5,
+     0
+    ],
+    [
+     0.526,
+     1.5,
+     0.161
+    ],
+    [
+     0,
+     1.65,
+     0.55
+    ],
+    [
+     -0.526,
+     1.5,
+     -0.161
+    ],
+    [
+     0,
+     1.65,
+     -0.55
+    ],
+    [
+     0.956,
+     1.5,
+     0.292
+    ],
+    [
+     0.623,
+     1.65,
+     0.782
+    ],
+    [
+     -0.498,
+     1.5,
+     0.867
+    ],
+    [
+     -0.901,
+     1.65,
+     0.434
+    ],
+    [
+     -0.735,
+     1.5,
+     -0.678
+    ],
+    [
+     -0.223,
+     1.65,
+     -0.975
+    ],
+    [
+     0.825,
+     1.5,
+     -0.565
+    ],
+    [
+     1.35,
+     1.5,
+     0
+    ],
+    [
+     0.735,
+     1.65,
+     1.132
+    ],
+    [
+     0.234,
+     1.5,
+     1.329
+    ],
+    [
+     -0.987,
+     1.65,
+     0.921
+    ],
+    [
+     -1.269,
+     1.5,
+     0.462
+    ],
+    [
+     -1.078,
+     1.65,
+     -0.812
+    ],
+    [
+     -0.675,
+     1.5,
+     -1.169
+    ],
+    [
+     0.613,
+     1.65,
+     -1.203
+    ],
+    [
+     1.034,
+     1.5,
+     -0.868
+    ],
+    [
+     0,
+     2,
+     0
+    ],
+    [
+     0.55,
+     2,
+     0
+    ],
+    [
+     -0.161,
+     2.15,
+     0.526
+    ],
+    [
+     -0.55,
+     2,
+     0
+    ],
+    [
+     0.161,
+     2.15,
+     -0.526
+    ],
+    [
+     1,
+     2,
+     0
+    ],
+    [
+     0.368,
+     2.15,
+     0.93
+    ],
+    [
+     -0.223,
+     2,
+     0.975
+    ],
+    [
+     -0.988,
+     2.15,
+     0.152
+    ],
+    [
+     -0.901,
+     2,
+     -0.434
+    ],
+    [
+     0.072,
+     2.15,
+     -0.997
+    ],
+    [
+     0.623,
+     2,
+     -0.782
+    ],
+    [
+     1.291,
+     2,
+     0.395
+    ],
+    [
+     1.034,
+     2.15,
+     0.868
+    ],
+    [
+     -0.165,
+     2,
+     1.34
+    ],
+    [
+     -0.675,
+     2.15,
+     1.169
+    ],
+    [
+     -1.348,
+     2,
+     0.071
+    ],
+    [
+     -1.269,
+     2.15,
+     -0.462
+    ],
+    [
+     -0.304,
+     2,
+     -1.315
+    ],
+    [
+     0.234,
+     2.15,
+     -1.329
+    ],
+    [
+     1.243,
+     2,
+     -0.527
+    ],
+    [
+     0,
+     2.5,
+     0
+    ],
+    [
+     0.526,
+     2.5,
+     0.161
+    ],
+    [
+     0,
+     2.65,
+     0.55
+    ],
+    [
+     -0.526,
+     2.5,
+     -0.161
+    ],
+    [
+     0,
+     2.65,
+     -0.55
+    ],
+    [
+     0.956,
+     2.5,
+     0.292
+    ],
+    [
+     0.623,
+     2.65,
+     0.782
+    ],
+    [
+     -0.498,
+     2.5,
+     0.867
+    ],
+    [
+     -0.901,
+     2.65,
+     0.434
+    ],
+    [
+     -0.735,
+     2.5,
+     -0.678
+    ],
+    [
+     -0.223,
+     2.65,
+     -0.975
+    ],
+    [
+     0.825,
+     2.5,
+     -0.565
+    ],
+    [
+     1.35,
+     2.5,
+     0
+    ],
+    [
+     0.735,
+     2.65,
+     1.132
+    ],
+    [
+     0.234,
+     2.5,
+     1.329
+    ],
+    [
+     -0.987,
+     2.65,
+     0.921
+    ],
+    [
+     -1.269,
+     2.5,
+     0.462
+    ],
+    [
+     -1.078,
+     2.65,
+     -0.812
+    ],
+    [
+     -0.675,
+     2.5,
+     -1.169
+    ],
+    [
+     0.613,
+     2.65,
+     -1.203
+    ],
+    [
+     1.034,
+     2.5,
+     -0.868
+    ]
+   ],
+   "mat": "bead"
+  },
+  {
+   "id": "pcTube",
+   "layer": "purBed",
+   "shape": "cyl",
+   "size": [
+    0.35,
+    6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    20,
+    4,
+    0
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "pfBody",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    3.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfCapA",
+   "layer": "purFilt",
+   "shape": "tube",
+   "size": [
+    0.9,
+    0.5,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    5.8,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pfCapB",
+   "layer": "purFilt",
+   "shape": "tube",
+   "size": [
+    0.9,
+    0.5,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    9.2,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pfLabel",
+   "layer": "purFilt",
+   "shape": "box",
+   "size": [
+    1,
+    0.9,
+    0.04
+   ],
+   "pos": [
+    25,
+    7.45,
+    0.8
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "pfIn",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.7
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    23.25,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfOutPipe1",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    9.9,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfOutPipe2",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    25.6,
+    10.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfOutPipe3",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    2.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    26.2,
+    8.95,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfOutPipeCl3",
+   "layer": "purFilt",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    26.2,
+    8.95,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pfOutPipe4",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    4.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    28.6,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfOutPipeCl4",
+   "layer": "purFilt",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.2,
+    0.16
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    28.6,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pfOutPipeE0",
+   "layer": "purFilt",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    25,
+    10.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfOutPipeE1",
+   "layer": "purFilt",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    26.2,
+    10.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfOutPipeE2",
+   "layer": "purFilt",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    26.2,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfInPipe1",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    2.6
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    23.7,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfInPipe2",
+   "layer": "purFilt",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.7
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    25,
+    6.65,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfInPipeE0",
+   "layer": "purFilt",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    25,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pfArrow",
+   "layer": "purFilt",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.2,
+    0.04
+   ],
+   "pos": [
+    25,
+    6.5,
+    0.84
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "vbPlinth",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    14,
+    0.8,
+    5
+   ],
+   "pos": [
+    38,
+    0.4,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "vbBack",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    14,
+    15.7,
+    0.2
+   ],
+   "pos": [
+    38,
+    8.65,
+    -2.4
+   ],
+   "mat": "cab2"
+  },
+  {
+   "id": "vbL",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    0.2,
+    15.7,
+    5
+   ],
+   "pos": [
+    31.1,
+    8.65,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "vbR",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    0.2,
+    15.7,
+    5
+   ],
+   "pos": [
+    44.9,
+    8.65,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "vbTop",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    14,
+    0.2,
+    5
+   ],
+   "pos": [
+    38,
+    16.4,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "vbFloor",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    13.6,
+    0.15,
+    4.6
+   ],
+   "pos": [
+    38,
+    0.875,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "vbDuct",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.7,
+    2.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    34,
+    17.55,
+    -1
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vbDuctFl",
+   "layer": "vmbShell",
+   "shape": "tube",
+   "size": [
+    1,
+    0.65,
+    0.25
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    34,
+    16.625,
+    -1
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "vbDuctClamp",
+   "layer": "vmbShell",
+   "shape": "tube",
+   "size": [
+    0.78,
+    0.68,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    34,
+    17.75,
+    -1
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "vbFootBolt",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.16
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    38,
+    0.85,
+    0
+   ],
+   "at": [
+    [
+     -6.4,
+     0,
+     -2
+    ],
+    [
+     6.4,
+     0,
+     -2
+    ],
+    [
+     -6.4,
+     0,
+     2
+    ],
+    [
+     6.4,
+     0,
+     2
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "vbSensor",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.45,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    41,
+    1.05,
+    1
+   ],
+   "mat": "det"
+  },
+  {
+   "id": "vbSensorMesh",
+   "layer": "vmbShell",
+   "shape": "tube",
+   "size": [
+    0.5,
+    0.3,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    41,
+    1.2,
+    1
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "vbSensorLed",
+   "layer": "vmbShell",
+   "shape": "sphere",
+   "size": [
+    0.06
+   ],
+   "pos": [
+    41.3,
+    1.2,
+    1.4
+   ],
+   "mat": "ledG"
+  },
+  {
+   "id": "vbHdr1",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    9.7
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    31.9,
+    8.35,
+    -1.6
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vbHdrCl1",
+   "layer": "vmbShell",
+   "shape": "tube",
+   "size": [
+    0.33,
+    0.22,
+    0.16
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    31.9,
+    8.35,
+    -1.6
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "vbHdrIn1",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.9
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    31.45,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vbHdrIn2",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.6
+   ],
+   "pos": [
+    31.9,
+    7.5,
+    -0.8
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vbHdrInE0",
+   "layer": "vmbShell",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    31.9,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vbN21",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    13
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    38,
+    15.2,
+    -2
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "vbN2Dot",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.3,
+    0.3
+   ],
+   "pos": [
+    31.5,
+    15.2,
+    -2
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "vbPlate",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    2,
+    0.7,
+    0.08
+   ],
+   "pos": [
+    38,
+    14.65,
+    -2.24
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "vbWarn",
+   "layer": "vmbShell",
+   "shape": "box",
+   "size": [
+    2.5,
+    0.9,
+    0.08
+   ],
+   "pos": [
+    42.25,
+    14.75,
+    -2.24
+   ],
+   "mat": "warn"
+  },
+  {
+   "id": "vdTop",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    13.6,
+    1.8,
+    0.2
+   ],
+   "pos": [
+    38,
+    15.4,
+    2.6
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "vdBot",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    13.6,
+    0.95,
+    0.2
+   ],
+   "pos": [
+    38,
+    1.425,
+    2.6
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "vdL",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    0.8,
+    12.6,
+    0.2
+   ],
+   "pos": [
+    31.6,
+    8.2,
+    2.6
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "vdR",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    0.8,
+    12.6,
+    0.2
+   ],
+   "pos": [
+    44.4,
+    8.2,
+    2.6
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "vdGlass",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    12,
+    12.6,
+    0.06
+   ],
+   "pos": [
+    38,
+    8.2,
+    2.59
+   ],
+   "mat": "glassDoor"
+  },
+  {
+   "id": "vdTrim",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    12.2,
+    0.2,
+    0.08
+   ],
+   "pos": [
+    38,
+    14.5,
+    2.74
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vdTrim2",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    12.2,
+    0.2,
+    0.08
+   ],
+   "pos": [
+    38,
+    1.9,
+    2.74
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vdHandle",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    0.2,
+    4,
+    0.42
+   ],
+   "pos": [
+    44.15,
+    8,
+    2.99
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "vdHinge",
+   "layer": "vmbDoor",
+   "shape": "cyl",
+   "size": [
+    0.15,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    31.1,
+    0,
+    2.7
+   ],
+   "at": [
+    [
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     8,
+     0
+    ],
+    [
+     0,
+     13.5,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "vdScrew",
+   "layer": "vmbDoor",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.05
+   ],
+   "pos": [
+    0,
+    0,
+    2.72
+   ],
+   "at": [
+    [
+     31.5,
+     15.4,
+     0
+    ],
+    [
+     33.125,
+     15.4,
+     0
+    ],
+    [
+     34.75,
+     15.4,
+     0
+    ],
+    [
+     36.375,
+     15.4,
+     0
+    ],
+    [
+     38,
+     15.4,
+     0
+    ],
+    [
+     39.625,
+     15.4,
+     0
+    ],
+    [
+     41.25,
+     15.4,
+     0
+    ],
+    [
+     42.875,
+     15.4,
+     0
+    ],
+    [
+     44.5,
+     15.4,
+     0
+    ],
+    [
+     31.5,
+     1.4,
+     0
+    ],
+    [
+     33.125,
+     1.4,
+     0
+    ],
+    [
+     34.75,
+     1.4,
+     0
+    ],
+    [
+     36.375,
+     1.4,
+     0
+    ],
+    [
+     38,
+     1.4,
+     0
+    ],
+    [
+     39.625,
+     1.4,
+     0
+    ],
+    [
+     41.25,
+     1.4,
+     0
+    ],
+    [
+     42.875,
+     1.4,
+     0
+    ],
+    [
+     44.5,
+     1.4,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "vdName",
+   "layer": "vmbDoor",
+   "shape": "box",
+   "size": [
+    4,
+    1,
+    0.04
+   ],
+   "pos": [
+    38,
+    15.5,
+    2.72
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "stR0",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    11.6,
+    0.15,
+    1.8
+   ],
+   "pos": [
+    38,
+    2.875,
+    -0.1
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "stP01",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.9
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    32.35,
+    3.5,
+    -1.6
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP02",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.6
+   ],
+   "pos": [
+    32.8,
+    3.5,
+    -0.8
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP03",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    11.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    38.4,
+    3.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP0E0",
+   "layer": "vmbStx",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    32.8,
+    3.5,
+    -1.6
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP0E1",
+   "layer": "vmbStx",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    32.8,
+    3.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s0c0B",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    1.2,
+    1,
+    1
+   ],
+   "pos": [
+    32.8,
+    3.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s0c0A",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    32.8,
+    4.6,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "s0c0I",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    32.8,
+    5.4,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "s0c0Bolt",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    32.8,
+    3.5,
+    0
+   ],
+   "at": [
+    [
+     -0.65,
+     0.35,
+     0.35
+    ],
+    [
+     -0.65,
+     -0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     -0.35,
+     0.35
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "s0c1B",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    1.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    35.4,
+    3.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s0c1Cp",
+   "layer": "vmbStx",
+   "shape": "tube",
+   "size": [
+    0.58,
+    0.3,
+    0.25
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    34.575,
+    3.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s0c1Cp2",
+   "layer": "vmbStx",
+   "shape": "tube",
+   "size": [
+    0.58,
+    0.3,
+    0.25
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    36.225,
+    3.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s0c1Lb",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.4,
+    0.04
+   ],
+   "pos": [
+    35.4,
+    3.5,
+    0.5
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "s0c2B",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.52,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    38,
+    3.5,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "s0c2K",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.36,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    38,
+    4.4,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s0c2Kn",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    1,
+    0.12,
+    0.2
+   ],
+   "pos": [
+    38,
+    4.86,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "s0c2G",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.25
+   ],
+   "pos": [
+    38,
+    3.5,
+    0.625
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "s0c2Nd",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    0.26,
+    0.04,
+    0.03
+   ],
+   "pos": [
+    38.06,
+    3.6,
+    0.78
+   ],
+   "rot": [
+    0,
+    0,
+    40
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "s0c3B",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.28,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    40.6,
+    3.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s0c3N",
+   "layer": "vmbStx",
+   "shape": "tube",
+   "size": [
+    0.4,
+    0.2,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    40.6,
+    3.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s0c3C",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.22
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    40.6,
+    4.39,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "s0c3Lb",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.4,
+    0.04
+   ],
+   "pos": [
+    40.6,
+    3.5,
+    0.28
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "s0c4B",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    1.2,
+    1,
+    1
+   ],
+   "pos": [
+    43.2,
+    3.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s0c4A",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    43.2,
+    4.6,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "s0c4I",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    43.2,
+    5.4,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "s0c4Bolt",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    43.2,
+    3.5,
+    0
+   ],
+   "at": [
+    [
+     -0.65,
+     0.35,
+     0.35
+    ],
+    [
+     -0.65,
+     -0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     -0.35,
+     0.35
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stR1",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    11.6,
+    0.15,
+    1.8
+   ],
+   "pos": [
+    38,
+    10.875,
+    -0.1
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "stP11",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.9
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    32.35,
+    11.5,
+    -1.6
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP12",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.6
+   ],
+   "pos": [
+    32.8,
+    11.5,
+    -0.8
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP13",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    11.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    38.4,
+    11.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP1E0",
+   "layer": "vmbStx",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    32.8,
+    11.5,
+    -1.6
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stP1E1",
+   "layer": "vmbStx",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    32.8,
+    11.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s1c0B",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    1.2,
+    1,
+    1
+   ],
+   "pos": [
+    32.8,
+    11.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s1c0A",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    32.8,
+    12.6,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "s1c0I",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    32.8,
+    13.4,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "s1c0Bolt",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    32.8,
+    11.5,
+    0
+   ],
+   "at": [
+    [
+     -0.65,
+     0.35,
+     0.35
+    ],
+    [
+     -0.65,
+     -0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     -0.35,
+     0.35
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "s1c1B",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    1.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    35.4,
+    11.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s1c1Cp",
+   "layer": "vmbStx",
+   "shape": "tube",
+   "size": [
+    0.58,
+    0.3,
+    0.25
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    34.575,
+    11.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s1c1Cp2",
+   "layer": "vmbStx",
+   "shape": "tube",
+   "size": [
+    0.58,
+    0.3,
+    0.25
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    36.225,
+    11.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s1c1Lb",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.4,
+    0.04
+   ],
+   "pos": [
+    35.4,
+    11.5,
+    0.5
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "s1c2B",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.52,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    38,
+    11.5,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "s1c2K",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.36,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    38,
+    12.4,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s1c2Kn",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    1,
+    0.12,
+    0.2
+   ],
+   "pos": [
+    38,
+    12.86,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "s1c2G",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.25
+   ],
+   "pos": [
+    38,
+    11.5,
+    0.625
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "s1c2Nd",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    0.26,
+    0.04,
+    0.03
+   ],
+   "pos": [
+    38.06,
+    11.6,
+    0.78
+   ],
+   "rot": [
+    0,
+    0,
+    40
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "s1c3B",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.28,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    40.6,
+    11.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s1c3N",
+   "layer": "vmbStx",
+   "shape": "tube",
+   "size": [
+    0.4,
+    0.2,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    40.6,
+    11.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "s1c3C",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.22
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    40.6,
+    12.39,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "s1c3Lb",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.4,
+    0.04
+   ],
+   "pos": [
+    40.6,
+    11.5,
+    0.28
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "s1c4B",
+   "layer": "vmbStx",
+   "shape": "box",
+   "size": [
+    1.2,
+    1,
+    1
+   ],
+   "pos": [
+    43.2,
+    11.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "s1c4A",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    43.2,
+    12.6,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "s1c4I",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    43.2,
+    13.4,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "s1c4Bolt",
+   "layer": "vmbStx",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    43.2,
+    11.5,
+    0
+   ],
+   "at": [
+    [
+     -0.65,
+     0.35,
+     0.35
+    ],
+    [
+     -0.65,
+     -0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     -0.35,
+     0.35
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stkRail",
+   "layer": "stk",
+   "shape": "box",
+   "size": [
+    11.6,
+    0.15,
+    1.8
+   ],
+   "pos": [
+    38,
+    6.875,
+    -0.1
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "stkRail2",
+   "layer": "stk",
+   "shape": "box",
+   "size": [
+    11.6,
+    0.1,
+    0.5
+   ],
+   "pos": [
+    38,
+    7,
+    0.55
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "stkP1",
+   "layer": "stk",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    0.9
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    32.35,
+    7.5,
+    -1.6
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stkP2",
+   "layer": "stk",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.6
+   ],
+   "pos": [
+    32.8,
+    7.5,
+    -0.8
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stkP3",
+   "layer": "stk",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    12.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    38.9,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stkPE0",
+   "layer": "stk",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    32.8,
+    7.5,
+    -1.6
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stkPE1",
+   "layer": "stk",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    32.8,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "stkScrew",
+   "layer": "stk",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.05
+   ],
+   "pos": [
+    38,
+    7,
+    0.82
+   ],
+   "at": [
+    [
+     -5,
+     0,
+     0
+    ],
+    [
+     -2.5,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     2.5,
+     0,
+     0
+    ],
+    [
+     5,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "m0B",
+   "layer": "vc1",
+   "shape": "box",
+   "size": [
+    1.2,
+    1,
+    1
+   ],
+   "pos": [
+    32.8,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "m0A",
+   "layer": "vc1",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    32.8,
+    8.6,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "m0I",
+   "layer": "vc1",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    32.8,
+    9.4,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "m0Bolt",
+   "layer": "vc1",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    32.8,
+    7.5,
+    0
+   ],
+   "at": [
+    [
+     -0.65,
+     0.35,
+     0.35
+    ],
+    [
+     -0.65,
+     -0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     -0.35,
+     0.35
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "m1B",
+   "layer": "vc2",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    1.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    35.4,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "m1Cp",
+   "layer": "vc2",
+   "shape": "tube",
+   "size": [
+    0.58,
+    0.3,
+    0.25
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    34.575,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "m1Cp2",
+   "layer": "vc2",
+   "shape": "tube",
+   "size": [
+    0.58,
+    0.3,
+    0.25
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    36.225,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "m1Lb",
+   "layer": "vc2",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.4,
+    0.04
+   ],
+   "pos": [
+    35.4,
+    7.5,
+    0.5
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "m2B",
+   "layer": "vc3",
+   "shape": "cyl",
+   "size": [
+    0.52,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    38,
+    7.5,
+    0
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "m2K",
+   "layer": "vc3",
+   "shape": "cyl",
+   "size": [
+    0.36,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    38,
+    8.4,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "m2Kn",
+   "layer": "vc3",
+   "shape": "box",
+   "size": [
+    1,
+    0.12,
+    0.2
+   ],
+   "pos": [
+    38,
+    8.86,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "m2G",
+   "layer": "vc3",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.25
+   ],
+   "pos": [
+    38,
+    7.5,
+    0.625
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "m2Nd",
+   "layer": "vc3",
+   "shape": "box",
+   "size": [
+    0.26,
+    0.04,
+    0.03
+   ],
+   "pos": [
+    38.06,
+    7.6,
+    0.78
+   ],
+   "rot": [
+    0,
+    0,
+    40
+   ],
+   "mat": "estop"
+  },
+  {
+   "id": "m3B",
+   "layer": "vc4",
+   "shape": "cyl",
+   "size": [
+    0.28,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    40.6,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "m3N",
+   "layer": "vc4",
+   "shape": "tube",
+   "size": [
+    0.4,
+    0.2,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    40.6,
+    7.5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "m3C",
+   "layer": "vc4",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.22
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    40.6,
+    8.39,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "m3Lb",
+   "layer": "vc4",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.4,
+    0.04
+   ],
+   "pos": [
+    40.6,
+    7.5,
+    0.28
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "m4B",
+   "layer": "vc5",
+   "shape": "box",
+   "size": [
+    1.2,
+    1,
+    1
+   ],
+   "pos": [
+    43.2,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "m4A",
+   "layer": "vc5",
+   "shape": "cyl",
+   "size": [
+    0.42,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    43.2,
+    8.6,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "m4I",
+   "layer": "vc5",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    43.2,
+    9.4,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "m4Bolt",
+   "layer": "vc5",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    43.2,
+    7.5,
+    0
+   ],
+   "at": [
+    [
+     -0.65,
+     0.35,
+     0.35
+    ],
+    [
+     -0.65,
+     -0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     0.35,
+     -0.35
+    ],
+    [
+     0.65,
+     -0.35,
+     0.35
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "vbOut1",
+   "layer": "vmbShell",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    45.45,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dbIn",
+   "layer": "dblPipe",
+   "shape": "cyl",
+   "size": [
+    0.45,
+    17.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    58,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dbWeld",
+   "layer": "dblPipe",
+   "shape": "tube",
+   "size": [
+    0.5,
+    0.44,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    58,
+    7.5,
+    0
+   ],
+   "at": [
+    [
+     -6,
+     0,
+     0
+    ],
+    [
+     -3,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     3,
+     0,
+     0
+    ],
+    [
+     6,
+     0,
+     0
+    ]
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "dbSupport",
+   "layer": "dblPipe",
+   "shape": "tube",
+   "size": [
+    0.86,
+    0.44,
+    0.14
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    58,
+    7.5,
+    0
+   ],
+   "at": [
+    [
+     -6.2,
+     0,
+     0
+    ],
+    [
+     -2.1,
+     0,
+     0
+    ],
+    [
+     2.1,
+     0,
+     0
+    ],
+    [
+     6.2,
+     0,
+     0
+    ]
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "dbArrow",
+   "layer": "dblPipe",
+   "shape": "box",
+   "size": [
+    1.1,
+    0.04,
+    0.3
+   ],
+   "pos": [
+    53.8,
+    7.96,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "dbBand",
+   "layer": "dblPipe",
+   "shape": "tube",
+   "size": [
+    0.5,
+    0.44,
+    0.25
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    50.8,
+    7.5,
+    0
+   ],
+   "mat": "ringA"
+  },
+  {
+   "id": "dbSealL",
+   "layer": "dblPipe",
+   "shape": "tube",
+   "size": [
+    1.12,
+    0.46,
+    1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    50,
+    7.5,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dbSealR",
+   "layer": "dblPipe",
+   "shape": "tube",
+   "size": [
+    1.12,
+    0.46,
+    1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    66,
+    7.5,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dbSealBolt",
+   "layer": "dblPipe",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.12
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    0,
+    7.5,
+    0
+   ],
+   "at": [
+    [
+     49.45,
+     7.5,
+     1
+    ],
+    [
+     49.45,
+     8.207,
+     0.707
+    ],
+    [
+     49.45,
+     8.5,
+     0
+    ],
+    [
+     49.45,
+     8.207,
+     -0.707
+    ],
+    [
+     49.45,
+     7.5,
+     -1
+    ],
+    [
+     49.45,
+     6.793,
+     -0.707
+    ],
+    [
+     49.45,
+     6.5,
+     0
+    ],
+    [
+     49.45,
+     6.793,
+     0.707
+    ],
+    [
+     66.55,
+     7.5,
+     1
+    ],
+    [
+     66.55,
+     8.207,
+     0.707
+    ],
+    [
+     66.55,
+     8.5,
+     0
+    ],
+    [
+     66.55,
+     8.207,
+     -0.707
+    ],
+    [
+     66.55,
+     7.5,
+     -1
+    ],
+    [
+     66.55,
+     6.793,
+     -0.707
+    ],
+    [
+     66.55,
+     6.5,
+     0
+    ],
+    [
+     66.55,
+     6.793,
+     0.707
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dbStand",
+   "layer": "dblPipe",
+   "shape": "box",
+   "size": [
+    0.3,
+    6.4,
+    0.3
+   ],
+   "pos": [
+    0,
+    3.2,
+    0
+   ],
+   "at": [
+    [
+     53,
+     0,
+     0
+    ],
+    [
+     63,
+     0,
+     0
+    ]
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "dbSaddle",
+   "layer": "dblPipe",
+   "shape": "box",
+   "size": [
+    1.4,
+    0.2,
+    1.3
+   ],
+   "pos": [
+    0,
+    6.35,
+    0
+   ],
+   "at": [
+    [
+     53,
+     0,
+     0
+    ],
+    [
+     63,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dbFoot",
+   "layer": "dblPipe",
+   "shape": "box",
+   "size": [
+    1.4,
+    0.12,
+    1.4
+   ],
+   "pos": [
+    0,
+    0.06,
+    0
+   ],
+   "at": [
+    [
+     53,
+     0,
+     0
+    ],
+    [
+     63,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "djSleeve",
+   "layer": "dblJacket",
+   "shape": "tube",
+   "size": [
+    0.95,
+    0.85,
+    15.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    58,
+    7.5,
+    0
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "djSteel",
+   "layer": "dblSkin",
+   "shape": "tube",
+   "size": [
+    1,
+    0.94,
+    15
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    58,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "djWeld",
+   "layer": "dblJacket",
+   "shape": "tube",
+   "size": [
+    1.06,
+    0.94,
+    0.14
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    58,
+    7.5,
+    0
+   ],
+   "at": [
+    [
+     -6.6,
+     0,
+     0
+    ],
+    [
+     -3.3,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     3.3,
+     0,
+     0
+    ],
+    [
+     6.6,
+     0,
+     0
+    ]
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "djClamp",
+   "layer": "dblSkin",
+   "shape": "tube",
+   "size": [
+    1.12,
+    0.98,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    58,
+    7.5,
+    0
+   ],
+   "at": [
+    [
+     -5,
+     0,
+     0
+    ],
+    [
+     5,
+     0,
+     0
+    ]
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "djBand",
+   "layer": "dblSkin",
+   "shape": "tube",
+   "size": [
+    1.02,
+    0.96,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    56.4,
+    7.5,
+    0
+   ],
+   "mat": "ringB"
+  },
+  {
+   "id": "djArrow",
+   "layer": "dblSkin",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.04,
+    0.34
+   ],
+   "pos": [
+    61,
+    8.52,
+    0
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "ddPipe1",
+   "layer": "dblDet",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    1.7
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    62,
+    9.25,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ddPipe2",
+   "layer": "dblDet",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.01
+   ],
+   "pos": [
+    62,
+    10.1,
+    0.005
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ddPipeE0",
+   "layer": "dblDet",
+   "shape": "sphere",
+   "size": [
+    0.156
+   ],
+   "pos": [
+    62,
+    10.1,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "ddBox",
+   "layer": "dblDet",
+   "shape": "box",
+   "size": [
+    1.8,
+    1.7,
+    1.4
+   ],
+   "pos": [
+    62,
+    10.95,
+    0
+   ],
+   "mat": "det"
+  },
+  {
+   "id": "ddMesh",
+   "layer": "dblDet",
+   "shape": "sphere",
+   "size": [
+    0.5
+   ],
+   "scale": [
+    1,
+    0.5,
+    1
+   ],
+   "pos": [
+    62,
+    11.8,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "ddLed",
+   "layer": "dblDet",
+   "shape": "sphere",
+   "size": [
+    0.11
+   ],
+   "pos": [
+    61.5,
+    11.2,
+    0.72
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0
+    ]
+   ],
+   "mat": "ledG"
+  },
+  {
+   "id": "ddLedR",
+   "layer": "dblDet",
+   "shape": "sphere",
+   "size": [
+    0.14
+   ],
+   "pos": [
+    62.4,
+    11.2,
+    0.74
+   ],
+   "mat": "led"
+  },
+  {
+   "id": "ddCap",
+   "layer": "dblDet",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.2,
+    1
+   ],
+   "pos": [
+    62,
+    10,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "ddCable",
+   "layer": "dblDet",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    2.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    63.2,
+    10.9,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "dhHole",
+   "layer": "dblHole",
+   "shape": "sphere",
+   "size": [
+    0.17
+   ],
+   "scale": [
+    1.4,
+    0.6,
+    1.4
+   ],
+   "pos": [
+    56.5,
+    7.95,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "dvBody",
+   "layer": "dblValve",
+   "shape": "box",
+   "size": [
+    1.4,
+    1.1,
+    1.1
+   ],
+   "pos": [
+    48.7,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dvNeck",
+   "layer": "dblValveAct",
+   "shape": "cyl",
+   "size": [
+    0.24,
+    0.45
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    48.7,
+    8.275,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dvAct",
+   "layer": "dblValveAct",
+   "shape": "cyl",
+   "size": [
+    0.52,
+    1.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    48.7,
+    9.15,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "dvInd",
+   "layer": "dblValveAct",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.45
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    48.7,
+    10.025,
+    0
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "dvRing",
+   "layer": "dblValveAct",
+   "shape": "tube",
+   "size": [
+    0.56,
+    0.46,
+    0.15
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    48.7,
+    9.775,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "dvPipe1",
+   "layer": "dblPipe",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    6.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    46.2,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dvPipe21",
+   "layer": "dblPipe",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    2.6
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    49.3,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dbPurgeLn1",
+   "layer": "dblPipe",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    65,
+    9.3,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "dbPurgeLn2",
+   "layer": "dblPipe",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    66.5,
+    10.1,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "dbPurgeLnE0",
+   "layer": "dblPipe",
+   "shape": "sphere",
+   "size": [
+    0.091
+   ],
+   "pos": [
+    65,
+    10.1,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "dbOutPipe1",
+   "layer": "dblPipe",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    66.5,
+    7.5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chWall",
+   "layer": "chm",
+   "shape": "tube",
+   "size": [
+    3.5,
+    3.35,
+    6.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    4.05,
+    0
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "chBotFl",
+   "layer": "chm",
+   "shape": "tube",
+   "size": [
+    3.95,
+    3.2,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    0.7,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chBase",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    3.95,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    0.25,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "chTopFl",
+   "layer": "chm",
+   "shape": "tube",
+   "size": [
+    3.95,
+    3,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    7.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chBolt",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    7.66,
+    0
+   ],
+   "at": [
+    [
+     3.65,
+     0,
+     0
+    ],
+    [
+     3.43,
+     0,
+     1.248
+    ],
+    [
+     2.796,
+     0,
+     2.346
+    ],
+    [
+     1.825,
+     0,
+     3.161
+    ],
+    [
+     0.634,
+     0,
+     3.595
+    ],
+    [
+     -0.634,
+     0,
+     3.595
+    ],
+    [
+     -1.825,
+     0,
+     3.161
+    ],
+    [
+     -2.796,
+     0,
+     2.346
+    ],
+    [
+     -3.43,
+     0,
+     1.248
+    ],
+    [
+     -3.65,
+     0,
+     0
+    ],
+    [
+     -3.43,
+     0,
+     -1.248
+    ],
+    [
+     -2.796,
+     0,
+     -2.346
+    ],
+    [
+     -1.825,
+     0,
+     -3.161
+    ],
+    [
+     -0.634,
+     0,
+     -3.595
+    ],
+    [
+     0.634,
+     0,
+     -3.595
+    ],
+    [
+     1.825,
+     0,
+     -3.161
+    ],
+    [
+     2.796,
+     0,
+     -2.346
+    ],
+    [
+     3.43,
+     0,
+     -1.248
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "chBotBolt",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    0.96,
+    0
+   ],
+   "at": [
+    [
+     3.65,
+     0,
+     0
+    ],
+    [
+     3.43,
+     0,
+     1.248
+    ],
+    [
+     2.796,
+     0,
+     2.346
+    ],
+    [
+     1.825,
+     0,
+     3.161
+    ],
+    [
+     0.634,
+     0,
+     3.595
+    ],
+    [
+     -0.634,
+     0,
+     3.595
+    ],
+    [
+     -1.825,
+     0,
+     3.161
+    ],
+    [
+     -2.796,
+     0,
+     2.346
+    ],
+    [
+     -3.43,
+     0,
+     1.248
+    ],
+    [
+     -3.65,
+     0,
+     0
+    ],
+    [
+     -3.43,
+     0,
+     -1.248
+    ],
+    [
+     -2.796,
+     0,
+     -2.346
+    ],
+    [
+     -1.825,
+     0,
+     -3.161
+    ],
+    [
+     -0.634,
+     0,
+     -3.595
+    ],
+    [
+     0.634,
+     0,
+     -3.595
+    ],
+    [
+     1.825,
+     0,
+     -3.161
+    ],
+    [
+     2.796,
+     0,
+     -2.346
+    ],
+    [
+     3.43,
+     0,
+     -1.248
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "chPlenum",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    2.6,
+    2.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    8.9,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chPlenumRib",
+   "layer": "chm",
+   "shape": "tube",
+   "size": [
+    2.8,
+    2.55,
+    0.15
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    8.475,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "chPlenumBolt",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    10.25,
+    0
+   ],
+   "at": [
+    [
+     2.3,
+     0,
+     0
+    ],
+    [
+     1.992,
+     0,
+     1.15
+    ],
+    [
+     1.15,
+     0,
+     1.992
+    ],
+    [
+     0,
+     0,
+     2.3
+    ],
+    [
+     -1.15,
+     0,
+     1.992
+    ],
+    [
+     -1.992,
+     0,
+     1.15
+    ],
+    [
+     -2.3,
+     0,
+     0
+    ],
+    [
+     -1.992,
+     0,
+     -1.15
+    ],
+    [
+     -1.15,
+     0,
+     -1.992
+    ],
+    [
+     0,
+     0,
+     -2.3
+    ],
+    [
+     1.15,
+     0,
+     -1.992
+    ],
+    [
+     1.992,
+     0,
+     -1.15
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "chView",
+   "layer": "chm",
+   "shape": "box",
+   "size": [
+    2,
+    1.8,
+    0.15
+   ],
+   "pos": [
+    76,
+    4.4,
+    3.575
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chViewGl",
+   "layer": "chm",
+   "shape": "box",
+   "size": [
+    1.6,
+    1.4,
+    0.15
+   ],
+   "pos": [
+    76,
+    4.4,
+    3.625
+   ],
+   "mat": "glassDoor"
+  },
+  {
+   "id": "chViewBolt",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.08
+   ],
+   "pos": [
+    76,
+    4.4,
+    3.7
+   ],
+   "at": [
+    [
+     -0.9,
+     0.9,
+     0
+    ],
+    [
+     0.9,
+     0.9,
+     0
+    ],
+    [
+     -0.9,
+     -0.9,
+     0
+    ],
+    [
+     0.9,
+     -0.9,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "chChuckStem",
+   "layer": "chWf",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    1.7
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    1.35,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chChuck",
+   "layer": "chWf",
+   "shape": "cyl",
+   "size": [
+    1.9,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    2.6,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chChuckRim",
+   "layer": "chWf",
+   "shape": "tube",
+   "size": [
+    1.95,
+    1.7,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    3.06,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "chWafer",
+   "layer": "chWf",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.06
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    3.15,
+    0
+   ],
+   "mat": "wafer"
+  },
+  {
+   "id": "chNotch",
+   "layer": "chWf",
+   "shape": "box",
+   "size": [
+    0.24,
+    0.07,
+    0.12
+   ],
+   "pos": [
+    76,
+    3.155,
+    1.46
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "chPin",
+   "layer": "chWf",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    3.3,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     1.6
+    ],
+    [
+     -1.386,
+     0,
+     -0.8
+    ],
+    [
+     1.386,
+     0,
+     -0.8
+    ]
+   ],
+   "mat": "gold"
+  },
+  {
+   "id": "shPlate",
+   "layer": "chShw",
+   "shape": "cyl",
+   "size": [
+    2.4,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    7.2,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "shHole",
+   "layer": "chShw",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.42
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    7,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.5,
+     0,
+     0
+    ],
+    [
+     0.25,
+     0,
+     0.433
+    ],
+    [
+     -0.25,
+     0,
+     0.433
+    ],
+    [
+     -0.5,
+     0,
+     0
+    ],
+    [
+     -0.25,
+     0,
+     -0.433
+    ],
+    [
+     0.25,
+     0,
+     -0.433
+    ],
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0.866,
+     0,
+     0.5
+    ],
+    [
+     0.5,
+     0,
+     0.866
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     -0.5,
+     0,
+     0.866
+    ],
+    [
+     -0.866,
+     0,
+     0.5
+    ],
+    [
+     -1,
+     0,
+     0
+    ],
+    [
+     -0.866,
+     0,
+     -0.5
+    ],
+    [
+     -0.5,
+     0,
+     -0.866
+    ],
+    [
+     0,
+     0,
+     -1
+    ],
+    [
+     0.5,
+     0,
+     -0.866
+    ],
+    [
+     0.866,
+     0,
+     -0.5
+    ],
+    [
+     1.5,
+     0,
+     0
+    ],
+    [
+     1.41,
+     0,
+     0.513
+    ],
+    [
+     1.149,
+     0,
+     0.964
+    ],
+    [
+     0.75,
+     0,
+     1.299
+    ],
+    [
+     0.26,
+     0,
+     1.477
+    ],
+    [
+     -0.26,
+     0,
+     1.477
+    ],
+    [
+     -0.75,
+     0,
+     1.299
+    ],
+    [
+     -1.149,
+     0,
+     0.964
+    ],
+    [
+     -1.41,
+     0,
+     0.513
+    ],
+    [
+     -1.5,
+     0,
+     0
+    ],
+    [
+     -1.41,
+     0,
+     -0.513
+    ],
+    [
+     -1.149,
+     0,
+     -0.964
+    ],
+    [
+     -0.75,
+     0,
+     -1.299
+    ],
+    [
+     -0.26,
+     0,
+     -1.477
+    ],
+    [
+     0.26,
+     0,
+     -1.477
+    ],
+    [
+     0.75,
+     0,
+     -1.299
+    ],
+    [
+     1.149,
+     0,
+     -0.964
+    ],
+    [
+     1.41,
+     0,
+     -0.513
+    ],
+    [
+     2,
+     0,
+     0
+    ],
+    [
+     1.932,
+     0,
+     0.518
+    ],
+    [
+     1.732,
+     0,
+     1
+    ],
+    [
+     1.414,
+     0,
+     1.414
+    ],
+    [
+     1,
+     0,
+     1.732
+    ],
+    [
+     0.518,
+     0,
+     1.932
+    ],
+    [
+     0,
+     0,
+     2
+    ],
+    [
+     -0.518,
+     0,
+     1.932
+    ],
+    [
+     -1,
+     0,
+     1.732
+    ],
+    [
+     -1.414,
+     0,
+     1.414
+    ],
+    [
+     -1.732,
+     0,
+     1
+    ],
+    [
+     -1.932,
+     0,
+     0.518
+    ],
+    [
+     -2,
+     0,
+     0
+    ],
+    [
+     -1.932,
+     0,
+     -0.518
+    ],
+    [
+     -1.732,
+     0,
+     -1
+    ],
+    [
+     -1.414,
+     0,
+     -1.414
+    ],
+    [
+     -1,
+     0,
+     -1.732
+    ],
+    [
+     -0.518,
+     0,
+     -1.932
+    ],
+    [
+     0,
+     0,
+     -2
+    ],
+    [
+     0.518,
+     0,
+     -1.932
+    ],
+    [
+     1,
+     0,
+     -1.732
+    ],
+    [
+     1.414,
+     0,
+     -1.414
+    ],
+    [
+     1.732,
+     0,
+     -1
+    ],
+    [
+     1.932,
+     0,
+     -0.518
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "shRim",
+   "layer": "chShw",
+   "shape": "tube",
+   "size": [
+    2.5,
+    2.38,
+    0.55
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    7.225,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "mfcBody",
+   "layer": "chMfc",
+   "shape": "box",
+   "size": [
+    2,
+    1.4,
+    1.4
+   ],
+   "pos": [
+    73.4,
+    12.4,
+    0
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "mfcTop",
+   "layer": "chMfc",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.4,
+    1
+   ],
+   "pos": [
+    73.4,
+    13.3,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "mfcDisp",
+   "layer": "chMfc",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.6,
+    0.04
+   ],
+   "pos": [
+    73.4,
+    12.3,
+    0.72
+   ],
+   "mat": "screen"
+  },
+  {
+   "id": "mfcLed",
+   "layer": "chMfc",
+   "shape": "sphere",
+   "size": [
+    0.07
+   ],
+   "pos": [
+    72.7,
+    12.9,
+    0.72
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.35,
+     0,
+     0
+    ],
+    [
+     0.7,
+     0,
+     0
+    ]
+   ],
+   "mat": "ledG"
+  },
+  {
+   "id": "mfcNutA",
+   "layer": "chMfc",
+   "shape": "tube",
+   "size": [
+    0.36,
+    0.2,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    72.25,
+    12.4,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "mfcNutB",
+   "layer": "chMfc",
+   "shape": "tube",
+   "size": [
+    0.36,
+    0.2,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    74.55,
+    12.4,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "mfcCable",
+   "layer": "chMfc",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    73.4,
+    14.1,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "chIn1",
+   "layer": "chMfc",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    1.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    75.35,
+    12.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chIn2",
+   "layer": "chMfc",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    2.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    11.3,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chInE0",
+   "layer": "chMfc",
+   "shape": "sphere",
+   "size": [
+    0.26
+   ],
+   "pos": [
+    76,
+    12.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chPort",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    4.6
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    81.7,
+    1.6,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "chPortFl",
+   "layer": "chm",
+   "shape": "tube",
+   "size": [
+    0.8,
+    0.45,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    80.35,
+    1.6,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "chGate",
+   "layer": "chm",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    1.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    82,
+    2.5,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "chWheel",
+   "layer": "chm",
+   "shape": "tube",
+   "size": [
+    0.8,
+    0.7,
+    0.15
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    82,
+    3.475,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "chWheelSp",
+   "layer": "chm",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.08,
+    0.12
+   ],
+   "pos": [
+    82,
+    3.46,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pmBody",
+   "layer": "pmp",
+   "shape": "box",
+   "size": [
+    6,
+    3.1,
+    4
+   ],
+   "pos": [
+    87,
+    2.05,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "pmBase",
+   "layer": "pmp",
+   "shape": "box",
+   "size": [
+    6.4,
+    0.5,
+    4.4
+   ],
+   "pos": [
+    87,
+    0.25,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "pmFin",
+   "layer": "pmp",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.08,
+    0.5
+   ],
+   "pos": [
+    87,
+    0,
+    2.05
+   ],
+   "at": [
+    [
+     0,
+     0.9,
+     0
+    ],
+    [
+     0,
+     1.28,
+     0
+    ],
+    [
+     0,
+     1.6600000000000001,
+     0
+    ],
+    [
+     0,
+     2.04,
+     0
+    ],
+    [
+     0,
+     2.42,
+     0
+    ],
+    [
+     0,
+     2.8,
+     0
+    ],
+    [
+     0,
+     3.18,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "pmMotor",
+   "layer": "pmp",
+   "shape": "cyl",
+   "size": [
+    0.9,
+    2
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    91,
+    1.9,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "pmMotorFin",
+   "layer": "pmp",
+   "shape": "tube",
+   "size": [
+    0.98,
+    0.9,
+    0.08
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    91,
+    1.9,
+    0
+   ],
+   "at": [
+    [
+     -0.8,
+     0,
+     0
+    ],
+    [
+     -0.4,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.4,
+     0,
+     0
+    ],
+    [
+     0.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pmLed",
+   "layer": "pmp",
+   "shape": "sphere",
+   "size": [
+    0.09
+   ],
+   "pos": [
+    85,
+    3.2,
+    2.05
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.4,
+     0,
+     0
+    ]
+   ],
+   "mat": "ledG"
+  },
+  {
+   "id": "pmGauge",
+   "layer": "pmp",
+   "shape": "cyl",
+   "size": [
+    0.4,
+    0.2
+   ],
+   "pos": [
+    85.8,
+    2.7,
+    2.1
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "pmInFl",
+   "layer": "pmp",
+   "shape": "tube",
+   "size": [
+    0.9,
+    0.5,
+    0.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    83.8,
+    1.6,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pmOut1",
+   "layer": "pmp",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    1.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    87,
+    4.3,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pmOut2",
+   "layer": "pmp",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    6.6
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    90.3,
+    5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "pmOutCl2",
+   "layer": "pmp",
+   "shape": "tube",
+   "size": [
+    0.45,
+    0.3,
+    0.16
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    90.3,
+    5,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "pmOutE0",
+   "layer": "pmp",
+   "shape": "sphere",
+   "size": [
+    0.39
+   ],
+   "pos": [
+    87,
+    5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "tkWall",
+   "layer": "abTank",
+   "shape": "tube",
+   "size": [
+    2.8,
+    2.65,
+    3.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    2.2,
+    0
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "tkWater",
+   "layer": "abTank",
+   "shape": "cyl",
+   "size": [
+    2.6,
+    2.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    1.55,
+    0
+   ],
+   "mat": "water"
+  },
+  {
+   "id": "tkBase",
+   "layer": "abTank",
+   "shape": "cyl",
+   "size": [
+    3.1,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    0.2,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "tkFl",
+   "layer": "abTank",
+   "shape": "tube",
+   "size": [
+    3.2,
+    2.5,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    4.05,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "tkBolt",
+   "layer": "abTank",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    4.25,
+    0
+   ],
+   "at": [
+    [
+     2.95,
+     0,
+     0
+    ],
+    [
+     2.725,
+     0,
+     1.129
+    ],
+    [
+     2.086,
+     0,
+     2.086
+    ],
+    [
+     1.129,
+     0,
+     2.725
+    ],
+    [
+     0,
+     0,
+     2.95
+    ],
+    [
+     -1.129,
+     0,
+     2.725
+    ],
+    [
+     -2.086,
+     0,
+     2.086
+    ],
+    [
+     -2.725,
+     0,
+     1.129
+    ],
+    [
+     -2.95,
+     0,
+     0
+    ],
+    [
+     -2.725,
+     0,
+     -1.129
+    ],
+    [
+     -2.086,
+     0,
+     -2.086
+    ],
+    [
+     -1.129,
+     0,
+     -2.725
+    ],
+    [
+     0,
+     0,
+     -2.95
+    ],
+    [
+     1.129,
+     0,
+     -2.725
+    ],
+    [
+     2.086,
+     0,
+     -2.086
+    ],
+    [
+     2.725,
+     0,
+     -1.129
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "tkGlass",
+   "layer": "abTank",
+   "shape": "box",
+   "size": [
+    0.6,
+    2.3,
+    0.1
+   ],
+   "pos": [
+    97,
+    1.85,
+    2.9
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "tkLevel",
+   "layer": "abTank",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.3,
+    0.02
+   ],
+   "pos": [
+    97,
+    0,
+    2.97
+   ],
+   "at": [
+    [
+     0,
+     1.2,
+     0
+    ],
+    [
+     0,
+     1.9,
+     0
+    ]
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "tkDrain",
+   "layer": "abTank",
+   "shape": "cyl",
+   "size": [
+    0.25,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    100.5,
+    0.9,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "tkValve",
+   "layer": "abTank",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    101,
+    1.2,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "abIn1",
+   "layer": "abTank",
+   "shape": "cyl",
+   "size": [
+    0.3,
+    0.8
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    94,
+    5,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "abInFl",
+   "layer": "abTank",
+   "shape": "tube",
+   "size": [
+    0.55,
+    0.3,
+    0.3
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    94.15,
+    5,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bnWall",
+   "layer": "abBurn",
+   "shape": "tube",
+   "size": [
+    2.6,
+    2.45,
+    4.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    6.6,
+    0
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "bnFl",
+   "layer": "abBurn",
+   "shape": "tube",
+   "size": [
+    3,
+    2.3,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    9.05,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bnBolt",
+   "layer": "abBurn",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    9.25,
+    0
+   ],
+   "at": [
+    [
+     2.75,
+     0,
+     0
+    ],
+    [
+     2.541,
+     0,
+     1.052
+    ],
+    [
+     1.945,
+     0,
+     1.945
+    ],
+    [
+     1.052,
+     0,
+     2.541
+    ],
+    [
+     0,
+     0,
+     2.75
+    ],
+    [
+     -1.052,
+     0,
+     2.541
+    ],
+    [
+     -1.945,
+     0,
+     1.945
+    ],
+    [
+     -2.541,
+     0,
+     1.052
+    ],
+    [
+     -2.75,
+     0,
+     0
+    ],
+    [
+     -2.541,
+     0,
+     -1.052
+    ],
+    [
+     -1.945,
+     0,
+     -1.945
+    ],
+    [
+     -1.052,
+     0,
+     -2.541
+    ],
+    [
+     0,
+     0,
+     -2.75
+    ],
+    [
+     1.052,
+     0,
+     -2.541
+    ],
+    [
+     1.945,
+     0,
+     -1.945
+    ],
+    [
+     2.541,
+     0,
+     -1.052
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bnRing",
+   "layer": "abBurn",
+   "shape": "tube",
+   "size": [
+    1.3,
+    1,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    5.35,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bnJet",
+   "layer": "abBurn",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    0.25
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    5.5,
+    0
+   ],
+   "at": [
+    [
+     1.15,
+     0,
+     0
+    ],
+    [
+     0.93,
+     0,
+     0.676
+    ],
+    [
+     0.355,
+     0,
+     1.094
+    ],
+    [
+     -0.355,
+     0,
+     1.094
+    ],
+    [
+     -0.93,
+     0,
+     0.676
+    ],
+    [
+     -1.15,
+     0,
+     0
+    ],
+    [
+     -0.93,
+     0,
+     -0.676
+    ],
+    [
+     -0.355,
+     0,
+     -1.094
+    ],
+    [
+     0.355,
+     0,
+     -1.094
+    ],
+    [
+     0.93,
+     0,
+     -0.676
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bnIgn",
+   "layer": "abBurn",
+   "shape": "box",
+   "size": [
+    0.4,
+    1.4,
+    0.4
+   ],
+   "pos": [
+    98.8,
+    5.7,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bnPilot",
+   "layer": "abBurn",
+   "shape": "sphere",
+   "size": [
+    0.1
+   ],
+   "pos": [
+    98.55,
+    6.3,
+    0
+   ],
+   "mat": "heat"
+  },
+  {
+   "id": "bnGasLn",
+   "layer": "abBurn",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    98.5,
+    4.8,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "bnGlass",
+   "layer": "abBurn",
+   "shape": "box",
+   "size": [
+    1.2,
+    2,
+    0.08
+   ],
+   "pos": [
+    97,
+    7,
+    2.66
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "wsWall",
+   "layer": "abWash",
+   "shape": "tube",
+   "size": [
+    2.6,
+    2.45,
+    4.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    11.6,
+    0
+   ],
+   "mat": "window"
+  },
+  {
+   "id": "wsFl",
+   "layer": "abWash",
+   "shape": "tube",
+   "size": [
+    3,
+    2.3,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    14.05,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "wsBolt",
+   "layer": "abWash",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    14.25,
+    0
+   ],
+   "at": [
+    [
+     2.75,
+     0,
+     0
+    ],
+    [
+     2.541,
+     0,
+     1.052
+    ],
+    [
+     1.945,
+     0,
+     1.945
+    ],
+    [
+     1.052,
+     0,
+     2.541
+    ],
+    [
+     0,
+     0,
+     2.75
+    ],
+    [
+     -1.052,
+     0,
+     2.541
+    ],
+    [
+     -1.945,
+     0,
+     1.945
+    ],
+    [
+     -2.541,
+     0,
+     1.052
+    ],
+    [
+     -2.75,
+     0,
+     0
+    ],
+    [
+     -2.541,
+     0,
+     -1.052
+    ],
+    [
+     -1.945,
+     0,
+     -1.945
+    ],
+    [
+     -1.052,
+     0,
+     -2.541
+    ],
+    [
+     0,
+     0,
+     -2.75
+    ],
+    [
+     1.052,
+     0,
+     -2.541
+    ],
+    [
+     1.945,
+     0,
+     -1.945
+    ],
+    [
+     2.541,
+     0,
+     -1.052
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "wsSpray",
+   "layer": "abWash",
+   "shape": "tube",
+   "size": [
+    2,
+    1.8,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    12.3,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "wsNozzle",
+   "layer": "abWash",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    12.1,
+    0
+   ],
+   "at": [
+    [
+     1.9,
+     0,
+     0
+    ],
+    [
+     1.537,
+     0,
+     1.117
+    ],
+    [
+     0.587,
+     0,
+     1.807
+    ],
+    [
+     -0.587,
+     0,
+     1.807
+    ],
+    [
+     -1.537,
+     0,
+     1.117
+    ],
+    [
+     -1.9,
+     0,
+     0
+    ],
+    [
+     -1.537,
+     0,
+     -1.117
+    ],
+    [
+     -0.587,
+     0,
+     -1.807
+    ],
+    [
+     0.587,
+     0,
+     -1.807
+    ],
+    [
+     1.537,
+     0,
+     -1.117
+    ]
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "wsFeed1",
+   "layer": "abWash",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    1.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    99.7,
+    12.3,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "wsFeed2",
+   "layer": "abWash",
+   "shape": "cyl",
+   "size": [
+    0.14,
+    2.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    100.4,
+    11.15,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "wsFeedE0",
+   "layer": "abWash",
+   "shape": "sphere",
+   "size": [
+    0.182
+   ],
+   "pos": [
+    100.4,
+    12.3,
+    0
+   ],
+   "mat": "pneu"
+  },
+  {
+   "id": "wsPack",
+   "layer": "abWash",
+   "shape": "tube",
+   "size": [
+    2.4,
+    0.9,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    10.4,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "wsPack2",
+   "layer": "abWash",
+   "shape": "tube",
+   "size": [
+    2.4,
+    0.9,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    10.9,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "wsMist",
+   "layer": "abWash",
+   "shape": "tube",
+   "size": [
+    2.4,
+    1,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    13.35,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "skDuct",
+   "layer": "abStack",
+   "shape": "cyl",
+   "size": [
+    1.3,
+    3.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    16,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "skFl",
+   "layer": "abStack",
+   "shape": "tube",
+   "size": [
+    1.9,
+    1.2,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    14.35,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "skBolt",
+   "layer": "abStack",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    14.55,
+    0
+   ],
+   "at": [
+    [
+     1.65,
+     0,
+     0
+    ],
+    [
+     1.335,
+     0,
+     0.97
+    ],
+    [
+     0.51,
+     0,
+     1.569
+    ],
+    [
+     -0.51,
+     0,
+     1.569
+    ],
+    [
+     -1.335,
+     0,
+     0.97
+    ],
+    [
+     -1.65,
+     0,
+     0
+    ],
+    [
+     -1.335,
+     0,
+     -0.97
+    ],
+    [
+     -0.51,
+     0,
+     -1.569
+    ],
+    [
+     0.51,
+     0,
+     -1.569
+    ],
+    [
+     1.335,
+     0,
+     -0.97
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "skClamp",
+   "layer": "abStack",
+   "shape": "tube",
+   "size": [
+    1.38,
+    1.28,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    16.15,
+    0
+   ],
+   "mat": "knurl"
+  },
+  {
+   "id": "skCap",
+   "layer": "abStack",
+   "shape": "tube",
+   "size": [
+    1.45,
+    1.1,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    97,
+    17.85,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "skTag",
+   "layer": "abStack",
+   "shape": "box",
+   "size": [
+    1,
+    0.8,
+    0.04
+   ],
+   "pos": [
+    97,
+    15.4,
+    1.3
+   ],
+   "mat": "lampY"
+  },
+  {
+   "id": "acBody",
+   "layer": "abCab",
+   "shape": "box",
+   "size": [
+    2.4,
+    6,
+    2
+   ],
+   "pos": [
+    102,
+    3,
+    0
+   ],
+   "mat": "cab"
+  },
+  {
+   "id": "acScr",
+   "layer": "abCab",
+   "shape": "box",
+   "size": [
+    1.8,
+    1.2,
+    0.04
+   ],
+   "pos": [
+    102,
+    4.2,
+    1.02
+   ],
+   "mat": "screen"
+  },
+  {
+   "id": "acLed",
+   "layer": "abCab",
+   "shape": "sphere",
+   "size": [
+    0.08
+   ],
+   "pos": [
+    101.3,
+    5.3,
+    1.04
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0.4,
+     0,
+     0
+    ],
+    [
+     0.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "acVent",
+   "layer": "abCab",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.08,
+    0.04
+   ],
+   "pos": [
+    102,
+    0,
+    1.03
+   ],
+   "at": [
+    [
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1.3,
+     0
+    ],
+    [
+     0,
+     1.6,
+     0
+    ],
+    [
+     0,
+     1.9,
+     0
+    ],
+    [
+     0,
+     2.2,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "acHose",
+   "layer": "abCab",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    1.1
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    100.25,
+    2,
+    0
+   ],
+   "mat": "conn"
+  },
+  {
+   "id": "flOut",
+   "layer": "abBurn",
+   "shape": "sphere",
+   "size": [
+    0.9
+   ],
+   "scale": [
+    1,
+    1.9,
+    1
+   ],
+   "pos": [
+    97,
+    6.9,
+    0
+   ],
+   "mat": "fireOut"
+  },
+  {
+   "id": "flIn",
+   "layer": "abBurn",
+   "shape": "sphere",
+   "size": [
+    0.55
+   ],
+   "scale": [
+    1,
+    1.6,
+    1
+   ],
+   "pos": [
+    97,
+    6.5,
+    0
+   ],
+   "mat": "fireIn"
+  },
+  {
+   "id": "flSide",
+   "layer": "abBurn",
+   "shape": "sphere",
+   "size": [
+    0.3
+   ],
+   "scale": [
+    1,
+    1.7,
+    1
+   ],
+   "pos": [
+    97,
+    6.2,
+    0
+   ],
+   "at": [
+    [
+     1.182,
+     0,
+     0.208
+    ],
+    [
+     0.41,
+     0,
+     1.128
+    ],
+    [
+     -0.771,
+     0,
+     0.919
+    ],
+    [
+     -1.182,
+     0,
+     -0.208
+    ],
+    [
+     -0.41,
+     0,
+     -1.128
+    ],
+    [
+     0.771,
+     0,
+     -0.919
+    ]
+   ],
+   "mat": "fireOut"
+  },
+  {
+   "id": "plasmaGl",
+   "layer": "chShw",
+   "shape": "cyl",
+   "size": [
+    1.9,
+    1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    76,
+    6.2,
+    0
+   ],
+   "mat": "plasma"
+  }
+ ],
+ "anchors": {
+  "cab": {
+   "layer": "cabShell",
+   "p": [
+    -4.4,
+    17.8,
+    3.5
+   ],
+   "dx": -150,
+   "dy": -80
+  },
+  "bottle": {
+   "layer": "botA",
+   "p": [
+    -2.2,
+    8.5,
+    1.1
+   ],
+   "dx": -150,
+   "dy": 90
+  },
+  "valveA": {
+   "layer": "botA",
+   "p": [
+    -2.2,
+    13,
+    0.5
+   ],
+   "dx": -150,
+   "dy": -80
+  },
+  "reg": {
+   "layer": "regA",
+   "p": [
+    -2.2,
+    15.4,
+    -0.8
+   ],
+   "dx": 150,
+   "dy": -80
+  },
+  "gH": {
+   "layer": "regA",
+   "p": [
+    -3.15,
+    14.6,
+    -0.4
+   ],
+   "dx": -150,
+   "dy": -70
+  },
+  "gL": {
+   "layer": "regA",
+   "p": [
+    -1.25,
+    15.9,
+    -0.4
+   ],
+   "dx": 150,
+   "dy": -70
+  },
+  "coil": {
+   "layer": "regA",
+   "p": [
+    -1.2,
+    12.9,
+    -1.4
+   ],
+   "dx": 150,
+   "dy": 80
+  },
+  "purge": {
+   "layer": "purge",
+   "p": [
+    -4.1,
+    7.6,
+    -0.40000000000000013
+   ],
+   "dx": -150,
+   "dy": 80
+  },
+  "ctl": {
+   "layer": "ctl",
+   "p": [
+    3.7,
+    14.4,
+    4.4
+   ],
+   "dx": 150,
+   "dy": -80
+  },
+  "estopA": {
+   "layer": "ctlDoor",
+   "p": [
+    3.7,
+    9.2,
+    4.8
+   ],
+   "dx": 150,
+   "dy": 80
+  },
+  "pcb": {
+   "layer": "ctlPcb",
+   "p": [
+    3.7,
+    14.8,
+    3.7
+   ],
+   "dx": 150,
+   "dy": -90
+  },
+  "pur": {
+   "layer": "purCan",
+   "p": [
+    21.8,
+    9.2,
+    0.5
+   ],
+   "dx": 150,
+   "dy": -90
+  },
+  "bed": {
+   "layer": "purBed",
+   "p": [
+    20,
+    4.2,
+    0.9
+   ],
+   "dx": 150,
+   "dy": 90
+  },
+  "filt": {
+   "layer": "purFilt",
+   "p": [
+    25.8,
+    7.5,
+    0.4
+   ],
+   "dx": 150,
+   "dy": 80
+  },
+  "vmb": {
+   "layer": "vmbShell",
+   "p": [
+    45,
+    12.5,
+    0.5
+   ],
+   "dx": 150,
+   "dy": -80
+  },
+  "stk": {
+   "layer": "stk",
+   "p": [
+    38,
+    7.9,
+    0.8
+   ],
+   "dx": 0,
+   "dy": -150
+  },
+  "vInlet": {
+   "layer": "vc1",
+   "p": [
+    32.8,
+    8.6,
+    0
+   ],
+   "dx": -150,
+   "dy": -90
+  },
+  "vFilter": {
+   "layer": "vc2",
+   "p": [
+    35.4,
+    7.5,
+    0.5
+   ],
+   "dx": -120,
+   "dy": 120
+  },
+  "vReg": {
+   "layer": "vc3",
+   "p": [
+    38,
+    8.9,
+    0
+   ],
+   "dx": 0,
+   "dy": -140
+  },
+  "vPt": {
+   "layer": "vc4",
+   "p": [
+    40.6,
+    9,
+    0
+   ],
+   "dx": 120,
+   "dy": -110
+  },
+  "vOut": {
+   "layer": "vc5",
+   "p": [
+    43.2,
+    8.6,
+    0
+   ],
+   "dx": 150,
+   "dy": -90
+  },
+  "dblInner": {
+   "layer": "dblPipe",
+   "p": [
+    53,
+    7.5,
+    0.3
+   ],
+   "dx": -150,
+   "dy": 100
+  },
+  "dblOuter": {
+   "layer": "dblSkin",
+   "p": [
+    62,
+    8.5,
+    0.4
+   ],
+   "dx": 150,
+   "dy": -90
+  },
+  "det": {
+   "layer": "dblDet",
+   "p": [
+    62,
+    10.9,
+    0.7
+   ],
+   "dx": 150,
+   "dy": -80
+  },
+  "hole": {
+   "layer": "dblHole",
+   "p": [
+    56.5,
+    8,
+    0
+   ],
+   "dx": -150,
+   "dy": -90
+  },
+  "dvalve": {
+   "layer": "dblValve",
+   "p": [
+    48.7,
+    9.7,
+    0
+   ],
+   "dx": -150,
+   "dy": -90
+  },
+  "annulus": {
+   "layer": "dblJacket",
+   "p": [
+    61,
+    8.4,
+    0.2
+   ],
+   "dx": 150,
+   "dy": 80
+  },
+  "chm": {
+   "layer": "chm",
+   "p": [
+    79.5,
+    6,
+    0.3
+   ],
+   "dx": 150,
+   "dy": -90
+  },
+  "shw": {
+   "layer": "chShw",
+   "p": [
+    77.8,
+    7,
+    0.3
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "pump": {
+   "layer": "pmp",
+   "p": [
+    89,
+    3.6,
+    2
+   ],
+   "dx": 150,
+   "dy": -90
+  },
+  "mfc": {
+   "layer": "chMfc",
+   "p": [
+    73.4,
+    13.2,
+    0.4
+   ],
+   "dx": -150,
+   "dy": -80
+  },
+  "abTank": {
+   "layer": "abTank",
+   "p": [
+    94.3,
+    1.5,
+    0.6
+   ],
+   "dx": -150,
+   "dy": 80
+  },
+  "abBurn": {
+   "layer": "abBurn",
+   "p": [
+    94.4,
+    7.2,
+    0.6
+   ],
+   "dx": -150,
+   "dy": 70
+  },
+  "abWash": {
+   "layer": "abWash",
+   "p": [
+    94.4,
+    12,
+    0.6
+   ],
+   "dx": -150,
+   "dy": 70
+  },
+  "abStack": {
+   "layer": "abStack",
+   "p": [
+    95.7,
+    16.2,
+    0.6
+   ],
+   "dx": -150,
+   "dy": -70
+  },
+  "flame": {
+   "layer": "abBurn",
+   "p": [
+    97.7,
+    6.9,
+    0.4
+   ],
+   "dx": 150,
+   "dy": 80
+  }
+ },
+ "actions": {
+  "needleHigh": {
+   "type": "rotate",
+   "_說明": "高壓表指針緩降（瓶壓隨使用慢慢下降；示意，不標數值）",
+   "parts": [
+    "rAGHNd"
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "pivot": [
+    -3.15,
+    14.6,
+    0
+   ],
+   "pivots": {
+    "rAGHNd": [
+     -3.15,
+     14.6,
+     -0.9
+    ]
+   },
+   "rps": 0.018,
+   "rampSpin": true
+  },
+  "lowJit": {
+   "type": "vibrate",
+   "_說明": "低壓表指針只輕微抖動（出口壓力穩定）",
+   "parts": [
+    "rAGLNd"
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "amp": 0.02,
+   "freq": 3
+  },
+  "fanBeacon": {
+   "type": "pulse",
+   "parts": [
+    "cbBeaconG"
+   ],
+   "color": "lampG",
+   "glow": 1,
+   "freq": 1,
+   "halo": 0
+  },
+  "ctlLed": {
+   "type": "pulse",
+   "parts": [
+    "cfLed"
+   ],
+   "color": "lampG",
+   "glow": 1,
+   "freq": 1.2,
+   "halo": 0
+  },
+  "regIn": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     -0.7,
+     12.9,
+     0
+    ],
+    [
+     -0.7,
+     12.9,
+     -1.4
+    ],
+    [
+     -2.2,
+     12.9,
+     -1.4
+    ],
+    [
+     -2.2,
+     14,
+     -1.4
+    ]
+   ],
+   "n": 9,
+   "size": 0.09,
+   "shape": "dot",
+   "rate": 0.55,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.08
+  },
+  "regOut": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     -1.6,
+     14.2,
+     -1.4
+    ],
+    [
+     0.4,
+     14.2,
+     -1.4
+    ],
+    [
+     0.4,
+     7.5,
+     -1.4
+    ],
+    [
+     4.9,
+     7.5,
+     -1.4
+    ],
+    [
+     6.4,
+     7.5,
+     -1.4
+    ],
+    [
+     6.4,
+     7.5,
+     0
+    ],
+    [
+     12,
+     7.5,
+     0
+    ]
+   ],
+   "n": 3,
+   "size": 0.09,
+   "shape": "dot",
+   "rate": 0.2,
+   "color": "gasC",
+   "track": false,
+   "free": true
+  },
+  "purgeN2": {
+   "type": "flow",
+   "layer": "purge",
+   "path": [
+    [
+     -5.4,
+     11.8,
+     -2.2
+    ],
+    [
+     -4.1,
+     11.8,
+     -2.2
+    ],
+    [
+     -4.1,
+     9,
+     -2.2
+    ],
+    [
+     -2.6,
+     9,
+     -2.2
+    ],
+    [
+     -2.6,
+     12,
+     -2.2
+    ],
+    [
+     -2.2,
+     12.9,
+     -1.4
+    ]
+   ],
+   "n": 8,
+   "size": 0.09,
+   "shape": "dot",
+   "rate": 0.5,
+   "color": "n2C",
+   "track": false,
+   "free": true
+  },
+  "lineGas": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     6.4,
+     7.5,
+     0
+    ],
+    [
+     18.2,
+     7.5,
+     0
+    ],
+    [
+     19.4,
+     7.5,
+     0
+    ],
+    [
+     19.4,
+     1.4,
+     0
+    ]
+   ],
+   "n": 6,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 0.3,
+   "color": "gasC",
+   "track": false,
+   "free": true
+  },
+  "impIn": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     19.7,
+     1.5,
+     0.2
+    ],
+    [
+     19.7,
+     3,
+     0.2
+    ],
+    [
+     20.2,
+     4.2,
+     0.4
+    ]
+   ],
+   "n": 7,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.22,
+   "color": "impC",
+   "track": false,
+   "free": true,
+   "jitter": 0.4
+  },
+  "cleanOut": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     20,
+     6.6,
+     0
+    ],
+    [
+     20,
+     7,
+     0
+    ],
+    [
+     21.9,
+     7.5,
+     0
+    ],
+    [
+     25,
+     7.5,
+     0
+    ]
+   ],
+   "n": 5,
+   "size": 0.09,
+   "shape": "dot",
+   "rate": 0.3,
+   "color": "gasC",
+   "track": false,
+   "free": true
+  },
+  "impLeak": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     20.2,
+     4.2,
+     0.3
+    ],
+    [
+     20,
+     6.6,
+     0
+    ],
+    [
+     21.9,
+     7.5,
+     0
+    ],
+    [
+     31,
+     7.5,
+     0
+    ]
+   ],
+   "n": 1,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 0.12,
+   "color": "impC",
+   "track": false,
+   "free": true
+  },
+  "dblFlow": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     48,
+     7.5,
+     0
+    ],
+    [
+     67,
+     7.5,
+     0
+    ]
+   ],
+   "n": 12,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 0.35,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.12
+  },
+  "leakJet": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     56.5,
+     7.95,
+     0
+    ],
+    [
+     56.3,
+     8.38,
+     0.05
+    ]
+   ],
+   "n": 14,
+   "size": 0.12,
+   "shape": "dot",
+   "rate": 1.1,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.5
+  },
+  "annL": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     56.4,
+     8.2,
+     0
+    ],
+    [
+     54,
+     8.2,
+     0
+    ],
+    [
+     51,
+     8.2,
+     0
+    ]
+   ],
+   "n": 6,
+   "size": 0.07,
+   "shape": "dot",
+   "rate": 0.2,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "annR": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     56.6,
+     8.2,
+     0
+    ],
+    [
+     60,
+     8.2,
+     0
+    ],
+    [
+     62,
+     8.2,
+     0
+    ],
+    [
+     62,
+     10,
+     0
+    ]
+   ],
+   "n": 6,
+   "size": 0.07,
+   "shape": "dot",
+   "rate": 0.25,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "dblPurge": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     65,
+     8.2,
+     0
+    ],
+    [
+     51,
+     8.2,
+     0
+    ]
+   ],
+   "n": 12,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.4,
+   "color": "n2C",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "detBlink": {
+   "type": "pulse",
+   "parts": [
+    "ddLedR"
+   ],
+   "color": "lampR",
+   "glow": 1,
+   "freq": 3.2,
+   "halo": 1.6
+  },
+  "valveAct": {
+   "type": "pulse",
+   "parts": [
+    "dvInd"
+   ],
+   "color": "lampY",
+   "glow": 1,
+   "freq": 2,
+   "halo": 0
+  },
+  "shw0": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     77.4,
+     7,
+     0
+    ],
+    [
+     77.54,
+     4.2,
+     0
+    ],
+    [
+     77.54,
+     3.25,
+     0
+    ]
+   ],
+   "n": 4,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.3,
+   "phase": 0,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "shw1": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     76.7,
+     7,
+     1.212
+    ],
+    [
+     76.77,
+     4.2,
+     1.333
+    ],
+    [
+     76.77,
+     3.25,
+     1.333
+    ]
+   ],
+   "n": 4,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.3,
+   "phase": 0.14,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "shw2": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     75.3,
+     7,
+     1.212
+    ],
+    [
+     75.23,
+     4.2,
+     1.333
+    ],
+    [
+     75.23,
+     3.25,
+     1.333
+    ]
+   ],
+   "n": 4,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.3,
+   "phase": 0.28,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "shw3": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     74.6,
+     7,
+     0
+    ],
+    [
+     74.46,
+     4.2,
+     0
+    ],
+    [
+     74.46,
+     3.25,
+     0
+    ]
+   ],
+   "n": 4,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.3,
+   "phase": 0.42000000000000004,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "shw4": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     75.3,
+     7,
+     -1.212
+    ],
+    [
+     75.23,
+     4.2,
+     -1.333
+    ],
+    [
+     75.23,
+     3.25,
+     -1.333
+    ]
+   ],
+   "n": 4,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.3,
+   "phase": 0.56,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "shw5": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     76.7,
+     7,
+     -1.212
+    ],
+    [
+     76.77,
+     4.2,
+     -1.333
+    ],
+    [
+     76.77,
+     3.25,
+     -1.333
+    ]
+   ],
+   "n": 4,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.3,
+   "phase": 0.7000000000000001,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "wfOut0": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     76,
+     3.3,
+     0
+    ],
+    [
+     77.41,
+     3.3,
+     0.513
+    ],
+    [
+     79.007,
+     1.9,
+     1.094
+    ],
+    [
+     79,
+     1.6,
+     0
+    ],
+    [
+     84,
+     1.6,
+     0
+    ]
+   ],
+   "n": 3,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.25,
+   "phase": 0,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "wfOut1": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     76,
+     3.3,
+     0
+    ],
+    [
+     75.487,
+     3.3,
+     1.41
+    ],
+    [
+     74.906,
+     1.9,
+     3.007
+    ],
+    [
+     79,
+     1.6,
+     0
+    ],
+    [
+     84,
+     1.6,
+     0
+    ]
+   ],
+   "n": 3,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.25,
+   "phase": 0.2,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "wfOut2": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     76,
+     3.3,
+     0
+    ],
+    [
+     74.59,
+     3.3,
+     -0.513
+    ],
+    [
+     72.993,
+     1.9,
+     -1.094
+    ],
+    [
+     79,
+     1.6,
+     0
+    ],
+    [
+     84,
+     1.6,
+     0
+    ]
+   ],
+   "n": 3,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.25,
+   "phase": 0.4,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "wfOut3": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     76,
+     3.3,
+     0
+    ],
+    [
+     76.513,
+     3.3,
+     -1.41
+    ],
+    [
+     77.094,
+     1.9,
+     -3.007
+    ],
+    [
+     79,
+     1.6,
+     0
+    ],
+    [
+     84,
+     1.6,
+     0
+    ]
+   ],
+   "n": 3,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 0.25,
+   "phase": 0.6000000000000001,
+   "color": "gasC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "plasmaPulse": {
+   "type": "pulse",
+   "parts": [
+    "plasmaGl"
+   ],
+   "color": "plasmaC",
+   "glow": 1,
+   "freq": 1.7,
+   "halo": 2
+  },
+  "foreline": {
+   "type": "flow",
+   "layer": "fl",
+   "path": [
+    [
+     84,
+     1.6,
+     0
+    ],
+    [
+     84,
+     1.6,
+     0
+    ],
+    [
+     87,
+     3.6,
+     0
+    ],
+    [
+     87,
+     5,
+     0
+    ],
+    [
+     93.6,
+     5,
+     0
+    ],
+    [
+     95.6,
+     5,
+     0
+    ]
+   ],
+   "n": 7,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 0.3,
+   "color": "wasteC",
+   "track": false,
+   "free": true
+  },
+  "abBurnIn": {
+   "type": "flow",
+   "layer": "abTank",
+   "path": [
+    [
+     93.6,
+     5,
+     0
+    ],
+    [
+     96,
+     5,
+     0
+    ],
+    [
+     96.7,
+     5.6,
+     0
+    ],
+    [
+     97,
+     6.6,
+     0
+    ]
+   ],
+   "n": 6,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 0.3,
+   "color": "wasteC",
+   "track": false,
+   "free": true,
+   "jitter": 0.1
+  },
+  "abAsh": {
+   "type": "flow",
+   "layer": "abBurn",
+   "path": [
+    [
+     97,
+     6.8,
+     0
+    ],
+    [
+     97,
+     8.6,
+     0.2
+    ],
+    [
+     97,
+     10.4,
+     -0.2
+    ],
+    [
+     97,
+     12.6,
+     0
+    ]
+   ],
+   "n": 8,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 0.28,
+   "color": "ashC",
+   "track": false,
+   "free": true,
+   "jitter": 0.5
+  },
+  "abClean": {
+   "type": "flow",
+   "layer": "abStack",
+   "path": [
+    [
+     97,
+     13,
+     0
+    ],
+    [
+     97,
+     15.5,
+     0
+    ],
+    [
+     97,
+     18.4,
+     0
+    ]
+   ],
+   "n": 5,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 0.3,
+   "color": "n2C",
+   "track": false,
+   "free": true
+  },
+  "abDrop0": {
+   "type": "flow",
+   "layer": "abWash",
+   "path": [
+    [
+     98.642,
+     12,
+     0.44
+    ],
+    [
+     98.314,
+     6,
+     0.352
+    ],
+    [
+     98.149,
+     2.6,
+     0.308
+    ]
+   ],
+   "n": 3,
+   "size": 0.07,
+   "shape": "liquid",
+   "rate": 0.35,
+   "phase": 0,
+   "color": "waterC",
+   "track": false,
+   "free": true,
+   "accel": true,
+   "band": 0.05,
+   "bandO": 0.3
+  },
+  "abDrop1": {
+   "type": "flow",
+   "layer": "abWash",
+   "path": [
+    [
+     97.44,
+     12,
+     1.642
+    ],
+    [
+     97.352,
+     6,
+     1.314
+    ],
+    [
+     97.308,
+     2.6,
+     1.149
+    ]
+   ],
+   "n": 3,
+   "size": 0.07,
+   "shape": "liquid",
+   "rate": 0.35,
+   "phase": 0.15,
+   "color": "waterC",
+   "track": false,
+   "free": true,
+   "accel": true,
+   "band": 0.05,
+   "bandO": 0.3
+  },
+  "abDrop2": {
+   "type": "flow",
+   "layer": "abWash",
+   "path": [
+    [
+     95.798,
+     12,
+     1.202
+    ],
+    [
+     96.038,
+     6,
+     0.962
+    ],
+    [
+     96.159,
+     2.6,
+     0.841
+    ]
+   ],
+   "n": 3,
+   "size": 0.07,
+   "shape": "liquid",
+   "rate": 0.35,
+   "phase": 0.3,
+   "color": "waterC",
+   "track": false,
+   "free": true,
+   "accel": true,
+   "band": 0.05,
+   "bandO": 0.3
+  },
+  "abDrop3": {
+   "type": "flow",
+   "layer": "abWash",
+   "path": [
+    [
+     95.358,
+     12,
+     -0.44
+    ],
+    [
+     95.686,
+     6,
+     -0.352
+    ],
+    [
+     95.851,
+     2.6,
+     -0.308
+    ]
+   ],
+   "n": 3,
+   "size": 0.07,
+   "shape": "liquid",
+   "rate": 0.35,
+   "phase": 0.44999999999999996,
+   "color": "waterC",
+   "track": false,
+   "free": true,
+   "accel": true,
+   "band": 0.05,
+   "bandO": 0.3
+  },
+  "abDrop4": {
+   "type": "flow",
+   "layer": "abWash",
+   "path": [
+    [
+     96.56,
+     12,
+     -1.642
+    ],
+    [
+     96.648,
+     6,
+     -1.314
+    ],
+    [
+     96.692,
+     2.6,
+     -1.149
+    ]
+   ],
+   "n": 3,
+   "size": 0.07,
+   "shape": "liquid",
+   "rate": 0.35,
+   "phase": 0.6,
+   "color": "waterC",
+   "track": false,
+   "free": true,
+   "accel": true,
+   "band": 0.05,
+   "bandO": 0.3
+  },
+  "abDrop5": {
+   "type": "flow",
+   "layer": "abWash",
+   "path": [
+    [
+     98.202,
+     12,
+     -1.202
+    ],
+    [
+     97.962,
+     6,
+     -0.962
+    ],
+    [
+     97.841,
+     2.6,
+     -0.841
+    ]
+   ],
+   "n": 3,
+   "size": 0.07,
+   "shape": "liquid",
+   "rate": 0.35,
+   "phase": 0.75,
+   "color": "waterC",
+   "track": false,
+   "free": true,
+   "accel": true,
+   "band": 0.05,
+   "bandO": 0.3
+  },
+  "abFlame": {
+   "type": "pulse",
+   "parts": [
+    "flOut",
+    "flIn",
+    "flSide"
+   ],
+   "color": "fireOut",
+   "glow": 1,
+   "freq": 3.4,
+   "halo": 2.4
+  },
+  "abPilot": {
+   "type": "pulse",
+   "parts": [
+    "bnPilot"
+   ],
+   "color": "hotC",
+   "glow": 1,
+   "freq": 2,
+   "halo": 0
+  }
+ },
+ "pose": {
+  "yaw0": 0,
+  "yawIso": 0,
+  "drift": 0
+ },
+ "camera": {
+  "stand": {
+   "d": 70,
+   "elev": 24,
+   "y": 8
+  }
+ },
+ "fx": {
+  "dpr": 1,
+  "srcPx": 30,
+  "shadows": 0,
+  "fog": false,
+  "dust": false,
+  "vaporSprites": false,
+  "shimmer": false
+ },
+ "info": {
+  "FY": 0,
+  "LY": 7.5,
+  "X": {
+   "cab": 0,
+   "pur": 20,
+   "vmb": 38,
+   "dbl": 58,
+   "chm": 76,
+   "pmp": 87,
+   "abt": 97
+  },
+  "XP": 20,
+  "XV": 38,
+  "XD": 58,
+  "XC": 76,
+  "XA": 97,
+  "PX": -4.1,
+  "PZ": -2.2
+ }
+}
