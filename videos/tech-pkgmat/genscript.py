@@ -197,7 +197,7 @@ P["s5"] = {"shot": [S_(CC, M5, 1)],
 P["s6"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
  "shot": [S_(CC, QV, 1)],
  "run": [run("qRain", "wet-4", "shell-6", 4)],
- "labels": [lab("qDropA", "外殼擋住水氣和碰撞", "Shell keeps moisture and knocks out", "blue", "wet-8", "wet+37", xy=[600, 330]),
+ "labels": [lab("qDropA", "外殼擋住水氣和碰撞", "Shell keeps moisture and knocks out", "blue", "wet-8", "wet+27", xy=[600, 330]),
             lab("qBodyA", "拆開：上半是封裝膠外殼", "Top: mold-compound shell", "amber", "shell-17", "shell+28", xy=[600, 330])],
  "overlay": [card("s6", "pkg-shell", "外殼擋什麼", "示意（封裝膠導熱不好，散熱靠金屬）", {"wet": "wet", "hit": "hit", "shell": "shell"})]}
 P["s7"] = {"zoom": [{"to": "unit", "at": CC, "dur": 1}],
