@@ -87,7 +87,7 @@ const PIPE = (id, layer, pts, r, mat, o = {}) => {
 // ═════ 濕式化學品專用色票與材質 ═════
 Object.assign(palette, {
   hdpeC: "#EEF2F6", drumC: "#2F6DB5", drumDarkC: "#1F4E86", pfaC: "#F2EFE6", pfaDarkC: "#CFC8B8", concC: "#B9B5AD", concDarkC: "#8E8A82", poolC: "#4FC3E8", tileC: "#E6F1F5", tileLineC: "#9FC4D0",
-  cleanC: "#7FC8F0", etchC: "#F2C94C", slurryC: "#F1ECE2", silicaC: "#E3EAF5", ceriaC: "#EFD98A", dustC: "#3F444C", rustC: "#B5532B", rustDarkC: "#7E3318", padC: "#8F96A3", padDarkC: "#6E7482",
+  cleanC: "#7FC8F0", etchC: "#F2C94C", slurryC: "#F1ECE2", silicaC: "#E3EAF5", ceriaC: "#EFD98A", dustC: "#3F444C", rustC: "#B5532B", rustDarkC: "#7E3318", padC: "#7186A6", padDarkC: "#4F5E78",
   acidC: "#D7E86A", oxidC: "#E5484D", ironC: "#98A1AF", ironDarkC: "#59616E", blueP: "#2F7FE0", lumpC: "#8A8F96", scratchC: "#E5484D", woodC: "#C9A66B", woodDarkC: "#9C7B45", lemonC: "#F5D948", n2mistC: "#DCE6F2", upwC: "#6CB6F0", wasteC: "#9AA1AB", pleatC: "#F7F4EC", oxFilmC: "#A89E92", steelC: "#5C6678",
 });
 Object.assign(materials, {

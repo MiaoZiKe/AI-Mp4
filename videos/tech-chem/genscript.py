@@ -21,7 +21,7 @@ S = [
  [("q", "多乾淨"), ("pool", "游泳池"), ("spoon", "一小匙")], ["多乾淨", "游泳池", "一小匙"], ["比喻為自行換算；示意，不是量測"], 6.4, 2.2),
 ("s4", "mechanism", "藥水從廠外大槽出發，沿管線送到機台旁，",
  ["藥水從廠外大槽出發", "沿管線送到機台旁"], ["Chemicals leave the outdoor tank,", "travel by pipe to the tool,"],
- [("tank", "大槽"), ("pipe", "管線"), ("desk", "機台旁")], ["大槽", "管線"], ["Air Liquide、3M 文件；示意，不是量測"], 5.0, 0.4),
+ [("tank", "大槽"), ("pipe", "管線"), ("desk", "機台旁")], ["大槽", "管線"], ["Air Liquide、3M 文件；示意，不是量測"], 5.3, 0.4),
 ("s4b", "mechanism", "像自來水廠送水，",
  ["像自來水廠送水"], ["like a water works,"],
  [("water", "自來水廠")], ["自來水廠"], ["Air Liquide、3M 文件；示意，不是量測"], 1.9, 0.4),
@@ -143,7 +143,7 @@ EXPL = []
 # ①前門滑開半扇（門與側板留淡影、外框線全程在）②泵與閥島沿 X 軸分開 ③過濾器殼沿 Z 軸向前抽出一個身位（停 ≥1.5 秒）④濾芯上移露出褶疊膜 ⑤流量計與壓力轉換器上移；念完「掉渣」後組回、停留，再拉遠到迴路
 R4 = C(108)
 EXPL += [mv("cdsDoor", DK(0), R4, 16, dx=9.5), hid("cdsDoor", DK(0), R4, 14, 0.18), hid("cdsWall", DK(0), R4, 14, 0.2),
-         mv("cdsPump", W(1), R4, 22, dx=-6.2), mv("cdsValve", W(1), R4, 22, dx=-1.8),
+         mv("cdsPump", W(-12), R4, 22, dx=-6.2), mv("cdsValve", W(-12), R4, 22, dx=-1.8),
          mv("cdsFilter", W(50), R4, 22, dz=9.0), mv("cdsCore", C(15), R4, 24, dy=5.2, dz=9.0),
          mv("cdsMeas", C(60), R4, 24, dy=6.0)]
 # s7：研磨液槽組：①槽蓋掀開看攪拌槳 ②槽內結塊被迴路抽走 ③濾芯沿軸線拉開，濾膜卡住大顆粒 ④組回
@@ -166,7 +166,7 @@ P["s2"] = {"zoom": [{"to": "tool", "at": "start-10", "dur": 1}],
  "run": [run("waferSpin", "start", "s3:start-2", 8), run("pourA", "wash-6", "etch-6", 6), run("spreadA", "wash", "etch-6", 6), run("capA", "wash-6", "etch-6", 6),
          run("pourB", "etch-6", "polish-6", 6), run("capB", "etch-6", "polish-6", 6), run("pourC", "polish-6", "name-4", 6), run("capC", "polish-6", "name-4", 6),
          run("capA", "name", "s3:start-1", 8), run("capB", "name", "s3:start-1", 8), run("capC", "name", "s3:start-1", 8)],
- "labels": [lab("jugA", "清洗液", "Clean", "blue", "wash-4", "wash+42"), lab("jugB", "蝕刻液", "Etch", "amber", "etch-2", "etch+43"), lab("jugC", "研磨液", "Slurry", "blue", "polish-2", "name+4")],
+ "labels": [lab("jugA", "清洗液", "Clean", "blue", "wash-4", "wash+42"), lab("jugB", "蝕刻液", "Etch", "amber", "etch-2", "etch+43"), lab("jugC", "研磨液", "Slurry", "blue", "etch+44", "name+7")],
  "overlay": [sec("chem-kinds", "start+24", "s3:start-8", "三種藥水，各做一件事", "示意", {"wash": "wash", "etch": "etch", "polish": "polish", "name": "name"})]}
 # ─── s3：游泳池一小匙 → 管內雜質比例 ───
 P["s3"] = {"shot": [shot("start-1", -33.0, 2.4, 40, 26, 1, yaw=0.0), shot("pool-8", -32.5, 2.4, 36, 24, 30), shot("spoon+44", -14.0, 3.0, 52, 14, 1)],
@@ -174,12 +174,12 @@ P["s3"] = {"shot": [shot("start-1", -33.0, 2.4, 40, 26, 1, yaw=0.0), shot("pool-
  "labels": [lab("pool", "一座游泳池", "A swimming pool", "blue", "pool-7", "spoon-2"), lab("spoon", "一小匙", "One teaspoon", "amber", "spoon-1", "spoon+44"), lab("ionRed", "紅點＝金屬雜質（示意）", "Red = metal impurity (illustrative)", "amber", "spoon+45", "s4:start-10")],
  "overlay": [sec("chem-pool", "start+20", "s4:start-10", "游泳池裡的一小匙", "示意（自行換算，不是量測）", {"q": "q", "pool": "pool", "spoon": "spoon"})]}
 # ─── s4（拆三幕，r1）：s4 大槽→塑膠管線→管理櫃近景；s4b 管理櫃爆炸分解；s4c 迴路遠景→旋轉清洗腔 ───
-P["s4"] = {"shot": [shot("start-1", 3.0, 8.0, 62, 14, 1, yaw=0.0), shot("pipe-18", 14.0, 4.5, 62, 22, 26), shot(DK(-16), 26.0, 9.5, 76, 16, 26), shot(DK(4), 28.0, 9.0, 60, 22, 22)],
+P["s4"] = {"shot": [shot("start-1", 3.0, 8.0, 62, 14, 1, yaw=0.0), shot("tank+6", 14.0, 4.5, 62, 22, 14), shot(DK(-16), 26.0, 9.5, 76, 16, 26), shot(DK(4), 28.0, 9.0, 60, 22, 22)],
  "run": [run("supFlow", "start", "start+98", 10), run("tankLevel", "start", "start+98", 6), run("cdsFlow", DK(-10), W(0), 10), run("pumpBeat", DK(-10), W(0), 10), run("pumpLed", DK(-10), W(0), 8)],
- "labels": [lab("tank", "大宗儲槽", "Bulk tank", "amber", "start+12", "start+57"), lab("sup", "塑膠管線", "Plastic piping", "blue", "start+58", "start+103"),
-            lab("cdsDoorA", "化學品管理櫃", "Chemical cabinet", "amber", "start+104", "start+149", xy=[330, 410])],
+ "labels": [lab("tank", "大宗儲槽", "Bulk tank", "amber", "start+12", "start+57"), lab("sup", "塑膠管線", "Plastic piping", "blue", "start+64", "start+109"),
+            lab("cdsDoorA", "化學品管理櫃", "Chemical cabinet", "amber", "start+112", "start+157", xy=[330, 410])],
  "overlay": [sec("chem-path", "start+30", "s5:start-8", "送液路徑：一路過濾、一路循環", "示意（不標流量與壓力）", {"tank": "tank", "pipe": "pipe", "desk": "desk", "water": "s4b:water", "clean": "s4c:clean", "back": R4})]}
-P["s4b"] = {"shot": [shot(W(-12), 22.0, 8.0, 64, 20, 26, yaw=0.5), shot(W(44), 30.0, 8.0, 62, 22, 26)],
+P["s4b"] = {"shot": [shot(W(2), 22.0, 8.0, 64, 20, 26, yaw=0.5), shot(W(44), 30.0, 8.0, 62, 22, 26)],
  "labels": [lab("pump", "泵與閥島", "Pump & valve island", "blue", W(-8), W(38), xy=[330, 980])]}
 P["s4c"] = {"shot": [shot(C(8), 31.0, 9.5, 58, 22, 26), shot(C(52), 27.0, 11.5, 96, 22, 26), shot(C(100), 26.0, 10.0, 80, 20, 30, yaw=0.0), shot(C(136), 62.0, 6.0, 175, 30, 28), shot(C(185), 102.0, 6.0, 92, 28, 36)],
  "run": [run("cdsFlow", C(132), "s5:start-4", 10), run("pumpBeat", C(132), "s5:start-4", 10), run("pumpLed", C(132), "s5:start-4", 8),
@@ -193,7 +193,7 @@ P["s4c"] = {"shot": [shot(C(8), 31.0, 9.5, 58, 22, 26), shot(C(52), 27.0, 11.5, 
 P["s5"] = {"shot": [shot("start-1", 152.0, 3.8, 60, 16, 1, yaw=0.0), shot("lemon-14", 135.0, 2.8, 46, 16, 34), shot("bite-10", 152.0, 3.8, 56, 18, 36)],
  "run": [run("pfFlow", "start", "s6:start-4", 8), run("irFlow", "start", "s6:start-4", 8), run("lemonDrip", "lemon-4", "bite-12", 6),
          run("irBubbles", "bite", "s6:start-4", 8), run("rustFlow", "bite+20", "s6:start-4", 8), run("rustGlowA", "bite", "s6:start-4", 8)],
- "labels": [lab("pfaP", "塑膠管：乾淨", "Plastic: clean", "blue", "plastic-2", "lemon+2"), lab("cup", "鐵杯", "Iron cup", "amber", "lemon+2", "bite-5"), lab("rustP", "鐵管內壁：被酸溶出", "Iron: dissolved by acid", "amber", "bite+4", "s6:start-14")],
+ "labels": [lab("pfaP", "塑膠管：乾淨", "Plastic: clean", "blue", "plastic-8", "lemon-3"), lab("cup", "鐵杯", "Iron cup", "amber", "lemon+2", "bite-5"), lab("rustP", "鐵管內壁：被酸溶出", "Iron: dissolved by acid", "amber", "bite+4", "s6:start-14")],
  "overlay": [sec("chem-pipe", "start+24", "s6:start-8", "酸咬金屬", "示意：多數藥水管線用氟塑膠", {"plastic": "plastic", "iron": "iron", "lemon": "lemon", "bite": "bite"})]}
 # ─── s6：研磨液＝磨粒＋藥劑 ───
 P["s6"] = {"shot": [shot("start-1", 182.0, 5.8, 56, 8, 1, yaw=0.0), shot("grain-6", 183.0, 5.8, 48, 10, 36), shot("sand-12", 182.0, 5.8, 48, 12, 36)],
@@ -213,7 +213,7 @@ P["s7b"] = {"shot": [shot("start-1", 218.0, 7.5, 92, 16, 1), shot("stir+4", 214.
 P["s8"] = {"zoom": [{"to": "co", "at": "start-1", "dur": 1}], "shot": [shot("start-1", 258.0, 4.6, 72, 14, 1, yaw=0.0)],
  "overlay": [sec("chem-co", "start-4", "s9:start-14", "供應商", "Entegris 官網、經濟日報、Yahoo 股市；截至 11/27", {"intl": "intl", "chc": "chc", "acid": "acid", "sanfu": "sanfu", "dev": "dev"}, h=392, y=1000)]}
 # ─── s9：預告研磨墊（一角） ───
-P["s9"] = {"zoom": [{"to": "tool", "at": "start-2", "dur": 1}], "shot": [shot("start-4", 292.0, 3.0, 54, 34, 1, yaw=0.0), shot("next-6", 295.0, 2.6, 76, 30, 40)],
+P["s9"] = {"zoom": [{"to": "tool", "at": "start-2", "dur": 1}], "shot": [shot("start-4", 292.0, 3.0, 72, 34, 1, yaw=0.0), shot("next-6", 295.0, 2.6, 76, 30, 40)],
  "run": [run("padSpin", "start-6", FAR, 10), run("padDrip", "start", FAR, 6), run("padSpread", "start+10", FAR, 8), run("padRipple", "start+10", FAR, 6)],
  "overlay": [sec("chem-next", "start+24", "s10:start-8", "接下來", "下一集：研磨墊", {"pad": "pad", "next": "next", "kw": "kw"})]}
 for sc in scenes:

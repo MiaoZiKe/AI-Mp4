@@ -1525,14 +1525,14 @@
      },
      {
       "layer": "cdsPump",
-      "at": "s4b:water+1",
+      "at": "s4b:water-12",
       "until": "s4c:clean+108",
       "dur": 22,
       "dx": -6.2
      },
      {
       "layer": "cdsValve",
-      "at": "s4b:water+1",
+      "at": "s4b:water-12",
       "until": "s4c:clean+108",
       "dur": 22,
       "dx": -1.8
@@ -1809,8 +1809,8 @@
       "text": "研磨液",
       "en": "Slurry",
       "color": "blue",
-      "at": "polish-2",
-      "until": "name+4"
+      "at": "etch+44",
+      "until": "name+7"
      }
     ],
     "overlay": [
@@ -2033,8 +2033,8 @@
       "elev": 14
      },
      {
-      "at": "pipe-18",
-      "dur": 26,
+      "at": "tank+6",
+      "dur": 14,
       "x": 14.0,
       "y": 4.5,
       "d": 62,
@@ -2103,16 +2103,16 @@
       "text": "塑膠管線",
       "en": "Plastic piping",
       "color": "blue",
-      "at": "start+58",
-      "until": "start+103"
+      "at": "start+64",
+      "until": "start+109"
      },
      {
       "part": "cdsDoorA",
       "text": "化學品管理櫃",
       "en": "Chemical cabinet",
       "color": "amber",
-      "at": "start+104",
-      "until": "start+149",
+      "at": "start+112",
+      "until": "start+157",
       "xy": [
        330,
        410
@@ -2155,7 +2155,7 @@
      }
     ]
    },
-   "durationSec": 5.0,
+   "durationSec": 5.3,
    "holdSec": 0.4,
    "pauseAfter": 0.4
   },
@@ -2185,7 +2185,7 @@
    "props": {
     "shot": [
      {
-      "at": "s4b:water-12",
+      "at": "s4b:water+2",
       "dur": 26,
       "x": 22.0,
       "y": 8.0,
@@ -2562,8 +2562,8 @@
       "text": "塑膠管：乾淨",
       "en": "Plastic: clean",
       "color": "blue",
-      "at": "plastic-2",
-      "until": "lemon+2"
+      "at": "plastic-8",
+      "until": "lemon-3"
      },
      {
       "part": "cup",
@@ -3200,7 +3200,7 @@
       "dur": 1,
       "x": 292.0,
       "y": 3.0,
-      "d": 54,
+      "d": 72,
       "elev": 34
      },
      {

@@ -100,7 +100,7 @@ const Pool: React.FC<P> = ({ o, f, k }) => {
         <rect x={446} y={CT + 40} width={210} height={150} fill="#FFFFFF" stroke={H.text2} strokeWidth={4} opacity={0.4 + 0.6 * sp} />
         {dots.map(([u, v], i) => <circle key={i} cx={458 + u * 186 + Math.sin(f * 0.05 + i) * 3} cy={CT + 52 + v * 126 + Math.cos(f * 0.04 + i) * 3} r={5} fill={LIQ} opacity={0.4 + 0.6 * sp} />)}
         <circle cx={600} cy={CT + 100} r={8} fill={RED} stroke="#7A1A0C" strokeWidth={2} opacity={sp} />
-        <Sep x={690} />
+        <Sep x={690} y2={CT + 205} />
         <Row x={716} y={CT + 56} t="多乾淨？" c={H.text2} a={q} /><Row x={716} y={CT + 122} t="一座游泳池" c={BLUE} a={pl} /><Row x={716} y={CT + 188} t="只混進一小匙" c={H.amber} a={sp} />
         <text x={24} y={CT + 232} style={zh(30, H.text2, 800)} opacity={0.4 + 0.6 * sp}>紅點＝雜質，比例示意</text>
         <text x={350} y={CT + 232} style={zh(30, H.text2, 900)} opacity={sp}>先進製程還要再少十倍以上（示意）</text>
