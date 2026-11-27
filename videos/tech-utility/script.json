@@ -149,6 +149,11 @@
       "dur": 1
      },
      {
+      "to": "use",
+      "at": "clean+6",
+      "dur": 1
+     },
+     {
       "to": "fab",
       "at": "prev-4",
       "dur": 1
@@ -175,7 +180,7 @@
       "at": "prev-4",
       "dur": 1,
       "x": 0,
-      "y": 4.5,
+      "y": 1.2,
       "d": 54,
       "elev": 14
      },
@@ -183,8 +188,8 @@
       "at": "prev+6",
       "dur": 40,
       "x": 0,
-      "y": 7.6,
-      "d": 64,
+      "y": 2.6,
+      "d": 66,
       "elev": 12
      }
     ],
@@ -556,16 +561,16 @@
       "at": "voice-4",
       "dur": 1,
       "x": 0,
-      "y": 7.6,
-      "d": 64,
+      "y": 2.6,
+      "d": 66,
       "elev": 12
      },
      {
       "at": "start+2",
       "dur": 40,
       "x": 0,
-      "y": 3.2,
-      "d": 62,
+      "y": 0.4,
+      "d": 60,
       "elev": 15
      },
      {
@@ -579,45 +584,45 @@
      {
       "at": "mem",
       "dur": 40,
-      "x": 40.6,
+      "x": 41.6,
       "y": 0.5,
-      "d": 32,
+      "d": 33,
       "elev": 34
      }
     ],
     "shift": [
      {
       "layer": "wPre",
-      "at": "pitcher-8",
-      "until": "pitcher+38",
+      "at": "upw+44",
+      "until": "upw+90",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wRO",
-      "at": "mem+22",
-      "until": "mem+68",
+      "at": "mem-4",
+      "until": "mem+42",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wIX",
-      "at": "resin+52",
-      "until": "resin+98",
+      "at": "resin+26",
+      "until": "resin+72",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wUV",
-      "at": "catch+52",
-      "until": "catch+98",
+      "at": "catch+26",
+      "until": "catch+72",
       "dur": 12,
       "dy": 1.1
      },
      {
       "layer": "wUF",
-      "at": "catch+52",
-      "until": "catch+98",
+      "at": "catch+26",
+      "until": "catch+72",
       "dur": 12,
       "dy": 1.1
      }
@@ -673,31 +678,31 @@
      },
      {
       "id": "wIon",
-      "at": "resin+52",
+      "at": "resin+26",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wBeadGlow",
-      "at": "resin+52",
+      "at": "resin+26",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvGlow",
-      "at": "catch+52",
+      "at": "catch+26",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wUvRay",
-      "at": "catch+52",
+      "at": "catch+26",
       "ramp": 6,
       "until": "s3:voice-4"
      },
      {
       "id": "wOrg",
-      "at": "catch+52",
+      "at": "catch+26",
       "ramp": 6,
       "until": "s3:voice-4"
      }
@@ -717,8 +722,8 @@
       "text": "預處理（砂濾、活性碳）",
       "en": "Pretreatment",
       "color": "blue",
-      "at": "pitcher-8",
-      "until": "pitcher+38",
+      "at": "upw+44",
+      "until": "upw+90",
       "cut": true
      },
      {
@@ -726,8 +731,8 @@
       "text": "濾網：逆滲透膜",
       "en": "Filter: RO membranes",
       "color": "amber",
-      "at": "mem+22",
-      "until": "mem+68",
+      "at": "mem-4",
+      "until": "mem+42",
       "cut": true
      },
      {
@@ -735,8 +740,8 @@
       "text": "樹脂：離子交換",
       "en": "Resin: ion exchange",
       "color": "amber",
-      "at": "resin+52",
-      "until": "resin+98",
+      "at": "resin+26",
+      "until": "resin+72",
       "cut": true
      },
      {
@@ -744,8 +749,8 @@
       "text": "紫外線＋超過濾",
       "en": "UV + ultrafiltration",
       "color": "blue",
-      "at": "catch+52",
-      "until": "catch+98",
+      "at": "catch+26",
+      "until": "catch+72",
       "cut": true
      }
     ],
@@ -1014,8 +1019,8 @@
       "text": "台積電廠房",
       "en": "TSMC fab",
       "color": "blue",
-      "at": "tsmc-4",
-      "until": "tsmc+42",
+      "at": "tsmc-2",
+      "until": "tsmc+44",
       "cut": true,
       "xy": [
        300,
@@ -1188,8 +1193,8 @@
       "text": "地下高壓進線",
       "en": "High-voltage feed",
       "color": "blue",
-      "at": "elec-6",
-      "until": "elec+40",
+      "at": "elec-2",
+      "until": "elec+44",
       "cut": true,
       "xy": [
        330,
@@ -1201,8 +1206,8 @@
       "text": "電壓晃一下",
       "en": "Voltage dip",
       "color": "amber",
-      "at": "sag+6",
-      "until": "sag+52",
+      "at": "sag+10",
+      "until": "sag+56",
       "cut": true
      },
      {
@@ -1210,8 +1215,8 @@
       "text": "敏感機台當機",
       "en": "Sensitive tool trips",
       "color": "amber",
-      "at": "crash+0",
-      "until": "crash+46",
+      "at": "crash+4",
+      "until": "crash+50",
       "cut": true
      },
      {
@@ -1972,15 +1977,15 @@
       "at": "voice-4",
       "dur": 1,
       "x": 0,
-      "y": 7.6,
-      "d": 64,
+      "y": 2.6,
+      "d": 66,
       "elev": 12
      },
      {
       "at": "ready+6",
       "dur": 40,
       "x": 0,
-      "y": 4.6,
+      "y": 0.4,
       "d": 56,
       "elev": 14
      },
@@ -2028,15 +2033,6 @@
      }
     ],
     "labels": [
-     {
-      "part": "fFacade",
-      "text": "水、氣、電備齊",
-      "en": "Utilities ready",
-      "color": "blue",
-      "at": "ready+4",
-      "until": "ready+50",
-      "cut": true
-     },
      {
       "part": "pCard",
       "text": "探針卡（下一集）",

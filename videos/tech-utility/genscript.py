@@ -103,6 +103,7 @@ def seq(sid, items):
             # precheck 把「end」當幕尾（引擎是收聲），改寫成最後一個 cue＋N，兩邊意思一致
             lc = max(TL[sid]["cue"], key=lambda q: TL[sid]["cue"][q]); n = base - off - TL[sid]["cue"][lc]; cue, base, off = lc, TL[sid]["cue"][lc], -n
         if base is not None and prev_end is not None and base + n < prev_end + 2: n = prev_end + 2 - base
+        if base is not None and TL.get(sid, {}).get("vs") is not None and base + n < TL[sid]["vs"] - 2: n = TL[sid]["vs"] - 2 - base   # 不早於本幕換鏡那一幀
         if base is not None:
             ids = [x[0] for x in S]; k = ids.index(sid)
             lim = (TL[ids[k + 1]]["vs"] - 10) if k + 1 < len(ids) and ids[k + 1] in TL else None
@@ -165,7 +166,7 @@ vis("pHit", [("s10:probe+26", FAR)], 3)
 
 # ═════ 各幕 ═════
 UL = (UX + 0.4, 2.3, 25, 34)                  # 站 U 鏡頭（看向 x、y、距離、仰角）
-FL0, FL1 = (FX, 4.5, 54, 14), (FX, 7.6, 64, 12)  # 站 F：合起來／爆炸後
+FL0, FL1 = (FX, 1.2, 54, 14), (FX, 2.6, 66, 12)  # 站 F：合起來／爆炸後
 WLc = (WX - 0.6, 0.2, 40, 38)
 LLc = (LX + 0.6, 0.6, 33, 38)
 T4, T7 = (TX - 5.0, 1.0, 42, 14), (TX + 3.8, 4.2, 44, 16)
@@ -175,7 +176,7 @@ VLc = (VX + 0.2, -0.6, 40, 16)
 PLc = (PX, 1.2, 20, 12)
 def S_(at, c, dur=1): return shot(at, c[0], c[1], c[2], c[3], dur)
 P = {}
-P["s1"] = {"zoom": [{"to": "use", "at": "start-30", "dur": 1}, {"to": "fab", "at": "prev-4", "dur": 1}],
+P["s1"] = {"zoom": [{"to": "use", "at": "start-30", "dur": 1}, {"to": "use", "at": "clean+6", "dur": 1}, {"to": "fab", "at": "prev-4", "dur": 1}],
  "shot": [S_("start-30", UL), shot("start", UL[0], UL[1], UL[2] - 1.0, UL[3], 70), S_("prev-4", FL0), shot("prev+6", FL1[0], FL1[1], FL1[2], FL1[3], 40)],
  "shift": VIS,
  "run": [run("uSpin", "start-30", "prev", 8), run("uJet", "start-30", "prev", 4), run("uOutA", "start-30", "prev", 4), run("uOutB", "start-30", "prev", 4), run("uOutC", "start-30", "prev", 4),
@@ -186,7 +187,7 @@ P["s1"] = {"zoom": [{"to": "use", "at": "start-30", "dur": 1}, {"to": "fab", "at
  "overlay": [sec("util-hook", "start", nxt("s1"), "系列 2・第 20 集", "示意，非實際比例", {"wash": "wash", "clean": "clean", "prev": "prev", "air": "air"}, cut=True)]}
 W_SHIFT = []
 w_lab = seq("s2", [("fSub", "地下廠務層：水、電、氣", "Sub-fab: water, power, gas", "blue", "upw", 4),
-                   ("wSand", "預處理（砂濾、活性碳）", "Pretreatment", "blue", "pitcher", 8), ("wRo", "濾網：逆滲透膜", "Filter: RO membranes", "amber", "mem", 8),
+                   ("wSand", "預處理（砂濾、活性碳）", "Pretreatment", "blue", "upw", -44), ("wRo", "濾網：逆滲透膜", "Filter: RO membranes", "amber", "mem", 8),
                    ("wMix", "樹脂：離子交換", "Resin: ion exchange", "amber", "resin", 4), ("wUv", "紫外線＋超過濾", "UV + ultrafiltration", "blue", "catch", 4),
                    ])
 # 每站拉起的時間＝它的標籤時間（wUV、wUF 共用「紫外線＋超過濾」那張；儲槽跟著電阻率表那張）
@@ -195,7 +196,7 @@ for lay, L in lift.items():
     W_SHIFT.append(mv(lay, L["at"], L["until"], 12, dy=1.1))
 WCUT = w_lab[0]["until"]          # 地下廠務層標籤結束才切到超純水站
 P["s2"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}, {"to": "sys", "at": WCUT, "dur": 1}],
- "shot": [S_(CC, FL1), shot("start+2", FX, 3.2, 62, 15, 40), S_(WCUT, WLc), shot("mem", WX + 0.6, 0.5, 32, 34, 40)],
+ "shot": [S_(CC, FL1), shot("start+2", FX, 0.4, 60, 15, 40), S_(WCUT, WLc), shot("mem", WX + 1.6, 0.5, 33, 34, 40)],
  "shift": W_SHIFT,
  "run": [run("fWRise", "start", WCUT, 6), run("fGRise", "start", WCUT, 6), run("fERise", "start", WCUT, 6),
          run("wFeed", WCUT, "s3:voice-4", 6), run("wImp", WCUT, "s3:voice-4", 6), run("wConc", WCUT, "s3:voice-4", 6), run("wPerm", WCUT, "s3:voice-4", 6), run("wHp", WCUT, "s3:voice-4", 6),
@@ -247,9 +248,9 @@ P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "labels": seq("s9", [("v0", "超純水設備", "UPW systems", "blue", "org", 2), ("v1", "空氣分離廠", "Air separation", "blue", "lh", 2), ("v2", "空氣分離廠", "Air separation", "blue", "sf", 2)]),
  "overlay": [card("s9", "util-co", "水、氣的供應商", "媒體報導；截至 2026/11/27", {"water": "water", "org": "org", "lh": "lh", "sf": "sf"}, h=392, y=1000)]}
 P["s10"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}, {"to": "probe", "at": "how-4", "dur": 1}],
- "shot": [S_(CC, FL1), shot("ready+6", FX, 4.6, 56, 14, 40), S_("how-4", PLc), shot("probe-6", PX, 1.2, 16, 10, 40)],
+ "shot": [S_(CC, FL1), shot("ready+6", FX, 0.4, 56, 14, 40), S_("how-4", PLc), shot("probe-6", PX, 1.2, 16, 10, 40)],
  "run": [run("fAir", "start-4", "how-4", 8), run("fFanSpin", "start-4", "how-4", 10), run("fFanSpin2", "start-4", "how-4", 10), run("pTest", "probe+26", FAR, 6)],
- "labels": seq("s10", [("fFacade", "水、氣、電備齊", "Utilities ready", "blue", "ready", -4), ("pCard", "探針卡（下一集）", "Probe card (next)", "amber", "probe", 2),
+ "labels": seq("s10", [("pCard", "探針卡（下一集）", "Probe card (next)", "amber", "probe", 2),
                        ("pNeedle", "針尖碰到晶片接點", "Tips touch the pads", "blue", "probe", -30)]),
  "overlay": [sec("util-next", C, "s11:start", "接下來", "下一集：探針卡", {"ready": "ready", "how": "how", "probe": "probe", "kw": "kw"}, cut=True)]}
 for sc in scenes:
