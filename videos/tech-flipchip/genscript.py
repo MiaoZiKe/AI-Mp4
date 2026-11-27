@@ -202,7 +202,7 @@ P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, I["HX0"], 1.6, 70, 22, 1)],
  "run": [run("aseOn", "ase-4", FAR, 6), run("amkOn", "amk-4", FAR, 6), run("besiOn", "besi-4", FAR, 6)],
  "labels": [lab("aseA", "日月光（台灣）", "ASE, Taiwan", "blue", "big", "big+45", flag="TW"),
-            lab("besiA", "Besi（荷蘭）", "Besi, Netherlands", "amber", "besi-4", "besi+41")],
+            lab("besiA", "Besi（荷蘭）", "Besi, Netherlands", "amber", "besi-10", "besi+35")],
  "overlay": [card("s9", "fc-co", "誰在做", "TrendForce 2024；Besi 廠商說法", {"big": "big", "ase": "ase", "amk": "amk", "fcb": "fcb", "besi": "besi"}, h=360, y=1036)]}
 P["s10"] = {"zoom": [{"to": "next", "at": "voice", "dur": 1}],
  "shot": [shot("voice", I["NX"], 0.8, 28, 52, 1)],
