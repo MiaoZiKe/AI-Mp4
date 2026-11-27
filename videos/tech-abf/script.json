@@ -428,6 +428,27 @@
       "dur": 6
      },
      {
+      "layer": "sEtchL",
+      "at": "s1:start-40",
+      "until": "s5:wash-10",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "sEtchL",
+      "at": "s5:wash+30",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dFill",
+      "at": "s1:start-40",
+      "until": "s4:conn-24",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
       "layer": "sResist",
       "at": "s1:start-40",
       "until": "s5:line-24",
@@ -964,6 +985,12 @@
       "at": "laser",
       "ramp": 4,
       "until": "lift+20"
+     },
+     {
+      "id": "dFillSig",
+      "at": "conn-18",
+      "ramp": 4,
+      "until": "s5:start"
      }
     ],
     "labels": [
@@ -977,21 +1004,12 @@
       "cut": true
      },
      {
-      "part": "dHole",
-      "text": "小洞＝電梯井",
-      "en": "Microvia = elevator shaft",
+      "part": "dFill",
+      "text": "鍍銅填孔：上下兩層接通",
+      "en": "Plated via joins two layers",
       "color": "amber",
-      "at": "hole+3",
-      "until": "hole+48",
-      "cut": true
-     },
-     {
-      "part": "dPad",
-      "text": "孔底停在銅墊（之後鍍銅才接通）",
-      "en": "Stops on the copper pad",
-      "color": "blue",
-      "at": "conn-17",
-      "until": "conn+28",
+      "at": "conn-16",
+      "until": "conn+29",
       "cut": true
      }
     ],
@@ -1114,6 +1132,12 @@
       "at": "wash",
       "ramp": 4,
       "until": "wash+24"
+     },
+     {
+      "id": "sEtchBath",
+      "at": "wash-10",
+      "ramp": 4,
+      "until": "wash+30"
      }
     ],
     "labels": [
@@ -1127,27 +1151,18 @@
       "cut": true
      },
      {
-      "part": "sResist",
-      "text": "光阻蓋住不走線的地方",
-      "en": "Resist covers the rest",
-      "color": "blue",
-      "at": "line-21",
-      "until": "line+24",
-      "cut": true
-     },
-     {
       "part": "sPlate",
       "text": "只在開口鍍厚",
       "en": "Plated thick in openings",
       "color": "amber",
-      "at": "thick-9",
-      "until": "thick+36",
+      "at": "thick-30",
+      "until": "thick+15",
       "cut": true
      },
      {
       "part": "sEtch",
-      "text": "多的薄銅洗掉",
-      "en": "Extra seed etched away",
+      "text": "藥水把多的薄銅吃掉",
+      "en": "Etchant eats the extra seed",
       "color": "amber",
       "at": "wash-16",
       "until": "wash+29",

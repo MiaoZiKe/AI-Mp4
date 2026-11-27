@@ -73,7 +73,7 @@ Object.assign(materials, {
   laser: M("std", "laserC", { emissive: "laserC", ei: 1.4, rough: 1, metal: 0, opacity: 0.8 }), laserDot: glowM("laserC", 0.95, 1.2), plumeDot: glowM("plumeC2", 0.8, 0.2),
   hbm: M("std", "hbmC", { rough: 0.4, metal: 0.5, env: 0.5 }), die2: M("std", "dieC2", { rough: 0.3, metal: 0.6, env: 0.7 }), inter: M("std", "interC", { rough: 0.35, metal: 0.6, env: 0.6 }),
   solder: M("std", "solderC", { rough: 0.25, metal: 0.95, env: 0.9 }), ionDot2: glowM("ionC2", 0.95, 0.8), heater: M("std", "heaterC", { emissive: "heaterC", ei: 0.5, rough: 0.5, metal: 0 }),
-  etchDot: glowM("etchC", 0.9, 0.6), sigDot: glowM("powC", 0.95, 1.0), hole: M("std", "rubber", { rough: 1, metal: 0 }),
+  etchDot: glowM("etchC", 0.9, 0.6), etchFilm: glowM("etchC", 0.35, 0.3), sigDot: glowM("powC", 0.95, 1.0), hole: M("std", "rubber", { rough: 1, metal: 0 }),
 });
 const parts = [], layers = [], anchors = {}, actions = {};
 const P = (o) => { parts.push(o); return o; };
@@ -257,6 +257,11 @@ for (const [k, d] of [[0, -2.5], [1, 0], [2, 2.5]]) { LAY(`dHole${k}`, [0.6, 0.3
   P({ id: `dHoleC${k}`, layer: `dHole${k}`, shape: "cone", size: [0.48, 0.26, 0.25], rot: V, pos: [DX + d, R2(DY - 0.12), 0], mat: "hole" }); P({ id: `dHoleTop${k}`, layer: `dHole${k}`, shape: "cyl", size: [0.46, 0.012], rot: V, pos: [DX + d, R2(DY + 0.006), 0], mat: "hole" }); P({ id: `dHoleRim${k}`, layer: `dHole${k}`, shape: "tube", size: [0.52, 0.46, 0.02], rot: V, pos: [DX + d, R2(DY + 0.01), 0], mat: "abfCure" });
   P({ id: `dHoleCu${k}`, layer: `dHole${k}`, shape: "cyl", size: [0.26, 0.01], rot: V, pos: [DX + d, R2(DY - 0.245), 0], mat: "cuB" });
   P({ id: `dHoleF${k}`, layer: `dHole${k}`, shape: "poly", pts: [[-0.3, 0.13], [0.3, 0.13], [0.16, -0.12], [-0.16, -0.12]], size: [1, 1, 0.02], pos: [DX + d, R2(DY - 0.125), 2.615], mat: "hole" }); }
+// 3-7 念稿不改，用畫面補「接通」（負責人 11-27）：中間孔之後鍍銅填滿，膜面銅線經孔接到下層銅墊
+LAY("dFill", [2.2, 0.5, DX - 0.8, DY]);
+P({ id: "dFillC", layer: "dFill", shape: "cone", size: [0.5, 0.28, 0.26], rot: V, pos: [DX, R2(DY - 0.12), 0], mat: "cu" });
+P({ id: "dFillF", layer: "dFill", shape: "poly", pts: [[-0.3, 0.13], [0.3, 0.13], [0.16, -0.12], [-0.16, -0.12]], size: [1, 1, 0.02], pos: [DX, R2(DY - 0.125), 2.63], mat: "cuB" });
+BOX("dFillT", "dFill", DX - 1.8, DX + 0.3, DY, DY + 0.1, -2.6, 2.62, "cuB");
 // 雷射頭（在 x 方向移動到三個孔位）：立柱、橫梁固定；頭：振鏡盒、鏡筒、聚焦鏡、指示燈、吸煙罩
 LAY("dFrame", [12, 6, DX, 4]);
 BOX("dPostL", "dFrame", DX - 4.6, DX - 4.0, 1.0, 6.6, -0.5, 0.5, "panel"); BOX("dPostR", "dFrame", DX + 4.0, DX + 4.6, 1.0, 6.6, -0.5, 0.5, "panel"); P({ id: "dPostBolt", layer: "dFrame", shape: "cyl", size: [0.05, 0.03], pos: [0, 0, 0.51], at: [[DX - 4.3, 1.4, 0], [DX + 4.3, 1.4, 0], [DX - 4.3, 6.2, 0], [DX + 4.3, 6.2, 0]], mat: "steel" });
@@ -288,6 +293,7 @@ LAY("sResist", [11, 1, SX, SY + 0.5]);
 LAY("sPlate1", [11, 0.4, SX, SY + 0.2]); SL.forEach((x, i) => BOX(`sP1_${i}`, "sPlate1", R2(SX + x - 0.48), R2(SX + x + 0.48), SY + 0.06, SY + 0.4, -SZ, SZ, "cu")); P({ id: "sP1v", layer: "sPlate1", shape: "cone", size: [0.6, 0.38, 1.25], rot: V, pos: [SX, R2(SY - 0.625), 0], mat: "cu" }); P({ id: "sP1F", layer: "sPlate1", shape: "poly", pts: [[-0.49, 0.0], [0.49, 0.0], [0.38, R2(-VH / 2)], [-0.38, R2(-VH / 2)]], size: [1, 1, 0.02], pos: [SX, R2((SY + 0.75) / 2), SZ + 0.04], mat: "cu" });
 LAY("sPlate2", [11, 0.8, SX, SY + 0.4]); SL.forEach((x, i) => { BOX(`sP2_${i}`, "sPlate2", R2(SX + x - 0.48), R2(SX + x + 0.48), SY + 0.06, SY + 0.82, -SZ, SZ, "cu"); BOX(`sP2t_${i}`, "sPlate2", R2(SX + x - 0.44), R2(SX + x + 0.44), SY + 0.82, SY + 0.85, -SZ, SZ, "cuB"); });
 P({ id: "sP2v", layer: "sPlate2", shape: "cone", size: [0.6, 0.38, 1.25], rot: V, pos: [SX, R2(SY - 0.625), 0], mat: "cu" }); P({ id: "sP2F", layer: "sPlate2", shape: "poly", pts: VTRAP, size: [1, 1, 0.02], pos: [SX, R2((SY + 0.75) / 2), SZ + 0.04], mat: "cu" });
+LAY("sEtchL", [11.4, 0.3, SX, SY + 0.1]); BOX("sEtchFilm", "sEtchL", SX - 5.7, SX + 5.7, SY + 0.07, SY + 0.22, -SZ, SZ + 0.05, "etchFilm");   // 蝕刻藥水薄薄一層蓋過表面（念「洗掉」時演藥水吃掉薄銅）
 LAY("sKeep", [11, 0.1, SX, SY]); SL.forEach((x, i) => BOX(`sK_${i}`, "sKeep", R2(SX + x - 0.46), R2(SX + x + 0.46), SY, SY + 0.06, -SZ, SZ, "cuB"));
 LAY("sThin", [11, 0.8, SX, SY + 0.4]); SL.forEach((x, i) => BOX(`sT_${i}`, "sThin", R2(SX + x - 0.44), R2(SX + x + 0.44), SY + 0.06, SY + 0.8, -SZ, SZ, "cu")); P({ id: "sTF", layer: "sThin", shape: "poly", pts: VTRAP, size: [1, 1, 0.02], pos: [SX, R2((SY + 0.75) / 2), SZ + 0.04], mat: "cu" });
 // 電鍍槽（右側小插圖）：槽體（透明藥液）、陽極銅板、陰極夾具＋板子、整流器
@@ -351,6 +357,8 @@ actions.lVacFlow = { type: "flow", _說明: "抽真空：腔內空氣被泵抽�
 actions.lOvFanSpin = { type: "rotate", parts: ["lOvFanB", "lOvFanC"], axis: [0, 0, 1], pivot: [LX - 6.5, 3.9, 0], rps: 1.2, rampSpin: true };
 actions.lOvHot = { type: "flow", _說明: "烘烤爐內熱風沿爐壁循環", layer: "lOven", path: [[LX - 6.5, 3.9, -3.5], [LX - 4.9, 3.9, -3.5], [LX - 4.9, 0.6, -3.5], [LX - 8.1, 0.6, -3.5], [LX - 8.1, 3.9, -3.5], [LX - 6.5, 3.9, -3.5]], n: 10, size: 0.08, shape: "dot", rate: 0.3, color: "heatC", track: false, free: true };
 for (const [k, d] of [[0, -2.5], [1, 0], [2, 2.5]]) actions[`dPlume${k}`] = { type: "flow", _說明: "膜材被雷射汽化成煙、往上冒、被吸煙罩吸走", layer: `dHole${k}`, path: [[DX + d, DY + 0.05, 0], [DX + d + 0.1, DY + 0.6, -0.2], [DX - 0.6, 2.6, -0.6]], n: 6, size: 0.08, shape: "dot", rate: 0.9, color: "plumeC2", track: false, free: true, jitter: 0.12 };
+actions.dFillSig = { type: "flow", _說明: "接通示意：訊號沿膜面銅線、經鍍滿的孔、到下層銅墊", layer: "dFill", path: [[DX - 1.7, R2(DY + 0.05), 2.68], [DX, R2(DY + 0.05), 2.68], [DX, 1.3, 2.68], [DX + 0.4, 1.3, 2.68]], n: 4, size: 0.07, shape: "dot", rate: 0.5, color: "powC", track: false, free: true };
+actions.sEtchBath = { type: "pulse", parts: ["sEtchFilm"], color: "etchC", glow: 0.6, freq: 1.5, halo: 0.2 };
 actions.dLaserPulse = { type: "pulse", parts: ["dCone"], color: "laserC", glow: 1.2, freq: 6, halo: 0.6 };
 actions.sSeedRain = { type: "flow", _說明: "化學鍍：銅原子在整個表面（含孔壁）均勻落下鋪成薄層", layer: "sAbf", path: [[SX - 5.2, SY + 1.6, SZ + 0.15], [SX - 5.2, SY + 0.06, SZ + 0.15]], n: 3, lanes: 14, laneDir: [1, 0, 0], laneGap: 0.8, size: 0.15, shape: "dot", rate: 1.1, phase: -3, color: "cuBrightC", track: false, accel: true, free: true, jitter: 0.06 };   // phase −3：一進場 14 道都已在落（r1 複審：沒畫出來）
 actions.sIons = { type: "flow", _說明: "電鍍：銅離子在藥液裡從陽極往陰極（板子）移動", layer: "sTank", path: [[SX + TK + 9.25, 1.5, 0], [SX + TK + 7.65, 1.5, 0]], n: 3, lanes: 5, laneDir: [0, 1, 0], laneGap: 0.4, size: 0.07, shape: "dot", rate: 0.5, color: "ionC2", track: false, free: true, jitter: 0.05 };
@@ -363,7 +371,7 @@ Object.assign(anchors, {
   kTr: A("kT2", [KX - 3.2, R2(kc1 + BU + 0.16), 2.1], -150, -90), kBalls: A("kBalls", [KX - 4.5, 0.58, 4.5], -150, 90), kSig: A("kCore", [KX - 0.4, kc1 + 0.4, SW + 0.06], 160, 120),
   mAbf: A("mB2", [MX - 4.5, 4.6, MZ], -150, -100), mLine: A("mB1", [MX - 4.3, 3.75, MZ], -140, 110), mVia: A("mB2", [MX, 4.5, MZ], 150, -100), mCore: A("mCore", [MX + 4, 1.4, MZ], 150, 100),
   lRoll: A("lRoll", [LX - 7, 3.4, 1.2], -130, -110), lCover: A("lCover", [LX + 3.5, 1.32, 2.2], 150, -110), lCured: A("lOven", [LX - 6.5, 2.3, -3.56], 140, -110), lTop: A("lTop", [LX + 3.8, 3.7, 2.4], 140, -100), lPet: A("lPet", [LX - 1.5, 1.5, 2.2], -150, -110), lOven: A("lOven", [LX - 6.5, 2.3, -3.56], -130, -110),
-  dCone: A("dBeamL", [DX, DY + 0.6, 0], 150, -110), dHole: A("dHole1", [DX, DY - 0.1, 0.2], 160, 110), dPad: A("dPanel", [DX - 2.5, 1.3, 2.61], -150, 100), dHead: A("dHead", [DX + 0.28, 4.0, 0.3], 140, -100),
+  dCone: A("dBeamL", [DX, DY + 0.6, 0], 150, -110), dHole: A("dHole1", [DX, DY - 0.1, 0.2], 160, 110), dFill: A("dFill", [DX - 1.2, DY + 0.1, 2.62], -150, -120), dPad: A("dPanel", [DX - 2.5, 1.3, 2.61], -150, 100), dHead: A("dHead", [DX + 0.28, 4.0, 0.3], 140, -100),
   sSeed: A("sSeed", [SX - 3.0, SY + 0.04, SZ], -150, -100), sResist: A("sResist", [SX + 3.3, SY + 0.6, SZ], 150, -110), sPlate: A("sPlate1", [SX - 2.0, SY + 0.6, SZ], -150, -110), sEtch: A("sKeep", [SX - 3.0, SY + 0.03, SZ], -150, 110), sTank: A("sTank", [SX + TK + 9.4, 2.0, 0.8], 130, -110),
   aSmall: A("aSmall", [AX - 6.5, 1.0, 1.8], -140, -110), aBig: A("aBig", [AX + 7.5, 2.0, 4.5], 140, -110),
   j0: A("j0", [JX - 7.3, 3.6, 0.6], -120, -120), j1: A("j1", [JX + 5.6, 2.6, 0.4], 120, -110),

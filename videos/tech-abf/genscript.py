@@ -155,6 +155,8 @@ vis("dBeamL", [("s4:laser", "s4:laser+16"), ("s4:hole+4", "s4:hole+20"), ("s4:li
 vis("dHole0", [("s4:laser+10", FAR)], 3); vis("dHole1", [("s4:hole+14", FAR)], 3); vis("dHole2", [("s4:lift+14", FAR)], 3)
 # ── 站 S：半加成法狀態 ──
 vis("sSeed", [("s5:seed-16", "s5:wash+8")], 6)
+vis("sEtchL", [("s5:wash-10", "s5:wash+30")], 6)
+vis("dFill", [("s4:conn-24", FAR)], 6)
 vis("sResist", [("s5:line-24", "s5:wash-10")], 6)
 vis("sPlate1", [("s5:thick-10", "s5:thick+12")], 4)
 vis("sPlate2", [("s5:thick+12", "s5:wash+8")], 4)
@@ -195,13 +197,13 @@ P["s3"] = {"zoom": [{"to": "equip", "at": CC, "dur": 1}],
  "overlay": [card("s3", "abf-lam", "像貼保鮮膜：貼、壓、烤", "示意（不標溫度）", {"thin": "thin", "wrap": "wrap", "stick": "stick", "press": "press", "heat": "heat"})]}
 P["s4"] = {"zoom": [{"to": "equip", "at": CC, "dur": 1}],
  "shot": [S_(CC, DLc)],
- "run": [run("dPlume0", "laser+4", "laser+40", 4), run("dPlume1", "hole+8", "hole+44", 4), run("dPlume2", "lift+8", "lift+44", 4), run("dLaserPulse", "laser", "lift+20", 4)],
- "labels": seq("s4", [("dHead", "雷射頭：光收斂到膜面", "Laser head, focused", "blue", "laser", 2), ("dHole", "小洞＝電梯井", "Microvia = elevator shaft", "amber", "hole", 3), ("dPad", "孔底停在銅墊（之後鍍銅才接通）", "Stops on the copper pad", "blue", "conn", 20)]),
+ "run": [run("dPlume0", "laser+4", "laser+40", 4), run("dPlume1", "hole+8", "hole+44", 4), run("dPlume2", "lift+8", "lift+44", 4), run("dLaserPulse", "laser", "lift+20", 4), run("dFillSig", "conn-18", "s5:start", 4)],
+ "labels": seq("s4", [("dHead", "雷射頭：光收斂到膜面", "Laser head, focused", "blue", "laser", 2), ("dFill", "鍍銅填孔：上下兩層接通", "Plated via joins two layers", "amber", "conn", 16)]),
  "overlay": [card("s4", "abf-via", "雷射打孔，像電梯井", "示意", {"laser": "laser", "hole": "hole", "lift": "lift", "conn": "conn"})]}
 P["s5"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [S_(CC, SLc)],
- "run": [run("sSeedRain", "seed-24", "seed+10", 4), run("sIonsDown", "thick-12", "thick+30", 4), run("sIons", "thick-12", "s6:voice-4", 6), run("sEtch", "wash", "wash+24", 4)],
- "labels": seq("s5", [("sSeed", "很薄的銅＝草稿", "Thin seed copper = draft", "blue", "seed", 14), ("sResist", "光阻蓋住不走線的地方", "Resist covers the rest", "blue", "line", 30), ("sPlate", "只在開口鍍厚", "Plated thick in openings", "amber", "thick", 30), ("sEtch", "多的薄銅洗掉", "Extra seed etched away", "amber", "wash", 30)]),
+ "run": [run("sSeedRain", "seed-24", "seed+10", 4), run("sIonsDown", "thick-12", "thick+30", 4), run("sIons", "thick-12", "s6:voice-4", 6), run("sEtch", "wash", "wash+24", 4), run("sEtchBath", "wash-10", "wash+30", 4)],
+ "labels": seq("s5", [("sSeed", "很薄的銅＝草稿", "Thin seed copper = draft", "blue", "seed", 14), ("sPlate", "只在開口鍍厚", "Plated thick in openings", "amber", "thick", 30), ("sEtch", "藥水把多的薄銅吃掉", "Etchant eats the extra seed", "amber", "wash", 16)]),
  "overlay": [card("s5", "abf-sap", "先打草稿，再描粗，再擦掉", "示意（不標線寬）", {"seed": "seed", "draft": "draft", "line": "line", "thick": "thick", "wash": "wash"})]}
 P["s6"] = {"zoom": [{"to": "pkg", "at": CC, "dur": 1}],
  "shot": [S_(CC, ALc)],
