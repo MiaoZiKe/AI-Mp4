@@ -154,6 +154,8 @@ export function validateThree(script, h) {
       if (o.type === "stamp" && !o.text) E(`${tag}: props.overlay 的 stamp 要有 text`);
     }
     if ((s.props?.labels ?? []).length > 2) W(`${tag}: 一幕新增的標籤建議 ≤2 個`);
+    // 第 32 條：出處列只放真實來源或「示意動畫，不是量測」，不准出現預告或內部用語（連續三支被審片退件）
+    { const bad = /上一集|前一集|預告|series_plan/.exec([...(s.sources ?? []), s.source ?? ""].join("、")); if (bad) E(`${tag}: 出處列出現「${bad[0]}」（只能放真實來源或「示意動畫，不是量測」，Andy 修正清單第 32 條）`); }
     if ((s.sources ?? []).length) { const px = h.emWidth(`來源：${s.sources.join("、")}`) * 24; if (px > 900) E(`${tag}: 出處太長（約 ${Math.round(px)}px > 900）`); }
   });
   if (!scenes[0].props?.hook?.title) E("第一幕要有 props.hook.title（第 0 幀就看得到的主張）");
