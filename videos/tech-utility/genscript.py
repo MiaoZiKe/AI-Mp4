@@ -197,11 +197,11 @@ for lay, L in lift.items():
     W_SHIFT.append(mv(lay, L["at"], L["until"], 12, dy=1.1))
 WCUT = w_lab[0]["until"]          # 地下廠務層標籤結束才切到超純水站
 P["s2"] = {"zoom": [{"to": "fab", "at": CC, "dur": 1}, {"to": "sys", "at": WCUT, "dur": 1}],
- "shot": [S_(CC, FL1), shot("start+2", FX, 0.4, 60, 15, 40), S_(WCUT, WLc), shot("mem-8", WX - 1.2, -0.3, 27, 34, 12), shot("resin+22", WX + 1.8, -0.3, 30, 34, 30)],
+ "shot": [S_(CC, FL1), shot("start+2", FX, 0.4, 60, 15, 40), S_(WCUT, WLc), shot("mem-8", WX - 1.2, -0.3, 27, 34, 12), shot("resin+22", WX + 1.8, -0.3, 30, 34, 30), shot("catch-4", WX + 1.7, 0.4, 20, 30, 14)],
  "shift": W_SHIFT,
  "run": [run("fWRise", "start", WCUT, 6), run("fGRise", "start", WCUT, 6), run("fERise", "start", WCUT, 6),
          run("wFeed", WCUT, "s3:voice-4", 6), run("wImp", WCUT, "s3:voice-4", 6), run("wConc", WCUT, "s3:voice-4", 6), run("wPerm", WCUT, "s3:voice-4", 6), run("wHp", WCUT, "s3:voice-4", 6),
-         run("wIon", lift["wIX"]["at"], "s3:voice-4", 6), run("wBeadGlow", lift["wIX"]["at"], "s3:voice-4", 6), run("wUvGlow", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay2", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay3", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay4", lift["wUV"]["at"], "s3:voice-4", 6),
+         run("wIon", lift["wIX"]["at"], "s3:voice-4", 6), run("wBeadGlow", lift["wIX"]["at"], "s3:voice-4", 6), run("wUvGlow", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay2", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay3", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvRay4", lift["wUV"]["at"], "s3:voice-4", 6), run("wUvBeam0", lift["wUV"]["at"], "s3:voice-4", 4), run("wUvBeam1", lift["wUV"]["at"], "s3:voice-4", 4), run("wUvBeam2", lift["wUV"]["at"], "s3:voice-4", 4), run("wUvBeam3", lift["wUV"]["at"], "s3:voice-4", 4), run("wUvBeam4", lift["wUV"]["at"], "s3:voice-4", 4), run("wUvBeam5", lift["wUV"]["at"], "s3:voice-4", 4),
          run("wOrg", lift["wUV"]["at"], "s3:voice-4", 6)],
  "labels": w_lab,
  "overlay": [card("s2", "util-upw", "超純水：像濾水壺，但更細", "示意（電阻率為 25°C 規格）", {"upw": "upw", "mol": "mol", "pitcher": "pitcher", "mem": "mem", "resin": "resin", "catch": "catch"})]}

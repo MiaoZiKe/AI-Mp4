@@ -24,7 +24,7 @@ const palette = {
   cableO: "#E8862B", powC: "#FFD34D", battC: "#2E3440", battG: "#3FD07A", porcC: "#8A4B2E", transC: "#6F8197", upsC: "#4A5468",
   aluC: "#C8CED8", lnC: "#F4F7FA", frostC: "#FFFFFF", n2C: "#7FE3E8", liqC: "#3A7BD5", soilC: "#B7946A", markY: "#F2B632", warnY: "#F2B632",
   chillC: "#3B8FE0", condC: "#E8743B", plumeC: "#FFFFFF", heatC: "#E5602B", pcbC: "#2F7A4A", ceramC: "#E8E2D4", siC: "#5E6B82", dieC: "#8D9BB5", padAu: "#D8B04A", needleC: "#D9DEE6",
-  roofC: "#B9C2CF", grateC: "#9AA6B8", ffuC: "#F7FAFF", towerC: "#DCE3EC", markC: "#E8613C", insulC: "#D5DBE3", soilD: "#8B6B45", tankC: "#B9C9D8",
+  roofC: "#B9C2CF", grateC: "#9AA6B8", ffuC: "#F7FAFF", towerC: "#DCE3EC", markC: "#E8613C", insulC: "#D5DBE3", soilD: "#8B6B45", tankC: "#B9C9D8", n2wC: "#1F6A78",
 };
 const M = (kind, color, o = {}) => ({ kind, color, ...o });
 const glowM = (c, op, ei = 1) => M("std", c, { emissive: c, ei, opacity: op, rough: 1, metal: 0 });
@@ -538,7 +538,9 @@ actions.wPerm = { type: "flow", _說明: "淡水（亮藍）繞到前排，一�
 actions.wIon = { type: "flow", _說明: "離子（紅）流進混床罐，被樹脂珠抓住、不再出來", layer: "wPipe", path: [[WX + 6.6, 0.63, ZF - 0.95], [WX + 5.4, 0.63, ZF - 0.95], [WX + 5.4, 0.63, ZF - 0.4], [WX + 5.4, 1.4, ZF + 0.6]], n: 4, size: 0.07, shape: "dot", rate: 0.3, color: "ionC", track: false, free: true };
 actions.wBeadGlow = { type: "pulse", _說明: "樹脂珠抓到離子時閃一下", parts: ["wBeadA"], color: "ionC", glow: 0.6, freq: 1.4, halo: 0 };
 actions.wUvGlow = { type: "pulse", parts: ["wUvLamp"], color: "uvC", glow: 1.0, freq: 2.2, halo: 0.6 };
-for (const [k, dx] of [["", 0.8], ["2", 1.4], ["3", 2.0], ["4", 2.6]]) actions[`wUvRay${k}`] = { type: "wave", _說明: "紫外線沿整支燈管往四周一圈圈發散（越遠越淡）", from: { layer: "wUV", p: [R2(WX + dx), 1.2, ZF] }, dir: [1, 0, 0], reach: 0.1, count: 3, r0: 0.14, spread: 0.5, rate: 1.1, color: "uvC", width: 0.05 };
+for (const [k, dx] of [["", 0.8], ["2", 1.4], ["3", 2.0], ["4", 2.6]]) actions[`wUvRay${k}`] = { type: "wave", _說明: "紫外線沿整支燈管往四周一圈圈發散（越遠越淡）", from: { layer: "wUV", p: [R2(WX + dx), 1.2, ZF] }, dir: [1, 0, 0], reach: 1, count: 3, r0: 0.17, spread: 0.2, rate: 0.9, color: "uvC", width: 0.07 };
+for (let k = 0; k < 6; k++) { const a = k * 60 + 30, cy = Math.sin(a * D2R), cz = Math.cos(a * D2R);
+  actions[`wUvBeam${k}`] = { type: "flow", _說明: "紫外線從燈管徑向射出、穿過石英套管到艙壁（沿整支燈管五處）", layer: "wUV", path: [[R2(WX + 1.7), R2(1.2 + 0.09 * cy), R2(ZF + 0.09 * cz)], [R2(WX + 1.7), R2(1.2 + 0.4 * cy), R2(ZF + 0.4 * cz)]], n: 2, lanes: 5, laneDir: [1, 0, 0], laneGap: 0.42, size: 0.05, shape: "dot", rate: 1.3, phase: k * 0.17, color: "uvC", track: false, free: true }; }
 actions.wOrg = { type: "flow", _說明: "細顆粒（褐）被超過濾擋在模組外側", layer: "wPipe", path: [[WX + 0.6, 0.63, ZF - 0.95], [WX - 1.9, 0.63, ZF - 0.95], [WX - 1.9, 0.63, ZF - 0.4], [WX - 1.9, 1.3, ZF - 0.4]], n: 3, size: 0.065, shape: "dot", rate: 0.3, color: "orgC", track: false, free: true };
 actions.wHp = { type: "vibrate", parts: ["wHpMotor", "wHpFin"], axis: [0, 1, 0], amp: 0.008, freq: 9 };
 // L 循環：迴路泵（風扇罩標記看得到在轉）、主管一直流、死水支管裡細菌長出來（脈動）
@@ -557,7 +559,7 @@ actions.tCondHot = { type: "pulse", parts: ["tCond"], color: "heatC", glow: 0.5,
 // E 電力：電流（黃點）從地下進線→變壓器→開關櫃→機台；電壓晃一下（燈閃、指針掉下去再回來）；不斷電系統接手（綠點從電池架→UPS→機台）
 actions.eHvFlow = { type: "flow", _說明: "電從地下 161 kV 電纜進到變壓器", layer: "eCable", path: E_HV, n: 8, size: 0.08, shape: "dot", rate: 0.22, color: "powC", track: false, free: true };
 actions.eLvFlow = { type: "flow", _說明: "降壓後經電纜架送到開關櫃、再到機台", layer: "eCable", path: E_LV, n: 10, size: 0.08, shape: "dot", rate: 0.2, color: "powC", track: false, free: true };
-actions.eSag = { type: "rotate", _說明: "電壓晃一下：指針掉下去再回來", parts: ["eNdl"], axis: [0, 0, 1], pivot: [EX - 2.0, 1.75, 0], angle: 48, hold: true };
+actions.eSag = { type: "rotate", _說明: "電壓晃一下：指針掉下去再回來", parts: ["eNdl"], axis: [0, 0, 1], pivot: [EX - 2.0, 1.75, 0], angle: 48 };
 actions.eFlicker = { type: "pulse", _說明: "燈光閃一下", parts: ["eLampGlow"], color: "ffuC", glow: 1.2, freq: 7, halo: 0 };
 actions.eRedBlink = { type: "pulse", parts: ["eLr"], color: "lampR", glow: 1.0, freq: 1.6, halo: 0.6 };
 actions.eBatt = { type: "flow", _說明: "電池（綠點）經 UPS 送到機台：市電晃的時候立刻接手", layer: "eUPS", path: E_UPS, n: 12, size: 0.09, shape: "dot", rate: 0.2, color: "battG", track: false, free: true };
@@ -567,7 +569,7 @@ actions.eTransHum = { type: "vibrate", parts: ["eFin"], axis: [1, 0, 0], amp: 0.
 actions.gVapUp = { type: "flow", _說明: "蒸餾塔：冷的氣體往上升", layer: "gAsu", path: [[GX - 8.75, 0.9, -0.95], [GX - 8.75, 6.6, -0.95]], n: 9, size: 0.07, shape: "dot", rate: 0.13, color: "n2C", track: false, free: true, jitter: 0.06 };
 actions.gLiqDown = { type: "flow", _說明: "蒸餾塔：液體沿塔盤往下流（和氣體逆向接觸）", layer: "gAsu", path: [[GX - 9.05, 6.6, -0.95], [GX - 9.05, 0.9, -0.95]], n: 8, size: 0.08, shape: "dot", rate: 0.1, color: "liqC", track: false, free: true, jitter: 0.04 };
 actions.gN2c = { type: "flow", _說明: "氮氣在管裡被壓力推著走：中心快", layer: "gPipe", path: G_N2, n: 22, size: 0.09, shape: "dot", rate: 0.09, color: "n2C", track: false, free: true, jitter: 0.02 };
-actions.gN2w = { type: "flow", _說明: "貼著管壁的較慢", layer: "gPipe", path: G_N2, n: 14, lanes: 2, laneDir: [0, 1, 0], laneGap: 0.17, size: 0.05, shape: "dot", rate: 0.03, color: "n2C", track: false, free: true, jitter: 0.01 };
+actions.gN2w = { type: "flow", _說明: "貼著管壁的較慢", layer: "gPipe", path: G_N2, n: 14, lanes: 2, laneDir: [0, 1, 0], laneGap: 0.17, size: 0.055, shape: "dot", rate: 0.03, color: "n2wC", track: false, free: true, jitter: 0.01 };
 actions.gN2t = { type: "flow", layer: "gPipe", path: G_TL, n: 4, size: 0.06, shape: "dot", rate: 0.45, color: "n2C", track: false, free: true };
 actions.gMist = { type: "flow", _說明: "汽化器底部結霜、冒出白霧（往下、往旁邊散）", layer: "gVap", path: [[GX - 2.6, 1.2, 1.6], [GX - 2.4, 0.7, 2.2], [GX - 2.0, 0.4, 2.9]], n: 6, lanes: 2, laneDir: [1, 0, 0], laneGap: 0.8, size: 0.18, shape: "dot", rate: 0.3, color: "plumeC", track: false, free: true, jitter: 0.25 };
 actions.gLeakBlink = { type: "pulse", parts: ["gLeakL"], color: "lampG", glow: 0.9, freq: 1.2, halo: 0.4 };
