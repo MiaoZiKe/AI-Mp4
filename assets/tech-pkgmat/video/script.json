@@ -1,0 +1,2086 @@
+{
+ "slug": "tech-pkgmat",
+ "prevEpisode": "3-2：封裝打線",
+ "title": "封裝材料（科技透明圈）",
+ "asOf": "2026/11/27",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "代工的供應商",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b",
+  "_說明": "旁白金手指第三版；本支子聊天室不送 TTS，由頻道負責人配音"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "unit",
+    "label": "封裝（示意，放大）",
+    "en": "PACKAGE",
+    "field": "15 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "fab",
+    "label": "導線架做法（示意）",
+    "en": "LEAD FRAME MAKING",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "mold",
+    "label": "轉移成型（剖開示意）",
+    "en": "TRANSFER MOLDING",
+    "field": "30 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "joint",
+    "label": "錫點剖面（示意，放大）",
+    "en": "SOLDER JOINT SECTION",
+    "field": "15 mm",
+    "ruler": "1 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   },
+   {
+    "id": "co",
+    "label": "封裝材料供應商",
+    "en": "SUPPLIERS",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/27",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "封裝材料",
+   "晶片的衣服和腳"
+  ],
+  "sub": "導線架、封裝膠、錫球",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "晶片還光著，要怎麼保護？前一集線接好了，這集看封裝材料。",
+   "tts": "晶片還光著，要怎麼保護？前一集線接好了，這集看封裝材料。",
+   "subtitle": {
+    "zh": "晶片還光著\n要怎麼保護？\n前一集線接好了\n這集看封裝材料",
+    "en": "The chip is still bare. | How do we protect it? | Last episode: the wires were bonded. | Now: packaging materials."
+   },
+   "keywords": [
+    "光著",
+    "前一集",
+    "封裝材料"
+   ],
+   "cues": [
+    {
+     "id": "bare",
+     "text": "光著"
+    },
+    {
+     "id": "prot",
+     "text": "保護"
+    },
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "mat",
+     "text": "封裝材料"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：線接好了",
+     "title": "怎麼保護？",
+     "size": 120,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.0,
+      "y": -1.6,
+      "d": 64,
+      "elev": 40
+     }
+    ],
+    "shift": [
+     {
+      "layer": "pRam",
+      "at": "s3:press-16",
+      "until": "s3:press-6",
+      "dur": 8,
+      "dy": -0.75,
+      "fallOut": true,
+      "bounce": 0.04,
+      "press": [
+       "pPress"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "pStrip",
+      "at": "s3:press+2",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dx": 0.22
+     },
+     {
+      "layer": "pRam",
+      "at": "s3:press+6",
+      "until": "s3:press+16",
+      "dur": 8,
+      "dy": -0.75,
+      "fallOut": true,
+      "bounce": 0.04,
+      "press": [
+       "pPress"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "pStrip",
+      "at": "s3:press+24",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dx": 0.22
+     },
+     {
+      "layer": "pRam",
+      "at": "s3:press+26",
+      "until": "s3:press+36",
+      "dur": 8,
+      "dy": -0.75,
+      "fallOut": true,
+      "bounce": 0.04,
+      "press": [
+       "pPress"
+      ],
+      "pressAmt": 0.02
+     },
+     {
+      "layer": "pStrip",
+      "at": "s3:press+44",
+      "until": "s12:start+400",
+      "dur": 8,
+      "dx": 0.22
+     },
+     {
+      "layer": "peSheet0",
+      "at": "s3:etch+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "peSheet1",
+      "at": "s1:start-40",
+      "until": "s3:etch+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "peSheet1",
+      "at": "s3:etch+22",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "peSheet2",
+      "at": "s1:start-40",
+      "until": "s3:etch+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mPel0",
+      "at": "s5:mold+4",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mPel1",
+      "at": "s1:start-40",
+      "until": "s5:mold+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mPel1",
+      "at": "s5:mold+26",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mPel2",
+      "at": "s1:start-40",
+      "until": "s5:mold+26",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mPlunger",
+      "at": "s5:mold",
+      "until": "s12:start+400",
+      "dur": 46,
+      "dy": 0.55
+     },
+     {
+      "layer": "mPel0",
+      "at": "s5:mold",
+      "until": "s12:start+400",
+      "dur": 46,
+      "dy": 0.55
+     },
+     {
+      "layer": "mPel1",
+      "at": "s5:mold",
+      "until": "s12:start+400",
+      "dur": 46,
+      "dy": 0.55
+     },
+     {
+      "layer": "mPel2",
+      "at": "s5:mold",
+      "until": "s12:start+400",
+      "dur": 46,
+      "dy": 0.55
+     },
+     {
+      "layer": "mRup",
+      "at": "s1:start-40",
+      "until": "s5:mold+2",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mR0_0",
+      "at": "s1:start-40",
+      "until": "s5:mold+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mR0_1",
+      "at": "s1:start-40",
+      "until": "s5:mold+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mR0_2",
+      "at": "s1:start-40",
+      "until": "s5:mold+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC0_0",
+      "at": "s1:start-40",
+      "until": "s5:mold+16",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC0_1",
+      "at": "s1:start-40",
+      "until": "s5:mold+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC0_2",
+      "at": "s1:start-40",
+      "until": "s5:mold+28",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC0_3",
+      "at": "s1:start-40",
+      "until": "s5:mold+34",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC0_4",
+      "at": "s1:start-40",
+      "until": "s5:mold+40",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC0_5",
+      "at": "s1:start-40",
+      "until": "s5:mold+46",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mR1_0",
+      "at": "s1:start-40",
+      "until": "s5:mold+4",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mR1_1",
+      "at": "s1:start-40",
+      "until": "s5:mold+8",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mR1_2",
+      "at": "s1:start-40",
+      "until": "s5:mold+12",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC1_0",
+      "at": "s1:start-40",
+      "until": "s5:mold+16",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC1_1",
+      "at": "s1:start-40",
+      "until": "s5:mold+22",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC1_2",
+      "at": "s1:start-40",
+      "until": "s5:mold+28",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC1_3",
+      "at": "s1:start-40",
+      "until": "s5:mold+34",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC1_4",
+      "at": "s1:start-40",
+      "until": "s5:mold+40",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mC1_5",
+      "at": "s1:start-40",
+      "until": "s5:mold+46",
+      "opacity": 0,
+      "dur": 1
+     },
+     {
+      "layer": "mCure",
+      "at": "s1:start-40",
+      "until": "s5:hard-4",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "mWire",
+      "at": "s5:mold+30",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "mWireS",
+      "at": "s1:start-40",
+      "until": "s5:mold+30",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "qPebble",
+      "at": "s1:start-40",
+      "until": "s6:hit-10",
+      "dur": 12,
+      "dy": 3.0,
+      "fallIn": true,
+      "bounce": 0.35,
+      "opacity": 0
+     },
+     {
+      "layer": "qPebble",
+      "at": "s1:start-40",
+      "until": "s6:hit-12",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "qPebble",
+      "at": "s6:shell-2",
+      "until": "s12:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "qBody",
+      "at": "s6:shell",
+      "until": "s7:start+46",
+      "dur": 8,
+      "dy": 3.4
+     },
+     {
+      "layer": "qChip",
+      "at": "s7:start+8",
+      "until": "s7:start+38",
+      "dur": 8,
+      "dy": 1.0
+     },
+     {
+      "layer": "bFlux",
+      "at": "s1:start-40",
+      "until": "s7:ball-14",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "bB0",
+      "at": "s1:start-40",
+      "until": "s7:ball+16",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "bB1",
+      "at": "s1:start-40",
+      "until": "s7:ball+19",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "bB2",
+      "at": "s1:start-40",
+      "until": "s7:ball+22",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "bB3",
+      "at": "s1:start-40",
+      "until": "s7:ball+25",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "bB4",
+      "at": "s1:start-40",
+      "until": "s7:ball+28",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "bB5",
+      "at": "s1:start-40",
+      "until": "s7:ball+31",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "bB6",
+      "at": "s1:start-40",
+      "until": "s7:ball+34",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "bB7",
+      "at": "s1:start-40",
+      "until": "s7:ball+37",
+      "dur": 14,
+      "dy": 2.4,
+      "fallIn": true,
+      "bounce": 0.08,
+      "opacity": 0
+     },
+     {
+      "layer": "tCrack0",
+      "at": "s1:start-40",
+      "until": "s8:crack-8",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "tCrack1",
+      "at": "s1:start-40",
+      "until": "s8:crack-2",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "uNeedle",
+      "at": "s1:start-40",
+      "until": "s9:uf-12",
+      "dur": 14,
+      "dy": 1.2
+     },
+     {
+      "layer": "uF0",
+      "at": "s1:start-40",
+      "until": "s9:uf+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uF1",
+      "at": "s1:start-40",
+      "until": "s9:uf+14",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uF2",
+      "at": "s1:start-40",
+      "until": "s9:uf+24",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uF3",
+      "at": "s1:start-40",
+      "until": "s9:uf+36",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uF4",
+      "at": "s1:start-40",
+      "until": "s9:uf+50",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uF5",
+      "at": "s1:start-40",
+      "until": "s9:uf+66",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uFillet",
+      "at": "s1:start-40",
+      "until": "s9:uf+8",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uFilletL",
+      "at": "s1:start-40",
+      "until": "s9:uf+70",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "uNeedle",
+      "at": "s9:uf+72",
+      "until": "s12:start+400",
+      "dur": 14,
+      "dy": 1.2
+     },
+     {
+      "layer": "fChip",
+      "at": "s11:flip+20",
+      "until": "s12:start+400",
+      "dur": 16,
+      "dy": -1.95
+     }
+    ],
+    "run": [
+     {
+      "id": "lChipGlow",
+      "at": "start-30",
+      "ramp": 6,
+      "until": "s2:start"
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "系列 3・第 3 集",
+      "tag": "示意，放大",
+      "t": {
+       "bare": {
+        "at": "bare"
+       },
+       "prot": {
+        "at": "prot"
+       },
+       "prev": {
+        "at": "prev"
+       },
+       "mat": {
+        "at": "mat"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.4,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "晶片先放進導線架，一片薄薄的銅，四周伸出金屬腳。",
+   "tts": "晶片先放進導線架，一片薄薄的銅，四周伸出金屬腳。",
+   "subtitle": {
+    "zh": "晶片先放進導線架\n一片薄薄的銅\n四周伸出金屬腳",
+    "en": "The chip goes onto a lead frame, | a thin sheet of copper, | with metal leads all around."
+   },
+   "keywords": [
+    "導線架",
+    "銅",
+    "金屬腳"
+   ],
+   "cues": [
+    {
+     "id": "lf",
+     "text": "導線架"
+    },
+    {
+     "id": "cu",
+     "text": "薄薄的銅"
+    },
+    {
+     "id": "leg",
+     "text": "金屬腳"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 9466556、6686651；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "unit",
+      "at": "start-10",
+      "dur": 1
+     },
+     {
+      "to": "unit",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 0.0,
+      "y": -3.4,
+      "d": 56,
+      "elev": 40
+     }
+    ],
+    "labels": [
+     {
+      "part": "lPadA",
+      "text": "晶片座：晶片坐在這",
+      "en": "Die pad",
+      "color": "blue",
+      "at": "lf",
+      "until": "lf+45",
+      "cut": true
+     },
+     {
+      "part": "lLeadA",
+      "text": "金屬腳（引腳）",
+      "en": "Leads",
+      "color": "amber",
+      "at": "leg-12",
+      "until": "leg+33",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-lf",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "導線架：銅做的骨架與腳",
+      "tag": "示意（不標尺寸）",
+      "t": {
+       "lf": {
+        "at": "lf"
+       },
+       "cu": {
+        "at": "cu"
+       },
+       "leg": {
+        "at": "leg"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "量大的像餅乾模，一壓成形；腳細的用藥水蝕刻。",
+   "tts": "量大的像餅乾模，一壓成形；腳細的用藥水蝕刻。",
+   "subtitle": {
+    "zh": "量大的像餅乾模\n一壓成形\n腳細的用藥水蝕刻",
+    "en": "In volume, like a cookie cutter: | one press and it's formed; | fine leads are etched with chemicals."
+   },
+   "keywords": [
+    "餅乾模",
+    "一壓成形",
+    "蝕刻"
+   ],
+   "cues": [
+    {
+     "id": "big",
+     "text": "量大"
+    },
+    {
+     "id": "cookie",
+     "text": "餅乾模"
+    },
+    {
+     "id": "press",
+     "text": "一壓"
+    },
+    {
+     "id": "etch",
+     "text": "蝕刻"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO RE43818、7618845；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fab",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 26.6,
+      "y": 1.0,
+      "d": 30,
+      "elev": 12
+     },
+     {
+      "at": "etch-20",
+      "dur": 1,
+      "x": 36.5,
+      "y": -0.2,
+      "d": 26,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "ppFlySpin",
+      "at": "start-30",
+      "ramp": 10,
+      "until": "s4:start"
+     },
+     {
+      "id": "peSpray0",
+      "at": "etch-8",
+      "ramp": 4,
+      "until": "etch+30"
+     },
+     {
+      "id": "peSpray1",
+      "at": "etch-8",
+      "ramp": 4,
+      "until": "etch+30"
+     },
+     {
+      "id": "peSpray2",
+      "at": "etch-8",
+      "ramp": 4,
+      "until": "etch+30"
+     },
+     {
+      "id": "peSpray3",
+      "at": "etch-8",
+      "ramp": 4,
+      "until": "etch+30"
+     },
+     {
+      "id": "peSpray4",
+      "at": "etch-8",
+      "ramp": 4,
+      "until": "etch+30"
+     }
+    ],
+    "labels": [
+     {
+      "part": "pPunchA",
+      "text": "沖壓：沖頭一壓就成形",
+      "en": "Stamping",
+      "color": "amber",
+      "at": "cookie",
+      "until": "cookie+45",
+      "cut": true
+     },
+     {
+      "part": "pEtchA",
+      "text": "蝕刻：光阻蓋住的留下",
+      "en": "Etching",
+      "color": "blue",
+      "at": "etch-18",
+      "until": "etch+27",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-make",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "兩種做法：沖壓、蝕刻",
+      "tag": "示意",
+      "t": {
+       "big": {
+        "at": "big"
+       },
+       "cookie": {
+        "at": "cookie"
+       },
+       "press": {
+        "at": "press"
+       },
+       "etch": {
+        "at": "etch"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.8,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "再灌封裝膠，黑色環氧樹脂，大約八成是細砂。",
+   "tts": "再灌封裝膠，黑色環氧樹脂，大約八成是細砂。",
+   "subtitle": {
+    "zh": "再灌封裝膠\n黑色環氧樹脂\n大約八成是細砂",
+    "en": "Next, the mold compound: | black epoxy resin, | about 80% fine silica sand."
+   },
+   "keywords": [
+    "封裝膠",
+    "環氧樹脂",
+    "八成"
+   ],
+   "cues": [
+    {
+     "id": "emc",
+     "text": "封裝膠"
+    },
+    {
+     "id": "epoxy",
+     "text": "環氧樹脂"
+    },
+    {
+     "id": "sand",
+     "text": "八成"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "論文 PMC6416563 等（填料約七到九成，依配方而異）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "mold",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 69.2,
+      "y": 0.6,
+      "d": 19,
+      "elev": 12
+     }
+    ],
+    "labels": [
+     {
+      "part": "mPelletA",
+      "text": "料餅（環氧樹脂封裝膠）",
+      "en": "Mold compound pellet",
+      "color": "amber",
+      "at": "emc",
+      "until": "emc+45",
+      "cut": true
+     },
+     {
+      "part": "mFillerA",
+      "text": "放大：約八成是細砂（示意）",
+      "en": "Mostly silica filler",
+      "color": "blue",
+      "at": "sand",
+      "until": "sand+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-emc",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "封裝膠：環氧樹脂＋細砂",
+      "tag": "填料約七到九成，依配方而異",
+      "t": {
+       "emc": {
+        "at": "emc"
+       },
+       "epoxy": {
+        "at": "epoxy"
+       },
+       "sand": {
+        "at": "sand"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.6,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "膠加熱變軟擠進模具，像灌布丁包住晶片和金線，但它越熱越硬。",
+   "tts": "膠加熱變軟擠進模具，像灌布丁包住晶片和金線，但它越熱越硬。",
+   "subtitle": {
+    "zh": "膠加熱變軟\n擠進模具\n像灌布丁\n包住晶片和金線\n但它越熱越硬",
+    "en": "Heated, it softens | and is squeezed into the mold, | like pouring pudding, | wrapping the chip and wires, | but it hardens as it heats."
+   },
+   "keywords": [
+    "變軟",
+    "布丁",
+    "越熱越硬"
+   ],
+   "cues": [
+    {
+     "id": "soft",
+     "text": "變軟"
+    },
+    {
+     "id": "mold",
+     "text": "擠進模具"
+    },
+    {
+     "id": "pud",
+     "text": "布丁"
+    },
+    {
+     "id": "wrap",
+     "text": "包住"
+    },
+    {
+     "id": "hard",
+     "text": "越熱越硬"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "論文 PMC6416563、PMC8197812；示意動畫，不是量測"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 60.0,
+      "y": 0.4,
+      "d": 26,
+      "elev": 3
+     }
+    ],
+    "run": [
+     {
+      "id": "mHeatGlow",
+      "at": "start-6",
+      "ramp": 8,
+      "until": "s6:start"
+     },
+     {
+      "id": "mPelHot",
+      "at": "soft-6",
+      "ramp": 6,
+      "until": "mold+30"
+     },
+     {
+      "id": "mFlowL",
+      "at": "mold",
+      "ramp": 6,
+      "until": "mold+50"
+     },
+     {
+      "id": "mFlowR",
+      "at": "mold",
+      "ramp": 6,
+      "until": "mold+50"
+     }
+    ],
+    "labels": [
+     {
+      "part": "mPotA",
+      "text": "料筒：柱塞往上推",
+      "en": "Pot & plunger",
+      "color": "amber",
+      "at": "soft",
+      "until": "soft+45",
+      "cut": true
+     },
+     {
+      "part": "mCavA",
+      "text": "模穴（剖開示意）",
+      "en": "Mold cavity (cutaway)",
+      "color": "blue",
+      "at": "pud",
+      "until": "pud+45",
+      "cut": true
+     },
+     {
+      "part": "mHeatA",
+      "text": "模具加熱，越熱越硬（約 175 度）",
+      "en": "Heat cures it",
+      "color": "amber",
+      "at": "hard",
+      "until": "hard+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-mold",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "轉移成型：像灌布丁",
+      "tag": "示意（不標壓力）",
+      "t": {
+       "soft": {
+        "at": "soft"
+       },
+       "mold": {
+        "at": "mold"
+       },
+       "pud": {
+        "at": "pud"
+       },
+       "wrap": {
+        "at": "wrap"
+       },
+       "hard": {
+        "at": "hard"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "硬了擋住濕氣和碰撞，晶片有了殼。",
+   "tts": "硬了擋住濕氣和碰撞，晶片有了殼。",
+   "subtitle": {
+    "zh": "硬了擋住濕氣\n和碰撞\n晶片有了殼",
+    "en": "Once hard, it blocks moisture | and impacts; | the chip now has a shell."
+   },
+   "keywords": [
+    "濕氣",
+    "碰撞",
+    "殼"
+   ],
+   "cues": [
+    {
+     "id": "wet",
+     "text": "濕氣"
+    },
+    {
+     "id": "hit",
+     "text": "碰撞"
+    },
+    {
+     "id": "shell",
+     "text": "殼"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 11254563；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "unit",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90.0,
+      "y": 1.4,
+      "d": 42,
+      "elev": 14
+     }
+    ],
+    "run": [
+     {
+      "id": "qRain",
+      "at": "wet-4",
+      "ramp": 4,
+      "until": "shell-6"
+     }
+    ],
+    "labels": [
+     {
+      "part": "qDropA",
+      "text": "外殼擋住水氣和碰撞",
+      "en": "Shell keeps moisture and knocks out",
+      "color": "blue",
+      "at": "wet-8",
+      "until": "wet+27",
+      "cut": true,
+      "xy": [
+       600,
+       330
+      ]
+     },
+     {
+      "part": "qBodyA",
+      "text": "拆開：上半是封裝膠外殼",
+      "en": "Top: mold-compound shell",
+      "color": "amber",
+      "at": "shell-17",
+      "until": "shell+28",
+      "cut": true,
+      "xy": [
+       600,
+       330
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-shell",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "外殼擋什麼",
+      "tag": "示意（封裝膠導熱不好，散熱靠金屬）",
+      "t": {
+       "wet": {
+        "at": "wet"
+       },
+       "hit": {
+        "at": "hit"
+       },
+       "shell": {
+        "at": "shell"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 3.8,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "腳太多的，改在底部種錫球，零點幾毫米，當腳焊到電路板。",
+   "tts": "腳太多的，改在底部種錫球，零點幾毫米，當腳焊到電路板。",
+   "subtitle": {
+    "zh": "腳太多的\n改在底部種錫球\n零點幾毫米\n當腳焊到電路板",
+    "en": "When there are too many leads, | solder balls are planted underneath, | a few tenths of a millimeter, | soldered to the board as legs."
+   },
+   "keywords": [
+    "錫球",
+    "零點幾毫米",
+    "電路板"
+   ],
+   "cues": [
+    {
+     "id": "many",
+     "text": "腳太多"
+    },
+    {
+     "id": "ball",
+     "text": "錫球"
+    },
+    {
+     "id": "mm",
+     "text": "毫米"
+    },
+    {
+     "id": "pcb",
+     "text": "電路板"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 6119927、5482736；錫球型錄；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "unit",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90.0,
+      "y": 1.4,
+      "d": 42,
+      "elev": 14
+     },
+     {
+      "at": "ball+8",
+      "dur": 1,
+      "x": 118.0,
+      "y": 0.9,
+      "d": 22,
+      "elev": 30
+     },
+     {
+      "at": "pcb-14",
+      "dur": 1,
+      "x": 128.0,
+      "y": 0.4,
+      "d": 22,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "bReflow",
+      "at": "mm",
+      "ramp": 6,
+      "until": "pcb+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "qChipA",
+      "text": "晶片＋金線；導線架留在原位",
+      "en": "Chip & wires; lead frame stays",
+      "color": "blue",
+      "at": "start+11",
+      "until": "start+56",
+      "cut": true,
+      "xy": [
+       600,
+       330
+      ]
+     },
+     {
+      "part": "bBallA",
+      "text": "錫球：零點幾毫米",
+      "en": "Solder balls",
+      "color": "amber",
+      "at": "ball+8",
+      "until": "ball+53",
+      "cut": true
+     },
+     {
+      "part": "bPCBA",
+      "text": "焊到電路板",
+      "en": "Soldered to the board",
+      "color": "blue",
+      "at": "pcb-10",
+      "until": "pcb+35",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-ball",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "腳太多：底部種錫球",
+      "tag": "示意",
+      "t": {
+       "many": {
+        "at": "many"
+       },
+       "ball": {
+        "at": "ball"
+       },
+       "mm": {
+        "at": "mm"
+       },
+       "pcb": {
+        "at": "pcb"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "mechanism",
+   "para": 8,
+   "narration": "但晶片和電路板熱脹冷縮不一樣，錫球會被扯裂。",
+   "tts": "但晶片和電路板熱脹冷縮不一樣，錫球會被扯裂。",
+   "subtitle": {
+    "zh": "但晶片和電路板\n熱脹冷縮不一樣\n錫球會被扯裂",
+    "en": "But the chip and the board | expand differently with heat, | so the solder joints get torn."
+   },
+   "keywords": [
+    "熱脹冷縮",
+    "扯裂"
+   ],
+   "cues": [
+    {
+     "id": "cte",
+     "text": "熱脹冷縮"
+    },
+    {
+     "id": "crack",
+     "text": "扯裂"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5710071、6015722；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "joint",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 150.0,
+      "y": 1.2,
+      "d": 31,
+      "elev": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "tBoardL",
+      "at": "cte-6",
+      "ramp": 8,
+      "until": "s9:start"
+     },
+     {
+      "id": "tBoardR",
+      "at": "cte-6",
+      "ramp": 8,
+      "until": "s9:start"
+     },
+     {
+      "id": "tShear0",
+      "at": "cte-6",
+      "ramp": 8,
+      "until": "s9:start"
+     },
+     {
+      "id": "tShear1",
+      "at": "cte-6",
+      "ramp": 8,
+      "until": "s9:start"
+     },
+     {
+      "id": "tShear4",
+      "at": "cte-6",
+      "ramp": 8,
+      "until": "s9:start"
+     },
+     {
+      "id": "tShear5",
+      "at": "cte-6",
+      "ramp": 8,
+      "until": "s9:start"
+     },
+     {
+      "id": "tHot",
+      "at": "cte-6",
+      "ramp": 8,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "tPcbA",
+      "text": "電路板受熱伸縮得比較多",
+      "en": "Board expands more",
+      "color": "amber",
+      "at": "cte",
+      "until": "cte+45",
+      "cut": true
+     },
+     {
+      "part": "tCrackA",
+      "text": "錫點被剪出裂縫",
+      "en": "Joint cracks",
+      "color": "blue",
+      "at": "crack-19",
+      "until": "crack+26",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-cte",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "熱脹冷縮不一樣：錫點被剪",
+      "tag": "示意，位移放大",
+      "t": {
+       "cte": {
+        "at": "cte"
+       },
+       "crack": {
+        "at": "crack"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "mechanism",
+   "para": 9,
+   "narration": "所以縫裡點底部填充膠，像茶滲進兩片玻璃之間，硬了黏成一塊，把力量分散開。",
+   "tts": "所以縫裡點底部填充膠，像茶滲進兩片玻璃之間，硬了黏成一塊，把力量分散開。",
+   "subtitle": {
+    "zh": "所以縫裡點\n底部填充膠\n像茶滲進\n兩片玻璃之間\n硬了黏成一塊\n把力量分散開",
+    "en": "So into the gap goes | underfill, | seeping in like tea | between two panes of glass, | curing into one piece | that spreads the force."
+   },
+   "keywords": [
+    "底部填充",
+    "茶",
+    "分散"
+   ],
+   "cues": [
+    {
+     "id": "uf",
+     "text": "底部填充"
+    },
+    {
+     "id": "tea",
+     "text": "茶"
+    },
+    {
+     "id": "glue",
+     "text": "黏成一塊"
+    },
+    {
+     "id": "spread",
+     "text": "分散"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "專利 USPTO 5710071、6015722；NASA JPL 報告；示意"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 175.0,
+      "y": 1.4,
+      "d": 31,
+      "elev": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "uDrip",
+      "at": "uf-6",
+      "ramp": 4,
+      "until": "uf+70"
+     },
+     {
+      "id": "uCure",
+      "at": "glue",
+      "ramp": 6,
+      "until": "spread"
+     },
+     {
+      "id": "uBoardL",
+      "at": "spread-6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "uBoardR",
+      "at": "spread-6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "uShear0",
+      "at": "spread-6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "uShear1",
+      "at": "spread-6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "uShear4",
+      "at": "spread-6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "uShear5",
+      "at": "spread-6",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "uHot",
+      "at": "spread-6",
+      "ramp": 8,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "uNeedleA",
+      "text": "點膠針：沿邊點膠",
+      "en": "Dispense needle",
+      "color": "amber",
+      "at": "uf",
+      "until": "uf+45",
+      "cut": true
+     },
+     {
+      "part": "uFillA",
+      "text": "毛細作用：自己吸進縫",
+      "en": "Capillary flow",
+      "color": "blue",
+      "at": "uf+47",
+      "until": "uf+92",
+      "cut": true,
+      "xy": [
+       420,
+       300
+      ]
+     },
+     {
+      "part": "uBallA",
+      "text": "錫點只微微擺動",
+      "en": "Joints barely move",
+      "color": "amber",
+      "at": "spread-8",
+      "until": "spread+37",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-uf",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "底部填充：像茶滲進玻璃縫",
+      "tag": "示意（不保證不裂，是分散應力）",
+      "t": {
+       "uf": {
+        "at": "uf"
+       },
+       "tea": {
+        "at": "tea"
+       },
+       "glue": {
+        "at": "glue"
+       },
+       "spread": {
+        "at": "spread"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s10",
+   "beat": "payoff",
+   "para": 10,
+   "narration": "導線架有長華、界霖，封裝膠有日本住友電木。",
+   "tts": "導線架有常華、界霖，封裝膠有日本住友電木。",
+   "subtitle": {
+    "zh": "導線架有長華 界霖\n封裝膠有日本住友電木",
+    "en": "Lead frames: Taiwan's 6548 and 5285; | mold compound: Japan's Sumitomo Bakelite."
+   },
+   "keywords": [
+    "長華",
+    "界霖",
+    "住友電木"
+   ],
+   "cues": [
+    {
+     "id": "lf2",
+     "text": "導線架"
+    },
+    {
+     "id": "cw",
+     "text": "長華"
+    },
+    {
+     "id": "sb",
+     "text": "住友電木"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "證交所簡報、財經媒體；截至 2026/11/27"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "co",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 196.0,
+      "y": -1.0,
+      "d": 39,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "vA0",
+      "text": "導線架",
+      "en": "Lead frames",
+      "color": "amber",
+      "at": "lf2",
+      "until": "lf2+45",
+      "cut": true
+     },
+     {
+      "part": "vA2",
+      "text": "封裝膠料餅",
+      "en": "Mold compound",
+      "color": "blue",
+      "at": "sb",
+      "until": "sb+45",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-co",
+      "at": "voice-3",
+      "until": "s11:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "封裝材料供應商",
+      "tag": "證交所、財經媒體；截至 2026/11/27",
+      "t": {
+       "lf2": {
+        "at": "lf2"
+       },
+       "cw": {
+        "at": "cw"
+       },
+       "sb": {
+        "at": "sb"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.8,
+   "holdSec": 0.85,
+   "headSec": 0.3,
+   "pauseAfter": 0.85
+  },
+  {
+   "id": "s11",
+   "beat": "cta",
+   "para": 11,
+   "narration": "晶片若自己長凸塊倒扣，就不用打線。倒過來好在哪？下一集看覆晶。留言錫球，拿完整資料。",
+   "tts": "晶片若自己長凸塊倒扣，就不用打線。倒過來好在哪？下一集看覆晶。留言錫球，拿完整資料。",
+   "subtitle": {
+    "zh": "晶片若自己長凸塊\n倒扣就不用打線\n倒過來好在哪？\n下一集看覆晶\n留言錫球\n拿完整資料",
+    "en": "If the chip grows its own bumps | and flips down, no wires are needed. | Why flip it? | Next episode: flip chip. | Comment \"solder ball\" | for the full notes."
+   },
+   "keywords": [
+    "凸塊",
+    "覆晶",
+    "錫球"
+   ],
+   "cues": [
+    {
+     "id": "bump",
+     "text": "凸塊"
+    },
+    {
+     "id": "flip",
+     "text": "倒扣"
+    },
+    {
+     "id": "why",
+     "text": "好在哪"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言錫球"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "unit",
+      "at": "voice+21",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice+21",
+      "dur": 1,
+      "x": 222.0,
+      "y": -0.2,
+      "d": 24,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "fFlip",
+      "at": "flip-10",
+      "ramp": 24,
+      "until": "flip+18"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fChipA",
+      "text": "晶片自己長凸塊",
+      "en": "Chip with its own bumps",
+      "color": "amber",
+      "at": "bump",
+      "until": "bump+45",
+      "cut": true
+     },
+     {
+      "part": "fSubA",
+      "text": "倒扣到基板",
+      "en": "Flipped onto the substrate",
+      "color": "blue",
+      "at": "flip+40",
+      "until": "flip+85",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "pkg-co",
+      "at": "voice-3",
+      "until": "voice+22",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "封裝材料供應商",
+      "tag": "證交所、財經媒體；截至 2026/11/27",
+      "t": {
+       "lf2": {
+        "at": "s10:lf2"
+       },
+       "cw": {
+        "at": "s10:cw"
+       },
+       "sb": {
+        "at": "s10:sb"
+       }
+      },
+      "cut": true
+     },
+     {
+      "type": "section",
+      "kind": "pkg-next",
+      "at": "voice+22",
+      "until": "s12:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：覆晶",
+      "tag": "留言「錫球」",
+      "t": {
+       "bump": {
+        "at": "bump"
+       },
+       "flip": {
+        "at": "flip"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.7,
+   "holdSec": 0.6
+  },
+  {
+   "id": "s12",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "覆晶",
+     "trail": [
+      "晶片穿好衣服、長好腳"
+     ],
+     "comment": "錫球",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
