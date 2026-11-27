@@ -271,14 +271,14 @@ P({ id: "cPadN", layer: "cDieBg", shape: "box", size: [1.6, 0.14, 1.6], pos: [PA
 BOX("cLeadAg", "cLead", X2 + 5.0, X2 + 9.4, 2.5, 2.56, -0.95, 0.95, "lfAg"); BOX("cLeadB", "cLeadBg", X2 + 5.0, X2 + 16, 1.0, 2.5, -1.0, 1.0, "lf");
 for (const [i, z] of [[0, -3.2], [1, 3.2]]) { BOX(`cLeadN${i}`, "cLeadBg", X2 + 5.0, X2 + 16, 1.0, 2.5, z - 1.0, z + 1.0, "lf"); BOX(`cLeadNAg${i}`, "cLeadBg", X2 + 5.0, X2 + 9.4, 2.5, 2.56, z - 0.95, z + 0.95, "lfAg"); }
 // 劈刀（尖端面半徑 0.85＞壓扁球 0.6）＋筒身＋換能器桿（沿 −x 伸出去）＋夾持環與螺絲＋線夾兩爪＋上方的線；懸停時尖端在 HOVY
-const HOVY = 9.6, CX = PADX, R_W = 0.16, CT = 4.0, CB = 7.0, CJ = 8.4;
+const HOVY = 9.6, CX = PADX, R_W = 0.16, CT = 4.0, CB = 7.6, CJ = 8.8;
 P({ id: "cCapCone", layer: "cCapUp", shape: "cone", size: [0.85, 1.25, CT], rot: [90, 0, 0], pos: [CX, HOVY + CT / 2, 0], mat: "cap" });
 VC("cCapBody", "cCapUp", 1.25, HOVY + CT, HOVY + CB, "cap", { x: CX }); VT("cCapChamf", "cCap", 0.86, 0.32, HOVY, HOVY + 0.1, "capTip", { x: CX });
 P({ id: "cCapBore", layer: "cCap", shape: "cyl", size: [0.2, 0.06], rot: V, pos: [CX, HOVY + 0.02, 0], mat: "dark" });
-VT("cHornRing", "cCapUp", 1.7, 1.26, HOVY + 5.0, HOVY + 6.6, "horn", { x: CX }); P({ id: "cHornScrew", layer: "cCapUp", shape: "cyl", size: [0.32, 0.9], pos: [CX, HOVY + 5.8, 1.9], mat: "dark" });
-P({ id: "cHornTip", layer: "cCapUp", shape: "cone", size: [1.0, 1.5, 9.0], rot: [0, 90, 0], pos: [CX - 6.2, HOVY + 5.8, 0], mat: "horn" });   // +z 端（細）轉到 +x，接劈刀
-for (let i = 0; i < 5; i++) P({ id: `cPz${i}`, layer: "cCapUp", shape: "cyl", size: [1.55, 0.36], rot: HX, pos: [CX - 11.0 - i * 0.36, HOVY + 5.8, 0], mat: i % 2 ? "piezoB" : "piezoA" });
-P({ id: "cHornFl", layer: "cCapUp", shape: "cyl", size: [2.0, 0.3], rot: HX, pos: [CX - 10.6, HOVY + 5.8, 0], mat: "steel" });
+VT("cHornRing", "cCapUp", 1.6, 1.26, HOVY + 5.8, HOVY + 7.4, "horn", { x: CX }); P({ id: "cHornScrew", layer: "cCapUp", shape: "cyl", size: [0.32, 0.9], pos: [CX, HOVY + 6.6, 1.8], mat: "dark" });
+P({ id: "cHornTip", layer: "cCapUp", shape: "cone", size: [0.7, 1.1, 9.0], rot: [0, 90, 0], pos: [CX - 6.2, HOVY + 6.6, 0], mat: "horn" });   // +z 端（細）轉到 +x，接劈刀
+for (let i = 0; i < 5; i++) P({ id: `cPz${i}`, layer: "cCapUp", shape: "cyl", size: [1.15, 0.36], rot: HX, pos: [CX - 11.0 - i * 0.36, HOVY + 6.6, 0], mat: i % 2 ? "piezoB" : "piezoA" });
+P({ id: "cHornFl", layer: "cCapUp", shape: "cyl", size: [1.5, 0.3], rot: HX, pos: [CX - 10.6, HOVY + 6.6, 0], mat: "steel" });
 VC("cWireUp", "cCapUp", R_W, HOVY + CB, HOVY + 15, "au", { x: CX });
 BOX("cJawL", "cJawLl", CX - 1.3, CX - 0.2, HOVY + CJ, HOVY + CJ + 1.0, -0.7, 0.7, "steel"); BOX("cJawArmL", "cJawLl", CX - 3.6, CX - 1.3, HOVY + CJ + 0.25, HOVY + CJ + 0.75, -0.4, 0.4, "dark");
 BOX("cJawR", "cJawRl", CX + 0.2, CX + 1.3, HOVY + CJ, HOVY + CJ + 1.0, -0.7, 0.7, "steel"); BOX("cJawArmR", "cJawRl", CX + 1.3, CX + 3.6, HOVY + CJ + 0.25, HOVY + CJ + 0.75, -0.4, 0.4, "dark");
@@ -298,7 +298,7 @@ VC("cTailBreak", "cTail2", R_W, LEADY + 0.15, LEADY + 1.3, "au", { x: LEADX }); 
 P({ id: "cUSWave", layer: "cUS", shape: "tube", size: [0.8, 0.7, 0.06], rot: [0, 90, 0], pos: [CX, HOVY + 0.75, 0], at: [[-1.6, 0, 0], [-2.4, 0, 0], [1.6, 0, 0], [2.4, 0, 0]], mat: "us" });
 P({ id: "cBondGlow", layer: "cGlow", shape: "cyl", size: [1.0, 0.05], rot: V, pos: [CX, PADY + 0.08, 0], mat: "heat" });
 // 線弧：高度不超過跨距三分之一；細分成小段（每段一層），劈刀走到才出現；沒有接點小球（不竹節）
-const LOOP = smooth([[CX, PADY + 0.3, 0], [CX, PADY + 1.9, 0], [CX + 1.1, PADY + 2.6, 0], [CX + 3.4, PADY + 2.3, 0], [CX + 5.7, LEADY + 1.5, 0], [LEADX, LEADY + 0.2, 0]], 4);
+const LOOP = smooth([[CX, PADY + 0.3, 0], [CX, PADY + 1.4, 0], [CX + 1.1, PADY + 1.95, 0], [CX + 3.4, PADY + 1.7, 0], [CX + 5.7, LEADY + 1.4, 0], [LEADX, LEADY + 0.2, 0]], 4);
 const NL = LOOP.length - 1;
 for (let i = 0; i < NL; i++) { LAY(`cW${i}`, [1, 1, (LOOP[i][0] + LOOP[i + 1][0]) / 2, (LOOP[i][1] + LOOP[i + 1][1]) / 2]); SEG(`cWs${i}`, `cW${i}`, LOOP[i], LOOP[i + 1], R_W, "au"); }
 actions.cUSvib = { type: "vibrate", _說明: "超音波：劈刀尖端沿換能器方向（x）微振（示意，放大很多）", parts: ["cCapCone", "cCapChamf", "cBallFlat"], axis: [1, 0, 0], amp: 0.06, freq: 12 };
@@ -307,7 +307,7 @@ actions.cHeatOn = { type: "pulse", _說明: "加熱台發熱（約一百多度�
 actions.cBondHot = { type: "pulse", parts: ["cBondGlow"], color: "heatC", glow: 1, freq: 2, halo: 0.6 };
 Object.assign(anchors, { cCapA: A("cCapUp", [CX + 1.0, HOVY + 2.5, 0], 150, -90), cFabA: A("cBall", [CX - 0.3, HOVY - 0.5, 0], -150, 90), cEfoA: A("cEfo", [CX + 4.5, HOVY - 0.8, 0.2], 150, 90),
   cPadA: A("cDie", [CX - 0.6, PADY + 0.05, 0.6], -150, 100), cBallA: A("cBallB", [CX - 0.4, PADY + 0.25, 0.3], -150, 100), cLoopA: A(`cW${Math.floor(NL / 2)}`, LOOP[Math.floor(NL / 2)], 150, -100),
-  cStitchA: A("cStitch", [LEADX + 0.6, LEADY + 0.1, 0.3], 150, 100), cClampA: A("cJawLl", [CX - 0.8, HOVY + CJ + 0.5, 0.7], -150, -90), cHornA: A("cCapUp", [CX - 6.0, HOVY + 6.4, 0.8], -150, -90), cHeatA: A("cHeat", [X2 + 6, 1.0, 6], 150, 100) });
+  cStitchA: A("cStitch", [LEADX + 0.6, LEADY + 0.1, 0.3], 150, 100), cClampA: A("cJawLl", [CX - 0.8, HOVY + CJ + 0.5, 0.7], -150, -90), cHornA: A("cCapUp", [CX - 6.0, HOVY + 7.2, 0.6], -150, -90), cHeatA: A("cHeat", [X2 + 6, 1.0, 6], 150, 100) });
 
 // ═════ D 站（X3＝170）：焊點剖面（1＝2 µm）：金球、鋁墊、鈍化層、細基底全部切半（剖面朝鏡頭 z＝0）；介面一條灰色氧化膜 → 搓碎往兩側擠出 → 紫色接合層＋原子只在介面薄帶互擠 ═════
 const X3 = 170, DPY = 5.0, DZ = 5.0;   // 切面在 z＝0，實體在 z∈[−DZ, 0]

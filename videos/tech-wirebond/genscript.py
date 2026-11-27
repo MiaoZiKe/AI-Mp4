@@ -134,7 +134,7 @@ vis("dOx", [("s6:start-1", "s7:start-1")]); VIS.append(hid("dOx", "s6:dust", "s7
 vis("dImc", [("s6:dust+10", "s7:start-1")], 18); vis("dAtom", [("s6:dust+10", "s7:start-1")], 8)
 E_ALL = [("s9:start-1", "s10:start-1")]
 for l in ["eBase", "eAu", "eCu", "eCu2", "eSpool", "eUp"]: vis(l, E_ALL)
-vis("eCuOx", [("s9:ox-26", "s10:start-1")], 2); vis("eSpk1", [("s9:ox-32", "s9:ox-26")])
+vis("eCuOx", [("s9:ox-38", "s10:start-1")], 2); vis("eSpk1", [("s9:ox-44", "s9:ox-38")])
 vis("eGas", [("s9:gas-10", "s10:start-1")], 6); vis("eSpk2", [("s9:gas+10", "s9:gas+16")]); vis("eCuOk", [("s9:gas+14", "s10:start-1")], 2); vis("eCrack", [])
 
 vis("moldA", [("s11:next-6", FAR)]); vis("ballsA", [("s11:mat+10", FAR)])
@@ -181,12 +181,12 @@ P["s3"] = {"shot": [shot("start-1", X1, 6.0, 52, 18, 1, yaw=0.0), shot("start+2"
             lab("clamp", "線夾", "Wire clamp", "blue", "start+120", "start+165")],
  "overlay": [sec("wb-needle", "start+24", "s4:start-8", "像縫紉機針，但不是刺穿", "示意", {"cap": "cap", "sew": "sew", "mid": "mid", "hair": "hair"})]}
 # ─── s4：放電燒線頭 → 小圓球 ───
-P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 9.4, 40, 8, 20)],
+P["s4"] = {"shot": [shot("start-1", X2 - 1.0, 11.0, 50, 8, 1, yaw=0.0), shot("spark-12", X2 - 0.5, 10.6, 46, 8, 20)],
  "run": [run("cHeatOn", "start", "s6:start-2", 6)],
  "labels": [lab("cEfoA", "打火棒放電", "EFO spark", "blue", "spark-6", "spark+39", xy=[820, 980]), lab("cFabA", "小圓球", "Free air ball", "amber", "spark+41", "spark+86")],
  "overlay": [sec("wb-steps", "start+20", "s6:start-8", "打一條線的步驟", "示意", {"s1": "spark", "s2": "s5:press", "s3": "s7:arc", "s4": "s7:foot", "s5": "s7:cut"})]}
 # ─── s5：壓在焊墊、加熱、超音波 ───
-P["s5"] = {"shot": [shot("start-1", X2 - 0.5, 7.0, 26, 8, 1), shot("press-16", X2 - 1.0, 6.8, 30, 10, 16)],
+P["s5"] = {"shot": [shot("start-1", X2 - 0.5, 7.0, 26, 8, 1), shot("press-16", X2 - 1.0, 8.4, 38, 10, 16)],
  "run": [run("cBondHot", "heat", "s6:start-2", 6), run("cUSvib", "us", "rub+30", 4), run("cUSring", "us", "rub+30", 4)],
  "labels": [lab("cBallA", "第一焊點（壓扁的球）", "First bond (ball)", "amber", "press+4", "press+49"), lab("cCapA", "超音波來回搓", "Ultrasonic scrub", "blue", "us-2", "us+43")]}
 # ─── s6：焊點剖面：搓掉氧化膜、原子擠進去 ───
@@ -208,8 +208,8 @@ P["s8"] = {"shot": [shot("start-1", X0, -3.5, 48, 44, 1, yaw=0.0), shot("cheap",
 # ─── s9：金線 → 銅線，保護氣 ───
 P["s9"] = {"shot": [shot("start-1", X5, 12.0, 80, 10, 1, yaw=0.0), shot("ox-14", X5 + 5.5, 11.0, 66, 10, 30)],
  "run": [run("eGasA", "gas-8", "s10:start-2", 8), run("eGasB", "gas-8", "s10:start-2", 8), run("eGasIn", "gas-10", "s10:start-2", 8)],
- "labels": [lab("eAuA", "金線：燒出來的球亮", "Gold: bright ball", "amber", "gold-2", "gold+43"), lab("eCuA", "銅線沒保護：球氧化變暗", "Copper, no gas: oxidized", "amber", "ox-26", "ox+19"),
-            lab("eGasA", "先吹保護氣再放電：球亮", "Gas first: bright ball", "blue", "ox+21", "ox+66", xy=[540, 300])],
+ "labels": [lab("eAuA", "金線：燒出來的球亮", "Gold: bright ball", "amber", "gold-2", "gold+43"), lab("eCuA", "銅線沒保護：球氧化變暗", "Copper, no gas: oxidized", "amber", "ox-34", "ox+11"),
+            lab("eGasA", "先吹保護氣再放電：球亮", "Gas first: bright ball", "blue", "ox+13", "ox+58", xy=[540, 300])],
  "overlay": [sec("wb-cu", "start+20", "s10:start-8", "金線換銅線", "日月光、安靠公司資料（示意，不標價格）", {"gold": "gold", "pricey": "pricey", "cu": "cu", "ox": "ox", "gas": "gas"})]}
 # ─── s10：公司 ───
 P["s10"] = {"shot": [shot("start-1", X1, 6.0, 50, 16, 1, yaw=0.0)],
