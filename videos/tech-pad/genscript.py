@@ -111,21 +111,22 @@ CC = "voice-4"       # 3D 鏡頭硬切與 HUD 層級切換（dur 1）要提早 1
 def nxt(sid): return f"s{int(sid[1:]) + 1}:voice-3"
 def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
-SO = 12                      # s7：先看新舊墊厚度對照（T 站），再切回機台撕墊；撕墊相關時間全部晚 SO 幀（swap＋SO）
-def SW(n): return f"s7:swap+{n + SO}"
+SO = 18                      # s7（r4）：T 站只到「磨薄」後 16 幀，之後整段在機台換墊（約 3.2 秒）；SW(0)＝thin＋18
+def SW(n): return f"s7:thin+{n + SO}"
 BACKHEAD = "s2:platen+4"    # 研磨頭回到墊子正上方（r2 拿掉顯微段，組回提前）
 RT = ["s6:comb+8", "s6:comb+26", "s6:comb+44"]     # 三塊陸地依序變回尖齒的時刻（修整頭離開那一塊的時候）
-vis("newPad", [(SW(34), FAR)])
-vis("roller", [(SW(46), SW(64))])
-vis("strand0", [(SW(4), SW(8))]); vis("strand1", [(SW(8), SW(12))]); vis("strand2", [(SW(12), SW(24))])
+vis("newPad", [(SW(50), FAR)])
+vis("roller", [(SW(64), SW(96))])
+vis("strand0", [(SW(4), SW(10))]); vis("strand1", [(SW(10), SW(16))]); vis("strand2", [(SW(16), SW(30))])
 VIS += [hid("film", SW(-2), FAR, 6)]
 OLD = ["oPadAdh", "oPadSub", "oPadTop"]
-VIS += [mv(l, SW(24), FAR, 16, dx=-17.0, throw=3.2) for l in OLD] + [hid(l, SW(40), FAR, 4, 0) for l in OLD]
-for l in OLD: vis(l, [("s7:start-2", SW(40))])
+VIS += [mv(l, SW(30), FAR, 18, dx=-17.0, throw=3.2) for l in OLD] + [hid(l, SW(48), FAR, 4, 0) for l in OLD]
+for l in OLD: vis(l, [("s7:start-2", SW(48))])
 VIS += [hid(l, "s7:start-2", FAR, 2, 0) for l in ("padAdh", "padSub", "padTop")]
-VIS += [mv("head", "s7:swap+2", FAR, 10, dx=6.3)]       # 換墊前研磨頭先移開（T 站畫面中，看不到）
-VIS += [mv("roller", T0, FAR, 1, dz=-4.4), mv("roller", SW(48), SW(62), 14, dz=8.8)]
-VIS += [{"layer": "newPad", "at": SW(34), "until": SW(38), "dur": 14, "dy": 7.0, "fallIn": True, "bounce": 0.07, "opacity": 0}]
+VIS += [mv("head", "s7:thin+2", FAR, 12, dx=6.3)]
+VIS += [mv(l, "s7:thin+2", FAR, 12, dx=-2.5, dz=-4.5) for l in ("cond", "condPost")]   # r4：換墊前修整器整組往後退開（不和撕起的舊墊、落下的新墊相撞）       # 換墊前研磨頭先移開（T 站畫面中，看不到）
+VIS += [mv("roller", T0, FAR, 1, dz=-4.4), mv("roller", SW(66), SW(92), 26, dz=8.8)]
+VIS += [{"layer": "newPad", "at": T0, "until": SW(50), "dur": 14, "dy": 7.0, "fallIn": True, "bounce": 0.07, "opacity": 0}]
 # ── s2 爆炸分解（5 步：研磨頭移開 → 墊子掀起 → 三層分開 → 研磨層局部放大 → 組回）──
 VIS += [mv("head", "s2:start+4", BACKHEAD, 26, dx=6.3)]
 VIS += [mv(l, "s2:pad", "s2:platen+6", 22, dy=2.4) for l in ("padAdh", "padSub", "padTop")]
@@ -171,17 +172,16 @@ P["s2"] = {"zoom": [{"to": "tool", "at": "start-14", "dur": 1}],
           shot("s2:platen+2", 0.6, 2.6, 40, 32, 20)],
  "run": [run("slDrop", "start-4", "s2:pad-2", 4), run("padSpin", "s2:platen+24", "s3:sand-8", 10), run("headSpin", "s2:platen+24", "s3:sand-8", 10), run("headSweep", "s2:platen+24", "s3:sand-8", 10), run("slSpread", "s2:platen+24", "s3:sand-8", 4),
          run("slDrop", "s2:platen+24", "s3:sand-8", 4), run("slOutA", "s2:platen+24", "s3:sand-8", 6), run("slOutB", "s2:platen+24", "s3:sand-8", 6)],
- "labels": [lab("head", "研磨頭", "Carrier head", "blue", "start+2", "pad-2"),
-            lab("padA", "研磨墊", "Polishing pad", "amber", "pad", "pad+46"),
-            lab("padTop", "研磨層", "Polishing layer", "amber", "soft+6", "round+18"),
-            lab("platen", "圓台", "Platen", "blue", "round+20", "platen+28")],
+ "labels": [lab("padA", "研磨墊", "Polishing pad", "amber", "pad", "pad+46"),
+            lab("padTop", "研磨層", "Polishing layer", "amber", "soft+10", "round+25"),
+            lab("platen", "圓台", "Platen", "blue", "round+27", "platen+27")],
  "overlay": [card("s2", "pad-what", "研磨墊：常見的疊層", "示意", {"ans": "ans", "pad": "pad", "soft": "soft", "round": "round"})]}
 P["s3"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "sand-6", "dur": 1}],
  "shot": [shot(C, AX, 1.8, 38, 42, 24), shot("sand-6", 18.0, 1.0, 37, 31, 1)],
  "run": [run("wGlow0", "sand-4", "bump+30", 8), run("wGlow1", "bump+30", "bump+52", 8), run("wRub", "sand-4", FAR, 8), run("wDebris", "sand", FAR, 6), run("wSlurry", "sand", FAR, 6)],
  "labels": [lab("wafer", "晶圓（倒扣）", "Wafer, face down", "blue", "flip", "flip+46"),
             lab("bump", "凸處壓力大", "High spot", "amber", "sand-8", "sand+37", xy=[300, 306]),
-            lab("wpad", "墊子", "Pad", "blue", "bump+16", "bump+58")],
+            lab("wpad", "墊子", "Pad", "blue", "bump+12", "bump+58")],
  "overlay": [card("s3", "pad-grind", "砂紙磨木板：凸的先磨", "示意（不標壓力數字）", {"sand": "sand", "bump": "bump", "off": "off"})]}
 P["s4"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 38.0, MY, MD, 33, 1), shot("pore+14", 38.2, -0.4, 27, 27, 30), shot("flow+6", 38.0, MY, MD, 33, 30)],
@@ -201,20 +201,18 @@ P["s6"] = {"zoom": [{"to": "tool", "at": CC, "dur": 1}, {"to": "micro", "at": "r
  "labels": [lab("condDisc", "鑽石碟", "Diamond disc", "amber", "dia", "dia+46"),
             lab("grain", "鑽石顆粒", "Diamond grit", "blue", "comb-8", "comb+38")],
  "overlay": [card("s6", "pad-dress", "梳子梳起壓扁的毛", "示意", {"dia": "dia", "sweep": "sweep", "rough": "rough", "comb": "comb"})]}
-P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}, {"to": "tool", "at": "swap+10", "dur": 1}],
- "shot": [shot(CC, 58.0, TY, TD, TE, 1), shot("swap+10", 0.0, 1.7, 40, 36, 1), shot(SW(30), -0.4, 1.8, 38, 34, 20)],
- "run": [run("padPeel", SW(0), SW(22), 12), run("rollerSpin", SW(48), SW(62), 4)],
- "labels": [lab("tOld", "舊墊", "Old pad", "amber", "voice-2", "thin+12"),
-            lab("tNew", "新墊", "New pad", "blue", "thin+14", "swap+8"),
-            lab("padOld", "舊墊", "Old pad", "amber", SW(0), SW(28)),
-            lab("padNew", "新墊", "New pad", "blue", SW(36), SW(64))],
+P["s7"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}, {"to": "tool", "at": SW(-2), "dur": 1}],
+ "shot": [shot(CC, 58.0, TY, TD, TE, 1), shot(SW(-2), -0.2, 1.75, 39, 35, 1)],
+ "run": [run("padPeel", SW(0), SW(26), 18), run("rollerSpin", SW(66), SW(92), 4)],
+ "labels": [lab("tOld", "舊墊薄、新墊厚", "Old: thin / New: thick", "amber", "voice-2", SW(-4)),
+            lab("padOld", "舊墊", "Old pad", "amber", SW(0), SW(46)),
+            lab("padNew", "新墊", "New pad", "blue", SW(52), SW(96), xy=[230, 330])],
  "overlay": [card("s7", "pad-wear", "磨薄就換，機台停下來", "示意（不標壽命時數）", {"thin": "thin", "swap": "swap", "stop": "stop"})]}
 P["s8"] = {"zoom": [{"to": "micro", "at": CC, "dur": 1}],
  "shot": [shot(CC, 74.0, 1.6, 37, 30, 1), shot("tough-6", 90.0, 1.6, 37, 30, 30)],
  "run": [run("hsRubSoft", "soft-6", "tough-6", 8), run("hsSoftHot", "soft-4", "tough-8", 8), run("hsRubHard", "tough-6", FAR, 8), run("hsHot", "tough-4", FAR, 8), run("hsPartDrop", "scr-12", "scr+16", 4)],
  "labels": [lab("softL", "軟墊：凹處也被碰", "Soft: touches valleys too", "amber", "soft", "soft+46"),
-            lab("hardL", "硬墊：只碰凸處", "Hard: only high spots", "blue", "tough", "scr"),
-            lab("scratchL", "刮痕", "Scratch", "amber", "scr+2", "scr+28")],
+            lab("hardL", "硬墊：只碰凸處，易刮傷", "Hard: high spots only, scratches", "blue", "tough", "scr+28")],
  "overlay": [card("s8", "pad-hard", "軟硬各有代價", "示意", {"soft": "soft", "flat": "flat", "tough": "tough", "scr": "scr"})]}
 P["s9"] = {"zoom": [{"to": "co", "at": CC, "dur": 1}],
  "shot": [shot(CC, 112.0, VY, VD, VE, 1)],

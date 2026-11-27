@@ -134,20 +134,20 @@
      {
       "layer": "newPad",
       "at": "s1:start-40",
-      "until": "s7:swap+46",
+      "until": "s7:thin+68",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "roller",
       "at": "s1:start-40",
-      "until": "s7:swap+58",
+      "until": "s7:thin+82",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "roller",
-      "at": "s7:swap+76",
+      "at": "s7:thin+114",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 3
@@ -155,13 +155,13 @@
      {
       "layer": "strand0",
       "at": "s1:start-40",
-      "until": "s7:swap+16",
+      "until": "s7:thin+22",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "strand0",
-      "at": "s7:swap+20",
+      "at": "s7:thin+28",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 3
@@ -169,13 +169,13 @@
      {
       "layer": "strand1",
       "at": "s1:start-40",
-      "until": "s7:swap+20",
+      "until": "s7:thin+28",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "strand1",
-      "at": "s7:swap+24",
+      "at": "s7:thin+34",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 3
@@ -183,65 +183,65 @@
      {
       "layer": "strand2",
       "at": "s1:start-40",
-      "until": "s7:swap+24",
+      "until": "s7:thin+34",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "strand2",
-      "at": "s7:swap+36",
+      "at": "s7:thin+48",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 3
      },
      {
       "layer": "film",
-      "at": "s7:swap+10",
+      "at": "s7:thin+16",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 6
      },
      {
       "layer": "oPadAdh",
-      "at": "s7:swap+36",
+      "at": "s7:thin+48",
       "until": "s11:start+400",
-      "dur": 16,
+      "dur": 18,
       "dx": -17.0,
       "throw": 3.2
      },
      {
       "layer": "oPadSub",
-      "at": "s7:swap+36",
+      "at": "s7:thin+48",
       "until": "s11:start+400",
-      "dur": 16,
+      "dur": 18,
       "dx": -17.0,
       "throw": 3.2
      },
      {
       "layer": "oPadTop",
-      "at": "s7:swap+36",
+      "at": "s7:thin+48",
       "until": "s11:start+400",
-      "dur": 16,
+      "dur": 18,
       "dx": -17.0,
       "throw": 3.2
      },
      {
       "layer": "oPadAdh",
-      "at": "s7:swap+52",
+      "at": "s7:thin+66",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 4
      },
      {
       "layer": "oPadSub",
-      "at": "s7:swap+52",
+      "at": "s7:thin+66",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 4
      },
      {
       "layer": "oPadTop",
-      "at": "s7:swap+52",
+      "at": "s7:thin+66",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 4
@@ -255,7 +255,7 @@
      },
      {
       "layer": "oPadAdh",
-      "at": "s7:swap+52",
+      "at": "s7:thin+66",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 3
@@ -269,7 +269,7 @@
      },
      {
       "layer": "oPadSub",
-      "at": "s7:swap+52",
+      "at": "s7:thin+66",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 3
@@ -283,7 +283,7 @@
      },
      {
       "layer": "oPadTop",
-      "at": "s7:swap+52",
+      "at": "s7:thin+66",
       "until": "s11:start+400",
       "opacity": 0,
       "dur": 3
@@ -311,10 +311,26 @@
      },
      {
       "layer": "head",
-      "at": "s7:swap+2",
+      "at": "s7:thin+2",
       "until": "s11:start+400",
-      "dur": 10,
+      "dur": 12,
       "dx": 6.3
+     },
+     {
+      "layer": "cond",
+      "at": "s7:thin+2",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dx": -2.5,
+      "dz": -4.5
+     },
+     {
+      "layer": "condPost",
+      "at": "s7:thin+2",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dx": -2.5,
+      "dz": -4.5
      },
      {
       "layer": "roller",
@@ -325,15 +341,15 @@
      },
      {
       "layer": "roller",
-      "at": "s7:swap+60",
-      "until": "s7:swap+74",
-      "dur": 14,
+      "at": "s7:thin+84",
+      "until": "s7:thin+110",
+      "dur": 26,
       "dz": 8.8
      },
      {
       "layer": "newPad",
-      "at": "s7:swap+46",
-      "until": "s7:swap+50",
+      "at": "s1:start-40",
+      "until": "s7:thin+68",
       "dur": 14,
       "dy": 7.0,
       "fallIn": true,
@@ -907,15 +923,6 @@
     ],
     "labels": [
      {
-      "part": "head",
-      "text": "研磨頭",
-      "en": "Carrier head",
-      "color": "blue",
-      "at": "start+2",
-      "until": "pad-2",
-      "cut": true
-     },
-     {
       "part": "padA",
       "text": "研磨墊",
       "en": "Polishing pad",
@@ -929,8 +936,8 @@
       "text": "研磨層",
       "en": "Polishing layer",
       "color": "amber",
-      "at": "soft+6",
-      "until": "round+18",
+      "at": "soft+10",
+      "until": "round+25",
       "cut": true
      },
      {
@@ -938,8 +945,8 @@
       "text": "圓台",
       "en": "Platen",
       "color": "blue",
-      "at": "round+20",
-      "until": "platen+28",
+      "at": "round+27",
+      "until": "platen+27",
       "cut": true
      }
     ],
@@ -1111,7 +1118,7 @@
       "text": "墊子",
       "en": "Pad",
       "color": "blue",
-      "at": "bump+16",
+      "at": "bump+12",
       "until": "bump+58",
       "cut": true
      }
@@ -1656,7 +1663,7 @@
      },
      {
       "to": "tool",
-      "at": "swap+10",
+      "at": "s7:thin+16",
       "dur": 1
      }
     ],
@@ -1670,53 +1677,36 @@
       "elev": 38
      },
      {
-      "at": "swap+10",
+      "at": "s7:thin+16",
       "dur": 1,
-      "x": 0.0,
-      "y": 1.7,
-      "d": 40,
-      "elev": 36
-     },
-     {
-      "at": "s7:swap+42",
-      "dur": 20,
-      "x": -0.4,
-      "y": 1.8,
-      "d": 38,
-      "elev": 34
+      "x": -0.2,
+      "y": 1.75,
+      "d": 39,
+      "elev": 35
      }
     ],
     "run": [
      {
       "id": "padPeel",
-      "at": "s7:swap+12",
-      "ramp": 12,
-      "until": "s7:swap+34"
+      "at": "s7:thin+18",
+      "ramp": 18,
+      "until": "s7:thin+44"
      },
      {
       "id": "rollerSpin",
-      "at": "s7:swap+60",
+      "at": "s7:thin+84",
       "ramp": 4,
-      "until": "s7:swap+74"
+      "until": "s7:thin+110"
      }
     ],
     "labels": [
      {
       "part": "tOld",
-      "text": "舊墊",
-      "en": "Old pad",
+      "text": "舊墊薄、新墊厚",
+      "en": "Old: thin / New: thick",
       "color": "amber",
       "at": "voice-2",
-      "until": "thin+12",
-      "cut": true
-     },
-     {
-      "part": "tNew",
-      "text": "新墊",
-      "en": "New pad",
-      "color": "blue",
-      "at": "thin+14",
-      "until": "swap+8",
+      "until": "s7:thin+14",
       "cut": true
      },
      {
@@ -1724,8 +1714,8 @@
       "text": "舊墊",
       "en": "Old pad",
       "color": "amber",
-      "at": "s7:swap+12",
-      "until": "s7:swap+40",
+      "at": "s7:thin+18",
+      "until": "s7:thin+64",
       "cut": true
      },
      {
@@ -1733,9 +1723,13 @@
       "text": "新墊",
       "en": "New pad",
       "color": "blue",
-      "at": "s7:swap+48",
-      "until": "s7:swap+76",
-      "cut": true
+      "at": "s7:thin+70",
+      "until": "s7:thin+114",
+      "cut": true,
+      "xy": [
+       230,
+       330
+      ]
      }
     ],
     "overlay": [
@@ -1882,19 +1876,10 @@
      },
      {
       "part": "hardL",
-      "text": "硬墊：只碰凸處",
-      "en": "Hard: only high spots",
+      "text": "硬墊：只碰凸處，易刮傷",
+      "en": "Hard: high spots only, scratches",
       "color": "blue",
       "at": "tough",
-      "until": "scr",
-      "cut": true
-     },
-     {
-      "part": "scratchL",
-      "text": "刮痕",
-      "en": "Scratch",
-      "color": "amber",
-      "at": "scr+2",
       "until": "scr+28",
       "cut": true
      }
