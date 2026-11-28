@@ -14,6 +14,33 @@
      "note": "請求失敗：✖ 429 每日額度用完（GenerateRequestsPerDayPerProjectPerModel-FreeTier）；台北 11/28 16:00 重置"
     }
    ]
+  },
+  {
+   "startedAt": "2026-11-28T08:04:52.403336+00:00",
+   "attempts": [
+    {
+     "n": 1,
+     "at": "2026-11-28T08:04:52.403350+00:00",
+     "f0Median": 111.1,
+     "sec": 69.93,
+     "accepted": false,
+     "file": "out/tech-cufoil-take-reject-1.wav",
+     "note": "超出 115–135 Hz"
+    },
+    {
+     "n": 2,
+     "at": "2026-11-28T08:05:30.625774+00:00",
+     "f0Median": 120.0,
+     "sec": 63.61,
+     "accepted": true,
+     "file": "out/tech-cufoil-take.orig.wav",
+     "note": "合格"
+    }
+   ],
+   "closed": true,
+   "chosen": "out/tech-cufoil-take.orig.wav",
+   "chosenF0": 120.0,
+   "status": "accepted"
   }
  ]
 }
