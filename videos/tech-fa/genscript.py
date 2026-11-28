@@ -143,12 +143,16 @@ move("bTips", T0, "s2:pow+2", 16, dy=0.3)
 IC = INFO["ICOL"]
 move("cEcol", "s3:start+22", "s3:start+112", 22, dy=2.2)
 move("cIcol", "s3:start+22", "s3:start+112", 22, dx=IC["dx"], dy=IC["dy"])
-VIS.append(hid("cDoor", "s3:start+130", "s4:start+20", 8, 0.18))
+VIS.append(hid("cDoor", "s3:start+116", "s4:start+20", 8, 0.18))
+for lay in ["cChamber", "cEcol", "cIcol", "cGis", "cBase", "cCon"]: VIS.append(hid(lay, "s3:start+116", "s4:start+20", 10, 0.25))   # 推近撞擊點：外殼與鏡筒剖開示意
 # ── 站 D：s4 鎢針靠近、焊上 → 薄片（連同兩側多餘的厚度）跟著針提起、送到銅載網柱邊 → 在載網上離子束貼著兩面往下削，兩側多餘層依序消失 ──
 LF = INFO["LIFT"]
 move("dNeedle", T0, "s4:start+16", 18, dx=2.2, dy=2.0)
-for lay in ["dLam", "dSkinA", "dSkinB", "dNeedle"]: move(lay, "s4:start+20", FAR, 30, dx=LF["dx"], dy=LF["dy"])
-vis("dSkinA", [(T0, "s4:start+84")], 12); vis("dSkinB", [(T0, "s4:start+112")], 12)
+for lay in ["dLam", "dSkinA", "dSkinB"]: move(lay, "s4:start+20", FAR, 30, dx=LF["dx"], dy=LF["dy"])
+move("dNeedle", "s4:start+20", "s4:start+50", 28, dx=LF["dx"], dy=LF["dy"])        # 跟著薄片送到載網
+move("dNeedle", "s4:start+50", FAR, 12, dx=2.2, dy=2.0)                            # 焊上載網後切斷，鎢針退出
+vis("dWeldG", [("s4:start+48", FAR)], 6)
+vis("dSkinA", [(T0, "s4:start+88")], 12); vis("dSkinB", [(T0, "s4:start+116")], 12)
 # ── 站 E：s5 鏡筒上段沿垂直軸往上分開、相機往前抽出 → 三張標籤 → 合回 → 電子束收斂、穿過薄片、放大散開到相機 ──
 for lay, d in INFO["EXP"].items():
     if d: move(lay, "s5:start+6", "s5:start+96", 18, dy=d)
@@ -161,10 +165,11 @@ move("gBoxB", "s7:send+4", FAR, 32, dx=round(INFO["GX"] + 7.5 - INFO["GX"] - 0.2
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 AX, BX, CX, DX, EX, FX, GX, HX, NX, GT = (INFO[k] for k in ["AX", "BX", "CX", "DX", "EX", "FX", "GX", "HX", "NX", "GT"])
 AV = (AX + 0.2, 0.9, 21, 30); AV2 = (AX + 0.6, 2.4, 56, 14)
-BV = (BX, 4.6, 36, 12); BC = (BX + 0.1, GT + 1.6, 34, 28); BV2 = (BX, GT + 2.5, 38, 4)
-CV = (CX - 1.0, 5.6, 46, 10); CC2 = (CX, 4.8, 38, 12)
+BV = (BX, 4.6, 36, 12); BC = (BX + 0.1, GT + 1.6, 34, 28); BV2 = (BX, GT + 2.9, 38, 4)
+CV = (CX - 1.0, 5.6, 46, 10); CC2 = (CX, INFO["SY"] - 0.5, 12, 16)
 DV = (DX - 2.6, 2.75, 30, 30)
-EV = (EX, 6.6, 48, 6)
+EV = (EX, 5.0, 44, 8); EV2 = (EX, 5.0, 32, 8)
+DS = (INFO["LAMC"][0], INFO["LAMC"][1] - 2.6, 22, 52)
 FV = (FX + 1.6, 2.3, 23, 16)
 GV = (GX + 0.4, 3.2, 44, 14)
 HV = (HX, 4.2, 40, 10)
@@ -192,16 +197,16 @@ P["s3"] = {"zoom": [{"to": "fib", "at": CC, "dur": 1}],
             lab("cStageA", "樣品台（門剖開示意）", "Stage (door cut away)", "blue", "start+126", "s4:start-8", xy=[540, 330])],
  "overlay": [card("s3", "fa-fib", "再動刀：聚焦離子束挖剖面", "示意", T("s3"))]}
 P["s4"] = {"zoom": [{"to": "lam", "at": CC, "dur": 1}],
- "shot": [S_("start", DV, 1)],
- "run": [run("dThinA", "start+54", "start+86", 6), run("dThinB", "start+86", "start+116", 6)],
+ "shot": [S_("start", DV, 1), S_("start+64", DS, 1)],
+ "run": [run("dThinA", "start+62", "start+90", 6), run("dThinB", "start+90", "start+118", 6)],
  "labels": [lab("dNeedleA", "鎢針先把薄片提到載網", "Needle moves it to a grid", "blue", "start+2", "start+50", xy=[600, 300]),
-            lab("dLamA", "在載網上削到約 100 nm", "Thinned to ~100 nm on the grid", "amber", "start+54", "s5:start", xy=[480, 300])],
+            lab("dLamA", "在載網上削到約 100 nm", "Thinned to ~100 nm on the grid", "amber", "start+72", "s5:start", xy=[480, 300])],
  "overlay": [card("s4", "fa-lam", "削成薄片：電子穿得過去", "示意（放大）", T("s4"))]}
 P["s5"] = {"zoom": [{"to": "tem", "at": CC, "dur": 1}],
- "shot": [S_(CC, EV, 1)],
- "run": [run("eCoilGlow", "start+100", "s6:start", 10)] + [run(f"eBeam{k}", "start+104", "s6:start", 6) for k in range(5)],
- "labels": [lab("eGunA", "電子槍＋聚光鏡：射出、聚焦", "Gun + condenser: emit and focus", "blue", "start+8", "start+56"),
-            lab("eHolderA", "樣品桿：薄片放這裡", "Holder: the lamella sits here", "amber", "start+58", "start+106"),
+ "shot": [S_(CC, EV, 1), S_("start+96", EV2, 20)],
+ "run": [run("eCoilGlow", "start+92", "s6:start", 10)] + [run(f"eBeam{k}", "start+96", "s6:start", 6) for k in range(5)],
+ "labels": [lab("eGunA", "電子槍＋聚光鏡：射出、聚焦", "Gun + condenser: emit and focus", "blue", "start+8", "start+56", xy=[540, 300]),
+            lab("eHolderA", "樣品桿：薄片放這裡", "Holder: the lamella sits here", "amber", "start+58", "start+106", xy=[680, 300]),
             lab("eProjA", "投影鏡＋相機：放大成像", "Projector + camera: magnified image", "blue", "start+108", "s6:start")],
  "overlay": [card("s5", "fa-tem", "電子顯微鏡：用電子代替光", "示意", T("s5"))]}
 P["s6"] = {"zoom": [{"to": "eds", "at": CC, "dur": 1}],

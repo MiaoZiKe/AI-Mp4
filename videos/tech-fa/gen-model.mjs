@@ -217,20 +217,21 @@ P({ id: "cPortB", layer: "cChamber", shape: "cyl", size: [0.04, 0.2], pos: [0, 0
 BOX("cIonP", "cChamber", KX0 - 1.2, KX0 - 0.3, 3.6, 5.0, -1.8, -0.6, "band"); P({ id: "cIonPFin", layer: "cChamber", shape: "box", size: [0.04, 1.2, 1.1], pos: [0, 4.3, -1.2], at: [0, 1, 2, 3].map((i) => [R2(KX0 - 1.1 + i * 0.22), 0, 0]), mat: "fin" });
 // 樣品台：底座＋傾斜架＋樣品座＋晶片
 const SY = 3.1, SPX = CX, SPZ = -0.2;
+LAY("cStage", [2.8, 1.6, SPX, SY - 0.6]);
 // 樣品台：底座＋雙層滑座（各兩條導軌）＋刻度旋轉台＋ U 形傾斜托架（兩側立板＋傾斜軸）
-BOX("cStgB", "cChamber", SPX - 1.3, SPX + 1.3, KY0 + 0.3, KY0 + 0.45, SPZ - 1.1, SPZ + 1.1, "dark");
-P({ id: "cStgR1", layer: "cChamber", shape: "box", size: [2.4, 0.06, 0.1], pos: [SPX, R2(KY0 + 0.48), 0], at: [[0, 0, R2(SPZ - 0.7)], [0, 0, R2(SPZ + 0.7)]], mat: "steel2" });
-BOX("cStgS1", "cChamber", SPX - 1.0, SPX + 1.0, KY0 + 0.51, KY0 + 0.68, SPZ - 0.95, SPZ + 0.95, "steel");
-P({ id: "cStgR2", layer: "cChamber", shape: "box", size: [0.1, 0.06, 1.8], pos: [0, R2(KY0 + 0.71), R2(SPZ)], at: [[R2(SPX - 0.6), 0, 0], [R2(SPX + 0.6), 0, 0]], mat: "steel2" });
-BOX("cStgS2", "cChamber", SPX - 0.85, SPX + 0.85, KY0 + 0.74, KY0 + 0.9, SPZ - 0.85, SPZ + 0.85, "steel");
-VC("cStgRot", "cChamber", 0.8, KY0 + 0.9, KY0 + 1.02, "steel2", { x: SPX, z: SPZ });
-P({ id: "cStgTick", layer: "cChamber", shape: "box", size: [0.03, 0.02, 0.1], pos: [0, R2(KY0 + 1.03), 0], at: Array.from({ length: 24 }, (_, k) => [R2(SPX + 0.72 * Math.cos(k * 15 * D2R)), 0, R2(SPZ + 0.72 * Math.sin(k * 15 * D2R))]), mat: "darker" });
-BOX("cStgU", "cChamber", SPX - 0.75, SPX + 0.75, KY0 + 1.02, KY0 + 1.12, SPZ - 0.45, SPZ + 0.45, "dark");
-P({ id: "cStgCr", layer: "cChamber", shape: "box", size: [0.12, R2(SY - 0.15 - KY0 - 1.12), 0.9], pos: [0, R2((SY - 0.15 + KY0 + 1.12) / 2), R2(SPZ)], at: [[R2(SPX - 0.7), 0, 0], [R2(SPX + 0.7), 0, 0]], mat: "dark" });
-P({ id: "cStgAx", layer: "cChamber", shape: "cyl", size: [0.1, 1.7], rot: [0, 90, 0], pos: [SPX, R2(SY - 0.25), R2(SPZ)], mat: "steel2" });
-BOX("cStgTop", "cChamber", SPX - 0.6, SPX + 0.6, SY - 0.2, SY - 0.1, SPZ - 0.6, SPZ + 0.6, "steel");
-VC("cStub", "cChamber", 0.6, SY - 0.1, SY + 0.12, "steel2", { x: SPX, z: SPZ });
-BOX("cSample", "cChamber", SPX - 0.35, SPX + 0.35, SY + 0.12, SY + 0.2, SPZ - 0.35, SPZ + 0.35, "die");
+BOX("cStgB", "cStage", SPX - 1.3, SPX + 1.3, KY0 + 0.3, KY0 + 0.45, SPZ - 1.1, SPZ + 1.1, "dark");
+P({ id: "cStgR1", layer: "cStage", shape: "box", size: [2.4, 0.06, 0.1], pos: [SPX, R2(KY0 + 0.48), 0], at: [[0, 0, R2(SPZ - 0.7)], [0, 0, R2(SPZ + 0.7)]], mat: "steel2" });
+BOX("cStgS1", "cStage", SPX - 1.0, SPX + 1.0, KY0 + 0.51, KY0 + 0.68, SPZ - 0.95, SPZ + 0.95, "steel");
+P({ id: "cStgR2", layer: "cStage", shape: "box", size: [0.1, 0.06, 1.8], pos: [0, R2(KY0 + 0.71), R2(SPZ)], at: [[R2(SPX - 0.6), 0, 0], [R2(SPX + 0.6), 0, 0]], mat: "steel2" });
+BOX("cStgS2", "cStage", SPX - 0.85, SPX + 0.85, KY0 + 0.74, KY0 + 0.9, SPZ - 0.85, SPZ + 0.85, "steel");
+VC("cStgRot", "cStage", 0.8, KY0 + 0.9, KY0 + 1.02, "steel2", { x: SPX, z: SPZ });
+P({ id: "cStgTick", layer: "cStage", shape: "box", size: [0.03, 0.02, 0.1], pos: [0, R2(KY0 + 1.03), 0], at: Array.from({ length: 24 }, (_, k) => [R2(SPX + 0.72 * Math.cos(k * 15 * D2R)), 0, R2(SPZ + 0.72 * Math.sin(k * 15 * D2R))]), mat: "darker" });
+BOX("cStgU", "cStage", SPX - 0.75, SPX + 0.75, KY0 + 1.02, KY0 + 1.12, SPZ - 0.45, SPZ + 0.45, "dark");
+P({ id: "cStgCr", layer: "cStage", shape: "box", size: [0.12, R2(SY - 0.15 - KY0 - 1.12), 0.9], pos: [0, R2((SY - 0.15 + KY0 + 1.12) / 2), R2(SPZ)], at: [[R2(SPX - 0.7), 0, 0], [R2(SPX + 0.7), 0, 0]], mat: "dark" });
+P({ id: "cStgAx", layer: "cStage", shape: "cyl", size: [0.1, 1.7], rot: [0, 90, 0], pos: [SPX, R2(SY - 0.25), R2(SPZ)], mat: "steel2" });
+BOX("cStgTop", "cStage", SPX - 0.6, SPX + 0.6, SY - 0.2, SY - 0.1, SPZ - 0.6, SPZ + 0.6, "steel");
+VC("cStub", "cStage", 0.6, SY - 0.1, SY + 0.12, "steel2", { x: SPX, z: SPZ });
+BOX("cSample", "cStage", SPX - 0.35, SPX + 0.35, SY + 0.12, SY + 0.2, SPZ - 0.35, SPZ + 0.35, "die");
 const HIT = [SPX, SY + 0.2, SPZ];
 // 前門：門板＋觀察窗＋窗框＋把手＋鉸鏈（爆炸：繞左鉸鏈打開）
 LAY("cDoor", [5.4, 3.8, CX, 3.6]);
@@ -270,11 +271,11 @@ BOX("cDesk", "cCon", CX + 4.6, CX + 8.2, 0, 1.6, -1.2, 1.2, "band"); BOX("cDeskT
 for (const [i, x] of [[0, CX + 5.5], [1, CX + 7.3]]) { BOX(`cMon${i}`, "cCon", x - 0.8, x + 0.8, 2.2, 3.3, -0.6, -0.5, "darker"); BOX(`cMonS${i}`, "cCon", x - 0.72, x + 0.72, 2.28, 3.22, -0.5, -0.48, "screen"); BOX(`cMonP${i}`, "cCon", x - 0.06, x + 0.06, 1.7, 2.2, -0.6, -0.5, "steel"); }
 BOX("cKb", "cCon", CX + 5.6, CX + 7.0, 1.7, 1.75, 0.2, 0.7, "dark"); VC("cTrack", "cCon", 0.2, 1.7, 1.8, "darker", { x: CX + 7.5, z: 0.45 });
 // 束流
-actions.cIon = { free: true, type: "flow", _說明: "鎵離子束離開鏡筒後等速直線打到樣品（加速在鏡筒內完成）", path: [ip(IL0 - 0.8), HIT].map((a) => a.map(R2)), n: 10, size: 0.05, shape: "dot", rate: 0.9, track: false, color: "ionC", layer: "cChamber" };
-actions.cEbeam = { free: true, type: "flow", _說明: "電子束同時照著看（細藍點，等速）", path: [[SPX, EB - 0.6, SPZ], HIT].map((a) => a.map(R2)), n: 6, size: 0.035, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "cChamber" };
+actions.cIon = { free: true, type: "flow", _說明: "鎵離子束離開鏡筒後等速直線打到樣品（加速在鏡筒內完成）", path: [ip(IL0 - 0.8), HIT].map((a) => a.map(R2)), n: 10, size: 0.05, shape: "dot", rate: 0.9, track: false, color: "ionC", layer: "cStage" };
+actions.cEbeam = { free: true, type: "flow", _說明: "電子束同時照著看（細藍點，等速）", path: [[SPX, EB - 0.6, SPZ], HIT].map((a) => a.map(R2)), n: 6, size: 0.045, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "cStage" };
 // 濺射：真空中被撞下的原子從撞擊點沿直線、等速往外飛（5 條放射，不受重力）
 [[0.9, 0.7, 0.2], [0.5, 0.9, -0.5], [1.0, 0.35, -0.3], [0.2, 0.8, 0.7], [0.7, 0.55, 0.8]].forEach((d, k) => { const n = Math.hypot(...d);
-  actions[`cSput${k}`] = { free: true, type: "flow", _說明: "濺射原子直線等速往外飛（真空、不受重力）", path: [HIT, [HIT[0] + 1.3 * d[0] / n, HIT[1] + 1.3 * d[1] / n, HIT[2] + 1.3 * d[2] / n]].map((a) => a.map(R2)), n: 3, size: 0.04, shape: "grit", rate: 0.7, track: false, color: "steel2", layer: "cChamber" }; });
+  actions[`cSput${k}`] = { free: true, type: "flow", _說明: "濺射原子直線等速往外飛（真空、不受重力）", path: [HIT, [HIT[0] + 1.3 * d[0] / n, HIT[1] + 1.3 * d[1] / n, HIT[2] + 1.3 * d[2] / n]].map((a) => a.map(R2)), n: 4, size: 0.06, shape: "dot", rate: 0.7, track: false, color: "steel2", layer: "cStage" }; });
 
 // ═════ 站 D：剖面挖槽＋薄片（x 90，放大示意）═════
 // 薄片是一片面向鏡頭（法線沿 z）的牆，前後各挖一道階梯槽；從前上方看得到薄片切面上的電晶體、銅導線與通孔。
@@ -317,13 +318,17 @@ SPH("dWeld", "dNeedle", 0.09, NTIP[0], NTIP[1], NTIP[2], "pt");
 LAY("dGrid", [2.4, 2.4, DX - 5.6, DH + 1.4]);
 const GXc = DX - 5.4, GYc = DH + 0.3;
 P({ id: "dGridHalf", layer: "dGrid", shape: "cyl", size: [1.1, 0.05], pos: [R2(GXc), R2(GYc), 0], mat: "grid" });
-P({ id: "dGridPost", layer: "dGrid", shape: "box", size: [0.16, 0.45, 0.05], pos: [0, R2(GYc + 1.3), 0], at: [-0.55, 0, 0.55].map((dx) => [R2(GXc + dx), 0, 0]), mat: "grid" });
+P({ id: "dGridPost", layer: "dGrid", shape: "box", size: [0.16, 1.0, 0.05], pos: [0, R2(GYc + 1.55), 0], at: [-0.55, 0, 0.55].map((dx) => [R2(GXc + dx), 0, 0]), mat: "grid" });
 BOX("dGridHold", "dGrid", GXc - 1.3, GXc + 1.3, DH, GYc, -0.3, 0.3, "darker");
 P({ id: "dGridScrew", layer: "dGrid", shape: "cyl", size: [0.07, 0.04], pos: [0, R2(DH + 0.15), 0.31], at: [[R2(GXc - 1.0), 0, 0], [R2(GXc + 1.0), 0, 0]], mat: "steel2" });
-const LIFT = { dx: R2(GXc + 0.55 + 1.6 - DX), dy: R2(GYc + 1.55 - TB + 0.1) };
+const LIFT = { dx: R2(GXc + 0.63 - LX0), dy: R2(GYc + 1.05 - TB) };
+// 薄片側邊貼住右柱，白金焊點（到位後才出現）
+LAY("dWeldG", [0.6, 1, GXc + 0.63, GYc + 1.6]);
+P({ id: "dWeldPt", layer: "dWeldG", shape: "sphere", size: [0.1], pos: [R2(GXc + 0.63), 0, 0], at: [[0, R2(GYc + 1.3), 0.02], [0, R2(GYc + 1.8), 0.02]], mat: "pt" });
+const LAMC = [R2(DX + LIFT.dx), R2((TB + Y_PT) / 2 + LIFT.dy)];
 // 在載網上削薄：A 組貼著前面（+z）、B 組貼著後面（−z）由上往下等速打到薄片底，依序對應 dSkinA、dSkinB 消失
 for (const [id, zs] of [["dThinA", 1], ["dThinB", -1]]) { const zz = zs * (LW / 2 + 0.17), x0 = LX0 + LIFT.dx, x1 = LX1 + LIFT.dx;
-  actions[id] = { free: true, type: "flow", _說明: "離子束貼著薄片側面往下削（等速）", path: [[DX + LIFT.dx, Y_PT + LIFT.dy + 2.6, zz], [DX + LIFT.dx, TB + LIFT.dy + 0.1, zz]].map((a) => a.map(R2)), n: 8, size: 0.05, shape: "dot", rate: 0.9, track: false, color: "ionC", layer: "dGrid", lanes: 4, laneGap: R2((x1 - x0) / 4.5), laneDir: [1, 0, 0] }; }
+  actions[id] = { free: true, type: "flow", _說明: "離子束貼著薄片側面往下削（等速）", path: [[DX + LIFT.dx, Y_PT + LIFT.dy + 2.6, zz], [DX + LIFT.dx, TB + LIFT.dy + 0.1, zz]].map((a) => a.map(R2)), n: 12, size: 0.07, shape: "dot", rate: 0.9, track: false, color: "ionC", layer: "dGrid", lanes: 4, laneGap: R2((x1 - x0) / 4.5), laneDir: [1, 0, 0] }; }
 
 // ═════ 站 E：穿透式電子顯微鏡（x 120）═════
 const EX = 120;
@@ -366,7 +371,7 @@ actions.eCoilGlow = { type: "pulse", _說明: "電磁線圈通電（聚光鏡、
 // 電子束：槍→聚光鏡收斂→薄片最細→散開到相機
 // 電子束 5 條：槍口稍散 → 聚光鏡收斂 → 樣品處最細 → 投影鏡放大散開 → 相機
 [-2, -1, 0, 1, 2].forEach((o, k) => { const pt = (dx, y) => [COL[0] + o * dx, y, COL[1]];
-  actions[`eBeam${k}`] = { free: true, type: "flow", _說明: "電子束（等速）：聚光鏡收斂、薄片處最細、穿過後放大散開到相機", path: [pt(0.12, 9.6), pt(0.3, 7.9), pt(0.03, 6.2), pt(0.22, 4.8), pt(0.5, 2.7)].map((a) => a.map(R2)), n: 6, size: 0.045, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "eObj" }; });
+  actions[`eBeam${k}`] = { free: true, type: "flow", _說明: "電子束（等速）：聚光鏡收斂、薄片處最細、穿過後放大散開到相機", path: [pt(0.12, 9.6), pt(0.3, 7.9), pt(0.03, 6.2), pt(0.22, 4.8), pt(0.5, 2.7)].map((a) => a.map(R2)), n: 10, size: 0.07, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "eObj" }; });
 
 // ═════ 站 F：成分分析 EDS（x 150，腔內放大）═════
 const FX = 150;
@@ -464,9 +469,9 @@ actions.nWater = { free: true, type: "flow", _說明: "冷卻水從噴嘴受重�
 Object.assign(anchors, {
   aChipA: A("aChip", [SKX + 0.9, CB + 0.3, SKZ + 0.9], 120, -390), aLabA: A("aLab", [AX + 1 - 3.4, 3.8, -9.0], -120, -300),
   bDoorA: A("bDoorL", [BX - 4.2, GT + 5.5, 3.3], -120, -300), bHotA: A("bHot", [HSX, HSY, HSZ], 120, -300), bCamA: A("bScope", [BX + 0.55, GT + 6.0, 0.55], 120, -300), bProbeA: A("bProbes", [BX - 2.6, GT + 0.9, 1.4], -120, -300),
-  cEcolA: A("cEcol", [SPX + 0.7, EB + 3.0, SPZ], 120, -300), cIcolA: A("cIcol", ip(IL0 + 3.0), -120, -300), cStageA: A("cChamber", [SPX + 0.6, SY + 0.15, SPZ + 0.6], 120, -480), cGisA: A("cGis", [SPX + 3.1, SY + 2.3, SPZ], 120, -300),
+  cEcolA: A("cEcol", [SPX + 0.7, EB + 3.0, SPZ], 120, -300), cIcolA: A("cIcol", ip(IL0 + 3.0), -120, -300), cStageA: A("cStage", [SPX + 0.6, SY + 0.15, SPZ + 0.6], 120, -480), cGisA: A("cGis", [SPX + 3.1, SY + 2.3, SPZ], 120, -300),
   dLamA: A("dLam", [DX, Y_PT, 0], 120, -300), dNeedleA: A("dNeedle", along(NTIP, NTH, 2.4), 120, -470), dGridA: A("dGrid", [GXc, GYc + 1.5, 0], -120, -300), dTrenchA: A("dBlock", [LX0 + 0.5, TB + 0.6, 1.0], -120, -300),
-  eGunA: A("eGun", [COL[0] + 0.75, 9.4, COL[1]], 120, -300), eCondA: A("eCond", [COL[0] - 0.95, 7.6, COL[1] + 0.3], -120, -300), eHolderA: A("eHolder", [COL[0] + 3.1, 6.4, COL[1]], 120, -300), eProjA: A("eCam", [COL[0] - 1.1, 2.3, COL[1] + 0.3], -120, -300),
+  eGunA: A("eGun", [COL[0] + 0.75, 9.4, COL[1]], 120, -300), eCondA: A("eCond", [COL[0] - 0.95, 7.6, COL[1] + 0.3], -120, -300), eHolderA: A("eHolder", [COL[0] + 3.1, 6.4, COL[1]], 120, -300), eProjA: A("eProj", [COL[0] + 0.95, 4.6, COL[1] + 0.3], 120, -300),
   fEdsA: A("fEds", dpx(DT0 + 3.0), 120, -300), fPartA: A("fSample", [FHIT[0] - 0.1, FHIT[1], FHIT[2] + 0.1], -120, -300),
   gFabA: A("gFab", [GX - 9.5, 3.4, 0], -120, -300), gDesA: A("gDes", [GX + 1.6, 6.5, -1.0], 120, -300), gLabA: A("gLab", [GX + 10.3, 4.0, 0], 120, -300),
   hAA: A("hLabA", [HX - 6.6, 7.0, 0.3], -120, -300), hBA: A("hLabB", [HX + 8.4, 3.0, 0.5], 120, -300), nBladeA: A("nSpindle", [BLX + 0.5, BLY - 0.3, BLZ], -120, -300),
@@ -482,7 +487,7 @@ const model = {
   pose: { yaw0: 0, yawIso: 0, drift: 0 },
   camera: { stand: { d: 70, elev: 24, y: 4 } },
   fx: { dpr: 1, srcPx: 30, shadows: 0, fog: false, dust: false, vaporSprites: false, shimmer: false },
-  info: { AX, BX, CX, DX, EX, FX, GX, HX, NX, GT: R2(GT), SPX, SY, EXP, LIFT, COLX: COL[0], COLZ: COL[1], ICOL: { dx: R2(-2.2 * Math.sin(-ITH * D2R)), dy: R2(2.2 * Math.cos(ITH * D2R)) } },
+  info: { LAMC, AX, BX, CX, DX, EX, FX, GX, HX, NX, GT: R2(GT), SPX, SY, EXP, LIFT, COLX: COL[0], COLZ: COL[1], ICOL: { dx: R2(-2.2 * Math.sin(-ITH * D2R)), dy: R2(2.2 * Math.cos(ITH * D2R)) } },
 };
 fs.writeFileSync(path.join(HERE, "model.json"), JSON.stringify(model, null, 1) + "\n");
 console.log(`✔ model.json：${parts.length} 個零件、${parts.reduce((a, p) => a + Math.max(1, p.at?.length ?? 0), 0)} 個實體、${layers.length} 層`);

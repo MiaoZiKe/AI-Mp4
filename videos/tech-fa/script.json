@@ -398,6 +398,20 @@
       "dur": 2
      },
      {
+      "layer": "cStage",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cStage",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
       "layer": "cDoor",
       "at": "s1:start-40",
       "until": "s3:start-20",
@@ -560,6 +574,20 @@
      },
      {
       "layer": "dGrid",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dWeldG",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dWeldG",
       "at": "s5:start+20",
       "until": "s10:start+400",
       "opacity": 0,
@@ -932,10 +960,52 @@
      },
      {
       "layer": "cDoor",
-      "at": "s3:start+130",
+      "at": "s3:start+116",
       "until": "s4:start+20",
       "opacity": 0.18,
       "dur": 8
+     },
+     {
+      "layer": "cChamber",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cEcol",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cIcol",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cGis",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cBase",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cCon",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
      },
      {
       "layer": "dNeedle",
@@ -950,43 +1020,58 @@
       "at": "s4:start+20",
       "until": "s10:start+400",
       "dur": 30,
-      "dx": -3.25,
-      "dy": 1.5
+      "dx": -3.27,
+      "dy": 0.9
      },
      {
       "layer": "dSkinA",
       "at": "s4:start+20",
       "until": "s10:start+400",
       "dur": 30,
-      "dx": -3.25,
-      "dy": 1.5
+      "dx": -3.27,
+      "dy": 0.9
      },
      {
       "layer": "dSkinB",
       "at": "s4:start+20",
       "until": "s10:start+400",
       "dur": 30,
-      "dx": -3.25,
-      "dy": 1.5
+      "dx": -3.27,
+      "dy": 0.9
      },
      {
       "layer": "dNeedle",
       "at": "s4:start+20",
+      "until": "s4:start+50",
+      "dur": 28,
+      "dx": -3.27,
+      "dy": 0.9
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s4:start+50",
       "until": "s10:start+400",
-      "dur": 30,
-      "dx": -3.25,
-      "dy": 1.5
+      "dur": 12,
+      "dx": 2.2,
+      "dy": 2.0
+     },
+     {
+      "layer": "dWeldG",
+      "at": "s1:start-40",
+      "until": "s4:start+48",
+      "opacity": 0,
+      "dur": 6
      },
      {
       "layer": "dSkinA",
-      "at": "s4:start+84",
+      "at": "s4:start+88",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 12
      },
      {
       "layer": "dSkinB",
-      "at": "s4:start+112",
+      "at": "s4:start+116",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 12
@@ -1198,7 +1283,7 @@
       "at": "cam-4",
       "dur": 26,
       "x": 30,
-      "y": 4.7,
+      "y": 5.1,
       "d": 38,
       "elev": 4
      }
@@ -1377,9 +1462,9 @@
       "at": "start+116",
       "dur": 24,
       "x": 60,
-      "y": 4.8,
-      "d": 38,
-      "elev": 12
+      "y": 2.6,
+      "d": 12,
+      "elev": 16
      }
     ],
     "run": [
@@ -1561,20 +1646,28 @@
       "y": 2.75,
       "d": 30,
       "elev": 30
+     },
+     {
+      "at": "start+64",
+      "dur": 1,
+      "x": 86.73,
+      "y": 0.6499999999999999,
+      "d": 22,
+      "elev": 52
      }
     ],
     "run": [
      {
       "id": "dThinA",
-      "at": "start+54",
+      "at": "start+62",
       "ramp": 6,
-      "until": "start+86"
+      "until": "start+90"
      },
      {
       "id": "dThinB",
-      "at": "start+86",
+      "at": "start+90",
       "ramp": 6,
-      "until": "start+116"
+      "until": "start+118"
      }
     ],
     "labels": [
@@ -1596,7 +1689,7 @@
       "text": "在載網上削到約 100 nm",
       "en": "Thinned to ~100 nm on the grid",
       "color": "amber",
-      "at": "start+54",
+      "at": "start+72",
       "until": "s5:start",
       "cut": true,
       "xy": [
@@ -1695,45 +1788,53 @@
       "at": "voice-4",
       "dur": 1,
       "x": 120,
-      "y": 6.6,
-      "d": 48,
-      "elev": 6
+      "y": 5.0,
+      "d": 44,
+      "elev": 8
+     },
+     {
+      "at": "start+96",
+      "dur": 20,
+      "x": 120,
+      "y": 5.0,
+      "d": 32,
+      "elev": 8
      }
     ],
     "run": [
      {
       "id": "eCoilGlow",
-      "at": "start+100",
+      "at": "start+92",
       "ramp": 10,
       "until": "s6:start"
      },
      {
       "id": "eBeam0",
-      "at": "start+104",
+      "at": "start+96",
       "ramp": 6,
       "until": "s6:start"
      },
      {
       "id": "eBeam1",
-      "at": "start+104",
+      "at": "start+96",
       "ramp": 6,
       "until": "s6:start"
      },
      {
       "id": "eBeam2",
-      "at": "start+104",
+      "at": "start+96",
       "ramp": 6,
       "until": "s6:start"
      },
      {
       "id": "eBeam3",
-      "at": "start+104",
+      "at": "start+96",
       "ramp": 6,
       "until": "s6:start"
      },
      {
       "id": "eBeam4",
-      "at": "start+104",
+      "at": "start+96",
       "ramp": 6,
       "until": "s6:start"
      }
@@ -1746,7 +1847,11 @@
       "color": "blue",
       "at": "start+8",
       "until": "start+56",
-      "cut": true
+      "cut": true,
+      "xy": [
+       540,
+       300
+      ]
      },
      {
       "part": "eHolderA",
@@ -1755,7 +1860,11 @@
       "color": "amber",
       "at": "start+58",
       "until": "start+106",
-      "cut": true
+      "cut": true,
+      "xy": [
+       680,
+       300
+      ]
      },
      {
       "part": "eProjA",
