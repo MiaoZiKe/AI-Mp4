@@ -1,0 +1,1606 @@
+{
+ "slug": "tech-compound",
+ "prevEpisode": "M2：記憶體製造",
+ "title": "化合物半導體（科技透明圈）",
+ "asOf": "2026/11/28",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "中游補充篇",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "start",
+    "label": "矽／碳化矽／氮化鎵晶圓（示意）",
+    "en": "Si / SiC / GaN WAFERS",
+    "field": "30 cm",
+    "ruler": "3 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "gap",
+    "label": "能隙示意台（示意）",
+    "en": "BAND GAP",
+    "field": "20 cm",
+    "ruler": "2 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "ev",
+    "label": "電動車功率模組（示意）",
+    "en": "EV POWER MODULE",
+    "field": "50 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "gan",
+    "label": "氮化鎵快充（示意）",
+    "en": "GaN CHARGER",
+    "field": "10 cm",
+    "ruler": "1 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "pvt",
+    "label": "碳化矽長晶爐（剖開示意）",
+    "en": "SiC PVT FURNACE",
+    "field": "2 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "epi",
+    "label": "氮化鎵磊晶爐（示意）",
+    "en": "GaN EPITAXY REACTOR",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "tw",
+    "label": "台灣化合物半導體三段",
+    "en": "TAIWAN SUPPLY CHAIN",
+    "field": "100 cm",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "研磨台（下一集：再生晶圓）",
+    "en": "NEXT: RECLAIM",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "碳化矽",
+   "氮化鎵"
+  ],
+  "sub": "化合物半導體：專門扛高壓",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "前一集說矽撐不住，那換什麼？答案是碳化矽和氮化鎵，專門扛高壓。",
+   "tts": "前一集說細撐不住，那換什麼？答案是碳化細和氮化鎵，專門扛高壓。",
+   "subtitle": {
+    "zh": "前一集說矽撐不住\n那換什麼？\n答案是碳化矽\n和氮化鎵\n專門扛高壓",
+    "en": "Last time: silicon can't take it. | So what replaces it? | The answer: silicon carbide | and gallium nitride, | built for high voltage."
+   },
+   "keywords": [
+    "碳化矽",
+    "氮化鎵",
+    "高壓"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "q",
+     "text": "換什麼"
+    },
+    {
+     "id": "sic",
+     "text": "碳化矽"
+    },
+    {
+     "id": "gan",
+     "text": "氮化鎵"
+    },
+    {
+     "id": "hv",
+     "text": "扛高壓"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：矽撐不住高壓",
+     "title": "那換什麼？",
+     "size": 92,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 0.4,
+      "d": 40,
+      "elev": 24
+     }
+    ],
+    "shift": [
+     {
+      "layer": "aBolt",
+      "at": "s1:start-40",
+      "until": "s1:prev",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "aArc",
+      "at": "s1:start-40",
+      "until": "s1:prev+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "aOk",
+      "at": "s1:start-40",
+      "until": "s1:sic",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "bLeak",
+      "at": "s1:start-40",
+      "until": "s2:low",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "dGhost",
+      "at": "s1:start-40",
+      "until": "s5:small-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "eBell",
+      "at": "s6:frost-8",
+      "until": "s7:start",
+      "opacity": 0.14,
+      "dur": 8
+     },
+     {
+      "layer": "eQtz",
+      "at": "s6:frost-8",
+      "until": "s7:start",
+      "opacity": 0.2,
+      "dur": 8
+     },
+     {
+      "layer": "eFelt",
+      "at": "s6:frost-8",
+      "until": "s7:start",
+      "opacity": 0.22,
+      "dur": 8
+     },
+     {
+      "layer": "eCru",
+      "at": "s6:frost-8",
+      "until": "s7:start",
+      "opacity": 0.3,
+      "dur": 8
+     },
+     {
+      "layer": "eHot",
+      "at": "s1:start-40",
+      "until": "s6:hot",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "eBoule1",
+      "at": "s1:start-40",
+      "until": "s6:frost+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eBoule1",
+      "at": "s6:slow-6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eBoule2",
+      "at": "s1:start-40",
+      "until": "s6:slow-6",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eBoule2",
+      "at": "s6:slow+24",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "eBoule3",
+      "at": "s1:start-40",
+      "until": "s6:slow+24",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "fFilm",
+      "at": "s1:start-40",
+      "until": "s7:film+4",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "hPat",
+      "at": "s9:grind+6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "cLid",
+      "at": "s4:start+2",
+      "until": "s4:bat-6",
+      "dur": 14,
+      "dy": 3.6
+     },
+     {
+      "layer": "cGel",
+      "at": "s4:start+4",
+      "until": "s4:bat-6",
+      "dur": 14,
+      "dy": 3.0
+     },
+     {
+      "layer": "cCase",
+      "at": "s4:start+6",
+      "until": "s4:bat-6",
+      "dur": 14,
+      "dy": 2.4
+     },
+     {
+      "layer": "cWire",
+      "at": "s4:start+8",
+      "until": "s4:bat-6",
+      "dur": 14,
+      "dy": 1.8
+     },
+     {
+      "layer": "cDie",
+      "at": "s4:start+10",
+      "until": "s4:bat-6",
+      "dur": 14,
+      "dy": 1.3
+     },
+     {
+      "layer": "cDbc",
+      "at": "s4:start+12",
+      "until": "s4:bat-6",
+      "dur": 14,
+      "dy": 0.85
+     },
+     {
+      "layer": "cSol1",
+      "at": "s4:start+14",
+      "until": "s4:bat-6",
+      "dur": 14,
+      "dy": 0.42
+     },
+     {
+      "layer": "dShellT",
+      "at": "s5:start+2",
+      "until": "s5:ai-4",
+      "dur": 14,
+      "dy": 2.6
+     },
+     {
+      "layer": "dParts",
+      "at": "s5:start+5",
+      "until": "s5:ai-4",
+      "dur": 14,
+      "dy": 1.5
+     },
+     {
+      "layer": "dPcb",
+      "at": "s5:start+8",
+      "until": "s5:ai-4",
+      "dur": 14,
+      "dy": 0.9
+     },
+     {
+      "layer": "eBell",
+      "at": "s6:start+2",
+      "until": "s6:frost-16",
+      "dur": 16,
+      "dy": 8.6
+     },
+     {
+      "layer": "eCoil",
+      "at": "s6:start+5",
+      "until": "s6:frost-16",
+      "dur": 16,
+      "dy": 6.6
+     },
+     {
+      "layer": "eQtz",
+      "at": "s6:start+8",
+      "until": "s6:frost-16",
+      "dur": 16,
+      "dy": 4.9
+     },
+     {
+      "layer": "eFelt",
+      "at": "s6:start+11",
+      "until": "s6:frost-16",
+      "dur": 16,
+      "dy": 3.4
+     },
+     {
+      "layer": "eLid",
+      "at": "s6:start+14",
+      "until": "s6:frost-16",
+      "dur": 16,
+      "dy": 1.9
+     },
+     {
+      "layer": "fShow",
+      "at": "s7:start",
+      "until": "s7:film-12",
+      "dur": 14,
+      "dy": 2.4
+     }
+    ],
+    "run": [
+     {
+      "id": "aArcPulse",
+      "at": "prev+6",
+      "ramp": 3,
+      "until": "s2:start"
+     },
+     {
+      "id": "aBoltGlow",
+      "at": "prev",
+      "ramp": 4,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aSiA",
+      "text": "矽：耐壓不夠（示意）",
+      "en": "Silicon: breaks down",
+      "color": "amber",
+      "at": "prev+6",
+      "until": "sic-4",
+      "cut": true
+     },
+     {
+      "part": "aSiCA",
+      "text": "碳化矽",
+      "en": "Silicon carbide",
+      "color": "blue",
+      "at": "sic",
+      "until": "gan-2",
+      "cut": true
+     },
+     {
+      "part": "aGaNA",
+      "text": "氮化鎵",
+      "en": "Gallium nitride",
+      "color": "blue",
+      "at": "gan",
+      "until": "s2:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "中游補充篇・M3",
+      "tag": "示意",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "q": {
+        "at": "q"
+       },
+       "sic": {
+        "at": "sic"
+       },
+       "gan": {
+        "at": "gan"
+       },
+       "hv": {
+        "at": "hv"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "關鍵叫能隙，就是電子跳過去的門檻。門檻太低，電壓一高就漏電。",
+   "tts": "關鍵叫能隙，就是電子跳過去的門檻。門檻太低，電壓一高就漏電。",
+   "subtitle": {
+    "zh": "關鍵叫能隙\n就是電子\n跳過去的門檻\n門檻太低\n電壓一高就漏電",
+    "en": "The key is the band gap: | the hurdle electrons | must jump over. | If the hurdle is low, | high voltage makes it leak."
+   },
+   "keywords": [
+    "能隙",
+    "門檻",
+    "漏電"
+   ],
+   "cues": [
+    {
+     "id": "gap",
+     "text": "能隙"
+    },
+    {
+     "id": "elec",
+     "text": "電子"
+    },
+    {
+     "id": "bar",
+     "text": "跳過去的門檻"
+    },
+    {
+     "id": "low",
+     "text": "門檻太低"
+    },
+    {
+     "id": "leak",
+     "text": "漏電"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "半導體物理通則（National Academies）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "gap",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 30,
+      "y": 0.6,
+      "d": 36,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "bSiElGlow",
+      "at": "elec-2",
+      "ramp": 4,
+      "until": "s4:start"
+     },
+     {
+      "id": "bSiNeedle",
+      "at": "low",
+      "ramp": 4,
+      "until": "leak+20"
+     },
+     {
+      "id": "bSiLeak",
+      "at": "leak-4",
+      "ramp": 4,
+      "until": "s3:wide"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bSiGapA",
+      "text": "能隙＝門檻",
+      "en": "Band gap = the hurdle",
+      "color": "amber",
+      "at": "gap",
+      "until": "low-4",
+      "cut": true
+     },
+     {
+      "part": "bSiCbA",
+      "text": "電子跳上去就漏電",
+      "en": "Electrons jump over: leakage",
+      "color": "blue",
+      "at": "leak-4",
+      "until": "s3:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-gap",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "能隙：電子要跳過的門檻",
+      "tag": "示意，非真實能帶",
+      "t": {
+       "gap": {
+        "at": "gap"
+       },
+       "elec": {
+        "at": "elec"
+       },
+       "bar": {
+        "at": "bar"
+       },
+       "low": {
+        "at": "low"
+       },
+       "leak": {
+        "at": "leak"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "碳化矽和氮化鎵的門檻，大約是矽的三倍，像把堤防加高，擋得住高電壓。",
+   "tts": "碳化細和氮化鎵的門檻，大約是細的三倍，像把堤防加高，擋得住高電壓。",
+   "subtitle": {
+    "zh": "碳化矽和氮化鎵\n的門檻\n大約是矽的三倍\n像把堤防加高\n擋得住高電壓",
+    "en": "For silicon carbide and gallium nitride, | the hurdle is | about three times silicon's, | like raising a levee: | it holds back high voltage."
+   },
+   "keywords": [
+    "三倍",
+    "堤防",
+    "高電壓"
+   ],
+   "cues": [
+    {
+     "id": "wide",
+     "text": "的門檻"
+    },
+    {
+     "id": "x3",
+     "text": "三倍"
+    },
+    {
+     "id": "dam",
+     "text": "堤防"
+    },
+    {
+     "id": "hold",
+     "text": "擋得住"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "能隙：National Academies、Infineon、Mouser"
+   ],
+   "props": {
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 32.4,
+      "y": 0.8,
+      "d": 32,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "bScTry",
+      "at": "hold-6",
+      "ramp": 4,
+      "until": "s4:start"
+     },
+     {
+      "id": "bScNeedle",
+      "at": "dam",
+      "ramp": 4,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bScGapA",
+      "text": "碳化矽：門檻約 3 倍高",
+      "en": "SiC: hurdle ~3x higher",
+      "color": "amber",
+      "at": "x3-2",
+      "until": "hold-4",
+      "cut": true
+     },
+     {
+      "part": "bScVbA",
+      "text": "電子跳不過去",
+      "en": "Electrons can't get over",
+      "color": "blue",
+      "at": "hold-2",
+      "until": "s4:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-dam",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "門檻高＝堤防高",
+      "tag": "能隙 eV：教科書數值",
+      "t": {
+       "wide": {
+        "at": "wide"
+       },
+       "x3": {
+        "at": "x3"
+       },
+       "dam": {
+        "at": "dam"
+       },
+       "hold": {
+        "at": "hold"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s4",
+   "beat": "payoff",
+   "para": 4,
+   "narration": "所以碳化矽用在電動車，把電池的電轉給馬達，耗損更少。",
+   "tts": "所以碳化細用在電動車，把電池的電轉給馬達，耗損更少。",
+   "subtitle": {
+    "zh": "所以碳化矽\n用在電動車\n把電池的電\n轉給馬達\n耗損更少",
+    "en": "So silicon carbide | goes into EVs, | taking battery power | to the motor | with less loss."
+   },
+   "keywords": [
+    "電動車",
+    "馬達",
+    "耗損"
+   ],
+   "cues": [
+    {
+     "id": "ev",
+     "text": "電動車"
+    },
+    {
+     "id": "bat",
+     "text": "電池"
+    },
+    {
+     "id": "motor",
+     "text": "馬達"
+    },
+    {
+     "id": "loss",
+     "text": "耗損更少"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "System Plus 拆解報告、IDTechEx；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "ev",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 60,
+      "y": 1.2,
+      "d": 30,
+      "elev": 30
+     },
+     {
+      "at": "bat-8",
+      "dur": 26,
+      "x": 59.8,
+      "y": 0.4,
+      "d": 62,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "cDcFlow",
+      "at": "bat",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcFlow",
+      "at": "motor-4",
+      "ramp": 4,
+      "until": "s5:start"
+     },
+     {
+      "id": "cShaftSpin",
+      "at": "motor",
+      "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "cDieHeat",
+      "at": "loss-4",
+      "ramp": 6,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cDieA",
+      "text": "碳化矽晶片（爆炸分解）",
+      "en": "SiC dies (exploded view)",
+      "color": "amber",
+      "at": "start+16",
+      "until": "bat-8",
+      "cut": true
+     },
+     {
+      "part": "cBatA",
+      "text": "電池：直流",
+      "en": "Battery: DC",
+      "color": "blue",
+      "at": "bat",
+      "until": "motor-2",
+      "cut": true
+     },
+     {
+      "part": "cMotA",
+      "text": "馬達：交流",
+      "en": "Motor: AC",
+      "color": "amber",
+      "at": "motor",
+      "until": "s5:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-ev",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "電動車：電池 → 模組 → 馬達",
+      "tag": "示意（發熱不是量測）",
+      "t": {
+       "ev": {
+        "at": "ev"
+       },
+       "bat": {
+        "at": "bat"
+       },
+       "motor": {
+        "at": "motor"
+       },
+       "loss": {
+        "at": "loss"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "payoff",
+   "para": 5,
+   "narration": "氮化鎵開關特別快，做成快充頭和 AI 機房電源，體積更小。",
+   "tts": "氮化鎵開關特別快，做成快充頭和 AI 機房電源，體積更小。",
+   "subtitle": {
+    "zh": "氮化鎵開關特別快\n做成快充頭\n和 AI 機房電源\n體積更小",
+    "en": "Gallium nitride switches very fast, | so it goes into fast chargers | and AI data-center power, | making them smaller."
+   },
+   "keywords": [
+    "開關",
+    "快充頭",
+    "體積"
+   ],
+   "cues": [
+    {
+     "id": "fast",
+     "text": "開關特別快"
+    },
+    {
+     "id": "chg",
+     "text": "快充頭"
+    },
+    {
+     "id": "ai",
+     "text": "機房電源"
+    },
+    {
+     "id": "small",
+     "text": "體積更小"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Infineon 寬能隙資料；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "gan",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90.4,
+      "y": 0.2,
+      "d": 28,
+      "elev": 30
+     }
+    ],
+    "run": [
+     {
+      "id": "dGanPulse",
+      "at": "fast-4",
+      "ramp": 4,
+      "until": "s6:start"
+     },
+     {
+      "id": "dPwrFlow",
+      "at": "ai",
+      "ramp": 4,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dGanA",
+      "text": "氮化鎵功率晶片",
+      "en": "GaN power chip",
+      "color": "amber",
+      "at": "fast-2",
+      "until": "chg+30",
+      "cut": true
+     },
+     {
+      "part": "dXfA",
+      "text": "變壓器（可以變小）",
+      "en": "Transformer (can shrink)",
+      "color": "blue",
+      "at": "chg+32",
+      "until": "small-8",
+      "cut": true
+     },
+     {
+      "part": "dGhostA",
+      "text": "同功率矽充電頭（示意）",
+      "en": "Silicon charger, same power",
+      "color": "amber",
+      "at": "small-4",
+      "until": "s6:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-gan",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "氮化鎵：開關快、體積小",
+      "tag": "示意（體積比例示意）",
+      "t": {
+       "fast": {
+        "at": "fast"
+       },
+       "chg": {
+        "at": "chg"
+       },
+       "ai": {
+        "at": "ai"
+       },
+       "small": {
+        "at": "small"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "但碳化矽很難做。爐子比煉鋼還熱，氣體像結霜一樣慢慢凝結，一週多才幾公分。",
+   "tts": "但碳化細很難做。爐子比煉鋼還熱，氣體像結霜一樣慢慢凝結，一週多才幾公分。",
+   "subtitle": {
+    "zh": "但碳化矽很難做\n爐子比煉鋼還熱\n氣體像結霜一樣\n慢慢凝結\n一週多才幾公分",
+    "en": "But silicon carbide is hard to make. | The furnace is hotter than steelmaking; | the vapor, like frost, | slowly condenses: | a week-plus for a few centimeters."
+   },
+   "keywords": [
+    "很難做",
+    "結霜",
+    "幾公分"
+   ],
+   "cues": [
+    {
+     "id": "hard",
+     "text": "很難做"
+    },
+    {
+     "id": "hot",
+     "text": "比煉鋼還熱"
+    },
+    {
+     "id": "frost",
+     "text": "結霜"
+    },
+    {
+     "id": "slow",
+     "text": "一週多"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "科技新報 2019/10/02、2021/09/24；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pvt",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 120,
+      "y": 8.0,
+      "d": 74,
+      "elev": 8
+     },
+     {
+      "at": "frost-20",
+      "dur": 24,
+      "x": 120,
+      "y": 1.6,
+      "d": 32,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "eCoilGlow",
+      "at": "hot-6",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "eHotPulse",
+      "at": "hot",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "eVapor",
+      "at": "frost-8",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eCoilA",
+      "text": "感應線圈",
+      "en": "Induction coil",
+      "color": "amber",
+      "at": "start+18",
+      "until": "hot-2",
+      "cut": true
+     },
+     {
+      "part": "eCruA",
+      "text": "石墨坩堝：底部加熱",
+      "en": "Graphite crucible, heated",
+      "color": "blue",
+      "at": "hot",
+      "until": "frost-18",
+      "cut": true
+     },
+     {
+      "part": "eSeedA",
+      "text": "晶種：氣體在這裡凝結",
+      "en": "Seed: vapor condenses here",
+      "color": "amber",
+      "at": "frost",
+      "until": "slow-6",
+      "cut": true
+     },
+     {
+      "part": "eBouleA",
+      "text": "晶錠慢慢變厚",
+      "en": "Boule grows slowly",
+      "color": "blue",
+      "at": "slow-4",
+      "until": "s7:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-pvt",
+      "at": "start+16",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "碳化矽長晶：像結霜",
+      "tag": "剖開示意（數字：媒體報導）",
+      "t": {
+       "hard": {
+        "at": "hard"
+       },
+       "hot": {
+        "at": "hot"
+       },
+       "frost": {
+        "at": "frost"
+       },
+       "slow": {
+        "at": "slow"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "氮化鎵則是在矽晶圓表面，鋪一層薄薄的晶體，這叫磊晶。",
+   "tts": "氮化鎵則是在細晶圓表面，鋪一層薄薄的晶體，這叫磊晶。",
+   "subtitle": {
+    "zh": "氮化鎵則是\n在矽晶圓表面\n鋪一層薄薄的晶體\n這叫磊晶",
+    "en": "Gallium nitride, instead, | goes on a silicon wafer's surface | as a thin crystal layer: | this is called epitaxy."
+   },
+   "keywords": [
+    "矽晶圓",
+    "磊晶"
+   ],
+   "cues": [
+    {
+     "id": "si",
+     "text": "矽晶圓表面"
+    },
+    {
+     "id": "film",
+     "text": "薄薄的晶體"
+    },
+    {
+     "id": "epi",
+     "text": "這叫磊晶"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報 2025/07/04（矽基氮化鎵）；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "epi",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 150,
+      "y": 1.0,
+      "d": 32,
+      "elev": 28
+     }
+    ],
+    "run": [
+     {
+      "id": "fSusSpin",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "s8:start"
+     },
+     {
+      "id": "fHeatGlow",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGasGa",
+      "at": "film-8",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGasN",
+      "at": "film-8",
+      "ramp": 4,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGasMid",
+      "at": "film-8",
+      "ramp": 4,
+      "until": "s8:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fWafA",
+      "text": "矽晶圓",
+      "en": "Silicon wafers",
+      "color": "blue",
+      "at": "si-2",
+      "until": "film-10",
+      "cut": true
+     },
+     {
+      "part": "fShowA",
+      "text": "噴氣頭：鎵氣＋氨氣",
+      "en": "Showerhead: Ga + NH3",
+      "color": "amber",
+      "at": "film-8",
+      "until": "epi-4",
+      "cut": true,
+      "xy": [
+       540,
+       360
+      ]
+     },
+     {
+      "part": "fFilmA",
+      "text": "氮化鎵薄膜（磊晶）",
+      "en": "GaN film (epitaxy)",
+      "color": "blue",
+      "at": "epi-2",
+      "until": "s8:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-epi",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "磊晶：鋪一層薄薄的晶體",
+      "tag": "示意（膜厚放大）",
+      "t": {
+       "si": {
+        "at": "si"
+       },
+       "film": {
+        "at": "film"
+       },
+       "epi": {
+        "at": "epi"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "台灣分成三段。環球晶做基板，嘉晶做磊晶，漢磊做元件代工。",
+   "tts": "台灣分成三段。環球晶做基板，嘉晶做磊晶，漢磊做元件代工。",
+   "subtitle": {
+    "zh": "台灣分成三段\n環球晶做基板\n嘉晶做磊晶\n漢磊做元件代工",
+    "en": "Taiwan splits it into three steps: | GlobalWafers makes substrates, | Episil-Precision does epitaxy, | Episil makes the devices."
+   },
+   "keywords": [
+    "環球晶",
+    "嘉晶",
+    "漢磊"
+   ],
+   "cues": [
+    {
+     "id": "three",
+     "text": "三段"
+    },
+    {
+     "id": "gw",
+     "text": "環球晶"
+    },
+    {
+     "id": "epw",
+     "text": "嘉晶"
+    },
+    {
+     "id": "hl",
+     "text": "漢磊"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報、鉅亨網、科技新報報導；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tw",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 180,
+      "y": 0.4,
+      "d": 44,
+      "elev": 12
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-tw",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "台灣：基板 → 磊晶 → 元件代工",
+      "tag": "媒體報導；截至 2026/11/28",
+      "t": {
+       "three": {
+        "at": "three"
+       },
+       "gw": {
+        "at": "gw"
+       },
+       "epw": {
+        "at": "epw"
+       },
+       "hl": {
+        "at": "hl"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "不管哪種晶圓都不便宜，所以工廠拿來測機台的片子，用完磨掉一層還能再用。下一集看再生晶圓。留言化合物，拿完整資料。",
+   "tts": "不管哪種晶圓都不便宜，所以工廠拿來測機台的片子，用完磨掉一層還能再用。下一集看再生晶圓。留言化合物，拿完整資料。",
+   "subtitle": {
+    "zh": "不管哪種晶圓\n都不便宜\n所以工廠拿來\n測機台的片子\n用完磨掉一層\n還能再用\n下一集看再生晶圓\n留言化合物\n拿完整資料",
+    "en": "Whatever the wafer, | none are cheap, | so the wafers factories use | to test their machines | get a layer ground off | and are used again. | Next: reclaimed wafers. | Comment \"compound\" | for the full notes."
+   },
+   "keywords": [
+    "不便宜",
+    "再生晶圓"
+   ],
+   "cues": [
+    {
+     "id": "cost",
+     "text": "不便宜"
+    },
+    {
+     "id": "test",
+     "text": "測機台"
+    },
+    {
+     "id": "grind",
+     "text": "磨掉一層"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言化合物"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 210,
+      "y": 0.4,
+      "d": 40,
+      "elev": 24
+     }
+    ],
+    "run": [
+     {
+      "id": "hPlatenSpin",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "hHeadSpin",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "hSlurry",
+      "at": "test",
+      "ramp": 4,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hUsedA",
+      "text": "測機台用過的片子",
+      "en": "Used test wafer",
+      "color": "amber",
+      "at": "test-2",
+      "until": "grind-4",
+      "cut": true
+     },
+     {
+      "part": "hPadA",
+      "text": "研磨墊：磨掉一層",
+      "en": "Pad grinds a layer off",
+      "color": "blue",
+      "at": "grind-2",
+      "until": "next-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "cp-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：再生晶圓",
+      "tag": "留言「化合物」",
+      "t": {
+       "cost": {
+        "at": "cost"
+       },
+       "test": {
+        "at": "test"
+       },
+       "grind": {
+        "at": "grind"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 10.7,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "再生晶圓",
+     "trail": [
+      "化合物半導體：碳化矽與氮化鎵"
+     ],
+     "comment": "化合物",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}

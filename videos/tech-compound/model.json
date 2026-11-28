@@ -1,0 +1,13580 @@
+{
+ "name": "示意 化合物半導體：矽／碳化矽／氮化鎵晶圓、能隙示意、電動車碳化矽功率模組（爆炸分解）、氮化鎵快充（爆炸分解）、碳化矽長晶爐（物理氣相傳輸，爆炸分解）、氮化鎵磊晶爐、台灣三段分工、研磨台（示意，非特定廠牌／型號）",
+ "unit": "示意（放大）",
+ "size": {
+  "w": 40,
+  "h": 18,
+  "r": 0.6,
+  "t": 30
+ },
+ "palette": {
+  "floorC": "#C9D2DE",
+  "panel": "#F3F5F8",
+  "panel2": "#E2E8F0",
+  "seam": "#8E9BB0",
+  "band": "#24324C",
+  "steel": "#7D8CA6",
+  "steel2": "#A9B5C7",
+  "dark": "#3E4A60",
+  "darker": "#2A3142",
+  "lampY": "#F2B632",
+  "lampG": "#2FBF71",
+  "lampR": "#E5484D",
+  "rubber": "#2B2F36",
+  "gold": "#C9A24A",
+  "padGold": "#E0B84E",
+  "whiteP": "#FFFFFF",
+  "plasticW": "#ECEEF2",
+  "plasticD": "#3A3F4A",
+  "waferC": "#7C89A6",
+  "dieC": "#4C5E86",
+  "chipC": "#2E3442",
+  "chipTop": "#3A4152",
+  "pcbC": "#1E6B4E",
+  "sicC": "#3FA37A",
+  "sicD": "#2E7D5E",
+  "ganC": "#9EA3B5",
+  "vbC": "#2F6FD6",
+  "cbC": "#BFD3F2",
+  "eleC": "#FFD24A",
+  "crackC": "#8FD3FF",
+  "boltC": "#F2B632",
+  "markC": "#E8613C",
+  "cuC": "#C9794A",
+  "cuBright": "#E39A64",
+  "ceramic": "#F1EEE6",
+  "solderC": "#D8DDE4",
+  "gelC": "#F4E7A6",
+  "hvC": "#F28C28",
+  "acC": "#5BE0C0",
+  "heatC": "#FF6A3D",
+  "ferrite": "#4A4F59",
+  "capBlue": "#2D4F8F",
+  "graphite": "#33363D",
+  "feltC": "#55585F",
+  "powderC": "#7FA894",
+  "vaporC": "#9EF0C8",
+  "hotC": "#FF7A2B",
+  "glassC": "#BFD3F2",
+  "ammoniaC": "#8FC8FF",
+  "gaC": "#C9B8FF",
+  "padC": "#D9DEE6",
+  "slurryC": "#E8F1FF",
+  "patC": "#C46A6A"
+ },
+ "materials": {
+  "floor": {
+   "kind": "std",
+   "color": "floorC",
+   "rough": 0.7,
+   "metal": 0.3,
+   "tex": "brushed",
+   "texScale": 3
+  },
+  "panel": {
+   "kind": "std",
+   "color": "panel",
+   "rough": 0.55,
+   "metal": 0.05,
+   "env": 0.25
+  },
+  "panel2": {
+   "kind": "std",
+   "color": "panel2",
+   "rough": 0.6,
+   "metal": 0.05,
+   "env": 0.2
+  },
+  "seam": {
+   "kind": "std",
+   "color": "seam",
+   "rough": 0.6,
+   "metal": 0.3
+  },
+  "band": {
+   "kind": "std",
+   "color": "band",
+   "rough": 0.4,
+   "metal": 0.3,
+   "env": 0.4
+  },
+  "steel": {
+   "kind": "std",
+   "color": "steel",
+   "rough": 0.35,
+   "metal": 0.85,
+   "env": 0.5
+  },
+  "steel2": {
+   "kind": "std",
+   "color": "steel2",
+   "rough": 0.3,
+   "metal": 0.8,
+   "env": 0.6,
+   "tex": "brushed",
+   "texScale": 2
+  },
+  "dark": {
+   "kind": "std",
+   "color": "dark",
+   "rough": 0.5,
+   "metal": 0.4,
+   "env": 0.3
+  },
+  "darker": {
+   "kind": "std",
+   "color": "darker",
+   "rough": 0.5,
+   "metal": 0.3,
+   "env": 0.3
+  },
+  "rubber": {
+   "kind": "std",
+   "color": "rubber",
+   "rough": 0.9,
+   "metal": 0
+  },
+  "gold": {
+   "kind": "std",
+   "color": "gold",
+   "rough": 0.3,
+   "metal": 0.9,
+   "env": 0.8
+  },
+  "padGold": {
+   "kind": "std",
+   "color": "padGold",
+   "rough": 0.25,
+   "metal": 0.9,
+   "env": 0.9
+  },
+  "lampG": {
+   "kind": "std",
+   "color": "lampG",
+   "emissive": "lampG",
+   "ei": 0.45,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "lampR": {
+   "kind": "std",
+   "color": "lampR",
+   "emissive": "lampR",
+   "ei": 0.4,
+   "rough": 0.4,
+   "metal": 0
+  },
+  "white": {
+   "kind": "std",
+   "color": "whiteP",
+   "rough": 0.7,
+   "metal": 0
+  },
+  "plasticW": {
+   "kind": "std",
+   "color": "plasticW",
+   "rough": 0.45,
+   "metal": 0,
+   "env": 0.3
+  },
+  "plasticD": {
+   "kind": "std",
+   "color": "plasticD",
+   "rough": 0.5,
+   "metal": 0.05,
+   "env": 0.3
+  },
+  "mirror": {
+   "kind": "std",
+   "color": "waferC",
+   "rough": 0.05,
+   "metal": 0.95,
+   "env": 1.4
+  },
+  "die": {
+   "kind": "std",
+   "color": "dieC",
+   "rough": 0.2,
+   "metal": 0.6,
+   "env": 0.9,
+   "tex": "traces",
+   "texScale": 0.35
+  },
+  "chip": {
+   "kind": "std",
+   "color": "chipC",
+   "rough": 0.35,
+   "metal": 0.3,
+   "env": 0.5
+  },
+  "chipTop": {
+   "kind": "std",
+   "color": "chipTop",
+   "rough": 0.3,
+   "metal": 0.3,
+   "env": 0.6,
+   "tex": "traces",
+   "texScale": 0.5
+  },
+  "pcb": {
+   "kind": "std",
+   "color": "pcbC",
+   "rough": 0.45,
+   "metal": 0.1,
+   "env": 0.35,
+   "tex": "traces",
+   "texScale": 1
+  },
+  "sic": {
+   "kind": "phys",
+   "color": "sicC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.8,
+   "env": 0.9
+  },
+  "sicSolid": {
+   "kind": "std",
+   "color": "sicD",
+   "rough": 0.2,
+   "metal": 0.3,
+   "env": 0.9
+  },
+  "sicDie": {
+   "kind": "std",
+   "color": "darker",
+   "rough": 0.25,
+   "metal": 0.5,
+   "env": 0.8,
+   "tex": "traces",
+   "texScale": 0.3
+  },
+  "gan": {
+   "kind": "std",
+   "color": "ganC",
+   "rough": 0.06,
+   "metal": 0.9,
+   "env": 1.3
+  },
+  "vb": {
+   "kind": "std",
+   "color": "vbC",
+   "rough": 0.35,
+   "metal": 0.2,
+   "env": 0.5
+  },
+  "cb": {
+   "kind": "phys",
+   "color": "cbC",
+   "rough": 0.1,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.45,
+   "env": 0.6
+  },
+  "ele": {
+   "kind": "std",
+   "color": "eleC",
+   "emissive": "eleC",
+   "ei": 0.9,
+   "opacity": 1,
+   "rough": 1,
+   "metal": 0
+  },
+  "crack": {
+   "kind": "std",
+   "color": "crackC",
+   "emissive": "crackC",
+   "ei": 0.9,
+   "opacity": 1,
+   "rough": 1,
+   "metal": 0
+  },
+  "arcHalo": {
+   "kind": "std",
+   "color": "crackC",
+   "emissive": "crackC",
+   "ei": 0.6,
+   "opacity": 0.35,
+   "rough": 1,
+   "metal": 0
+  },
+  "bolt": {
+   "kind": "std",
+   "color": "boltC",
+   "emissive": "boltC",
+   "ei": 0.7,
+   "opacity": 1,
+   "rough": 1,
+   "metal": 0
+  },
+  "mark": {
+   "kind": "std",
+   "color": "markC",
+   "rough": 0.5,
+   "metal": 0,
+   "emissive": "markC",
+   "ei": 0.25
+  },
+  "cu": {
+   "kind": "std",
+   "color": "cuC",
+   "rough": 0.3,
+   "metal": 0.95,
+   "env": 0.7,
+   "tex": "brushed",
+   "texScale": 2
+  },
+  "cuBright": {
+   "kind": "std",
+   "color": "cuBright",
+   "rough": 0.25,
+   "metal": 0.95,
+   "env": 0.8
+  },
+  "ceramic": {
+   "kind": "std",
+   "color": "ceramic",
+   "rough": 0.6,
+   "metal": 0,
+   "env": 0.3
+  },
+  "solder": {
+   "kind": "std",
+   "color": "solderC",
+   "rough": 0.2,
+   "metal": 0.95,
+   "env": 0.9
+  },
+  "gel": {
+   "kind": "phys",
+   "color": "gelC",
+   "rough": 0.1,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.3,
+   "env": 0.5
+  },
+  "hv": {
+   "kind": "std",
+   "color": "hvC",
+   "rough": 0.5,
+   "metal": 0.05,
+   "env": 0.3
+  },
+  "dcGlow": {
+   "kind": "std",
+   "color": "hvC",
+   "emissive": "hvC",
+   "ei": 0.9,
+   "opacity": 1,
+   "rough": 1,
+   "metal": 0
+  },
+  "acGlow": {
+   "kind": "std",
+   "color": "acC",
+   "emissive": "acC",
+   "ei": 0.9,
+   "opacity": 1,
+   "rough": 1,
+   "metal": 0
+  },
+  "heat": {
+   "kind": "std",
+   "color": "heatC",
+   "emissive": "heatC",
+   "ei": 0.9,
+   "opacity": 0.8,
+   "rough": 1,
+   "metal": 0
+  },
+  "ferrite": {
+   "kind": "std",
+   "color": "ferrite",
+   "rough": 0.7,
+   "metal": 0.2
+  },
+  "capB": {
+   "kind": "std",
+   "color": "capBlue",
+   "rough": 0.4,
+   "metal": 0.1,
+   "env": 0.4
+  },
+  "graphite": {
+   "kind": "std",
+   "color": "graphite",
+   "rough": 0.75,
+   "metal": 0.2,
+   "env": 0.2
+  },
+  "felt": {
+   "kind": "std",
+   "color": "feltC",
+   "rough": 0.95,
+   "metal": 0,
+   "tex": "brushed",
+   "texScale": 6
+  },
+  "powder": {
+   "kind": "std",
+   "color": "powderC",
+   "rough": 0.95,
+   "metal": 0
+  },
+  "vapor": {
+   "kind": "std",
+   "color": "vaporC",
+   "emissive": "vaporC",
+   "ei": 0.8,
+   "opacity": 0.9,
+   "rough": 1,
+   "metal": 0
+  },
+  "hotGlow": {
+   "kind": "std",
+   "color": "hotC",
+   "emissive": "hotC",
+   "ei": 1,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "coilGlow": {
+   "kind": "std",
+   "color": "cuBright",
+   "emissive": "cuBright",
+   "ei": 0.8,
+   "opacity": 0.6,
+   "rough": 1,
+   "metal": 0
+  },
+  "glass": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.25,
+   "env": 0.6
+  },
+  "ghost": {
+   "kind": "phys",
+   "color": "glassC",
+   "rough": 0.05,
+   "metal": 0,
+   "clearcoat": 1,
+   "opacity": 0.18,
+   "env": 0.4
+  },
+  "nh3": {
+   "kind": "std",
+   "color": "ammoniaC",
+   "emissive": "ammoniaC",
+   "ei": 0.8,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "ga": {
+   "kind": "std",
+   "color": "gaC",
+   "emissive": "gaC",
+   "ei": 0.8,
+   "opacity": 0.85,
+   "rough": 1,
+   "metal": 0
+  },
+  "pad": {
+   "kind": "std",
+   "color": "padC",
+   "rough": 0.85,
+   "metal": 0
+  },
+  "slurry": {
+   "kind": "std",
+   "color": "slurryC",
+   "emissive": "slurryC",
+   "ei": 0.5,
+   "opacity": 0.9,
+   "rough": 1,
+   "metal": 0
+  },
+  "pat": {
+   "kind": "std",
+   "color": "patC",
+   "rough": 0.4,
+   "metal": 0.4,
+   "env": 0.5
+  },
+  "flag_TW": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/flag-TW.png"
+  },
+  "t_globalwafers": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-globalwafers.png"
+  },
+  "t_epiworld": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-epiworld.png"
+  },
+  "t_episil": {
+   "kind": "unlit",
+   "color": "#FFFFFF",
+   "img": "tex/brand/sign-episil.png"
+  }
+ },
+ "partNames": {
+  "aSiW": "晶圓",
+  "cDieB": "碳化矽晶片",
+  "eCruW": "坩堝"
+ },
+ "layers": [
+  {
+   "id": "floor",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    300,
+    2,
+    110,
+    0
+   ],
+   "bg": true
+  },
+  {
+   "id": "aSi",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.2,
+    3.6,
+    -3.4,
+    1.9
+   ]
+  },
+  {
+   "id": "aSiC",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.2,
+    3.6,
+    0,
+    1.9
+   ]
+  },
+  {
+   "id": "aGaN",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.2,
+    3.6,
+    3.4,
+    1.9
+   ]
+  },
+  {
+   "id": "aArc",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    2,
+    -3.4,
+    2.3
+   ]
+  },
+  {
+   "id": "aBolt",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    2,
+    -3.4,
+    4
+   ]
+  },
+  {
+   "id": "aOk",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    1,
+    1.7,
+    3.5
+   ]
+  },
+  {
+   "id": "bSi",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    7,
+    5,
+    25.8,
+    2.2
+   ]
+  },
+  {
+   "id": "bSc",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    7,
+    5,
+    34.2,
+    2.2
+   ]
+  },
+  {
+   "id": "bLeak",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    2,
+    25.8,
+    2.5
+   ]
+  },
+  {
+   "id": "cPl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    9,
+    1.2,
+    60,
+    0.5
+   ]
+  },
+  {
+   "id": "cBase",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    1,
+    60,
+    1.55
+   ]
+  },
+  {
+   "id": "cSol1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    0.2,
+    60,
+    1.9500000000000002
+   ]
+  },
+  {
+   "id": "cDbc",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    0.3,
+    60,
+    2.05
+   ]
+  },
+  {
+   "id": "cDie",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    0.3,
+    60,
+    2.1500000000000004
+   ]
+  },
+  {
+   "id": "cWire",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    0.4,
+    60,
+    2.3
+   ]
+  },
+  {
+   "id": "cCase",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    1.2,
+    60,
+    2.35
+   ]
+  },
+  {
+   "id": "cGel",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    0.6,
+    60,
+    2.35
+   ]
+  },
+  {
+   "id": "cLid",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    0.3,
+    60,
+    2.85
+   ]
+  },
+  {
+   "id": "cBat",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    2.4,
+    51,
+    1.2
+   ]
+  },
+  {
+   "id": "cMot",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    4,
+    68.6,
+    2
+   ]
+  },
+  {
+   "id": "cShaft",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    1,
+    1,
+    68.6,
+    2
+   ]
+  },
+  {
+   "id": "dPl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    11,
+    1,
+    90,
+    0.4
+   ]
+  },
+  {
+   "id": "dShellB",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.6,
+    1.2,
+    88,
+    1.35
+   ]
+  },
+  {
+   "id": "dPcb",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.2,
+    0.3,
+    88,
+    1.1500000000000001
+   ]
+  },
+  {
+   "id": "dParts",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.2,
+    1.2,
+    88,
+    1.6500000000000001
+   ]
+  },
+  {
+   "id": "dShellT",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.6,
+    0.4,
+    88,
+    2.05
+   ]
+  },
+  {
+   "id": "dGhost",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    3,
+    93.2,
+    1.8
+   ]
+  },
+  {
+   "id": "ePl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    9,
+    1.2,
+    120,
+    0.5
+   ]
+  },
+  {
+   "id": "eBase",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    0.4,
+    120,
+    1.1
+   ]
+  },
+  {
+   "id": "eBell",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    7.5,
+    120,
+    4.75
+   ]
+  },
+  {
+   "id": "eCoil",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5,
+    5,
+    120,
+    3.95
+   ]
+  },
+  {
+   "id": "eQtz",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    6,
+    120,
+    4.25
+   ]
+  },
+  {
+   "id": "eFelt",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.5,
+    5,
+    120,
+    4.05
+   ]
+  },
+  {
+   "id": "eCru",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    4,
+    120,
+    3.75
+   ]
+  },
+  {
+   "id": "ePow",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    1,
+    120,
+    2.5500000000000003
+   ]
+  },
+  {
+   "id": "eHot",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    1,
+    120,
+    2.15
+   ]
+  },
+  {
+   "id": "eLid",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    1,
+    120,
+    5.55
+   ]
+  },
+  {
+   "id": "eBoule1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    1,
+    120,
+    5.15
+   ]
+  },
+  {
+   "id": "eBoule2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    1,
+    120,
+    5.15
+   ]
+  },
+  {
+   "id": "eBoule3",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    1,
+    120,
+    5.15
+   ]
+  },
+  {
+   "id": "fPl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    9,
+    1.2,
+    150,
+    0.5
+   ]
+  },
+  {
+   "id": "fBody",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6,
+    2.5,
+    150,
+    2.15
+   ]
+  },
+  {
+   "id": "fHeat",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    0.4,
+    150,
+    1.65
+   ]
+  },
+  {
+   "id": "fSus",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4.4,
+    0.6,
+    150,
+    2.15
+   ]
+  },
+  {
+   "id": "fFilm",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    4,
+    0.2,
+    150,
+    2.2800000000000002
+   ]
+  },
+  {
+   "id": "fShow",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    5.6,
+    2.4,
+    150,
+    4.15
+   ]
+  },
+  {
+   "id": "gP0",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.8,
+    3.8,
+    175.6,
+    1.8
+   ]
+  },
+  {
+   "id": "gP1",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.8,
+    3.8,
+    180,
+    1.8
+   ]
+  },
+  {
+   "id": "gP2",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.8,
+    3.8,
+    184.4,
+    1.8
+   ]
+  },
+  {
+   "id": "hPl",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    11,
+    1.2,
+    210,
+    0.5
+   ]
+  },
+  {
+   "id": "hUsed",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3.2,
+    3.4,
+    206.4,
+    2.5
+   ]
+  },
+  {
+   "id": "hPat",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    3,
+    3,
+    206.4,
+    2.6
+   ]
+  },
+  {
+   "id": "hPlaten",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    6.4,
+    0.6,
+    211.8,
+    1.25
+   ]
+  },
+  {
+   "id": "hHead",
+   "z": 0,
+   "k": 0,
+   "outline": [
+    2,
+    3,
+    212.9,
+    2.45
+   ]
+  }
+ ],
+ "parts": [
+  {
+   "id": "floor",
+   "layer": "floor",
+   "shape": "slab",
+   "size": [
+    280,
+    0.5,
+    44
+   ],
+   "r": 0.2,
+   "pos": [
+    110,
+    -0.25,
+    0
+   ],
+   "mat": "floor"
+  },
+  {
+   "id": "floorSeam",
+   "layer": "floor",
+   "shape": "slab",
+   "size": [
+    280,
+    0.04,
+    0.1
+   ],
+   "pos": [
+    110,
+    0.01,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -16
+    ],
+    [
+     0,
+     0,
+     -10.7
+    ],
+    [
+     0,
+     0,
+     -5.4
+    ],
+    [
+     0,
+     0,
+     -0.10000000000000142
+    ],
+    [
+     0,
+     0,
+     5.199999999999999
+    ],
+    [
+     0,
+     0,
+     10.5
+    ],
+    [
+     0,
+     0,
+     15.799999999999997
+    ]
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "aSiPl",
+   "layer": "aSi",
+   "shape": "box",
+   "size": [
+    3.1,
+    0.7,
+    2.6
+   ],
+   "pos": [
+    -3.4,
+    0.35,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "aSiPlT",
+   "layer": "aSi",
+   "shape": "box",
+   "size": [
+    3.1,
+    0.05,
+    2.6
+   ],
+   "pos": [
+    -3.4,
+    0.725,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "aSiKick",
+   "layer": "aSi",
+   "shape": "box",
+   "size": [
+    3.2,
+    0.12,
+    2.7
+   ],
+   "pos": [
+    -3.4,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "aSiBolt",
+   "layer": "aSi",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.77,
+    0
+   ],
+   "at": [
+    [
+     -4.65,
+     0,
+     -1
+    ],
+    [
+     -2.15,
+     0,
+     -1
+    ],
+    [
+     -4.65,
+     0,
+     1
+    ],
+    [
+     -2.15,
+     0,
+     1
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "aSiStand",
+   "layer": "aSi",
+   "shape": "box",
+   "size": [
+    0.24,
+    0.6,
+    0.2
+   ],
+   "pos": [
+    -3.4,
+    1.05,
+    -0.2
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "aSiFoot",
+   "layer": "aSi",
+   "shape": "box",
+   "size": [
+    2,
+    0.1,
+    0.7
+   ],
+   "pos": [
+    -3.4,
+    0.8,
+    -0.15
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "aSiFootBolt",
+   "layer": "aSi",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.03
+   ],
+   "pos": [
+    0,
+    0.8,
+    0.21
+   ],
+   "at": [
+    [
+     -4.15,
+     0,
+     0
+    ],
+    [
+     -2.65,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "aSiW",
+   "layer": "aSi",
+   "shape": "cyl",
+   "size": [
+    1.35,
+    0.06
+   ],
+   "pos": [
+    -3.4,
+    2.3,
+    0
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "aSiN",
+   "layer": "aSi",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.06
+   ],
+   "pos": [
+    -3.4,
+    3.61,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "aSiCPl",
+   "layer": "aSiC",
+   "shape": "box",
+   "size": [
+    3.1,
+    0.7,
+    2.6
+   ],
+   "pos": [
+    0,
+    0.35,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "aSiCPlT",
+   "layer": "aSiC",
+   "shape": "box",
+   "size": [
+    3.1,
+    0.05,
+    2.6
+   ],
+   "pos": [
+    0,
+    0.725,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "aSiCKick",
+   "layer": "aSiC",
+   "shape": "box",
+   "size": [
+    3.2,
+    0.12,
+    2.7
+   ],
+   "pos": [
+    0,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "aSiCBolt",
+   "layer": "aSiC",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.77,
+    0
+   ],
+   "at": [
+    [
+     -1.25,
+     0,
+     -1
+    ],
+    [
+     1.25,
+     0,
+     -1
+    ],
+    [
+     -1.25,
+     0,
+     1
+    ],
+    [
+     1.25,
+     0,
+     1
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "aSiCStand",
+   "layer": "aSiC",
+   "shape": "box",
+   "size": [
+    0.24,
+    0.6,
+    0.2
+   ],
+   "pos": [
+    0,
+    1.05,
+    -0.2
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "aSiCFoot",
+   "layer": "aSiC",
+   "shape": "box",
+   "size": [
+    2,
+    0.1,
+    0.7
+   ],
+   "pos": [
+    0,
+    0.8,
+    -0.15
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "aSiCFootBolt",
+   "layer": "aSiC",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.03
+   ],
+   "pos": [
+    0,
+    0.8,
+    0.21
+   ],
+   "at": [
+    [
+     -0.75,
+     0,
+     0
+    ],
+    [
+     0.75,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "aSiCW",
+   "layer": "aSiC",
+   "shape": "cyl",
+   "size": [
+    1.35,
+    0.06
+   ],
+   "pos": [
+    0,
+    2.3,
+    0
+   ],
+   "mat": "sic"
+  },
+  {
+   "id": "aSiCN",
+   "layer": "aSiC",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.06
+   ],
+   "pos": [
+    0,
+    3.61,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "aSiCFlat",
+   "layer": "aSiC",
+   "shape": "box",
+   "size": [
+    1,
+    0.07,
+    0.08
+   ],
+   "pos": [
+    0,
+    0.955,
+    0
+   ],
+   "mat": "sicSolid"
+  },
+  {
+   "id": "aGaNPl",
+   "layer": "aGaN",
+   "shape": "box",
+   "size": [
+    3.1,
+    0.7,
+    2.6
+   ],
+   "pos": [
+    3.4,
+    0.35,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "aGaNPlT",
+   "layer": "aGaN",
+   "shape": "box",
+   "size": [
+    3.1,
+    0.05,
+    2.6
+   ],
+   "pos": [
+    3.4,
+    0.725,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "aGaNKick",
+   "layer": "aGaN",
+   "shape": "box",
+   "size": [
+    3.2,
+    0.12,
+    2.7
+   ],
+   "pos": [
+    3.4,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "aGaNBolt",
+   "layer": "aGaN",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.77,
+    0
+   ],
+   "at": [
+    [
+     2.15,
+     0,
+     -1
+    ],
+    [
+     4.65,
+     0,
+     -1
+    ],
+    [
+     2.15,
+     0,
+     1
+    ],
+    [
+     4.65,
+     0,
+     1
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "aGaNStand",
+   "layer": "aGaN",
+   "shape": "box",
+   "size": [
+    0.24,
+    0.6,
+    0.2
+   ],
+   "pos": [
+    3.4,
+    1.05,
+    -0.2
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "aGaNFoot",
+   "layer": "aGaN",
+   "shape": "box",
+   "size": [
+    2,
+    0.1,
+    0.7
+   ],
+   "pos": [
+    3.4,
+    0.8,
+    -0.15
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "aGaNFootBolt",
+   "layer": "aGaN",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.03
+   ],
+   "pos": [
+    0,
+    0.8,
+    0.21
+   ],
+   "at": [
+    [
+     2.65,
+     0,
+     0
+    ],
+    [
+     4.15,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "aGaNW",
+   "layer": "aGaN",
+   "shape": "cyl",
+   "size": [
+    1.35,
+    0.06
+   ],
+   "pos": [
+    3.4,
+    2.3,
+    0
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "aGaNN",
+   "layer": "aGaN",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.06
+   ],
+   "pos": [
+    3.4,
+    3.61,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "aGaNFilm",
+   "layer": "aGaN",
+   "shape": "cyl",
+   "size": [
+    1.3,
+    0.012
+   ],
+   "pos": [
+    3.4,
+    2.3,
+    0.036
+   ],
+   "mat": "gan"
+  },
+  {
+   "id": "aArc0",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.626,
+    0.05,
+    0.02
+   ],
+   "pos": [
+    -3.225,
+    3.385,
+    0.06
+   ],
+   "rot": [
+    0,
+    0,
+    -53.3
+   ],
+   "mat": "crack"
+  },
+  {
+   "id": "aArcH0",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.686,
+    0.16,
+    0.01
+   ],
+   "pos": [
+    -3.225,
+    3.385,
+    0.05
+   ],
+   "rot": [
+    0,
+    0,
+    -53.3
+   ],
+   "mat": "arcHalo"
+  },
+  {
+   "id": "aArc1",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.751,
+    0.05,
+    0.02
+   ],
+   "pos": [
+    -3.325,
+    2.925,
+    0.06
+   ],
+   "rot": [
+    0,
+    0,
+    -140.7
+   ],
+   "mat": "crack"
+  },
+  {
+   "id": "aArcH1",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.811,
+    0.16,
+    0.01
+   ],
+   "pos": [
+    -3.325,
+    2.925,
+    0.05
+   ],
+   "rot": [
+    0,
+    0,
+    -140.7
+   ],
+   "mat": "arcHalo"
+  },
+  {
+   "id": "aArc2",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.854,
+    0.05,
+    0.02
+   ],
+   "pos": [
+    -3.3,
+    2.425,
+    0.06
+   ],
+   "rot": [
+    0,
+    0,
+    -42.5
+   ],
+   "mat": "crack"
+  },
+  {
+   "id": "aArcH2",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.914,
+    0.16,
+    0.01
+   ],
+   "pos": [
+    -3.3,
+    2.425,
+    0.05
+   ],
+   "rot": [
+    0,
+    0,
+    -42.5
+   ],
+   "mat": "arcHalo"
+  },
+  {
+   "id": "aArc3",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.818,
+    0.05,
+    0.02
+   ],
+   "pos": [
+    -3.275,
+    1.875,
+    0.06
+   ],
+   "rot": [
+    0,
+    0,
+    -135
+   ],
+   "mat": "crack"
+  },
+  {
+   "id": "aArcH3",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.878,
+    0.16,
+    0.01
+   ],
+   "pos": [
+    -3.275,
+    1.875,
+    0.05
+   ],
+   "rot": [
+    0,
+    0,
+    -135
+   ],
+   "mat": "arcHalo"
+  },
+  {
+   "id": "aArc4",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.634,
+    0.05,
+    0.02
+   ],
+   "pos": [
+    -3.375,
+    1.36,
+    0.06
+   ],
+   "rot": [
+    0,
+    0,
+    -53.9
+   ],
+   "mat": "crack"
+  },
+  {
+   "id": "aArcH4",
+   "layer": "aArc",
+   "shape": "box",
+   "size": [
+    0.694,
+    0.16,
+    0.01
+   ],
+   "pos": [
+    -3.375,
+    1.36,
+    0.05
+   ],
+   "rot": [
+    0,
+    0,
+    -53.9
+   ],
+   "mat": "arcHalo"
+  },
+  {
+   "id": "aBoltP",
+   "layer": "aBolt",
+   "shape": "poly",
+   "pts": [
+    [
+     0.1,
+     1
+    ],
+    [
+     -0.35,
+     0.05
+    ],
+    [
+     -0.02,
+     0.05
+    ],
+    [
+     -0.25,
+     -0.9
+    ],
+    [
+     0.4,
+     0.2
+    ],
+    [
+     0.05,
+     0.2
+    ],
+    [
+     0.3,
+     1
+    ]
+   ],
+   "size": [
+    1,
+    2,
+    0.08
+   ],
+   "pos": [
+    -3.4,
+    3.9,
+    0
+   ],
+   "mat": "bolt"
+  },
+  {
+   "id": "aOkRing",
+   "layer": "aOk",
+   "shape": "tube",
+   "size": [
+    1.48,
+    1.4,
+    0.03
+   ],
+   "pos": [
+    0,
+    2.3,
+    0.08
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     3.4,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "bSiPl",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    7,
+    0.8,
+    3.6
+   ],
+   "pos": [
+    25.8,
+    0.4,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "bSiPlT",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    7,
+    0.05,
+    3.6
+   ],
+   "pos": [
+    25.8,
+    0.825,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "bSiKick",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    7.1,
+    0.12,
+    3.7
+   ],
+   "pos": [
+    25.8,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "bSiBolt",
+   "layer": "bSi",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.87,
+    0
+   ],
+   "at": [
+    [
+     22.6,
+     0,
+     -1.5
+    ],
+    [
+     29,
+     0,
+     -1.5
+    ],
+    [
+     22.6,
+     0,
+     1.5
+    ],
+    [
+     29,
+     0,
+     1.5
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bSiVb",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    5,
+    0.45,
+    1.4
+   ],
+   "pos": [
+    25.8,
+    1.375,
+    0
+   ],
+   "mat": "vb"
+  },
+  {
+   "id": "bSiCb",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    5,
+    0.4,
+    1.4
+   ],
+   "pos": [
+    25.8,
+    2.7,
+    0
+   ],
+   "mat": "cb"
+  },
+  {
+   "id": "bSiPost",
+   "layer": "bSi",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    2.05
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.875,
+    0
+   ],
+   "at": [
+    [
+     23.1,
+     0,
+     -0.85
+    ],
+    [
+     28.5,
+     0,
+     -0.85
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bSiRail",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    5.5,
+    0.08,
+    0.14
+   ],
+   "pos": [
+    25.8,
+    2.94,
+    -0.85
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bSiEl",
+   "layer": "bSi",
+   "shape": "sphere",
+   "size": [
+    0.13
+   ],
+   "pos": [
+    0,
+    1.73,
+    0
+   ],
+   "at": [
+    [
+     23.55,
+     0,
+     -0.45
+    ],
+    [
+     23.55,
+     0,
+     0
+    ],
+    [
+     23.55,
+     0,
+     0.45
+    ],
+    [
+     24.05,
+     0,
+     -0.45
+    ],
+    [
+     24.05,
+     0,
+     0
+    ],
+    [
+     24.05,
+     0,
+     0.45
+    ],
+    [
+     24.55,
+     0,
+     -0.45
+    ],
+    [
+     24.55,
+     0,
+     0
+    ],
+    [
+     24.55,
+     0,
+     0.45
+    ],
+    [
+     25.05,
+     0,
+     -0.45
+    ],
+    [
+     25.05,
+     0,
+     0
+    ],
+    [
+     25.05,
+     0,
+     0.45
+    ],
+    [
+     25.55,
+     0,
+     -0.45
+    ],
+    [
+     25.55,
+     0,
+     0
+    ],
+    [
+     25.55,
+     0,
+     0.45
+    ],
+    [
+     26.05,
+     0,
+     -0.45
+    ],
+    [
+     26.05,
+     0,
+     0
+    ],
+    [
+     26.05,
+     0,
+     0.45
+    ],
+    [
+     26.55,
+     0,
+     -0.45
+    ],
+    [
+     26.55,
+     0,
+     0
+    ],
+    [
+     26.55,
+     0,
+     0.45
+    ],
+    [
+     27.05,
+     0,
+     -0.45
+    ],
+    [
+     27.05,
+     0,
+     0
+    ],
+    [
+     27.05,
+     0,
+     0.45
+    ],
+    [
+     27.55,
+     0,
+     -0.45
+    ],
+    [
+     27.55,
+     0,
+     0
+    ],
+    [
+     27.55,
+     0,
+     0.45
+    ],
+    [
+     28.05,
+     0,
+     -0.45
+    ],
+    [
+     28.05,
+     0,
+     0
+    ],
+    [
+     28.05,
+     0,
+     0.45
+    ]
+   ],
+   "mat": "ele"
+  },
+  {
+   "id": "bSiRule",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.9,
+    0.08
+   ],
+   "pos": [
+    22.79,
+    2.05,
+    0.59
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "bSiTick",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.05
+   ],
+   "pos": [
+    22.79,
+    0,
+    0.59
+   ],
+   "at": [
+    [
+     0,
+     1.6,
+     0
+    ],
+    [
+     0,
+     1.9,
+     0
+    ],
+    [
+     0,
+     2.2,
+     0
+    ],
+    [
+     0,
+     2.5,
+     0
+    ]
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "bSiElecL",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    0.15,
+    2.35,
+    1.2
+   ],
+   "pos": [
+    22.525,
+    2.025,
+    0
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "bSiElecR",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    0.15,
+    2.35,
+    1.2
+   ],
+   "pos": [
+    29.075,
+    2.025,
+    0
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "bSiSrc",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.7,
+    0.6
+   ],
+   "pos": [
+    25.8,
+    1.2,
+    1.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bSiSrcFace",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.5,
+    0.02
+   ],
+   "pos": [
+    25.8,
+    1.2,
+    1.71
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "bSiDial",
+   "layer": "bSi",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.02
+   ],
+   "pos": [
+    25.45,
+    1.21,
+    1.73
+   ],
+   "mat": "white"
+  },
+  {
+   "id": "bSiKnob",
+   "layer": "bSi",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.08
+   ],
+   "pos": [
+    26.25,
+    1.21,
+    1.76
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "bSiPost2",
+   "layer": "bSi",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.61,
+    1.4
+   ],
+   "at": [
+    [
+     25.2,
+     0,
+     0
+    ],
+    [
+     26.4,
+     0,
+     0
+    ]
+   ],
+   "mat": "padGold"
+  },
+  {
+   "id": "bSiWireL",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    2.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    23.85,
+    0.955,
+    1.4
+   ],
+   "mat": "lampR"
+  },
+  {
+   "id": "bSiWireR",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    2.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    27.75,
+    0.955,
+    1.4
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "bSiNeedle",
+   "layer": "bSi",
+   "shape": "box",
+   "size": [
+    0.02,
+    0.19,
+    0.01
+   ],
+   "pos": [
+    25.45,
+    1.305,
+    1.76
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "bScPl",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    7,
+    0.8,
+    3.6
+   ],
+   "pos": [
+    34.2,
+    0.4,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "bScPlT",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    7,
+    0.05,
+    3.6
+   ],
+   "pos": [
+    34.2,
+    0.825,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "bScKick",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    7.1,
+    0.12,
+    3.7
+   ],
+   "pos": [
+    34.2,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "bScBolt",
+   "layer": "bSc",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.87,
+    0
+   ],
+   "at": [
+    [
+     31.000000000000004,
+     0,
+     -1.5
+    ],
+    [
+     37.400000000000006,
+     0,
+     -1.5
+    ],
+    [
+     31.000000000000004,
+     0,
+     1.5
+    ],
+    [
+     37.400000000000006,
+     0,
+     1.5
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bScVb",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    5,
+    0.45,
+    1.4
+   ],
+   "pos": [
+    34.2,
+    1.375,
+    0
+   ],
+   "mat": "vb"
+  },
+  {
+   "id": "bScCb",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    5,
+    0.4,
+    1.4
+   ],
+   "pos": [
+    34.2,
+    4.5,
+    0
+   ],
+   "mat": "cb"
+  },
+  {
+   "id": "bScPost",
+   "layer": "bSc",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    3.85
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.775,
+    0
+   ],
+   "at": [
+    [
+     31.5,
+     0,
+     -0.85
+    ],
+    [
+     36.9,
+     0,
+     -0.85
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "bScRail",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    5.5,
+    0.08,
+    0.14
+   ],
+   "pos": [
+    34.2,
+    4.74,
+    -0.85
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "bScEl",
+   "layer": "bSc",
+   "shape": "sphere",
+   "size": [
+    0.13
+   ],
+   "pos": [
+    0,
+    1.73,
+    0
+   ],
+   "at": [
+    [
+     31.95,
+     0,
+     -0.45
+    ],
+    [
+     31.95,
+     0,
+     0
+    ],
+    [
+     31.95,
+     0,
+     0.45
+    ],
+    [
+     32.45,
+     0,
+     -0.45
+    ],
+    [
+     32.45,
+     0,
+     0
+    ],
+    [
+     32.45,
+     0,
+     0.45
+    ],
+    [
+     32.95,
+     0,
+     -0.45
+    ],
+    [
+     32.95,
+     0,
+     0
+    ],
+    [
+     32.95,
+     0,
+     0.45
+    ],
+    [
+     33.45,
+     0,
+     -0.45
+    ],
+    [
+     33.45,
+     0,
+     0
+    ],
+    [
+     33.45,
+     0,
+     0.45
+    ],
+    [
+     33.95,
+     0,
+     -0.45
+    ],
+    [
+     33.95,
+     0,
+     0
+    ],
+    [
+     33.95,
+     0,
+     0.45
+    ],
+    [
+     34.45,
+     0,
+     -0.45
+    ],
+    [
+     34.45,
+     0,
+     0
+    ],
+    [
+     34.45,
+     0,
+     0.45
+    ],
+    [
+     34.95,
+     0,
+     -0.45
+    ],
+    [
+     34.95,
+     0,
+     0
+    ],
+    [
+     34.95,
+     0,
+     0.45
+    ],
+    [
+     35.45,
+     0,
+     -0.45
+    ],
+    [
+     35.45,
+     0,
+     0
+    ],
+    [
+     35.45,
+     0,
+     0.45
+    ],
+    [
+     35.95,
+     0,
+     -0.45
+    ],
+    [
+     35.95,
+     0,
+     0
+    ],
+    [
+     35.95,
+     0,
+     0.45
+    ],
+    [
+     36.45,
+     0,
+     -0.45
+    ],
+    [
+     36.45,
+     0,
+     0
+    ],
+    [
+     36.45,
+     0,
+     0.45
+    ]
+   ],
+   "mat": "ele"
+  },
+  {
+   "id": "bScRule",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    0.08,
+    2.7,
+    0.08
+   ],
+   "pos": [
+    31.19,
+    2.95,
+    0.59
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "bScTick",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.05
+   ],
+   "pos": [
+    31.19,
+    0,
+    0.59
+   ],
+   "at": [
+    [
+     0,
+     1.6,
+     0
+    ],
+    [
+     0,
+     1.9,
+     0
+    ],
+    [
+     0,
+     2.2,
+     0
+    ],
+    [
+     0,
+     2.5,
+     0
+    ],
+    [
+     0,
+     2.8,
+     0
+    ],
+    [
+     0,
+     3.1,
+     0
+    ],
+    [
+     0,
+     3.4,
+     0
+    ],
+    [
+     0,
+     3.7,
+     0
+    ],
+    [
+     0,
+     4,
+     0
+    ],
+    [
+     0,
+     4.3,
+     0
+    ]
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "bScElecL",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    0.15,
+    4.15,
+    1.2
+   ],
+   "pos": [
+    30.925,
+    2.925,
+    0
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "bScElecR",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    0.15,
+    4.15,
+    1.2
+   ],
+   "pos": [
+    37.475,
+    2.925,
+    0
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "bScSrc",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.7,
+    0.6
+   ],
+   "pos": [
+    34.2,
+    1.2,
+    1.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "bScSrcFace",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.5,
+    0.02
+   ],
+   "pos": [
+    34.2,
+    1.2,
+    1.71
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "bScDial",
+   "layer": "bSc",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    0.02
+   ],
+   "pos": [
+    33.85,
+    1.21,
+    1.73
+   ],
+   "mat": "white"
+  },
+  {
+   "id": "bScKnob",
+   "layer": "bSc",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    0.08
+   ],
+   "pos": [
+    34.65,
+    1.21,
+    1.76
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "bScPost2",
+   "layer": "bSc",
+   "shape": "cyl",
+   "size": [
+    0.06,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.61,
+    1.4
+   ],
+   "at": [
+    [
+     33.6,
+     0,
+     0
+    ],
+    [
+     34.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "padGold"
+  },
+  {
+   "id": "bScWireL",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    2.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    32.25,
+    0.955,
+    1.4
+   ],
+   "mat": "lampR"
+  },
+  {
+   "id": "bScWireR",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    2.7,
+    0.05,
+    0.08
+   ],
+   "pos": [
+    36.15,
+    0.955,
+    1.4
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "bScNeedle",
+   "layer": "bSc",
+   "shape": "box",
+   "size": [
+    0.02,
+    0.19,
+    0.01
+   ],
+   "pos": [
+    33.85,
+    1.305,
+    1.76
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "bLeakE",
+   "layer": "bLeak",
+   "shape": "sphere",
+   "size": [
+    0.15
+   ],
+   "pos": [
+    24.8,
+    1.73,
+    0.45
+   ],
+   "mat": "ele"
+  },
+  {
+   "id": "cPlPl",
+   "layer": "cPl",
+   "shape": "box",
+   "size": [
+    7.6,
+    1,
+    6
+   ],
+   "pos": [
+    60,
+    0.5,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "cPlPlT",
+   "layer": "cPl",
+   "shape": "box",
+   "size": [
+    7.6,
+    0.05,
+    6
+   ],
+   "pos": [
+    60,
+    1.025,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "cPlKick",
+   "layer": "cPl",
+   "shape": "box",
+   "size": [
+    7.7,
+    0.12,
+    6.1
+   ],
+   "pos": [
+    60,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "cPlBolt",
+   "layer": "cPl",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.07,
+    0
+   ],
+   "at": [
+    [
+     56.5,
+     0,
+     -2.7
+    ],
+    [
+     63.5,
+     0,
+     -2.7
+    ],
+    [
+     56.5,
+     0,
+     2.7
+    ],
+    [
+     63.5,
+     0,
+     2.7
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cBasePlate",
+   "layer": "cBase",
+   "shape": "box",
+   "size": [
+    5.2,
+    0.25,
+    3.6
+   ],
+   "pos": [
+    60,
+    1.775,
+    0
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "cPin",
+   "layer": "cBase",
+   "shape": "cyl",
+   "size": [
+    0.075,
+    0.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.35,
+    0
+   ],
+   "at": [
+    [
+     57.7,
+     0,
+     -1.5
+    ],
+    [
+     57.7,
+     0,
+     -1.07
+    ],
+    [
+     57.7,
+     0,
+     -0.64
+    ],
+    [
+     57.7,
+     0,
+     -0.21
+    ],
+    [
+     57.7,
+     0,
+     0.22
+    ],
+    [
+     57.7,
+     0,
+     0.65
+    ],
+    [
+     57.7,
+     0,
+     1.08
+    ],
+    [
+     57.7,
+     0,
+     1.51
+    ],
+    [
+     58.12,
+     0,
+     -1.5
+    ],
+    [
+     58.12,
+     0,
+     -1.07
+    ],
+    [
+     58.12,
+     0,
+     -0.64
+    ],
+    [
+     58.12,
+     0,
+     -0.21
+    ],
+    [
+     58.12,
+     0,
+     0.22
+    ],
+    [
+     58.12,
+     0,
+     0.65
+    ],
+    [
+     58.12,
+     0,
+     1.08
+    ],
+    [
+     58.12,
+     0,
+     1.51
+    ],
+    [
+     58.54,
+     0,
+     -1.5
+    ],
+    [
+     58.54,
+     0,
+     -1.07
+    ],
+    [
+     58.54,
+     0,
+     -0.64
+    ],
+    [
+     58.54,
+     0,
+     -0.21
+    ],
+    [
+     58.54,
+     0,
+     0.22
+    ],
+    [
+     58.54,
+     0,
+     0.65
+    ],
+    [
+     58.54,
+     0,
+     1.08
+    ],
+    [
+     58.54,
+     0,
+     1.51
+    ],
+    [
+     58.96,
+     0,
+     -1.5
+    ],
+    [
+     58.96,
+     0,
+     -1.07
+    ],
+    [
+     58.96,
+     0,
+     -0.64
+    ],
+    [
+     58.96,
+     0,
+     -0.21
+    ],
+    [
+     58.96,
+     0,
+     0.22
+    ],
+    [
+     58.96,
+     0,
+     0.65
+    ],
+    [
+     58.96,
+     0,
+     1.08
+    ],
+    [
+     58.96,
+     0,
+     1.51
+    ],
+    [
+     59.38,
+     0,
+     -1.5
+    ],
+    [
+     59.38,
+     0,
+     -1.07
+    ],
+    [
+     59.38,
+     0,
+     -0.64
+    ],
+    [
+     59.38,
+     0,
+     -0.21
+    ],
+    [
+     59.38,
+     0,
+     0.22
+    ],
+    [
+     59.38,
+     0,
+     0.65
+    ],
+    [
+     59.38,
+     0,
+     1.08
+    ],
+    [
+     59.38,
+     0,
+     1.51
+    ],
+    [
+     59.8,
+     0,
+     -1.5
+    ],
+    [
+     59.8,
+     0,
+     -1.07
+    ],
+    [
+     59.8,
+     0,
+     -0.64
+    ],
+    [
+     59.8,
+     0,
+     -0.21
+    ],
+    [
+     59.8,
+     0,
+     0.22
+    ],
+    [
+     59.8,
+     0,
+     0.65
+    ],
+    [
+     59.8,
+     0,
+     1.08
+    ],
+    [
+     59.8,
+     0,
+     1.51
+    ],
+    [
+     60.22,
+     0,
+     -1.5
+    ],
+    [
+     60.22,
+     0,
+     -1.07
+    ],
+    [
+     60.22,
+     0,
+     -0.64
+    ],
+    [
+     60.22,
+     0,
+     -0.21
+    ],
+    [
+     60.22,
+     0,
+     0.22
+    ],
+    [
+     60.22,
+     0,
+     0.65
+    ],
+    [
+     60.22,
+     0,
+     1.08
+    ],
+    [
+     60.22,
+     0,
+     1.51
+    ],
+    [
+     60.64,
+     0,
+     -1.5
+    ],
+    [
+     60.64,
+     0,
+     -1.07
+    ],
+    [
+     60.64,
+     0,
+     -0.64
+    ],
+    [
+     60.64,
+     0,
+     -0.21
+    ],
+    [
+     60.64,
+     0,
+     0.22
+    ],
+    [
+     60.64,
+     0,
+     0.65
+    ],
+    [
+     60.64,
+     0,
+     1.08
+    ],
+    [
+     60.64,
+     0,
+     1.51
+    ],
+    [
+     61.06,
+     0,
+     -1.5
+    ],
+    [
+     61.06,
+     0,
+     -1.07
+    ],
+    [
+     61.06,
+     0,
+     -0.64
+    ],
+    [
+     61.06,
+     0,
+     -0.21
+    ],
+    [
+     61.06,
+     0,
+     0.22
+    ],
+    [
+     61.06,
+     0,
+     0.65
+    ],
+    [
+     61.06,
+     0,
+     1.08
+    ],
+    [
+     61.06,
+     0,
+     1.51
+    ],
+    [
+     61.48,
+     0,
+     -1.5
+    ],
+    [
+     61.48,
+     0,
+     -1.07
+    ],
+    [
+     61.48,
+     0,
+     -0.64
+    ],
+    [
+     61.48,
+     0,
+     -0.21
+    ],
+    [
+     61.48,
+     0,
+     0.22
+    ],
+    [
+     61.48,
+     0,
+     0.65
+    ],
+    [
+     61.48,
+     0,
+     1.08
+    ],
+    [
+     61.48,
+     0,
+     1.51
+    ],
+    [
+     61.9,
+     0,
+     -1.5
+    ],
+    [
+     61.9,
+     0,
+     -1.07
+    ],
+    [
+     61.9,
+     0,
+     -0.64
+    ],
+    [
+     61.9,
+     0,
+     -0.21
+    ],
+    [
+     61.9,
+     0,
+     0.22
+    ],
+    [
+     61.9,
+     0,
+     0.65
+    ],
+    [
+     61.9,
+     0,
+     1.08
+    ],
+    [
+     61.9,
+     0,
+     1.51
+    ],
+    [
+     62.32,
+     0,
+     -1.5
+    ],
+    [
+     62.32,
+     0,
+     -1.07
+    ],
+    [
+     62.32,
+     0,
+     -0.64
+    ],
+    [
+     62.32,
+     0,
+     -0.21
+    ],
+    [
+     62.32,
+     0,
+     0.22
+    ],
+    [
+     62.32,
+     0,
+     0.65
+    ],
+    [
+     62.32,
+     0,
+     1.08
+    ],
+    [
+     62.32,
+     0,
+     1.51
+    ]
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "cBaseHole",
+   "layer": "cBase",
+   "shape": "tube",
+   "size": [
+    0.18,
+    0.1,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.91,
+    0
+   ],
+   "at": [
+    [
+     57.65,
+     0,
+     -1.55
+    ],
+    [
+     62.35,
+     0,
+     -1.55
+    ],
+    [
+     57.65,
+     0,
+     1.55
+    ],
+    [
+     62.35,
+     0,
+     1.55
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "cSolA",
+   "layer": "cSol1",
+   "shape": "box",
+   "size": [
+    4.5,
+    0.03,
+    2.9
+   ],
+   "pos": [
+    60,
+    1.915,
+    0
+   ],
+   "mat": "solder"
+  },
+  {
+   "id": "cDbcCuB",
+   "layer": "cDbc",
+   "shape": "box",
+   "size": [
+    4.4,
+    0.04,
+    2.8
+   ],
+   "pos": [
+    60,
+    1.95,
+    0
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "cDbcCer",
+   "layer": "cDbc",
+   "shape": "box",
+   "size": [
+    4.6,
+    0.08,
+    3
+   ],
+   "pos": [
+    60,
+    2.01,
+    0
+   ],
+   "mat": "ceramic"
+  },
+  {
+   "id": "cTrace0",
+   "layer": "cDbc",
+   "shape": "box",
+   "size": [
+    1.35,
+    0.04,
+    2.6
+   ],
+   "pos": [
+    58.575,
+    2.07,
+    0
+   ],
+   "mat": "cuBright"
+  },
+  {
+   "id": "cTrace1",
+   "layer": "cDbc",
+   "shape": "box",
+   "size": [
+    1.3,
+    0.04,
+    2.6
+   ],
+   "pos": [
+    60,
+    2.07,
+    0
+   ],
+   "mat": "cuBright"
+  },
+  {
+   "id": "cTrace2",
+   "layer": "cDbc",
+   "shape": "box",
+   "size": [
+    1.35,
+    0.04,
+    2.6
+   ],
+   "pos": [
+    61.425,
+    2.07,
+    0
+   ],
+   "mat": "cuBright"
+  },
+  {
+   "id": "cTraceG",
+   "layer": "cDbc",
+   "shape": "box",
+   "size": [
+    4.2,
+    0.035,
+    0.09
+   ],
+   "pos": [
+    60,
+    2.068,
+    1.375
+   ],
+   "mat": "cuBright"
+  },
+  {
+   "id": "cDieB",
+   "layer": "cDie",
+   "shape": "box",
+   "size": [
+    0.62,
+    0.06,
+    0.62
+   ],
+   "pos": [
+    0,
+    2.125,
+    0
+   ],
+   "at": [
+    [
+     58.58,
+     0,
+     -0.6
+    ],
+    [
+     58.58,
+     0,
+     0.55
+    ],
+    [
+     60,
+     0,
+     -0.6
+    ],
+    [
+     60,
+     0,
+     0.55
+    ],
+    [
+     61.42,
+     0,
+     -0.6
+    ],
+    [
+     61.42,
+     0,
+     0.55
+    ]
+   ],
+   "mat": "sicDie"
+  },
+  {
+   "id": "cDieS",
+   "layer": "cDie",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.012,
+    0.36
+   ],
+   "pos": [
+    0,
+    2.16,
+    0
+   ],
+   "at": [
+    [
+     58.62,
+     0,
+     -0.65
+    ],
+    [
+     58.62,
+     0,
+     0.5
+    ],
+    [
+     60.04,
+     0,
+     -0.65
+    ],
+    [
+     60.04,
+     0,
+     0.5
+    ],
+    [
+     61.46,
+     0,
+     -0.65
+    ],
+    [
+     61.46,
+     0,
+     0.5
+    ]
+   ],
+   "mat": "solder"
+  },
+  {
+   "id": "cDieG",
+   "layer": "cDie",
+   "shape": "box",
+   "size": [
+    0.11,
+    0.014,
+    0.11
+   ],
+   "pos": [
+    0,
+    2.162,
+    0
+   ],
+   "at": [
+    [
+     58.38,
+     0,
+     -0.39
+    ],
+    [
+     58.38,
+     0,
+     0.76
+    ],
+    [
+     59.8,
+     0,
+     -0.39
+    ],
+    [
+     59.8,
+     0,
+     0.76
+    ],
+    [
+     61.22,
+     0,
+     -0.39
+    ],
+    [
+     61.22,
+     0,
+     0.76
+    ]
+   ],
+   "mat": "padGold"
+  },
+  {
+   "id": "cWireU",
+   "layer": "cWire",
+   "shape": "box",
+   "size": [
+    0.36,
+    0.025,
+    0.025
+   ],
+   "pos": [
+    0,
+    2.25,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    32
+   ],
+   "at": [
+    [
+     58.83,
+     0,
+     -0.74
+    ],
+    [
+     58.83,
+     0,
+     -0.62
+    ],
+    [
+     58.83,
+     0,
+     -0.5
+    ],
+    [
+     58.83,
+     0,
+     0.41
+    ],
+    [
+     58.83,
+     0,
+     0.53
+    ],
+    [
+     58.83,
+     0,
+     0.65
+    ],
+    [
+     60.25,
+     0,
+     -0.74
+    ],
+    [
+     60.25,
+     0,
+     -0.62
+    ],
+    [
+     60.25,
+     0,
+     -0.5
+    ],
+    [
+     60.25,
+     0,
+     0.41
+    ],
+    [
+     60.25,
+     0,
+     0.53
+    ],
+    [
+     60.25,
+     0,
+     0.65
+    ],
+    [
+     61.67,
+     0,
+     -0.74
+    ],
+    [
+     61.67,
+     0,
+     -0.62
+    ],
+    [
+     61.67,
+     0,
+     -0.5
+    ],
+    [
+     61.67,
+     0,
+     0.41
+    ],
+    [
+     61.67,
+     0,
+     0.53
+    ],
+    [
+     61.67,
+     0,
+     0.65
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cWireD",
+   "layer": "cWire",
+   "shape": "box",
+   "size": [
+    0.36,
+    0.025,
+    0.025
+   ],
+   "pos": [
+    0,
+    2.25,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    -32
+   ],
+   "at": [
+    [
+     59.13,
+     0,
+     -0.74
+    ],
+    [
+     59.13,
+     0,
+     -0.62
+    ],
+    [
+     59.13,
+     0,
+     -0.5
+    ],
+    [
+     59.13,
+     0,
+     0.41
+    ],
+    [
+     59.13,
+     0,
+     0.53
+    ],
+    [
+     59.13,
+     0,
+     0.65
+    ],
+    [
+     60.55,
+     0,
+     -0.74
+    ],
+    [
+     60.55,
+     0,
+     -0.62
+    ],
+    [
+     60.55,
+     0,
+     -0.5
+    ],
+    [
+     60.55,
+     0,
+     0.41
+    ],
+    [
+     60.55,
+     0,
+     0.53
+    ],
+    [
+     60.55,
+     0,
+     0.65
+    ],
+    [
+     61.97,
+     0,
+     -0.74
+    ],
+    [
+     61.97,
+     0,
+     -0.62
+    ],
+    [
+     61.97,
+     0,
+     -0.5
+    ],
+    [
+     61.97,
+     0,
+     0.41
+    ],
+    [
+     61.97,
+     0,
+     0.53
+    ],
+    [
+     61.97,
+     0,
+     0.65
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cCaseF",
+   "layer": "cCase",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.9,
+    0.15
+   ],
+   "pos": [
+    60,
+    2.35,
+    1.825
+   ],
+   "mat": "plasticD"
+  },
+  {
+   "id": "cCaseB",
+   "layer": "cCase",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.9,
+    0.15
+   ],
+   "pos": [
+    60,
+    2.35,
+    -1.825
+   ],
+   "mat": "plasticD"
+  },
+  {
+   "id": "cCaseL",
+   "layer": "cCase",
+   "shape": "box",
+   "size": [
+    0.15,
+    0.9,
+    3.6
+   ],
+   "pos": [
+    57.375,
+    2.35,
+    0
+   ],
+   "mat": "plasticD"
+  },
+  {
+   "id": "cCaseR",
+   "layer": "cCase",
+   "shape": "box",
+   "size": [
+    0.15,
+    0.9,
+    3.6
+   ],
+   "pos": [
+    62.625,
+    2.35,
+    0
+   ],
+   "mat": "plasticD"
+  },
+  {
+   "id": "cBoss",
+   "layer": "cCase",
+   "shape": "cyl",
+   "size": [
+    0.24,
+    0.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.35,
+    0
+   ],
+   "at": [
+    [
+     57.5,
+     0,
+     -1.7
+    ],
+    [
+     62.5,
+     0,
+     -1.7
+    ],
+    [
+     57.5,
+     0,
+     1.7
+    ],
+    [
+     62.5,
+     0,
+     1.7
+    ]
+   ],
+   "mat": "plasticD"
+  },
+  {
+   "id": "cBossH",
+   "layer": "cCase",
+   "shape": "tube",
+   "size": [
+    0.14,
+    0.07,
+    0.03
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.81,
+    0
+   ],
+   "at": [
+    [
+     57.5,
+     0,
+     -1.7
+    ],
+    [
+     62.5,
+     0,
+     -1.7
+    ],
+    [
+     57.5,
+     0,
+     1.7
+    ],
+    [
+     62.5,
+     0,
+     1.7
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cTerm",
+   "layer": "cCase",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.5,
+    0.06
+   ],
+   "pos": [
+    0,
+    3.05,
+    0
+   ],
+   "at": [
+    [
+     57.75,
+     0,
+     -0.6
+    ],
+    [
+     57.75,
+     0,
+     0.6
+    ],
+    [
+     62.25,
+     0,
+     -0.9
+    ],
+    [
+     62.25,
+     0,
+     0
+    ],
+    [
+     62.25,
+     0,
+     0.9
+    ]
+   ],
+   "mat": "cuBright"
+  },
+  {
+   "id": "cTermH",
+   "layer": "cCase",
+   "shape": "tube",
+   "size": [
+    0.12,
+    0.06,
+    0.08
+   ],
+   "pos": [
+    0,
+    3.13,
+    0
+   ],
+   "at": [
+    [
+     57.75,
+     0,
+     -0.6
+    ],
+    [
+     57.75,
+     0,
+     0.6
+    ],
+    [
+     62.25,
+     0,
+     -0.9
+    ],
+    [
+     62.25,
+     0,
+     0
+    ],
+    [
+     62.25,
+     0,
+     0.9
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "cGelB",
+   "layer": "cGel",
+   "shape": "box",
+   "size": [
+    4.9,
+    0.46,
+    3.3
+   ],
+   "pos": [
+    60,
+    2.32,
+    0
+   ],
+   "mat": "gel"
+  },
+  {
+   "id": "cLidP",
+   "layer": "cLid",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.1,
+    3.8
+   ],
+   "pos": [
+    60,
+    2.85,
+    0
+   ],
+   "mat": "plasticD"
+  },
+  {
+   "id": "cLidPlate",
+   "layer": "cLid",
+   "shape": "box",
+   "size": [
+    2.4,
+    0.02,
+    1
+   ],
+   "pos": [
+    60,
+    2.91,
+    0
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "cLidPlate2",
+   "layer": "cLid",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.005,
+    0.25
+   ],
+   "pos": [
+    59.8,
+    2.923,
+    -0.025
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cLidScrew",
+   "layer": "cLid",
+   "shape": "cyl",
+   "size": [
+    0.11,
+    0.05
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.93,
+    0
+   ],
+   "at": [
+    [
+     57.5,
+     0,
+     -1.7
+    ],
+    [
+     62.5,
+     0,
+     -1.7
+    ],
+    [
+     57.5,
+     0,
+     1.7
+    ],
+    [
+     62.5,
+     0,
+     1.7
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cLidSlot",
+   "layer": "cLid",
+   "shape": "box",
+   "size": [
+    0.16,
+    0.02,
+    0.03
+   ],
+   "pos": [
+    0,
+    2.96,
+    0
+   ],
+   "at": [
+    [
+     57.5,
+     0,
+     -1.7
+    ],
+    [
+     62.5,
+     0,
+     -1.7
+    ],
+    [
+     57.5,
+     0,
+     1.7
+    ],
+    [
+     62.5,
+     0,
+     1.7
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "cBatBox",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    5.6,
+    1.6,
+    4.4
+   ],
+   "pos": [
+    51,
+    0.8,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "cBatLip",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    5.8,
+    0.12,
+    4.6
+   ],
+   "pos": [
+    51,
+    1.56,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cBatMod",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    1.22,
+    0.3,
+    1.8
+   ],
+   "pos": [
+    0,
+    1.77,
+    0
+   ],
+   "at": [
+    [
+     48.95,
+     0,
+     -1
+    ],
+    [
+     48.95,
+     0,
+     1
+    ],
+    [
+     50.32,
+     0,
+     -1
+    ],
+    [
+     50.32,
+     0,
+     1
+    ],
+    [
+     51.69,
+     0,
+     -1
+    ],
+    [
+     51.69,
+     0,
+     1
+    ],
+    [
+     53.06,
+     0,
+     -1
+    ],
+    [
+     53.06,
+     0,
+     1
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cBatModT",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    1,
+    0.02,
+    0.3
+   ],
+   "pos": [
+    0,
+    1.93,
+    0
+   ],
+   "at": [
+    [
+     48.95,
+     0,
+     -1
+    ],
+    [
+     48.95,
+     0,
+     1
+    ],
+    [
+     50.32,
+     0,
+     -1
+    ],
+    [
+     50.32,
+     0,
+     1
+    ],
+    [
+     51.69,
+     0,
+     -1
+    ],
+    [
+     51.69,
+     0,
+     1
+    ],
+    [
+     53.06,
+     0,
+     -1
+    ],
+    [
+     53.06,
+     0,
+     1
+    ]
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "cBatBus",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.05,
+    0.16
+   ],
+   "pos": [
+    0,
+    1.95,
+    0
+   ],
+   "at": [
+    [
+     49.55,
+     0,
+     -1
+    ],
+    [
+     49.55,
+     0,
+     1
+    ],
+    [
+     50.92,
+     0,
+     -1
+    ],
+    [
+     50.92,
+     0,
+     1
+    ],
+    [
+     52.29,
+     0,
+     -1
+    ],
+    [
+     52.29,
+     0,
+     1
+    ],
+    [
+     53.66,
+     0,
+     -1
+    ],
+    [
+     53.66,
+     0,
+     1
+    ]
+   ],
+   "mat": "cuBright"
+  },
+  {
+   "id": "cBatCool",
+   "layer": "cBat",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    5.4
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    51,
+    0.6,
+    2.28
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0.45,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cBatConn",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.5,
+    1.4
+   ],
+   "pos": [
+    54,
+    1.15,
+    0
+   ],
+   "mat": "hv"
+  },
+  {
+   "id": "cHvA",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    2.8,
+    0.16,
+    0.16
+   ],
+   "pos": [
+    55.6,
+    1.18,
+    -0.6
+   ],
+   "mat": "hv"
+  },
+  {
+   "id": "cHvB",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    2.8,
+    0.16,
+    0.16
+   ],
+   "pos": [
+    55.6,
+    1.18,
+    0.6
+   ],
+   "mat": "hv"
+  },
+  {
+   "id": "cHvUpA",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    0.16,
+    1.95,
+    0.16
+   ],
+   "pos": [
+    57.08,
+    2.075,
+    -0.6
+   ],
+   "mat": "hv"
+  },
+  {
+   "id": "cHvUpB",
+   "layer": "cBat",
+   "shape": "box",
+   "size": [
+    0.16,
+    1.95,
+    0.16
+   ],
+   "pos": [
+    57.08,
+    2.075,
+    0.6
+   ],
+   "mat": "hv"
+  },
+  {
+   "id": "cMotFoot",
+   "layer": "cMot",
+   "shape": "box",
+   "size": [
+    3.2,
+    0.4,
+    3.2
+   ],
+   "pos": [
+    68.6,
+    0.2,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cMotBody",
+   "layer": "cMot",
+   "shape": "cyl",
+   "size": [
+    1.6,
+    3.2
+   ],
+   "pos": [
+    68.6,
+    2,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cMotFin",
+   "layer": "cMot",
+   "shape": "tube",
+   "size": [
+    1.78,
+    1.6,
+    0.08
+   ],
+   "pos": [
+    68.6,
+    2,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -1.4
+    ],
+    [
+     0,
+     0,
+     -1.12
+    ],
+    [
+     0,
+     0,
+     -0.84
+    ],
+    [
+     0,
+     0,
+     -0.56
+    ],
+    [
+     0,
+     0,
+     -0.28
+    ],
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0.28
+    ],
+    [
+     0,
+     0,
+     0.56
+    ],
+    [
+     0,
+     0,
+     0.84
+    ],
+    [
+     0,
+     0,
+     1.12
+    ],
+    [
+     0,
+     0,
+     1.4
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cMotCap",
+   "layer": "cMot",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.2
+   ],
+   "pos": [
+    68.6,
+    2,
+    1.7
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cMotCapBolt",
+   "layer": "cMot",
+   "shape": "cyl",
+   "size": [
+    0.07,
+    0.06
+   ],
+   "pos": [
+    0,
+    0,
+    1.82
+   ],
+   "at": [
+    [
+     69.85,
+     2,
+     0
+    ],
+    [
+     69.225,
+     3.083,
+     0
+    ],
+    [
+     67.975,
+     3.083,
+     0
+    ],
+    [
+     67.35,
+     2,
+     0
+    ],
+    [
+     67.975,
+     0.917,
+     0
+    ],
+    [
+     69.225,
+     0.917,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "cMotShaft",
+   "layer": "cShaft",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    1
+   ],
+   "pos": [
+    68.6,
+    2,
+    2.3
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "cMotKey",
+   "layer": "cShaft",
+   "shape": "box",
+   "size": [
+    0.1,
+    0.06,
+    0.75
+   ],
+   "pos": [
+    68.6,
+    2.23,
+    2.375
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "cMotJbox",
+   "layer": "cMot",
+   "shape": "box",
+   "size": [
+    1.4,
+    0.6,
+    1.4
+   ],
+   "pos": [
+    68.6,
+    3.8,
+    0
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "cPhu",
+   "layer": "cMot",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.12,
+    0.14
+   ],
+   "pos": [
+    65.2,
+    3.31,
+    -0.9
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "cPhv",
+   "layer": "cMot",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.12,
+    0.14
+   ],
+   "pos": [
+    65.2,
+    3.31,
+    0
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "cPhw",
+   "layer": "cMot",
+   "shape": "box",
+   "size": [
+    5.4,
+    0.12,
+    0.14
+   ],
+   "pos": [
+    65.2,
+    3.31,
+    0.9
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "cPhDown",
+   "layer": "cMot",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.45,
+    2
+   ],
+   "pos": [
+    67.83,
+    3.475,
+    0
+   ],
+   "mat": "rubber"
+  },
+  {
+   "id": "dPlPl",
+   "layer": "dPl",
+   "shape": "box",
+   "size": [
+    11,
+    0.8,
+    5.6
+   ],
+   "pos": [
+    90,
+    0.4,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "dPlPlT",
+   "layer": "dPl",
+   "shape": "box",
+   "size": [
+    11,
+    0.05,
+    5.6
+   ],
+   "pos": [
+    90,
+    0.825,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "dPlKick",
+   "layer": "dPl",
+   "shape": "box",
+   "size": [
+    11.1,
+    0.12,
+    5.7
+   ],
+   "pos": [
+    90,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "dPlBolt",
+   "layer": "dPl",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.87,
+    0
+   ],
+   "at": [
+    [
+     84.8,
+     0,
+     -2.5
+    ],
+    [
+     95.2,
+     0,
+     -2.5
+    ],
+    [
+     84.8,
+     0,
+     2.5
+    ],
+    [
+     95.2,
+     0,
+     2.5
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "dSbBot",
+   "layer": "dShellB",
+   "shape": "box",
+   "size": [
+    3.4,
+    0.1,
+    3.4
+   ],
+   "pos": [
+    88,
+    0.9,
+    0
+   ],
+   "mat": "plasticW"
+  },
+  {
+   "id": "dSbF",
+   "layer": "dShellB",
+   "shape": "box",
+   "size": [
+    3.4,
+    1,
+    0.08
+   ],
+   "pos": [
+    88,
+    1.45,
+    1.66
+   ],
+   "mat": "plasticW"
+  },
+  {
+   "id": "dSbBk",
+   "layer": "dShellB",
+   "shape": "box",
+   "size": [
+    3.4,
+    1,
+    0.08
+   ],
+   "pos": [
+    88,
+    1.45,
+    -1.66
+   ],
+   "mat": "plasticW"
+  },
+  {
+   "id": "dSbL",
+   "layer": "dShellB",
+   "shape": "box",
+   "size": [
+    0.08,
+    1,
+    3.24
+   ],
+   "pos": [
+    86.34,
+    1.45,
+    0
+   ],
+   "mat": "plasticW"
+  },
+  {
+   "id": "dSbR",
+   "layer": "dShellB",
+   "shape": "box",
+   "size": [
+    0.08,
+    1,
+    3.24
+   ],
+   "pos": [
+    89.66,
+    1.45,
+    0
+   ],
+   "mat": "plasticW"
+  },
+  {
+   "id": "dProng",
+   "layer": "dShellB",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.5,
+    0.9
+   ],
+   "pos": [
+    0,
+    1.4,
+    -2.15
+   ],
+   "at": [
+    [
+     87.55,
+     0,
+     0
+    ],
+    [
+     88.45,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dUsbHole",
+   "layer": "dShellB",
+   "shape": "box",
+   "size": [
+    1,
+    0.24,
+    0.02
+   ],
+   "pos": [
+    88,
+    1.39,
+    1.71
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "dPcbB",
+   "layer": "dPcb",
+   "shape": "box",
+   "size": [
+    3,
+    0.08,
+    3
+   ],
+   "pos": [
+    88,
+    1.09,
+    0
+   ],
+   "mat": "pcb"
+  },
+  {
+   "id": "dVia",
+   "layer": "dPcb",
+   "shape": "cyl",
+   "size": [
+    0.035,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.135,
+    0
+   ],
+   "at": [
+    [
+     86.7,
+     0,
+     -1.3
+    ],
+    [
+     86.7,
+     0,
+     0.02
+    ],
+    [
+     86.7,
+     0,
+     1.34
+    ],
+    [
+     87.03,
+     0,
+     -0.97
+    ],
+    [
+     87.03,
+     0,
+     0.35
+    ],
+    [
+     87.36,
+     0,
+     -0.64
+    ],
+    [
+     87.36,
+     0,
+     0.68
+    ],
+    [
+     87.69,
+     0,
+     -0.31
+    ],
+    [
+     87.69,
+     0,
+     1.01
+    ],
+    [
+     88.02,
+     0,
+     -1.3
+    ],
+    [
+     88.02,
+     0,
+     0.02
+    ],
+    [
+     88.02,
+     0,
+     1.34
+    ],
+    [
+     88.35,
+     0,
+     -0.97
+    ],
+    [
+     88.35,
+     0,
+     0.35
+    ],
+    [
+     88.68,
+     0,
+     -0.64
+    ],
+    [
+     88.68,
+     0,
+     0.68
+    ],
+    [
+     89.01,
+     0,
+     -0.31
+    ],
+    [
+     89.01,
+     0,
+     1.01
+    ],
+    [
+     89.34,
+     0,
+     -1.3
+    ],
+    [
+     89.34,
+     0,
+     0.02
+    ],
+    [
+     89.34,
+     0,
+     1.34
+    ]
+   ],
+   "mat": "padGold"
+  },
+  {
+   "id": "dTr",
+   "layer": "dPcb",
+   "shape": "box",
+   "size": [
+    0.03,
+    0.008,
+    1.9
+   ],
+   "pos": [
+    0,
+    1.134,
+    0.1
+   ],
+   "at": [
+    [
+     87.85,
+     0,
+     0
+    ],
+    [
+     87.97,
+     0,
+     0
+    ],
+    [
+     88.09,
+     0,
+     0
+    ],
+    [
+     88.21,
+     0,
+     0
+    ],
+    [
+     88.33,
+     0,
+     0
+    ],
+    [
+     88.45,
+     0,
+     0
+    ],
+    [
+     88.57,
+     0,
+     0
+    ]
+   ],
+   "mat": "padGold"
+  },
+  {
+   "id": "dTrX",
+   "layer": "dPcb",
+   "shape": "box",
+   "size": [
+    1.4,
+    0.008,
+    0.03
+   ],
+   "pos": [
+    87.4,
+    1.134,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     -0.2
+    ],
+    [
+     0,
+     0,
+     -0.08
+    ],
+    [
+     0,
+     0,
+     0.04
+    ]
+   ],
+   "mat": "padGold"
+  },
+  {
+   "id": "dGanB",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.09,
+    0.7
+   ],
+   "pos": [
+    87.4,
+    1.175,
+    -0.6
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "dGanT",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.66,
+    0.005,
+    0.66
+   ],
+   "pos": [
+    87.4,
+    1.223,
+    -0.6
+   ],
+   "mat": "chipTop"
+  },
+  {
+   "id": "dGanPad",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.03,
+    0.06
+   ],
+   "pos": [
+    0,
+    1.145,
+    0
+   ],
+   "at": [
+    [
+     87.13,
+     0,
+     -0.97
+    ],
+    [
+     87.13,
+     0,
+     -0.23
+    ],
+    [
+     87.03,
+     0,
+     -0.87
+    ],
+    [
+     87.77,
+     0,
+     -0.87
+    ],
+    [
+     87.238,
+     0,
+     -0.97
+    ],
+    [
+     87.238,
+     0,
+     -0.23
+    ],
+    [
+     87.03,
+     0,
+     -0.762
+    ],
+    [
+     87.77,
+     0,
+     -0.762
+    ],
+    [
+     87.346,
+     0,
+     -0.97
+    ],
+    [
+     87.346,
+     0,
+     -0.23
+    ],
+    [
+     87.03,
+     0,
+     -0.654
+    ],
+    [
+     87.77,
+     0,
+     -0.654
+    ],
+    [
+     87.454,
+     0,
+     -0.97
+    ],
+    [
+     87.454,
+     0,
+     -0.23
+    ],
+    [
+     87.03,
+     0,
+     -0.546
+    ],
+    [
+     87.77,
+     0,
+     -0.546
+    ],
+    [
+     87.562,
+     0,
+     -0.97
+    ],
+    [
+     87.562,
+     0,
+     -0.23
+    ],
+    [
+     87.03,
+     0,
+     -0.438
+    ],
+    [
+     87.77,
+     0,
+     -0.438
+    ],
+    [
+     87.67,
+     0,
+     -0.97
+    ],
+    [
+     87.67,
+     0,
+     -0.23
+    ],
+    [
+     87.03,
+     0,
+     -0.33
+    ],
+    [
+     87.77,
+     0,
+     -0.33
+    ]
+   ],
+   "mat": "padGold"
+  },
+  {
+   "id": "dGanDot",
+   "layer": "dParts",
+   "shape": "cyl",
+   "size": [
+    0.04,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    87.16,
+    1.23,
+    -0.84
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "dIcB",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.18,
+    0.48
+   ],
+   "pos": [
+    88.8,
+    1.28,
+    -0.95
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "dIcT",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.552,
+    0.006,
+    0.432
+   ],
+   "pos": [
+    88.8,
+    1.373,
+    -0.95
+   ],
+   "mat": "chipTop"
+  },
+  {
+   "id": "dIcLeg",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.036,
+    0.168
+   ],
+   "pos": [
+    0,
+    1.166,
+    0
+   ],
+   "at": [
+    [
+     88.584,
+     0,
+     -1.262
+    ],
+    [
+     88.584,
+     0,
+     -0.638
+    ],
+    [
+     88.728,
+     0,
+     -1.262
+    ],
+    [
+     88.728,
+     0,
+     -0.638
+    ],
+    [
+     88.872,
+     0,
+     -1.262
+    ],
+    [
+     88.872,
+     0,
+     -0.638
+    ],
+    [
+     89.016,
+     0,
+     -1.262
+    ],
+    [
+     89.016,
+     0,
+     -0.638
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dIcLegU",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.12,
+    0.036
+   ],
+   "pos": [
+    0,
+    1.226,
+    0
+   ],
+   "at": [
+    [
+     88.584,
+     0,
+     -1.19
+    ],
+    [
+     88.584,
+     0,
+     -0.71
+    ],
+    [
+     88.728,
+     0,
+     -1.19
+    ],
+    [
+     88.728,
+     0,
+     -0.71
+    ],
+    [
+     88.872,
+     0,
+     -1.19
+    ],
+    [
+     88.872,
+     0,
+     -0.71
+    ],
+    [
+     89.016,
+     0,
+     -1.19
+    ],
+    [
+     89.016,
+     0,
+     -0.71
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dIcDot",
+   "layer": "dParts",
+   "shape": "cyl",
+   "size": [
+    0.036,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    88.596,
+    1.382,
+    -1.094
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "dCoreL",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.75,
+    0.6
+   ],
+   "pos": [
+    88.13,
+    1.505,
+    0.45
+   ],
+   "mat": "ferrite"
+  },
+  {
+   "id": "dCoreM",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.75,
+    0.6
+   ],
+   "pos": [
+    88.55,
+    1.505,
+    0.45
+   ],
+   "mat": "ferrite"
+  },
+  {
+   "id": "dCoreR",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.75,
+    0.6
+   ],
+   "pos": [
+    88.97,
+    1.505,
+    0.45
+   ],
+   "mat": "ferrite"
+  },
+  {
+   "id": "dCoreT",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    1.04,
+    0.11,
+    0.6
+   ],
+   "pos": [
+    88.55,
+    1.935,
+    0.45
+   ],
+   "mat": "ferrite"
+  },
+  {
+   "id": "dCoreB",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    1.04,
+    0.06,
+    0.64
+   ],
+   "pos": [
+    88.55,
+    1.16,
+    0.45
+   ],
+   "mat": "ferrite"
+  },
+  {
+   "id": "dBobbin",
+   "layer": "dParts",
+   "shape": "tube",
+   "size": [
+    0.3,
+    0.16,
+    0.64
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    88.55,
+    1.53,
+    0.45
+   ],
+   "mat": "white"
+  },
+  {
+   "id": "dWind",
+   "layer": "dParts",
+   "shape": "tube",
+   "size": [
+    0.33,
+    0.2,
+    0.06
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    88.55,
+    0,
+    0.45
+   ],
+   "at": [
+    [
+     0,
+     1.27,
+     0
+    ],
+    [
+     0,
+     1.34,
+     0
+    ],
+    [
+     0,
+     1.41,
+     0
+    ],
+    [
+     0,
+     1.48,
+     0
+    ],
+    [
+     0,
+     1.55,
+     0
+    ],
+    [
+     0,
+     1.62,
+     0
+    ],
+    [
+     0,
+     1.69,
+     0
+    ],
+    [
+     0,
+     1.76,
+     0
+    ]
+   ],
+   "mat": "cuBright"
+  },
+  {
+   "id": "dCap",
+   "layer": "dParts",
+   "shape": "cyl",
+   "size": [
+    0.28,
+    0.95
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.605,
+    0
+   ],
+   "at": [
+    [
+     87.05,
+     0,
+     0.7
+    ],
+    [
+     87.7,
+     0,
+     1
+    ]
+   ],
+   "mat": "capB"
+  },
+  {
+   "id": "dCapTop",
+   "layer": "dParts",
+   "shape": "cyl",
+   "size": [
+    0.27,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.09,
+    0
+   ],
+   "at": [
+    [
+     87.05,
+     0,
+     0.7
+    ],
+    [
+     87.7,
+     0,
+     1
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dCapX",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.36,
+    0.01,
+    0.03
+   ],
+   "pos": [
+    0,
+    2.105,
+    0
+   ],
+   "at": [
+    [
+     87.05,
+     0,
+     0.7
+    ],
+    [
+     87.7,
+     0,
+     1
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "dMlcc",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.06,
+    0.07
+   ],
+   "pos": [
+    0,
+    1.16,
+    0
+   ],
+   "at": [
+    [
+     86.8,
+     0,
+     -1.25
+    ],
+    [
+     86.98,
+     0,
+     -1.25
+    ],
+    [
+     87.16,
+     0,
+     -1.25
+    ],
+    [
+     87.34,
+     0,
+     -1.25
+    ],
+    [
+     87.52,
+     0,
+     -1.25
+    ],
+    [
+     87.7,
+     0,
+     -1.25
+    ]
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "dUsb",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.3,
+    0.58
+   ],
+   "pos": [
+    88,
+    1.28,
+    1.29
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "dUsbTongue",
+   "layer": "dParts",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.06,
+    0.3
+   ],
+   "pos": [
+    88,
+    1.28,
+    1.45
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "dStTop",
+   "layer": "dShellT",
+   "shape": "box",
+   "size": [
+    3.44,
+    0.12,
+    3.44
+   ],
+   "pos": [
+    88,
+    2.01,
+    0
+   ],
+   "mat": "plasticW"
+  },
+  {
+   "id": "dStRim",
+   "layer": "dShellT",
+   "shape": "box",
+   "size": [
+    3.2,
+    0.06,
+    3.2
+   ],
+   "pos": [
+    88,
+    1.92,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "dStLogo",
+   "layer": "dShellT",
+   "shape": "box",
+   "size": [
+    1.2,
+    0.01,
+    0.3
+   ],
+   "pos": [
+    88,
+    2.075,
+    0
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "dGhostB",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    4.9,
+    2.4,
+    3.7
+   ],
+   "pos": [
+    93,
+    2.05,
+    0
+   ],
+   "mat": "ghost"
+  },
+  {
+   "id": "dGe_x0_8500000000000001_1_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    4.9,
+    0.1,
+    0.1
+   ],
+   "pos": [
+    93,
+    0.85,
+    -1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "dGe_x0_85000000000000011_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    4.9,
+    0.1,
+    0.1
+   ],
+   "pos": [
+    93,
+    0.85,
+    1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "dGe_x3_25_1_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    4.9,
+    0.1,
+    0.1
+   ],
+   "pos": [
+    93,
+    3.25,
+    -1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "dGe_x3_251_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    4.9,
+    0.1,
+    0.1
+   ],
+   "pos": [
+    93,
+    3.25,
+    1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "dGe_y90_55_1_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    0.1,
+    2.4,
+    0.1
+   ],
+   "pos": [
+    90.55,
+    2.05,
+    -1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "dGe_y90_551_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    0.1,
+    2.4,
+    0.1
+   ],
+   "pos": [
+    90.55,
+    2.05,
+    1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "dGe_y95_45_1_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    0.1,
+    2.4,
+    0.1
+   ],
+   "pos": [
+    95.45,
+    2.05,
+    -1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "dGe_y95_451_85",
+   "layer": "dGhost",
+   "shape": "box",
+   "size": [
+    0.1,
+    2.4,
+    0.1
+   ],
+   "pos": [
+    95.45,
+    2.05,
+    1.85
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "ePlPl",
+   "layer": "ePl",
+   "shape": "box",
+   "size": [
+    8.4,
+    0.9,
+    6.6
+   ],
+   "pos": [
+    120,
+    0.45,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "ePlPlT",
+   "layer": "ePl",
+   "shape": "box",
+   "size": [
+    8.4,
+    0.05,
+    6.6
+   ],
+   "pos": [
+    120,
+    0.925,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "ePlKick",
+   "layer": "ePl",
+   "shape": "box",
+   "size": [
+    8.5,
+    0.12,
+    6.7
+   ],
+   "pos": [
+    120,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "ePlBolt",
+   "layer": "ePl",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.97,
+    0
+   ],
+   "at": [
+    [
+     116.1,
+     0,
+     -3
+    ],
+    [
+     123.9,
+     0,
+     -3
+    ],
+    [
+     116.1,
+     0,
+     3
+    ],
+    [
+     123.9,
+     0,
+     3
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eBaseF",
+   "layer": "eBase",
+   "shape": "cyl",
+   "size": [
+    3,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    1.1,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "eBaseBolt",
+   "layer": "eBase",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.29,
+    0
+   ],
+   "at": [
+    [
+     122.85,
+     0,
+     0
+    ],
+    [
+     122.633,
+     0,
+     1.091
+    ],
+    [
+     122.015,
+     0,
+     2.015
+    ],
+    [
+     121.091,
+     0,
+     2.633
+    ],
+    [
+     120,
+     0,
+     2.85
+    ],
+    [
+     118.909,
+     0,
+     2.633
+    ],
+    [
+     117.985,
+     0,
+     2.015
+    ],
+    [
+     117.367,
+     0,
+     1.091
+    ],
+    [
+     117.15,
+     0,
+     0
+    ],
+    [
+     117.367,
+     0,
+     -1.091
+    ],
+    [
+     117.985,
+     0,
+     -2.015
+    ],
+    [
+     118.909,
+     0,
+     -2.633
+    ],
+    [
+     120,
+     0,
+     -2.85
+    ],
+    [
+     121.091,
+     0,
+     -2.633
+    ],
+    [
+     122.015,
+     0,
+     -2.015
+    ],
+    [
+     122.633,
+     0,
+     -1.091
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eBaseLeg",
+   "layer": "eBase",
+   "shape": "cyl",
+   "size": [
+    0.35,
+    0.55
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.55,
+    0
+   ],
+   "at": [
+    [
+     120,
+     0,
+     0
+    ],
+    [
+     120,
+     0,
+     0
+    ],
+    [
+     120,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "eVacPort",
+   "layer": "eBase",
+   "shape": "box",
+   "size": [
+    1.3,
+    0.23,
+    0.5
+   ],
+   "pos": [
+    123.25,
+    1.115,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eBellW",
+   "layer": "eBell",
+   "shape": "tube",
+   "size": [
+    2.8,
+    2.66,
+    6.68
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    4.61,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "eBellTop",
+   "layer": "eBell",
+   "shape": "cyl",
+   "size": [
+    2.85,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    8.1,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "eBellFl",
+   "layer": "eBell",
+   "shape": "tube",
+   "size": [
+    3,
+    2.66,
+    0.23
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    1.385,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eBellFlBolt",
+   "layer": "eBell",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.55,
+    0
+   ],
+   "at": [
+    [
+     122.88,
+     0,
+     0
+    ],
+    [
+     122.661,
+     0,
+     1.102
+    ],
+    [
+     122.036,
+     0,
+     2.036
+    ],
+    [
+     121.102,
+     0,
+     2.661
+    ],
+    [
+     120,
+     0,
+     2.88
+    ],
+    [
+     118.898,
+     0,
+     2.661
+    ],
+    [
+     117.964,
+     0,
+     2.036
+    ],
+    [
+     117.339,
+     0,
+     1.102
+    ],
+    [
+     117.12,
+     0,
+     0
+    ],
+    [
+     117.339,
+     0,
+     -1.102
+    ],
+    [
+     117.964,
+     0,
+     -2.036
+    ],
+    [
+     118.898,
+     0,
+     -2.661
+    ],
+    [
+     120,
+     0,
+     -2.88
+    ],
+    [
+     121.102,
+     0,
+     -2.661
+    ],
+    [
+     122.036,
+     0,
+     -2.036
+    ],
+    [
+     122.661,
+     0,
+     -1.102
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eWinF",
+   "layer": "eBell",
+   "shape": "tube",
+   "size": [
+    0.55,
+    0.38,
+    0.14
+   ],
+   "pos": [
+    120,
+    4.35,
+    2.82
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eWinG",
+   "layer": "eBell",
+   "shape": "cyl",
+   "size": [
+    0.38,
+    0.04
+   ],
+   "pos": [
+    120,
+    4.35,
+    2.8
+   ],
+   "mat": "glass"
+  },
+  {
+   "id": "eWinBolt",
+   "layer": "eBell",
+   "shape": "cyl",
+   "size": [
+    0.04,
+    0.05
+   ],
+   "pos": [
+    0,
+    0,
+    2.9
+   ],
+   "at": [
+    [
+     120.47,
+     4.35,
+     0
+    ],
+    [
+     120.235,
+     4.757,
+     0
+    ],
+    [
+     119.765,
+     4.757,
+     0
+    ],
+    [
+     119.53,
+     4.35,
+     0
+    ],
+    [
+     119.765,
+     3.943,
+     0
+    ],
+    [
+     120.235,
+     3.943,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eWater",
+   "layer": "eBell",
+   "shape": "cyl",
+   "size": [
+    0.12,
+    6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    4.65,
+    0
+   ],
+   "at": [
+    [
+     117.05,
+     0,
+     -0.8
+    ],
+    [
+     117.05,
+     0,
+     0.8
+    ]
+   ],
+   "mat": "capB"
+  },
+  {
+   "id": "eWaterElb",
+   "layer": "eBell",
+   "shape": "sphere",
+   "size": [
+    0.15
+   ],
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "at": [
+    [
+     117.05,
+     7.65,
+     -0.8
+    ],
+    [
+     117.05,
+     7.65,
+     0.8
+    ],
+    [
+     117.05,
+     1.65,
+     -0.8
+    ],
+    [
+     117.05,
+     1.65,
+     0.8
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "eBellPlate",
+   "layer": "eBell",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.5,
+    0.16
+   ],
+   "pos": [
+    120,
+    6.8,
+    2.74
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "eBellLamp",
+   "layer": "eBell",
+   "shape": "cyl",
+   "size": [
+    0.09,
+    0.05
+   ],
+   "pos": [
+    0,
+    6.8,
+    2.84
+   ],
+   "at": [
+    [
+     120.5,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampG"
+  },
+  {
+   "id": "eCoilT",
+   "layer": "eCoil",
+   "shape": "tube",
+   "size": [
+    2.25,
+    2.05,
+    0.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    0,
+    0
+   ],
+   "at": [
+    [
+     0,
+     2.15,
+     0
+    ],
+    [
+     0,
+     2.63,
+     0
+    ],
+    [
+     0,
+     3.11,
+     0
+    ],
+    [
+     0,
+     3.59,
+     0
+    ],
+    [
+     0,
+     4.07,
+     0
+    ],
+    [
+     0,
+     4.55,
+     0
+    ],
+    [
+     0,
+     5.03,
+     0
+    ],
+    [
+     0,
+     5.51,
+     0
+    ],
+    [
+     0,
+     5.99,
+     0
+    ]
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "eCoilTie",
+   "layer": "eCoil",
+   "shape": "box",
+   "size": [
+    0.12,
+    4.14,
+    0.14
+   ],
+   "pos": [
+    0,
+    4.07,
+    0
+   ],
+   "at": [
+    [
+     121.612,
+     0,
+     1.612
+    ],
+    [
+     118.388,
+     0,
+     1.612
+    ],
+    [
+     118.388,
+     0,
+     -1.612
+    ],
+    [
+     121.612,
+     0,
+     -1.612
+    ]
+   ],
+   "mat": "ceramic"
+  },
+  {
+   "id": "eCoilLeadA",
+   "layer": "eCoil",
+   "shape": "box",
+   "size": [
+    1.5,
+    0.2,
+    0.2
+   ],
+   "pos": [
+    122.85,
+    2.15,
+    -0.25
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "eCoilLeadB",
+   "layer": "eCoil",
+   "shape": "box",
+   "size": [
+    1.5,
+    0.2,
+    0.2
+   ],
+   "pos": [
+    122.85,
+    6.05,
+    -0.25
+   ],
+   "mat": "cu"
+  },
+  {
+   "id": "eCoilJack",
+   "layer": "eCoil",
+   "shape": "box",
+   "size": [
+    0.4,
+    4.5,
+    0.5
+   ],
+   "pos": [
+    123.8,
+    4.1,
+    -0.25
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "eQtzT",
+   "layer": "eQtz",
+   "shape": "tube",
+   "size": [
+    1.88,
+    1.78,
+    5.8
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    4.35,
+    0
+   ],
+   "mat": "glass"
+  },
+  {
+   "id": "eQtzRim",
+   "layer": "eQtz",
+   "shape": "tube",
+   "size": [
+    1.95,
+    1.78,
+    0.15
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    7.225,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "eFeltT",
+   "layer": "eFelt",
+   "shape": "tube",
+   "size": [
+    1.68,
+    1.24,
+    4.7
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    4.1,
+    0
+   ],
+   "mat": "felt"
+  },
+  {
+   "id": "eFeltTop",
+   "layer": "eFelt",
+   "shape": "tube",
+   "size": [
+    1.68,
+    0.35,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    6.6,
+    0
+   ],
+   "mat": "felt"
+  },
+  {
+   "id": "eCruW",
+   "layer": "eCru",
+   "shape": "tube",
+   "size": [
+    1.15,
+    0.95,
+    3.6
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    3.75,
+    0
+   ],
+   "mat": "graphite"
+  },
+  {
+   "id": "eCruB",
+   "layer": "eCru",
+   "shape": "cyl",
+   "size": [
+    1.15,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    1.9,
+    0
+   ],
+   "mat": "graphite"
+  },
+  {
+   "id": "eCruThread",
+   "layer": "eCru",
+   "shape": "tube",
+   "size": [
+    1.17,
+    1.1,
+    0.03
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    0,
+    0
+   ],
+   "at": [
+    [
+     0,
+     5.3,
+     0
+    ],
+    [
+     0,
+     5.37,
+     0
+    ],
+    [
+     0,
+     5.44,
+     0
+    ],
+    [
+     0,
+     5.51,
+     0
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "ePowB",
+   "layer": "ePow",
+   "shape": "cyl",
+   "size": [
+    0.94,
+    0.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    2.4,
+    0
+   ],
+   "mat": "powder"
+  },
+  {
+   "id": "ePowG",
+   "layer": "ePow",
+   "shape": "sphere",
+   "size": [
+    0.07
+   ],
+   "pos": [
+    0,
+    2.87,
+    0
+   ],
+   "at": [
+    [
+     120.09,
+     0,
+     0
+    ],
+    [
+     119.885,
+     0,
+     0.105
+    ],
+    [
+     120.018,
+     0,
+     -0.2
+    ],
+    [
+     120.144,
+     0,
+     0.188
+    ],
+    [
+     119.735,
+     0,
+     -0.047
+    ],
+    [
+     120.251,
+     0,
+     -0.16
+    ],
+    [
+     119.916,
+     0,
+     0.312
+    ],
+    [
+     119.84,
+     0,
+     -0.308
+    ],
+    [
+     120.347,
+     0,
+     0.127
+    ],
+    [
+     119.639,
+     0,
+     0.149
+    ],
+    [
+     120.174,
+     0,
+     -0.372
+    ],
+    [
+     120.129,
+     0,
+     0.41
+    ],
+    [
+     119.612,
+     0,
+     -0.225
+    ],
+    [
+     120.455,
+     0,
+     -0.1
+    ],
+    [
+     119.722,
+     0,
+     0.395
+    ],
+    [
+     119.936,
+     0,
+     -0.495
+    ],
+    [
+     120.394,
+     0,
+     0.332
+    ],
+    [
+     119.47,
+     0,
+     0.022
+    ],
+    [
+     120.387,
+     0,
+     -0.385
+    ],
+    [
+     119.974,
+     0,
+     0.559
+    ],
+    [
+     119.632,
+     0,
+     -0.441
+    ],
+    [
+     120.583,
+     0,
+     0.078
+    ],
+    [
+     119.506,
+     0,
+     0.344
+    ],
+    [
+     120.135,
+     0,
+     -0.6
+    ],
+    [
+     120.312,
+     0,
+     0.545
+    ],
+    [
+     119.39,
+     0,
+     -0.195
+    ],
+    [
+     120.593,
+     0,
+     -0.274
+    ],
+    [
+     119.743,
+     0,
+     0.613
+    ],
+    [
+     119.771,
+     0,
+     -0.637
+    ],
+    [
+     120.61,
+     0,
+     0.32
+    ],
+    [
+     119.323,
+     0,
+     0.179
+    ],
+    [
+     120.385,
+     0,
+     -0.599
+    ],
+    [
+     120.123,
+     0,
+     0.712
+    ],
+    [
+     119.42,
+     0,
+     -0.449
+    ],
+    [
+     120.742,
+     0,
+     -0.062
+    ],
+    [
+     119.487,
+     0,
+     0.555
+    ],
+    [
+     120.004,
+     0,
+     -0.766
+    ],
+    [
+     120.522,
+     0,
+     0.575
+    ],
+    [
+     119.217,
+     0,
+     -0.073
+    ],
+    [
+     120.635,
+     0,
+     -0.482
+    ],
+    [
+     119.856,
+     0,
+     0.794
+    ],
+    [
+     119.565,
+     0,
+     -0.691
+    ],
+    [
+     120.797,
+     0,
+     0.218
+    ],
+    [
+     119.256,
+     0,
+     0.382
+    ],
+    [
+     120.294,
+     0,
+     -0.793
+    ],
+    [
+     120.323,
+     0,
+     0.792
+    ]
+   ],
+   "mat": "powder"
+  },
+  {
+   "id": "eHotD",
+   "layer": "eHot",
+   "shape": "cyl",
+   "size": [
+    0.96,
+    0.05
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    1.975,
+    0
+   ],
+   "mat": "hotGlow"
+  },
+  {
+   "id": "eHotR",
+   "layer": "eHot",
+   "shape": "tube",
+   "size": [
+    1.18,
+    1.14,
+    1.2
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    2.55,
+    0
+   ],
+   "mat": "hotGlow"
+  },
+  {
+   "id": "eLidP",
+   "layer": "eLid",
+   "shape": "cyl",
+   "size": [
+    1.2,
+    0.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    5.7,
+    0
+   ],
+   "mat": "graphite"
+  },
+  {
+   "id": "eLidKnob",
+   "layer": "eLid",
+   "shape": "cyl",
+   "size": [
+    0.35,
+    0.25
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    5.975,
+    0
+   ],
+   "mat": "graphite"
+  },
+  {
+   "id": "eSeed",
+   "layer": "eLid",
+   "shape": "cyl",
+   "size": [
+    0.8,
+    0.1
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    5.5,
+    0
+   ],
+   "mat": "sicSolid"
+  },
+  {
+   "id": "eBouleC1",
+   "layer": "eBoule1",
+   "shape": "cyl",
+   "size": [
+    0.83,
+    0.18
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    5.36,
+    0
+   ],
+   "mat": "sic"
+  },
+  {
+   "id": "eBouleC2",
+   "layer": "eBoule2",
+   "shape": "cyl",
+   "size": [
+    0.86,
+    0.42
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    5.24,
+    0
+   ],
+   "mat": "sic"
+  },
+  {
+   "id": "eBouleC3",
+   "layer": "eBoule3",
+   "shape": "cyl",
+   "size": [
+    0.89,
+    0.7
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    120,
+    5.1,
+    0
+   ],
+   "mat": "sic"
+  },
+  {
+   "id": "fPlPl",
+   "layer": "fPl",
+   "shape": "box",
+   "size": [
+    8.4,
+    0.9,
+    6.6
+   ],
+   "pos": [
+    150,
+    0.45,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "fPlPlT",
+   "layer": "fPl",
+   "shape": "box",
+   "size": [
+    8.4,
+    0.05,
+    6.6
+   ],
+   "pos": [
+    150,
+    0.925,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "fPlKick",
+   "layer": "fPl",
+   "shape": "box",
+   "size": [
+    8.5,
+    0.12,
+    6.7
+   ],
+   "pos": [
+    150,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "fPlBolt",
+   "layer": "fPl",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.97,
+    0
+   ],
+   "at": [
+    [
+     146.10000000000002,
+     0,
+     -3
+    ],
+    [
+     153.89999999999998,
+     0,
+     -3
+    ],
+    [
+     146.10000000000002,
+     0,
+     3
+    ],
+    [
+     153.89999999999998,
+     0,
+     3
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fBodyW",
+   "layer": "fBody",
+   "shape": "tube",
+   "size": [
+    2.6,
+    2.45,
+    2.3
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    2.1,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "fBodyB",
+   "layer": "fBody",
+   "shape": "cyl",
+   "size": [
+    2.6,
+    0.12
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    1.01,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fBodyFl",
+   "layer": "fBody",
+   "shape": "tube",
+   "size": [
+    2.8,
+    2.45,
+    0.15
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    3.225,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fBodyBolt",
+   "layer": "fBody",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    3.34,
+    0
+   ],
+   "at": [
+    [
+     152.68,
+     0,
+     0
+    ],
+    [
+     152.476,
+     0,
+     1.026
+    ],
+    [
+     151.895,
+     0,
+     1.895
+    ],
+    [
+     151.026,
+     0,
+     2.476
+    ],
+    [
+     150,
+     0,
+     2.68
+    ],
+    [
+     148.974,
+     0,
+     2.476
+    ],
+    [
+     148.105,
+     0,
+     1.895
+    ],
+    [
+     147.524,
+     0,
+     1.026
+    ],
+    [
+     147.32,
+     0,
+     0
+    ],
+    [
+     147.524,
+     0,
+     -1.026
+    ],
+    [
+     148.105,
+     0,
+     -1.895
+    ],
+    [
+     148.974,
+     0,
+     -2.476
+    ],
+    [
+     150,
+     0,
+     -2.68
+    ],
+    [
+     151.026,
+     0,
+     -2.476
+    ],
+    [
+     151.895,
+     0,
+     -1.895
+    ],
+    [
+     152.476,
+     0,
+     -1.026
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fViewF",
+   "layer": "fBody",
+   "shape": "tube",
+   "size": [
+    0.5,
+    0.34,
+    0.12
+   ],
+   "pos": [
+    150.9,
+    2.35,
+    2.6
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fViewG",
+   "layer": "fBody",
+   "shape": "cyl",
+   "size": [
+    0.34,
+    0.03
+   ],
+   "pos": [
+    150.9,
+    2.35,
+    2.58
+   ],
+   "mat": "glass"
+  },
+  {
+   "id": "fExh",
+   "layer": "fBody",
+   "shape": "cyl",
+   "size": [
+    0.32,
+    1.6
+   ],
+   "rot": [
+    0,
+    90,
+    0
+   ],
+   "pos": [
+    146.7,
+    1.4,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fExhFl",
+   "layer": "fBody",
+   "shape": "box",
+   "size": [
+    0.15,
+    0.8,
+    0.84
+   ],
+   "pos": [
+    147.325,
+    1.4,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "fHeatR",
+   "layer": "fHeat",
+   "shape": "tube",
+   "size": [
+    1,
+    0.85,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    1.7,
+    0
+   ],
+   "at": [
+    [
+     0,
+     0,
+     0
+    ]
+   ],
+   "mat": "hotGlow"
+  },
+  {
+   "id": "fHeatR2",
+   "layer": "fHeat",
+   "shape": "tube",
+   "size": [
+    1.75,
+    1.6,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    1.7,
+    0
+   ],
+   "mat": "hotGlow"
+  },
+  {
+   "id": "fSusD",
+   "layer": "fSus",
+   "shape": "cyl",
+   "size": [
+    2,
+    0.23
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    2.115,
+    0
+   ],
+   "mat": "graphite"
+  },
+  {
+   "id": "fSusHub",
+   "layer": "fSus",
+   "shape": "cyl",
+   "size": [
+    0.35,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    2.27,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "fSusShaft",
+   "layer": "fSus",
+   "shape": "cyl",
+   "size": [
+    0.2,
+    0.93
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    1.535,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fPocket",
+   "layer": "fSus",
+   "shape": "tube",
+   "size": [
+    0.58,
+    0.52,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.24,
+    0
+   ],
+   "at": [
+    [
+     151.126,
+     0,
+     0.65
+    ],
+    [
+     150,
+     0,
+     1.3
+    ],
+    [
+     148.874,
+     0,
+     0.65
+    ],
+    [
+     148.874,
+     0,
+     -0.65
+    ],
+    [
+     150,
+     0,
+     -1.3
+    ],
+    [
+     151.126,
+     0,
+     -0.65
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "fWaf",
+   "layer": "fSus",
+   "shape": "cyl",
+   "size": [
+    0.5,
+    0.035
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.25,
+    0
+   ],
+   "at": [
+    [
+     151.126,
+     0,
+     0.65
+    ],
+    [
+     150,
+     0,
+     1.3
+    ],
+    [
+     148.874,
+     0,
+     0.65
+    ],
+    [
+     148.874,
+     0,
+     -0.65
+    ],
+    [
+     150,
+     0,
+     -1.3
+    ],
+    [
+     151.126,
+     0,
+     -0.65
+    ]
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "fWafNotch",
+   "layer": "fSus",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.04,
+    0.08
+   ],
+   "pos": [
+    0,
+    2.26,
+    0
+   ],
+   "at": [
+    [
+     151.126,
+     0,
+     1.12
+    ],
+    [
+     150,
+     0,
+     1.77
+    ],
+    [
+     148.874,
+     0,
+     1.12
+    ],
+    [
+     148.874,
+     0,
+     -0.18
+    ],
+    [
+     150,
+     0,
+     -0.83
+    ],
+    [
+     151.126,
+     0,
+     -0.18
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "fFilmD",
+   "layer": "fFilm",
+   "shape": "cyl",
+   "size": [
+    0.48,
+    0.02
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    2.28,
+    0
+   ],
+   "at": [
+    [
+     151.126,
+     0,
+     0.65
+    ],
+    [
+     150,
+     0,
+     1.3
+    ],
+    [
+     148.874,
+     0,
+     0.65
+    ],
+    [
+     148.874,
+     0,
+     -0.65
+    ],
+    [
+     150,
+     0,
+     -1.3
+    ],
+    [
+     151.126,
+     0,
+     -0.65
+    ]
+   ],
+   "mat": "gan"
+  },
+  {
+   "id": "fShowD",
+   "layer": "fShow",
+   "shape": "cyl",
+   "size": [
+    2.15,
+    0.25
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    3.525,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "fShowHole",
+   "layer": "fShow",
+   "shape": "cyl",
+   "size": [
+    0.04,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    3.394,
+    0
+   ],
+   "at": [
+    [
+     148.24,
+     0,
+     -0.66
+    ],
+    [
+     148.24,
+     0,
+     -0.44
+    ],
+    [
+     148.24,
+     0,
+     -0.22
+    ],
+    [
+     148.24,
+     0,
+     0
+    ],
+    [
+     148.24,
+     0,
+     0.22
+    ],
+    [
+     148.24,
+     0,
+     0.44
+    ],
+    [
+     148.24,
+     0,
+     0.66
+    ],
+    [
+     148.46,
+     0,
+     -1.1
+    ],
+    [
+     148.46,
+     0,
+     -0.88
+    ],
+    [
+     148.46,
+     0,
+     -0.66
+    ],
+    [
+     148.46,
+     0,
+     -0.44
+    ],
+    [
+     148.46,
+     0,
+     -0.22
+    ],
+    [
+     148.46,
+     0,
+     0
+    ],
+    [
+     148.46,
+     0,
+     0.22
+    ],
+    [
+     148.46,
+     0,
+     0.44
+    ],
+    [
+     148.46,
+     0,
+     0.66
+    ],
+    [
+     148.46,
+     0,
+     0.88
+    ],
+    [
+     148.46,
+     0,
+     1.1
+    ],
+    [
+     148.68,
+     0,
+     -1.32
+    ],
+    [
+     148.68,
+     0,
+     -1.1
+    ],
+    [
+     148.68,
+     0,
+     -0.88
+    ],
+    [
+     148.68,
+     0,
+     -0.66
+    ],
+    [
+     148.68,
+     0,
+     -0.44
+    ],
+    [
+     148.68,
+     0,
+     -0.22
+    ],
+    [
+     148.68,
+     0,
+     0
+    ],
+    [
+     148.68,
+     0,
+     0.22
+    ],
+    [
+     148.68,
+     0,
+     0.44
+    ],
+    [
+     148.68,
+     0,
+     0.66
+    ],
+    [
+     148.68,
+     0,
+     0.88
+    ],
+    [
+     148.68,
+     0,
+     1.1
+    ],
+    [
+     148.68,
+     0,
+     1.32
+    ],
+    [
+     148.9,
+     0,
+     -1.54
+    ],
+    [
+     148.9,
+     0,
+     -1.32
+    ],
+    [
+     148.9,
+     0,
+     -1.1
+    ],
+    [
+     148.9,
+     0,
+     -0.88
+    ],
+    [
+     148.9,
+     0,
+     -0.66
+    ],
+    [
+     148.9,
+     0,
+     -0.44
+    ],
+    [
+     148.9,
+     0,
+     -0.22
+    ],
+    [
+     148.9,
+     0,
+     0
+    ],
+    [
+     148.9,
+     0,
+     0.22
+    ],
+    [
+     148.9,
+     0,
+     0.44
+    ],
+    [
+     148.9,
+     0,
+     0.66
+    ],
+    [
+     148.9,
+     0,
+     0.88
+    ],
+    [
+     148.9,
+     0,
+     1.1
+    ],
+    [
+     148.9,
+     0,
+     1.32
+    ],
+    [
+     148.9,
+     0,
+     1.54
+    ],
+    [
+     149.12,
+     0,
+     -1.54
+    ],
+    [
+     149.12,
+     0,
+     -1.32
+    ],
+    [
+     149.12,
+     0,
+     -1.1
+    ],
+    [
+     149.12,
+     0,
+     -0.88
+    ],
+    [
+     149.12,
+     0,
+     -0.66
+    ],
+    [
+     149.12,
+     0,
+     -0.44
+    ],
+    [
+     149.12,
+     0,
+     -0.22
+    ],
+    [
+     149.12,
+     0,
+     0
+    ],
+    [
+     149.12,
+     0,
+     0.22
+    ],
+    [
+     149.12,
+     0,
+     0.44
+    ],
+    [
+     149.12,
+     0,
+     0.66
+    ],
+    [
+     149.12,
+     0,
+     0.88
+    ],
+    [
+     149.12,
+     0,
+     1.1
+    ],
+    [
+     149.12,
+     0,
+     1.32
+    ],
+    [
+     149.12,
+     0,
+     1.54
+    ],
+    [
+     149.34,
+     0,
+     -1.76
+    ],
+    [
+     149.34,
+     0,
+     -1.54
+    ],
+    [
+     149.34,
+     0,
+     -1.32
+    ],
+    [
+     149.34,
+     0,
+     -1.1
+    ],
+    [
+     149.34,
+     0,
+     -0.88
+    ],
+    [
+     149.34,
+     0,
+     -0.66
+    ],
+    [
+     149.34,
+     0,
+     -0.44
+    ],
+    [
+     149.34,
+     0,
+     -0.22
+    ],
+    [
+     149.34,
+     0,
+     0
+    ],
+    [
+     149.34,
+     0,
+     0.22
+    ],
+    [
+     149.34,
+     0,
+     0.44
+    ],
+    [
+     149.34,
+     0,
+     0.66
+    ],
+    [
+     149.34,
+     0,
+     0.88
+    ],
+    [
+     149.34,
+     0,
+     1.1
+    ],
+    [
+     149.34,
+     0,
+     1.32
+    ],
+    [
+     149.34,
+     0,
+     1.54
+    ],
+    [
+     149.34,
+     0,
+     1.76
+    ],
+    [
+     149.56,
+     0,
+     -1.76
+    ],
+    [
+     149.56,
+     0,
+     -1.54
+    ],
+    [
+     149.56,
+     0,
+     -1.32
+    ],
+    [
+     149.56,
+     0,
+     -1.1
+    ],
+    [
+     149.56,
+     0,
+     -0.88
+    ],
+    [
+     149.56,
+     0,
+     -0.66
+    ],
+    [
+     149.56,
+     0,
+     -0.44
+    ],
+    [
+     149.56,
+     0,
+     -0.22
+    ],
+    [
+     149.56,
+     0,
+     0
+    ],
+    [
+     149.56,
+     0,
+     0.22
+    ],
+    [
+     149.56,
+     0,
+     0.44
+    ],
+    [
+     149.56,
+     0,
+     0.66
+    ],
+    [
+     149.56,
+     0,
+     0.88
+    ],
+    [
+     149.56,
+     0,
+     1.1
+    ],
+    [
+     149.56,
+     0,
+     1.32
+    ],
+    [
+     149.56,
+     0,
+     1.54
+    ],
+    [
+     149.56,
+     0,
+     1.76
+    ],
+    [
+     149.78,
+     0,
+     -1.76
+    ],
+    [
+     149.78,
+     0,
+     -1.54
+    ],
+    [
+     149.78,
+     0,
+     -1.32
+    ],
+    [
+     149.78,
+     0,
+     -1.1
+    ],
+    [
+     149.78,
+     0,
+     -0.88
+    ],
+    [
+     149.78,
+     0,
+     -0.66
+    ],
+    [
+     149.78,
+     0,
+     -0.44
+    ],
+    [
+     149.78,
+     0,
+     -0.22
+    ],
+    [
+     149.78,
+     0,
+     0
+    ],
+    [
+     149.78,
+     0,
+     0.22
+    ],
+    [
+     149.78,
+     0,
+     0.44
+    ],
+    [
+     149.78,
+     0,
+     0.66
+    ],
+    [
+     149.78,
+     0,
+     0.88
+    ],
+    [
+     149.78,
+     0,
+     1.1
+    ],
+    [
+     149.78,
+     0,
+     1.32
+    ],
+    [
+     149.78,
+     0,
+     1.54
+    ],
+    [
+     149.78,
+     0,
+     1.76
+    ],
+    [
+     150,
+     0,
+     -1.76
+    ],
+    [
+     150,
+     0,
+     -1.54
+    ],
+    [
+     150,
+     0,
+     -1.32
+    ],
+    [
+     150,
+     0,
+     -1.1
+    ],
+    [
+     150,
+     0,
+     -0.88
+    ],
+    [
+     150,
+     0,
+     -0.66
+    ],
+    [
+     150,
+     0,
+     -0.44
+    ],
+    [
+     150,
+     0,
+     -0.22
+    ],
+    [
+     150,
+     0,
+     0
+    ],
+    [
+     150,
+     0,
+     0.22
+    ],
+    [
+     150,
+     0,
+     0.44
+    ],
+    [
+     150,
+     0,
+     0.66
+    ],
+    [
+     150,
+     0,
+     0.88
+    ],
+    [
+     150,
+     0,
+     1.1
+    ],
+    [
+     150,
+     0,
+     1.32
+    ],
+    [
+     150,
+     0,
+     1.54
+    ],
+    [
+     150,
+     0,
+     1.76
+    ],
+    [
+     150.22,
+     0,
+     -1.76
+    ],
+    [
+     150.22,
+     0,
+     -1.54
+    ],
+    [
+     150.22,
+     0,
+     -1.32
+    ],
+    [
+     150.22,
+     0,
+     -1.1
+    ],
+    [
+     150.22,
+     0,
+     -0.88
+    ],
+    [
+     150.22,
+     0,
+     -0.66
+    ],
+    [
+     150.22,
+     0,
+     -0.44
+    ],
+    [
+     150.22,
+     0,
+     -0.22
+    ],
+    [
+     150.22,
+     0,
+     0
+    ],
+    [
+     150.22,
+     0,
+     0.22
+    ],
+    [
+     150.22,
+     0,
+     0.44
+    ],
+    [
+     150.22,
+     0,
+     0.66
+    ],
+    [
+     150.22,
+     0,
+     0.88
+    ],
+    [
+     150.22,
+     0,
+     1.1
+    ],
+    [
+     150.22,
+     0,
+     1.32
+    ],
+    [
+     150.22,
+     0,
+     1.54
+    ],
+    [
+     150.22,
+     0,
+     1.76
+    ],
+    [
+     150.44,
+     0,
+     -1.76
+    ],
+    [
+     150.44,
+     0,
+     -1.54
+    ],
+    [
+     150.44,
+     0,
+     -1.32
+    ],
+    [
+     150.44,
+     0,
+     -1.1
+    ],
+    [
+     150.44,
+     0,
+     -0.88
+    ],
+    [
+     150.44,
+     0,
+     -0.66
+    ],
+    [
+     150.44,
+     0,
+     -0.44
+    ],
+    [
+     150.44,
+     0,
+     -0.22
+    ],
+    [
+     150.44,
+     0,
+     0
+    ],
+    [
+     150.44,
+     0,
+     0.22
+    ],
+    [
+     150.44,
+     0,
+     0.44
+    ],
+    [
+     150.44,
+     0,
+     0.66
+    ],
+    [
+     150.44,
+     0,
+     0.88
+    ],
+    [
+     150.44,
+     0,
+     1.1
+    ],
+    [
+     150.44,
+     0,
+     1.32
+    ],
+    [
+     150.44,
+     0,
+     1.54
+    ],
+    [
+     150.44,
+     0,
+     1.76
+    ],
+    [
+     150.66,
+     0,
+     -1.76
+    ],
+    [
+     150.66,
+     0,
+     -1.54
+    ],
+    [
+     150.66,
+     0,
+     -1.32
+    ],
+    [
+     150.66,
+     0,
+     -1.1
+    ],
+    [
+     150.66,
+     0,
+     -0.88
+    ],
+    [
+     150.66,
+     0,
+     -0.66
+    ],
+    [
+     150.66,
+     0,
+     -0.44
+    ],
+    [
+     150.66,
+     0,
+     -0.22
+    ],
+    [
+     150.66,
+     0,
+     0
+    ],
+    [
+     150.66,
+     0,
+     0.22
+    ],
+    [
+     150.66,
+     0,
+     0.44
+    ],
+    [
+     150.66,
+     0,
+     0.66
+    ],
+    [
+     150.66,
+     0,
+     0.88
+    ],
+    [
+     150.66,
+     0,
+     1.1
+    ],
+    [
+     150.66,
+     0,
+     1.32
+    ],
+    [
+     150.66,
+     0,
+     1.54
+    ],
+    [
+     150.66,
+     0,
+     1.76
+    ],
+    [
+     150.88,
+     0,
+     -1.54
+    ],
+    [
+     150.88,
+     0,
+     -1.32
+    ],
+    [
+     150.88,
+     0,
+     -1.1
+    ],
+    [
+     150.88,
+     0,
+     -0.88
+    ],
+    [
+     150.88,
+     0,
+     -0.66
+    ],
+    [
+     150.88,
+     0,
+     -0.44
+    ],
+    [
+     150.88,
+     0,
+     -0.22
+    ],
+    [
+     150.88,
+     0,
+     0
+    ],
+    [
+     150.88,
+     0,
+     0.22
+    ],
+    [
+     150.88,
+     0,
+     0.44
+    ],
+    [
+     150.88,
+     0,
+     0.66
+    ],
+    [
+     150.88,
+     0,
+     0.88
+    ],
+    [
+     150.88,
+     0,
+     1.1
+    ],
+    [
+     150.88,
+     0,
+     1.32
+    ],
+    [
+     150.88,
+     0,
+     1.54
+    ],
+    [
+     151.1,
+     0,
+     -1.54
+    ],
+    [
+     151.1,
+     0,
+     -1.32
+    ],
+    [
+     151.1,
+     0,
+     -1.1
+    ],
+    [
+     151.1,
+     0,
+     -0.88
+    ],
+    [
+     151.1,
+     0,
+     -0.66
+    ],
+    [
+     151.1,
+     0,
+     -0.44
+    ],
+    [
+     151.1,
+     0,
+     -0.22
+    ],
+    [
+     151.1,
+     0,
+     0
+    ],
+    [
+     151.1,
+     0,
+     0.22
+    ],
+    [
+     151.1,
+     0,
+     0.44
+    ],
+    [
+     151.1,
+     0,
+     0.66
+    ],
+    [
+     151.1,
+     0,
+     0.88
+    ],
+    [
+     151.1,
+     0,
+     1.1
+    ],
+    [
+     151.1,
+     0,
+     1.32
+    ],
+    [
+     151.1,
+     0,
+     1.54
+    ],
+    [
+     151.32,
+     0,
+     -1.32
+    ],
+    [
+     151.32,
+     0,
+     -1.1
+    ],
+    [
+     151.32,
+     0,
+     -0.88
+    ],
+    [
+     151.32,
+     0,
+     -0.66
+    ],
+    [
+     151.32,
+     0,
+     -0.44
+    ],
+    [
+     151.32,
+     0,
+     -0.22
+    ],
+    [
+     151.32,
+     0,
+     0
+    ],
+    [
+     151.32,
+     0,
+     0.22
+    ],
+    [
+     151.32,
+     0,
+     0.44
+    ],
+    [
+     151.32,
+     0,
+     0.66
+    ],
+    [
+     151.32,
+     0,
+     0.88
+    ],
+    [
+     151.32,
+     0,
+     1.1
+    ],
+    [
+     151.32,
+     0,
+     1.32
+    ],
+    [
+     151.54,
+     0,
+     -1.1
+    ],
+    [
+     151.54,
+     0,
+     -0.88
+    ],
+    [
+     151.54,
+     0,
+     -0.66
+    ],
+    [
+     151.54,
+     0,
+     -0.44
+    ],
+    [
+     151.54,
+     0,
+     -0.22
+    ],
+    [
+     151.54,
+     0,
+     0
+    ],
+    [
+     151.54,
+     0,
+     0.22
+    ],
+    [
+     151.54,
+     0,
+     0.44
+    ],
+    [
+     151.54,
+     0,
+     0.66
+    ],
+    [
+     151.54,
+     0,
+     0.88
+    ],
+    [
+     151.54,
+     0,
+     1.1
+    ],
+    [
+     151.76,
+     0,
+     -0.66
+    ],
+    [
+     151.76,
+     0,
+     -0.44
+    ],
+    [
+     151.76,
+     0,
+     -0.22
+    ],
+    [
+     151.76,
+     0,
+     0
+    ],
+    [
+     151.76,
+     0,
+     0.22
+    ],
+    [
+     151.76,
+     0,
+     0.44
+    ],
+    [
+     151.76,
+     0,
+     0.66
+    ]
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "fLid",
+   "layer": "fShow",
+   "shape": "cyl",
+   "size": [
+    2.8,
+    0.25
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    150,
+    3.775,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fLidBolt",
+   "layer": "fShow",
+   "shape": "cyl",
+   "size": [
+    0.08,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    3.94,
+    0
+   ],
+   "at": [
+    [
+     152.65,
+     0,
+     0
+    ],
+    [
+     152.448,
+     0,
+     1.014
+    ],
+    [
+     151.874,
+     0,
+     1.874
+    ],
+    [
+     151.014,
+     0,
+     2.448
+    ],
+    [
+     150,
+     0,
+     2.65
+    ],
+    [
+     148.986,
+     0,
+     2.448
+    ],
+    [
+     148.126,
+     0,
+     1.874
+    ],
+    [
+     147.552,
+     0,
+     1.014
+    ],
+    [
+     147.35,
+     0,
+     0
+    ],
+    [
+     147.552,
+     0,
+     -1.014
+    ],
+    [
+     148.126,
+     0,
+     -1.874
+    ],
+    [
+     148.986,
+     0,
+     -2.448
+    ],
+    [
+     150,
+     0,
+     -2.65
+    ],
+    [
+     151.014,
+     0,
+     -2.448
+    ],
+    [
+     151.874,
+     0,
+     -1.874
+    ],
+    [
+     152.448,
+     0,
+     -1.014
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "fGasPipe",
+   "layer": "fShow",
+   "shape": "cyl",
+   "size": [
+    0.13,
+    1.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    4.6,
+    0
+   ],
+   "at": [
+    [
+     149.2,
+     0,
+     0
+    ],
+    [
+     150.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "fManifold",
+   "layer": "fShow",
+   "shape": "box",
+   "size": [
+    2.4,
+    0.25,
+    0.5
+   ],
+   "pos": [
+    150,
+    5.375,
+    0
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "fValve",
+   "layer": "fShow",
+   "shape": "box",
+   "size": [
+    0.34,
+    0.34,
+    0.34
+   ],
+   "pos": [
+    0,
+    4.55,
+    0
+   ],
+   "at": [
+    [
+     149.2,
+     0,
+     0
+    ],
+    [
+     150.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "fValveW",
+   "layer": "fShow",
+   "shape": "tube",
+   "size": [
+    0.24,
+    0.18,
+    0.04
+   ],
+   "pos": [
+    0,
+    4.55,
+    0.22
+   ],
+   "at": [
+    [
+     149.2,
+     0,
+     0
+    ],
+    [
+     150.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "lampR"
+  },
+  {
+   "id": "fGasTag",
+   "layer": "fShow",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.18,
+    0.02
+   ],
+   "pos": [
+    0,
+    4.1,
+    0.15
+   ],
+   "at": [
+    [
+     149.2,
+     0,
+     0
+    ],
+    [
+     150.8,
+     0,
+     0
+    ]
+   ],
+   "mat": "panel"
+  },
+  {
+   "id": "gP0Pl",
+   "layer": "gP0",
+   "shape": "box",
+   "size": [
+    3.8,
+    1.2,
+    3.4
+   ],
+   "pos": [
+    175.6,
+    0.6,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "gP0PlT",
+   "layer": "gP0",
+   "shape": "box",
+   "size": [
+    3.8,
+    0.05,
+    3.4
+   ],
+   "pos": [
+    175.6,
+    1.225,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "gP0Kick",
+   "layer": "gP0",
+   "shape": "box",
+   "size": [
+    3.9,
+    0.12,
+    3.5
+   ],
+   "pos": [
+    175.6,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "gP0Bolt",
+   "layer": "gP0",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.27,
+    0
+   ],
+   "at": [
+    [
+     174,
+     0,
+     -1.4
+    ],
+    [
+     177.2,
+     0,
+     -1.4
+    ],
+    [
+     174,
+     0,
+     1.4
+    ],
+    [
+     177.2,
+     0,
+     1.4
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "gP0Sign",
+   "layer": "gP0",
+   "shape": "plane",
+   "size": [
+    2.4,
+    0.775
+   ],
+   "pos": [
+    175.95,
+    0.62,
+    1.72
+   ],
+   "mat": "t_globalwafers",
+   "uv01": true
+  },
+  {
+   "id": "gP0Flag",
+   "layer": "gP0",
+   "shape": "plane",
+   "size": [
+    0.72,
+    0.48
+   ],
+   "pos": [
+    174.15,
+    0.62,
+    1.72
+   ],
+   "mat": "flag_TW",
+   "uv01": true
+  },
+  {
+   "id": "gP0Easel",
+   "layer": "gP0",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.95,
+    0.13
+   ],
+   "pos": [
+    175.6,
+    1.725,
+    -0.885
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "gP0EaselF",
+   "layer": "gP0",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.1,
+    0.45
+   ],
+   "pos": [
+    175.6,
+    1.3,
+    -0.775
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "gP0EaselBolt",
+   "layer": "gP0",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.03
+   ],
+   "pos": [
+    0,
+    0,
+    -0.54
+   ],
+   "at": [
+    [
+     175,
+     1.3,
+     0
+    ],
+    [
+     176.2,
+     1.3,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "gP0SW",
+   "layer": "gP0",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.06
+   ],
+   "pos": [
+    175.6,
+    3,
+    -0.7
+   ],
+   "mat": "sic"
+  },
+  {
+   "id": "gP0SN",
+   "layer": "gP0",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.06
+   ],
+   "pos": [
+    175.6,
+    4.46,
+    -0.7
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "gP0Flat",
+   "layer": "gP0",
+   "shape": "box",
+   "size": [
+    1.1,
+    0.07,
+    0.08
+   ],
+   "pos": [
+    175.6,
+    1.515,
+    -0.7
+   ],
+   "mat": "sicSolid"
+  },
+  {
+   "id": "gP0Boule",
+   "layer": "gP0",
+   "shape": "cyl",
+   "size": [
+    0.6,
+    0.9
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    176.5,
+    1.7,
+    0.7
+   ],
+   "mat": "sic"
+  },
+  {
+   "id": "gP0BouleTop",
+   "layer": "gP0",
+   "shape": "cyl",
+   "size": [
+    0.62,
+    0.03
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    176.5,
+    2.165,
+    0.7
+   ],
+   "mat": "sicSolid"
+  },
+  {
+   "id": "gArr0",
+   "layer": "gP0",
+   "shape": "poly",
+   "pts": [
+    [
+     -0.5,
+     0.12
+    ],
+    [
+     0.2,
+     0.12
+    ],
+    [
+     0.2,
+     0.3
+    ],
+    [
+     0.55,
+     0
+    ],
+    [
+     0.2,
+     -0.3
+    ],
+    [
+     0.2,
+     -0.12
+    ],
+    [
+     -0.5,
+     -0.12
+    ]
+   ],
+   "size": [
+    1,
+    1,
+    0.06
+   ],
+   "pos": [
+    177.8,
+    3.15,
+    -0.7
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "gP1Pl",
+   "layer": "gP1",
+   "shape": "box",
+   "size": [
+    3.8,
+    1.2,
+    3.4
+   ],
+   "pos": [
+    180,
+    0.6,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "gP1PlT",
+   "layer": "gP1",
+   "shape": "box",
+   "size": [
+    3.8,
+    0.05,
+    3.4
+   ],
+   "pos": [
+    180,
+    1.225,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "gP1Kick",
+   "layer": "gP1",
+   "shape": "box",
+   "size": [
+    3.9,
+    0.12,
+    3.5
+   ],
+   "pos": [
+    180,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "gP1Bolt",
+   "layer": "gP1",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.27,
+    0
+   ],
+   "at": [
+    [
+     178.4,
+     0,
+     -1.4
+    ],
+    [
+     181.6,
+     0,
+     -1.4
+    ],
+    [
+     178.4,
+     0,
+     1.4
+    ],
+    [
+     181.6,
+     0,
+     1.4
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "gP1Sign",
+   "layer": "gP1",
+   "shape": "plane",
+   "size": [
+    2.4,
+    0.8
+   ],
+   "pos": [
+    180.35,
+    0.62,
+    1.72
+   ],
+   "mat": "t_epiworld",
+   "uv01": true
+  },
+  {
+   "id": "gP1Flag",
+   "layer": "gP1",
+   "shape": "plane",
+   "size": [
+    0.72,
+    0.48
+   ],
+   "pos": [
+    178.55,
+    0.62,
+    1.72
+   ],
+   "mat": "flag_TW",
+   "uv01": true
+  },
+  {
+   "id": "gP1Easel",
+   "layer": "gP1",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.95,
+    0.13
+   ],
+   "pos": [
+    180,
+    1.725,
+    -0.885
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "gP1EaselF",
+   "layer": "gP1",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.1,
+    0.45
+   ],
+   "pos": [
+    180,
+    1.3,
+    -0.775
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "gP1EaselBolt",
+   "layer": "gP1",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.03
+   ],
+   "pos": [
+    0,
+    0,
+    -0.54
+   ],
+   "at": [
+    [
+     179.4,
+     1.3,
+     0
+    ],
+    [
+     180.6,
+     1.3,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "gP1SW",
+   "layer": "gP1",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.06
+   ],
+   "pos": [
+    180,
+    3,
+    -0.7
+   ],
+   "mat": "sic"
+  },
+  {
+   "id": "gP1SN",
+   "layer": "gP1",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.06
+   ],
+   "pos": [
+    180,
+    4.46,
+    -0.7
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "gP1Film",
+   "layer": "gP1",
+   "shape": "cyl",
+   "size": [
+    1.47,
+    0.012
+   ],
+   "pos": [
+    180,
+    3,
+    -0.664
+   ],
+   "mat": "gan"
+  },
+  {
+   "id": "gArr1",
+   "layer": "gP1",
+   "shape": "poly",
+   "pts": [
+    [
+     -0.5,
+     0.12
+    ],
+    [
+     0.2,
+     0.12
+    ],
+    [
+     0.2,
+     0.3
+    ],
+    [
+     0.55,
+     0
+    ],
+    [
+     0.2,
+     -0.3
+    ],
+    [
+     0.2,
+     -0.12
+    ],
+    [
+     -0.5,
+     -0.12
+    ]
+   ],
+   "size": [
+    1,
+    1,
+    0.06
+   ],
+   "pos": [
+    182.2,
+    3.15,
+    -0.7
+   ],
+   "mat": "mark"
+  },
+  {
+   "id": "gP2Pl",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    3.8,
+    1.2,
+    3.4
+   ],
+   "pos": [
+    184.4,
+    0.6,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "gP2PlT",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    3.8,
+    0.05,
+    3.4
+   ],
+   "pos": [
+    184.4,
+    1.225,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "gP2Kick",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    3.9,
+    0.12,
+    3.5
+   ],
+   "pos": [
+    184.4,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "gP2Bolt",
+   "layer": "gP2",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    1.27,
+    0
+   ],
+   "at": [
+    [
+     182.8,
+     0,
+     -1.4
+    ],
+    [
+     186,
+     0,
+     -1.4
+    ],
+    [
+     182.8,
+     0,
+     1.4
+    ],
+    [
+     186,
+     0,
+     1.4
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "gP2Sign",
+   "layer": "gP2",
+   "shape": "plane",
+   "size": [
+    2.4,
+    0.8
+   ],
+   "pos": [
+    184.75,
+    0.62,
+    1.72
+   ],
+   "mat": "t_episil",
+   "uv01": true
+  },
+  {
+   "id": "gP2Flag",
+   "layer": "gP2",
+   "shape": "plane",
+   "size": [
+    0.72,
+    0.48
+   ],
+   "pos": [
+    182.95,
+    0.62,
+    1.72
+   ],
+   "mat": "flag_TW",
+   "uv01": true
+  },
+  {
+   "id": "gP2Easel",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.95,
+    0.13
+   ],
+   "pos": [
+    184.4,
+    1.725,
+    -0.885
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "gP2EaselF",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.1,
+    0.45
+   ],
+   "pos": [
+    184.4,
+    1.3,
+    -0.775
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "gP2EaselBolt",
+   "layer": "gP2",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.03
+   ],
+   "pos": [
+    0,
+    0,
+    -0.54
+   ],
+   "at": [
+    [
+     183.8,
+     1.3,
+     0
+    ],
+    [
+     185,
+     1.3,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "gP2SW",
+   "layer": "gP2",
+   "shape": "cyl",
+   "size": [
+    1.5,
+    0.06
+   ],
+   "pos": [
+    184.4,
+    3,
+    -0.7
+   ],
+   "mat": "sicSolid"
+  },
+  {
+   "id": "gP2SN",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.06
+   ],
+   "pos": [
+    184.4,
+    4.46,
+    -0.7
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "gP2SD",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    0.172,
+    0.172,
+    0.02
+   ],
+   "pos": [
+    0,
+    0,
+    -0.665
+   ],
+   "at": [
+    [
+     183.2,
+     2.6,
+     0
+    ],
+    [
+     183.2,
+     2.8,
+     0
+    ],
+    [
+     183.2,
+     3,
+     0
+    ],
+    [
+     183.2,
+     3.2,
+     0
+    ],
+    [
+     183.2,
+     3.4,
+     0
+    ],
+    [
+     183.4,
+     2.4,
+     0
+    ],
+    [
+     183.4,
+     2.6,
+     0
+    ],
+    [
+     183.4,
+     2.8,
+     0
+    ],
+    [
+     183.4,
+     3,
+     0
+    ],
+    [
+     183.4,
+     3.2,
+     0
+    ],
+    [
+     183.4,
+     3.4,
+     0
+    ],
+    [
+     183.4,
+     3.6,
+     0
+    ],
+    [
+     183.6,
+     2.2,
+     0
+    ],
+    [
+     183.6,
+     2.4,
+     0
+    ],
+    [
+     183.6,
+     2.6,
+     0
+    ],
+    [
+     183.6,
+     2.8,
+     0
+    ],
+    [
+     183.6,
+     3,
+     0
+    ],
+    [
+     183.6,
+     3.2,
+     0
+    ],
+    [
+     183.6,
+     3.4,
+     0
+    ],
+    [
+     183.6,
+     3.6,
+     0
+    ],
+    [
+     183.6,
+     3.8,
+     0
+    ],
+    [
+     183.8,
+     2,
+     0
+    ],
+    [
+     183.8,
+     2.2,
+     0
+    ],
+    [
+     183.8,
+     2.4,
+     0
+    ],
+    [
+     183.8,
+     2.6,
+     0
+    ],
+    [
+     183.8,
+     2.8,
+     0
+    ],
+    [
+     183.8,
+     3,
+     0
+    ],
+    [
+     183.8,
+     3.2,
+     0
+    ],
+    [
+     183.8,
+     3.4,
+     0
+    ],
+    [
+     183.8,
+     3.6,
+     0
+    ],
+    [
+     183.8,
+     3.8,
+     0
+    ],
+    [
+     183.8,
+     4,
+     0
+    ],
+    [
+     184,
+     1.8,
+     0
+    ],
+    [
+     184,
+     2,
+     0
+    ],
+    [
+     184,
+     2.2,
+     0
+    ],
+    [
+     184,
+     2.4,
+     0
+    ],
+    [
+     184,
+     2.6,
+     0
+    ],
+    [
+     184,
+     2.8,
+     0
+    ],
+    [
+     184,
+     3,
+     0
+    ],
+    [
+     184,
+     3.2,
+     0
+    ],
+    [
+     184,
+     3.4,
+     0
+    ],
+    [
+     184,
+     3.6,
+     0
+    ],
+    [
+     184,
+     3.8,
+     0
+    ],
+    [
+     184,
+     4,
+     0
+    ],
+    [
+     184,
+     4.2,
+     0
+    ],
+    [
+     184.2,
+     1.8,
+     0
+    ],
+    [
+     184.2,
+     2,
+     0
+    ],
+    [
+     184.2,
+     2.2,
+     0
+    ],
+    [
+     184.2,
+     2.4,
+     0
+    ],
+    [
+     184.2,
+     2.6,
+     0
+    ],
+    [
+     184.2,
+     2.8,
+     0
+    ],
+    [
+     184.2,
+     3,
+     0
+    ],
+    [
+     184.2,
+     3.2,
+     0
+    ],
+    [
+     184.2,
+     3.4,
+     0
+    ],
+    [
+     184.2,
+     3.6,
+     0
+    ],
+    [
+     184.2,
+     3.8,
+     0
+    ],
+    [
+     184.2,
+     4,
+     0
+    ],
+    [
+     184.2,
+     4.2,
+     0
+    ],
+    [
+     184.4,
+     1.8,
+     0
+    ],
+    [
+     184.4,
+     2,
+     0
+    ],
+    [
+     184.4,
+     2.2,
+     0
+    ],
+    [
+     184.4,
+     2.4,
+     0
+    ],
+    [
+     184.4,
+     2.6,
+     0
+    ],
+    [
+     184.4,
+     2.8,
+     0
+    ],
+    [
+     184.4,
+     3,
+     0
+    ],
+    [
+     184.4,
+     3.2,
+     0
+    ],
+    [
+     184.4,
+     3.4,
+     0
+    ],
+    [
+     184.4,
+     3.6,
+     0
+    ],
+    [
+     184.4,
+     3.8,
+     0
+    ],
+    [
+     184.4,
+     4,
+     0
+    ],
+    [
+     184.4,
+     4.2,
+     0
+    ],
+    [
+     184.6,
+     1.8,
+     0
+    ],
+    [
+     184.6,
+     2,
+     0
+    ],
+    [
+     184.6,
+     2.2,
+     0
+    ],
+    [
+     184.6,
+     2.4,
+     0
+    ],
+    [
+     184.6,
+     2.6,
+     0
+    ],
+    [
+     184.6,
+     2.8,
+     0
+    ],
+    [
+     184.6,
+     3,
+     0
+    ],
+    [
+     184.6,
+     3.2,
+     0
+    ],
+    [
+     184.6,
+     3.4,
+     0
+    ],
+    [
+     184.6,
+     3.6,
+     0
+    ],
+    [
+     184.6,
+     3.8,
+     0
+    ],
+    [
+     184.6,
+     4,
+     0
+    ],
+    [
+     184.6,
+     4.2,
+     0
+    ],
+    [
+     184.8,
+     1.8,
+     0
+    ],
+    [
+     184.8,
+     2,
+     0
+    ],
+    [
+     184.8,
+     2.2,
+     0
+    ],
+    [
+     184.8,
+     2.4,
+     0
+    ],
+    [
+     184.8,
+     2.6,
+     0
+    ],
+    [
+     184.8,
+     2.8,
+     0
+    ],
+    [
+     184.8,
+     3,
+     0
+    ],
+    [
+     184.8,
+     3.2,
+     0
+    ],
+    [
+     184.8,
+     3.4,
+     0
+    ],
+    [
+     184.8,
+     3.6,
+     0
+    ],
+    [
+     184.8,
+     3.8,
+     0
+    ],
+    [
+     184.8,
+     4,
+     0
+    ],
+    [
+     184.8,
+     4.2,
+     0
+    ],
+    [
+     185,
+     2,
+     0
+    ],
+    [
+     185,
+     2.2,
+     0
+    ],
+    [
+     185,
+     2.4,
+     0
+    ],
+    [
+     185,
+     2.6,
+     0
+    ],
+    [
+     185,
+     2.8,
+     0
+    ],
+    [
+     185,
+     3,
+     0
+    ],
+    [
+     185,
+     3.2,
+     0
+    ],
+    [
+     185,
+     3.4,
+     0
+    ],
+    [
+     185,
+     3.6,
+     0
+    ],
+    [
+     185,
+     3.8,
+     0
+    ],
+    [
+     185,
+     4,
+     0
+    ],
+    [
+     185.2,
+     2.2,
+     0
+    ],
+    [
+     185.2,
+     2.4,
+     0
+    ],
+    [
+     185.2,
+     2.6,
+     0
+    ],
+    [
+     185.2,
+     2.8,
+     0
+    ],
+    [
+     185.2,
+     3,
+     0
+    ],
+    [
+     185.2,
+     3.2,
+     0
+    ],
+    [
+     185.2,
+     3.4,
+     0
+    ],
+    [
+     185.2,
+     3.6,
+     0
+    ],
+    [
+     185.2,
+     3.8,
+     0
+    ],
+    [
+     185.4,
+     2.4,
+     0
+    ],
+    [
+     185.4,
+     2.6,
+     0
+    ],
+    [
+     185.4,
+     2.8,
+     0
+    ],
+    [
+     185.4,
+     3,
+     0
+    ],
+    [
+     185.4,
+     3.2,
+     0
+    ],
+    [
+     185.4,
+     3.4,
+     0
+    ],
+    [
+     185.4,
+     3.6,
+     0
+    ],
+    [
+     185.6,
+     2.6,
+     0
+    ],
+    [
+     185.6,
+     2.8,
+     0
+    ],
+    [
+     185.6,
+     3,
+     0
+    ],
+    [
+     185.6,
+     3.2,
+     0
+    ],
+    [
+     185.6,
+     3.4,
+     0
+    ]
+   ],
+   "mat": "die"
+  },
+  {
+   "id": "gP2PkgB",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    0.64,
+    0.08,
+    0.72
+   ],
+   "pos": [
+    185.3,
+    1.34,
+    0.64
+   ],
+   "mat": "chip"
+  },
+  {
+   "id": "gP2PkgTab",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    0.64,
+    0.03,
+    0.28
+   ],
+   "pos": [
+    185.3,
+    1.315,
+    0.14
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "gP2PkgHole",
+   "layer": "gP2",
+   "shape": "tube",
+   "size": [
+    0.1,
+    0.05,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    185.3,
+    1.32,
+    0.14
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "gP2PkgLeg",
+   "layer": "gP2",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.03,
+    0.5
+   ],
+   "pos": [
+    0,
+    1.33,
+    1.25
+   ],
+   "at": [
+    [
+     185.1,
+     0,
+     0
+    ],
+    [
+     185.3,
+     0,
+     0
+    ],
+    [
+     185.5,
+     0,
+     0
+    ]
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "hPlPl",
+   "layer": "hPl",
+   "shape": "box",
+   "size": [
+    11,
+    0.9,
+    6.6
+   ],
+   "pos": [
+    210,
+    0.45,
+    0
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "hPlPlT",
+   "layer": "hPl",
+   "shape": "box",
+   "size": [
+    11,
+    0.05,
+    6.6
+   ],
+   "pos": [
+    210,
+    0.925,
+    0
+   ],
+   "mat": "panel2"
+  },
+  {
+   "id": "hPlKick",
+   "layer": "hPl",
+   "shape": "box",
+   "size": [
+    11.1,
+    0.12,
+    6.7
+   ],
+   "pos": [
+    210,
+    0.06,
+    0
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "hPlBolt",
+   "layer": "hPl",
+   "shape": "cyl",
+   "size": [
+    0.1,
+    0.04
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    0,
+    0.97,
+    0
+   ],
+   "at": [
+    [
+     204.8,
+     0,
+     -3
+    ],
+    [
+     215.2,
+     0,
+     -3
+    ],
+    [
+     204.8,
+     0,
+     3
+    ],
+    [
+     215.2,
+     0,
+     3
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "hUEasel",
+   "layer": "hUsed",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.95,
+    0.13
+   ],
+   "pos": [
+    206.4,
+    1.425,
+    -0.885
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "hUEaselF",
+   "layer": "hUsed",
+   "shape": "box",
+   "size": [
+    1.8,
+    0.1,
+    0.45
+   ],
+   "pos": [
+    206.4,
+    1,
+    -0.775
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "hUEaselBolt",
+   "layer": "hUsed",
+   "shape": "cyl",
+   "size": [
+    0.05,
+    0.03
+   ],
+   "pos": [
+    0,
+    0,
+    -0.54
+   ],
+   "at": [
+    [
+     205.8,
+     1,
+     0
+    ],
+    [
+     207,
+     1,
+     0
+    ]
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "hUW",
+   "layer": "hUsed",
+   "shape": "cyl",
+   "size": [
+    1.4,
+    0.06
+   ],
+   "pos": [
+    206.4,
+    2.7,
+    -0.7
+   ],
+   "mat": "mirror"
+  },
+  {
+   "id": "hUN",
+   "layer": "hUsed",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.06
+   ],
+   "pos": [
+    206.4,
+    4.06,
+    -0.7
+   ],
+   "mat": "darker"
+  },
+  {
+   "id": "hPatD",
+   "layer": "hPat",
+   "shape": "box",
+   "size": [
+    0.17,
+    0.17,
+    0.02
+   ],
+   "pos": [
+    0,
+    0,
+    -0.62
+   ],
+   "at": [
+    [
+     205.4,
+     2.3,
+     0
+    ],
+    [
+     205.4,
+     2.5,
+     0
+    ],
+    [
+     205.4,
+     2.7,
+     0
+    ],
+    [
+     205.4,
+     2.9,
+     0
+    ],
+    [
+     205.4,
+     3.1,
+     0
+    ],
+    [
+     205.6,
+     1.9,
+     0
+    ],
+    [
+     205.6,
+     2.1,
+     0
+    ],
+    [
+     205.6,
+     2.3,
+     0
+    ],
+    [
+     205.6,
+     2.5,
+     0
+    ],
+    [
+     205.6,
+     2.7,
+     0
+    ],
+    [
+     205.6,
+     2.9,
+     0
+    ],
+    [
+     205.6,
+     3.1,
+     0
+    ],
+    [
+     205.6,
+     3.3,
+     0
+    ],
+    [
+     205.6,
+     3.5,
+     0
+    ],
+    [
+     205.8,
+     1.9,
+     0
+    ],
+    [
+     205.8,
+     2.1,
+     0
+    ],
+    [
+     205.8,
+     2.3,
+     0
+    ],
+    [
+     205.8,
+     2.5,
+     0
+    ],
+    [
+     205.8,
+     2.7,
+     0
+    ],
+    [
+     205.8,
+     2.9,
+     0
+    ],
+    [
+     205.8,
+     3.1,
+     0
+    ],
+    [
+     205.8,
+     3.3,
+     0
+    ],
+    [
+     205.8,
+     3.5,
+     0
+    ],
+    [
+     206,
+     1.7,
+     0
+    ],
+    [
+     206,
+     1.9,
+     0
+    ],
+    [
+     206,
+     2.1,
+     0
+    ],
+    [
+     206,
+     2.3,
+     0
+    ],
+    [
+     206,
+     2.5,
+     0
+    ],
+    [
+     206,
+     2.7,
+     0
+    ],
+    [
+     206,
+     2.9,
+     0
+    ],
+    [
+     206,
+     3.1,
+     0
+    ],
+    [
+     206,
+     3.3,
+     0
+    ],
+    [
+     206,
+     3.5,
+     0
+    ],
+    [
+     206,
+     3.7,
+     0
+    ],
+    [
+     206.2,
+     1.7,
+     0
+    ],
+    [
+     206.2,
+     1.9,
+     0
+    ],
+    [
+     206.2,
+     2.1,
+     0
+    ],
+    [
+     206.2,
+     2.3,
+     0
+    ],
+    [
+     206.2,
+     2.5,
+     0
+    ],
+    [
+     206.2,
+     2.7,
+     0
+    ],
+    [
+     206.2,
+     2.9,
+     0
+    ],
+    [
+     206.2,
+     3.1,
+     0
+    ],
+    [
+     206.2,
+     3.3,
+     0
+    ],
+    [
+     206.2,
+     3.5,
+     0
+    ],
+    [
+     206.2,
+     3.7,
+     0
+    ],
+    [
+     206.4,
+     1.7,
+     0
+    ],
+    [
+     206.4,
+     1.9,
+     0
+    ],
+    [
+     206.4,
+     2.1,
+     0
+    ],
+    [
+     206.4,
+     2.3,
+     0
+    ],
+    [
+     206.4,
+     2.5,
+     0
+    ],
+    [
+     206.4,
+     2.7,
+     0
+    ],
+    [
+     206.4,
+     2.9,
+     0
+    ],
+    [
+     206.4,
+     3.1,
+     0
+    ],
+    [
+     206.4,
+     3.3,
+     0
+    ],
+    [
+     206.4,
+     3.5,
+     0
+    ],
+    [
+     206.4,
+     3.7,
+     0
+    ],
+    [
+     206.6,
+     1.7,
+     0
+    ],
+    [
+     206.6,
+     1.9,
+     0
+    ],
+    [
+     206.6,
+     2.1,
+     0
+    ],
+    [
+     206.6,
+     2.3,
+     0
+    ],
+    [
+     206.6,
+     2.5,
+     0
+    ],
+    [
+     206.6,
+     2.7,
+     0
+    ],
+    [
+     206.6,
+     2.9,
+     0
+    ],
+    [
+     206.6,
+     3.1,
+     0
+    ],
+    [
+     206.6,
+     3.3,
+     0
+    ],
+    [
+     206.6,
+     3.5,
+     0
+    ],
+    [
+     206.6,
+     3.7,
+     0
+    ],
+    [
+     206.8,
+     1.7,
+     0
+    ],
+    [
+     206.8,
+     1.9,
+     0
+    ],
+    [
+     206.8,
+     2.1,
+     0
+    ],
+    [
+     206.8,
+     2.3,
+     0
+    ],
+    [
+     206.8,
+     2.5,
+     0
+    ],
+    [
+     206.8,
+     2.7,
+     0
+    ],
+    [
+     206.8,
+     2.9,
+     0
+    ],
+    [
+     206.8,
+     3.1,
+     0
+    ],
+    [
+     206.8,
+     3.3,
+     0
+    ],
+    [
+     206.8,
+     3.5,
+     0
+    ],
+    [
+     206.8,
+     3.7,
+     0
+    ],
+    [
+     207,
+     1.9,
+     0
+    ],
+    [
+     207,
+     2.1,
+     0
+    ],
+    [
+     207,
+     2.3,
+     0
+    ],
+    [
+     207,
+     2.5,
+     0
+    ],
+    [
+     207,
+     2.7,
+     0
+    ],
+    [
+     207,
+     2.9,
+     0
+    ],
+    [
+     207,
+     3.1,
+     0
+    ],
+    [
+     207,
+     3.3,
+     0
+    ],
+    [
+     207,
+     3.5,
+     0
+    ],
+    [
+     207.2,
+     1.9,
+     0
+    ],
+    [
+     207.2,
+     2.1,
+     0
+    ],
+    [
+     207.2,
+     2.3,
+     0
+    ],
+    [
+     207.2,
+     2.5,
+     0
+    ],
+    [
+     207.2,
+     2.7,
+     0
+    ],
+    [
+     207.2,
+     2.9,
+     0
+    ],
+    [
+     207.2,
+     3.1,
+     0
+    ],
+    [
+     207.2,
+     3.3,
+     0
+    ],
+    [
+     207.2,
+     3.5,
+     0
+    ],
+    [
+     207.4,
+     2.3,
+     0
+    ],
+    [
+     207.4,
+     2.5,
+     0
+    ],
+    [
+     207.4,
+     2.7,
+     0
+    ],
+    [
+     207.4,
+     2.9,
+     0
+    ],
+    [
+     207.4,
+     3.1,
+     0
+    ]
+   ],
+   "mat": "pat"
+  },
+  {
+   "id": "hPlatenD",
+   "layer": "hPlaten",
+   "shape": "cyl",
+   "size": [
+    3,
+    0.4
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.15,
+    0
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "hPadD",
+   "layer": "hPlaten",
+   "shape": "cyl",
+   "size": [
+    2.95,
+    0.08
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.39,
+    0
+   ],
+   "mat": "pad"
+  },
+  {
+   "id": "hGroove0",
+   "layer": "hPlaten",
+   "shape": "tube",
+   "size": [
+    0.6,
+    0.56,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.435,
+    0
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "hGroove1",
+   "layer": "hPlaten",
+   "shape": "tube",
+   "size": [
+    1,
+    0.96,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.435,
+    0
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "hGroove2",
+   "layer": "hPlaten",
+   "shape": "tube",
+   "size": [
+    1.4,
+    1.36,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.435,
+    0
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "hGroove3",
+   "layer": "hPlaten",
+   "shape": "tube",
+   "size": [
+    1.8,
+    1.76,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.435,
+    0
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "hGroove4",
+   "layer": "hPlaten",
+   "shape": "tube",
+   "size": [
+    2.2,
+    2.16,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.435,
+    0
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "hGroove5",
+   "layer": "hPlaten",
+   "shape": "tube",
+   "size": [
+    2.6,
+    2.56,
+    0.01
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    211.8,
+    1.435,
+    0
+   ],
+   "mat": "seam"
+  },
+  {
+   "id": "hHeadC",
+   "layer": "hHead",
+   "shape": "cyl",
+   "size": [
+    0.95,
+    0.5
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    212.9,
+    1.75,
+    0.4
+   ],
+   "mat": "dark"
+  },
+  {
+   "id": "hHeadRing",
+   "layer": "hHead",
+   "shape": "cyl",
+   "size": [
+    1,
+    0.09
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    212.9,
+    1.485,
+    0.4
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "hSpindle",
+   "layer": "hHead",
+   "shape": "cyl",
+   "size": [
+    0.22,
+    1.75
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "pos": [
+    212.9,
+    2.875,
+    0.4
+   ],
+   "mat": "steel2"
+  },
+  {
+   "id": "hArm",
+   "layer": "hPl",
+   "shape": "box",
+   "size": [
+    3.2,
+    0.4,
+    0.6
+   ],
+   "pos": [
+    214,
+    3.95,
+    0.4
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "hCol",
+   "layer": "hPl",
+   "shape": "box",
+   "size": [
+    0.4,
+    3.2,
+    0.6
+   ],
+   "pos": [
+    215.4,
+    2.55,
+    0.4
+   ],
+   "mat": "band"
+  },
+  {
+   "id": "hSlurryArm",
+   "layer": "hPl",
+   "shape": "box",
+   "size": [
+    4.2,
+    0.12,
+    0.12
+   ],
+   "pos": [
+    212.7,
+    2.31,
+    -1.84
+   ],
+   "mat": "steel"
+  },
+  {
+   "id": "hSlurryCol",
+   "layer": "hPl",
+   "shape": "box",
+   "size": [
+    0.15,
+    1.42,
+    0.2
+   ],
+   "pos": [
+    214.775,
+    1.66,
+    -1.85
+   ],
+   "mat": "steel"
+  }
+ ],
+ "anchors": {
+  "aSiA": {
+   "layer": "aSi",
+   "p": [
+    -3.4,
+    2.3,
+    0.1
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "aSiCA": {
+   "layer": "aSiC",
+   "p": [
+    0,
+    2.3,
+    0.1
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "aGaNA": {
+   "layer": "aGaN",
+   "p": [
+    3.4,
+    2.3,
+    0.1
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "bSiGapA": {
+   "layer": "bSi",
+   "p": [
+    22.75,
+    2.2,
+    0.6
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "bScGapA": {
+   "layer": "bSc",
+   "p": [
+    31.15,
+    3.1,
+    0.6
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "bSiCbA": {
+   "layer": "bSi",
+   "p": [
+    28,
+    2.65,
+    0.7
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "bScVbA": {
+   "layer": "bSc",
+   "p": [
+    36.2,
+    1.6,
+    0.7
+   ],
+   "dx": 150,
+   "dy": 100
+  },
+  "cDieA": {
+   "layer": "cDie",
+   "p": [
+    61.42,
+    2.16,
+    -0.6
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "cDbcA": {
+   "layer": "cDbc",
+   "p": [
+    57.7,
+    2.01,
+    1.5
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "cBaseA": {
+   "layer": "cBase",
+   "p": [
+    57.6,
+    1.45,
+    1.6
+   ],
+   "dx": -150,
+   "dy": 100
+  },
+  "cBatA": {
+   "layer": "cBat",
+   "p": [
+    49.5,
+    1.95,
+    1.2
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "cMotA": {
+   "layer": "cMot",
+   "p": [
+    68.6,
+    3.6,
+    1
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "cCaseA": {
+   "layer": "cCase",
+   "p": [
+    62.25,
+    3.25,
+    0.9
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "dGanA": {
+   "layer": "dParts",
+   "p": [
+    87.4,
+    1.23,
+    -0.6
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "dXfA": {
+   "layer": "dParts",
+   "p": [
+    88.55,
+    1.99,
+    0.45
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "dGhostA": {
+   "layer": "dGhost",
+   "p": [
+    95.45,
+    3.25,
+    1.8
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "eCoilA": {
+   "layer": "eCoil",
+   "p": [
+    122.25,
+    4.55,
+    0.3
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "eCruA": {
+   "layer": "eCru",
+   "p": [
+    118.85,
+    3.35,
+    0.4
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "eSeedA": {
+   "layer": "eLid",
+   "p": [
+    120.8,
+    5.5,
+    0.3
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "ePowA": {
+   "layer": "ePow",
+   "p": [
+    119.3,
+    2.85,
+    0.5
+   ],
+   "dx": -150,
+   "dy": 100
+  },
+  "eBouleA": {
+   "layer": "eBoule3",
+   "p": [
+    120.85,
+    4.95,
+    0.3
+   ],
+   "dx": 150,
+   "dy": 100
+  },
+  "eFeltA": {
+   "layer": "eFelt",
+   "p": [
+    118.32,
+    4.95,
+    0.5
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "fWafA": {
+   "layer": "fSus",
+   "p": [
+    151.126,
+    2.27,
+    0.65
+   ],
+   "dx": 150,
+   "dy": -100
+  },
+  "fShowA": {
+   "layer": "fShow",
+   "p": [
+    147.85,
+    3.5,
+    0.5
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "fFilmA": {
+   "layer": "fFilm",
+   "p": [
+    150,
+    2.29,
+    1.3
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "hPadA": {
+   "layer": "hPlaten",
+   "p": [
+    210.4,
+    1.43,
+    1.6
+   ],
+   "dx": -150,
+   "dy": 100
+  },
+  "hUsedA": {
+   "layer": "hUsed",
+   "p": [
+    206.4,
+    3.55,
+    -0.6
+   ],
+   "dx": -150,
+   "dy": -100
+  },
+  "hHeadA": {
+   "layer": "hHead",
+   "p": [
+    213.85,
+    1.75,
+    0.4
+   ],
+   "dx": 150,
+   "dy": -100
+  }
+ },
+ "actions": {
+  "aArcPulse": {
+   "type": "pulse",
+   "_說明": "高壓下矽撐不住：放電／漏電光穿過晶圓（電性崩潰示意）",
+   "parts": [
+    "aArc0",
+    "aArc1",
+    "aArc2",
+    "aArc3",
+    "aArc4"
+   ],
+   "color": "crackC",
+   "glow": 1,
+   "freq": 3,
+   "halo": 0
+  },
+  "aBoltGlow": {
+   "type": "pulse",
+   "parts": [
+    "aBoltP"
+   ],
+   "color": "boltC",
+   "glow": 0.9,
+   "freq": 2,
+   "halo": 0
+  },
+  "bSiLeak": {
+   "type": "flow",
+   "_說明": "矽：門檻低，電壓一高電子就跳上導帶流走（漏電示意）",
+   "layer": "bLeak",
+   "path": [
+    [
+     24.3,
+     1.73,
+     0.5
+    ],
+    [
+     24.6,
+     2.83,
+     0.5
+    ],
+    [
+     28.2,
+     2.83,
+     0.5
+    ],
+    [
+     28.95,
+     2.83,
+     0.5
+    ]
+   ],
+   "n": 5,
+   "size": 0.12,
+   "shape": "dot",
+   "rate": 0.8,
+   "color": "eleC",
+   "track": false,
+   "free": true
+  },
+  "bScTry": {
+   "type": "flow",
+   "_說明": "碳化矽：門檻高約 3 倍，電子跳到一半落回價帶",
+   "layer": "bSc",
+   "path": [
+    [
+     32.7,
+     1.73,
+     0.5
+    ],
+    [
+     33,
+     2.73,
+     0.5
+    ],
+    [
+     33.4,
+     1.73,
+     0.5
+    ]
+   ],
+   "n": 3,
+   "size": 0.12,
+   "shape": "dot",
+   "rate": 0.7,
+   "color": "eleC",
+   "track": false,
+   "free": true
+  },
+  "bSiNeedle": {
+   "type": "rotate",
+   "parts": [
+    "bSiNeedle"
+   ],
+   "axis": [
+    0,
+    0,
+    -1
+   ],
+   "pivot": [
+    25.45,
+    1.21,
+    1.76
+   ],
+   "rps": 0.05,
+   "rampSpin": true
+  },
+  "bScNeedle": {
+   "type": "rotate",
+   "parts": [
+    "bScNeedle"
+   ],
+   "axis": [
+    0,
+    0,
+    -1
+   ],
+   "pivot": [
+    33.85,
+    1.21,
+    1.76
+   ],
+   "rps": 0.05,
+   "rampSpin": true
+  },
+  "bSiElGlow": {
+   "type": "pulse",
+   "parts": [
+    "bSiEl"
+   ],
+   "color": "eleC",
+   "glow": 0.6,
+   "freq": 1.2,
+   "halo": 0
+  },
+  "cDcFlow": {
+   "type": "flow",
+   "_說明": "電池直流沿高壓線送進功率模組",
+   "layer": "cBat",
+   "path": [
+    [
+     54.2,
+     1.3,
+     -0.6
+    ],
+    [
+     57.08,
+     1.3,
+     -0.6
+    ],
+    [
+     57.08,
+     3.1,
+     -0.6
+    ]
+   ],
+   "n": 5,
+   "size": 0.11,
+   "shape": "dot",
+   "rate": 0.9,
+   "color": "hvC",
+   "track": false
+  },
+  "cAcFlow": {
+   "type": "flow",
+   "_說明": "模組切成三相交流送給馬達",
+   "layer": "cMot",
+   "path": [
+    [
+     62.5,
+     3.43,
+     0
+    ],
+    [
+     67.85,
+     3.43,
+     0
+    ]
+   ],
+   "n": 4,
+   "lanes": 3,
+   "laneDir": [
+    0,
+    0,
+    1
+   ],
+   "laneGap": 0.9,
+   "size": 0.1,
+   "shape": "dot",
+   "rate": 1,
+   "color": "acC",
+   "track": false
+  },
+  "cShaftSpin": {
+   "type": "rotate",
+   "parts": [
+    "cMotShaft",
+    "cMotKey"
+   ],
+   "axis": [
+    0,
+    0,
+    1
+   ],
+   "pivot": [
+    68.6,
+    2,
+    0
+   ],
+   "rps": 1.2,
+   "rampSpin": true
+  },
+  "cDieHeat": {
+   "type": "pulse",
+   "_說明": "晶片發熱（示意，碳化矽損耗小，只微亮）",
+   "parts": [
+    "cDieB"
+   ],
+   "color": "heatC",
+   "glow": 0.35,
+   "freq": 1,
+   "halo": 0
+  },
+  "dGanPulse": {
+   "type": "pulse",
+   "_說明": "氮化鎵開關特別快：晶片高頻閃（示意頻率）",
+   "parts": [
+    "dGanT"
+   ],
+   "color": "gaC",
+   "glow": 0.9,
+   "freq": 7,
+   "halo": 0
+  },
+  "dPwrFlow": {
+   "type": "flow",
+   "_說明": "電從插腳經晶片、變壓器送到 Type-C",
+   "layer": "dPcb",
+   "path": [
+    [
+     88,
+     1.19,
+     -1.45
+    ],
+    [
+     87.4,
+     1.19,
+     -0.6
+    ],
+    [
+     88.55,
+     1.19,
+     0.45
+    ],
+    [
+     88,
+     1.19,
+     1.3
+    ]
+   ],
+   "n": 5,
+   "size": 0.08,
+   "shape": "dot",
+   "rate": 1,
+   "color": "acC",
+   "track": false
+  },
+  "eCoilGlow": {
+   "type": "pulse",
+   "_說明": "感應線圈通交流電，坩堝被感應加熱（示意）",
+   "parts": [
+    "eCoilT",
+    "eCoilTie"
+   ],
+   "color": "cuBright",
+   "glow": 0.7,
+   "freq": 1.6,
+   "halo": 0
+  },
+  "eHotPulse": {
+   "type": "pulse",
+   "parts": [
+    "eHotD",
+    "eHotR"
+   ],
+   "color": "hotC",
+   "glow": 1,
+   "freq": 0.8,
+   "halo": 0
+  },
+  "eVapor": {
+   "type": "flow",
+   "_說明": "粉末昇華成氣體，往上擴散到較冷的晶種表面凝結（像結霜）",
+   "layer": "ePow",
+   "path": [
+    [
+     119.4,
+     2.95,
+     0.3
+    ],
+    [
+     119.6,
+     3.95,
+     0.3
+    ],
+    [
+     119.5,
+     4.85,
+     0.3
+    ],
+    [
+     119.7,
+     5.25,
+     0.3
+    ]
+   ],
+   "n": 4,
+   "lanes": 5,
+   "laneDir": [
+    1,
+    0,
+    0
+   ],
+   "laneGap": 0.3,
+   "jitter": 0.25,
+   "size": 0.06,
+   "shape": "dot",
+   "rate": 0.35,
+   "color": "vaporC",
+   "track": false,
+   "free": true
+  },
+  "fSusSpin": {
+   "type": "rotate",
+   "_說明": "承盤帶著晶圓轉，膜才長得均勻",
+   "parts": [
+    "fSusD",
+    "fSusHub",
+    "fPocket",
+    "fWaf",
+    "fWafNotch",
+    "fFilmD"
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "pivot": [
+    150,
+    2.15,
+    0
+   ],
+   "rps": 0.25,
+   "rampSpin": true
+  },
+  "fGasGa": {
+   "type": "flow",
+   "_說明": "含鎵氣體從噴氣頭孔往下噴、碰到晶圓沿表面散開",
+   "layer": "fShow",
+   "path": [
+    [
+     148.6,
+     3.35,
+     0.2
+    ],
+    [
+     148.6,
+     2.45,
+     0.2
+    ],
+    [
+     147.7,
+     2.4,
+     0.2
+    ]
+   ],
+   "n": 3,
+   "lanes": 4,
+   "laneDir": [
+    0,
+    0,
+    1
+   ],
+   "laneGap": 0.4,
+   "jitter": 0.12,
+   "size": 0.06,
+   "shape": "dot",
+   "rate": 0.7,
+   "color": "gaC",
+   "track": false,
+   "free": true
+  },
+  "fGasN": {
+   "type": "flow",
+   "_說明": "氨氣（氮的來源）同樣往下噴、在熱晶圓表面反應",
+   "layer": "fShow",
+   "path": [
+    [
+     151.4,
+     3.35,
+     0.2
+    ],
+    [
+     151.4,
+     2.45,
+     0.2
+    ],
+    [
+     152.3,
+     2.4,
+     0.2
+    ]
+   ],
+   "n": 3,
+   "lanes": 4,
+   "laneDir": [
+    0,
+    0,
+    1
+   ],
+   "laneGap": 0.4,
+   "jitter": 0.12,
+   "size": 0.06,
+   "shape": "dot",
+   "rate": 0.7,
+   "color": "ammoniaC",
+   "track": false,
+   "free": true
+  },
+  "fGasMid": {
+   "type": "flow",
+   "layer": "fShow",
+   "path": [
+    [
+     150,
+     3.35,
+     -0.8
+    ],
+    [
+     150,
+     2.4,
+     -0.8
+    ]
+   ],
+   "n": 3,
+   "lanes": 5,
+   "laneDir": [
+    1,
+    0,
+    0
+   ],
+   "laneGap": 0.4,
+   "jitter": 0.1,
+   "size": 0.05,
+   "shape": "dot",
+   "rate": 0.7,
+   "color": "gaC",
+   "track": false,
+   "free": true
+  },
+  "fHeatGlow": {
+   "type": "pulse",
+   "parts": [
+    "fHeatR",
+    "fHeatR2"
+   ],
+   "color": "hotC",
+   "glow": 0.9,
+   "freq": 0.6,
+   "halo": 0
+  },
+  "hPlatenSpin": {
+   "type": "rotate",
+   "parts": [
+    "hPlatenD",
+    "hPadD",
+    "hGroove0",
+    "hGroove1",
+    "hGroove2",
+    "hGroove3",
+    "hGroove4",
+    "hGroove5"
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "pivot": [
+    211.8,
+    0.9500000000000001,
+    0
+   ],
+   "rps": 0.35,
+   "rampSpin": true
+  },
+  "hHeadSpin": {
+   "type": "rotate",
+   "parts": [
+    "hHeadC",
+    "hHeadRing",
+    "hSpindle"
+   ],
+   "axis": [
+    0,
+    1,
+    0
+   ],
+   "pivot": [
+    212.9,
+    0.9500000000000001,
+    0.4
+   ],
+   "rps": 0.3,
+   "rampSpin": true
+  },
+  "hSlurry": {
+   "type": "flow",
+   "_說明": "研磨液從管口滴到墊子上",
+   "layer": "hPl",
+   "path": [
+    [
+     210.7,
+     2.23,
+     -1.84
+    ],
+    [
+     210.7,
+     1.45,
+     -1.84
+    ]
+   ],
+   "n": 3,
+   "size": 0.07,
+   "shape": "dot",
+   "rate": 0.9,
+   "color": "slurryC",
+   "track": false,
+   "free": true
+  }
+ },
+ "pose": {
+  "yaw0": 0,
+  "yawIso": 0,
+  "drift": 0
+ },
+ "camera": {
+  "stand": {
+   "d": 70,
+   "elev": 24,
+   "y": 4
+  }
+ },
+ "fx": {
+  "dpr": 1,
+  "srcPx": 30,
+  "shadows": 0,
+  "fog": false,
+  "dust": false,
+  "vaporSprites": false,
+  "shimmer": false
+ },
+ "info": {
+  "AX": 0,
+  "BX": 30,
+  "CX": 60,
+  "DX": 90,
+  "EX": 120,
+  "FX": 150,
+  "GX": 180,
+  "HX": 210,
+  "CH": 1.05,
+  "DH": 0.85,
+  "EH": 0.95,
+  "FH": 0.95,
+  "HH": 0.95
+ }
+}
