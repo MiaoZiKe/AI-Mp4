@@ -420,6 +420,7 @@ Object.assign(anchors, {
   ffFab: A("fFab", [FFX - 1.4, TOPF + 1.4, FFZ + 0.95], -150, -100), mpiFab: A("tMpi", [MPX + 1.0, TOPT + 1.8, MPZ + 0.9], 150, -100), chFab: A("tChpt", [CHX + 1.2, TOPT + 1.2, CHZ + 0.85], 150, -100),
   mGap: A("mGap", [MX0 + 3 * MP, PADT + 0.1, MZ], 150, 110), mNeedle: A("mNs", [MX0 + 8 * MP, MY_TIP + 1.6, MZ], 150, -100), mPad: A("mWafer", [MX0 + 1 * MP, PADT, MZ], -150, 100),
   wTip: A("wTipNew", [WX + 0.2, WTIP + 0.4, 0.2], 150, -60), wSheetA: A("wSheet", [SHX - 0.8, 2.36, 1.2], 150, 100), wNewA: A("wNew", [WX + 0.3, 6.0, 0.3], 150, -80),
+  goodDie: A("dieOk1", [-0.68, 2.37, 0.23], -150, -100),   // 11-28：s9 預告 M1 時標「好晶粒」
   dFrameA: A("dFrame", [DX - 3.9, 1.14, 1.8], -150, 100), dBladeA: A("dBlade", [DX + 1.35, 2.0, 0.1], 150, -80),
 });
 

@@ -197,10 +197,10 @@ P["s8"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
  "labels": [lab("probe2", "測完的晶圓", "Tested wafer", "blue", "done", "done+48")],
  "overlay": [card("s8", "probe2-recap", "系列 2 收尾", "示意", {"eq": "eq", "mat": "mat", "fac": "fac", "test": "test", "done": "done"})]}
 P["s9"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],   # 12/25 改接 M1 成熟與特殊製程代工：鏡頭留在 s8 測完的晶圓（好晶粒全亮），慢推再拉，標籤依 cue 換
- "shot": [shot(CC, 8.4, 2.6, 31, 46, 1), shot("good-6", 8.7, 2.5, 26, 52, 40), shot("ep-4", 8.2, 2.7, 34, 40, 46)],
+ "shot": [shot(CC, 8.4, 2.6, 31, 46, 1), shot("tested+6", 8.7, 2.5, 27, 50, 54), shot("adv-10", 8.5, 2.6, 25, 54, 50), shot("ep-4", 8.2, 2.7, 33, 42, 60), shot("kw", 8.0, 2.8, 36, 38, 70)],   # 慢推→再推→拉遠→再拉，靜止不超過 1.5 秒
  "run": [run("testLed", "start", FAR, 6)],
  "labels": [lab("probe2", "測完的晶圓", "Tested wafer", "blue", "tested", "tested+46"),
-            lab("dieOkB1", "好晶粒", "Good dies", "blue", "good", "good+46"),
+            lab("goodDie", "好晶粒", "Good dies", "blue", "good", "good+46"),
             lab("probe2", "下一集：成熟製程", "Next: mature nodes", "amber", "mature", "mature+46")],
  "overlay": [sec("probe2-next", C, "s10:start", "接下來", "下一集預告", {"tested": "tested", "good": "good", "adv": "adv", "ep": "ep", "mature": "mature", "kw": "kw"}, cut=True)]}
 for sc in scenes:
