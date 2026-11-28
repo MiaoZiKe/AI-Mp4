@@ -1,0 +1,2129 @@
+{
+ "slug": "tech-carrier",
+ "prevEpisode": "M4：再生晶圓",
+ "title": "光罩盒與晶圓載具（科技透明圈）",
+ "asOf": "2026/11/28",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "中游補充篇",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "start",
+    "label": "密封盒（示意）",
+    "en": "SEALED CARRIER",
+    "field": "60 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "foup",
+    "label": "晶圓盒（FOUP）拆解（示意）",
+    "en": "FOUP",
+    "field": "60 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "kc",
+    "label": "盒底對位（示意）",
+    "en": "KINEMATIC COUPLING",
+    "field": "60 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "oht",
+    "label": "天車與承載埠（示意）",
+    "en": "OHT / LOAD PORT",
+    "field": "2 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "purge",
+    "label": "氮氣吹淨（示意）",
+    "en": "N2 PURGE",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "fosb",
+    "label": "出貨盒（FOSB）運送（示意）",
+    "en": "FOSB SHIPPING",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "pod",
+    "label": "雙層光罩盒（示意）",
+    "en": "EUV DUAL POD",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "clean",
+    "label": "盒子清洗機（示意）",
+    "en": "CARRIER WASHER",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "tw",
+    "label": "台灣載具廠",
+    "en": "TAIWAN MAKERS",
+    "field": "100 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "晶片故障（下一集）",
+    "en": "NEXT",
+    "field": "5 cm",
+    "ruler": "5 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "光罩盒與晶圓載具",
+   "晶圓一路不碰灰塵"
+  ],
+  "sub": "晶圓盒→天車→氮氣→出貨盒→光罩盒",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "前一集說的密封盒，到底長什麼樣？怎麼擋灰塵？",
+   "tts": "前一集說的密封盒，到底長什麼樣？怎麼擋灰塵？",
+   "subtitle": {
+    "zh": "前一集說的密封盒\n到底長什麼樣？\n怎麼擋灰塵？",
+    "en": "The sealed box from last episode: | what does it look like? | How does it keep dust out?"
+   },
+   "keywords": [
+    "密封盒",
+    "灰塵"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "box",
+     "text": "密封盒"
+    },
+    {
+     "id": "look",
+     "text": "長什麼樣"
+    },
+    {
+     "id": "dust",
+     "text": "擋灰塵"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：再生晶圓",
+     "title": "晶圓盒長怎樣？",
+     "size": 92,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 3.0,
+      "d": 34,
+      "elev": 12
+     }
+    ],
+    "shift": [
+     {
+      "layer": "bD",
+      "at": "s2:foup+4",
+      "until": "s2:n25+24",
+      "dur": 14,
+      "dx": 1.491,
+      "dz": 2.13
+     },
+     {
+      "layer": "bS",
+      "at": "s2:door+16",
+      "until": "s2:n25+12",
+      "dur": 18,
+      "dy": 3.1
+     },
+     {
+      "layer": "bT",
+      "at": "s2:door+16",
+      "until": "s2:n25+12",
+      "dur": 18,
+      "dy": 3.1
+     },
+     {
+      "layer": "bT",
+      "at": "s2:door+24",
+      "until": "s2:n25+6",
+      "dur": 12,
+      "dy": 0.7999999999999998
+     },
+     {
+      "layer": "cFoup",
+      "at": "s1:start-40",
+      "until": "s3:align-8",
+      "dur": 18,
+      "dy": 0.88
+     },
+     {
+      "layer": "cFoup",
+      "at": "s1:start-40",
+      "until": "s3:align+10",
+      "dur": 14,
+      "dy": 0.12
+     },
+     {
+      "layer": "cFoup",
+      "at": "s1:start-40",
+      "until": "s3:align+10",
+      "dur": 14,
+      "dx": 0.06,
+      "dz": -0.05
+     },
+     {
+      "layer": "dVeh",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dGrip",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dJawL",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dJawR",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dBelt1",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dBelt2",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dBelt3",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dBelt4",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dBelt5",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dB",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dS",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dT",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dD",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dK",
+      "at": "s1:start-40",
+      "until": "s4:rail+4",
+      "dur": 34,
+      "dx": 6.0
+     },
+     {
+      "layer": "dGrip",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dJawL",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dJawR",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dB",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dS",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dT",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dD",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dK",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dBelt1",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 0.82
+     },
+     {
+      "layer": "dBelt2",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 1.64
+     },
+     {
+      "layer": "dBelt3",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 2.46
+     },
+     {
+      "layer": "dBelt4",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 3.28
+     },
+     {
+      "layer": "dBelt5",
+      "at": "s1:start-40",
+      "until": "s4:hang-8",
+      "dur": 30,
+      "dy": 4.1
+     },
+     {
+      "layer": "dJawL",
+      "at": "s4:hang+24",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dz": -0.36
+     },
+     {
+      "layer": "dJawR",
+      "at": "s4:hang+24",
+      "until": "s11:start+400",
+      "dur": 6,
+      "dz": 0.36
+     },
+     {
+      "layer": "dGrip",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 4.1
+     },
+     {
+      "layer": "dJawL",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 4.1
+     },
+     {
+      "layer": "dJawR",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 4.1
+     },
+     {
+      "layer": "dBelt1",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 0.82
+     },
+     {
+      "layer": "dBelt2",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 1.64
+     },
+     {
+      "layer": "dBelt3",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 2.46
+     },
+     {
+      "layer": "dBelt4",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 3.28
+     },
+     {
+      "layer": "dBelt5",
+      "at": "s4:hang+32",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dy": 4.1
+     },
+     {
+      "layer": "dDock",
+      "at": "s4:hang+38",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dx": -0.3
+     },
+     {
+      "layer": "dB",
+      "at": "s4:hang+38",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dx": -0.3
+     },
+     {
+      "layer": "dS",
+      "at": "s4:hang+38",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dx": -0.3
+     },
+     {
+      "layer": "dT",
+      "at": "s4:hang+38",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dx": -0.3
+     },
+     {
+      "layer": "dD",
+      "at": "s4:hang+38",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dx": -0.3
+     },
+     {
+      "layer": "dK",
+      "at": "s4:hang+38",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dx": -0.3
+     },
+     {
+      "layer": "dD",
+      "at": "s4:open-10",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dx": -0.36
+     },
+     {
+      "layer": "dD",
+      "at": "s4:open+4",
+      "until": "s11:start+400",
+      "dur": 20,
+      "dy": -3.5
+     },
+     {
+      "layer": "dPD",
+      "at": "s4:open-10",
+      "until": "s11:start+400",
+      "dur": 12,
+      "dx": -0.36
+     },
+     {
+      "layer": "dPD",
+      "at": "s4:open+4",
+      "until": "s11:start+400",
+      "dur": 20,
+      "dy": -3.5
+     },
+     {
+      "layer": "dArm2",
+      "at": "s4:air-22",
+      "until": "s4:air+8",
+      "dur": 20,
+      "dx": 2.475
+     },
+     {
+      "layer": "dFork",
+      "at": "s4:air-22",
+      "until": "s4:air+8",
+      "dur": 20,
+      "dx": 4.5
+     },
+     {
+      "layer": "dFork",
+      "at": "s4:air-1",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dy": 0.05
+     },
+     {
+      "layer": "dK",
+      "at": "s4:air-1",
+      "until": "s11:start+400",
+      "dur": 8,
+      "dy": 0.05
+     },
+     {
+      "layer": "dK",
+      "at": "s4:air+8",
+      "until": "s11:start+400",
+      "dur": 20,
+      "dx": -4.5
+     },
+     {
+      "layer": "dCeil",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dVeh",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dGrip",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dJawL",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dJawR",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt1",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt2",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt3",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt4",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt5",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "gOshell",
+      "at": "s7:pod+2",
+      "until": "s11:start+400",
+      "dur": 22,
+      "dy": 1.9
+     },
+     {
+      "layer": "gIn",
+      "at": "s7:two+2",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dx": 6.6
+     },
+     {
+      "layer": "gIc",
+      "at": "s7:two+2",
+      "until": "s11:start+400",
+      "dur": 26,
+      "dx": 6.6
+     },
+     {
+      "layer": "gGate",
+      "at": "s1:start-40",
+      "until": "s7:two+30",
+      "dur": 10,
+      "dy": 1.6
+     },
+     {
+      "layer": "gIc",
+      "at": "s7:open+8",
+      "until": "s11:start+400",
+      "dur": 14,
+      "dy": 1
+     }
+    ],
+    "run": [
+     {
+      "id": "aDustIn",
+      "at": "start",
+      "ramp": 1,
+      "until": "s2:start"
+     },
+     {
+      "id": "aDustSlide",
+      "at": "start",
+      "ramp": 1,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aBoxA",
+      "text": "密封盒：裝晶圓來回送",
+      "en": "Sealed box: carries wafers",
+      "color": "blue",
+      "at": "start+2",
+      "until": "look+16",
+      "cut": true
+     },
+     {
+      "part": "aDoorA",
+      "text": "門封住：灰塵擋在外面",
+      "en": "Sealed door keeps dust out",
+      "color": "amber",
+      "at": "look+19",
+      "until": "s2:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "中游補充篇・M5",
+      "tag": "示意",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "box": {
+        "at": "box"
+       },
+       "look": {
+        "at": "look"
+       },
+       "dust": {
+        "at": "dust"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.0,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "廠裡用的叫晶圓盒，前面開門，一盒裝二十五片，像抽屜櫃。",
+   "tts": "廠裡用的叫晶圓盒，前面開門，一盒裝二十五片，像抽屜櫃。",
+   "subtitle": {
+    "zh": "廠裡用的叫晶圓盒\n前面開門\n一盒裝二十五片\n像抽屜櫃",
+    "en": "In fabs it's called a FOUP, | opening at the front, | holding 25 wafers per box, | like a chest of drawers."
+   },
+   "keywords": [
+    "晶圓盒",
+    "二十五片",
+    "抽屜櫃"
+   ],
+   "cues": [
+    {
+     "id": "foup",
+     "text": "晶圓盒"
+    },
+    {
+     "id": "door",
+     "text": "前面開門"
+    },
+    {
+     "id": "n25",
+     "text": "二十五片"
+    },
+    {
+     "id": "drawer",
+     "text": "抽屜櫃"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Wikipedia「FOUP」；Entegris FOUP 規格書；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "foup",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 30,
+      "y": 2.45,
+      "d": 36,
+      "elev": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "bDoorA",
+      "text": "前門＋四周密封條",
+      "en": "Front door + seal",
+      "color": "amber",
+      "at": "foup-2",
+      "until": "foup+44",
+      "cut": true
+     },
+     {
+      "part": "bShellA2",
+      "text": "盒殼＋頂部法蘭往上抬",
+      "en": "Shell + top flange lift off",
+      "color": "blue",
+      "at": "foup+46",
+      "until": "n25+18",
+      "cut": true,
+      "xy": [
+       420,
+       330
+      ]
+     },
+     {
+      "part": "bShellA",
+      "text": "25 片晶圓＋兩側槽齒",
+      "en": "25 wafers in side slots",
+      "color": "amber",
+      "at": "n25+20",
+      "until": "s3:start",
+      "cut": true,
+      "xy": [
+       400,
+       330
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-drawer",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "晶圓盒：前開門、一盒 25 片",
+      "tag": "示意",
+      "t": {
+       "foup": {
+        "at": "foup"
+       },
+       "door": {
+        "at": "door"
+       },
+       "n25": {
+        "at": "n25"
+       },
+       "drawer": {
+        "at": "drawer"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.3,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "盒底有三道溝，卡進機台的三顆凸點，一放就對準。",
+   "tts": "盒底有三道溝，卡進機台的三顆凸點，一放就對準。",
+   "subtitle": {
+    "zh": "盒底有三道溝\n卡進機台的\n三顆凸點\n一放就對準",
+    "en": "Three grooves under the box | drop onto the tool's | three round pins, | and it lines up by itself."
+   },
+   "keywords": [
+    "三道溝",
+    "三顆凸點",
+    "對準"
+   ],
+   "cues": [
+    {
+     "id": "groove",
+     "text": "三道溝"
+    },
+    {
+     "id": "pins",
+     "text": "三顆凸點"
+    },
+    {
+     "id": "align",
+     "text": "一放就對準"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7866480、7201276；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "kc",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 60,
+      "y": 3.6,
+      "d": 32,
+      "elev": -6
+     }
+    ],
+    "labels": [
+     {
+      "part": "cGrA",
+      "text": "盒底三道 V 形溝",
+      "en": "Three radial V-grooves",
+      "color": "blue",
+      "at": "groove-4",
+      "until": "groove+41",
+      "cut": true
+     },
+     {
+      "part": "cPinA",
+      "text": "三顆圓頭銷 → 一放就滑到定位",
+      "en": "Three pins → it slides into place",
+      "color": "amber",
+      "at": "groove+43",
+      "until": "s4:start",
+      "cut": true,
+      "xy": [
+       540,
+       330
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-kc",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "盒底：三道溝對三顆凸點",
+      "tag": "示意（仰視）",
+      "t": {
+       "groove": {
+        "at": "groove"
+       },
+       "pins": {
+        "at": "pins"
+       },
+       "align": {
+        "at": "align"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "軌道車從天花板把盒子吊到機台前，盒門跟機台一起開，晶圓不碰外面空氣。",
+   "tts": "軌道車從天花板把盒子吊到機台前，盒門跟機台一起開，晶圓不碰外面空氣。",
+   "subtitle": {
+    "zh": "軌道車從天花板\n把盒子吊到機台前\n盒門跟機台一起開\n晶圓不碰外面空氣",
+    "en": "A cart on a ceiling rail | lowers the box to the tool; | box door and tool door open together, | so wafers never touch outside air."
+   },
+   "keywords": [
+    "軌道車",
+    "一起開",
+    "空氣"
+   ],
+   "cues": [
+    {
+     "id": "rail",
+     "text": "軌道車"
+    },
+    {
+     "id": "ceil",
+     "text": "天花板"
+    },
+    {
+     "id": "hang",
+     "text": "吊到"
+    },
+    {
+     "id": "door",
+     "text": "盒門"
+    },
+    {
+     "id": "open",
+     "text": "一起開"
+    },
+    {
+     "id": "air",
+     "text": "外面空氣"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 9136149、10501271；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "oht",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 91.6,
+      "y": 6.0,
+      "d": 66,
+      "elev": 6
+     },
+     {
+      "at": "open-20",
+      "dur": 18,
+      "x": 90.5,
+      "y": 4.0,
+      "d": 30,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "dFfuAir",
+      "at": "open-12",
+      "ramp": 8,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dOhtA",
+      "text": "天車（OHT）：天花板軌道",
+      "en": "Overhead hoist transport (OHT)",
+      "color": "blue",
+      "at": "rail",
+      "until": "rail+46",
+      "cut": true
+     },
+     {
+      "part": "dPortA",
+      "text": "承載埠（Load port）",
+      "en": "Load port",
+      "color": "amber",
+      "at": "rail+48",
+      "until": "open-22",
+      "cut": true
+     },
+     {
+      "part": "dArmA",
+      "text": "兩扇門一起開 → 手臂取片",
+      "en": "Doors open together → robot picks a wafer",
+      "color": "blue",
+      "at": "open-2",
+      "until": "s5:start-6",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-oht",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "天車 → 承載埠 → 開門取片",
+      "tag": "示意",
+      "t": {
+       "rail": {
+        "at": "rail"
+       },
+       "ceil": {
+        "at": "ceil"
+       },
+       "hang": {
+        "at": "hang"
+       },
+       "door": {
+        "at": "door"
+       },
+       "open": {
+        "at": "open"
+       },
+       "air": {
+        "at": "air"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.1,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "排隊等的時候灌氮氣，趕走濕氣和氧氣，像餅乾罐放乾燥劑。",
+   "tts": "排隊等的時候灌氮氣，趕走濕氣和氧氣，像餅乾罐放乾燥劑。",
+   "subtitle": {
+    "zh": "排隊等的時候\n灌氮氣\n趕走濕氣和氧氣\n像餅乾罐放乾燥劑",
+    "en": "While waiting in line, | it's filled with nitrogen | to drive out moisture and oxygen, | like a desiccant in a cookie jar."
+   },
+   "keywords": [
+    "氮氣",
+    "濕氣",
+    "餅乾罐"
+   ],
+   "cues": [
+    {
+     "id": "wait",
+     "text": "排隊"
+    },
+    {
+     "id": "n2",
+     "text": "灌氮氣"
+    },
+    {
+     "id": "moist",
+     "text": "濕氣"
+    },
+    {
+     "id": "o2",
+     "text": "氧氣"
+    },
+    {
+     "id": "jar",
+     "text": "餅乾罐"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 9508579、9174253、10923372；示意"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "purge",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 121.6,
+      "y": 3.4,
+      "d": 40,
+      "elev": 10
+     }
+    ],
+    "run": [
+     {
+      "id": "eN2Pipe",
+      "at": "n2-6",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eN2",
+      "at": "n2-2",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eM0",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+94"
+     },
+     {
+      "id": "eM1",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+70"
+     },
+     {
+      "id": "eM2",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+86"
+     },
+     {
+      "id": "eM3",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+64"
+     },
+     {
+      "id": "eM4",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+90"
+     },
+     {
+      "id": "eM5",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+76"
+     },
+     {
+      "id": "eM6",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+80"
+     },
+     {
+      "id": "eM7",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+92"
+     },
+     {
+      "id": "eM8",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+67"
+     },
+     {
+      "id": "eM9",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+83"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eFoupA",
+      "text": "等待架上的晶圓盒",
+      "en": "A FOUP waiting on the shelf",
+      "color": "blue",
+      "at": "voice-2",
+      "until": "n2+15",
+      "cut": true
+     },
+     {
+      "part": "eN2A",
+      "text": "盒底進氣嘴：灌氮氣",
+      "en": "Nitrogen in through the base",
+      "color": "amber",
+      "at": "n2+17",
+      "until": "jar-2",
+      "cut": true
+     },
+     {
+      "part": "eGasA",
+      "text": "閥件＋流量計控制氮氣",
+      "en": "Valve + flowmeter",
+      "color": "blue",
+      "at": "jar",
+      "until": "s6:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-purge",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "排隊時灌氮氣：趕走濕氣和氧氣",
+      "tag": "示意",
+      "t": {
+       "wait": {
+        "at": "wait"
+       },
+       "n2": {
+        "at": "n2"
+       },
+       "moist": {
+        "at": "moist"
+       },
+       "o2": {
+        "at": "o2"
+       },
+       "jar": {
+        "at": "jar"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.4,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "送客戶換出貨盒，少開門，重點是防撞防震，像蛋盒。",
+   "tts": "送客戶換出貨盒，少開門，重點是防撞防震，像蛋盒。",
+   "subtitle": {
+    "zh": "送客戶換出貨盒\n少開門\n重點是防撞防震\n像蛋盒",
+    "en": "Shipping to customers uses a FOSB; | its door rarely opens, | the point is shock protection, | like an egg carton."
+   },
+   "keywords": [
+    "出貨盒",
+    "防撞防震",
+    "蛋盒"
+   ],
+   "cues": [
+    {
+     "id": "ship",
+     "text": "送客戶"
+    },
+    {
+     "id": "fosb",
+     "text": "出貨盒"
+    },
+    {
+     "id": "less",
+     "text": "少開門"
+    },
+    {
+     "id": "shock",
+     "text": "防撞防震"
+    },
+    {
+     "id": "egg",
+     "text": "蛋盒"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7299603、10388554；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fosb",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 148.9,
+      "y": 2.3,
+      "d": 42,
+      "elev": 12
+     }
+    ],
+    "run": [
+     {
+      "id": "fBump",
+      "at": "start",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "fBumpBox",
+      "at": "start",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "fBumpFoam",
+      "at": "start",
+      "ramp": 10,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fFosbA",
+      "text": "出貨盒（FOSB）：少開門",
+      "en": "FOSB: door rarely opened",
+      "color": "blue",
+      "at": "fosb-4",
+      "until": "shock-6",
+      "cut": true
+     },
+     {
+      "part": "fFoamA",
+      "text": "泡棉＋紙箱托住：防撞防震",
+      "en": "Foam + carton absorb the bumps",
+      "color": "amber",
+      "at": "shock-4",
+      "until": "s7:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-egg",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "出貨盒：防撞防震，像蛋盒",
+      "tag": "示意",
+      "t": {
+       "ship": {
+        "at": "ship"
+       },
+       "fosb": {
+        "at": "fosb"
+       },
+       "less": {
+        "at": "less"
+       },
+       "shock": {
+        "at": "shock"
+       },
+       "egg": {
+        "at": "egg"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "mechanism",
+   "para": 7,
+   "narration": "光罩也有專屬盒子，極紫外光用的有兩層，進真空機台才打開。",
+   "tts": "光照也有專屬盒子，極紫外光用的有兩層，進真空機台才打開。",
+   "subtitle": {
+    "zh": "光罩也有專屬盒子\n極紫外光用的\n有兩層\n進真空機台才打開",
+    "en": "Photomasks get their own pods; | the EUV ones | have two layers, | opened only inside the vacuum tool."
+   },
+   "keywords": [
+    "光罩",
+    "兩層",
+    "真空"
+   ],
+   "cues": [
+    {
+     "id": "mask",
+     "text": "光罩"
+    },
+    {
+     "id": "pod",
+     "text": "專屬盒子"
+    },
+    {
+     "id": "euv",
+     "text": "極紫外光"
+    },
+    {
+     "id": "two",
+     "text": "兩層"
+    },
+    {
+     "id": "vac",
+     "text": "真空機台"
+    },
+    {
+     "id": "open",
+     "text": "才打開"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Entegris EUV Pod 產品頁；USPTO 12730371"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "pod",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 181.7,
+      "y": 2.6,
+      "d": 39,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "gPumpOut",
+      "at": "two+40",
+      "ramp": 14,
+      "until": "open+4"
+     },
+     {
+      "id": "gNeedle",
+      "at": "two+40",
+      "ramp": 30,
+      "until": "s8:start+20"
+     }
+    ],
+    "labels": [
+     {
+      "part": "gOutA",
+      "text": "外盒（高分子）：機台外打開",
+      "en": "Outer pod opens outside the tool",
+      "color": "blue",
+      "at": "pod",
+      "until": "pod+46",
+      "cut": true
+     },
+     {
+      "part": "gInA",
+      "text": "金屬內盒：送進真空腔、關門抽真空",
+      "en": "Inner pod in, door shut, pumped down",
+      "color": "amber",
+      "at": "pod+48",
+      "until": "vac+6",
+      "cut": true
+     },
+     {
+      "part": "gRetA",
+      "text": "真空裡才開：光罩（圖案朝下）",
+      "en": "Opened only in vacuum: the mask",
+      "color": "blue",
+      "at": "vac+8",
+      "until": "s8:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-pod",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "極紫外光光罩盒：兩層",
+      "tag": "示意",
+      "t": {
+       "mask": {
+        "at": "mask"
+       },
+       "pod": {
+        "at": "pod"
+       },
+       "euv": {
+        "at": "euv"
+       },
+       "two": {
+        "at": "two"
+       },
+       "vac": {
+        "at": "vac"
+       },
+       "open": {
+        "at": "open"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.8,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s8",
+   "beat": "twist",
+   "para": 8,
+   "narration": "盒子自己也怕髒，塑膠會吸水放氣，所以用高純度塑膠，還要定期洗。",
+   "tts": "盒子自己也怕髒，塑膠會吸水放氣，所以用高純度塑膠，還要定期洗。",
+   "subtitle": {
+    "zh": "盒子自己也怕髒\n塑膠會吸水放氣\n所以用高純度塑膠\n還要定期洗",
+    "en": "The boxes get dirty too: | plastic absorbs water and outgasses, | so high-purity plastic is used, | and they're washed regularly."
+   },
+   "keywords": [
+    "怕髒",
+    "吸水放氣",
+    "定期洗"
+   ],
+   "cues": [
+    {
+     "id": "dirty",
+     "text": "怕髒"
+    },
+    {
+     "id": "absorb",
+     "text": "吸水"
+    },
+    {
+     "id": "out",
+     "text": "放氣"
+    },
+    {
+     "id": "pure",
+     "text": "高純度塑膠"
+    },
+    {
+     "id": "wash",
+     "text": "定期洗"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Entegris FOUP 規格書；USPTO 10923372"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "clean",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 210.9,
+      "y": 3.1,
+      "d": 42,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "hSoak",
+      "at": "absorb-6",
+      "ramp": 6,
+      "until": "out+4"
+     },
+     {
+      "id": "hOut",
+      "at": "out",
+      "ramp": 6,
+      "until": "pure+16"
+     },
+     {
+      "id": "hSpin",
+      "at": "pure",
+      "ramp": 12,
+      "until": "s9:start"
+     },
+     {
+      "id": "hMist",
+      "at": "pure+4",
+      "ramp": 12,
+      "until": "wash+2"
+     },
+     {
+      "id": "hMist2",
+      "at": "pure+4",
+      "ramp": 12,
+      "until": "wash+2"
+     },
+     {
+      "id": "hRun",
+      "at": "pure+16",
+      "ramp": 10,
+      "until": "wash+10"
+     },
+     {
+      "id": "hHot",
+      "at": "wash+12",
+      "ramp": 6,
+      "until": "s9:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "hShA",
+      "text": "塑膠盒殼：會吸水、放氣",
+      "en": "Plastic shell absorbs and outgasses",
+      "color": "blue",
+      "at": "dirty",
+      "until": "pure-4",
+      "cut": true
+     },
+     {
+      "part": "hNozA",
+      "text": "清洗機：噴嘴陣列＋旋轉架",
+      "en": "Washer: nozzle array + rotating rack",
+      "color": "amber",
+      "at": "pure-2",
+      "until": "s9:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-clean",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "盒子也怕髒：高純度塑膠＋定期洗",
+      "tag": "示意",
+      "t": {
+       "dirty": {
+        "at": "dirty"
+       },
+       "absorb": {
+        "at": "absorb"
+       },
+       "out": {
+        "at": "out"
+       },
+       "pure": {
+        "at": "pure"
+       },
+       "wash": {
+        "at": "wash"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.1,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s9",
+   "beat": "payoff",
+   "para": 9,
+   "narration": "台灣有家登，光罩盒起家，晶圓盒也是主力。中勤也是台灣廠，自有品牌做晶圓盒。",
+   "tts": "台灣有家登，光照盒起家，晶圓盒也是主力。中勤也是台灣廠，自有品牌做晶圓盒。",
+   "subtitle": {
+    "zh": "台灣有家登\n光罩盒起家\n晶圓盒也是主力\n中勤也是台灣廠\n自有品牌做晶圓盒",
+    "en": "In Taiwan, Gudeng | started with mask pods; | FOUPs are now a mainstay too. | CKplas is also a Taiwanese maker, | making FOUPs under its own brand."
+   },
+   "keywords": [
+    "家登",
+    "中勤",
+    "晶圓盒"
+   ],
+   "cues": [
+    {
+     "id": "tw",
+     "text": "台灣"
+    },
+    {
+     "id": "gd",
+     "text": "家登"
+    },
+    {
+     "id": "mask",
+     "text": "光罩盒起家"
+    },
+    {
+     "id": "foup",
+     "text": "晶圓盒也是主力"
+    },
+    {
+     "id": "ck",
+     "text": "中勤"
+    },
+    {
+     "id": "own",
+     "text": "自有品牌"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報、財報狗；中勤官網、Digitimes"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tw",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 241.0,
+      "y": 1.6,
+      "d": 46,
+      "elev": 12
+     }
+    ],
+    "labels": [
+     {
+      "part": "tFabA",
+      "text": "載具廠（示意）",
+      "en": "Carrier plant (illustrative)",
+      "color": "blue",
+      "at": "gd",
+      "until": "s10:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-tw",
+      "at": "voice-3",
+      "until": "s10:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "台灣的晶圓盒與光罩盒廠",
+      "tag": "媒體報導；截至 2026/11/28",
+      "t": {
+       "tw": {
+        "at": "tw"
+       },
+       "gd": {
+        "at": "gd"
+       },
+       "mask": {
+        "at": "mask"
+       },
+       "foup": {
+        "at": "foup"
+       },
+       "ck": {
+        "at": "ck"
+       },
+       "own": {
+        "at": "own"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 8.3,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s10",
+   "beat": "cta",
+   "para": 10,
+   "narration": "盒子再乾淨，晶片還是會壞。壞在哪，要靠分析找出來，下一集看故障分析。留言晶圓盒，拿完整資料。",
+   "tts": "盒子再乾淨，晶片還是會壞。壞在哪，要靠分析找出來，下一集看故障分析。留言晶圓盒，拿完整資料。",
+   "subtitle": {
+    "zh": "盒子再乾淨\n晶片還是會壞\n壞在哪\n要靠分析找出來\n下一集看故障分析\n留言晶圓盒\n拿完整資料",
+    "en": "However clean the box, | chips still fail. | Where did it fail? | Analysis has to find out. | Next: failure analysis. | Comment \"FOUP\" | for the full notes."
+   },
+   "keywords": [
+    "會壞",
+    "故障分析",
+    "晶圓盒"
+   ],
+   "cues": [
+    {
+     "id": "clean",
+     "text": "再乾淨"
+    },
+    {
+     "id": "bad",
+     "text": "會壞"
+    },
+    {
+     "id": "where",
+     "text": "壞在哪"
+    },
+    {
+     "id": "anal",
+     "text": "分析找出來"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "fa",
+     "text": "故障分析"
+    },
+    {
+     "id": "kw",
+     "text": "留言晶圓盒"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 270,
+      "y": 1.3,
+      "d": 26,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "nScan",
+      "at": "bad",
+      "ramp": 8,
+      "until": "s11:start"
+     },
+     {
+      "id": "nHotGlow",
+      "at": "bad+34",
+      "ramp": 4,
+      "until": "s11:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nPkgA",
+      "text": "封裝晶片：四邊接腳",
+      "en": "Packaged chip: leads on four sides",
+      "color": "blue",
+      "at": "start+6",
+      "until": "bad-4",
+      "cut": true
+     },
+     {
+      "part": "nMagA",
+      "text": "放大鏡掃過：找壞點",
+      "en": "Scanning for the fault",
+      "color": "blue",
+      "at": "bad-2",
+      "until": "anal-4",
+      "cut": true
+     },
+     {
+      "part": "nHotA",
+      "text": "掃到熱點：這裡壞了",
+      "en": "Hot spot found: the failure",
+      "color": "amber",
+      "at": "anal-2",
+      "until": "s11:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "carrier-next",
+      "at": "voice-3",
+      "until": "s11:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：材料分析與故障分析",
+      "tag": "留言「晶圓盒」",
+      "t": {
+       "clean": {
+        "at": "clean"
+       },
+       "bad": {
+        "at": "bad"
+       },
+       "where": {
+        "at": "where"
+       },
+       "anal": {
+        "at": "anal"
+       },
+       "next": {
+        "at": "next"
+       },
+       "fa": {
+        "at": "fa"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.8,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s11",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "材料分析與故障分析",
+     "trail": [
+      "光罩盒與晶圓載具：盒子擋灰塵、氮氣、防震"
+     ],
+     "comment": "晶圓盒",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
