@@ -194,9 +194,9 @@
       "at": "start-30",
       "dur": 1,
       "x": 0,
-      "y": 4.0,
-      "d": 34,
-      "elev": 18
+      "y": 2.6,
+      "d": 56,
+      "elev": 14
      }
     ],
     "shift": [
@@ -205,100 +205,140 @@
       "at": "s1:test-4",
       "until": "s2:start",
       "dur": 24,
-      "dz": 1.4
-     },
-     {
-      "layer": "bFilm",
-      "at": "s1:start-40",
-      "until": "s2:run+8",
-      "opacity": 0,
-      "dur": 10
+      "dz": 2.2
      },
      {
       "layer": "bPlasma",
       "at": "s1:start-40",
-      "until": "s2:run-2",
+      "until": "s2:blank-8",
       "opacity": 0,
       "dur": 6
      },
      {
       "layer": "bPlasma",
-      "at": "s2:film",
+      "at": "s2:run+12",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 6
      },
      {
+      "layer": "bFilm",
+      "at": "s1:start-40",
+      "until": "s2:run-4",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "bFilm",
+      "at": "s2:run+14",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "bCW",
+      "at": "s2:run+14",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 8
+     },
+     {
+      "layer": "bMW",
+      "at": "s1:start-40",
+      "until": "s2:run+16",
+      "dur": 12,
+      "dx": -1.2,
+      "opacity": 0
+     },
+     {
       "layer": "bScan",
       "at": "s1:start-40",
-      "until": "s2:dust-4",
+      "until": "s2:film+2",
       "opacity": 0,
       "dur": 4
      },
      {
       "layer": "bDust",
       "at": "s1:start-40",
-      "until": "s2:dust+8",
+      "until": "s2:film+2",
       "opacity": 0,
       "dur": 4
      },
      {
       "layer": "cJacketL",
-      "at": "s3:start-6",
-      "until": "s4:start-14",
-      "dur": 26,
+      "at": "s3:start+24",
+      "until": "s3:cookie+8",
+      "dur": 22,
       "dx": -3.2
      },
      {
       "layer": "cJacketR",
-      "at": "s3:start-6",
-      "until": "s4:start-14",
-      "dur": 26,
+      "at": "s3:start+24",
+      "until": "s3:cookie+8",
+      "dur": 22,
       "dx": 3.2
      },
      {
       "layer": "cDummy",
       "at": "s1:start-40",
       "until": "s3:gap",
-      "dur": 14,
-      "dy": 2.2,
-      "fallIn": true,
-      "bounce": 0.05,
-      "opacity": 0
+      "dur": 18,
+      "dz": 2.6
+     },
+     {
+      "layer": "cFork",
+      "at": "s1:start-40",
+      "until": "s3:gap",
+      "dur": 18,
+      "dz": 2.6
+     },
+     {
+      "layer": "cFork",
+      "at": "s3:gap+20",
+      "until": "s10:start+400",
+      "dur": 16,
+      "dz": 2.6
+     },
+     {
+      "layer": "cFork",
+      "at": "s3:gap+34",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 8
      },
      {
       "layer": "cBoat",
-      "at": "s3:cookie+6",
+      "at": "s3:gap+36",
       "until": "s10:start+400",
       "dur": 30,
       "dy": 4.9
      },
      {
       "layer": "cDummy",
-      "at": "s3:cookie+6",
+      "at": "s3:gap+36",
       "until": "s10:start+400",
       "dur": 30,
       "dy": 4.9
      },
      {
       "layer": "dOx",
-      "at": "s4:film-4",
-      "until": "s4:toss",
-      "dur": 16,
+      "at": "s1:start-40",
+      "until": "s4:start+108",
+      "dur": 14,
       "dy": 0.9
      },
      {
       "layer": "dNit",
-      "at": "s4:film-4",
-      "until": "s4:toss",
-      "dur": 16,
+      "at": "s1:start-40",
+      "until": "s4:start+108",
+      "dur": 14,
       "dy": 1.8
      },
      {
       "layer": "dMet",
-      "at": "s4:film-4",
-      "until": "s4:toss",
-      "dur": 16,
+      "at": "s1:start-40",
+      "until": "s4:start+108",
+      "dur": 14,
       "dy": 2.7
      },
      {
@@ -358,11 +398,74 @@
       "dur": 14
      },
      {
-      "layer": "fHead",
-      "at": "s1:start-40",
-      "until": "s6:grind-2",
-      "dur": 18,
+      "layer": "fHeadT",
+      "at": "s6:start+3",
+      "until": "s6:start+88",
+      "dur": 14,
       "dy": 1.4
+     },
+     {
+      "layer": "fHeadM",
+      "at": "s6:start+3",
+      "until": "s6:start+88",
+      "dur": 14,
+      "dy": 1.4
+     },
+     {
+      "layer": "fHeadW",
+      "at": "s6:start+3",
+      "until": "s6:start+88",
+      "dur": 14,
+      "dy": 1.4
+     },
+     {
+      "layer": "fHeadT",
+      "at": "s6:start+14",
+      "until": "s6:start+76",
+      "dur": 12,
+      "dy": 1.2
+     },
+     {
+      "layer": "fHeadM",
+      "at": "s6:start+14",
+      "until": "s6:start+76",
+      "dur": 12,
+      "dy": 0.6
+     },
+     {
+      "layer": "gCal",
+      "at": "s7:thin-8",
+      "until": "s7:thin+20",
+      "dur": 10,
+      "dy": 0.75
+     },
+     {
+      "layer": "gCalJ",
+      "at": "s7:thin-8",
+      "until": "s7:thin+20",
+      "dur": 10,
+      "dy": 0.75
+     },
+     {
+      "layer": "gCal",
+      "at": "s7:thin+2",
+      "until": "s10:start+400",
+      "dur": 16,
+      "dx": 1.89
+     },
+     {
+      "layer": "gCalCar",
+      "at": "s7:thin+2",
+      "until": "s10:start+400",
+      "dur": 16,
+      "dx": 1.89
+     },
+     {
+      "layer": "gCalJ",
+      "at": "s7:thin+2",
+      "until": "s10:start+400",
+      "dur": 16,
+      "dx": 1.71
      },
      {
       "layer": "gW1",
@@ -393,33 +496,34 @@
       "dur": 6
      },
      {
-      "layer": "gW4",
-      "at": "s7:out",
-      "until": "s10:start+400",
-      "dur": 20,
-      "dx": 2.0,
-      "dy": -1.9
+      "layer": "gW4D",
+      "at": "s1:start-40",
+      "until": "s7:use",
+      "opacity": 0,
+      "dur": 6
      },
      {
-      "layer": "nDoor",
-      "at": "s1:start-40",
-      "until": "s9:dust+4",
-      "dur": 16,
-      "dz": 1.6
+      "layer": "gW4D",
+      "at": "s7:out",
+      "until": "s10:start+400",
+      "dur": 22,
+      "dx": 2.1,
+      "dy": -1.07,
+      "throw": 0.9
      },
      {
       "layer": "nBox",
-      "at": "s9:move",
-      "until": "s9:next",
-      "dur": 30,
-      "dx": 8.0
+      "at": "s9:box+20",
+      "until": "s9:kw+6",
+      "dur": 36,
+      "dx": 6.0
      },
      {
       "layer": "nDoor",
-      "at": "s9:move",
-      "until": "s9:next",
-      "dur": 30,
-      "dx": 8.0
+      "at": "s9:box+20",
+      "until": "s9:kw+6",
+      "dur": 36,
+      "dx": 6.0
      }
     ],
     "run": [
@@ -436,8 +540,8 @@
       "text": "產品片：上面是一顆顆晶片",
       "en": "Product wafer: dies",
       "color": "blue",
-      "at": "prev",
-      "until": "test-4",
+      "at": "start+1",
+      "until": "test+16",
       "cut": true
      },
      {
@@ -445,7 +549,7 @@
       "text": "空白測試片：不做晶片",
       "en": "Blank test wafer: no chips",
       "color": "amber",
-      "at": "test",
+      "at": "test+19",
       "until": "s2:start",
       "cut": true
      }
@@ -545,43 +649,85 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 29.2,
-      "y": 3.0,
-      "d": 36,
-      "elev": 20
+      "x": 28.4,
+      "y": 2.6,
+      "d": 46,
+      "elev": 16
      },
      {
-      "at": "film-8",
-      "dur": 26,
+      "at": "run+12",
+      "dur": 20,
       "x": 33.4,
-      "y": 1.8,
-      "d": 28,
-      "elev": 26
+      "y": 2.3,
+      "d": 33,
+      "elev": 24
      }
     ],
     "run": [
      {
       "id": "bPlGlow",
-      "at": "run-2",
+      "at": "blank-6",
       "ramp": 4,
-      "until": "film"
+      "until": "run+12"
+     },
+     {
+      "id": "bGasIn",
+      "at": "blank-4",
+      "ramp": 6,
+      "until": "run+10"
+     },
+     {
+      "id": "bXfer",
+      "at": "run+8",
+      "ramp": 4,
+      "until": "soup-6"
      },
      {
       "id": "bBeam",
-      "at": "film-2",
+      "at": "soup-12",
       "ramp": 6,
-      "until": "s3:start"
+      "until": "film+4"
      },
      {
       "id": "bScanGo",
-      "at": "dust-4",
+      "at": "film+6",
       "ramp": 6,
       "until": "s3:start"
      },
      {
-      "id": "bDustGlow",
-      "at": "dust+8",
-      "ramp": 4,
+      "id": "bDG0",
+      "at": "s2:start+157",
+      "ramp": 3,
+      "until": "s3:start"
+     },
+     {
+      "id": "bDG1",
+      "at": "s2:start+173",
+      "ramp": 3,
+      "until": "s3:start"
+     },
+     {
+      "id": "bDG2",
+      "at": "s2:start+177",
+      "ramp": 3,
+      "until": "s3:start"
+     },
+     {
+      "id": "bDG3",
+      "at": "s2:start+155",
+      "ramp": 3,
+      "until": "s3:start"
+     },
+     {
+      "id": "bDG4",
+      "at": "s2:start+175",
+      "ramp": 3,
+      "until": "s3:start"
+     },
+     {
+      "id": "bDG5",
+      "at": "s2:start+158",
+      "ramp": 3,
       "until": "s3:start"
      }
     ],
@@ -591,8 +737,8 @@
       "text": "沉積腔：先試跑一次",
       "en": "Deposition chamber: test run",
       "color": "blue",
-      "at": "run-4",
-      "until": "film-8",
+      "at": "blank-8",
+      "until": "run+14",
       "cut": true
      },
      {
@@ -600,8 +746,8 @@
       "text": "斜射光：測膜厚",
       "en": "Angled light: film thickness",
       "color": "amber",
-      "at": "film-2",
-      "until": "dust-4",
+      "at": "soup-17",
+      "until": "film+5",
       "cut": true
      },
      {
@@ -609,7 +755,7 @@
       "text": "雷射掃過：數灰塵",
       "en": "Laser scan: dust count",
       "color": "blue",
-      "at": "dust-2",
+      "at": "film+8",
       "until": "s3:start",
       "cut": true
      }
@@ -726,49 +872,49 @@
     "run": [
      {
       "id": "cCoilGlow",
-      "at": "cookie+20",
+      "at": "gap+20",
       "ramp": 10,
       "until": "s4:start"
      },
      {
       "id": "cHeat",
-      "at": "heat-6",
+      "at": "tray+12",
       "ramp": 8,
-      "until": "s4:start"
+      "until": "cookie+8"
      },
      {
       "id": "cHeat2",
-      "at": "heat-6",
+      "at": "tray+12",
       "ramp": 8,
-      "until": "s4:start"
+      "until": "cookie+8"
      }
     ],
     "labels": [
      {
       "part": "cJacketA",
-      "text": "加熱器外罩（拆開）",
-      "en": "Heater jacket (lifted off)",
+      "text": "加熱器外罩（左右對開示意）",
+      "en": "Heater jacket (split open, illustrative)",
       "color": "blue",
-      "at": "start+8",
-      "until": "gap-4",
+      "at": "start+21",
+      "until": "gap-3",
       "cut": true
      },
      {
       "part": "cDummyA",
-      "text": "擋片：補上下空位",
-      "en": "Dummy wafers fill the ends",
+      "text": "擋片：從正面送進上下空位",
+      "en": "Dummy wafers slide into the end slots",
       "color": "amber",
       "at": "gap",
-      "until": "cookie+4",
+      "until": "cookie-9",
       "cut": true
      },
      {
       "part": "cCoilA",
-      "text": "加熱線圈：熱往中心",
-      "en": "Heater coils: heat inward",
+      "text": "加熱線圈通電：熱往中心",
+      "en": "Coils powered: heat moves inward",
       "color": "blue",
-      "at": "cookie+30",
-      "until": "s4:start",
+      "at": "cookie-6",
+      "until": "heat-3",
       "cut": true
      }
     ],
@@ -858,11 +1004,11 @@
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "start",
       "dur": 1,
       "x": 90,
-      "y": 1.5,
-      "d": 28,
+      "y": 1.6,
+      "d": 36,
       "elev": 22
      }
     ],
@@ -877,20 +1023,29 @@
     "labels": [
      {
       "part": "dMetA",
-      "text": "薄膜：氧化層、氮化層、金屬層",
-      "en": "Films: oxide, nitride, metal",
+      "text": "金屬層",
+      "en": "Metal layer",
       "color": "amber",
-      "at": "film",
-      "until": "toss-2",
+      "at": "start+2",
+      "until": "start+47",
       "cut": true
      },
      {
-      "part": "dSiA",
-      "text": "底下的晶圓還是好的",
-      "en": "The silicon underneath is fine",
+      "part": "dNitA",
+      "text": "氮化層",
+      "en": "Nitride layer",
       "color": "blue",
-      "at": "toss",
-      "until": "s5:start",
+      "at": "start+50",
+      "until": "start+95",
+      "cut": true
+     },
+     {
+      "part": "dOxA",
+      "text": "氧化層",
+      "en": "Oxide layer",
+      "color": "amber",
+      "at": "start+98",
+      "until": "start+143",
       "cut": true
      }
     ],
@@ -925,10 +1080,10 @@
      }
     ]
    },
-   "durationSec": 5.3,
-   "holdSec": 0.6,
+   "durationSec": 5.4,
+   "holdSec": 0.7,
    "headSec": 0.3,
-   "pauseAfter": 0.6
+   "pauseAfter": 0.7
   },
   {
    "id": "s5",
@@ -979,10 +1134,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 120.5,
-      "y": 4.0,
-      "d": 34,
-      "elev": 20
+      "x": 120.9,
+      "y": 3.4,
+      "d": 44,
+      "elev": 18
      }
     ],
     "run": [
@@ -1002,8 +1157,8 @@
     "labels": [
      {
       "part": "eBasketA",
-      "text": "整籃晶圓",
-      "en": "A full basket of wafers",
+      "text": "整籃晶圓（直立插在籃裡）",
+      "en": "A basket of upright wafers",
       "color": "blue",
       "at": "start",
       "until": "dip+20",
@@ -1015,7 +1170,7 @@
       "en": "Chemical bath dissolves films",
       "color": "amber",
       "at": "dip+22",
-      "until": "s6:start",
+      "until": "s6:start-8",
       "cut": true
      }
     ],
@@ -1106,20 +1261,12 @@
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "start",
       "dur": 1,
-      "x": 148,
-      "y": 1.6,
-      "d": 34,
-      "elev": 30
-     },
-     {
-      "at": "clean-4",
-      "dur": 24,
-      "x": 155.2,
-      "y": 1.6,
-      "d": 24,
-      "elev": 18
+      "x": 152.2,
+      "y": 1.9,
+      "d": 50,
+      "elev": 28
      }
     ],
     "run": [
@@ -1131,7 +1278,7 @@
      },
      {
       "id": "fHSpin",
-      "at": "grind+4",
+      "at": "start+100",
       "ramp": 10,
       "until": "s7:start"
      },
@@ -1145,6 +1292,12 @@
       "id": "fSlSpread",
       "at": "grind+10",
       "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "fSlFling",
+      "at": "grind+30",
+      "ramp": 6,
       "until": "s7:start"
      },
      {
@@ -1174,21 +1327,30 @@
     ],
     "labels": [
      {
-      "part": "fHeadA",
-      "text": "研磨頭壓著晶圓磨",
-      "en": "Head presses the wafer",
-      "color": "amber",
-      "at": "grind",
-      "until": "clean-6",
+      "part": "fHwA",
+      "text": "晶圓（研磨頭抬起露出來）",
+      "en": "Wafer (head lifted)",
+      "color": "blue",
+      "at": "start+9",
+      "until": "start+54",
       "cut": true
      },
      {
-      "part": "fBrushA",
-      "text": "刷洗＋檢查",
-      "en": "Brush clean + inspect",
+      "part": "fHMemA",
+      "text": "壓力膜片＋保持環",
+      "en": "Pressure membrane + retaining ring",
+      "color": "amber",
+      "at": "start+57",
+      "until": "start+102",
+      "cut": true
+     },
+     {
+      "part": "fHTopA",
+      "text": "研磨頭：壓回墊上轉",
+      "en": "Polishing head presses and spins",
       "color": "blue",
-      "at": "clean-4",
-      "until": "s7:start-4",
+      "at": "start+105",
+      "until": "s7:start",
       "cut": true
      }
     ],
@@ -1226,10 +1388,10 @@
      }
     ]
    },
-   "durationSec": 5.1,
-   "holdSec": 0.8,
+   "durationSec": 5.0,
+   "holdSec": 0.7,
    "headSec": 0.3,
-   "pauseAfter": 0.8
+   "pauseAfter": 0.7
   },
   {
    "id": "s7",
@@ -1281,16 +1443,16 @@
       "at": "voice-4",
       "dur": 1,
       "x": 181.0,
-      "y": 1.7,
-      "d": 28,
+      "y": 1.4,
+      "d": 42,
       "elev": 16
      }
     ],
     "labels": [
      {
       "part": "gW0A",
-      "text": "新的：最厚",
-      "en": "New: thickest",
+      "text": "新的：最厚（卡尺夾著量）",
+      "en": "New: thickest (caliper on it)",
       "color": "blue",
       "at": "start+6",
       "until": "use-2",
@@ -1301,7 +1463,7 @@
       "text": "太薄：淘汰",
       "en": "Too thin: retired",
       "color": "amber",
-      "at": "out-4",
+      "at": "out-16",
       "until": "s8:start",
       "cut": true
      }
@@ -1403,10 +1565,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 209.0,
-      "y": 1.4,
-      "d": 40,
-      "elev": 14
+      "x": 209.2,
+      "y": 2.4,
+      "d": 46,
+      "elev": 12
      }
     ],
     "labels": [
@@ -1460,10 +1622,10 @@
      }
     ]
    },
-   "durationSec": 10.0,
-   "holdSec": 0.8,
+   "durationSec": 9.9,
+   "holdSec": 0.7,
    "headSec": 0.3,
-   "pauseAfter": 0.8
+   "pauseAfter": 0.7
   },
   {
    "id": "s9",
@@ -1520,20 +1682,34 @@
     ],
     "shot": [
      {
-      "at": "voice-4",
+      "at": "start",
       "dur": 1,
-      "x": 240,
+      "x": 235.4,
+      "y": 1.8,
+      "d": 26,
+      "elev": 14
+     },
+     {
+      "at": "box+14",
+      "dur": 30,
+      "x": 238.9,
       "y": 1.4,
-      "d": 30,
-      "elev": 16
+      "d": 52,
+      "elev": 14
      }
     ],
     "run": [
      {
+      "id": "nDoorSwing",
+      "at": "start-60",
+      "ramp": 16,
+      "until": "dust"
+     },
+     {
       "id": "nDust",
-      "at": "start-10",
+      "at": "dust+2",
       "ramp": 8,
-      "until": "s10:start"
+      "until": "box+20"
      }
     ],
     "labels": [
@@ -1542,16 +1718,16 @@
       "text": "門關上：灰塵進不去",
       "en": "Door shut: dust stays out",
       "color": "amber",
-      "at": "dust+4",
-      "until": "move-2",
+      "at": "dust+14",
+      "until": "box+12",
       "cut": true
      },
      {
       "part": "nBoxA",
-      "text": "密封盒",
-      "en": "Sealed wafer box",
+      "text": "密封盒（來回運送）",
+      "en": "Sealed wafer box (shuttles back and forth)",
       "color": "blue",
-      "at": "box",
+      "at": "box+15",
       "until": "s10:start",
       "cut": true
      }

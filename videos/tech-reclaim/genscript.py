@@ -58,7 +58,7 @@ def TTS(t):
         t = t.replace(a, b)
     return t
 scenes = []
-HOLD = {"s6": 0.8, "s3": 0.7, "s8": 0.8}
+HOLD = {"s6": 0.7, "s3": 0.7, "s4": 0.7, "s8": 0.7}   # 第 39 條：holdSec ≤0.7
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
     for z in zh: assert len(re.sub(r"[ ，。？、；]", "", z)) <= 11, (sid, z)
@@ -129,97 +129,130 @@ def nxt(sid): return f"s{int(sid[1:]) + 1}:voice-3"
 def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
 
-# ── 站 A：s1 念到「再用」測試片往前抽出、發亮 ──
-move("aTest", "s1:test-4", "s2:start", 24, dz=1.4)
-# ── 站 B：s2「試跑」腔內電漿亮、膜長出來；「測膜厚」斜射光；「數灰塵」雷射掃、微粒亮 ──
-vis("bFilm", [("s2:run+8", FAR)], 10); vis("bPlasma", [("s2:run-2", "s2:film")], 6)
-vis("bScan", [("s2:dust-4", FAR)], 4); vis("bDust", [("s2:dust+8", FAR)], 4)
-# ── 站 C：s3 外罩沿軸線往上拆開（爆炸）→ 擋片落入上下空槽 → 晶舟上升入管、線圈亮、熱往中心 → 外罩組回 ──
-move("cJacketL", "s3:start-6", "s4:start-14", 26, dx=-3.2); move("cJacketR", "s3:start-6", "s4:start-14", 26, dx=3.2)
-for lay in ["cDummy"]: drop(lay, "s3:gap", dy=2.2, dur=14, bounce=0.05)
-move("cBoat", "s3:cookie+6", FAR, 30, dy=INFO["BOATUP"]); move("cDummy", "s3:cookie+6", FAR, 30, dy=INFO["BOATUP"])
-# ── 站 D：s4 膜層沿厚度分開（爆炸）→ 合回；「丟掉」淘汰桶＋紅叉；「再生」進運送箱 ──
-move("dOx", "s4:film-4", "s4:toss", 16, dy=0.9); move("dNit", "s4:film-4", "s4:toss", 16, dy=1.8); move("dMet", "s4:film-4", "s4:toss", 16, dy=2.7)
+# ── 站 A：s1 念到「測試片」那片空白測試片沿滑槽往前抽出（抽到 2.2，整片離開盒子前緣）、發白光 ──
+move("aTest", "s1:test-4", "s2:start", 24, dz=2.2)
+# ── 站 B：s2 腔內電漿亮、噴頭噴氣、膜長出來 → 晶圓經閘門送到量測台（箭頭；腔內那片收掉、量測台那片滑進來）→ 斜射光測膜厚 → 雷射掃過，微粒被掃到才亮 ──
+vis("bPlasma", [("s2:blank-8", "s2:run+12")], 6)
+vis("bFilm", [("s2:run-4", "s2:run+14")], 12); vis("bCW", [(T0, "s2:run+14")], 8)
+move("bMW", T0, "s2:run+16", 12, dx=-1.2, opacity=0)
+vis("bScan", [("s2:film+2", FAR)], 4); vis("bDust", [("s2:film+2", FAR)], 4)
+TL = json.load(open(os.path.join(HERE, "timeline.json"))) if os.path.exists(os.path.join(HERE, "timeline.json")) else None
+def cue_abs(sid, cid):
+    for s in (TL or {}).get("scenes", []):
+        if s["id"] == sid:
+            if cid == "start": return s["startFrame"]
+            for c in s.get("cues", []):
+                if c["id"] == cid: return c.get("frame")
+    return None
+def dust_hits():
+    """物理 r0 必改 7：依掃描線 x(f)＝MX＋A·g·sin(2π·F·f/30)（Ops.tsx vibrate 用全片時間）算每顆微粒第一次被掃到的幀"""
+    import math
+    f0, st, end = cue_abs("s2", "film"), cue_abs("s2", "start"), cue_abs("s3", "start")
+    if f0 is None or st is None or end is None: return [("s2:film+20", i) for i in range(len(INFO["DUSTX"]))]
+    at, ramp, A, F = f0 + 6, 6, INFO["SCAN_AMP"], INFO["SCAN_F"]
+    xs = lambda f: A * min(1, max(0, (f - at) / ramp)) * math.sin(2 * math.pi * F * f / 30)
+    out = []
+    for i, dx in enumerate(INFO["DUSTX"]):
+        hit = end - 4
+        for f in range(at + 1, end):
+            if (xs(f - 1) - dx) * (xs(f) - dx) <= 0: hit = f; break
+        out.append((f"s2:start+{hit - st}", i))
+    return out
+DUST = dust_hits()
+# ── 站 C：s3 先看組好的爐子 → 外罩左右對開（爆炸；剖開示意，量產機是整圈圓筒）→ 傳送叉把擋片從正面水平送進上下空槽、叉子退出 → 線圈通電變亮、熱往中心 → 晶舟上升入管 → 外罩合回、停住 ──
+move("cJacketL", "s3:start+24", "s3:cookie+8", 22, dx=-3.2); move("cJacketR", "s3:start+24", "s3:cookie+8", 22, dx=3.2)
+move("cDummy", T0, "s3:gap", 18, dz=2.6); move("cFork", T0, "s3:gap", 18, dz=2.6)
+move("cFork", "s3:gap+20", FAR, 16, dz=2.6); vis("cFork", [(T0, "s3:gap+34")], 8)
+move("cBoat", "s3:gap+36", FAR, 30, dy=INFO["BOATUP"]); move("cDummy", "s3:gap+36", FAR, 30, dy=INFO["BOATUP"])
+# ── 站 D：s4 膜層已沿厚度分開（爆炸）→ 金屬、氮化、氧化一層一張標籤 → 合回停住；「丟掉」淘汰桶＋紅叉；「再生」進運送箱 ──
+move("dOx", T0, "s4:start+108", 14, dy=0.9); move("dNit", T0, "s4:start+108", 14, dy=1.8); move("dMet", T0, "s4:start+108", 14, dy=2.7)
 vis("dX", [("s4:toss+6", FAR)], 3)
 # ── 站 E：s5 整籃下降入槽（加減速）→ 金屬、氮化、氧化由外往內依序溶掉 ──
 for lay in ["eLift", "eFm", "eFn", "eFo"]: move(lay, "s5:dip-2", FAR, 26, dy=-INFO["LUP"])
 vis("eFm", [(T0, "s5:metal+6")], 14); vis("eFn", [(T0, "s5:layer+4")], 14); vis("eFo", [(T0, "s5:pan-2")], 14)
-# ── 站 F：s6 研磨頭從抬起的位置壓下；轉盤、研磨頭、修整器動；「清洗」刷輪轉、噴水；「檢查」光條亮 ──
-move("fHead", T0, "s6:grind-2", 18, dy=1.4)
-# ── 站 G：s7 晶圓一片片出現（越來越薄）；「淘汰」最薄那片落進淘汰箱 ──
-vis("gW1", [("s7:start", FAR)], 6); vis("gW2", [("s7:thin-6", FAR)], 6); vis("gW3", [("s7:thin+4", FAR)], 6); vis("gW4", [("s7:use", FAR)], 6)
-move("gW4", "s7:out", FAR, 20, dx=2.0, dy=-1.9)
-# ── 站 N：s9 門先開著；念到「灰塵」關上；「來回運送」盒子沿軌道走過去再回來 ──
-move("nDoor", T0, "s9:dust+4", 16, dz=1.6)
-move("nBox", "s9:move", "s9:next", 30, dx=8.0); move("nDoor", "s9:move", "s9:next", 30, dx=8.0)
+# ── 站 F：s6 研磨頭整組沿立柱抬起（加減速）→ 三層沿軸線分開（頭蓋 +1.0、膜片 +0.5、晶圓不動）→ 依序標名 → 合回、壓回拋光墊 → 研磨頭起轉；
+#    轉盤一開始就轉、研磨液滴下順著轉向流；念到「清洗」刷輪轉、噴水；「檢查」光條亮（同一個鏡頭）──
+for lay in ["fHeadT", "fHeadM", "fHeadW"]: move(lay, "s6:start+3", "s6:start+88", 14, dy=INFO["HEADLIFT"])
+for lay, d in INFO["HEADSEP"].items(): move(lay, "s6:start+14", "s6:start+76", 12, dy=d)
+# ── 站 G：s7 卡尺夾著最厚那片；念到「薄一點」抬起、移到下一片、游尺收進去、夾下；晶圓一片片出現（越來越薄）；「淘汰」最薄那片沿拋物線落進淘汰箱 ──
+for lay in ["gCal", "gCalJ"]: move(lay, "s7:thin-8", "s7:thin+20", 10, dy=INFO["CAL_LIFT"])
+move("gCal", "s7:thin+2", FAR, 16, dx=INFO["CAL_DX"]); move("gCalCar", "s7:thin+2", FAR, 16, dx=INFO["CAL_DX"]); move("gCalJ", "s7:thin+2", FAR, 16, dx=INFO["CAL_DXJ"])
+vis("gW1", [("s7:start", FAR)], 6); vis("gW2", [("s7:thin-6", FAR)], 6); vis("gW3", [("s7:thin+4", FAR)], 6); vis("gW4", [("s7:use", FAR)], 6); vis("gW4D", [("s7:use", FAR)], 6)
+move("gW4D", "s7:out", FAR, 22, dx=round(180 + 5.7 - INFO["GWX"][4], 3), dy=-1.07, throw=0.9)
+# ── 站 N：s9 門開著（繞鉸鏈）；念到「灰塵」關上 → 灰塵貼著門面滑走 → 停 1.5 秒 → 拉遠看盒子沿軌道走過去再回來 ──
+move("nBox", "s9:box+20", "s9:kw+6", 36, dx=6.0); move("nDoor", "s9:box+20", "s9:kw+6", 36, dx=6.0)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
-AV = (INFO["AX"], 4.0, 34, 18)
-BV = (INFO["BX"] - 0.8, 3.0, 36, 20)
-BM = (INFO["MX"], 1.8, 28, 26)
+AV = (INFO["AX"], 2.6, 56, 14)
+BV = (INFO["BX"] - 1.6, 2.6, 46, 16)
+BM = (INFO["MX"], 2.3, 33, 24)
 CV = (INFO["CX"], 5.4, 62, 8)
 CV2 = (INFO["CX"], 5.8, 56, 6)
-DV = (INFO["DX"], 1.5, 28, 22)
-EV = (INFO["EX"] + 0.5, 4.0, 34, 20)
-FV = (INFO["FX"], 1.6, 34, 30)
-GV = (INFO["GX"], 1.6, 24, 18)
-TV = (INFO["GX2"] + 1.0, 1.7, 28, 16)
-HV = (INFO["HX"] - 1.0, 1.4, 40, 14)
-NV = (INFO["NX"], 1.4, 30, 16)
+DV = (INFO["DX"], 1.6, 36, 22)
+EV = (INFO["EX"] + 0.9, 3.4, 44, 18)
+FV = (INFO["FX"] + 4.2, 1.9, 50, 28)
+TV = (INFO["GX2"] + 1.0, 1.4, 42, 16)
+HV = (INFO["HX"] - 0.8, 2.4, 46, 12)
+NC = (INFO["NB"] - 0.6, 1.8, 26, 14)
+NV = (INFO["NX"] - 1.1, 1.4, 52, 14)
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
+# 標籤一次只亮一張、每張 ≥45 幀（tech-andy-fixes 第 13 條；r1 逐幕排過）
 P["s1"] = {"shot": [S_("start-30", AV, 1, yaw=0.0)], "shift": VIS,
  "run": [run("aGlow", "test", "s2:start", 6)],
- "labels": [lab("aProdA", "產品片：上面是一顆顆晶片", "Product wafer: dies", "blue", "prev", "test-4"),
-            lab("aTestA", "空白測試片：不做晶片", "Blank test wafer: no chips", "amber", "test", "s2:start")],
+ "labels": [lab("aProdA", "產品片：上面是一顆顆晶片", "Product wafer: dies", "blue", "start+1", "test+16"),
+            lab("aTestA", "空白測試片：不做晶片", "Blank test wafer: no chips", "amber", "test+19", "s2:start")],
  "overlay": [sec("reclaim-hook", "start", nxt("s1"), "中游補充篇・M4", "示意", {"prev": "prev", "test": "test", "q": "q", "chip": "chip", "tool": "tool"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "test", "at": CC, "dur": 1}],
- "shot": [S_(CC, BV, 1), S_("film-8", BM, 26)],
- "run": [run("bPlGlow", "run-2", "film", 4), run("bBeam", "film-2", "s3:start", 6), run("bScanGo", "dust-4", "s3:start", 6), run("bDustGlow", "dust+8", "s3:start", 4)],
- "labels": [lab("bChA", "沉積腔：先試跑一次", "Deposition chamber: test run", "blue", "run-4", "film-8"),
-            lab("bBeamA", "斜射光：測膜厚", "Angled light: film thickness", "amber", "film-2", "dust-4"),
-            lab("bScanA", "雷射掃過：數灰塵", "Laser scan: dust count", "blue", "dust-2", "s3:start")],
+ "shot": [S_(CC, BV, 1), S_("run+12", BM, 20)],
+ "run": [run("bPlGlow", "blank-6", "run+12", 4), run("bGasIn", "blank-4", "run+10", 6), run("bXfer", "run+8", "soup-6", 4),
+         run("bBeam", "soup-12", "film+4", 6), run("bScanGo", "film+6", "s3:start", 6)] + [run(f"bDG{i}", at, "s3:start", 3) for at, i in DUST],
+ "labels": [lab("bChA", "沉積腔：先試跑一次", "Deposition chamber: test run", "blue", "blank-8", "run+14"),
+            lab("bBeamA", "斜射光：測膜厚", "Angled light: film thickness", "amber", "soup-17", "film+5"),
+            lab("bScanA", "雷射掃過：數灰塵", "Laser scan: dust count", "blue", "film+8", "s3:start")],
  "overlay": [card("s2", "reclaim-test", "測試片：機台開工前先試跑", "示意", {"tool": "tool", "blank": "blank", "run": "run", "soup": "soup", "film": "film", "dust": "dust"})]}
 P["s3"] = {"zoom": [{"to": "dummy", "at": CC, "dur": 1}],
  "shot": [S_(CC, CV, 1), S_("cookie+2", CV2, 30)],
- "run": [run("cCoilGlow", "cookie+20", "s4:start", 10), run("cHeat", "heat-6", "s4:start", 8), run("cHeat2", "heat-6", "s4:start", 8)],
- "labels": [lab("cJacketA", "加熱器外罩（拆開）", "Heater jacket (lifted off)", "blue", "start+8", "gap-4"),
-            lab("cDummyA", "擋片：補上下空位", "Dummy wafers fill the ends", "amber", "gap", "cookie+4"),
-            lab("cCoilA", "加熱線圈：熱往中心", "Heater coils: heat inward", "blue", "cookie+30", "s4:start")],
+ "run": [run("cCoilGlow", "gap+20", "s4:start", 10), run("cHeat", "tray+12", "cookie+8", 8), run("cHeat2", "tray+12", "cookie+8", 8)],
+ "labels": [lab("cJacketA", "加熱器外罩（左右對開示意）", "Heater jacket (split open, illustrative)", "blue", "start+21", "gap-3"),
+            lab("cDummyA", "擋片：從正面送進上下空位", "Dummy wafers slide into the end slots", "amber", "gap", "cookie-9"),
+            lab("cCoilA", "加熱線圈通電：熱往中心", "Coils powered: heat moves inward", "blue", "cookie-6", "heat-3")],
  "overlay": [card("s3", "reclaim-dummy", "擋片：補空位，熱才均勻", "示意", {"dum": "dum", "gap": "gap", "tray": "tray", "cookie": "cookie", "heat": "heat"})]}
 P["s4"] = {"zoom": [{"to": "used", "at": CC, "dur": 1}],
- "shot": [S_(CC, DV, 1)],
+ "shot": [S_("start", DV, 1)],
  "run": [run("dShip", "ship-4", "s5:start", 6)],
- "labels": [lab("dMetA", "薄膜：氧化層、氮化層、金屬層", "Films: oxide, nitride, metal", "amber", "film", "toss-2"),
-            lab("dSiA", "底下的晶圓還是好的", "The silicon underneath is fine", "blue", "toss", "s5:start")],
+ "labels": [lab("dMetA", "金屬層", "Metal layer", "amber", "start+2", "start+47"),
+            lab("dNitA", "氮化層", "Nitride layer", "blue", "start+50", "start+95"),
+            lab("dOxA", "氧化層", "Oxide layer", "amber", "start+98", "start+143")],
  "overlay": [card("s4", "reclaim-used", "用過一次：沾滿薄膜", "示意（膜厚放大）", {"run": "run", "film": "film", "toss": "toss", "ship": "ship"})]}
 P["s5"] = {"zoom": [{"to": "strip", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
  "run": [run("eWave", "start-10", "s6:start", 10), run("eBub", "dip+10", "s6:start", 8)],
- "labels": [lab("eBasketA", "整籃晶圓", "A full basket of wafers", "blue", "start", "dip+20"),
-            lab("eTankA", "藥水槽：溶掉薄膜", "Chemical bath dissolves films", "amber", "dip+22", "s6:start")],
+ "labels": [lab("eBasketA", "整籃晶圓（直立插在籃裡）", "A basket of upright wafers", "blue", "start", "dip+20"),
+            lab("eTankA", "藥水槽：溶掉薄膜", "Chemical bath dissolves films", "amber", "dip+22", "s6:start-8")],
  "overlay": [card("s5", "reclaim-strip", "第一步：泡藥水去膜", "示意", {"dip": "dip", "metal": "metal", "lyr": "layer", "pan": "pan"})]}
 P["s6"] = {"zoom": [{"to": "cmp", "at": CC, "dur": 1}],
- "shot": [S_(CC, FV, 1), S_("clean-4", GV, 24)],
- "run": [run("fSpin", "grind", "s7:start", 10), run("fHSpin", "grind+4", "s7:start", 10), run("fSlurry", "start-10", "s7:start", 6), run("fSlSpread", "grind+10", "s7:start", 8),
-         run("fCdSwing", "pol", "s7:start", 8), run("fBrush", "clean-6", "s7:start", 8), run("fSpray", "clean-6", "s7:start", 6), run("fInspGlow", "insp-2", "s7:start", 4)],
- "labels": [lab("fHeadA", "研磨頭壓著晶圓磨", "Head presses the wafer", "amber", "grind", "clean-6"),
-            lab("fBrushA", "刷洗＋檢查", "Brush clean + inspect", "blue", "clean-4", "s7:start-4")],
+ "shot": [S_("start", FV, 1)],
+ "run": [run("fSpin", "grind", "s7:start", 10), run("fHSpin", "start+100", "s7:start", 10), run("fSlurry", "start-10", "s7:start", 6), run("fSlSpread", "grind+10", "s7:start", 8),
+         run("fSlFling", "grind+30", "s7:start", 6), run("fCdSwing", "pol", "s7:start", 8), run("fBrush", "clean-6", "s7:start", 8), run("fSpray", "clean-6", "s7:start", 6), run("fInspGlow", "insp-2", "s7:start", 4)],
+ "labels": [lab("fHwA", "晶圓（研磨頭抬起露出來）", "Wafer (head lifted)", "blue", "start+9", "start+54"),
+            lab("fHMemA", "壓力膜片＋保持環", "Pressure membrane + retaining ring", "amber", "start+57", "start+102"),
+            lab("fHTopA", "研磨頭：壓回墊上轉", "Polishing head presses and spins", "blue", "start+105", "s7:start")],
  "overlay": [card("s6", "reclaim-cmp", "研磨、拋光、清洗、檢查", "示意", {"grind": "grind", "pol": "pol", "mirror": "mirror", "clean": "clean", "insp": "insp"})]}
 P["s7"] = {"zoom": [{"to": "thin", "at": CC, "dur": 1}],
  "shot": [S_(CC, TV, 1)],
- "labels": [lab("gW0A", "新的：最厚", "New: thickest", "blue", "start+6", "use-2"),
-            lab("gW4A", "太薄：淘汰", "Too thin: retired", "amber", "out-4", "s8:start")],
+ "labels": [lab("gW0A", "新的：最厚（卡尺夾著量）", "New: thickest (caliper on it)", "blue", "start+6", "use-2"),
+            lab("gW4A", "太薄：淘汰", "Too thin: retired", "amber", "out-16", "s8:start")],
  "overlay": [card("s7", "reclaim-thin", "每磨一次，就薄一點", "數位時代（業者說法）；示意", {"thin": "thin", "use": "use", "n": "n", "out": "out"})]}
 P["s8"] = {"zoom": [{"to": "tw", "at": CC, "dur": 1}],
  "shot": [S_(CC, HV, 1)],
  "labels": [lab("hFabA", "再生廠（示意）", "Reclaim plant (illustrative)", "blue", "psi", "kinik-2")],
  "overlay": [card("s8", "reclaim-tw", "台灣的再生晶圓廠", "媒體報導；截至 2026/11/28", {"psi": "psi", "cap": "cap", "kinik": "kinik", "wheel": "wheel", "half": "half", "sci": "sci", "self": "self"}, h=392, y=1000)]}
 P["s9"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],
- "shot": [S_(CC, NV, 1)],
- "run": [run("nDust", "start-10", "s10:start", 8)],
- "labels": [lab("nDoorA", "門關上：灰塵進不去", "Door shut: dust stays out", "amber", "dust+4", "move-2"),
-            lab("nBoxA", "密封盒", "Sealed wafer box", "blue", "box", "s10:start")],
+ "shot": [S_("start", NC, 1), S_("box+14", NV, 30)],
+ "run": [run("nDoorSwing", "start-60", "dust", 16), run("nDust", "dust+2", "box+20", 8)],
+ "labels": [lab("nDoorA", "門關上：灰塵進不去", "Door shut: dust stays out", "amber", "dust+14", "box+12"),
+            lab("nBoxA", "密封盒（來回運送）", "Sealed wafer box (shuttles back and forth)", "blue", "box+15", "s10:start")],
  "overlay": [sec("reclaim-next", C, "s10:start", "下一集：光罩盒與晶圓載具", "留言「再生晶圓」", {"dust": "dust", "move": "move", "box": "box", "next": "next", "pod": "pod", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])

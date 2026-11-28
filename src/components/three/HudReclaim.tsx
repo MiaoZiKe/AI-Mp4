@@ -134,7 +134,8 @@ const Strip: React.FC<P> = ({ o, f, k }) => {
     <rect x={70} y={y0 + 26} width={196} height={14} fill={OX} opacity={1 - pn} />
     <rect x={70} y={y0 + 14} width={196} height={12} fill={NIT} opacity={1 - ly} />
     <rect x={70} y={y0 + 2} width={196} height={12} fill={MET} opacity={1 - mt} />
-    {[0, 1, 2, 3, 4, 5].map((i) => <circle key={i} cx={56 + i * 44} cy={y0 + 96 - ((f * 1.3 + i * 17) % 120)} r={5} fill="#FFFFFF" stroke={LIQ} strokeWidth={2} opacity={dp} />)}
+    {/* r1（物理建議）：氣泡越升越快、越升越大（位移∝u²） */}
+    {[0, 1, 2, 3, 4, 5].map((i) => { const u = ((f * 1.1 + i * 17) % 110) / 110; return <circle key={i} cx={56 + i * 44} cy={y0 + 96 - 120 * u * u} r={4 + 3 * u} fill="#FFFFFF" stroke={LIQ} strokeWidth={2} opacity={dp} />; })}
     <Cap x={168} y={CT + 246} t="外層先溶、晶圓留下" />
     <Sep x={334} />
     <Row x={360} y={CT + 64} t="第一步：泡藥水" c={BLUE} a={dp} />
