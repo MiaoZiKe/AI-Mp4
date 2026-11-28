@@ -208,47 +208,54 @@
     "shift": [
      {
       "layer": "bD",
-      "at": "s2:door-18",
-      "until": "s2:n25+58",
+      "at": "s2:foup+4",
+      "until": "s2:n25+24",
       "dur": 14,
       "dx": 1.491,
       "dz": 2.13
      },
      {
       "layer": "bS",
-      "at": "s2:door+8",
-      "until": "s2:n25+42",
-      "dur": 18,
-      "dy": 3.1
-     },
-     {
-      "layer": "bT",
-      "at": "s2:door+8",
-      "until": "s2:n25+42",
+      "at": "s2:door+16",
+      "until": "s2:n25+12",
       "dur": 18,
       "dy": 3.1
      },
      {
       "layer": "bT",
       "at": "s2:door+16",
-      "until": "s2:n25+36",
-      "dur": 14,
-      "dy": 1.1999999999999997
+      "until": "s2:n25+12",
+      "dur": 18,
+      "dy": 3.1
+     },
+     {
+      "layer": "bT",
+      "at": "s2:door+24",
+      "until": "s2:n25+6",
+      "dur": 12,
+      "dy": 0.7999999999999998
      },
      {
       "layer": "cFoup",
       "at": "s1:start-40",
       "until": "s3:align-8",
-      "dur": 20,
-      "dy": 1
+      "dur": 18,
+      "dy": 0.88
      },
      {
       "layer": "cFoup",
       "at": "s1:start-40",
-      "until": "s3:align+12",
-      "dur": 12,
-      "dx": 0.34,
-      "dz": -0.26
+      "until": "s3:align+10",
+      "dur": 14,
+      "dy": 0.12
+     },
+     {
+      "layer": "cFoup",
+      "at": "s1:start-40",
+      "until": "s3:align+10",
+      "dur": 14,
+      "dx": 0.06,
+      "dz": -0.05
      },
      {
       "layer": "dVeh",
@@ -615,6 +622,76 @@
       "dx": -4.5
      },
      {
+      "layer": "dCeil",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dVeh",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dGrip",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dJawL",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dJawR",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt1",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt2",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt3",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt4",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dBelt5",
+      "at": "s4:open-20",
+      "until": "s5:voice+2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
       "layer": "gOshell",
       "at": "s7:euv-4",
       "until": "s11:start+400",
@@ -625,40 +702,40 @@
       "layer": "gIn",
       "at": "s7:two+2",
       "until": "s11:start+400",
-      "dur": 30,
+      "dur": 26,
       "dx": 6.6
      },
      {
       "layer": "gIc",
       "at": "s7:two+2",
       "until": "s11:start+400",
-      "dur": 30,
+      "dur": 26,
       "dx": 6.6
      },
      {
       "layer": "gGate",
       "at": "s1:start-40",
-      "until": "s7:two+34",
-      "dur": 14,
+      "until": "s7:two+30",
+      "dur": 10,
       "dy": 1.6
      },
      {
       "layer": "gIc",
-      "at": "s7:open-8",
+      "at": "s7:open+6",
       "until": "s11:start+400",
-      "dur": 16,
-      "dy": 0.55
+      "dur": 14,
+      "dy": 1
      }
     ],
     "run": [
      {
-      "id": "aDust",
+      "id": "aDustIn",
       "at": "start",
       "ramp": 1,
       "until": "s2:start"
      },
      {
-      "id": "aDust2",
+      "id": "aDustSlide",
       "at": "start",
       "ramp": 1,
       "until": "s2:start"
@@ -769,38 +846,46 @@
       "at": "voice-4",
       "dur": 1,
       "x": 30,
-      "y": 3.0,
+      "y": 2.45,
       "d": 36,
       "elev": 10
      }
     ],
     "labels": [
      {
-      "part": "bTopA",
-      "text": "頂部法蘭：天車抓這裡",
-      "en": "Top flange: the hoist grips here",
-      "color": "blue",
-      "at": "start+6",
-      "until": "door-6",
-      "cut": true
-     },
-     {
       "part": "bDoorA",
       "text": "前門＋四周密封條",
       "en": "Front door + seal",
       "color": "amber",
-      "at": "door-4",
-      "until": "n25-6",
+      "at": "foup+2",
+      "until": "foup+48",
       "cut": true
      },
      {
-      "part": "bShellA",
-      "text": "兩側 25 道槽齒，一格一片",
-      "en": "25 slots per side, one wafer each",
+      "part": "bShellA2",
+      "text": "盒殼＋頂部法蘭往上抬",
+      "en": "Shell + top flange lift off",
       "color": "blue",
-      "at": "n25-4",
-      "until": "s2:n25+42",
-      "cut": true
+      "at": "foup+50",
+      "until": "n25+26",
+      "cut": true,
+      "xy": [
+       420,
+       330
+      ]
+     },
+     {
+      "part": "bShellA",
+      "text": "25 片晶圓＋兩側槽齒",
+      "en": "25 wafers in side slots",
+      "color": "amber",
+      "at": "n25+28",
+      "until": "s3:start",
+      "cut": true,
+      "xy": [
+       400,
+       330
+      ]
      }
     ],
     "overlay": [
@@ -834,10 +919,10 @@
      }
     ]
    },
-   "durationSec": 6.2,
-   "holdSec": 0.6,
+   "durationSec": 6.3,
+   "holdSec": 0.7,
    "headSec": 0.3,
-   "pauseAfter": 0.6
+   "pauseAfter": 0.7
   },
   {
    "id": "s3",
@@ -885,16 +970,16 @@
       "at": "voice-4",
       "dur": 1,
       "x": 60,
-      "y": 3.2,
-      "d": 28,
+      "y": 3.6,
+      "d": 32,
       "elev": -6
      }
     ],
     "labels": [
      {
       "part": "cGrA",
-      "text": "盒底三道放射溝",
-      "en": "Three radial grooves",
+      "text": "盒底三道 V 形溝",
+      "en": "Three radial V-grooves",
       "color": "blue",
       "at": "groove-4",
       "until": "groove+41",
@@ -916,7 +1001,11 @@
       "color": "blue",
       "at": "align+7",
       "until": "s4:start",
-      "cut": true
+      "cut": true,
+      "xy": [
+       700,
+       330
+      ]
      }
     ],
     "overlay": [
@@ -1013,6 +1102,22 @@
       "y": 6.0,
       "d": 66,
       "elev": 6
+     },
+     {
+      "at": "open-22",
+      "dur": 18,
+      "x": 90.5,
+      "y": 4.0,
+      "d": 30,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "dFfuAir",
+      "at": "open-12",
+      "ramp": 8,
+      "until": "s5:start"
      }
     ],
     "labels": [
@@ -1031,25 +1136,25 @@
       "en": "Load port",
       "color": "amber",
       "at": "hang-2",
-      "until": "open-12",
+      "until": "open-24",
       "cut": true
      },
      {
       "part": "dDoorA",
-      "text": "盒門＋機台門一起開",
-      "en": "Box door + tool door open together",
+      "text": "兩扇門一起開",
+      "en": "Both doors open together",
       "color": "blue",
-      "at": "open-10",
-      "until": "air-10",
+      "at": "open-2",
+      "until": "air-6",
       "cut": true
      },
      {
       "part": "dArmA",
-      "text": "手臂取片：不碰外面空氣",
-      "en": "Robot picks a wafer inside",
+      "text": "手臂取片",
+      "en": "Robot picks a wafer",
       "color": "amber",
-      "at": "air-8",
-      "until": "s5:start",
+      "at": "air-4",
+      "until": "s5:start-6",
       "cut": true
      }
     ],
@@ -1149,8 +1254,8 @@
       "at": "voice-4",
       "dur": 1,
       "x": 121.6,
-      "y": 2.9,
-      "d": 36,
+      "y": 3.4,
+      "d": 40,
       "elev": 10
      }
     ],
@@ -1168,28 +1273,64 @@
       "until": "s6:start"
      },
      {
-      "id": "eWet1",
-      "at": "n2+10",
-      "ramp": 4,
-      "until": "o2+6"
+      "id": "eM0",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+94"
      },
      {
-      "id": "eWet2",
-      "at": "n2+12",
-      "ramp": 4,
-      "until": "jar+10"
+      "id": "eM1",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+70"
      },
      {
-      "id": "eO2a",
-      "at": "n2+10",
-      "ramp": 4,
-      "until": "jar-4"
+      "id": "eM2",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+86"
      },
      {
-      "id": "eO2b",
-      "at": "n2+14",
-      "ramp": 4,
-      "until": "s6:start-4"
+      "id": "eM3",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+64"
+     },
+     {
+      "id": "eM4",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+90"
+     },
+     {
+      "id": "eM5",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+76"
+     },
+     {
+      "id": "eM6",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+80"
+     },
+     {
+      "id": "eM7",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+92"
+     },
+     {
+      "id": "eM8",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+67"
+     },
+     {
+      "id": "eM9",
+      "at": "n2+6",
+      "ramp": 2,
+      "until": "n2+83"
      }
     ],
     "labels": [
@@ -1198,8 +1339,8 @@
       "text": "等待架上的晶圓盒",
       "en": "A FOUP waiting on the shelf",
       "color": "blue",
-      "at": "start",
-      "until": "n2-2",
+      "at": "voice-2",
+      "until": "n2+2",
       "cut": true
      },
      {
@@ -1207,7 +1348,7 @@
       "text": "盒底進氣嘴：灌氮氣",
       "en": "Nitrogen in through the base",
       "color": "amber",
-      "at": "n2",
+      "at": "n2+4",
       "until": "jar-6",
       "cut": true
      },
@@ -1328,6 +1469,12 @@
      },
      {
       "id": "fBumpBox",
+      "at": "start",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "fBumpFoam",
       "at": "start",
       "ramp": 10,
       "until": "s7:start"
@@ -1452,7 +1599,21 @@
       "x": 181.7,
       "y": 2.6,
       "d": 39,
-      "elev": 12
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "gPumpOut",
+      "at": "two+42",
+      "ramp": 14,
+      "until": "open+2"
+     },
+     {
+      "id": "gNeedle",
+      "at": "two+42",
+      "ramp": 30,
+      "until": "s8:start+20"
      }
     ],
     "labels": [
@@ -1467,8 +1628,8 @@
      },
      {
       "part": "gInA",
-      "text": "金屬內盒：送進真空腔",
-      "en": "Metal inner pod goes into vacuum",
+      "text": "金屬內盒：送進真空腔、關門抽真空",
+      "en": "Inner pod in, door shut, pumped down",
       "color": "amber",
       "at": "two-4",
       "until": "vac+21",
@@ -1476,7 +1637,7 @@
      },
      {
       "part": "gRetA",
-      "text": "真空裡才開：光罩",
+      "text": "真空裡才開：光罩（圖案朝下）",
       "en": "Opened only in vacuum: the mask",
       "color": "blue",
       "at": "vac+23",
@@ -1581,7 +1742,7 @@
       "dur": 1,
       "x": 210.9,
       "y": 3.1,
-      "d": 38,
+      "d": 42,
       "elev": 8
      }
     ],
@@ -1607,18 +1768,24 @@
      {
       "id": "hMist",
       "at": "pure+4",
-      "ramp": 6,
-      "until": "s9:start"
+      "ramp": 12,
+      "until": "wash+2"
      },
      {
       "id": "hMist2",
       "at": "pure+4",
-      "ramp": 6,
-      "until": "s9:start"
+      "ramp": 12,
+      "until": "wash+2"
+     },
+     {
+      "id": "hRun",
+      "at": "pure+16",
+      "ramp": 10,
+      "until": "wash+10"
      },
      {
       "id": "hHot",
-      "at": "wash+8",
+      "at": "wash+12",
       "ramp": 6,
       "until": "s9:start"
      }
@@ -1739,9 +1906,9 @@
      {
       "at": "start",
       "dur": 1,
-      "x": 240.9,
-      "y": 1.4,
-      "d": 38,
+      "x": 241.0,
+      "y": 1.6,
+      "d": 46,
       "elev": 12
      }
     ],
@@ -1867,15 +2034,15 @@
     ],
     "run": [
      {
-      "id": "nHotGlow",
+      "id": "nScan",
       "at": "bad",
-      "ramp": 4,
+      "ramp": 8,
       "until": "s11:start"
      },
      {
-      "id": "nScan",
-      "at": "anal-12",
-      "ramp": 8,
+      "id": "nHotGlow",
+      "at": "bad+46",
+      "ramp": 4,
       "until": "s11:start"
      }
     ],
@@ -1890,19 +2057,19 @@
       "cut": true
      },
      {
-      "part": "nHotA",
-      "text": "熱點：這裡壞了",
-      "en": "Hot spot: the failure",
-      "color": "amber",
+      "part": "nMagA",
+      "text": "放大鏡掃過：找壞點",
+      "en": "Scanning for the fault",
+      "color": "blue",
       "at": "bad-2",
       "until": "anal-4",
       "cut": true
      },
      {
-      "part": "nMagA",
-      "text": "放大鏡掃過：找出壞點",
-      "en": "Scan to find the fault",
-      "color": "blue",
+      "part": "nHotA",
+      "text": "掃到熱點：這裡壞了",
+      "en": "Hot spot found: the failure",
+      "color": "amber",
       "at": "anal-2",
       "until": "s11:start",
       "cut": true

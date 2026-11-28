@@ -91,7 +91,7 @@ const Drawer: React.FC<P> = ({ o, f, k }) => {
 // ── carrier-kc：仰視盒底：三道放射溝 ＋ 三顆圓頭凸點；一放下，凸點滑到溝的正中（自己對準） ──
 const Kc: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, gr = on(f, T(o, "groove")), pn = on(f, T(o, "pins")), al = on(f, T(o, "align"), 18);
-  const cx = 168, cy = CT + 104, R = 58, off = (1 - al) * 16;
+  const cx = 168, cy = CT + 104, R = 58, off = (1 - al) * 6;
   const ang = [90, 210, 330];
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <rect x={cx - 104} y={cy - 96} width={208} height={192} rx={14} fill="#5E6878" stroke={H.text2} strokeWidth={2} />
@@ -129,12 +129,15 @@ const Oht: React.FC<P> = ({ o, f, k }) => {
 // ── carrier-purge：盒子剖面：氮氣（藍箭頭）從盒底進、濕氣（藍白點）氧氣（紅點）被推出去，點數逐漸變少；右邊餅乾罐＋乾燥劑 ──
 const Purge: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, wt = on(f, T(o, "wait")), n2 = on(f, T(o, "n2")), mo = on(f, T(o, "moist")), ox = on(f, T(o, "o2")), jr = on(f, T(o, "jar"));
-  const x0 = 24, y0 = CT + 22, w = 170, h = 156, left = 1 - cl01((f - T(o, "n2")) / 90) * 0.85;
-  const dots = Array.from({ length: 12 }, (_, i) => ({ x: x0 + 20 + ((i * 37) % 130), y: y0 + 20 + ((i * 53) % 120), c: i % 3 === 0 ? O2 : H2O, show: i / 12 < left }));
+  const x0 = 24, y0 = CT + 22, w = 170, h = 156;
+  // r1（物理可改）：每顆點依序被推到右下排氣口才消失（不是原地不見）
+  const ex = x0 + w - 34, ey = y0 + h + 16, n20 = T(o, "n2");
+  const dots = Array.from({ length: 12 }, (_, i) => { const sx = x0 + 20 + ((i * 37) % 130), sy = y0 + 20 + ((i * 53) % 120), p = cl01((f - n20 - 6 - i * 7) / 36), e = p * p;
+    return { x: sx + (ex - sx) * e, y: sy + (ey - sy) * e, c: i % 3 === 0 ? O2 : H2O, show: p < 1 }; });
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <rect x={x0} y={y0} width={w} height={h} rx={8} fill={SHELL} stroke={SHELLE} strokeWidth={3} opacity={0.45 + 0.55 * Math.max(wt, n2)} />
     {[0, 1, 2, 3, 4, 5].map((i) => <line key={i} x1={x0 + 22} y1={y0 + 30 + i * 22} x2={x0 + w - 22} y2={y0 + 30 + i * 22} stroke={MIR} strokeWidth={3} />)}
-    {dots.map((d, i) => (d.show ? <circle key={i} cx={d.x + (1 - left) * 30} cy={d.y} r={6} fill={d.c} stroke={H.text2} strokeWidth={1} opacity={0.4 + 0.6 * Math.max(mo, ox, 1 - n2)} /> : null))}
+    {dots.map((d, i) => (d.show ? <circle key={i} cx={d.x} cy={d.y} r={6} fill={d.c} stroke={H.text2} strokeWidth={1} opacity={0.4 + 0.6 * Math.max(mo, ox, 1 - n2)} /> : null))}
     <g opacity={n2}>{[0, 1, 2].map((i) => { const u = ((f * 1.4 + i * 30) % 90) / 90; return <path key={i} d={`M${x0 + 30 + i * 8},${y0 + h + 10 - u * 60} l-8,12 l16,0 Z`} fill={N2} />; })}
       <line x1={x0 + 34} y1={y0 + h + 24} x2={x0 + 34} y2={y0 + h - 6} stroke={N2} strokeWidth={5} /></g>
     <g opacity={Math.max(mo, ox)}><line x1={x0 + w - 34} y1={y0 + h - 6} x2={x0 + w - 34} y2={y0 + h + 24} stroke={RED} strokeWidth={5} /><path d={`M${x0 + w - 42},${y0 + h + 16} l8,12 l8,-12 Z`} fill={RED} /></g>
@@ -178,12 +181,16 @@ const Egg: React.FC<P> = ({ o, f, k }) => {
 };
 // ── carrier-pod：雙層光罩盒剖面：外盒（深色）在機台外打開 → 金屬內盒進真空腔（虛線框）→ 真空裡才打開上蓋，光罩留在底板 ──
 const Pod: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, mk = on(f, T(o, "mask")), pd = on(f, T(o, "pod")), ev = on(f, T(o, "euv"), 16), tw = on(f, T(o, "two"), 20), vc = on(f, T(o, "vac")), opn = on(f, T(o, "open"), 14);
+  const W = o.w ?? 952, Hh = o.h ?? 330, mk = on(f, T(o, "mask")), pd = on(f, T(o, "pod")), ev = on(f, T(o, "euv"), 16), tw = on(f, T(o, "two"), 20), vc = on(f, T(o, "vac")), opn = on(f, T(o, "open") + 6, 14);
+  // r1（物理必改 4）：關好門 → 抽真空（框內的點一顆顆被抽走）→ 才開上蓋
+  const pump = cl01((f - T(o, "vac") - 4) / 26);
   const ox = 30, oy = CT + 82, ix = ox + 24 + tw * 140, iy = oy + 40;
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <rect x={ox} y={oy + 96} width={130} height={16} fill={POD} />
     <g transform={`translate(0 ${-ev * 70})`} opacity={0.45 + 0.55 * Math.max(mk, pd)}><path d={`M${ox},${oy + 96} L${ox},${oy} L${ox + 130},${oy} L${ox + 130},${oy + 96}`} fill="none" stroke={POD} strokeWidth={10} /></g>
     <rect x={180} y={CT + 76} width={140} height={128} fill="none" stroke={BLUE} strokeWidth={3} strokeDasharray="10 7" opacity={0.3 + 0.7 * vc} />
+    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (i / 8 >= pump ? <circle key={`v${i}`} cx={196 + ((i * 41) % 110)} cy={CT + 92 + ((i * 29) % 40)} r={4} fill={H2O} stroke={H.text2} strokeWidth={1} opacity={vc} /> : null))}
+    <g opacity={vc * (1 - opn)}><line x1={250} y1={CT + 204} x2={250} y2={CT + 222} stroke={BLUE} strokeWidth={4} /><path d={`M244,${CT + 216} l6,8 l6,-8 Z`} fill={BLUE} /></g>
     <rect x={ix} y={iy + 40} width={82} height={10} fill={INPOD} stroke={H.text2} strokeWidth={1.5} />
     <rect x={ix + 8} y={iy + 30} width={66} height={10} fill={QZ} stroke={BLUE} strokeWidth={1.5} />
     <g transform={`translate(0 ${-opn * 26})`}><path d={`M${ix},${iy + 40} L${ix},${iy + 8} L${ix + 82},${iy + 8} L${ix + 82},${iy + 40}`} fill="none" stroke={INPOD} strokeWidth={7} /></g>
@@ -197,13 +204,14 @@ const Pod: React.FC<P> = ({ o, f, k }) => {
 };
 // ── carrier-clean：塑膠盒殼剖面：水氣滲進去（藍點）、放氣跑出來（紫點）→ 高純度塑膠 → 清洗機噴水＋烘乾 ──
 const Clean: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, dt = on(f, T(o, "dirty")), ab = on(f, T(o, "absorb")), ot = on(f, T(o, "out")), pu = on(f, T(o, "pure")), ws = on(f, T(o, "wash"));
+  const W = o.w ?? 952, Hh = o.h ?? 330, dt = on(f, T(o, "dirty")), ab = on(f, T(o, "absorb")), ot = on(f, T(o, "out")), pu = on(f, T(o, "pure")), ws = on(f, T(o, "wash")), ws2 = on(f, T(o, "wash") + 12);
   const wx = 150, wy = CT + 24, wh = 180;
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <rect x={wx} y={wy} width={36} height={wh} fill={pu > 0.5 ? "#D6E8FA" : SHELL} stroke={SHELLE} strokeWidth={3} opacity={0.5 + 0.5 * Math.max(dt, ab)} />
     {[0, 1, 2, 3, 4].map((i) => { const u = ((f * 0.8 + i * 21) % 100) / 100; return <circle key={`a${i}`} cx={40 + u * (wx - 40 + 18)} cy={wy + 30 + i * 36} r={6} fill={H2O} stroke={H.text2} strokeWidth={1} opacity={ab * (1 - ws) * (u < 0.98 ? 1 : 0)} />; })}
     {[0, 1, 2, 3].map((i) => { const u = ((f * 0.7 + i * 27) % 100) / 100; return <circle key={`o${i}`} cx={wx + 36 + u * 110} cy={wy + 50 + i * 40 - u * 20} r={6} fill={PURP} opacity={ot * (1 - pu)} />; })}
-    <g opacity={ws}>{[0, 1, 2, 3, 4, 5].map((i) => { const u = ((f * 1.6 + i * 17) % 60) / 60; return <line key={i} x1={44 + i * 18} y1={wy + 4 + u * 160} x2={44 + i * 18} y2={wy + 18 + u * 160} stroke={MIST} strokeWidth={4} strokeLinecap="round" />; })}
+    <g opacity={ws2}>{[0, 1, 2].map((i) => { const u = ((f * 1.2 + i * 20) % 60) / 60; return <path key={`h${i}`} d={`M${300 - u * 90},${wy + 40 + i * 50} l-16,-8 l0,16 Z`} fill="#FF8A3D" />; })}</g>
+    <g opacity={ws * (1 - ws2)}>{[0, 1, 2, 3, 4, 5].map((i) => { const u = ((f * 1.6 + i * 17) % 60) / 60; return <line key={i} x1={44 + i * 18} y1={wy + 4 + u * 160} x2={44 + i * 18} y2={wy + 18 + u * 160} stroke={MIST} strokeWidth={4} strokeLinecap="round" />; })}
       <rect x={30} y={wy - 8} width={110} height={10} fill={STEEL} /></g>
     <Cap x={168} y={CT + 240} t="塑膠盒壁（剖面）" />
     <Sep x={334} />
@@ -231,15 +239,15 @@ const Tw: React.FC<P> = ({ o, f, k }) => {
 // ── carrier-next：封裝晶片（四邊接腳）→ 熱點變紅 → 放大鏡掃過找壞點 → 下一集故障分析；留言關鍵字 ──
 const Next: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, cn = on(f, T(o, "clean")), bd = on(f, T(o, "bad")), wh = on(f, T(o, "where")), an = on(f, T(o, "anal")), nx = on(f, T(o, "next")), fa = on(f, T(o, "fa")), kw = on(f, T(o, "kw"));
-  const cx = 168, cy = CT + 106, s = 58, mx = cx + Math.sin(f * 0.07) * 50 * an;
+  const cx = 168, cy = CT + 106, s = 58, mx = cx + Math.sin(f * 0.07) * 50 * Math.max(bd, an);
   const leads: React.ReactNode[] = [];
   for (let i = 0; i < 7; i++) { const t = -s + 14 + i * ((2 * s - 28) / 6); leads.push(<rect key={`t${i}`} x={cx + t - 4} y={cy - s - 16} width={8} height={16} fill={LEAD} />, <rect key={`b${i}`} x={cx + t - 4} y={cy + s} width={8} height={16} fill={LEAD} />, <rect key={`l${i}`} x={cx - s - 16} y={cy + t - 4} width={16} height={8} fill={LEAD} />, <rect key={`r${i}`} x={cx + s} y={cy + t - 4} width={16} height={8} fill={LEAD} />); }
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <rect x={cx - s - 30} y={cy - s - 30} width={2 * s + 60} height={2 * s + 60} fill={PCB} />
     {leads}
     <rect x={cx - s} y={cy - s} width={2 * s} height={2 * s} fill={PKG} opacity={0.5 + 0.5 * Math.max(cn, bd)} />
-    <circle cx={cx + 20} cy={cy - 14} r={16} fill={HOT} opacity={bd * (0.6 + 0.4 * Math.sin(f * 0.25))} />
-    <g opacity={Math.max(wh, an)}><circle cx={mx} cy={cy - 10} r={34} fill="none" stroke={H.text} strokeWidth={6} /><line x1={mx + 24} y1={cy + 14} x2={mx + 52} y2={cy + 42} stroke={H.text} strokeWidth={8} strokeLinecap="round" /></g>
+    <circle cx={cx + 20} cy={cy - 14} r={16} fill={HOT} opacity={an * (0.6 + 0.4 * Math.sin(f * 0.25))} />
+    <g opacity={Math.max(bd, wh)}><circle cx={mx} cy={cy - 10} r={34} fill="none" stroke={H.text} strokeWidth={6} /><line x1={mx + 24} y1={cy + 14} x2={mx + 52} y2={cy + 42} stroke={H.text} strokeWidth={8} strokeLinecap="round" /></g>
     <Cap x={cx} y={CT + 240} t="封裝晶片（示意）" />
     <Sep x={334} />
     <Row x={360} y={CT + 52} t="盒子再乾淨，晶片還是會壞" c={H.text2} a={Math.max(cn, bd)} />

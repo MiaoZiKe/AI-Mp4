@@ -65,7 +65,7 @@ def TTS(t):
     return t
 RATE = 4.5   # 第 13 條：含停頓 4.3～4.6 字／秒（無聲估計用；正式配音後依對齊覆蓋）
 scenes = []
-HOLD = {"s1": 0.6, "s3": 0.7, "s4": 0.7, "s7": 0.7, "s9": 0.7, "s2": 0.6}   # 第 39 條：holdSec ≤0.7
+HOLD = {"s1": 0.6, "s3": 0.7, "s4": 0.7, "s7": 0.7, "s9": 0.7, "s2": 0.7}   # 第 39 條：holdSec ≤0.7
 for i, (sid, beat, nar, zh, en, cues, kws, src) in enumerate(S):
     assert len(zh) == len(en), (sid, len(zh), len(en))
     for z in zh: assert 3 <= len(re.sub(r"[ ，。？、；]", "", z)) <= 11, (sid, z)
@@ -120,14 +120,17 @@ def card(sid, kind, title, tag, t=None, **kw):
     return sec(kind, C, nxt(sid), title, tag, t, cut=True, **kw)
 
 # ── 站 B：s2 先停組好的盒子 → 前門沿 +z 退出 → 盒殼往上抬、頂部法蘭再往上 → 逐層標名 → 盒殼與法蘭落回、前門推回（換幕前落定）──
-REASM = "s2:n25+42"
-move("bD", "s2:door-18", "s2:n25+58", 14, dx=INFO["B_DDX"], dz=INFO["B_DDZ"])
-move("bS", "s2:door+8", REASM, 18, dy=INFO["B_SHELL"])
-move("bT", "s2:door+8", REASM, 18, dy=INFO["B_SHELL"])
-move("bT", "s2:door+16", "s2:n25+36", 14, dy=INFO["B_TOP"] - INFO["B_SHELL"])
+# r1（機構必改 1）：念到「晶圓盒」就開始拆，標籤照位移順序一張一張：前門 → 盒殼＋頂部法蘭 → 25 片晶圓＋槽齒；組回後停 ≥30 幀才換幕
+REASM = "s2:n25+12"
+move("bD", "s2:foup+4", "s2:n25+24", 14, dx=INFO["B_DDX"], dz=INFO["B_DDZ"])
+move("bS", "s2:door+16", REASM, 18, dy=INFO["B_SHELL"])
+move("bT", "s2:door+16", REASM, 18, dy=INFO["B_SHELL"])
+move("bT", "s2:door+24", "s2:n25+6", 12, dy=INFO["B_TOP"] - INFO["B_SHELL"])
 # ── 站 C：s3 盒子從偏一點的位置往下（加減速）→ 溝壁碰到圓頭銷 → 水平滑到正中定位 ──
-move("cFoup", T0, "s3:align-8", 20, dy=INFO["C_DROP"])
-move("cFoup", T0, "s3:align+12", 12, dx=INFO["C_OFFX"], dz=INFO["C_OFFZ"])
+# r1（物理必改 1）：先快降到銷頂上方，最後 0.12 慢降時同時被溝壁推正（偏差 0.08 以內，在溝的捕捉範圍裡）
+move("cFoup", T0, "s3:align-8", 18, dy=INFO["C_DROP"] - INFO["C_LAST"])
+move("cFoup", T0, "s3:align+10", 14, dy=INFO["C_LAST"])
+move("cFoup", T0, "s3:align+10", 14, dx=INFO["C_OFFX"], dz=INFO["C_OFFZ"])
 # ── 站 D：s4 天車從右開過來 → 皮帶放下（盒子、夾爪、五段皮帶同一條緩動，皮帶一段段伸出車體）→ 夾爪張開收回 → 定位板帶盒子往機台靠 →
 #    兩扇門一起往機台內退、沿導軌下降 → 第二節臂與叉子伸進盒裡、抬一點、退出（晶圓跟著叉子出來）──
 NB = INFO["NBELT"]; DD = INFO["D_DROP"]
@@ -146,75 +149,94 @@ for L in ["dD", "dPD"]:
 move("dArm2", "s4:air-22", "s4:air+8", 20, dx=INFO["D_EXT2"]); move("dFork", "s4:air-22", "s4:air+8", 20, dx=INFO["D_EXT"])
 move("dFork", "s4:air-1", FAR, 8, dy=INFO["D_LIFT"]); move("dK", "s4:air-1", FAR, 8, dy=INFO["D_LIFT"])
 move("dK", "s4:air+8", FAR, 20, dx=-INFO["D_EXT"])
+# r1（機構必改 7）：open−14 起推近；天車與天花板已在畫面上方之外，淡出（版面檢查才不會把畫面外的天車算進主素材），下一幕前回來
+for L in ["dCeil", "dVeh"] + GRIPL + BELTL: VIS.append(hid(L, "s4:open-20", "s5:voice+2", 6))
 # ── 站 G：s7 外盒殼往上（在機台外打開）→ 金屬內盒沿軌道送進真空腔 → 艙門關 → 內盒上蓋抬起一半、光罩留在底板 ──
 move("gOshell", "s7:euv-4", FAR, 22, dy=INFO["G_OUT"])
-for L in ["gIn", "gIc"]: move(L, "s7:two+2", FAR, 30, dx=INFO["G_IN"])
-move("gGate", T0, "s7:two+34", 14, dy=INFO["G_GATE"])
-move("gIc", "s7:open-8", FAR, 16, dy=INFO["G_CUP"])
+# r1（物理必改 4、機構必改 2）：內盒到位 → 艙門關好 → 抽真空（粒子被抽進泵、壓力錶指針轉）→ 才開內盒上蓋（抬 1.0）
+for L in ["gIn", "gIc"]: move(L, "s7:two+2", FAR, 26, dx=INFO["G_IN"])
+move("gGate", T0, "s7:two+30", 10, dy=INFO["G_GATE"])
+move("gIc", "s7:open+6", FAR, 14, dy=INFO["G_CUP"])
 
 # ═════ 各幕鏡頭（看向 x, y, 距離, 仰角）═════
 # 鏡頭依本站要看到的所有物件（含移動終點）的高度範圍算：主素材整個落在字幕上方的 2D 卡之上（第 2 條反覆扣分：主體被畫面邊切／被卡蓋住）
 AV = (INFO["AX"], 3.0, 34, 12)
-BV = (INFO["BX"], 3.0, 36, 10)
-CV = (INFO["CX"], 3.2, 28, -6)
+BV = (INFO["BX"], 2.45, 36, 10)
+CV = (INFO["CX"], 3.6, 32, -6)
 DV = (INFO["LPX"] - 0.4, 6.0, 66, 6)
-EV = (INFO["EX"] + 1.6, 2.9, 36, 10)
+DV2 = (INFO["WX"] + 0.8, 4.0, 30, 8)
+EV = (INFO["EX"] + 1.6, 3.4, 40, 10)
 FV = (INFO["FX"] - 1.1, 2.3, 42, 12)
-GV = (INFO["GX"] + 3.7, 2.6, 39, 12)
-HV = (INFO["HX"] + 0.9, 3.1, 38, 8)
-TV = (INFO["TX"] + 0.9, 1.4, 38, 12)
+GV = (INFO["GX"] + 3.7, 2.6, 39, 18)
+HV = (INFO["HX"] + 0.9, 3.1, 42, 8)
+TV = (INFO["TX"] + 1.0, 1.6, 46, 12)
 NV = (INFO["NX"], 1.3, 26, 26)
+# r1（物理可改）：熱點要等放大鏡掃到才亮——依 vibrate 的 x(f)＝A·g·sin(2π·F·f/30)（全片時間）算放大鏡第一次經過熱點（x＝+0.35）的幀
+TLP0 = os.path.join(HERE, "timeline.json")
+def mag_hit():
+    import math
+    if not os.path.exists(TLP0): return "bad+20"
+    t = {x["id"]: x for x in json.load(open(TLP0))["scenes"]}.get("s10")
+    if not t: return "bad+20"
+    at = next(c["frame"] for c in t["cues"] if c["id"] == "bad"); A, F = INFO["MAG_AMP"], INFO["MAG_F"]
+    xs = lambda f: A * min(1, max(0, (f - at) / 8)) * math.sin(2 * math.pi * F * f / 30)
+    for f in range(at + 1, at + 200):
+        if (xs(f - 1) - 0.35) * (xs(f) - 0.35) <= 0: return f"bad+{f - at}"
+    return "bad+20"
+HIT = mag_hit()
 def S_(at, v, dur=30): return shot(at, v[0], v[1], v[2], v[3], dur)
 P = {}
 # 標籤一次只亮一張、每張 ≥45 幀（第 13 條）；cue 間隔 <45 幀的併成一張
 P["s1"] = {"shot": [S_("start-30", AV, 1)], "shift": VIS,
- "run": [run("aDust", "start", "s2:start", 1), run("aDust2", "start", "s2:start", 1)],
+ "run": [run("aDustIn", "start", "s2:start", 1), run("aDustSlide", "start", "s2:start", 1)],
  "labels": [lab("aBoxA", "密封盒：裝晶圓來回送", "Sealed box: carries wafers", "blue", "start+2", "look+16"),
             lab("aDoorA", "門封住：灰塵擋在外面", "Sealed door keeps dust out", "amber", "look+19", "s2:start")],
  "overlay": [sec("carrier-hook", "start", nxt("s1"), "中游補充篇・M5", "示意", {"prev": "prev", "box": "box", "look": "look", "dust": "dust"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "foup", "at": CC, "dur": 1}],
  "shot": [S_(CC, BV, 1)],
- "labels": [lab("bTopA", "頂部法蘭：天車抓這裡", "Top flange: the hoist grips here", "blue", "start+6", "door-6"),
-            lab("bDoorA", "前門＋四周密封條", "Front door + seal", "amber", "door-4", "n25-6"),
-            lab("bShellA", "兩側 25 道槽齒，一格一片", "25 slots per side, one wafer each", "blue", "n25-4", REASM)],
+ "labels": [lab("bDoorA", "前門＋四周密封條", "Front door + seal", "amber", "foup+2", "foup+48"),
+            lab("bShellA2", "盒殼＋頂部法蘭往上抬", "Shell + top flange lift off", "blue", "foup+50", "n25+26", xy=[420, 330]),
+            lab("bShellA", "25 片晶圓＋兩側槽齒", "25 wafers in side slots", "amber", "n25+28", "s3:start", xy=[400, 330])],
  "overlay": [card("s2", "carrier-drawer", "晶圓盒：前開門、一盒 25 片", "示意", {"foup": "foup", "door": "door", "n25": "n25", "drawer": "drawer"})]}
 P["s3"] = {"zoom": [{"to": "kc", "at": CC, "dur": 1}],
  "shot": [S_(CC, CV, 1)],
- "labels": [lab("cGrA", "盒底三道放射溝", "Three radial grooves", "blue", "groove-4", "groove+41"),
+ "labels": [lab("cGrA", "盒底三道 V 形溝", "Three radial V-grooves", "blue", "groove-4", "groove+41"),
             lab("cPinA", "機台三顆圓頭銷", "Three round-head pins", "amber", "groove+43", "align+5"),
-            lab("cFoupA", "一放下：自己滑到定位", "Set down: it slides into place", "blue", "align+7", "s4:start")],
+            lab("cFoupA", "一放下：自己滑到定位", "Set down: it slides into place", "blue", "align+7", "s4:start", xy=[700, 330])],
  "overlay": [card("s3", "carrier-kc", "盒底：三道溝對三顆凸點", "示意（仰視）", {"groove": "groove", "pins": "pins", "align": "align"})]}
 P["s4"] = {"zoom": [{"to": "oht", "at": CC, "dur": 1}],
- "shot": [S_(CC, DV, 1)],
+ "shot": [S_(CC, DV, 1), S_("open-22", DV2, 18)],
+ "run": [run("dFfuAir", "open-12", "s5:start", 8)],
  "labels": [lab("dOhtA", "天車（OHT）：天花板軌道", "Overhead hoist transport (OHT)", "blue", "rail+2", "hang-4"),
-            lab("dPortA", "承載埠（Load port）", "Load port", "amber", "hang-2", "open-12"),
-            lab("dDoorA", "盒門＋機台門一起開", "Box door + tool door open together", "blue", "open-10", "air-10"),
-            lab("dArmA", "手臂取片：不碰外面空氣", "Robot picks a wafer inside", "amber", "air-8", "s5:start")],
+            lab("dPortA", "承載埠（Load port）", "Load port", "amber", "hang-2", "open-24"),
+            lab("dDoorA", "兩扇門一起開", "Both doors open together", "blue", "open-2", "air-6"),
+            lab("dArmA", "手臂取片", "Robot picks a wafer", "amber", "air-4", "s5:start-6")],
  "overlay": [card("s4", "carrier-oht", "天車 → 承載埠 → 開門取片", "示意", {"rail": "rail", "ceil": "ceil", "hang": "hang", "door": "door", "open": "open", "air": "air"})]}
 P["s5"] = {"zoom": [{"to": "purge", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
  "run": [run("eN2Pipe", "n2-6", "s6:start", 6), run("eN2", "n2-2", "s6:start", 6),
-         run("eWet1", "n2+10", "o2+6", 4), run("eWet2", "n2+12", "jar+10", 4), run("eO2a", "n2+10", "jar-4", 4), run("eO2b", "n2+14", "s6:start-4", 4)],
- "labels": [lab("eFoupA", "等待架上的晶圓盒", "A FOUP waiting on the shelf", "blue", "start", "n2-2"),
-            lab("eN2A", "盒底進氣嘴：灌氮氣", "Nitrogen in through the base", "amber", "n2", "jar-6"),
+         *[run(f"eM{i}", "n2+6", f"n2+{6 + int((1 - u0) * 30 / INFO['E_RATE']) - 2}", 2) for i, u0 in enumerate(INFO["E_U0"])]],
+ "labels": [lab("eFoupA", "等待架上的晶圓盒", "A FOUP waiting on the shelf", "blue", "voice-2", "n2+2"),
+            lab("eN2A", "盒底進氣嘴：灌氮氣", "Nitrogen in through the base", "amber", "n2+4", "jar-6"),
             lab("eGasA", "閥件＋流量計控制氮氣", "Valve + flowmeter", "blue", "jar-2", "s6:start")],
  "overlay": [card("s5", "carrier-purge", "排隊時灌氮氣：趕走濕氣和氧氣", "示意", {"wait": "wait", "n2": "n2", "moist": "moist", "o2": "o2", "jar": "jar"})]}
 P["s6"] = {"zoom": [{"to": "fosb", "at": CC, "dur": 1}],
  "shot": [S_(CC, FV, 1)],
- "run": [run("fBump", "start", "s7:start", 10), run("fBumpBox", "start", "s7:start", 10)],
+ "run": [run("fBump", "start", "s7:start", 10), run("fBumpBox", "start", "s7:start", 10), run("fBumpFoam", "start", "s7:start", 10)],
  "labels": [lab("fFosbA", "出貨盒（FOSB）：少開門", "FOSB: door rarely opened", "blue", "fosb-4", "shock-6"),
             lab("fFoamA", "泡棉＋紙箱托住：防撞防震", "Foam + carton absorb the bumps", "amber", "shock-4", "s7:start")],
  "overlay": [card("s6", "carrier-egg", "出貨盒：防撞防震，像蛋盒", "示意", {"ship": "ship", "fosb": "fosb", "less": "less", "shock": "shock", "egg": "egg"})]}
 P["s7"] = {"zoom": [{"to": "pod", "at": CC, "dur": 1}],
  "shot": [S_(CC, GV, 1)],
+ "run": [run("gPumpOut", "two+42", "open+2", 14), run("gNeedle", "two+42", "s8:start+20", 30)],
  "labels": [lab("gOutA", "外盒（高分子）：機台外打開", "Outer pod opens outside the tool", "blue", "euv-4", "two-6"),
-            lab("gInA", "金屬內盒：送進真空腔", "Metal inner pod goes into vacuum", "amber", "two-4", "vac+21"),
-            lab("gRetA", "真空裡才開：光罩", "Opened only in vacuum: the mask", "blue", "vac+23", "s8:start")],
+            lab("gInA", "金屬內盒：送進真空腔、關門抽真空", "Inner pod in, door shut, pumped down", "amber", "two-4", "vac+21"),
+            lab("gRetA", "真空裡才開：光罩（圖案朝下）", "Opened only in vacuum: the mask", "blue", "vac+23", "s8:start")],
  "overlay": [card("s7", "carrier-pod", "極紫外光光罩盒：兩層", "示意", {"mask": "mask", "pod": "pod", "euv": "euv", "two": "two", "vac": "vac", "open": "open"})]}
 P["s8"] = {"zoom": [{"to": "clean", "at": CC, "dur": 1}],
  "shot": [S_(CC, HV, 1)],
  "run": [run("hSoak", "absorb-6", "out+4", 6), run("hOut", "out", "pure+16", 6), run("hSpin", "pure", "s9:start", 12),
-         run("hMist", "pure+4", "s9:start", 6), run("hMist2", "pure+4", "s9:start", 6), run("hHot", "wash+8", "s9:start", 6)],
+         run("hMist", "pure+4", "wash+2", 12), run("hMist2", "pure+4", "wash+2", 12), run("hRun", "pure+16", "wash+10", 10), run("hHot", "wash+12", "s9:start", 6)],
  "labels": [lab("hShA", "塑膠盒殼：會吸水、放氣", "Plastic shell absorbs and outgasses", "blue", "dirty", "pure-4"),
             lab("hNozA", "清洗機：噴嘴陣列＋旋轉架", "Washer: nozzle array + rotating rack", "amber", "pure-2", "s9:start")],
  "overlay": [card("s8", "carrier-clean", "盒子也怕髒：高純度塑膠＋定期洗", "示意", {"dirty": "dirty", "absorb": "absorb", "out": "out", "pure": "pure", "wash": "wash"})]}
@@ -224,10 +246,10 @@ P["s9"] = {"zoom": [{"to": "tw", "at": CC, "dur": 1}],
  "overlay": [card("s9", "carrier-tw", "台灣的晶圓盒與光罩盒廠", "媒體報導；截至 2026/11/28", {"tw": "tw", "gd": "gd", "mask": "mask", "foup": "foup", "ck": "ck", "own": "own"})]}
 P["s10"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],
  "shot": [S_("start", NV, 1)],
- "run": [run("nHotGlow", "bad", "s11:start", 4), run("nScan", "anal-12", "s11:start", 8)],
+ "run": [run("nScan", "bad", "s11:start", 8), run("nHotGlow", HIT, "s11:start", 4)],
  "labels": [lab("nPkgA", "封裝晶片：四邊接腳", "Packaged chip: leads on four sides", "blue", "start+6", "bad-4"),
-            lab("nHotA", "熱點：這裡壞了", "Hot spot: the failure", "amber", "bad-2", "anal-4"),
-            lab("nMagA", "放大鏡掃過：找出壞點", "Scan to find the fault", "blue", "anal-2", "s11:start")],
+            lab("nMagA", "放大鏡掃過：找壞點", "Scanning for the fault", "blue", "bad-2", f"{HIT}+2" if False else "anal-4"),
+            lab("nHotA", "掃到熱點：這裡壞了", "Hot spot found: the failure", "amber", "anal-2", "s11:start")],
  "overlay": [sec("carrier-next", C, "s11:start", "下一集：材料分析與故障分析", "留言「晶圓盒」", {"clean": "clean", "bad": "bad", "where": "where", "anal": "anal", "next": "next", "fa": "fa", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
