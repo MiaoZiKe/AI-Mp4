@@ -135,7 +135,7 @@ vis("eHot", [("s6:hot", FAR)], 6)
 vis("eBoule1", [("s6:frost+24", "s6:slow-6")], 4); vis("eBoule2", [("s6:slow-6", "s6:slow+24")], 4); vis("eBoule3", [("s6:slow+24", FAR)], 4)
 # ── 站 F：噴氣頭沿吊臂抬起看到矽晶圓（念到「矽晶圓表面」），落回後腔體與噴氣頭變半透明（剖開示意），噴氣、薄膜出現 ──
 EXP.append(mv("fShow", "s7:start-14", "s7:si+2", 14, dy=2.4))
-VIS.append(hid("fBody", "s7:si+6", "s8:start", 10, 0.16)); VIS.append(hid("fShow", "s7:si+6", "s8:start", 10, 0.28))
+VIS.append(hid("fBody", "s7:si+6", "s8:start", 10, 0.16)); VIS.append(hid("fShow", "s7:si+6", "s8:start", 10, 0.62))
 vis("fFilm", [("s7:film+4", FAR)], 14)
 # ── 站 H（r2：晶圓全程有東西托著／夾著，不懸空）：上下料座中間的頂桿把測試片頂到翻面夾爪 → 頂桿退下、夾爪夾著翻面（圖案朝下）
 #    → 載頭沿龍門橫梁（滑座＋主軸座一起）移到上下料座上方、下降吸片、抬起、移回墊上壓下研磨（全程 EASE.move 加減速）
@@ -165,7 +165,7 @@ DV = (INFO["DX"] + 0.6, 1.0, 38, 26)
 EV1 = (INFO["EX"], 14.5, 86, 8)
 EV2 = (INFO["EX"], 1.2, 44, 10)
 FV = (INFO["FX"], 3.4, 38, 24)
-FV2 = (INFO["FX"], 1.2, 34, 32)
+FV2 = (INFO["FX"], 2.0, 40, 20)
 GV = (INFO["GX"], 0.4, 44, 12)
 HV = (INFO["HX"] - 0.3, 1.2, 30, 26)
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)

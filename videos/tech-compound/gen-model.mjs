@@ -424,7 +424,7 @@ actions.fSusSpin = { type: "rotate", _說明: "承盤帶著晶圓轉，膜才長
 // 氣體：每片晶圓上方的噴頭孔噴出（錐狀散開三道）、落到晶圓表面後沿表面往外流到承盤邊（含鎵氣體＝紫、氨氣＝藍，交錯）
 POCK.forEach(([px, , pz], k) => { const r = Math.hypot(px - FX, pz), ux = (px - FX) / r, uz = pz / r;
   [[-0.3, 0], [0.3, 0], [0, 0.3]].forEach(([ox, oz], j) => { const hx = R2(px + ox), hz = R2(pz + oz);
-    actions[`fGas${k}${j}`] = { type: "flow", _說明: "噴頭孔噴出含鎵氣體／氨氣，錐狀落到晶圓表面再沿表面往外流走", layer: "fPl", path: [[R2(px + ox * 0.2), R2(FH + 2.4), R2(pz + oz * 0.2)], [hx, R2(FH + 1.36), hz], [R2(hx + ux * 0.75), R2(FH + 1.34), R2(hz + uz * 0.75)]], n: 4, size: 0.08, shape: "dot", rate: 0.55, phase: R2(((k * 3 + j) * 0.37) % 1), jitter: 0.06, laneDir: [ux, 0, uz], color: (k + j) % 2 ? "ammoniaC" : "gaC", track: false, free: true }; }); });
+    actions[`fGas${k}${j}`] = { type: "flow", _說明: "噴頭孔噴出含鎵氣體／氨氣，錐狀落到晶圓表面再沿表面往外流走", layer: "fPl", path: [[R2(px + ox * 0.2), R2(FH + 2.4), R2(pz + oz * 0.2)], [hx, R2(FH + 1.36), hz], [R2(hx + ux * 0.75), R2(FH + 1.34), R2(hz + uz * 0.75)]], n: 8, size: 0.1, shape: "dot", rate: 0.55, phase: R2(((k * 3 + j) * 0.37) % 1), jitter: 0.06, laneDir: [ux, 0, uz], color: (k + j) % 2 ? "ammoniaC" : "gaC", track: false, free: true }; }); });
 // 上蓋吊臂：右側立柱＋橫臂＋氣壓缸（噴氣頭連桿伸進缸裡，抬起時連桿往上縮進去）
 LAY("fHoist", [4.5, 9.4, FX + 1.6, FH + 4.7], true);  // 背景層（不算主素材框，近拍時才不會把框撐到畫面外）
 BOX("fHoistCol", "fHoist", FX + 3.3, FX + 3.75, FH, FH + 7.4, -0.25, 0.25, "band"); BOX("fHoistFoot", "fHoist", FX + 3.1, FX + 3.95, FH, FH + 0.15, -0.5, 0.5, "dark");
@@ -560,7 +560,7 @@ Object.assign(anchors, {
   eHeadA: A("eHead", [EX + 1.45, R2(EH + 7.0), 0.2], 150, -100), eQtzA: A("eQtz", [EX - 1.98, R2(EH + 4.5), 0.4], -150, -100), eLidA: A("eLid", [EX + 1.2, R2(EH + 4.8), 0.3], 150, -100),
   eCruPA: A("ePow", [EX - 0.7, R2(EH + 1.9), 0.5], -150, -100),
   ePowA: A("ePow", [EX - 0.7, R2(EH + 1.9), 0.5], -150, 100), eBouleA: A("eBoule3", [EX + 0.85, R2(EH + 4.0), 0.3], 150, 100), eFeltA: A("eFelt", [EX - 1.68, R2(EH + 4.0), 0.5], -150, -100),
-  fWafA: A("fSus", [POCK[0][0], R2(FH + 1.32), POCK[0][2]], 150, -100), fShowA: A("fShow", [FX - 2.15, R2(FH + 2.55), 0.5], -150, -100), fFilmA: A("fFilm", [POCK[1][0], R2(FH + 1.35), POCK[1][2]], -150, -100), fShowHA: A("fShow", [FX + 1.2, R2(FH + 2.44), 1.3], 150, -100), fGasA: A("fSus", [POCK[1][0] + 0.3, R2(FH + 1.6), POCK[1][2]], 150, -100),
+  fWafA: A("fSus", [POCK[0][0], R2(FH + 1.32), POCK[0][2]], 150, -100), fShowA: A("fShow", [FX - 2.15, R2(FH + 2.55), 0.5], -150, -100), fFilmA: A("fFilm", [POCK[1][0], R2(FH + 1.35), POCK[1][2]], -150, -100), fShowHA: A("fShow", [R2(FX - 2.0), R2(FH + 2.45), 0.8], 150, -100), fGasA: A("fSus", [POCK[1][0] + 0.3, R2(FH + 1.6), POCK[1][2]], 150, -100),
   hPadA: A("hPlaten", [HX + 0.4, R2(HH + 0.48), 1.6], -150, 100), hUsedA: A("hUsed", [HX - 3.6, R2(HH + 0.64), 1.0], -150, -100), hHeadA: A("hHead", [HX + 2.9, R2(HH + 0.56), 1.38], 150, -100),
   hCondA: A("hCond", [HX + 2.6, R2(HH + 0.62), -1.3], 150, -100), hShinyA: A("hUsed", [HX - 3.2, R2(HH + 0.64), 0.9], -150, -100), hSlurA: A("hPl", [R2(HX + 1.2), R2(HH + 1.3), -1.0], -150, -100),
 });
