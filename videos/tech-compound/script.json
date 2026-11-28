@@ -78,7 +78,7 @@
    },
    {
     "id": "epi",
-    "label": "氮化鎵磊晶爐（示意）",
+    "label": "氮化鎵磊晶爐（剖開示意）",
     "en": "GaN EPITAXY REACTOR",
     "field": "1 m",
     "ruler": "10 cm",
@@ -218,39 +218,53 @@
       "dur": 3
      },
      {
-      "layer": "dGhost",
-      "at": "s1:start-40",
-      "until": "s5:small-6",
-      "opacity": 0,
-      "dur": 6
+      "layer": "dShellT",
+      "at": "s5:small+4",
+      "until": "s6:start",
+      "opacity": 0.22,
+      "dur": 10
      },
      {
-      "layer": "eBell",
-      "at": "s6:frost-8",
-      "until": "s7:start",
-      "opacity": 0.14,
+      "layer": "dGhost",
+      "at": "s1:start-40",
+      "until": "s5:small-14",
+      "opacity": 0,
       "dur": 8
+     },
+     {
+      "layer": "eHead",
+      "at": "s6:frost+20",
+      "until": "s7:start",
+      "opacity": 0.3,
+      "dur": 10
+     },
+     {
+      "layer": "eCoil",
+      "at": "s6:frost+20",
+      "until": "s7:start",
+      "opacity": 0.5,
+      "dur": 10
      },
      {
       "layer": "eQtz",
-      "at": "s6:frost-8",
+      "at": "s6:frost+20",
       "until": "s7:start",
-      "opacity": 0.2,
-      "dur": 8
+      "opacity": 0.14,
+      "dur": 10
      },
      {
       "layer": "eFelt",
-      "at": "s6:frost-8",
+      "at": "s6:frost+20",
       "until": "s7:start",
-      "opacity": 0.22,
-      "dur": 8
+      "opacity": 0.16,
+      "dur": 10
      },
      {
       "layer": "eCru",
-      "at": "s6:frost-8",
+      "at": "s6:frost+20",
       "until": "s7:start",
-      "opacity": 0.3,
-      "dur": 8
+      "opacity": 0.26,
+      "dur": 10
      },
      {
       "layer": "eHot",
@@ -262,7 +276,7 @@
      {
       "layer": "eBoule1",
       "at": "s1:start-40",
-      "until": "s6:frost+8",
+      "until": "s6:frost+24",
       "opacity": 0,
       "dur": 4
      },
@@ -295,123 +309,144 @@
       "dur": 4
      },
      {
+      "layer": "fBody",
+      "at": "s7:film-8",
+      "until": "s8:start",
+      "opacity": 0.16,
+      "dur": 10
+     },
+     {
+      "layer": "fShow",
+      "at": "s7:film-8",
+      "until": "s8:start",
+      "opacity": 0.28,
+      "dur": 10
+     },
+     {
       "layer": "fFilm",
       "at": "s1:start-40",
       "until": "s7:film+4",
       "opacity": 0,
-      "dur": 10
+      "dur": 14
      },
      {
       "layer": "hPat",
-      "at": "s9:grind+6",
+      "at": "s9:grind+20",
       "until": "s10:start+400",
       "opacity": 0,
-      "dur": 14
+      "dur": 16
      },
      {
       "layer": "cLid",
       "at": "s4:start+2",
-      "until": "s4:bat-6",
+      "until": "s4:motor+6",
       "dur": 14,
-      "dy": 3.6
+      "dy": 4.4
      },
      {
       "layer": "cGel",
       "at": "s4:start+4",
-      "until": "s4:bat-6",
+      "until": "s4:motor+6",
       "dur": 14,
-      "dy": 3.0
+      "dy": 3.7
      },
      {
       "layer": "cCase",
       "at": "s4:start+6",
-      "until": "s4:bat-6",
+      "until": "s4:motor+6",
       "dur": 14,
-      "dy": 2.4
+      "dy": 3.0
      },
      {
       "layer": "cWire",
       "at": "s4:start+8",
-      "until": "s4:bat-6",
+      "until": "s4:motor+6",
       "dur": 14,
-      "dy": 1.8
+      "dy": 2.3
      },
      {
       "layer": "cDie",
       "at": "s4:start+10",
-      "until": "s4:bat-6",
+      "until": "s4:motor+6",
+      "dur": 14,
+      "dy": 1.75
+     },
+     {
+      "layer": "cSol2",
+      "at": "s4:start+12",
+      "until": "s4:motor+6",
       "dur": 14,
       "dy": 1.3
      },
      {
       "layer": "cDbc",
-      "at": "s4:start+12",
-      "until": "s4:bat-6",
+      "at": "s4:start+14",
+      "until": "s4:motor+6",
       "dur": 14,
       "dy": 0.85
      },
      {
       "layer": "cSol1",
-      "at": "s4:start+14",
-      "until": "s4:bat-6",
+      "at": "s4:start+16",
+      "until": "s4:motor+6",
       "dur": 14,
       "dy": 0.42
      },
      {
       "layer": "dShellT",
       "at": "s5:start+2",
-      "until": "s5:ai-4",
+      "until": "s5:small-10",
       "dur": 14,
-      "dy": 2.6
+      "dy": 3.1
      },
      {
       "layer": "dParts",
       "at": "s5:start+5",
-      "until": "s5:ai-4",
+      "until": "s5:small-10",
       "dur": 14,
-      "dy": 1.5
+      "dy": 2.0
      },
      {
       "layer": "dPcb",
       "at": "s5:start+8",
-      "until": "s5:ai-4",
+      "until": "s5:small-10",
       "dur": 14,
-      "dy": 0.9
+      "dy": 1.0
      },
      {
-      "layer": "eBell",
+      "layer": "eHead",
       "at": "s6:start+2",
-      "until": "s6:frost-16",
+      "until": "s6:frost+8",
       "dur": 16,
-      "dy": 8.6
+      "dy": 22.0
      },
      {
       "layer": "eCoil",
       "at": "s6:start+5",
-      "until": "s6:frost-16",
+      "until": "s6:frost+8",
       "dur": 16,
-      "dy": 6.6
+      "dy": 16.6
      },
      {
       "layer": "eQtz",
       "at": "s6:start+8",
-      "until": "s6:frost-16",
+      "until": "s6:frost+8",
       "dur": 16,
-      "dy": 4.9
+      "dy": 11.0
      },
      {
       "layer": "eFelt",
       "at": "s6:start+11",
-      "until": "s6:frost-16",
+      "until": "s6:frost+8",
       "dur": 16,
-      "dy": 3.4
+      "dy": 5.6
      },
      {
       "layer": "eLid",
       "at": "s6:start+14",
-      "until": "s6:frost-16",
+      "until": "s6:frost+8",
       "dur": 16,
-      "dy": 1.9
+      "dy": 1.2
      },
      {
       "layer": "fShow",
@@ -419,6 +454,69 @@
       "until": "s7:film-12",
       "dur": 14,
       "dy": 2.4
+     },
+     {
+      "layer": "hUsed",
+      "at": "s9:test+8",
+      "until": "s9:next+36",
+      "dur": 12,
+      "dy": 1.09
+     },
+     {
+      "layer": "hUsed",
+      "at": "s9:test+24",
+      "until": "s9:next+3",
+      "dur": 18,
+      "dx": 6.5
+     },
+     {
+      "layer": "hUsed",
+      "at": "s9:grind-4",
+      "until": "s9:next-10",
+      "dur": 12,
+      "dy": -1.2
+     },
+     {
+      "layer": "hPat",
+      "at": "s9:test+8",
+      "until": "s9:next+36",
+      "dur": 12,
+      "dy": 1.09
+     },
+     {
+      "layer": "hPat",
+      "at": "s9:test+24",
+      "until": "s9:next+3",
+      "dur": 18,
+      "dx": 6.5
+     },
+     {
+      "layer": "hPat",
+      "at": "s9:grind-4",
+      "until": "s9:next-10",
+      "dur": 12,
+      "dy": -1.2
+     },
+     {
+      "layer": "hHead",
+      "at": "s9:start-30",
+      "until": "s9:grind-4",
+      "dur": 12,
+      "dy": 1.2
+     },
+     {
+      "layer": "hHead",
+      "at": "s9:next-10",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dy": 1.2
+     }
+    ],
+    "zoom": [
+     {
+      "to": "start",
+      "at": "s2:start-12",
+      "dur": 1
      }
     ],
     "run": [
@@ -555,10 +653,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 30,
-      "y": 0.6,
-      "d": 36,
-      "elev": 18
+      "x": 25.8,
+      "y": 1.9,
+      "d": 21,
+      "elev": 12
      }
     ],
     "run": [
@@ -576,16 +674,16 @@
      },
      {
       "id": "bSiLeak",
-      "at": "leak-4",
+      "at": "low",
       "ramp": 4,
-      "until": "s3:wide"
+      "until": "s4:start"
      }
     ],
     "labels": [
      {
       "part": "bSiGapA",
-      "text": "能隙＝門檻",
-      "en": "Band gap = the hurdle",
+      "text": "能隙＝門檻（1.12 eV）",
+      "en": "Band gap = the hurdle (1.12 eV)",
       "color": "amber",
       "at": "gap",
       "until": "low-4",
@@ -593,10 +691,10 @@
      },
      {
       "part": "bSiCbA",
-      "text": "電子跳上去就漏電",
-      "en": "Electrons jump over: leakage",
+      "text": "門檻低：電子跳上導帶＝漏電",
+      "en": "Low hurdle: electrons jump = leak",
       "color": "blue",
-      "at": "leak-4",
+      "at": "low+4",
       "until": "s3:start-4",
       "cut": true
      }
@@ -682,16 +780,16 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 32.4,
-      "y": 0.8,
-      "d": 32,
-      "elev": 16
+      "x": 30,
+      "y": 2.0,
+      "d": 47,
+      "elev": 14
      }
     ],
     "run": [
      {
       "id": "bScTry",
-      "at": "hold-6",
+      "at": "x3",
       "ramp": 4,
       "until": "s4:start"
      },
@@ -705,10 +803,10 @@
     "labels": [
      {
       "part": "bScGapA",
-      "text": "碳化矽：門檻約 3 倍高",
-      "en": "SiC: hurdle ~3x higher",
+      "text": "碳化矽門檻 3.26 eV：約矽的 3 倍",
+      "en": "SiC hurdle 3.26 eV: ~3x silicon",
       "color": "amber",
-      "at": "x3-2",
+      "at": "wide",
       "until": "hold-4",
       "cut": true
      },
@@ -808,17 +906,25 @@
       "at": "voice-4",
       "dur": 1,
       "x": 60,
-      "y": 1.2,
-      "d": 30,
-      "elev": 30
+      "y": 3.4,
+      "d": 33,
+      "elev": 20
      },
      {
-      "at": "bat-8",
-      "dur": 26,
-      "x": 59.8,
-      "y": 0.4,
-      "d": 62,
-      "elev": 24
+      "at": "bat-6",
+      "dur": 22,
+      "x": 57.0,
+      "y": 2.4,
+      "d": 46,
+      "elev": 20
+     },
+     {
+      "at": "motor-4",
+      "dur": 24,
+      "x": 59.0,
+      "y": 0.9,
+      "d": 74,
+      "elev": 22
      }
     ],
     "run": [
@@ -829,15 +935,15 @@
       "until": "s5:start"
      },
      {
-      "id": "cAcFlow",
-      "at": "motor-4",
-      "ramp": 4,
-      "until": "s5:start"
-     },
-     {
       "id": "cShaftSpin",
       "at": "motor",
       "ramp": 10,
+      "until": "s5:start"
+     },
+     {
+      "id": "cDieSw",
+      "at": "bat",
+      "ramp": 4,
       "until": "s5:start"
      },
      {
@@ -845,33 +951,123 @@
       "at": "loss-4",
       "ramp": 6,
       "until": "s5:start"
+     },
+     {
+      "id": "cAcu0",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcu1",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcu2",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcu3",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcv0",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcv1",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcv2",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcv3",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcw0",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcw1",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcw2",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
+     },
+     {
+      "id": "cAcw3",
+      "at": "motor-4",
+      "ramp": 6,
+      "until": "s5:start"
      }
     ],
     "labels": [
      {
-      "part": "cDieA",
-      "text": "碳化矽晶片（爆炸分解）",
-      "en": "SiC dies (exploded view)",
-      "color": "amber",
-      "at": "start+16",
-      "until": "bat-8",
+      "part": "cBaseA",
+      "text": "針鰭銅底板（泡冷卻液）",
+      "en": "Pin-fin copper baseplate",
+      "color": "blue",
+      "at": "start+10",
+      "until": "start+38",
       "cut": true
      },
      {
-      "part": "cBatA",
-      "text": "電池：直流",
-      "en": "Battery: DC",
+      "part": "cDbcA",
+      "text": "銲料＋陶瓷覆銅基板",
+      "en": "Solder + DBC ceramic substrate",
+      "color": "amber",
+      "at": "start+42",
+      "until": "start+66",
+      "cut": true
+     },
+     {
+      "part": "cDieA",
+      "text": "銲料＋碳化矽晶片（開關）",
+      "en": "Solder + SiC dies (switches)",
+      "color": "amber",
+      "at": "start+70",
+      "until": "start+92",
+      "cut": true
+     },
+     {
+      "part": "cCaseA",
+      "text": "外殼＋DC／U／V／W 端子",
+      "en": "Housing + DC/U/V/W terminals",
       "color": "blue",
-      "at": "bat",
-      "until": "motor-2",
+      "at": "start+96",
+      "until": "motor+4",
       "cut": true
      },
      {
       "part": "cMotA",
-      "text": "馬達：交流",
-      "en": "Motor: AC",
+      "text": "馬達：三相交流（來回擺）",
+      "en": "Motor: 3-phase AC (alternating)",
       "color": "amber",
-      "at": "motor",
+      "at": "motor+8",
       "until": "s5:start-4",
       "cut": true
      }
@@ -880,7 +1076,7 @@
      {
       "type": "section",
       "kind": "cp-ev",
-      "at": "voice-3",
+      "at": "start+14",
       "until": "s5:voice-3",
       "x": 64,
       "y": 1066,
@@ -961,10 +1157,18 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 90.4,
-      "y": 0.2,
-      "d": 28,
-      "elev": 30
+      "x": 88.0,
+      "y": 1.4,
+      "d": 24,
+      "elev": 28
+     },
+     {
+      "at": "small-16",
+      "dur": 20,
+      "x": 90.6,
+      "y": 1.0,
+      "d": 38,
+      "elev": 26
      }
     ],
     "run": [
@@ -987,25 +1191,34 @@
       "text": "氮化鎵功率晶片",
       "en": "GaN power chip",
       "color": "amber",
-      "at": "fast-2",
-      "until": "chg+30",
+      "at": "fast-14",
+      "until": "fast+18",
+      "cut": true
+     },
+     {
+      "part": "dPcbA",
+      "text": "電路板：走線／過孔",
+      "en": "PCB: traces / vias",
+      "color": "blue",
+      "at": "fast+22",
+      "until": "chg+8",
       "cut": true
      },
      {
       "part": "dXfA",
-      "text": "變壓器（可以變小）",
-      "en": "Transformer (can shrink)",
-      "color": "blue",
-      "at": "chg+32",
-      "until": "small-8",
+      "text": "變壓器（開關快就能做小）",
+      "en": "Transformer (small thanks to fast switching)",
+      "color": "amber",
+      "at": "chg+12",
+      "until": "small-12",
       "cut": true
      },
      {
       "part": "dGhostA",
-      "text": "同功率矽充電頭（示意）",
-      "en": "Silicon charger, same power",
+      "text": "同功率矽充電頭：變壓器大很多",
+      "en": "Silicon charger: much bigger transformer",
       "color": "amber",
-      "at": "small-4",
+      "at": "small-2",
       "until": "s6:start-4",
       "cut": true
      }
@@ -1017,9 +1230,9 @@
       "at": "voice-3",
       "until": "s6:voice-3",
       "x": 64,
-      "y": 1066,
+      "y": 1000,
       "w": 952,
-      "h": 330,
+      "h": 392,
       "avoid": false,
       "title": "氮化鎵：開關快、體積小",
       "tag": "示意（體積比例示意）",
@@ -1096,17 +1309,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 120,
-      "y": 8.0,
-      "d": 74,
+      "y": 14.5,
+      "d": 86,
       "elev": 8
      },
      {
-      "at": "frost-20",
-      "dur": 24,
+      "at": "frost+4",
+      "dur": 26,
       "x": 120,
-      "y": 1.6,
-      "d": 32,
-      "elev": 12
+      "y": 1.2,
+      "d": 44,
+      "elev": 10
      }
     ],
     "run": [
@@ -1123,46 +1336,85 @@
       "until": "s7:start"
      },
      {
+      "id": "ePowGlow",
+      "at": "hot",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
       "id": "eVapor",
-      "at": "frost-8",
+      "at": "frost+14",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "eVapor2",
+      "at": "frost+14",
       "ramp": 6,
       "until": "s7:start"
      }
     ],
     "labels": [
      {
-      "part": "eCoilA",
-      "text": "感應線圈",
-      "en": "Induction coil",
-      "color": "amber",
-      "at": "start+18",
-      "until": "hot-2",
+      "part": "eHeadA",
+      "text": "上蓋法蘭（測溫窗、抽真空）",
+      "en": "Top flange (pyrometer window)",
+      "color": "blue",
+      "at": "start+8",
+      "until": "start+30",
       "cut": true
      },
      {
-      "part": "eCruA",
-      "text": "石墨坩堝：底部加熱",
-      "en": "Graphite crucible, heated",
+      "part": "eCoilA",
+      "text": "感應線圈（銅管通冷卻水）",
+      "en": "Induction coil (water-cooled)",
+      "color": "amber",
+      "at": "start+34",
+      "until": "start+56",
+      "cut": true
+     },
+     {
+      "part": "eQtzA",
+      "text": "雙層水冷石英管",
+      "en": "Double-wall water-cooled quartz",
       "color": "blue",
-      "at": "hot",
-      "until": "frost-18",
+      "at": "start+60",
+      "until": "start+82",
+      "cut": true
+     },
+     {
+      "part": "eFeltA",
+      "text": "石墨氈保溫",
+      "en": "Graphite felt insulation",
+      "color": "amber",
+      "at": "start+86",
+      "until": "frost-3",
+      "cut": true
+     },
+     {
+      "part": "eCruPA",
+      "text": "坩堝底最熱：碳化矽粉末昇華",
+      "en": "Hottest at bottom: SiC powder sublimes",
+      "color": "amber",
+      "at": "frost+1",
+      "until": "frost+29",
       "cut": true
      },
      {
       "part": "eSeedA",
-      "text": "晶種：氣體在這裡凝結",
-      "en": "Seed: vapor condenses here",
-      "color": "amber",
-      "at": "frost",
-      "until": "slow-6",
+      "text": "晶種（較冷）：氣體凝結在這",
+      "en": "Seed (cooler): vapor condenses",
+      "color": "blue",
+      "at": "frost+33",
+      "until": "slow+17",
       "cut": true
      },
      {
       "part": "eBouleA",
-      "text": "晶錠慢慢變厚",
+      "text": "晶錠慢慢往下長厚",
       "en": "Boule grows slowly",
       "color": "blue",
-      "at": "slow-4",
+      "at": "slow+21",
       "until": "s7:start-4",
       "cut": true
      }
@@ -1171,7 +1423,7 @@
      {
       "type": "section",
       "kind": "cp-pvt",
-      "at": "start+16",
+      "at": "frost+30",
       "until": "s7:voice-3",
       "x": 64,
       "y": 1000,
@@ -1248,9 +1500,17 @@
       "at": "voice-4",
       "dur": 1,
       "x": 150,
-      "y": 1.0,
-      "d": 32,
-      "elev": 28
+      "y": 3.4,
+      "d": 38,
+      "elev": 24
+     },
+     {
+      "at": "film-14",
+      "dur": 20,
+      "x": 150,
+      "y": 1.2,
+      "d": 31,
+      "elev": 26
      }
     ],
     "run": [
@@ -1267,41 +1527,140 @@
       "until": "s8:start"
      },
      {
-      "id": "fGasGa",
-      "at": "film-8",
-      "ramp": 4,
+      "id": "fGas00",
+      "at": "film-4",
+      "ramp": 6,
       "until": "s8:start"
      },
      {
-      "id": "fGasN",
-      "at": "film-8",
-      "ramp": 4,
+      "id": "fGas01",
+      "at": "film-4",
+      "ramp": 6,
       "until": "s8:start"
      },
      {
-      "id": "fGasMid",
-      "at": "film-8",
-      "ramp": 4,
+      "id": "fGas02",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas10",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas11",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas12",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas20",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas21",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas22",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas30",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas31",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas32",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas40",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas41",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas42",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas50",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas51",
+      "at": "film-4",
+      "ramp": 6,
+      "until": "s8:start"
+     },
+     {
+      "id": "fGas52",
+      "at": "film-4",
+      "ramp": 6,
       "until": "s8:start"
      }
     ],
     "labels": [
      {
-      "part": "fWafA",
-      "text": "矽晶圓",
-      "en": "Silicon wafers",
-      "color": "blue",
-      "at": "si-2",
-      "until": "film-10",
+      "part": "fShowHA",
+      "text": "噴氣頭沿吊臂抬起（底面孔陣）",
+      "en": "Showerhead lifted (hole array)",
+      "color": "amber",
+      "at": "start+12",
+      "until": "si-6",
       "cut": true
      },
      {
-      "part": "fShowA",
-      "text": "噴氣頭：鎵氣＋氨氣",
-      "en": "Showerhead: Ga + NH3",
+      "part": "fWafA",
+      "text": "承盤：6 片矽晶圓",
+      "en": "Susceptor: 6 silicon wafers",
+      "color": "blue",
+      "at": "si-2",
+      "until": "film-14",
+      "cut": true
+     },
+     {
+      "part": "fGasA",
+      "text": "噴氣頭：含鎵氣體＋氨氣",
+      "en": "Showerhead: Ga precursor + NH3",
       "color": "amber",
-      "at": "film-8",
-      "until": "epi-4",
+      "at": "film+2",
+      "until": "epi-8",
       "cut": true,
       "xy": [
        540,
@@ -1310,12 +1669,16 @@
      },
      {
       "part": "fFilmA",
-      "text": "氮化鎵薄膜（磊晶）",
-      "en": "GaN film (epitaxy)",
+      "text": "氮化鎵薄膜（磊晶，膜厚放大）",
+      "en": "GaN film (epitaxy, thickness exaggerated)",
       "color": "blue",
-      "at": "epi-2",
+      "at": "epi-4",
       "until": "s8:start-4",
-      "cut": true
+      "cut": true,
+      "xy": [
+       540,
+       360
+      ]
      }
     ],
     "overlay": [
@@ -1330,7 +1693,7 @@
       "h": 330,
       "avoid": false,
       "title": "磊晶：鋪一層薄薄的晶體",
-      "tag": "示意（膜厚放大）",
+      "tag": "剖開示意（膜厚放大）",
       "t": {
        "si": {
         "at": "si"
@@ -1359,7 +1722,7 @@
    "tts": "台灣分成三段。環球晶做基板，嘉晶做磊晶，漢磊做元件代工。",
    "subtitle": {
     "zh": "台灣分成三段\n環球晶做基板\n嘉晶做磊晶\n漢磊做元件代工",
-    "en": "Taiwan splits it into three steps: | GlobalWafers makes substrates, | Episil-Precision does epitaxy, | Episil makes the devices."
+    "en": "Taiwan splits it into three steps: | GlobalWafers makes substrates, | Episil-Precision does epitaxy, | Episil Technologies makes the devices."
    },
    "keywords": [
     "環球晶",
@@ -1494,10 +1857,10 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 210,
-      "y": 0.4,
-      "d": 40,
-      "elev": 24
+      "x": 209.7,
+      "y": 1.2,
+      "d": 30,
+      "elev": 26
      }
     ],
     "run": [
@@ -1509,34 +1872,85 @@
      },
      {
       "id": "hHeadSpin",
+      "at": "grind-4",
+      "ramp": 10,
+      "until": "next-8"
+     },
+     {
+      "id": "hCondSpin",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "s10:start"
+     },
+     {
+      "id": "hCondSweep",
       "at": "start-10",
       "ramp": 10,
       "until": "s10:start"
      },
      {
       "id": "hSlurry",
-      "at": "test",
-      "ramp": 4,
+      "at": "start",
+      "ramp": 6,
       "until": "s10:start"
+     },
+     {
+      "id": "hSlurrySpread",
+      "at": "start+10",
+      "ramp": 8,
+      "until": "s10:start"
+     },
+     {
+      "id": "hFlip",
+      "at": "test+14",
+      "ramp": 12,
+      "until": "next+22"
      }
     ],
     "labels": [
      {
       "part": "hUsedA",
-      "text": "測機台用過的片子",
-      "en": "Used test wafer",
+      "text": "測機台用過的片子（有圖案）",
+      "en": "Used test wafer (patterned)",
       "color": "amber",
-      "at": "test-2",
-      "until": "grind-4",
+      "at": "test-10",
+      "until": "test+16",
+      "cut": true
+     },
+     {
+      "part": "hHeadA",
+      "text": "翻面朝下，送進載頭",
+      "en": "Flipped face-down into the carrier",
+      "color": "blue",
+      "at": "test+20",
+      "until": "grind-6",
       "cut": true
      },
      {
       "part": "hPadA",
-      "text": "研磨墊：磨掉一層",
-      "en": "Pad grinds a layer off",
+      "text": "載頭壓在墊上＋研磨液：磨掉一層",
+      "en": "Pad + slurry grind a layer off",
       "color": "blue",
       "at": "grind-2",
-      "until": "next-4",
+      "until": "next-18",
+      "cut": true
+     },
+     {
+      "part": "hCondA",
+      "text": "鑽石修整器：保持墊面粗糙",
+      "en": "Diamond conditioner keeps the pad rough",
+      "color": "amber",
+      "at": "next-14",
+      "until": "next+34",
+      "cut": true
+     },
+     {
+      "part": "hShinyA",
+      "text": "取回翻正：露出亮面，再用",
+      "en": "Back face-up: shiny again, reused",
+      "color": "amber",
+      "at": "next+40",
+      "until": "s10:start-4",
       "cut": true
      }
     ],

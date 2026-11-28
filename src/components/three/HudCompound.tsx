@@ -201,6 +201,14 @@ const Gan: React.FC<P> = ({ o, f, k }) => {
     <rect x={720} y={CT + 20} width={160} height={168} fill="#FFFFFF" stroke={ai > 0.5 ? H.amber : H.lineSoft} strokeWidth={ai > 0.5 ? 4 : 2} />
     {[0, 1, 2, 3].map((i) => <g key={i}><rect x={734} y={CT + 32 + i * 38} width={132} height={28} fill={CHIP} /><circle cx={850} cy={CT + 46 + i * 38} r={5} fill={ai > 0.5 ? "#3BD67A" : "#6B7280"} /></g>)}
     <Cap x={800} y={CT + 236} t="AI 機房電源" a={ai} />
+    {/* 因果鏈：開關快 → 變壓器、電容做小 → 整顆變小（念到「體積更小」亮） */}
+    <g opacity={0.35 + 0.65 * sm}>
+      <text x={30} y={CT + 300} style={zh(30, H.text, 900)}>開關快</text>
+      <Arr x1={130} y={CT + 290} x2={186} c={H.text2} />
+      <text x={200} y={CT + 300} style={zh(30, H.text, 900)}>變壓器、電容做小</text>
+      <Arr x1={450} y={CT + 290} x2={506} c={H.text2} />
+      <text x={520} y={CT + 300} style={zh(30, GAND, 900)}>整顆變小</text>
+    </g>
   </Sv></Card>);
 };
 // ── cp-pvt：長晶爐剖面（保溫層、感應線圈、石墨坩堝、底部粉末、頂部晶種與晶錠）；hot 粉末轉紅；frost 粒子往上飄、晶錠變厚；slow 對照長條 ──
@@ -217,7 +225,7 @@ const Pvt: React.FC<P> = ({ o, f, k }) => {
     <rect x={170} y={CT + 50} width={60} height={10} fill={SICD} />
     <rect x={164} y={CT + 60} width={72} height={ingH} fill={SIC} />
     {run ? Array.from({ length: 8 }, (_, i) => { const u = fr((f - T(o, "frost")) / 40 + i / 8), x = 150 + (i % 4) * 32 + (i > 3 ? 16 : 0); return <circle key={i} cx={x} cy={lerp(CT + 182, ingBot + 6, u)} r={5} fill={SICL} opacity={fr2 * (1 - u * 0.5)} />; }) : null}
-    <text x={30} y={CT + 306} style={zh(30, H.text, 900)} opacity={0.35 + 0.65 * hd}>長晶爐（剖開示意）</text>
+    <text x={30} y={CT + 306} style={zh(30, H.text, 900)} opacity={0.35 + 0.65 * hd}>剖開示意：下熱、上冷</text>
     <Sep x={396} y2={376} />
     <Row x={416} y={CT + 36} t="比煉鋼爐還熱" c={RED} a={ht} />
     <text x={440} y={CT + 72} style={zh(28, H.text2, 800)} opacity={0.35 + 0.65 * ht}>兩千多度（媒體報導）</text>

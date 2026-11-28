@@ -30,7 +30,7 @@ S = [
  ["氮化鎵則是", "在矽晶圓表面", "鋪一層薄薄的晶體", "這叫磊晶"], ["Gallium nitride, instead,", "goes on a silicon wafer's surface", "as a thin crystal layer:", "this is called epitaxy."],
  [("si", "矽晶圓表面"), ("film", "薄薄的晶體"), ("epi", "這叫磊晶")], ["矽晶圓", "磊晶"], ["工商時報 2025/07/04（矽基氮化鎵）；示意"]),
 ("s8", "payoff", "台灣分成三段。環球晶做基板，嘉晶做磊晶，漢磊做元件代工。",
- ["台灣分成三段", "環球晶做基板", "嘉晶做磊晶", "漢磊做元件代工"], ["Taiwan splits it into three steps:", "GlobalWafers makes substrates,", "Episil-Precision does epitaxy,", "Episil makes the devices."],
+ ["台灣分成三段", "環球晶做基板", "嘉晶做磊晶", "漢磊做元件代工"], ["Taiwan splits it into three steps:", "GlobalWafers makes substrates,", "Episil-Precision does epitaxy,", "Episil Technologies makes the devices."],
  [("three", "三段"), ("gw", "環球晶"), ("epw", "嘉晶"), ("hl", "漢磊")], ["環球晶", "嘉晶", "漢磊"], ["工商時報、鉅亨網、科技新報報導；截至 2026/11/28"]),
 ("s9", "cta", "不管哪種晶圓都不便宜，所以工廠拿來測機台的片子，用完磨掉一層還能再用。下一集看再生晶圓。留言化合物，拿完整資料。",
  ["不管哪種晶圓", "都不便宜", "所以工廠拿來", "測機台的片子", "用完磨掉一層", "還能再用", "下一集看再生晶圓", "留言化合物", "拿完整資料"],
@@ -112,96 +112,120 @@ def tk(*ks): return {k: k for k in ks}
 vis("aBolt", [("s1:prev", FAR)], 3); vis("aArc", [("s1:prev+6", FAR)], 3); vis("aOk", [("s1:sic", FAR)], 4)
 # ── 站 B：跳上門檻的電子（矽）在念到「門檻太低」才出現 ──
 vis("bLeak", [("s2:low", FAR)], 3)
-# ── 站 C：爆炸分解（念到「碳化矽」前就拆開，一層一層往上分開；念到「電池」組回） ──
-CBACK = "s4:bat-6"
+ACT = MODEL["actions"]
+# ── 站 C：爆炸分解 9 層（念到「碳化矽」前就拆開，一層一層往上分開，逐層標名），念到「馬達」後才組回 ──
+CBACK = "s4:motor+6"
 EXP = []
-for k, (lay, dy) in enumerate([("cLid", 3.6), ("cGel", 3.0), ("cCase", 2.4), ("cWire", 1.8), ("cDie", 1.3), ("cDbc", 0.85), ("cSol1", 0.42)]):
+for k, (lay, dy) in enumerate([("cLid", 4.4), ("cGel", 3.7), ("cCase", 3.0), ("cWire", 2.3), ("cDie", 1.75), ("cSol2", 1.3), ("cDbc", 0.85), ("cSol1", 0.42)]):
     EXP.append(mv(lay, f"s4:start+{2 + k * 2}", CBACK, 14, dy=dy))
-# ── 站 D：快充爆炸分解（外殼上蓋最高、零件、電路板），念到「機房電源」組回；念到「體積更小」矽充電頭虛線框出現 ──
-DBACK = "s5:ai-4"
-EXP += [mv("dShellT", "s5:start+2", DBACK, 14, dy=2.6), mv("dParts", "s5:start+5", DBACK, 14, dy=1.5), mv("dPcb", "s5:start+8", DBACK, 14, dy=0.9)]
-vis("dGhost", [("s5:small-6", FAR)], 6)
-# ── 站 E：長晶爐沿軸線爆炸（鐘罩最高 → 線圈 → 石英管 → 石墨氈 → 坩堝蓋＋晶種），念到「結霜」前組回；組回後外層變淡＝剖開示意 ──
-EBACK = "s6:frost-16"
-for k, (lay, dy) in enumerate([("eBell", 8.6), ("eCoil", 6.6), ("eQtz", 4.9), ("eFelt", 3.4), ("eLid", 1.9)]):
+# ── 站 D：快充爆炸分解（上蓋最高、零件、電路板，零件層與板子拉開 1.0），念到「體積更小」前才組回；組回後上蓋半透明（剖開示意）露出小變壓器，旁邊矽充電頭虛線框＋大變壓器 ──
+DBACK = "s5:small-10"
+EXP += [mv("dShellT", "s5:start+2", DBACK, 14, dy=3.1), mv("dParts", "s5:start+5", DBACK, 14, dy=2.0), mv("dPcb", "s5:start+8", DBACK, 14, dy=1.0)]
+VIS.append(hid("dShellT", "s5:small+4", "s6:start", 10, 0.22))
+vis("dGhost", [("s5:small-14", FAR)], 8)
+# ── 站 E：長晶爐沿軸線爆炸（上蓋法蘭最高 → 線圈 → 雙層水冷石英管 → 石墨氈 → 坩堝蓋＋晶種）：每層整個越過下一層的頂端；念到「結霜」後組回，組回後外層變淡＝剖開示意 ──
+EBACK = "s6:frost+8"
+for k, (lay, dy) in enumerate([("eHead", 22.0), ("eCoil", 16.6), ("eQtz", 11.0), ("eFelt", 5.6), ("eLid", 1.2)]):
     EXP.append(mv(lay, f"s6:start+{2 + k * 3}", EBACK, 16, dy=dy))
-for lay, o in [("eBell", 0.14), ("eQtz", 0.2), ("eFelt", 0.22), ("eCru", 0.3)]:
-    VIS.append(hid(lay, "s6:frost-8", "s7:start", 8, o))
+for lay, o in [("eHead", 0.3), ("eCoil", 0.5), ("eQtz", 0.14), ("eFelt", 0.16), ("eCru", 0.26)]:
+    VIS.append(hid(lay, "s6:frost+20", "s7:start", 10, o))
 vis("eHot", [("s6:hot", FAR)], 6)
-vis("eBoule1", [("s6:frost+8", "s6:slow-6")], 4); vis("eBoule2", [("s6:slow-6", "s6:slow+24")], 4); vis("eBoule3", [("s6:slow+24", FAR)], 4)
-# ── 站 F：噴氣頭抬起看到矽晶圓（念到「矽晶圓表面」），念到「薄薄的晶體」前落回、開始噴氣、薄膜出現 ──
+vis("eBoule1", [("s6:frost+24", "s6:slow-6")], 4); vis("eBoule2", [("s6:slow-6", "s6:slow+24")], 4); vis("eBoule3", [("s6:slow+24", FAR)], 4)
+# ── 站 F：噴氣頭沿吊臂抬起看到矽晶圓（念到「矽晶圓表面」），落回後腔體與噴氣頭變半透明（剖開示意），噴氣、薄膜出現 ──
 EXP.append(mv("fShow", "s7:start", "s7:film-12", 14, dy=2.4))
-vis("fFilm", [("s7:film+4", FAR)], 10)
-# ── 站 H：念到「磨掉一層」用過的測試片表面圖案消失 ──
-vis("hPat", [(T0, "s9:grind+6")], 14)
+VIS.append(hid("fBody", "s7:film-8", "s8:start", 10, 0.16)); VIS.append(hid("fShow", "s7:film-8", "s8:start", 10, 0.28))
+vis("fFilm", [("s7:film+4", FAR)], 14)
+# ── 站 H：測試片從上下料座抬起、翻面、送到載頭下（帶加減速）；載頭帶著晶圓壓到墊上研磨；抬起、送回、翻正、放下，露出亮面 ──
+WAF = ["hUsed", "hPat"]
+for lay in WAF:
+    EXP += [mv(lay, "s9:test+8", "s9:next+36", 12, dy=1.09), mv(lay, "s9:test+24", "s9:next+3", 18, dx=6.5), mv(lay, "s9:grind-4", "s9:next-10", 12, dy=-1.2)]
+EXP += [mv("hHead", "s9:start-30", "s9:grind-4", 12, dy=1.2), mv("hHead", "s9:next-10", FAR, 12, dy=1.2)]
+vis("hPat", [(T0, "s9:grind+20")], 16)
 
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 AV = (INFO["AX"], 0.4, 40, 24)
-BV = (INFO["BX"], 0.6, 36, 18)
-CV1 = (INFO["CX"], 1.2, 30, 30)
-CV2 = (INFO["CX"] - 0.2, 0.4, 62, 24)
-DV = (INFO["DX"] + 0.4, 0.2, 28, 30)
-EV1 = (INFO["EX"], 8.0, 74, 8)
-EV2 = (INFO["EX"], 1.6, 32, 12)
-FV = (INFO["FX"], 1.0, 32, 28)
+BVsi = (INFO["BX"] - 4.2, 1.9, 21, 12)
+BV2 = (INFO["BX"], 2.0, 47, 14)
+CV1 = (INFO["CX"], 3.4, 33, 20)
+CVm = (INFO["CX"] - 3.0, 2.4, 46, 20)
+CV2 = (INFO["CX"] - 1.0, 0.9, 74, 22)
+DVe = (INFO["DX"] - 2.0, 1.4, 24, 28)
+DV = (INFO["DX"] + 0.6, 1.0, 38, 26)
+EV1 = (INFO["EX"], 14.5, 86, 8)
+EV2 = (INFO["EX"], 1.2, 44, 10)
+FV = (INFO["FX"], 3.4, 38, 24)
+FV2 = (INFO["FX"], 1.2, 31, 26)
 GV = (INFO["GX"], 0.4, 44, 12)
-HV = (INFO["HX"], 0.4, 40, 24)
+HV = (INFO["HX"] - 0.3, 1.2, 30, 26)
 def S_(at, v, dur=30, yaw=None): return shot(at, v[0], v[1], v[2], v[3], dur, yaw)
 P = {}
-P["s1"] = {"shot": [S_("start-30", AV, 1, yaw=0.0)], "shift": VIS + EXP,
+P["s1"] = {"shot": [S_("start-30", AV, 1, yaw=0.0)], "shift": VIS + EXP, "zoom": [{"to": "start", "at": "s2:start-12", "dur": 1}],
  "run": [run("aArcPulse", "prev+6", "s2:start", 3), run("aBoltGlow", "prev", "s2:start", 4)],
  "labels": [lab("aSiA", "矽：耐壓不夠（示意）", "Silicon: breaks down", "amber", "prev+6", "sic-4"),
             lab("aSiCA", "碳化矽", "Silicon carbide", "blue", "sic", "gan-2"), lab("aGaNA", "氮化鎵", "Gallium nitride", "blue", "gan", "s2:start-4")],
  "overlay": [sec("cp-hook", "start", nxt("s1"), "中游補充篇・M3", "示意", tk("prev", "q", "sic", "gan", "hv"), cut=True)]}
 P["s2"] = {"zoom": [{"to": "gap", "at": CC, "dur": 1}],
- "shot": [S_(CC, BV, 1)],
- "run": [run("bSiElGlow", "elec-2", "s4:start", 4), run("bSiNeedle", "low", "leak+20", 4), run("bSiLeak", "leak-4", "s3:wide", 4)],
- "labels": [lab("bSiGapA", "能隙＝門檻", "Band gap = the hurdle", "amber", "gap", "low-4"),
-            lab("bSiCbA", "電子跳上去就漏電", "Electrons jump over: leakage", "blue", "leak-4", "s3:start-4")],
+ "shot": [S_(CC, BVsi, 1)],
+ "run": [run("bSiElGlow", "elec-2", "s4:start", 4), run("bSiNeedle", "low", "leak+20", 4), run("bSiLeak", "low", "s4:start", 4)],
+ "labels": [lab("bSiGapA", "能隙＝門檻（1.12 eV）", "Band gap = the hurdle (1.12 eV)", "amber", "gap", "low-4"),
+            lab("bSiCbA", "門檻低：電子跳上導帶＝漏電", "Low hurdle: electrons jump = leak", "blue", "low+4", "s3:start-4")],
  "overlay": [card("s2", "cp-gap", "能隙：電子要跳過的門檻", "示意，非真實能帶", tk("gap", "elec", "bar", "low", "leak"))]}
-P["s3"] = {"shot": [S_(CC, (INFO["BX"] + 2.4, 0.8, 32, 16), 1)],
- "run": [run("bScTry", "hold-6", "s4:start", 4), run("bScNeedle", "dam", "s4:start", 4)],
- "labels": [lab("bScGapA", "碳化矽：門檻約 3 倍高", "SiC: hurdle ~3x higher", "amber", "x3-2", "hold-4"),
+P["s3"] = {"shot": [S_(CC, BV2, 1)],
+ "run": [run("bScTry", "x3", "s4:start", 4), run("bScNeedle", "dam", "s4:start", 4)],
+ "labels": [lab("bScGapA", "碳化矽門檻 3.26 eV：約矽的 3 倍", "SiC hurdle 3.26 eV: ~3x silicon", "amber", "wide", "hold-4"),
             lab("bScVbA", "電子跳不過去", "Electrons can't get over", "blue", "hold-2", "s4:start-4")],
  "overlay": [card("s3", "cp-dam", "門檻高＝堤防高", "能隙 eV：教科書數值", tk("wide", "x3", "dam", "hold"))]}
 P["s4"] = {"zoom": [{"to": "ev", "at": CC, "dur": 1}],
- "shot": [S_(CC, CV1, 1), S_("bat-8", CV2, 26)],
- "run": [run("cDcFlow", "bat", "s5:start", 4), run("cAcFlow", "motor-4", "s5:start", 4), run("cShaftSpin", "motor", "s5:start", 10), run("cDieHeat", "loss-4", "s5:start", 6)],
- "labels": [lab("cDieA", "碳化矽晶片（爆炸分解）", "SiC dies (exploded view)", "amber", "start+16", "bat-8"),
-            lab("cBatA", "電池：直流", "Battery: DC", "blue", "bat", "motor-2"),
-            lab("cMotA", "馬達：交流", "Motor: AC", "amber", "motor", "s5:start-4")],
- "overlay": [card("s4", "cp-ev", "電動車：電池 → 模組 → 馬達", "示意（發熱不是量測）", tk("ev", "bat", "motor", "loss"))]}
+ "shot": [S_(CC, CV1, 1), S_("bat-6", CVm, 22), S_("motor-4", CV2, 24)],
+ "run": [run("cDcFlow", "bat", "s5:start", 4), run("cShaftSpin", "motor", "s5:start", 10), run("cDieSw", "bat", "s5:start", 4), run("cDieHeat", "loss-4", "s5:start", 6)]
+        + [run(k, "motor-4", "s5:start", 6) for k in ACT if k.startswith("cAc")],
+ "labels": [lab("cBaseA", "針鰭銅底板（泡冷卻液）", "Pin-fin copper baseplate", "blue", "start+10", "start+38"),
+            lab("cDbcA", "銲料＋陶瓷覆銅基板", "Solder + DBC ceramic substrate", "amber", "start+42", "start+66"),
+            lab("cDieA", "銲料＋碳化矽晶片（開關）", "Solder + SiC dies (switches)", "amber", "start+70", "start+92"),
+            lab("cCaseA", "外殼＋DC／U／V／W 端子", "Housing + DC/U/V/W terminals", "blue", "start+96", "motor+4"),
+            lab("cMotA", "馬達：三相交流（來回擺）", "Motor: 3-phase AC (alternating)", "amber", "motor+8", "s5:start-4")],
+ "overlay": [dict(card("s4", "cp-ev", "電動車：電池 → 模組 → 馬達", "示意（發熱不是量測）", tk("ev", "bat", "motor", "loss")), at="start+14")]}
 P["s5"] = {"zoom": [{"to": "gan", "at": CC, "dur": 1}],
- "shot": [S_(CC, DV, 1)],
+ "shot": [S_(CC, DVe, 1), S_("small-16", DV, 20)],
  "run": [run("dGanPulse", "fast-4", "s6:start", 4), run("dPwrFlow", "ai", "s6:start", 4)],
- "labels": [lab("dGanA", "氮化鎵功率晶片", "GaN power chip", "amber", "fast-2", "chg+30"),
-            lab("dXfA", "變壓器（可以變小）", "Transformer (can shrink)", "blue", "chg+32", "small-8"),
-            lab("dGhostA", "同功率矽充電頭（示意）", "Silicon charger, same power", "amber", "small-4", "s6:start-4")],
- "overlay": [card("s5", "cp-gan", "氮化鎵：開關快、體積小", "示意（體積比例示意）", tk("fast", "chg", "ai", "small"))]}
+ "labels": [lab("dGanA", "氮化鎵功率晶片", "GaN power chip", "amber", "fast-14", "fast+18"),
+            lab("dPcbA", "電路板：走線／過孔", "PCB: traces / vias", "blue", "fast+22", "chg+8"),
+            lab("dXfA", "變壓器（開關快就能做小）", "Transformer (small thanks to fast switching)", "amber", "chg+12", "small-12"),
+            lab("dGhostA", "同功率矽充電頭：變壓器大很多", "Silicon charger: much bigger transformer", "amber", "small-2", "s6:start-4")],
+ "overlay": [card("s5", "cp-gan", "氮化鎵：開關快、體積小", "示意（體積比例示意）", tk("fast", "chg", "ai", "small"), h=392, y=1000)]}
 P["s6"] = {"zoom": [{"to": "pvt", "at": CC, "dur": 1}],
- "shot": [S_(CC, EV1, 1), S_("frost-20", EV2, 24)],
- "run": [run("eCoilGlow", "hot-6", "s7:start", 6), run("eHotPulse", "hot", "s7:start", 6), run("eVapor", "frost-8", "s7:start", 6)],
- "labels": [lab("eCoilA", "感應線圈", "Induction coil", "amber", "start+18", "hot-2"),
-            lab("eCruA", "石墨坩堝：底部加熱", "Graphite crucible, heated", "blue", "hot", "frost-18"),
-            lab("eSeedA", "晶種：氣體在這裡凝結", "Seed: vapor condenses here", "amber", "frost", "slow-6"),
-            lab("eBouleA", "晶錠慢慢變厚", "Boule grows slowly", "blue", "slow-4", "s7:start-4")],
- "overlay": [dict(card("s6", "cp-pvt", "碳化矽長晶：像結霜", "剖開示意（數字：媒體報導）", tk("hard", "hot", "frost", "slow"), h=392, y=1000), at="start+16")]}
+ "shot": [S_(CC, EV1, 1), S_("frost+4", EV2, 26)],
+ "run": [run("eCoilGlow", "hot-6", "s7:start", 6), run("eHotPulse", "hot", "s7:start", 6), run("ePowGlow", "hot", "s7:start", 8),
+         run("eVapor", "frost+14", "s7:start", 6), run("eVapor2", "frost+14", "s7:start", 6)],
+ "labels": [lab("eHeadA", "上蓋法蘭（測溫窗、抽真空）", "Top flange (pyrometer window)", "blue", "start+8", "start+30"),
+            lab("eCoilA", "感應線圈（銅管通冷卻水）", "Induction coil (water-cooled)", "amber", "start+34", "start+56"),
+            lab("eQtzA", "雙層水冷石英管", "Double-wall water-cooled quartz", "blue", "start+60", "start+82"),
+            lab("eFeltA", "石墨氈保溫", "Graphite felt insulation", "amber", "start+86", "frost-3"),
+            lab("eCruPA", "坩堝底最熱：碳化矽粉末昇華", "Hottest at bottom: SiC powder sublimes", "amber", "frost+1", "frost+29"),
+            lab("eSeedA", "晶種（較冷）：氣體凝結在這", "Seed (cooler): vapor condenses", "blue", "frost+33", "slow+17"),
+            lab("eBouleA", "晶錠慢慢往下長厚", "Boule grows slowly", "blue", "slow+21", "s7:start-4")],
+ "overlay": [dict(card("s6", "cp-pvt", "碳化矽長晶：像結霜", "剖開示意（數字：媒體報導）", tk("hard", "hot", "frost", "slow"), h=392, y=1000), at="frost+30")]}
 P["s7"] = {"zoom": [{"to": "epi", "at": CC, "dur": 1}],
- "shot": [S_(CC, FV, 1)],
- "run": [run("fSusSpin", "start-10", "s8:start", 10), run("fHeatGlow", "start-10", "s8:start", 6),
-         run("fGasGa", "film-8", "s8:start", 4), run("fGasN", "film-8", "s8:start", 4), run("fGasMid", "film-8", "s8:start", 4)],
- "labels": [lab("fWafA", "矽晶圓", "Silicon wafers", "blue", "si-2", "film-10"),
-            lab("fShowA", "噴氣頭：鎵氣＋氨氣", "Showerhead: Ga + NH3", "amber", "film-8", "epi-4", xy=[540, 360]),
-            lab("fFilmA", "氮化鎵薄膜（磊晶）", "GaN film (epitaxy)", "blue", "epi-2", "s8:start-4")],
- "overlay": [card("s7", "cp-epi", "磊晶：鋪一層薄薄的晶體", "示意（膜厚放大）", tk("si", "film", "epi"))]}
+ "shot": [S_(CC, FV, 1), S_("film-14", FV2, 20)],
+ "run": [run("fSusSpin", "start-10", "s8:start", 10), run("fHeatGlow", "start-10", "s8:start", 6)]
+        + [run(k, "film-4", "s8:start", 6) for k in ACT if k.startswith("fGas")],
+ "labels": [lab("fShowHA", "噴氣頭沿吊臂抬起（底面孔陣）", "Showerhead lifted (hole array)", "amber", "start+12", "si-6"),
+            lab("fWafA", "承盤：6 片矽晶圓", "Susceptor: 6 silicon wafers", "blue", "si-2", "film-14"),
+            lab("fGasA", "噴氣頭：含鎵氣體＋氨氣", "Showerhead: Ga precursor + NH3", "amber", "film+2", "epi-8", xy=[540, 360]),
+            lab("fFilmA", "氮化鎵薄膜（磊晶，膜厚放大）", "GaN film (epitaxy, thickness exaggerated)", "blue", "epi-4", "s8:start-4", xy=[540, 360])],
+ "overlay": [card("s7", "cp-epi", "磊晶：鋪一層薄薄的晶體", "剖開示意（膜厚放大）", tk("si", "film", "epi"))]}
 P["s8"] = {"zoom": [{"to": "tw", "at": CC, "dur": 1}],
  "shot": [S_(CC, GV, 1)],
  "overlay": [card("s8", "cp-tw", "台灣：基板 → 磊晶 → 元件代工", "媒體報導；截至 2026/11/28", tk("three", "gw", "epw", "hl"), h=392, y=1000)]}
 P["s9"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],
  "shot": [S_(CC, HV, 1)],
- "run": [run("hPlatenSpin", "start-10", "s10:start", 10), run("hHeadSpin", "start-10", "s10:start", 10), run("hSlurry", "test", "s10:start", 4)],
- "labels": [lab("hUsedA", "測機台用過的片子", "Used test wafer", "amber", "test-2", "grind-4"),
-            lab("hPadA", "研磨墊：磨掉一層", "Pad grinds a layer off", "blue", "grind-2", "next-4")],
+ "run": [run("hPlatenSpin", "start-10", "s10:start", 10), run("hHeadSpin", "grind-4", "next-8", 10), run("hCondSpin", "start-10", "s10:start", 10), run("hCondSweep", "start-10", "s10:start", 10),
+         run("hSlurry", "start", "s10:start", 6), run("hSlurrySpread", "start+10", "s10:start", 8), run("hFlip", "test+14", "next+22", 12)],
+ "labels": [lab("hUsedA", "測機台用過的片子（有圖案）", "Used test wafer (patterned)", "amber", "test-10", "test+16"),
+            lab("hHeadA", "翻面朝下，送進載頭", "Flipped face-down into the carrier", "blue", "test+20", "grind-6"),
+            lab("hPadA", "載頭壓在墊上＋研磨液：磨掉一層", "Pad + slurry grind a layer off", "blue", "grind-2", "next-18"),
+            lab("hCondA", "鑽石修整器：保持墊面粗糙", "Diamond conditioner keeps the pad rough", "amber", "next-14", "next+34"),
+            lab("hShinyA", "取回翻正：露出亮面，再用", "Back face-up: shiny again, reused", "amber", "next+40", "s10:start-4")],
  "overlay": [sec("cp-next", C, "s10:start", "下一集：再生晶圓", "留言「化合物」", tk("cost", "test", "grind", "next", "kw"), cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
@@ -209,7 +233,7 @@ for sc in scenes:
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": False, "note": f"查證截至 {AS_OF}", "noteAlways": True}
 levels = [lv("start", "矽／碳化矽／氮化鎵晶圓（示意）", "Si / SiC / GaN WAFERS", "30 cm", "3 cm"), lv("gap", "能隙示意台（示意）", "BAND GAP", "20 cm", "2 cm"),
           lv("ev", "電動車功率模組（示意）", "EV POWER MODULE", "50 cm", "5 cm"), lv("gan", "氮化鎵快充（示意）", "GaN CHARGER", "10 cm", "1 cm"),
-          lv("pvt", "碳化矽長晶爐（剖開示意）", "SiC PVT FURNACE", "2 m", "20 cm"), lv("epi", "氮化鎵磊晶爐（示意）", "GaN EPITAXY REACTOR", "1 m", "10 cm"),
+          lv("pvt", "碳化矽長晶爐（剖開示意）", "SiC PVT FURNACE", "2 m", "20 cm"), lv("epi", "氮化鎵磊晶爐（剖開示意）", "GaN EPITAXY REACTOR", "1 m", "10 cm"),
           lv("tw", "台灣化合物半導體三段", "TAIWAN SUPPLY CHAIN", "100 cm", "10 cm"), lv("next", "研磨台（下一集：再生晶圓）", "NEXT: RECLAIM", "1 m", "10 cm")]
 levels[0]["handoff3D"] = True
 out = {"slug": "tech-compound", "prevEpisode": "M2：記憶體製造", "title": "化合物半導體（科技透明圈）", "asOf": AS_OF, "styleVersion": 3, "stage": "three",
