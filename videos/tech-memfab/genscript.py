@@ -67,7 +67,7 @@ paras = [p.strip() for p in md if p.strip()]
 assert [s["tts"] for s in scenes] == paras, ("念稿與 script.md 不同", [s["tts"] for s in scenes], paras)
 scenes[0]["props"]["hook"] = {"kicker": "接上集：成熟製程代工", "title": "記憶體在哪做？", "size": 92, "top": 236}
 scenes.append({"id": "s10", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "化合物半導體：碳化矽與氮化鎵", "trail": ["記憶體廠：自己設計、自己製造"], "comment": "記憶體廠", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "碳化矽與氮化鎵", "trail": ["記憶體廠：自己設計、自己製造"], "comment": "記憶體廠", "logoAnim": "transparent"}}})
 
 # ═════════ 工具 ═════════
 FAR = "s10:start+400"
