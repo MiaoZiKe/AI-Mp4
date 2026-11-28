@@ -159,8 +159,8 @@ wafer("bCw", "bCW", XC, CY0 + 0.9, -0.2, 1.6, "mirror");
 LAY("bFilm", [3.4, 0.2, XC, CY0 + 0.97]);
 VC("bFilmC", "bFilm", 1.59, CY0 + 0.955, CY0 + 0.99, "ox", { x: XC, z: -0.2 });
 LAY("bPlasma", [3.4, 1.4, XC, CY0 + 1.6]);
-VC("bPl", "bPlasma", 1.6, CY0 + 1.0, SHY - 0.05, "plas", { x: XC, z: -0.2 });
-actions.bPlGlow = { type: "pulse", _說明: "試跑：沉積時腔內電漿輝光微微閃", parts: ["bPl"], color: "plasC", glow: 0.8, freq: 2.2, halo: 0 };
+VC("bPlasmaC", "bPlasma", 1.6, CY0 + 1.0, SHY - 0.05, "plas", { x: XC, z: -0.2 });
+actions.bPlGlow = { type: "pulse", _說明: "試跑：沉積時腔內電漿輝光微微閃", parts: ["bPlasmaC"], color: "plasC", glow: 0.8, freq: 2.2, halo: 0 };
 actions.bGasIn = { track: false, type: "flow", _說明: "反應氣體從噴頭的孔陣往下噴到晶圓（看得出噴頭在做事）", path: [[XC, SHY - 0.03, -0.2], [XC, CY0 + 1.02, -0.2]].map((a) => a.map(R2)), n: 4, size: 0.06, shape: "dot", rate: 0.7, accel: true, color: "gasC", layer: "bPlasma", lanes: 7, laneGap: 0.42, laneDir: [1, 0, 0], jitter: 0.03 };
 // 測膜量台：吸盤，龍門架上斜射光源與偵測器；雷射掃描頭＋光幕＋掃描線橫掃
 LAY("bMet", [6, 5, BX + 3.4, 2.2]);
