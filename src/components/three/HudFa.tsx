@@ -111,8 +111,8 @@ const Fib: React.FC<P> = ({ o, f, k }) => {
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <Xsec x={x0} y={y0} w={w} h={120} cut={0.2 + 0.8 * Math.max(dg, sd * 0.5)} />
     <g opacity={lc * (1 - ct)}><circle cx={ix} cy={y0 - 6} r={10} fill="none" stroke={HOT} strokeWidth={4} /></g>
-    {[0, 1, 2, 3, 4].map((i) => { const u = ((f * 0.06 + i / 5) % 1); return <circle key={i} cx={ix - 70 + 70 * u * u} cy={y0 - 80 + 80 * u * u} r={4} fill={ION} opacity={fb} />; })}
-    {[0, 1, 2, 3].map((i) => { const u = ((f * 0.045 + i / 4) % 1), sx = i % 2 ? 1 : -1; return <rect key={`s${i}`} x={ix + sx * (10 + 60 * u)} y={y0 - 4 - 50 * u + 60 * u * u} width={5} height={5} fill={H.text2} opacity={sd * (1 - u)} />; })}
+    {[0, 1, 2, 3, 4].map((i) => { const u = ((f * 0.06 + i / 5) % 1); return <circle key={i} cx={ix - 70 + 70 * u} cy={y0 - 80 + 80 * u} r={4} fill={ION} opacity={fb} />; })}
+    {[[0.9, -0.45], [0.35, -0.95], [-0.2, -1], [0.7, -0.75]].map(([dx, dy], i) => { const u = ((f * 0.045 + i / 4) % 1); return <rect key={`s${i}`} x={ix + 70 * dx * u} y={y0 - 4 + 70 * dy * u} width={5} height={5} fill={H.text2} opacity={sd * (1 - u)} />; })}
     <Cap x={x0 + w / 2} y={CT + 246} t="側面剖開（示意）" />
     <Sep x={334} />
     <Row x={360} y={CT + 52} t="找到位置，才動刀" c={HOT} a={Math.max(lc, ct)} />
@@ -167,14 +167,15 @@ const Tem: React.FC<P> = ({ o, f, k }) => {
 const Eds: React.FC<P> = ({ o, f, k }) => {
   const W = o.w ?? 952, Hh = o.h ?? 330, cp = on(f, T(o, "comp")), em = on(f, T(o, "elem"), 24), df = on(f, T(o, "diff")), fg = on(f, T(o, "finger")), mx = on(f, T(o, "mix"), 18);
   const x0 = 40, yb = CT + 192, w = 270;
-  const peaks: [number, number, string, string, number][] = [[0.14, 0.55, "O", XO, em], [0.36, 0.95, "Si", XSI, em], [0.6, 0.5, "Cl", RED, mx], [0.84, 0.7, "Cu", XCU, cl01(em * 1.4 - 0.2)]];
-  const path = (p: number, hh: number, g: number) => { let d = `M${x0},${yb}`; for (let i = 0; i <= 60; i++) { const u = i / 60, y = yb - 150 * hh * g * Math.exp(-((u - p) ** 2) / 0.0012); d += ` L${x0 + u * w},${y}`; } return d; };
+  // 橫軸 0–10 keV：O Kα 0.52、Cu Lα 0.93、Si Kα 1.74、Cl Kα 2.62、Cu Kα 8.05 keV（相對高度是示意）
+  const peaks: [number, number, string, string, number][] = [[0.052, 0.55, "O", XO, em], [0.093, 0.3, "", XCU, cl01(em * 1.4 - 0.2)], [0.174, 0.95, "Si", XSI, em], [0.262, 0.5, "Cl", RED, mx], [0.805, 0.7, "Cu", XCU, cl01(em * 1.4 - 0.2)]];
+  const path = (p: number, hh: number, g: number) => { let d = `M${x0},${yb}`; for (let i = 0; i <= 200; i++) { const u = i / 200, y = yb - 150 * hh * g * Math.exp(-((u - p) ** 2) / 0.00012); d += ` L${x0 + u * w},${y}`; } return d; };
   return (<Card o={o} k={k} W={W} Hh={Hh}><Sv W={W} Hh={Hh}>
     <line x1={x0} y1={yb} x2={x0 + w} y2={yb} stroke={H.text2} strokeWidth={2} /><line x1={x0} y1={yb} x2={x0} y2={CT + 26} stroke={H.text2} strokeWidth={2} />
-    <g opacity={0.4 + 0.6 * cp}>{peaks.map(([p, hh, n, c, g]) => <g key={n}><path d={path(p, hh, g)} fill="none" stroke={c} strokeWidth={4} />
+    <g opacity={0.4 + 0.6 * cp}>{peaks.map(([p, hh, n, c, g], j) => <g key={j}><path d={path(p, hh, g)} fill="none" stroke={c} strokeWidth={4} />
       <text x={x0 + p * w} y={yb - 150 * hh * g - 10} textAnchor="middle" style={zh(24, c, 900)} opacity={g}>{n}</text></g>)}</g>
     <g opacity={fg}>{[0, 1, 2, 3].map((i) => <path key={i} d={`M${540 - i * 7},${CT + 176} a${10 + i * 7},${12 + i * 7} 0 1 1 ${2 * (10 + i * 7)},0`} fill="none" stroke={H.text2} strokeWidth={2.5} />)}</g>
-    <Cap x={x0 + w / 2} y={CT + 226} t="X 光能量 →（示意）" px={24} />
+    <Cap x={x0 + w / 2} y={CT + 226} t="X 光能量 0–10 keV（示意）" px={24} />
     <Sep x={334} />
     <Row x={360} y={CT + 52} t="電子打到元素" c={EL} a={Math.max(cp, em)} />
     <Row x={360} y={CT + 114} t="放出的 X 光各不同" c={BLUE} a={df} />

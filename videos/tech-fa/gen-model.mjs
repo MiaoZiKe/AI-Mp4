@@ -31,7 +31,7 @@ const materials = {
   diel: M("phys", "diC", { rough: 0.1, metal: 0, clearcoat: 1, opacity: 0.45, env: 0.6 }), gran: M("std", "granC", { rough: 0.6, metal: 0.1, env: 0.3, tex: "brushed", texScale: 1.5 }),
   glass: M("phys", "glassC", { rough: 0.05, metal: 0, clearcoat: 1, opacity: 0.3, env: 0.6 }), win: M("std", "winC", { rough: 0.15, metal: 0.4, env: 1.0, emissive: "winC", ei: 0.15 }),
   winD: M("std", "winD", { rough: 0.2, metal: 0.4, env: 0.8 }), roof: M("std", "roofC", { rough: 0.6, metal: 0.3 }), white: M("std", "whiteP", { rough: 0.7, metal: 0 }),
-  hot: glowM("hotC", 1, 0.9), heatRing: glowM("heatC", 0.5, 0.8), coil: M("std", "cuC", { rough: 0.35, metal: 0.9, env: 0.6 }), grid: M("std", "gridC", { rough: 0.3, metal: 0.95, env: 0.9 }),
+  hot: glowM("hotC", 1, 0.9), heatRing: glowM("heatC", 0.5, 0.8), heatRing2: glowM("heatC", 0.32, 0.6), heatRing3: glowM("heatC", 0.18, 0.45), coil: M("std", "cuC", { rough: 0.35, metal: 0.9, env: 0.6 }), grid: M("std", "gridC", { rough: 0.3, metal: 0.95, env: 0.9 }),
   tung: M("std", "tungC", { rough: 0.2, metal: 0.95, env: 1.0 }), tape: M("phys", "tapeC", { rough: 0.2, metal: 0, clearcoat: 1, opacity: 0.6, env: 0.5 }),
   mirror: M("std", "mirC", { rough: 0.04, metal: 0.95, env: 1.7 }), fin: M("std", "steel", { rough: 0.4, metal: 0.8, env: 0.5 }), water: glowM("waterC", 0.6, 0.5),
   dielO: M("std", "diC", { rough: 0.5, metal: 0.05, env: 0.3 }),
@@ -139,20 +139,32 @@ P({ id: "bBondPad", layer: "bTable", shape: "box", size: [0.07, 0.01, 0.07], pos
 const HSX = BX + 0.1, HSY = DY0 + 0.14, HSZ = 0.08;
 LAY("bHot", [1.6, 0.3, HSX, HSY]);
 SPH("bHotS", "bHot", 0.06, HSX, HSY, HSZ, "hot");
-[0.12, 0.2, 0.28].forEach((r, i) => RING(`bHR${i}`, "bHot", r + 0.015, r, HSY, HSY + 0.004, "heatRing", HSX, HSZ));
+[0.12, 0.2, 0.28].forEach((r, i) => RING(`bHR${i}`, "bHot", r + 0.015, r, HSY, HSY + 0.004, ["heatRing", "heatRing2", "heatRing3"][i], HSX, HSZ));
 actions.bHotGlow = { type: "pulse", _說明: "通電：缺陷處發出微弱的光（熱點小球由暗變亮）", parts: ["bHotS"], color: "hotC", glow: 1, freq: 1.6, halo: 0 };
-actions.bHeat = { type: "pulse", _說明: "熱從熱點往外擴散成同心圓（由內往外依序亮）", parts: ["bHR0", "bHR1", "bHR2"], color: "heatC", glow: 0.8, freq: 1.0, halo: 0 };
-// 4 支微調探針座：底座＋三顆旋鈕＋懸臂＋鎢針＋線纜
-LAY("bProbes", [6, 2, BX, CHY + 0.8]);
+[0, 1, 2].forEach((i) => { actions[`bHeat${i}`] = { type: "pulse", _說明: "熱從熱點往外擴散：三圈由內往外錯開 6 幀依序亮、越外越淡", parts: [`bHR${i}`], color: "heatC", glow: [0.8, 0.55, 0.35][i], freq: 1.0, halo: 0 }; });
+// 4 支微調探針座：磁性底座（紅色開關鈕）＋本體＋X／Y／Z 三個測微頭（套筒＋刻度環）＋懸臂＋針座夾＋鎢針＋線纜
+// 針尖落在晶粒邊的銲墊上；懸臂、針座夾、鎢針是獨立一層 bTips（念到「通電」前下降 0.3 停住）
+LAY("bProbes", [6, 2, BX, CHY + 0.8]); LAY("bTips", [2, 0.6, BX, DY0 + 0.4]);
 const PROBE = [[-2.6, -1.4, 1], [2.6, -1.4, -1], [-2.6, 1.4, 1], [2.6, 1.4, -1]];
+const TIPY = DY0 + 0.14, AY = TIPY + 0.25;
 PROBE.forEach(([dx, dz, sg], i) => { const px = BX + dx, pz = dz;
-  BOX(`bPm${i}`, "bProbes", px - 0.4, px + 0.4, GT, GT + 0.9, pz - 0.35, pz + 0.35, "darker");
-  P({ id: `bPmK${i}`, layer: "bProbes", shape: "cyl", size: [0.12, 0.14], pos: [R2(px - sg * 0.47), 0, R2(pz)], at: [[0, R2(GT + 0.2), 0], [0, R2(GT + 0.45), 0], [0, R2(GT + 0.7), 0]], rot: [0, 90, 0], mat: "steel2" });
-  const ax = px + sg * 0.4, ay = GT + 0.85, tx = BX + sg * -0.3 + (sg > 0 ? 0 : 0), tz = pz * 0.25;
-  const L1 = Math.hypot((BX - sg * 0.38) - ax, tz - pz);
-  P({ id: `bArm${i}`, layer: "bProbes", shape: "box", size: [R2(L1), 0.08, 0.1], pos: [R2((ax + BX - sg * 0.38) / 2), R2(ay), R2((pz + tz) / 2)], rot: [0, R2(-Math.atan2(tz - pz, (BX - sg * 0.38) - ax) / D2R), 0], mat: "steel" });
-  P({ id: `bNdl${i}`, layer: "bProbes", shape: "cyl", size: [0.012, 0.7], pos: [R2(BX - sg * 0.38), R2(ay - 0.35), R2(tz)], rot: [90, 0, R2(sg * 18)], mat: "tung" });
-  P({ id: `bPmC${i}`, layer: "bProbes", shape: "cyl", size: [0.04, 1.4], pos: [R2(px + sg * 0.1), R2(GT + 0.6), R2(pz + (pz > 0 ? 0.9 : -0.9))], mat: "rubber" }); });
+  BOX(`bPmMag${i}`, "bProbes", px - 0.55, px + 0.55, GT, GT + 0.3, pz - 0.45, pz + 0.45, "darker");
+  P({ id: `bPmSw${i}`, layer: "bProbes", shape: "cyl", size: [0.08, 0.1], pos: [R2(px), R2(GT + 0.15), R2(pz + (pz > 0 ? 0.47 : -0.47))], mat: "lampR" });
+  BOX(`bPm${i}`, "bProbes", px - 0.32, px + 0.32, GT + 0.3, AY - 0.06, pz - 0.3, pz + 0.3, "steel");
+  P({ id: `bPmSeam${i}`, layer: "bProbes", shape: "box", size: [0.66, 0.03, 0.62], pos: [R2(px), 0, R2(pz)], at: [[0, R2(GT + 0.62), 0], [0, R2(GT + 0.9), 0]], mat: "seam" });
+  // X 測微頭（沿 x、朝外）、Y 測微頭（沿 z、朝外）、Z 測微頭（頂上直立）：套筒＋刻度環＋端蓋
+  P({ id: `bMx${i}`, layer: "bProbes", shape: "cyl", size: [0.08, 0.5], rot: [0, 90, 0], pos: [R2(px - sg * 0.57), R2(GT + 0.75), R2(pz)], mat: "steel2" });
+  P({ id: `bMxT${i}`, layer: "bProbes", shape: "tube", size: [0.12, 0.08, 0.2], rot: [0, 90, 0], pos: [R2(px - sg * 0.75), R2(GT + 0.75), R2(pz)], mat: "darker" });
+  const zo = pz > 0 ? 1 : -1;
+  P({ id: `bMy${i}`, layer: "bProbes", shape: "cyl", size: [0.08, 0.5], pos: [R2(px), R2(GT + 0.5), R2(pz + zo * 0.55)], mat: "steel2" });
+  P({ id: `bMyT${i}`, layer: "bProbes", shape: "tube", size: [0.12, 0.08, 0.2], pos: [R2(px), R2(GT + 0.5), R2(pz + zo * 0.72)], mat: "darker" });
+  VC(`bMz${i}`, "bProbes", 0.08, AY - 0.06, AY + 0.4, "steel2", { x: px - sg * 0.15, z: pz }); RING(`bMzT${i}`, "bProbes", 0.12, 0.08, AY + 0.22, AY + 0.42, "darker", px - sg * 0.15, pz);
+  const Tx = BX - sg * 0.38, Tz = pz * 0.22, Ex = Tx - sg * 0.43, Ey = AY;
+  const ax = px + sg * 0.32, L1 = Math.hypot(Ex - ax, Tz - pz);
+  P({ id: `bArm${i}`, layer: "bTips", shape: "box", size: [R2(L1), 0.08, 0.1], pos: [R2((ax + Ex) / 2), R2(Ey), R2((pz + Tz) / 2)], rot: [0, R2(-Math.atan2(Tz - pz, Ex - ax) / D2R), 0], mat: "steel" });
+  BOX(`bClamp${i}`, "bTips", Ex - 0.09, Ex + 0.09, Ey - 0.09, Ey + 0.09, Tz - 0.09, Tz + 0.09, "gold");
+  TC(`bNdl${i}`, "bTips", 0.014, 0.5, [(Tx + Ex) / 2, (TIPY + Ey) / 2, Tz], -sg * 60, "tung");
+  P({ id: `bPmC${i}`, layer: "bProbes", shape: "cyl", size: [0.04, 1.4], pos: [R2(px + sg * 0.1), R2(GT + 0.6), R2(pz + zo * 1.2)], mat: "rubber" }); });
 // 顯微鏡：龍門＋對焦箱＋物鏡轉盤＋鏡筒＋冷卻相機
 LAY("bScope", [5, 6, BX, GT + 3.2]);
 BOX("bBridgeL", "bScope", BX - 3.0, BX - 2.7, GT, GT + 5.0, -2.6, -2.2, "steel2"); BOX("bBridgeR", "bScope", BX + 2.7, BX + 3.0, GT, GT + 5.0, -2.6, -2.2, "steel2");
@@ -175,7 +187,7 @@ P({ id: "bSmuJ", layer: "bSmu", shape: "cyl", size: [0.08, 0.06], pos: [0, 0.6, 
 P({ id: "bSmuCab", layer: "bSmu", shape: "cyl", size: [0.05, R2(1.6)], pos: [R2(BX + 4.6), 0.6, 0.5], rot: [0, 90, 0], mat: "rubber" });
 // 暗箱：後牆＋頂＋左右門（爆炸＝門繞鉸鏈往外打開）
 LAY("bBoxBack", [10, 7, BX, 5]);
-BOX("bBoxB", "bBoxBack", BX - 4.6, BX + 4.6, GT, GT + 7.0, -3.3, -3.1, "darker"); BOX("bBoxT", "bBoxBack", BX - 4.6, BX + 4.6, GT + 7.0, GT + 7.2, -3.3, 3.2, "darker");
+BOX("bBoxB", "bBoxBack", BX - 4.6, BX + 4.6, GT, GT + 7.0, -3.3, -3.1, "darker"); BOX("bBoxT", "bBoxBack", BX - 4.6, BX + 4.6, GT + 7.0, GT + 7.2, -3.3, 3.2, "glass"); P({ id: "bBoxTF", layer: "bBoxBack", shape: "box", size: [9.2, 0.25, 0.2], pos: [BX, R2(GT + 7.1), 0], at: [[0, 0, -3.2], [0, 0, 3.1]], mat: "darker" });
 for (const [id, sx] of [["bDoorL", -1], ["bDoorR", 1]]) { LAY(id, [5, 7, BX + sx * 2.3, GT + 3.5]);
   const x0 = sx < 0 ? BX - 4.6 : BX, x1 = sx < 0 ? BX : BX + 4.6;
   BOX(`${id}P`, id, x0, x1, GT, GT + 7.0, 3.1, 3.25, "dark");
@@ -183,8 +195,6 @@ for (const [id, sx] of [["bDoorL", -1], ["bDoorR", 1]]) { LAY(id, [5, 7, BX + sx
   BOX(`${id}H`, id, BX + sx * 0.4 - 0.06, BX + sx * 0.4 + 0.06, GT + 3.0, GT + 4.0, 3.25, 3.4, "steel2");
   P({ id: `${id}Hg`, layer: id, shape: "cyl", size: [0.08, 0.5], rot: V, pos: [R2(BX + sx * 4.62), 0, 3.2], at: [[0, R2(GT + 1.0), 0], [0, R2(GT + 6.0), 0]], mat: "steel" });
   actions[`${id}Open`] = { type: "rotate", _說明: "暗箱門繞外側鉸鏈往外打開（加減速）；until 後關回", parts: idsOf(id), axis: [0, 1, 0], pivot: [R2(BX + sx * 4.62), R2(GT + 3.5), 3.2], angle: R2(sx * 105) }; }
-actions.bProbeDown = { type: "vibrate", _說明: "探針下降接觸銲墊（一次往下停住）", parts: idsOf("bProbes").filter((q) => q.startsWith("bArm") || q.startsWith("bNdl")), axis: [0, -1, 0], amp: 0, freq: 0 };
-delete actions.bProbeDown;
 actions.bPhot = { free: true, type: "flow", _說明: "光子從熱點直線往上進物鏡（等速；光速示意）", path: [[HSX, HSY + 0.05, HSZ], [BX, GT + 1.66, 0]].map((a) => a.map(R2)), n: 8, size: 0.035, shape: "dot", rate: 0.9, track: false, color: "photC", layer: "bHot", lanes: 3, laneGap: 0.03, laneDir: [1, 0, 0] };
 
 // ═════ 站 C：聚焦離子束雙束機（x 60）═════
@@ -206,9 +216,19 @@ P({ id: "cPortB", layer: "cChamber", shape: "cyl", size: [0.04, 0.2], pos: [0, 0
 // 離子泵（左側掛著）
 BOX("cIonP", "cChamber", KX0 - 1.2, KX0 - 0.3, 3.6, 5.0, -1.8, -0.6, "band"); P({ id: "cIonPFin", layer: "cChamber", shape: "box", size: [0.04, 1.2, 1.1], pos: [0, 4.3, -1.2], at: [0, 1, 2, 3].map((i) => [R2(KX0 - 1.1 + i * 0.22), 0, 0]), mat: "fin" });
 // 樣品台：底座＋傾斜架＋樣品座＋晶片
-const SY = 2.5, SPX = CX, SPZ = -0.2;
-BOX("cStgB", "cChamber", SPX - 1.2, SPX + 1.2, KY0 + 0.3, SY - 0.2, SPZ - 1.0, SPZ + 1.0, "dark");
-P({ id: "cStgCr", layer: "cChamber", shape: "box", size: [0.2, 0.5, 1.4], pos: [0, R2(SY - 0.05), SPZ], at: [[R2(SPX - 0.9), 0, 0], [R2(SPX + 0.9), 0, 0]], mat: "steel" });
+const SY = 3.1, SPX = CX, SPZ = -0.2;
+// 樣品台：底座＋雙層滑座（各兩條導軌）＋刻度旋轉台＋ U 形傾斜托架（兩側立板＋傾斜軸）
+BOX("cStgB", "cChamber", SPX - 1.3, SPX + 1.3, KY0 + 0.3, KY0 + 0.45, SPZ - 1.1, SPZ + 1.1, "dark");
+P({ id: "cStgR1", layer: "cChamber", shape: "box", size: [2.4, 0.06, 0.1], pos: [SPX, R2(KY0 + 0.48), 0], at: [[0, 0, R2(SPZ - 0.7)], [0, 0, R2(SPZ + 0.7)]], mat: "steel2" });
+BOX("cStgS1", "cChamber", SPX - 1.0, SPX + 1.0, KY0 + 0.51, KY0 + 0.68, SPZ - 0.95, SPZ + 0.95, "steel");
+P({ id: "cStgR2", layer: "cChamber", shape: "box", size: [0.1, 0.06, 1.8], pos: [0, R2(KY0 + 0.71), R2(SPZ)], at: [[R2(SPX - 0.6), 0, 0], [R2(SPX + 0.6), 0, 0]], mat: "steel2" });
+BOX("cStgS2", "cChamber", SPX - 0.85, SPX + 0.85, KY0 + 0.74, KY0 + 0.9, SPZ - 0.85, SPZ + 0.85, "steel");
+VC("cStgRot", "cChamber", 0.8, KY0 + 0.9, KY0 + 1.02, "steel2", { x: SPX, z: SPZ });
+P({ id: "cStgTick", layer: "cChamber", shape: "box", size: [0.03, 0.02, 0.1], pos: [0, R2(KY0 + 1.03), 0], at: Array.from({ length: 24 }, (_, k) => [R2(SPX + 0.72 * Math.cos(k * 15 * D2R)), 0, R2(SPZ + 0.72 * Math.sin(k * 15 * D2R))]), mat: "darker" });
+BOX("cStgU", "cChamber", SPX - 0.75, SPX + 0.75, KY0 + 1.02, KY0 + 1.12, SPZ - 0.45, SPZ + 0.45, "dark");
+P({ id: "cStgCr", layer: "cChamber", shape: "box", size: [0.12, R2(SY - 0.15 - KY0 - 1.12), 0.9], pos: [0, R2((SY - 0.15 + KY0 + 1.12) / 2), R2(SPZ)], at: [[R2(SPX - 0.7), 0, 0], [R2(SPX + 0.7), 0, 0]], mat: "dark" });
+P({ id: "cStgAx", layer: "cChamber", shape: "cyl", size: [0.1, 1.7], rot: [0, 90, 0], pos: [SPX, R2(SY - 0.25), R2(SPZ)], mat: "steel2" });
+BOX("cStgTop", "cChamber", SPX - 0.6, SPX + 0.6, SY - 0.2, SY - 0.1, SPZ - 0.6, SPZ + 0.6, "steel");
 VC("cStub", "cChamber", 0.6, SY - 0.1, SY + 0.12, "steel2", { x: SPX, z: SPZ });
 BOX("cSample", "cChamber", SPX - 0.35, SPX + 0.35, SY + 0.12, SY + 0.2, SPZ - 0.35, SPZ + 0.35, "die");
 const HIT = [SPX, SY + 0.2, SPZ];
@@ -250,9 +270,11 @@ BOX("cDesk", "cCon", CX + 4.6, CX + 8.2, 0, 1.6, -1.2, 1.2, "band"); BOX("cDeskT
 for (const [i, x] of [[0, CX + 5.5], [1, CX + 7.3]]) { BOX(`cMon${i}`, "cCon", x - 0.8, x + 0.8, 2.2, 3.3, -0.6, -0.5, "darker"); BOX(`cMonS${i}`, "cCon", x - 0.72, x + 0.72, 2.28, 3.22, -0.5, -0.48, "screen"); BOX(`cMonP${i}`, "cCon", x - 0.06, x + 0.06, 1.7, 2.2, -0.6, -0.5, "steel"); }
 BOX("cKb", "cCon", CX + 5.6, CX + 7.0, 1.7, 1.75, 0.2, 0.7, "dark"); VC("cTrack", "cCon", 0.2, 1.7, 1.8, "darker", { x: CX + 7.5, z: 0.45 });
 // 束流
-actions.cIon = { free: true, type: "flow", _說明: "鎵離子在電場加速、沿 52° 軸打到樣品（加速）", path: [ip(IL0 - 0.8), HIT].map((a) => a.map(R2)), n: 10, size: 0.05, shape: "dot", rate: 0.9, accel: true, track: false, color: "ionC", layer: "cChamber" };
+actions.cIon = { free: true, type: "flow", _說明: "鎵離子束離開鏡筒後等速直線打到樣品（加速在鏡筒內完成）", path: [ip(IL0 - 0.8), HIT].map((a) => a.map(R2)), n: 10, size: 0.05, shape: "dot", rate: 0.9, track: false, color: "ionC", layer: "cChamber" };
 actions.cEbeam = { free: true, type: "flow", _說明: "電子束同時照著看（細藍點，等速）", path: [[SPX, EB - 0.6, SPZ], HIT].map((a) => a.map(R2)), n: 6, size: 0.035, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "cChamber" };
-actions.cSput = { free: true, type: "flow", _說明: "濺射：被撞下的原子從撞擊點錐狀往外飛、受重力落下", path: [HIT, [SPX + 0.5, SY + 0.7, SPZ], [SPX + 1.0, SY + 0.5, SPZ], [SPX + 1.3, SY + 0.1, SPZ]].map((a) => a.map(R2)), n: 10, size: 0.04, shape: "grit", rate: 0.6, accel: true, track: false, color: "steel2", layer: "cChamber", lanes: 5, laneGap: 0.25, laneDir: [0, 0, 1], jitter: 0.05 };
+// 濺射：真空中被撞下的原子從撞擊點沿直線、等速往外飛（5 條放射，不受重力）
+[[0.9, 0.7, 0.2], [0.5, 0.9, -0.5], [1.0, 0.35, -0.3], [0.2, 0.8, 0.7], [0.7, 0.55, 0.8]].forEach((d, k) => { const n = Math.hypot(...d);
+  actions[`cSput${k}`] = { free: true, type: "flow", _說明: "濺射原子直線等速往外飛（真空、不受重力）", path: [HIT, [HIT[0] + 1.3 * d[0] / n, HIT[1] + 1.3 * d[1] / n, HIT[2] + 1.3 * d[2] / n]].map((a) => a.map(R2)), n: 3, size: 0.04, shape: "grit", rate: 0.7, track: false, color: "steel2", layer: "cChamber" }; });
 
 // ═════ 站 D：剖面挖槽＋薄片（x 90，放大示意）═════
 // 薄片是一片面向鏡頭（法線沿 z）的牆，前後各挖一道階梯槽；從前上方看得到薄片切面上的電晶體、銅導線與通孔。
@@ -285,7 +307,7 @@ BOX("dLmPt", "dLam", LX0, LX1, Y_M, Y_PT, -0.25, 0.25, "pt");
 // 薄片前後兩層「多餘的厚度」（削薄＝這兩層依序消失）
 for (const [id, s] of [["dSkinA", 1], ["dSkinB", -1]]) { LAY(id, [3.2, 2.4, DX, Y_M - 0.6]);
   const z0 = s > 0 ? lz1 : lz0 - 0.35, z1 = s > 0 ? lz1 + 0.35 : lz0; BOX(`${id}S`, id, LX0, LX1, TB + 0.05, Y_M, z0, z1, "dielO"); }
-actions.dThin = { free: true, type: "flow", _說明: "離子束從正上方削薄片前後兩面（加速落下）", path: [[DX, Y_PT + 3.0, 0], [DX, Y_PT + 0.02, 0]].map((a) => a.map(R2)), n: 8, size: 0.05, shape: "dot", rate: 0.9, accel: true, track: false, color: "ionC", layer: "dBlock", lanes: 4, laneGap: 0.8, laneDir: [1, 0, 0] };
+// （削薄的束流在 LIFT 定義之後才加：最後削到約 100 nm 是在銅載網上做）
 // 鎢針（從右上斜下來，針尖碰到薄片右上角）
 LAY("dNeedle", [4, 3, DX + 2.5, Y_PT + 1.5]);
 const NTH = 55, NTIP = [LX1 - 0.1, Y_PT + 0.04, 0];
@@ -299,6 +321,9 @@ P({ id: "dGridPost", layer: "dGrid", shape: "box", size: [0.16, 0.45, 0.05], pos
 BOX("dGridHold", "dGrid", GXc - 1.3, GXc + 1.3, DH, GYc, -0.3, 0.3, "darker");
 P({ id: "dGridScrew", layer: "dGrid", shape: "cyl", size: [0.07, 0.04], pos: [0, R2(DH + 0.15), 0.31], at: [[R2(GXc - 1.0), 0, 0], [R2(GXc + 1.0), 0, 0]], mat: "steel2" });
 const LIFT = { dx: R2(GXc + 0.55 + 1.6 - DX), dy: R2(GYc + 1.55 - TB + 0.1) };
+// 在載網上削薄：A 組貼著前面（+z）、B 組貼著後面（−z）由上往下等速打到薄片底，依序對應 dSkinA、dSkinB 消失
+for (const [id, zs] of [["dThinA", 1], ["dThinB", -1]]) { const zz = zs * (LW / 2 + 0.17), x0 = LX0 + LIFT.dx, x1 = LX1 + LIFT.dx;
+  actions[id] = { free: true, type: "flow", _說明: "離子束貼著薄片側面往下削（等速）", path: [[DX + LIFT.dx, Y_PT + LIFT.dy + 2.6, zz], [DX + LIFT.dx, TB + LIFT.dy + 0.1, zz]].map((a) => a.map(R2)), n: 8, size: 0.05, shape: "dot", rate: 0.9, track: false, color: "ionC", layer: "dGrid", lanes: 4, laneGap: R2((x1 - x0) / 4.5), laneDir: [1, 0, 0] }; }
 
 // ═════ 站 E：穿透式電子顯微鏡（x 120）═════
 const EX = 120;
@@ -310,8 +335,8 @@ for (const [i, sx] of [[0, -1], [1, 1]]) { const x = EX + sx * 3.6;
   BOX(`eMon${i}`, "eDesk", x - 1.0, x + 1.0, 2.4, 3.8, -0.2, -0.1, "darker"); BOX(`eMonS${i}`, "eDesk", x - 0.9, x + 0.9, 2.5, 3.7, -0.1, -0.08, "screen"); BOX(`eMonP${i}`, "eDesk", x - 0.06, x + 0.06, 1.72, 2.4, -0.2, -0.1, "steel"); }
 const COL = [EX, -1.6];   // 鏡筒中心（x, z）
 const mods = [   // [層 id, y0, y1, 半徑, 材質, 爆炸位移 dy]
-  ["eCam", 1.72, 2.8, 1.1, "darker", -0.9], ["eView", 2.8, 4.0, 1.25, "steel2", -0.45], ["eProj", 4.0, 5.6, 0.8, "panel", -0.2],
-  ["eObj", 5.6, 6.8, 1.0, "steel", 0], ["eCond", 6.8, 8.6, 0.85, "panel", 0.5], ["eGun", 8.6, 10.2, 0.75, "steel2", 1.0], ["eHv", 10.2, 11.8, 1.15, "band", 1.5]];
+  ["eCam", 1.72, 2.8, 1.1, "darker", 0], ["eView", 2.8, 4.0, 1.25, "steel2", 0], ["eProj", 4.0, 5.6, 0.8, "panel", 0.45],
+  ["eObj", 5.6, 6.8, 1.0, "steel", 0.95], ["eCond", 6.8, 8.6, 0.85, "panel", 1.55], ["eGun", 8.6, 10.2, 0.75, "steel2", 2.15], ["eHv", 10.2, 11.8, 1.15, "band", 2.75]];
 const EXP = {};
 for (const [id, y0, y1, r, m, d] of mods) { LAY(id, [3, R2(y1 - y0), COL[0], R2((y0 + y1) / 2)]); EXP[id] = d; VC(`${id}C`, id, r, y0, y1, m, { x: COL[0], z: COL[1] });
   RING(`${id}F0`, id, r + 0.12, r - 0.1, y0, y0 + 0.1, "steel", COL[0], COL[1]); RING(`${id}F1`, id, r + 0.12, r - 0.1, y1 - 0.1, y1, "steel", COL[0], COL[1]);
@@ -339,9 +364,9 @@ SPH("eHvCabE", "eHv", 0.13, COL[0] - 3.1, 11.3, COL[1], "rubber"); VC("eHvCabV",
 // 線圈通電微亮
 actions.eCoilGlow = { type: "pulse", _說明: "電磁線圈通電（聚光鏡、投影鏡）微微發亮", parts: ["eCondCoil0", "eCondCoil1", "eProjCoil0", "eProjCoil1"], color: "heatC", glow: 0.5, freq: 0.8, halo: 0 };
 // 電子束：槍→聚光鏡收斂→薄片最細→散開到相機
-const EBP = [[COL[0], 9.6, COL[1]], [COL[0], 7.6, COL[1]], [COL[0], 6.2, COL[1]], [COL[0], 4.4, COL[1]], [COL[0], 2.6, COL[1]]];
-actions.eBeam = { free: true, type: "flow", _說明: "電子束從槍往下（等速），過薄片後散開成像", path: EBP.map((a) => a.map(R2)), n: 12, size: 0.05, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "eObj", lanes: 3, laneGap: 0.12, laneDir: [1, 0, 0] };
-actions.eSpread = { free: true, type: "flow", _說明: "穿過薄片後往下散開（越往下越寬）", path: [[COL[0], 6.1, COL[1]], [COL[0], 2.2, COL[1]]].map((a) => a.map(R2)), n: 10, size: 0.045, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "eObj", lanes: 5, laneGap: 0.22, laneDir: [1, 0, 0] };
+// 電子束 5 條：槍口稍散 → 聚光鏡收斂 → 樣品處最細 → 投影鏡放大散開 → 相機
+[-2, -1, 0, 1, 2].forEach((o, k) => { const pt = (dx, y) => [COL[0] + o * dx, y, COL[1]];
+  actions[`eBeam${k}`] = { free: true, type: "flow", _說明: "電子束（等速）：聚光鏡收斂、薄片處最細、穿過後放大散開到相機", path: [pt(0.12, 9.6), pt(0.3, 7.9), pt(0.03, 6.2), pt(0.22, 4.8), pt(0.5, 2.7)].map((a) => a.map(R2)), n: 6, size: 0.045, shape: "dot", rate: 0.9, track: false, color: "eC", layer: "eObj" }; });
 
 // ═════ 站 F：成分分析 EDS（x 150，腔內放大）═════
 const FX = 150;
@@ -418,15 +443,22 @@ VC("nTape", "nFrame", 2.6, NH + 0.3, NH + 0.33, "tape", { x: NX, z: 0.3 });
 VC("nWafer", "nFrame", 2.0, NH + 0.33, NH + 0.4, "mirror", { x: NX, z: 0.3 });
 P({ id: "nDie", layer: "nFrame", shape: "box", size: [0.3, 0.012, 0.3], pos: [0, R2(NH + 0.41), 0], at: (() => { const a = []; for (let i = -6; i <= 6; i++) for (let j = -6; j <= 6; j++) if (Math.hypot(i * 0.34, j * 0.34) < 1.8) a.push([R2(NX + i * 0.34), 0, R2(0.3 + j * 0.34)]); return a; })(), mat: "die" });
 LAY("nSpindle", [4, 3, NX + 1, NH + 2.2]);
-BOX("nHouse", "nSpindle", NX - 0.2, NX + 3.6, NH + 1.6, NH + 2.8, -0.5, 0.5, "panel");
-P({ id: "nHouseFin", layer: "nSpindle", shape: "box", size: [0.05, 0.9, 1.04], pos: [0, R2(NH + 2.2), 0], at: [0, 1, 2, 3, 4, 5].map((i) => [R2(NX + 1.6 + i * 0.3), 0, 0]), mat: "fin" });
-BOX("nTag", "nSpindle", NX + 0.2, NX + 1.2, NH + 2.0, NH + 2.4, 0.5, 0.52, "white");
-P({ id: "nBlade", layer: "nSpindle", shape: "cyl", size: [0.75, 0.04], pos: [R2(NX - 0.4), R2(NH + 1.2), 0.3], rot: [0, 90, 0], mat: "mirror" });
-P({ id: "nHub", layer: "nSpindle", shape: "cyl", size: [0.3, 0.2], pos: [R2(NX - 0.3), R2(NH + 1.2), 0.3], rot: [0, 90, 0], mat: "steel" });
-BOX("nCover", "nSpindle", NX - 0.7, NX - 0.1, NH + 1.5, NH + 2.1, -0.5, 1.1, "steel2");
-P({ id: "nNoz", layer: "nSpindle", shape: "cyl", size: [0.04, 0.9], pos: [R2(NX - 0.55), R2(NH + 1.3), 1.0], at: [[0, 0, 0], [R2(0.3), 0, 0]], mat: "steel" });
-actions.nSpin = { type: "rotate", _說明: "切割刀起轉（加速）", parts: ["nBlade", "nHub"], axis: [1, 0, 0], pivot: [R2(NX - 0.4), R2(NH + 1.2), 0.3], rps: 2, rampSpin: true };
-actions.nWater = { free: true, type: "flow", _說明: "冷卻水從噴嘴受重力落到刀口（加速）", path: [[NX - 0.5, NH + 1.3, 0.6], [NX - 0.45, NH + 0.45, 0.4]].map((a) => a.map(R2)), n: 8, size: 0.04, shape: "liquid", rate: 0.9, accel: true, track: false, color: "waterC", layer: "nSpindle" };
+// 主軸箱沿 z 往後（刀片盤面朝鏡頭）：箱體＋散熱鰭片＋銘板；刀片（鑽石刀緣深色環）＋法蘭＋刀蓋只蓋上半；兩支噴水嘴
+const BLX = NX - 0.4, BLY = NH + 1.2, BLZ = 0.6;
+BOX("nHouse", "nSpindle", BLX - 0.55, BLX + 0.55, NH + 1.55, NH + 2.65, BLZ - 3.6, BLZ - 0.45, "panel");
+P({ id: "nHouseFin", layer: "nSpindle", shape: "box", size: [1.14, 0.9, 0.05], pos: [R2(BLX), R2(NH + 2.1), 0], at: [0, 1, 2, 3, 4, 5].map((i) => [0, 0, R2(BLZ - 3.3 + i * 0.25)]), mat: "fin" });
+BOX("nTag", "nSpindle", BLX + 0.55, BLX + 0.57, NH + 1.9, NH + 2.3, BLZ - 2.0, BLZ - 1.2, "white");
+P({ id: "nShaft", layer: "nSpindle", shape: "cyl", size: [0.12, 0.6], pos: [R2(BLX), R2(BLY), R2(BLZ - 0.3)], mat: "steel" });
+BOX("nShaftB", "nSpindle", BLX - 0.2, BLX + 0.2, BLY, NH + 1.55, BLZ - 0.65, BLZ - 0.45, "steel2");
+P({ id: "nBlade", layer: "nSpindle", shape: "cyl", size: [0.75, 0.03], pos: [R2(BLX), R2(BLY), R2(BLZ)], mat: "mirror" });
+P({ id: "nRim", layer: "nSpindle", shape: "tube", size: [0.76, 0.66, 0.035], pos: [R2(BLX), R2(BLY), R2(BLZ)], mat: "darker" });
+P({ id: "nHub", layer: "nSpindle", shape: "cyl", size: [0.3, 0.12], pos: [R2(BLX), R2(BLY), R2(BLZ + 0.05)], mat: "steel" });
+P({ id: "nHubB", layer: "nSpindle", shape: "cyl", size: [0.04, 0.03], pos: [0, 0, R2(BLZ + 0.12)], at: [0, 90, 180, 270].map((d) => [R2(BLX + 0.2 * Math.cos(d * D2R)), R2(BLY + 0.2 * Math.sin(d * D2R)), 0]), mat: "steel2" });
+BOX("nCover", "nSpindle", BLX - 0.9, BLX + 0.9, BLY + 0.35, BLY + 0.95, BLZ - 0.25, BLZ - 0.08, "steel2");
+BOX("nCoverT", "nSpindle", BLX - 0.9, BLX + 0.9, BLY + 0.85, BLY + 0.95, BLZ - 0.25, BLZ + 0.15, "steel2");
+P({ id: "nNoz", layer: "nSpindle", shape: "cyl", size: [0.04, 0.5], rot: V, pos: [0, R2(BLY + 0.55), R2(BLZ + 0.12)], at: [[R2(BLX - 0.55), 0, 0], [R2(BLX + 0.55), 0, 0]], mat: "steel" });
+actions.nSpin = { type: "rotate", _說明: "切割刀起轉（加速，繞主軸 z）", parts: ["nBlade", "nRim", "nHub", "nHubB"], axis: [0, 0, 1], pivot: [R2(BLX), R2(BLY), R2(BLZ)], rps: 2, rampSpin: true };
+actions.nWater = { free: true, type: "flow", _說明: "冷卻水從噴嘴受重力落到刀口（加速）", path: [[BLX - 0.55, BLY + 0.3, BLZ + 0.12], [BLX - 0.3, NH + 0.45, BLZ]].map((a) => a.map(R2)), n: 8, size: 0.04, shape: "liquid", rate: 0.9, accel: true, track: false, color: "waterC", layer: "nSpindle" };
 
 // 標註點
 Object.assign(anchors, {
@@ -437,7 +469,7 @@ Object.assign(anchors, {
   eGunA: A("eGun", [COL[0] + 0.75, 9.4, COL[1]], 120, -300), eCondA: A("eCond", [COL[0] - 0.95, 7.6, COL[1] + 0.3], -120, -300), eHolderA: A("eHolder", [COL[0] + 3.1, 6.4, COL[1]], 120, -300), eProjA: A("eCam", [COL[0] - 1.1, 2.3, COL[1] + 0.3], -120, -300),
   fEdsA: A("fEds", dpx(DT0 + 3.0), 120, -300), fPartA: A("fSample", [FHIT[0] - 0.1, FHIT[1], FHIT[2] + 0.1], -120, -300),
   gFabA: A("gFab", [GX - 9.5, 3.4, 0], -120, -300), gDesA: A("gDes", [GX + 1.6, 6.5, -1.0], 120, -300), gLabA: A("gLab", [GX + 10.3, 4.0, 0], 120, -300),
-  hAA: A("hLabA", [HX - 6.6, 7.0, 0.3], -120, -300), hBA: A("hLabB", [HX + 8.4, 3.0, 0.5], 120, -300), nBladeA: A("nSpindle", [NX - 0.4, NH + 1.95, 0.3], -120, -300),
+  hAA: A("hLabA", [HX - 6.6, 7.0, 0.3], -120, -300), hBA: A("hLabB", [HX + 8.4, 3.0, 0.5], 120, -300), nBladeA: A("nSpindle", [BLX + 0.5, BLY - 0.3, BLZ], -120, -300),
 });
 
 const model = {

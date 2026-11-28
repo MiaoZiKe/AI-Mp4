@@ -286,6 +286,20 @@
       "dur": 2
      },
      {
+      "layer": "bTips",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bTips",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
       "layer": "bScope",
       "at": "s1:start-40",
       "until": "s2:start-20",
@@ -868,44 +882,23 @@
      },
      {
       "layer": "bBoxBack",
-      "at": "s2:bad-16",
-      "until": "s2:cam-6",
-      "opacity": 0,
-      "dur": 10
-     },
-     {
-      "layer": "bBoxBack",
-      "at": "s3:start+20",
-      "until": "s10:start+400",
-      "opacity": 0,
+      "at": "s2:bad-14",
+      "until": "s3:start+20",
+      "opacity": 0.2,
       "dur": 10
      },
      {
       "layer": "bDoorL",
-      "at": "s2:bad-16",
-      "until": "s2:cam-6",
-      "opacity": 0,
-      "dur": 10
-     },
-     {
-      "layer": "bDoorL",
-      "at": "s3:start+20",
-      "until": "s10:start+400",
-      "opacity": 0,
+      "at": "s2:bad-14",
+      "until": "s3:start+20",
+      "opacity": 0.2,
       "dur": 10
      },
      {
       "layer": "bDoorR",
-      "at": "s2:bad-16",
-      "until": "s2:cam-6",
-      "opacity": 0,
-      "dur": 10
-     },
-     {
-      "layer": "bDoorR",
-      "at": "s3:start+20",
-      "until": "s10:start+400",
-      "opacity": 0,
+      "at": "s2:bad-14",
+      "until": "s3:start+20",
+      "opacity": 0.2,
       "dur": 10
      },
      {
@@ -916,106 +909,137 @@
       "dur": 6
      },
      {
+      "layer": "bTips",
+      "at": "s1:start-40",
+      "until": "s2:pow+2",
+      "dur": 16,
+      "dy": 0.3
+     },
+     {
       "layer": "cEcol",
-      "at": "s3:start+16",
-      "until": "s3:start+128",
+      "at": "s3:start+22",
+      "until": "s3:start+112",
       "dur": 22,
       "dy": 2.2
      },
      {
       "layer": "cIcol",
-      "at": "s3:start+16",
-      "until": "s3:start+128",
+      "at": "s3:start+22",
+      "until": "s3:start+112",
       "dur": 22,
       "dx": -1.734,
       "dy": 1.354
      },
      {
+      "layer": "cDoor",
+      "at": "s3:start+130",
+      "until": "s4:start+20",
+      "opacity": 0.18,
+      "dur": 8
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s1:start-40",
+      "until": "s4:start+16",
+      "dur": 18,
+      "dx": 2.2,
+      "dy": 2.0
+     },
+     {
+      "layer": "dLam",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": -3.25,
+      "dy": 1.5
+     },
+     {
       "layer": "dSkinA",
-      "at": "s4:trim+8",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": -3.25,
+      "dy": 1.5
+     },
+     {
+      "layer": "dSkinB",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": -3.25,
+      "dy": 1.5
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": -3.25,
+      "dy": 1.5
+     },
+     {
+      "layer": "dSkinA",
+      "at": "s4:start+84",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 12
      },
      {
       "layer": "dSkinB",
-      "at": "s4:nm+4",
+      "at": "s4:start+112",
       "until": "s10:start+400",
       "opacity": 0,
       "dur": 12
      },
      {
-      "layer": "dNeedle",
-      "at": "s1:start-40",
-      "until": "s4:slice-2",
-      "dur": 20,
-      "dx": 2.2,
-      "dy": 2.0
-     },
-     {
-      "layer": "dLam",
-      "at": "s4:slice+16",
-      "until": "s10:start+400",
-      "dur": 34,
-      "dx": -3.25,
-      "dy": 1.5
-     },
-     {
-      "layer": "dNeedle",
-      "at": "s4:slice+16",
-      "until": "s10:start+400",
-      "dur": 34,
-      "dx": -3.25,
-      "dy": 1.5
-     },
-     {
-      "layer": "eCam",
-      "at": "s5:start+12",
-      "until": "s5:start+104",
-      "dur": 22,
-      "dy": -0.9
-     },
-     {
-      "layer": "eView",
-      "at": "s5:start+12",
-      "until": "s5:start+104",
-      "dur": 22,
-      "dy": -0.45
-     },
-     {
       "layer": "eProj",
-      "at": "s5:start+12",
-      "until": "s5:start+104",
-      "dur": 22,
-      "dy": -0.2
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 0.45
+     },
+     {
+      "layer": "eObj",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 0.95
      },
      {
       "layer": "eCond",
-      "at": "s5:start+12",
-      "until": "s5:start+104",
-      "dur": 22,
-      "dy": 0.5
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 1.55
      },
      {
       "layer": "eGun",
-      "at": "s5:start+12",
-      "until": "s5:start+104",
-      "dur": 22,
-      "dy": 1
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 2.15
      },
      {
       "layer": "eHv",
-      "at": "s5:start+12",
-      "until": "s5:start+104",
-      "dur": 22,
-      "dy": 1.5
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 2.75
      },
      {
       "layer": "eHolder",
-      "at": "s5:start+12",
-      "until": "s5:start+104",
-      "dur": 22,
-      "dx": 1.2
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dx": 1.2,
+      "dy": 0.95
+     },
+     {
+      "layer": "eCam",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dz": 1.6
      },
      {
       "layer": "gBoxA",
@@ -1174,9 +1198,9 @@
       "at": "cam-4",
       "dur": 26,
       "x": 30,
-      "y": 4.0,
-      "d": 30,
-      "elev": 12
+      "y": 4.7,
+      "d": 38,
+      "elev": 4
      }
     ],
     "run": [
@@ -1184,13 +1208,13 @@
       "id": "bDoorLOpen",
       "at": "start-2",
       "ramp": 18,
-      "until": "s3:start+30"
+      "until": "bad-18"
      },
      {
       "id": "bDoorROpen",
       "at": "start-2",
       "ramp": 18,
-      "until": "s3:start+30"
+      "until": "bad-18"
      },
      {
       "id": "bHotGlow",
@@ -1205,8 +1229,20 @@
       "until": "s3:start"
      },
      {
-      "id": "bHeat",
+      "id": "bHeat0",
       "at": "light+4",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bHeat1",
+      "at": "light+10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bHeat2",
+      "at": "light+16",
       "ramp": 8,
       "until": "s3:start"
      }
@@ -1217,8 +1253,8 @@
       "text": "暗箱：擋掉外面的光",
       "en": "Dark box blocks outside light",
       "color": "blue",
-      "at": "start+16",
-      "until": "bad-14",
+      "at": "start+14",
+      "until": "bad-20",
       "cut": true
      },
      {
@@ -1252,7 +1288,7 @@
       "h": 330,
       "avoid": false,
       "title": "先定位：通電找光和熱",
-      "tag": "示意",
+      "tag": "示意（暗箱半透明剖開）",
       "t": {
        "pow": {
         "at": "pow"
@@ -1338,37 +1374,61 @@
       "elev": 10
      },
      {
-      "at": "start+140",
-      "dur": 30,
+      "at": "start+116",
+      "dur": 24,
       "x": 60,
-      "y": 4.4,
-      "d": 40,
+      "y": 4.8,
+      "d": 38,
       "elev": 12
      }
     ],
     "run": [
      {
       "id": "cDoorOpen",
-      "at": "start+16",
+      "at": "start+22",
       "ramp": 22,
-      "until": "start+128"
+      "until": "start+112"
      },
      {
       "id": "cEbeam",
-      "at": "start+150",
+      "at": "start+124",
       "ramp": 6,
       "until": "s4:start"
      },
      {
       "id": "cIon",
-      "at": "start+150",
+      "at": "start+124",
       "ramp": 6,
       "until": "s4:start"
      },
      {
-      "id": "cSput",
-      "at": "start+160",
-      "ramp": 8,
+      "id": "cSput0",
+      "at": "start+130",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput1",
+      "at": "start+132",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput2",
+      "at": "start+134",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput3",
+      "at": "start+136",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput4",
+      "at": "start+138",
+      "ramp": 6,
       "until": "s4:start"
      }
     ],
@@ -1389,12 +1449,16 @@
       "color": "amber",
       "at": "start+78",
       "until": "start+123",
-      "cut": true
+      "cut": true,
+      "xy": [
+       420,
+       330
+      ]
      },
      {
       "part": "cStageA",
-      "text": "樣品台：晶片放這裡",
-      "en": "Stage holds the chip",
+      "text": "樣品台（門剖開示意）",
+      "en": "Stage (door cut away)",
       "color": "blue",
       "at": "start+126",
       "until": "s4:start-8",
@@ -1493,44 +1557,50 @@
      {
       "at": "start",
       "dur": 1,
-      "x": 88.4,
+      "x": 87.4,
       "y": 2.75,
-      "d": 28,
-      "elev": 34
+      "d": 30,
+      "elev": 30
      }
     ],
     "run": [
      {
-      "id": "dThin",
-      "at": "start-4",
+      "id": "dThinA",
+      "at": "start+54",
       "ramp": 6,
-      "until": "nm+10"
+      "until": "start+86"
+     },
+     {
+      "id": "dThinB",
+      "at": "start+86",
+      "ramp": 6,
+      "until": "start+116"
      }
     ],
     "labels": [
      {
-      "part": "dLamA",
-      "text": "薄片：約 100 nm（放大示意）",
-      "en": "Lamella: ~100 nm (enlarged)",
-      "color": "amber",
-      "at": "start+4",
-      "until": "slice+6",
+      "part": "dNeedleA",
+      "text": "鎢針先把薄片提到載網",
+      "en": "Needle moves it to a grid",
+      "color": "blue",
+      "at": "start+2",
+      "until": "start+50",
       "cut": true,
       "xy": [
-       480,
+       600,
        300
       ]
      },
      {
-      "part": "dNeedleA",
-      "text": "鎢針把薄片提出來",
-      "en": "A tungsten needle lifts it out",
-      "color": "blue",
-      "at": "slice+12",
+      "part": "dLamA",
+      "text": "在載網上削到約 100 nm",
+      "en": "Thinned to ~100 nm on the grid",
+      "color": "amber",
+      "at": "start+54",
       "until": "s5:start",
       "cut": true,
       "xy": [
-       600,
+       480,
        300
       ]
      }
@@ -1633,19 +1703,37 @@
     "run": [
      {
       "id": "eCoilGlow",
-      "at": "start+110",
+      "at": "start+100",
       "ramp": 10,
       "until": "s6:start"
      },
      {
-      "id": "eBeam",
-      "at": "start+112",
+      "id": "eBeam0",
+      "at": "start+104",
       "ramp": 6,
       "until": "s6:start"
      },
      {
-      "id": "eSpread",
-      "at": "start+118",
+      "id": "eBeam1",
+      "at": "start+104",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam2",
+      "at": "start+104",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam3",
+      "at": "start+104",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam4",
+      "at": "start+104",
       "ramp": 6,
       "until": "s6:start"
      }
@@ -1653,26 +1741,26 @@
     "labels": [
      {
       "part": "eGunA",
-      "text": "電子槍",
-      "en": "Electron gun",
+      "text": "電子槍＋聚光鏡：射出、聚焦",
+      "en": "Gun + condenser: emit and focus",
       "color": "blue",
-      "at": "start+14",
-      "until": "start+59",
-      "cut": true
-     },
-     {
-      "part": "eCondA",
-      "text": "聚光鏡：電磁線圈當透鏡",
-      "en": "Condenser: magnetic coils as lenses",
-      "color": "amber",
-      "at": "start+61",
-      "until": "start+106",
+      "at": "start+8",
+      "until": "start+56",
       "cut": true
      },
      {
       "part": "eHolderA",
       "text": "樣品桿：薄片放這裡",
       "en": "Holder: the lamella sits here",
+      "color": "amber",
+      "at": "start+58",
+      "until": "start+106",
+      "cut": true
+     },
+     {
+      "part": "eProjA",
+      "text": "投影鏡＋相機：放大成像",
+      "en": "Projector + camera: magnified image",
       "color": "blue",
       "at": "start+108",
       "until": "s6:start",

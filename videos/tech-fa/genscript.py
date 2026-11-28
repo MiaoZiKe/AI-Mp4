@@ -132,24 +132,28 @@ for lay in LAYERS:
     a = T0 if n == 1 else f"{sid}:start-20"; b = FAR if n == 9 else f"s{n + 1}:start+20"
     vis(lay, [(a, b)], 2)
 vis("aLab", [("s1:lab+46", "s2:start+20")], 10)
-vis("bBoxBack", [(T0, "s2:bad-16"), ("s2:cam-6", "s3:start+20")], 10)
-for d in ["bDoorL", "bDoorR"]: vis(d, [(T0, "s2:bad-16"), ("s2:cam-6", "s3:start+20")], 10)
+# s2：暗箱門開著讓人看到裡面 → 量測前關上 → 量測期間整個暗箱變半透明（剖開示意）
+for d in ["bBoxBack", "bDoorL", "bDoorR"]: VIS.append(hid(d, "s2:bad-14", "s3:start+20", 10, 0.2))
 # ── 站 A：s1 故障晶片紅光閃；念到「實驗室」送樣箭頭沿地面走到後方實驗室 ──
-# ── 站 B：s2 暗箱門打開 → 念到「壞掉的地方」熱點亮、光子往上進物鏡、熱圈往外擴散 ──
+# ── 站 B：s2 暗箱門打開 → 探針下降接觸銲墊 → 門關上、暗箱半透明 → 熱點亮、光子往上進物鏡、熱圈由內往外錯開擴散 ──
 vis("bHot", [("s2:bad-6", FAR)], 6)
-# ── 站 C：s3 先看組好的雙束機 → 前門打開、電子束鏡筒沿軸往上抽出、離子束鏡筒沿 52° 軸往外抽出 → 一次一張標籤 → 組回、門關 → 離子束打樣品、碎屑噴出 ──
+move("bTips", T0, "s2:pow+2", 16, dy=0.3)
+# ── 站 C：s3 先看組好的雙束機（≥20 幀）→ 前門打開、電子束鏡筒沿軸往上抽出、離子束鏡筒沿 52° 軸往外抽出 → 一次一張標籤 → 組回、門關回
+#    → 門變半透明（剖開示意）、鏡頭推到撞擊點 → 離子束等速打樣品、濺射原子直線放射（≥2 秒）──
 IC = INFO["ICOL"]
-move("cEcol", "s3:start+16", "s3:start+128", 22, dy=2.2)
-move("cIcol", "s3:start+16", "s3:start+128", 22, dx=IC["dx"], dy=IC["dy"])
-# ── 站 D：s4 離子束從上削，薄片兩側多餘層依序消失（變薄）→ 鎢針靠近、焊上 → 薄片跟著針提起、移到載網柱邊 ──
-vis("dSkinA", [(T0, "s4:trim+8")], 12); vis("dSkinB", [(T0, "s4:nm+4")], 12)
-move("dNeedle", T0, "s4:slice-2", 20, dx=2.2, dy=2.0)
+move("cEcol", "s3:start+22", "s3:start+112", 22, dy=2.2)
+move("cIcol", "s3:start+22", "s3:start+112", 22, dx=IC["dx"], dy=IC["dy"])
+VIS.append(hid("cDoor", "s3:start+130", "s4:start+20", 8, 0.18))
+# ── 站 D：s4 鎢針靠近、焊上 → 薄片（連同兩側多餘的厚度）跟著針提起、送到銅載網柱邊 → 在載網上離子束貼著兩面往下削，兩側多餘層依序消失 ──
 LF = INFO["LIFT"]
-for lay in ["dLam", "dNeedle"]: move(lay, "s4:slice+16", FAR, 34, dx=LF["dx"], dy=LF["dy"])
-# ── 站 E：s5 鏡筒模組沿垂直軸分開 → 三張標籤 → 合回 → 電子束往下穿過薄片、散開 ──
+move("dNeedle", T0, "s4:start+16", 18, dx=2.2, dy=2.0)
+for lay in ["dLam", "dSkinA", "dSkinB", "dNeedle"]: move(lay, "s4:start+20", FAR, 30, dx=LF["dx"], dy=LF["dy"])
+vis("dSkinA", [(T0, "s4:start+84")], 12); vis("dSkinB", [(T0, "s4:start+112")], 12)
+# ── 站 E：s5 鏡筒上段沿垂直軸往上分開、相機往前抽出 → 三張標籤 → 合回 → 電子束收斂、穿過薄片、放大散開到相機 ──
 for lay, d in INFO["EXP"].items():
-    if d: move(lay, "s5:start+12", "s5:start+104", 22, dy=d)
-move("eHolder", "s5:start+12", "s5:start+104", 22, dx=1.2)
+    if d: move(lay, "s5:start+6", "s5:start+96", 18, dy=d)
+move("eHolder", "s5:start+6", "s5:start+96", 18, dx=1.2, dy=INFO["EXP"]["eObj"])
+move("eCam", "s5:start+6", "s5:start+96", 18, dz=1.6)
 # ── 站 G：s7 念到「送出去」兩個送樣盒沿道路走到實驗室（起步加速、到站減速）──
 move("gBoxA", "s7:send-4", FAR, 40, dx=round(INFO["GX"] + 6.3 - (INFO["GX"] - 7), 3))
 move("gBoxB", "s7:send+4", FAR, 32, dx=round(INFO["GX"] + 7.5 - INFO["GX"] - 0.2, 3))
@@ -157,9 +161,9 @@ move("gBoxB", "s7:send+4", FAR, 32, dx=round(INFO["GX"] + 7.5 - INFO["GX"] - 0.2
 # ═════ 各幕（看向 x, y, 距離, 仰角）═════
 AX, BX, CX, DX, EX, FX, GX, HX, NX, GT = (INFO[k] for k in ["AX", "BX", "CX", "DX", "EX", "FX", "GX", "HX", "NX", "GT"])
 AV = (AX + 0.2, 0.9, 21, 30); AV2 = (AX + 0.6, 2.4, 56, 14)
-BV = (BX, 4.6, 36, 12); BC = (BX + 0.1, GT + 1.6, 34, 28); BV2 = (BX, GT + 1.8, 30, 12)
-CV = (CX - 1.0, 5.6, 46, 10); CC2 = (CX, 4.4, 40, 12)
-DV = (DX - 1.6, 2.75, 28, 34)
+BV = (BX, 4.6, 36, 12); BC = (BX + 0.1, GT + 1.6, 34, 28); BV2 = (BX, GT + 2.5, 38, 4)
+CV = (CX - 1.0, 5.6, 46, 10); CC2 = (CX, 4.8, 38, 12)
+DV = (DX - 2.6, 2.75, 30, 30)
 EV = (EX, 6.6, 48, 6)
 FV = (FX + 1.6, 2.3, 23, 16)
 GV = (GX + 0.4, 3.2, 44, 14)
@@ -174,31 +178,31 @@ P["s1"] = {"shot": [S_("start-30", AV, 1, yaw=0.0), S_("lab+34", AV2, 22)], "shi
  "overlay": [sec("fa-hook", "start", nxt("s1"), "中游補充篇・M6", "示意", {"prev": "prev", "fail": "fail", "q": "q", "lab": "lab", "hosp": "hosp"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "loc", "at": CC, "dur": 1}],
  "shot": [S_(CC, BV, 1), S_("bad-12", BC, 28), S_("cam-4", BV2, 26)],
- "run": [run("bDoorLOpen", "start-2", "s3:start+30", 18), run("bDoorROpen", "start-2", "s3:start+30", 18),
-         run("bHotGlow", "bad-4", "s3:start", 8), run("bPhot", "light-4", "s3:start", 6), run("bHeat", "light+4", "s3:start", 8)],
- "labels": [lab("bDoorA", "暗箱：擋掉外面的光", "Dark box blocks outside light", "blue", "start+16", "bad-14"),
+ "run": [run("bDoorLOpen", "start-2", "bad-18", 18), run("bDoorROpen", "start-2", "bad-18", 18),
+         run("bHotGlow", "bad-4", "s3:start", 8), run("bPhot", "light-4", "s3:start", 6)] + [run(f"bHeat{i}", f"light+{4 + 6 * i}", "s3:start", 8) for i in range(3)],
+ "labels": [lab("bDoorA", "暗箱：擋掉外面的光", "Dark box blocks outside light", "blue", "start+14", "bad-20"),
             lab("bHotA", "壞的地方：發光、發熱", "Fault spot: emits light and heat", "amber", "bad-10", "cam-6"),
             lab("bCamA", "冷卻相機：拍下微弱的光", "Cooled camera catches faint light", "blue", "cam-2", "s3:start")],
- "overlay": [card("s2", "fa-loc", "先定位：通電找光和熱", "示意", T("s2"))]}
+ "overlay": [card("s2", "fa-loc", "先定位：通電找光和熱", "示意（暗箱半透明剖開）", T("s2"))]}
 P["s3"] = {"zoom": [{"to": "fib", "at": CC, "dur": 1}],
- "shot": [S_(CC, CV, 1), S_("start+140", CC2, 30)],
- "run": [run("cDoorOpen", "start+16", "start+128", 22), run("cEbeam", "start+150", "s4:start", 6), run("cIon", "start+150", "s4:start", 6), run("cSput", "start+160", "s4:start", 8)],
+ "shot": [S_(CC, CV, 1), S_("start+116", CC2, 24)],
+ "run": [run("cDoorOpen", "start+22", "start+112", 22), run("cEbeam", "start+124", "s4:start", 6), run("cIon", "start+124", "s4:start", 6)] + [run(f"cSput{k}", f"start+{130 + 2 * k}", "s4:start", 6) for k in range(5)],
  "labels": [lab("cEcolA", "電子束鏡筒：負責看", "Electron column: imaging", "blue", "start+30", "start+75"),
-            lab("cIcolA", "離子束鏡筒：鎵離子負責挖", "Ion column: gallium ions mill", "amber", "start+78", "start+123"),
-            lab("cStageA", "樣品台：晶片放這裡", "Stage holds the chip", "blue", "start+126", "s4:start-8", xy=[540, 330])],
+            lab("cIcolA", "離子束鏡筒：鎵離子負責挖", "Ion column: gallium ions mill", "amber", "start+78", "start+123", xy=[420, 330]),
+            lab("cStageA", "樣品台（門剖開示意）", "Stage (door cut away)", "blue", "start+126", "s4:start-8", xy=[540, 330])],
  "overlay": [card("s3", "fa-fib", "再動刀：聚焦離子束挖剖面", "示意", T("s3"))]}
 P["s4"] = {"zoom": [{"to": "lam", "at": CC, "dur": 1}],
  "shot": [S_("start", DV, 1)],
- "run": [run("dThin", "start-4", "nm+10", 6)],
- "labels": [lab("dLamA", "薄片：約 100 nm（放大示意）", "Lamella: ~100 nm (enlarged)", "amber", "start+4", "slice+6", xy=[480, 300]),
-            lab("dNeedleA", "鎢針把薄片提出來", "A tungsten needle lifts it out", "blue", "slice+12", "s5:start", xy=[600, 300])],
+ "run": [run("dThinA", "start+54", "start+86", 6), run("dThinB", "start+86", "start+116", 6)],
+ "labels": [lab("dNeedleA", "鎢針先把薄片提到載網", "Needle moves it to a grid", "blue", "start+2", "start+50", xy=[600, 300]),
+            lab("dLamA", "在載網上削到約 100 nm", "Thinned to ~100 nm on the grid", "amber", "start+54", "s5:start", xy=[480, 300])],
  "overlay": [card("s4", "fa-lam", "削成薄片：電子穿得過去", "示意（放大）", T("s4"))]}
 P["s5"] = {"zoom": [{"to": "tem", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
- "run": [run("eCoilGlow", "start+110", "s6:start", 10), run("eBeam", "start+112", "s6:start", 6), run("eSpread", "start+118", "s6:start", 6)],
- "labels": [lab("eGunA", "電子槍", "Electron gun", "blue", "start+14", "start+59"),
-            lab("eCondA", "聚光鏡：電磁線圈當透鏡", "Condenser: magnetic coils as lenses", "amber", "start+61", "start+106"),
-            lab("eHolderA", "樣品桿：薄片放這裡", "Holder: the lamella sits here", "blue", "start+108", "s6:start")],
+ "run": [run("eCoilGlow", "start+100", "s6:start", 10)] + [run(f"eBeam{k}", "start+104", "s6:start", 6) for k in range(5)],
+ "labels": [lab("eGunA", "電子槍＋聚光鏡：射出、聚焦", "Gun + condenser: emit and focus", "blue", "start+8", "start+56"),
+            lab("eHolderA", "樣品桿：薄片放這裡", "Holder: the lamella sits here", "amber", "start+58", "start+106"),
+            lab("eProjA", "投影鏡＋相機：放大成像", "Projector + camera: magnified image", "blue", "start+108", "s6:start")],
  "overlay": [card("s5", "fa-tem", "電子顯微鏡：用電子代替光", "示意", T("s5"))]}
 P["s6"] = {"zoom": [{"to": "eds", "at": CC, "dur": 1}],
  "shot": [S_(CC, FV, 1)],
