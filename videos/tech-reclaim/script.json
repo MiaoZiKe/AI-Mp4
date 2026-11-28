@@ -1,0 +1,1625 @@
+{
+ "slug": "tech-reclaim",
+ "prevEpisode": "M3：化合物半導體 SiC／GaN",
+ "title": "再生晶圓（科技透明圈）",
+ "asOf": "2026/11/28",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "中游補充篇",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "start",
+    "label": "晶圓盒（示意）",
+    "en": "WAFER CASSETTE",
+    "field": "60 cm",
+    "ruler": "5 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "test",
+    "label": "測試片試跑（示意）",
+    "en": "TEST WAFER",
+    "field": "2 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "dummy",
+    "label": "直立爐管與擋片（示意）",
+    "en": "FURNACE DUMMY",
+    "field": "3 m",
+    "ruler": "30 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "used",
+    "label": "用過的測試片（示意）",
+    "en": "USED TEST WAFER",
+    "field": "30 cm",
+    "ruler": "3 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "strip",
+    "label": "濕式去膜（示意）",
+    "en": "CHEMICAL STRIP",
+    "field": "2 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "cmp",
+    "label": "研磨拋光（示意）",
+    "en": "GRIND / POLISH",
+    "field": "2 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "thin",
+    "label": "每次再生都變薄（示意）",
+    "en": "THINNING",
+    "field": "30 cm",
+    "ruler": "3 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "tw",
+    "label": "台灣再生晶圓廠",
+    "en": "TAIWAN MAKERS",
+    "field": "100 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "密封盒（下一集）",
+    "en": "NEXT",
+    "field": "2 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "再生晶圓",
+   "測試片磨掉一層再用"
+  ],
+  "sub": "測試片＋擋片→去膜→研磨拋光",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "前一集說的測試片，到底拿來幹嘛？它們不做晶片，專門用來測機台。",
+   "tts": "前一集說的測試片，到底拿來幹嘛？它們不做晶片，專門用來測機台。",
+   "subtitle": {
+    "zh": "前一集說的測試片\n到底拿來幹嘛？\n它們不做晶片\n專門用來測機台",
+    "en": "Last episode's test wafers: | what are they actually for? | They never become chips; | they're just for testing tools."
+   },
+   "keywords": [
+    "前一集",
+    "測試片",
+    "測機台"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "test",
+     "text": "測試片"
+    },
+    {
+     "id": "q",
+     "text": "幹嘛"
+    },
+    {
+     "id": "chip",
+     "text": "不做晶片"
+    },
+    {
+     "id": "tool",
+     "text": "測機台"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：化合物",
+     "title": "不做晶片的晶圓？",
+     "size": 92,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0,
+      "y": 4.0,
+      "d": 34,
+      "elev": 18
+     }
+    ],
+    "shift": [
+     {
+      "layer": "aTest",
+      "at": "s1:test-4",
+      "until": "s2:start",
+      "dur": 24,
+      "dz": 1.4
+     },
+     {
+      "layer": "bFilm",
+      "at": "s1:start-40",
+      "until": "s2:run+8",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bPlasma",
+      "at": "s1:start-40",
+      "until": "s2:run-2",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "bPlasma",
+      "at": "s2:film",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "bScan",
+      "at": "s1:start-40",
+      "until": "s2:dust-4",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "bDust",
+      "at": "s1:start-40",
+      "until": "s2:dust+8",
+      "opacity": 0,
+      "dur": 4
+     },
+     {
+      "layer": "cJacketL",
+      "at": "s3:start-6",
+      "until": "s4:start-14",
+      "dur": 26,
+      "dx": -3.2
+     },
+     {
+      "layer": "cJacketR",
+      "at": "s3:start-6",
+      "until": "s4:start-14",
+      "dur": 26,
+      "dx": 3.2
+     },
+     {
+      "layer": "cDummy",
+      "at": "s1:start-40",
+      "until": "s3:gap",
+      "dur": 14,
+      "dy": 2.2,
+      "fallIn": true,
+      "bounce": 0.05,
+      "opacity": 0
+     },
+     {
+      "layer": "cBoat",
+      "at": "s3:cookie+6",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dy": 4.9
+     },
+     {
+      "layer": "cDummy",
+      "at": "s3:cookie+6",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dy": 4.9
+     },
+     {
+      "layer": "dOx",
+      "at": "s4:film-4",
+      "until": "s4:toss",
+      "dur": 16,
+      "dy": 0.9
+     },
+     {
+      "layer": "dNit",
+      "at": "s4:film-4",
+      "until": "s4:toss",
+      "dur": 16,
+      "dy": 1.8
+     },
+     {
+      "layer": "dMet",
+      "at": "s4:film-4",
+      "until": "s4:toss",
+      "dur": 16,
+      "dy": 2.7
+     },
+     {
+      "layer": "dX",
+      "at": "s1:start-40",
+      "until": "s4:toss+6",
+      "opacity": 0,
+      "dur": 3
+     },
+     {
+      "layer": "eLift",
+      "at": "s5:dip-2",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dy": -2.9
+     },
+     {
+      "layer": "eFm",
+      "at": "s5:dip-2",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dy": -2.9
+     },
+     {
+      "layer": "eFn",
+      "at": "s5:dip-2",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dy": -2.9
+     },
+     {
+      "layer": "eFo",
+      "at": "s5:dip-2",
+      "until": "s10:start+400",
+      "dur": 26,
+      "dy": -2.9
+     },
+     {
+      "layer": "eFm",
+      "at": "s5:metal+6",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "eFn",
+      "at": "s5:layer+4",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "eFo",
+      "at": "s5:pan-2",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 14
+     },
+     {
+      "layer": "fHead",
+      "at": "s1:start-40",
+      "until": "s6:grind-2",
+      "dur": 18,
+      "dy": 1.4
+     },
+     {
+      "layer": "gW1",
+      "at": "s1:start-40",
+      "until": "s7:start",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "gW2",
+      "at": "s1:start-40",
+      "until": "s7:thin-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "gW3",
+      "at": "s1:start-40",
+      "until": "s7:thin+4",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "gW4",
+      "at": "s1:start-40",
+      "until": "s7:use",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "gW4",
+      "at": "s7:out",
+      "until": "s10:start+400",
+      "dur": 20,
+      "dx": 2.0,
+      "dy": -1.9
+     },
+     {
+      "layer": "nDoor",
+      "at": "s1:start-40",
+      "until": "s9:dust+4",
+      "dur": 16,
+      "dz": 1.6
+     },
+     {
+      "layer": "nBox",
+      "at": "s9:move",
+      "until": "s9:next",
+      "dur": 30,
+      "dx": 8.0
+     },
+     {
+      "layer": "nDoor",
+      "at": "s9:move",
+      "until": "s9:next",
+      "dur": 30,
+      "dx": 8.0
+     }
+    ],
+    "run": [
+     {
+      "id": "aGlow",
+      "at": "test",
+      "ramp": 6,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aProdA",
+      "text": "產品片：上面是一顆顆晶片",
+      "en": "Product wafer: dies",
+      "color": "blue",
+      "at": "prev",
+      "until": "test-4",
+      "cut": true
+     },
+     {
+      "part": "aTestA",
+      "text": "空白測試片：不做晶片",
+      "en": "Blank test wafer: no chips",
+      "color": "amber",
+      "at": "test",
+      "until": "s2:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "中游補充篇・M4",
+      "tag": "示意",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "test": {
+        "at": "test"
+       },
+       "q": {
+        "at": "q"
+       },
+       "chip": {
+        "at": "chip"
+       },
+       "tool": {
+        "at": "tool"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.0,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "機台開工前，先放一片空白晶圓試跑，像廚師先試一口湯，測膜厚、數灰塵。",
+   "tts": "機台開工前，先放一片空白晶圓試跑，像廚師先試一口湯，測膜厚、數灰塵。",
+   "subtitle": {
+    "zh": "機台開工前\n先放一片\n空白晶圓試跑\n像廚師先試一口湯\n測膜厚\n數灰塵",
+    "en": "Before a tool starts work, | it first runs | a blank test wafer, | like a chef tasting the soup, | then measures film thickness | and counts dust."
+   },
+   "keywords": [
+    "空白晶圓",
+    "試一口湯",
+    "灰塵"
+   ],
+   "cues": [
+    {
+     "id": "tool",
+     "text": "機台"
+    },
+    {
+     "id": "blank",
+     "text": "空白晶圓"
+    },
+    {
+     "id": "run",
+     "text": "試跑"
+    },
+    {
+     "id": "soup",
+     "text": "試一口湯"
+    },
+    {
+     "id": "film",
+     "text": "測膜厚"
+    },
+    {
+     "id": "dust",
+     "text": "數灰塵"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 5711848（測試晶圓）；示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "test",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 29.2,
+      "y": 3.0,
+      "d": 36,
+      "elev": 20
+     },
+     {
+      "at": "film-8",
+      "dur": 26,
+      "x": 33.4,
+      "y": 1.8,
+      "d": 28,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "bPlGlow",
+      "at": "run-2",
+      "ramp": 4,
+      "until": "film"
+     },
+     {
+      "id": "bBeam",
+      "at": "film-2",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "bScanGo",
+      "at": "dust-4",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "bDustGlow",
+      "at": "dust+8",
+      "ramp": 4,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bChA",
+      "text": "沉積腔：先試跑一次",
+      "en": "Deposition chamber: test run",
+      "color": "blue",
+      "at": "run-4",
+      "until": "film-8",
+      "cut": true
+     },
+     {
+      "part": "bBeamA",
+      "text": "斜射光：測膜厚",
+      "en": "Angled light: film thickness",
+      "color": "amber",
+      "at": "film-2",
+      "until": "dust-4",
+      "cut": true
+     },
+     {
+      "part": "bScanA",
+      "text": "雷射掃過：數灰塵",
+      "en": "Laser scan: dust count",
+      "color": "blue",
+      "at": "dust-2",
+      "until": "s3:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-test",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "測試片：機台開工前先試跑",
+      "tag": "示意",
+      "t": {
+       "tool": {
+        "at": "tool"
+       },
+       "blank": {
+        "at": "blank"
+       },
+       "run": {
+        "at": "run"
+       },
+       "soup": {
+        "at": "soup"
+       },
+       "film": {
+        "at": "film"
+       },
+       "dust": {
+        "at": "dust"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "另一種叫擋片，補在爐管空位，像烤盤沒排滿，用假餅乾補位，熱才均勻。",
+   "tts": "另一種叫擋片，補在爐管空位，像烤盤沒排滿，用假餅乾補位，熱才均勻。",
+   "subtitle": {
+    "zh": "另一種叫擋片\n補在爐管空位\n像烤盤沒排滿\n用假餅乾補位\n熱才均勻",
+    "en": "Another kind is the dummy wafer, | filling empty furnace slots, | like a half-full baking tray | padded with fake cookies | so the heat stays even."
+   },
+   "keywords": [
+    "擋片",
+    "爐管",
+    "均勻"
+   ],
+   "cues": [
+    {
+     "id": "dum",
+     "text": "擋片"
+    },
+    {
+     "id": "gap",
+     "text": "空位"
+    },
+    {
+     "id": "tray",
+     "text": "烤盤"
+    },
+    {
+     "id": "cookie",
+     "text": "假餅乾"
+    },
+    {
+     "id": "heat",
+     "text": "均勻"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "SEMI 中文 zh-46236；USPTO 7955956；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "dummy",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 60,
+      "y": 5.4,
+      "d": 62,
+      "elev": 8
+     },
+     {
+      "at": "cookie+2",
+      "dur": 30,
+      "x": 60,
+      "y": 5.8,
+      "d": 56,
+      "elev": 6
+     }
+    ],
+    "run": [
+     {
+      "id": "cCoilGlow",
+      "at": "cookie+20",
+      "ramp": 10,
+      "until": "s4:start"
+     },
+     {
+      "id": "cHeat",
+      "at": "heat-6",
+      "ramp": 8,
+      "until": "s4:start"
+     },
+     {
+      "id": "cHeat2",
+      "at": "heat-6",
+      "ramp": 8,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cJacketA",
+      "text": "加熱器外罩（拆開）",
+      "en": "Heater jacket (lifted off)",
+      "color": "blue",
+      "at": "start+8",
+      "until": "gap-4",
+      "cut": true
+     },
+     {
+      "part": "cDummyA",
+      "text": "擋片：補上下空位",
+      "en": "Dummy wafers fill the ends",
+      "color": "amber",
+      "at": "gap",
+      "until": "cookie+4",
+      "cut": true
+     },
+     {
+      "part": "cCoilA",
+      "text": "加熱線圈：熱往中心",
+      "en": "Heater coils: heat inward",
+      "color": "blue",
+      "at": "cookie+30",
+      "until": "s4:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-dummy",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "擋片：補空位，熱才均勻",
+      "tag": "示意",
+      "t": {
+       "dum": {
+        "at": "dum"
+       },
+       "gap": {
+        "at": "gap"
+       },
+       "tray": {
+        "at": "tray"
+       },
+       "cookie": {
+        "at": "cookie"
+       },
+       "heat": {
+        "at": "heat"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.6,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "twist",
+   "para": 4,
+   "narration": "這些片子跑一趟就沾滿薄膜，丟掉太貴，所以送去再生。",
+   "tts": "這些片子跑一趟就沾滿薄膜，丟掉太貴，所以送去再生。",
+   "subtitle": {
+    "zh": "這些片子跑一趟\n就沾滿薄膜\n丟掉太貴\n所以送去再生",
+    "en": "After one run, these wafers | are coated with films. | Tossing them costs too much, | so they get reclaimed."
+   },
+   "keywords": [
+    "薄膜",
+    "太貴",
+    "再生"
+   ],
+   "cues": [
+    {
+     "id": "run",
+     "text": "跑一趟"
+    },
+    {
+     "id": "film",
+     "text": "薄膜"
+    },
+    {
+     "id": "toss",
+     "text": "丟掉"
+    },
+    {
+     "id": "ship",
+     "text": "再生"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "數位時代、科技新報報導；示意（膜厚放大）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "used",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 90,
+      "y": 1.5,
+      "d": 28,
+      "elev": 22
+     }
+    ],
+    "run": [
+     {
+      "id": "dShip",
+      "at": "ship-4",
+      "ramp": 6,
+      "until": "s5:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dMetA",
+      "text": "薄膜：氧化層、氮化層、金屬層",
+      "en": "Films: oxide, nitride, metal",
+      "color": "amber",
+      "at": "film",
+      "until": "toss-2",
+      "cut": true
+     },
+     {
+      "part": "dSiA",
+      "text": "底下的晶圓還是好的",
+      "en": "The silicon underneath is fine",
+      "color": "blue",
+      "at": "toss",
+      "until": "s5:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-used",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "用過一次：沾滿薄膜",
+      "tag": "示意（膜厚放大）",
+      "t": {
+       "run": {
+        "at": "run"
+       },
+       "film": {
+        "at": "film"
+       },
+       "toss": {
+        "at": "toss"
+       },
+       "ship": {
+        "at": "ship"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.3,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "第一步泡藥水，把薄膜和金屬一層層溶掉，像幫鍋子去油垢。",
+   "tts": "第一步泡藥水，把薄膜和金屬一層層溶掉，像幫鍋子去油垢。",
+   "subtitle": {
+    "zh": "第一步泡藥水\n把薄膜和金屬\n一層層溶掉\n像幫鍋子去油垢",
+    "en": "Step one: a chemical bath | that dissolves films and metal | layer by layer, | like degreasing a pan."
+   },
+   "keywords": [
+    "泡藥水",
+    "一層層",
+    "去油垢"
+   ],
+   "cues": [
+    {
+     "id": "dip",
+     "text": "泡藥水"
+    },
+    {
+     "id": "metal",
+     "text": "金屬"
+    },
+    {
+     "id": "layer",
+     "text": "一層層"
+    },
+    {
+     "id": "pan",
+     "text": "鍋子"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 7775856、6458712；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "strip",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 120.5,
+      "y": 4.0,
+      "d": 34,
+      "elev": 20
+     }
+    ],
+    "run": [
+     {
+      "id": "eWave",
+      "at": "start-10",
+      "ramp": 10,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBub",
+      "at": "dip+10",
+      "ramp": 8,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eBasketA",
+      "text": "整籃晶圓",
+      "en": "A full basket of wafers",
+      "color": "blue",
+      "at": "start",
+      "until": "dip+20",
+      "cut": true
+     },
+     {
+      "part": "eTankA",
+      "text": "藥水槽：溶掉薄膜",
+      "en": "Chemical bath dissolves films",
+      "color": "amber",
+      "at": "dip+22",
+      "until": "s6:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-strip",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "第一步：泡藥水去膜",
+      "tag": "示意",
+      "t": {
+       "dip": {
+        "at": "dip"
+       },
+       "metal": {
+        "at": "metal"
+       },
+       "lyr": {
+        "at": "layer"
+       },
+       "pan": {
+        "at": "pan"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s6",
+   "beat": "mechanism",
+   "para": 6,
+   "narration": "接著研磨、拋光回到鏡面，再清洗、檢查刮傷和微粒。",
+   "tts": "接著研磨、拋光回到鏡面，再清洗、檢查刮傷和微粒。",
+   "subtitle": {
+    "zh": "接著研磨\n拋光回到鏡面\n再清洗\n檢查刮傷和微粒",
+    "en": "Then grinding | and polishing back to a mirror, | then cleaning, | and checking for scratches and particles."
+   },
+   "keywords": [
+    "研磨",
+    "鏡面",
+    "微粒"
+   ],
+   "cues": [
+    {
+     "id": "grind",
+     "text": "研磨"
+    },
+    {
+     "id": "pol",
+     "text": "拋光"
+    },
+    {
+     "id": "mirror",
+     "text": "鏡面"
+    },
+    {
+     "id": "clean",
+     "text": "清洗"
+    },
+    {
+     "id": "insp",
+     "text": "檢查"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "USPTO 6276997（研磨拋光）；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "cmp",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 148,
+      "y": 1.6,
+      "d": 34,
+      "elev": 30
+     },
+     {
+      "at": "clean-4",
+      "dur": 24,
+      "x": 155.2,
+      "y": 1.6,
+      "d": 24,
+      "elev": 18
+     }
+    ],
+    "run": [
+     {
+      "id": "fSpin",
+      "at": "grind",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "fHSpin",
+      "at": "grind+4",
+      "ramp": 10,
+      "until": "s7:start"
+     },
+     {
+      "id": "fSlurry",
+      "at": "start-10",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "fSlSpread",
+      "at": "grind+10",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "fCdSwing",
+      "at": "pol",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "fBrush",
+      "at": "clean-6",
+      "ramp": 8,
+      "until": "s7:start"
+     },
+     {
+      "id": "fSpray",
+      "at": "clean-6",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "fInspGlow",
+      "at": "insp-2",
+      "ramp": 4,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fHeadA",
+      "text": "研磨頭壓著晶圓磨",
+      "en": "Head presses the wafer",
+      "color": "amber",
+      "at": "grind",
+      "until": "clean-6",
+      "cut": true
+     },
+     {
+      "part": "fBrushA",
+      "text": "刷洗＋檢查",
+      "en": "Brush clean + inspect",
+      "color": "blue",
+      "at": "clean-4",
+      "until": "s7:start-4",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-cmp",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "研磨、拋光、清洗、檢查",
+      "tag": "示意",
+      "t": {
+       "grind": {
+        "at": "grind"
+       },
+       "pol": {
+        "at": "pol"
+       },
+       "mirror": {
+        "at": "mirror"
+       },
+       "clean": {
+        "at": "clean"
+       },
+       "insp": {
+        "at": "insp"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.1,
+   "holdSec": 0.8,
+   "headSec": 0.3,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "每磨一次就薄一點，一片大約能用六到二十次，太薄就淘汰。",
+   "tts": "每磨一次就薄一點，一片大約能用六到二十次，太薄就淘汰。",
+   "subtitle": {
+    "zh": "每磨一次就薄一點\n一片大約能用\n六到二十次\n太薄就淘汰",
+    "en": "Each pass makes it thinner; | one wafer can be used | about six to twenty times, | then it's too thin and retired."
+   },
+   "keywords": [
+    "薄一點",
+    "六到二十次",
+    "淘汰"
+   ],
+   "cues": [
+    {
+     "id": "thin",
+     "text": "薄一點"
+    },
+    {
+     "id": "use",
+     "text": "能用"
+    },
+    {
+     "id": "n",
+     "text": "六到二十次"
+    },
+    {
+     "id": "out",
+     "text": "淘汰"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "數位時代（業者說法）；USPTO 7732303；示意（厚度放大）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "thin",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 181.0,
+      "y": 1.7,
+      "d": 28,
+      "elev": 16
+     }
+    ],
+    "labels": [
+     {
+      "part": "gW0A",
+      "text": "新的：最厚",
+      "en": "New: thickest",
+      "color": "blue",
+      "at": "start+6",
+      "until": "use-2",
+      "cut": true
+     },
+     {
+      "part": "gW4A",
+      "text": "太薄：淘汰",
+      "en": "Too thin: retired",
+      "color": "amber",
+      "at": "out-4",
+      "until": "s8:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-thin",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "每磨一次，就薄一點",
+      "tag": "數位時代（業者說法）；示意",
+      "t": {
+       "thin": {
+        "at": "thin"
+       },
+       "use": {
+        "at": "use"
+       },
+       "n": {
+        "at": "n"
+       },
+       "out": {
+        "at": "out"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.7,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "台灣有昇陽半，產能全球數一數二。中砂是做砂輪起家的，再生占它營收大約一半。辛耘代理設備，也自己做再生。",
+   "tts": "台灣有昇陽半，產能全球數一數二。中砂是做砂輪起家的，再生占它營收大約一半。辛耘代理設備，也自己做再生。",
+   "subtitle": {
+    "zh": "台灣有昇陽半\n產能全球數一數二\n中砂是做砂輪起家的\n再生占它營收\n大約一半\n辛耘代理設備\n也自己做再生",
+    "en": "In Taiwan, PSI | ranks near the top in global capacity. | Kinik started with grinding wheels; | reclaim makes up | about half its revenue. | Scientech distributes equipment | and does its own reclaim too."
+   },
+   "keywords": [
+    "昇陽半",
+    "中砂",
+    "辛耘"
+   ],
+   "cues": [
+    {
+     "id": "psi",
+     "text": "昇陽半"
+    },
+    {
+     "id": "cap",
+     "text": "數一數二"
+    },
+    {
+     "id": "kinik",
+     "text": "中砂"
+    },
+    {
+     "id": "wheel",
+     "text": "砂輪"
+    },
+    {
+     "id": "half",
+     "text": "一半"
+    },
+    {
+     "id": "sci",
+     "text": "辛耘"
+    },
+    {
+     "id": "self",
+     "text": "自己做再生"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "聯合報、工商時報、財訊報導；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tw",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 209.0,
+      "y": 1.4,
+      "d": 40,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "hFabA",
+      "text": "再生廠（示意）",
+      "en": "Reclaim plant (illustrative)",
+      "color": "blue",
+      "at": "psi",
+      "until": "kinik-2",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-tw",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "台灣的再生晶圓廠",
+      "tag": "媒體報導；截至 2026/11/28",
+      "t": {
+       "psi": {
+        "at": "psi"
+       },
+       "cap": {
+        "at": "cap"
+       },
+       "kinik": {
+        "at": "kinik"
+       },
+       "wheel": {
+        "at": "wheel"
+       },
+       "half": {
+        "at": "half"
+       },
+       "sci": {
+        "at": "sci"
+       },
+       "self": {
+        "at": "self"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 10.0,
+   "holdSec": 0.8,
+   "headSec": 0.3,
+   "pauseAfter": 0.8
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "因為晶圓不能沾灰塵，來回運送全靠密封盒。下一集看光罩盒與晶圓載具。留言再生晶圓，拿完整資料。",
+   "tts": "因為晶圓不能沾灰塵，來回運送全靠密封盒。下一集看光照盒與晶圓載具。留言再生晶圓，拿完整資料。",
+   "subtitle": {
+    "zh": "因為晶圓不能沾灰塵\n來回運送\n全靠密封盒\n下一集看\n光罩盒與晶圓載具\n留言再生晶圓\n拿完整資料",
+    "en": "Because wafers can't touch dust, | every trip back and forth | relies on sealed boxes. | Next episode: | mask pods and wafer carriers. | Comment \"reclaim\" | for the full notes."
+   },
+   "keywords": [
+    "灰塵",
+    "密封盒",
+    "光罩盒"
+   ],
+   "cues": [
+    {
+     "id": "dust",
+     "text": "灰塵"
+    },
+    {
+     "id": "move",
+     "text": "來回運送"
+    },
+    {
+     "id": "box",
+     "text": "密封盒"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "pod",
+     "text": "光罩盒"
+    },
+    {
+     "id": "kw",
+     "text": "留言再生晶圓"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 240,
+      "y": 1.4,
+      "d": 30,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "nDust",
+      "at": "start-10",
+      "ramp": 8,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nDoorA",
+      "text": "門關上：灰塵進不去",
+      "en": "Door shut: dust stays out",
+      "color": "amber",
+      "at": "dust+4",
+      "until": "move-2",
+      "cut": true
+     },
+     {
+      "part": "nBoxA",
+      "text": "密封盒",
+      "en": "Sealed wafer box",
+      "color": "blue",
+      "at": "box",
+      "until": "s10:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "reclaim-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：光罩盒與晶圓載具",
+      "tag": "留言「再生晶圓」",
+      "t": {
+       "dust": {
+        "at": "dust"
+       },
+       "move": {
+        "at": "move"
+       },
+       "box": {
+        "at": "box"
+       },
+       "next": {
+        "at": "next"
+       },
+       "pod": {
+        "at": "pod"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.0,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "光罩盒與晶圓載具",
+     "trail": [
+      "再生晶圓：測試片磨掉一層再用"
+     ],
+     "comment": "再生晶圓",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
