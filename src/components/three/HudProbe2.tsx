@@ -1,7 +1,7 @@
 // 2026/11/27 tech-probe2：探針卡-2 誰在做（系列 2 第 22 集收尾）的 2D 示意卡（overlay `section` 的 kind 以 "probe2-" 開頭，Hud.tsx 的 HudSection 轉過來）。
 //   probe2-hook 接上集：一張卡好幾萬根針，誰做得出來｜probe2-ff 少數幾家主導、FormFactor 探針卡約占 2025 營收八成｜probe2-pin 一萬個圖釘壓進軟木板：高度差、壓不到、針彈性超壓｜
 //   probe2-mpi 台灣旺矽：垂直式與懸臂式（公司說法，媒體轉述）｜probe2-chpt 中華精測：探針卡＋測試板，客戶多為手機與 AI 晶片大廠（媒體）｜
-//   probe2-wear 像鉛筆越寫越短：耗材、清針、換針｜probe2-ai AI 晶片腳數多、間距小，台廠追趕（TrendForce）｜probe2-recap 系列 2 收尾：設備、材料、廠務、測試｜probe2-next 系列 3 預告＋留言關鍵字。
+//   probe2-wear 像鉛筆越寫越短：耗材、清針、換針｜probe2-ai AI 晶片腳數多、間距小，台廠追趕（TrendForce）｜probe2-recap 系列 2 收尾：設備、材料、廠務、測試｜probe2-next 下一集（M1 成熟製程代工）預告＋留言關鍵字。
 // 全部示意：不標針數、針壓、壽命、市占百分比；只放 research.md 查證過的說法。結構一開始就畫出，念到時該處亮起；時間全部來自 script.json 的 t（cue）。
 // 排版原則（card-overlap.mjs 檢查）：內容從 CARD_CONTENT_TOP 以下；字不放進會動的圖形範圍；字 ≥30px；字離圖形 ≥6px。
 // 公司 LOGO：FormFactor、旺矽、中華精測的官方原檔，Wikimedia Commons 查無、官網與維基百科本環境連不上（見 videos/tech-probe2/assets.md），一律白底深色文字名牌（不仿商標）＋國旗；國旗與名牌 100% 不透明（不放進 opacity 群組）。
@@ -243,21 +243,29 @@ const Recap: React.FC<P> = ({ o, f, k }) => {
   );
 };
 
-// ── probe2-next：下一個系列：晶片往下游走；第一集：晶圓切割與薄化；留言「探針卡廠」 ──
+// ── probe2-next：下一集預告（12/25 改接 M1 成熟與特殊製程代工）：測完知道哪些是好晶片 → 每顆都要最先進？→ 下一集成熟製程代工；留言「探針卡廠」 ──
+// 左側小圖：測完的晶圓，念到「好的」時好晶粒亮綠、壞晶粒打紅叉；念到「最先進」時只框出中間一小塊（暗示不是每顆都要最先進）
+const NEXT_BAD = new Set(["0,2", "2,0", "3,4", "4,1", "1,4"]);
 const Next: React.FC<P> = ({ o, f, k }) => {
-  const W = o.w ?? 952, Hh = o.h ?? 330, nx = on(f, T(o, "next")), dn = on(f, T(o, "down")), ep = on(f, T(o, "ep")), dc = on(f, T(o, "dice")), kw = on(f, T(o, "kw"));
-  const cx = 150, cy = CT + 128;
+  const W = o.w ?? 952, Hh = o.h ?? 330, ts = on(f, T(o, "tested")), gd = on(f, T(o, "good")), ad = on(f, T(o, "adv")), ep = on(f, T(o, "ep")), mt = on(f, T(o, "mature")), kw = on(f, T(o, "kw"));
+  const cx = 150, cy = CT + 128, s = 24, n = 5, x0 = cx - (n * s) / 2, y0 = cy - (n * s) / 2;
+  const dies: React.ReactNode[] = [];
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
+    if ((r === 0 || r === n - 1) && (c === 0 || c === n - 1)) continue;
+    const bad = NEXT_BAD.has(`${r},${c}`), x = x0 + c * s, y = y0 + r * s;
+    dies.push(<rect key={`d${r}${c}`} x={x + 2} y={y + 2} width={s - 4} height={s - 4} fill={gd > 0.5 ? (bad ? "#F3C9C1" : OK) : "#9FC3EF"} stroke="#FFFFFF" strokeWidth={1.5} />);
+    if (bad && gd > 0.5) dies.push(<path key={`x${r}${c}`} d={`M${x + 6} ${y + 6} L${x + s - 6} ${y + s - 6} M${x + s - 6} ${y + 6} L${x + 6} ${y + s - 6}`} stroke={RED} strokeWidth={3.5} />);
+  }
   return (
     <Card o={o} k={k} W={W} Hh={Hh}>
       <svg width={W} height={Hh} style={{ position: "absolute", inset: 0 }}>
-        <circle cx={cx} cy={cy} r={110} fill="#D6DCE6" stroke={H.text2} strokeWidth={3} opacity={0.4 + 0.6 * dn} />
-        <circle cx={cx} cy={cy} r={92} fill="#9FC3EF" opacity={0.4 + 0.6 * dn} />
-        <circle cx={cx} cy={cy} r={68} fill="#3C4E7A" opacity={0.4 + 0.6 * dn} />
-        {[-2, -1, 0, 1, 2].map((i) => <line key={`a${i}`} x1={cx - 62} y1={cy + i * 22} x2={cx + 62} y2={cy + i * 22} stroke="#FFFFFF" strokeWidth={dc > 0.5 ? 3 : 1.5} opacity={0.5 + 0.5 * dc} />)}
-        {[-2, -1, 0, 1, 2].map((i) => <line key={`b${i}`} x1={cx + i * 22} y1={cy - 62} x2={cx + i * 22} y2={cy + 62} stroke="#FFFFFF" strokeWidth={dc > 0.5 ? 3 : 1.5} opacity={0.5 + 0.5 * dc} />)}
+        <circle cx={cx} cy={cy} r={100} fill="#D6DCE6" stroke={H.text2} strokeWidth={3} />
+        <circle cx={cx} cy={cy} r={86} fill="#3C4E7A" opacity={0.4 + 0.6 * ts} />
+        {dies}
+        <rect x={x0 + s} y={y0 + s} width={s} height={s} fill="none" stroke={H.amber} strokeWidth={5} opacity={ad} />
         <Sep x={300} />
-        <Row x={326} y={CT + 52} t="下一個系列：晶片往下游走" c={H.text2} a={Math.max(nx, dn)} />
-        <Row x={326} y={CT + 118} t="第一集：晶圓切割與薄化" c={BLUE} a={Math.max(ep, dc)} />
+        <Row x={326} y={CT + 52} t="測完：知道哪些是好晶片" c={OK} a={Math.max(ts, gd)} />
+        <Row x={326} y={CT + 118} t="下一集：成熟製程代工" c={BLUE} a={Math.max(ep, mt)} />
         <Row x={326} y={CT + 184} t="留言「探針卡廠」拿完整資料" c={H.amber} a={kw} />
       </svg>
     </Card>

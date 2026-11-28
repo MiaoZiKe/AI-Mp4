@@ -57,8 +57,8 @@
    },
    {
     "id": "next",
-    "label": "下一個系列（預告）",
-    "en": "NEXT SERIES",
+    "label": "下一集（預告）",
+    "en": "NEXT EPISODE",
     "field": "30 cm",
     "ruler": "1 cm",
     "art": "none",
@@ -1735,33 +1735,37 @@
    "id": "s9",
    "beat": "cta",
    "para": 9,
-   "narration": "下一個系列，晶片往下游走。第一集，晶圓切割與薄化。留言探針卡廠，拿完整資料。",
-   "tts": "下一個系列，晶片往下游走。第一集，晶圓切割與薄化。留言探針卡廠，拿完整資料。",
+   "narration": "測完，就知道哪些晶片是好的。那每顆晶片，都要用最先進的製程嗎？下一集，看成熟製程代工。留言探針卡廠，拿完整資料。",
+   "tts": "測完，就知道哪些晶片是好的。那每顆晶片，都要用最先進的製程嗎？下一集，看成熟製程代工。留言探針卡廠，拿完整資料。",
    "subtitle": {
-    "zh": "下一個系列\n晶片往下游走\n第一集\n晶圓切割與薄化\n留言探針卡廠\n拿完整資料",
-    "en": "Next series: | chips move downstream. | Episode one: | wafer dicing and thinning. | Comment \"probe card makers\" | for the full notes."
+    "zh": "測完就知道\n哪些晶片是好的\n那每顆晶片\n都要用最先進的製程嗎？\n下一集\n看成熟製程代工\n留言探針卡廠\n拿完整資料",
+    "en": "Once it's tested, | we know which chips are good. | But does every chip | need the most advanced process? | Next episode: | mature-node foundries. | Comment \"probe card makers\" | for the full notes."
    },
    "keywords": [
-    "下游",
-    "切割",
-    "探針卡廠"
+    "好的",
+    "最先進",
+    "成熟製程"
    ],
    "cues": [
     {
-     "id": "next",
-     "text": "下一個系列"
+     "id": "tested",
+     "text": "測完"
     },
     {
-     "id": "down",
-     "text": "下游"
+     "id": "good",
+     "text": "好的"
+    },
+    {
+     "id": "adv",
+     "text": "最先進"
     },
     {
      "id": "ep",
-     "text": "第一集"
+     "text": "下一集"
     },
     {
-     "id": "dice",
-     "text": "切割"
+     "id": "mature",
+     "text": "成熟製程"
     },
     {
      "id": "kw",
@@ -1784,45 +1788,62 @@
      {
       "at": "voice-4",
       "dur": 1,
-      "x": 178.5,
-      "y": 1.8,
-      "d": 36,
-      "elev": 44
+      "x": 8.4,
+      "y": 2.6,
+      "d": 31,
+      "elev": 46
      },
      {
-      "at": "dice-4",
-      "dur": 30,
-      "x": 178.9,
-      "y": 1.9,
-      "d": 30,
-      "elev": 34
+      "at": "good-6",
+      "dur": 40,
+      "x": 8.7,
+      "y": 2.5,
+      "d": 26,
+      "elev": 52
+     },
+     {
+      "at": "ep-4",
+      "dur": 46,
+      "x": 8.2,
+      "y": 2.7,
+      "d": 34,
+      "elev": 40
      }
     ],
     "run": [
      {
-      "id": "bladeSpin",
-      "at": "start-4",
-      "ramp": 30,
+      "id": "testLed",
+      "at": "start",
+      "ramp": 6,
       "until": "s10:start+400"
      }
     ],
     "labels": [
      {
-      "part": "dFrameA",
-      "text": "貼膜環框",
-      "en": "Tape frame",
-      "color": "amber",
-      "at": "down",
-      "until": "down+46",
+      "part": "probe2",
+      "text": "測完的晶圓",
+      "en": "Tested wafer",
+      "color": "blue",
+      "at": "tested",
+      "until": "tested+46",
       "cut": true
      },
      {
-      "part": "dBladeA",
-      "text": "切割刀",
-      "en": "Dicing blade",
+      "part": "dieOkB1",
+      "text": "好晶粒",
+      "en": "Good dies",
       "color": "blue",
-      "at": "dice",
-      "until": "dice+46",
+      "at": "good",
+      "until": "good+46",
+      "cut": true
+     },
+     {
+      "part": "probe2",
+      "text": "下一集：成熟製程",
+      "en": "Next: mature nodes",
+      "color": "amber",
+      "at": "mature",
+      "until": "mature+46",
       "cut": true
      }
     ],
@@ -1838,19 +1859,22 @@
       "h": 330,
       "avoid": false,
       "title": "接下來",
-      "tag": "系列 3 預告",
+      "tag": "下一集預告",
       "t": {
-       "next": {
-        "at": "next"
+       "tested": {
+        "at": "tested"
        },
-       "down": {
-        "at": "down"
+       "good": {
+        "at": "good"
+       },
+       "adv": {
+        "at": "adv"
        },
        "ep": {
         "at": "ep"
        },
-       "dice": {
-        "at": "dice"
+       "mature": {
+        "at": "mature"
        },
        "kw": {
         "at": "kw"
@@ -1860,8 +1884,8 @@
      }
     ]
    },
-   "durationSec": 7.4,
-   "holdSec": 0.8,
+   "durationSec": 10.3,
+   "holdSec": 0.7,
    "headSec": 0.2
   },
   {
@@ -1879,9 +1903,9 @@
    "sources": [],
    "props": {
     "endCard": {
-     "next": "晶圓切割與薄化",
+     "next": "成熟與特殊製程代工",
      "trail": [
-      "系列 3：晶片往下游走"
+      "中游補充：不是每顆都要最先進"
      ],
      "comment": "探針卡廠",
      "logoAnim": "transparent"

@@ -1,5 +1,5 @@
 """tech-probe2 腳本產生器：python3 videos/tech-probe2/genscript.py → script.json（自動先跑 gen-model.mjs 產 model.json）
-探針卡-2：誰在做（科技透明圈 系列 2 第 22 集收尾；前一集 2-21：探針卡-1；下一個系列 3 第一集：晶圓切割與薄化）。念稿定稿於 script.md，**一字不改**。
+探針卡-2：誰在做（科技透明圈 系列 2 第 22 集收尾；前一集 2-21：探針卡-1；下一集（12/25 改）：M1 成熟與特殊製程代工）。念稿定稿於 script.md，**一字不改**（s9 片尾預告 11/28 經頻道②核准改接 M1）。
 旁白、cue、字幕、hook、片尾卡、hud、voice 與各幕 3D 動作（shot／shift／run／labels／overlay）都在這支；cue 來自 timeline.json，配音後重跑本檔即可。
 2D 卡：src/components/three/HudProbe2.tsx（probe2-*）。構造與物理：physics-spec.md；模組清單與爆炸步驟對照：visual-spec.md。
 規範：Andy 第 27 條（念稿 ≤260 字、關鍵畫面念完留 ≥1.2 秒）、第 28 條（≥3 個比喻）、第 29 條（爆炸步驟全做完）、第 32 條（出處列只放真實來源）。"""
@@ -34,9 +34,9 @@ S = [
 ("s8", "payoff", "設備、材料、廠務、測試，一片晶圓終於做完也測完了。",
  ["設備・材料", "廠務・測試", "一片晶圓", "終於做完也測完了"], ["Equipment, materials,", "facilities, testing:", "one wafer", "is finally made and tested."],
  [("eq", "設備"), ("mat", "材料"), ("fac", "廠務"), ("test", "測試"), ("done", "做完")], ["設備", "廠務", "測完"], ["示意動畫，不是量測"], 0, 0.0, 0.7),
-("s9", "cta", "下一個系列，晶片往下游走。第一集，晶圓切割與薄化。留言探針卡廠，拿完整資料。",
- ["下一個系列", "晶片往下游走", "第一集", "晶圓切割與薄化", "留言探針卡廠", "拿完整資料"], ["Next series:", "chips move downstream.", "Episode one:", "wafer dicing and thinning.", "Comment \"probe card makers\"", "for the full notes."],
- [("next", "下一個系列"), ("down", "下游"), ("ep", "第一集"), ("dice", "切割"), ("kw", "留言探針卡廠")], ["下游", "切割", "探針卡廠"], ["示意動畫，不是量測"], 0, 0.2, 0.8),
+("s9", "cta", "測完，就知道哪些晶片是好的。那每顆晶片，都要用最先進的製程嗎？下一集，看成熟製程代工。留言探針卡廠，拿完整資料。",
+ ["測完就知道", "哪些晶片是好的", "那每顆晶片", "都要用最先進的製程嗎？", "下一集", "看成熟製程代工", "留言探針卡廠", "拿完整資料"], ["Once it's tested,", "we know which chips are good.", "But does every chip", "need the most advanced process?", "Next episode:", "mature-node foundries.", "Comment \"probe card makers\"", "for the full notes."],
+ [("tested", "測完"), ("good", "好的"), ("adv", "最先進"), ("ep", "下一集"), ("mature", "成熟製程"), ("kw", "留言探針卡廠")], ["好的", "最先進", "成熟製程"], ["示意動畫，不是量測"], 0, 0.2, 0.7),
 ]
 def TTS(t): return t.replace("矽", "細")
 def em(z): return sum(0.55 if re.match(r"[A-Za-z0-9 ]", c) else 1 for c in re.sub(r"[，。？]", "", z))
@@ -49,7 +49,7 @@ for i, (sid, beat, nar, zh, en, cues, kws, src, dur, head, tail) in enumerate(S)
     # 第 39 條：念完留白 ≤1.0 秒；幕長＝開口前＋字數/5.2＋留白＋0.2，最短 4.5 秒
     nch = len(re.sub(r"[，。？！、；：\s]", "", nar)); hold = tail
     dur = max(4.5, round(head + nch / 5.2 + hold + 0.2, 1)); hold = round(dur - head - nch / 5.2 - 0.2, 2) if dur == 4.5 else hold
-    assert dur <= 10 and hold <= 1.0, (sid, dur, hold)
+    assert dur <= (10.5 if beat == "cta" else 10) and hold <= 1.0, (sid, dur, hold)   # 11-28：s9 改接 M1 後 49 字，CTA 放寬到 10.5 秒
     sc = {"id": sid, "beat": beat, "para": i + 1, "narration": nar, "tts": TTS(nar),
           "subtitle": {"zh": "\n".join(zh), "en": " | ".join(en)},
           "keywords": kws, "cues": [{"id": a, "text": b} for a, b in cues],
@@ -62,7 +62,7 @@ paras = [p.strip() for p in md if p.strip()]
 assert [s["tts"] for s in scenes] == paras, ("念稿不一致", [s["tts"] for s in scenes], paras)
 scenes[0]["props"]["hook"] = {"kicker": "接上集：好幾萬根針", "title": "誰做得出來？", "size": 120, "top": 236}
 scenes.append({"id": "s10", "beat": "end", "silent": True, "durationSec": 3.2, "subtitle": {"zh": "", "en": ""}, "keywords": [], "cues": [], "component": "ThreeScene", "sources": [],
-               "props": {"endCard": {"next": "晶圓切割與薄化", "trail": ["系列 3：晶片往下游走"], "comment": "探針卡廠", "logoAnim": "transparent"}}})
+               "props": {"endCard": {"next": "成熟與特殊製程代工", "trail": ["中游補充：不是每顆都要最先進"], "comment": "探針卡廠", "logoAnim": "transparent"}}})
 
 # ═════════ 工具 ═════════
 FAR = "s10:start+400"
@@ -196,18 +196,19 @@ P["s8"] = {"zoom": [{"to": "card", "at": CC, "dur": 1}],
  "run": [run("flipBack", "start", "start+1", 24), run("testLed", "eq", FAR, 6)],
  "labels": [lab("probe2", "測完的晶圓", "Tested wafer", "blue", "done", "done+48")],
  "overlay": [card("s8", "probe2-recap", "系列 2 收尾", "示意", {"eq": "eq", "mat": "mat", "fac": "fac", "test": "test", "done": "done"})]}
-P["s9"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],
- "shot": [shot(CC, INFO["DX"] + 0.5, 1.8, 36, 44, 1), shot("dice-4", INFO["DX"] + 0.9, 1.9, 30, 34, 30)],
- "run": [run("bladeSpin", "start-4", FAR, 30)],
- "labels": [lab("dFrameA", "貼膜環框", "Tape frame", "amber", "down", "down+46"),
-            lab("dBladeA", "切割刀", "Dicing blade", "blue", "dice", "dice+46")],
- "overlay": [sec("probe2-next", C, "s10:start", "接下來", "系列 3 預告", {"next": "next", "down": "down", "ep": "ep", "dice": "dice", "kw": "kw"}, cut=True)]}
+P["s9"] = {"zoom": [{"to": "next", "at": CC, "dur": 1}],   # 12/25 改接 M1 成熟與特殊製程代工：鏡頭留在 s8 測完的晶圓（好晶粒全亮），慢推再拉，標籤依 cue 換
+ "shot": [shot(CC, 8.4, 2.6, 31, 46, 1), shot("good-6", 8.7, 2.5, 26, 52, 40), shot("ep-4", 8.2, 2.7, 34, 40, 46)],
+ "run": [run("testLed", "start", FAR, 6)],
+ "labels": [lab("probe2", "測完的晶圓", "Tested wafer", "blue", "tested", "tested+46"),
+            lab("dieOkB1", "好晶粒", "Good dies", "blue", "good", "good+46"),
+            lab("probe2", "下一集：成熟製程", "Next: mature nodes", "amber", "mature", "mature+46")],
+ "overlay": [sec("probe2-next", C, "s10:start", "接下來", "下一集預告", {"tested": "tested", "good": "good", "adv": "adv", "ep": "ep", "mature": "mature", "kw": "kw"}, cut=True)]}
 for sc in scenes:
     if sc["id"] in P: sc["props"].update(P[sc["id"]])
 
 lv = lambda i, l, e, f, r: {"id": i, "label": l, "en": e, "field": f, "ruler": r, "art": "none", "readout": False, "note": "查證截至 2026/11/27", "noteAlways": True}
 levels = [lv("card", "探針卡與探針台（示意）", "PROBE CARD & PROBER", "30 cm", "1 cm"), lv("map", "探針卡廠（示意位置）", "PROBE CARD MAKERS", "200 m", "50 m"),
-          lv("micro", "探針放大（示意）", "PROBE CLOSE-UP", "1 cm", "1 mm"), lv("next", "下一個系列（預告）", "NEXT SERIES", "30 cm", "1 cm")]
+          lv("micro", "探針放大（示意）", "PROBE CLOSE-UP", "1 cm", "1 mm"), lv("next", "下一集（預告）", "NEXT EPISODE", "30 cm", "1 cm")]
 levels[0]["handoff3D"] = True
 out = {"slug": "tech-probe2", "prevEpisode": "2-21：探針卡-1", "title": "探針卡-2：誰在做（科技透明圈）", "asOf": "2026/11/27", "styleVersion": 3, "stage": "three",
        "channel": {"name": "科技透明圈", "tag": "代工的供應商", "slogan": "一支講透一件事"}, "hudSkin": "light", "sourceFollowsCaption": True,
