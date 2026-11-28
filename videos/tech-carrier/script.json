@@ -693,7 +693,7 @@
      },
      {
       "layer": "gOshell",
-      "at": "s7:euv-4",
+      "at": "s7:pod+2",
       "until": "s11:start+400",
       "dur": 22,
       "dy": 1.9
@@ -721,7 +721,7 @@
      },
      {
       "layer": "gIc",
-      "at": "s7:open+6",
+      "at": "s7:open+8",
       "until": "s11:start+400",
       "dur": 14,
       "dy": 1
@@ -857,8 +857,8 @@
       "text": "前門＋四周密封條",
       "en": "Front door + seal",
       "color": "amber",
-      "at": "foup+2",
-      "until": "foup+48",
+      "at": "foup-2",
+      "until": "foup+44",
       "cut": true
      },
      {
@@ -866,8 +866,8 @@
       "text": "盒殼＋頂部法蘭往上抬",
       "en": "Shell + top flange lift off",
       "color": "blue",
-      "at": "foup+50",
-      "until": "n25+26",
+      "at": "foup+46",
+      "until": "n25+18",
       "cut": true,
       "xy": [
        420,
@@ -879,7 +879,7 @@
       "text": "25 片晶圓＋兩側槽齒",
       "en": "25 wafers in side slots",
       "color": "amber",
-      "at": "n25+28",
+      "at": "n25+20",
       "until": "s3:start",
       "cut": true,
       "xy": [
@@ -987,23 +987,14 @@
      },
      {
       "part": "cPinA",
-      "text": "機台三顆圓頭銷",
-      "en": "Three round-head pins",
+      "text": "三顆圓頭銷 → 一放就滑到定位",
+      "en": "Three pins → it slides into place",
       "color": "amber",
       "at": "groove+43",
-      "until": "align+5",
-      "cut": true
-     },
-     {
-      "part": "cFoupA",
-      "text": "一放下：自己滑到定位",
-      "en": "Set down: it slides into place",
-      "color": "blue",
-      "at": "align+7",
       "until": "s4:start",
       "cut": true,
       "xy": [
-       700,
+       540,
        330
       ]
      }
@@ -1104,7 +1095,7 @@
       "elev": 6
      },
      {
-      "at": "open-22",
+      "at": "open-20",
       "dur": 18,
       "x": 90.5,
       "y": 4.0,
@@ -1126,8 +1117,8 @@
       "text": "天車（OHT）：天花板軌道",
       "en": "Overhead hoist transport (OHT)",
       "color": "blue",
-      "at": "rail+2",
-      "until": "hang-4",
+      "at": "rail",
+      "until": "rail+46",
       "cut": true
      },
      {
@@ -1135,25 +1126,16 @@
       "text": "承載埠（Load port）",
       "en": "Load port",
       "color": "amber",
-      "at": "hang-2",
-      "until": "open-24",
-      "cut": true
-     },
-     {
-      "part": "dDoorA",
-      "text": "兩扇門一起開",
-      "en": "Both doors open together",
-      "color": "blue",
-      "at": "open-2",
-      "until": "air-6",
+      "at": "rail+48",
+      "until": "open-22",
       "cut": true
      },
      {
       "part": "dArmA",
-      "text": "手臂取片",
-      "en": "Robot picks a wafer",
-      "color": "amber",
-      "at": "air-4",
+      "text": "兩扇門一起開 → 手臂取片",
+      "en": "Doors open together → robot picks a wafer",
+      "color": "blue",
+      "at": "open-2",
       "until": "s5:start-6",
       "cut": true
      }
@@ -1340,7 +1322,7 @@
       "en": "A FOUP waiting on the shelf",
       "color": "blue",
       "at": "voice-2",
-      "until": "n2+2",
+      "until": "n2+15",
       "cut": true
      },
      {
@@ -1348,8 +1330,8 @@
       "text": "盒底進氣嘴：灌氮氣",
       "en": "Nitrogen in through the base",
       "color": "amber",
-      "at": "n2+4",
-      "until": "jar-6",
+      "at": "n2+17",
+      "until": "jar-2",
       "cut": true
      },
      {
@@ -1357,7 +1339,7 @@
       "text": "閥件＋流量計控制氮氣",
       "en": "Valve + flowmeter",
       "color": "blue",
-      "at": "jar-2",
+      "at": "jar",
       "until": "s6:start",
       "cut": true
      }
@@ -1605,13 +1587,13 @@
     "run": [
      {
       "id": "gPumpOut",
-      "at": "two+42",
+      "at": "two+40",
       "ramp": 14,
-      "until": "open+2"
+      "until": "open+4"
      },
      {
       "id": "gNeedle",
-      "at": "two+42",
+      "at": "two+40",
       "ramp": 30,
       "until": "s8:start+20"
      }
@@ -1622,8 +1604,8 @@
       "text": "外盒（高分子）：機台外打開",
       "en": "Outer pod opens outside the tool",
       "color": "blue",
-      "at": "euv-4",
-      "until": "two-6",
+      "at": "pod",
+      "until": "pod+46",
       "cut": true
      },
      {
@@ -1631,8 +1613,8 @@
       "text": "金屬內盒：送進真空腔、關門抽真空",
       "en": "Inner pod in, door shut, pumped down",
       "color": "amber",
-      "at": "two-4",
-      "until": "vac+21",
+      "at": "pod+48",
+      "until": "vac+6",
       "cut": true
      },
      {
@@ -1640,7 +1622,7 @@
       "text": "真空裡才開：光罩（圖案朝下）",
       "en": "Opened only in vacuum: the mask",
       "color": "blue",
-      "at": "vac+23",
+      "at": "vac+8",
       "until": "s8:start",
       "cut": true
      }
@@ -2041,7 +2023,7 @@
      },
      {
       "id": "nHotGlow",
-      "at": "bad+46",
+      "at": "bad+34",
       "ramp": 4,
       "until": "s11:start"
      }

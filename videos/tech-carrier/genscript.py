@@ -152,11 +152,11 @@ move("dK", "s4:air+8", FAR, 20, dx=-INFO["D_EXT"])
 # r1（機構必改 7）：open−14 起推近；天車與天花板已在畫面上方之外，淡出（版面檢查才不會把畫面外的天車算進主素材），下一幕前回來
 for L in ["dCeil", "dVeh"] + GRIPL + BELTL: VIS.append(hid(L, "s4:open-20", "s5:voice+2", 6))
 # ── 站 G：s7 外盒殼往上（在機台外打開）→ 金屬內盒沿軌道送進真空腔 → 艙門關 → 內盒上蓋抬起一半、光罩留在底板 ──
-move("gOshell", "s7:euv-4", FAR, 22, dy=INFO["G_OUT"])
+move("gOshell", "s7:pod+2", FAR, 22, dy=INFO["G_OUT"])
 # r1（物理必改 4、機構必改 2）：內盒到位 → 艙門關好 → 抽真空（粒子被抽進泵、壓力錶指針轉）→ 才開內盒上蓋（抬 1.0）
 for L in ["gIn", "gIc"]: move(L, "s7:two+2", FAR, 26, dx=INFO["G_IN"])
 move("gGate", T0, "s7:two+30", 10, dy=INFO["G_GATE"])
-move("gIc", "s7:open+6", FAR, 14, dy=INFO["G_CUP"])
+move("gIc", "s7:open+8", FAR, 14, dy=INFO["G_CUP"])
 
 # ═════ 各幕鏡頭（看向 x, y, 距離, 仰角）═════
 # 鏡頭依本站要看到的所有物件（含移動終點）的高度範圍算：主素材整個落在字幕上方的 2D 卡之上（第 2 條反覆扣分：主體被畫面邊切／被卡蓋住）
@@ -194,31 +194,29 @@ P["s1"] = {"shot": [S_("start-30", AV, 1)], "shift": VIS,
  "overlay": [sec("carrier-hook", "start", nxt("s1"), "中游補充篇・M5", "示意", {"prev": "prev", "box": "box", "look": "look", "dust": "dust"}, cut=True)]}
 P["s2"] = {"zoom": [{"to": "foup", "at": CC, "dur": 1}],
  "shot": [S_(CC, BV, 1)],
- "labels": [lab("bDoorA", "前門＋四周密封條", "Front door + seal", "amber", "foup+2", "foup+48"),
-            lab("bShellA2", "盒殼＋頂部法蘭往上抬", "Shell + top flange lift off", "blue", "foup+50", "n25+26", xy=[420, 330]),
-            lab("bShellA", "25 片晶圓＋兩側槽齒", "25 wafers in side slots", "amber", "n25+28", "s3:start", xy=[400, 330])],
+ "labels": [lab("bDoorA", "前門＋四周密封條", "Front door + seal", "amber", "foup-2", "foup+44"),
+            lab("bShellA2", "盒殼＋頂部法蘭往上抬", "Shell + top flange lift off", "blue", "foup+46", "n25+18", xy=[420, 330]),
+            lab("bShellA", "25 片晶圓＋兩側槽齒", "25 wafers in side slots", "amber", "n25+20", "s3:start", xy=[400, 330])],
  "overlay": [card("s2", "carrier-drawer", "晶圓盒：前開門、一盒 25 片", "示意", {"foup": "foup", "door": "door", "n25": "n25", "drawer": "drawer"})]}
 P["s3"] = {"zoom": [{"to": "kc", "at": CC, "dur": 1}],
  "shot": [S_(CC, CV, 1)],
  "labels": [lab("cGrA", "盒底三道 V 形溝", "Three radial V-grooves", "blue", "groove-4", "groove+41"),
-            lab("cPinA", "機台三顆圓頭銷", "Three round-head pins", "amber", "groove+43", "align+5"),
-            lab("cFoupA", "一放下：自己滑到定位", "Set down: it slides into place", "blue", "align+7", "s4:start", xy=[700, 330])],
+            lab("cPinA", "三顆圓頭銷 → 一放就滑到定位", "Three pins → it slides into place", "amber", "groove+43", "s4:start", xy=[540, 330])],
  "overlay": [card("s3", "carrier-kc", "盒底：三道溝對三顆凸點", "示意（仰視）", {"groove": "groove", "pins": "pins", "align": "align"})]}
 P["s4"] = {"zoom": [{"to": "oht", "at": CC, "dur": 1}],
- "shot": [S_(CC, DV, 1), S_("open-22", DV2, 18)],
+ "shot": [S_(CC, DV, 1), S_("open-20", DV2, 18)],
  "run": [run("dFfuAir", "open-12", "s5:start", 8)],
- "labels": [lab("dOhtA", "天車（OHT）：天花板軌道", "Overhead hoist transport (OHT)", "blue", "rail+2", "hang-4"),
-            lab("dPortA", "承載埠（Load port）", "Load port", "amber", "hang-2", "open-24"),
-            lab("dDoorA", "兩扇門一起開", "Both doors open together", "blue", "open-2", "air-6"),
-            lab("dArmA", "手臂取片", "Robot picks a wafer", "amber", "air-4", "s5:start-6")],
+ "labels": [lab("dOhtA", "天車（OHT）：天花板軌道", "Overhead hoist transport (OHT)", "blue", "rail", "rail+46"),
+            lab("dPortA", "承載埠（Load port）", "Load port", "amber", "rail+48", "open-22"),
+            lab("dArmA", "兩扇門一起開 → 手臂取片", "Doors open together → robot picks a wafer", "blue", "open-2", "s5:start-6")],
  "overlay": [card("s4", "carrier-oht", "天車 → 承載埠 → 開門取片", "示意", {"rail": "rail", "ceil": "ceil", "hang": "hang", "door": "door", "open": "open", "air": "air"})]}
 P["s5"] = {"zoom": [{"to": "purge", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
  "run": [run("eN2Pipe", "n2-6", "s6:start", 6), run("eN2", "n2-2", "s6:start", 6),
          *[run(f"eM{i}", "n2+6", f"n2+{6 + int((1 - u0) * 30 / INFO['E_RATE']) - 2}", 2) for i, u0 in enumerate(INFO["E_U0"])]],
- "labels": [lab("eFoupA", "等待架上的晶圓盒", "A FOUP waiting on the shelf", "blue", "voice-2", "n2+2"),
-            lab("eN2A", "盒底進氣嘴：灌氮氣", "Nitrogen in through the base", "amber", "n2+4", "jar-6"),
-            lab("eGasA", "閥件＋流量計控制氮氣", "Valve + flowmeter", "blue", "jar-2", "s6:start")],
+ "labels": [lab("eFoupA", "等待架上的晶圓盒", "A FOUP waiting on the shelf", "blue", "voice-2", "n2+15"),
+            lab("eN2A", "盒底進氣嘴：灌氮氣", "Nitrogen in through the base", "amber", "n2+17", "jar-2"),
+            lab("eGasA", "閥件＋流量計控制氮氣", "Valve + flowmeter", "blue", "jar", "s6:start")],
  "overlay": [card("s5", "carrier-purge", "排隊時灌氮氣：趕走濕氣和氧氣", "示意", {"wait": "wait", "n2": "n2", "moist": "moist", "o2": "o2", "jar": "jar"})]}
 P["s6"] = {"zoom": [{"to": "fosb", "at": CC, "dur": 1}],
  "shot": [S_(CC, FV, 1)],
@@ -228,10 +226,10 @@ P["s6"] = {"zoom": [{"to": "fosb", "at": CC, "dur": 1}],
  "overlay": [card("s6", "carrier-egg", "出貨盒：防撞防震，像蛋盒", "示意", {"ship": "ship", "fosb": "fosb", "less": "less", "shock": "shock", "egg": "egg"})]}
 P["s7"] = {"zoom": [{"to": "pod", "at": CC, "dur": 1}],
  "shot": [S_(CC, GV, 1)],
- "run": [run("gPumpOut", "two+42", "open+2", 14), run("gNeedle", "two+42", "s8:start+20", 30)],
- "labels": [lab("gOutA", "外盒（高分子）：機台外打開", "Outer pod opens outside the tool", "blue", "euv-4", "two-6"),
-            lab("gInA", "金屬內盒：送進真空腔、關門抽真空", "Inner pod in, door shut, pumped down", "amber", "two-4", "vac+21"),
-            lab("gRetA", "真空裡才開：光罩（圖案朝下）", "Opened only in vacuum: the mask", "blue", "vac+23", "s8:start")],
+ "run": [run("gPumpOut", "two+40", "open+4", 14), run("gNeedle", "two+40", "s8:start+20", 30)],
+ "labels": [lab("gOutA", "外盒（高分子）：機台外打開", "Outer pod opens outside the tool", "blue", "pod", "pod+46"),
+            lab("gInA", "金屬內盒：送進真空腔、關門抽真空", "Inner pod in, door shut, pumped down", "amber", "pod+48", "vac+6"),
+            lab("gRetA", "真空裡才開：光罩（圖案朝下）", "Opened only in vacuum: the mask", "blue", "vac+8", "s8:start")],
  "overlay": [card("s7", "carrier-pod", "極紫外光光罩盒：兩層", "示意", {"mask": "mask", "pod": "pod", "euv": "euv", "two": "two", "vac": "vac", "open": "open"})]}
 P["s8"] = {"zoom": [{"to": "clean", "at": CC, "dur": 1}],
  "shot": [S_(CC, HV, 1)],
