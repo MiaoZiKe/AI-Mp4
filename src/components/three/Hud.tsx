@@ -67,6 +67,7 @@ import { MemfabSection } from "./HudMemfab";
 import { CompoundSection } from "./HudCompound";
 import { ReclaimSection } from "./HudReclaim";
 import { CarrierSection } from "./HudCarrier";
+import { FaSection } from "./HudFa";
 import { GlassSection } from "./HudGlass";
 import { MatureSection } from "./HudMature";
 import { PartsSection } from "./HudParts";
@@ -775,6 +776,7 @@ const HudSection: React.FC<{ o: Overlay3D; f: number; k: number; m: Model3D; s: 
   if (String((o as any).kind ?? "").startsWith("cp-")) return <CompoundSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-compound（HudCompound.tsx）
   if (String((o as any).kind ?? "").startsWith("reclaim-")) return <ReclaimSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-reclaim（HudReclaim.tsx）
   if (String((o as any).kind ?? "").startsWith("carrier-")) return <CarrierSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-carrier（HudCarrier.tsx）
+  if (String((o as any).kind ?? "").startsWith("fa-")) return <FaSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-fa（HudFa.tsx）
   if (String((o as any).kind ?? "").startsWith("ccl-")) return <CclSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-ccl（HudCcl.tsx）
   if (String((o as any).kind ?? "").startsWith("cuf-")) return <CufoilSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-cufoil（HudCufoil.tsx）
   if (String((o as any).kind ?? "").startsWith("glass-")) return <GlassSection o={o} f={f} k={k} m={m} s={s} />; // 2026/11/28 tech-glass（HudGlass.tsx）
