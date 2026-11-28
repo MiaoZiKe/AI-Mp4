@@ -1,0 +1,2458 @@
+{
+ "slug": "tech-fa",
+ "prevEpisode": "M5：光罩盒與晶圓載具",
+ "title": "材料分析與故障分析（科技透明圈）",
+ "asOf": "2026/11/28",
+ "styleVersion": 3,
+ "stage": "three",
+ "channel": {
+  "name": "科技透明圈",
+  "tag": "中游補充篇",
+  "slogan": "一支講透一件事"
+ },
+ "hudSkin": "light",
+ "sourceFollowsCaption": true,
+ "voice": {
+  "voiceName": "Iapetus",
+  "model": "gemini-2.5-flash-preview-tts",
+  "mode": "take",
+  "profile": "tech-b"
+ },
+ "hud": {
+  "levels": [
+   {
+    "id": "start",
+    "label": "故障晶片（示意）",
+    "en": "FAILED CHIP",
+    "field": "30 cm",
+    "ruler": "3 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true,
+    "handoff3D": true
+   },
+   {
+    "id": "loc",
+    "label": "微光顯微鏡定位（示意）",
+    "en": "FAULT ISOLATION",
+    "field": "2 m",
+    "ruler": "20 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "fib",
+    "label": "聚焦離子束雙束機（示意）",
+    "en": "DUAL-BEAM FIB",
+    "field": "3 m",
+    "ruler": "30 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "lam",
+    "label": "剖面與薄片（放大示意）",
+    "en": "LAMELLA",
+    "field": "20 µm",
+    "ruler": "2 µm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "tem",
+    "label": "穿透式電子顯微鏡（示意）",
+    "en": "TEM",
+    "field": "3 m",
+    "ruler": "30 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "eds",
+    "label": "成分分析 EDS（示意）",
+    "en": "EDS",
+    "field": "5 mm",
+    "ruler": "0.5 mm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "out",
+    "label": "送樣到第三方實驗室（示意）",
+    "en": "OUTSOURCED LAB",
+    "field": "100 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "tw",
+    "label": "台灣分析實驗室",
+    "en": "TAIWAN LABS",
+    "field": "100 m",
+    "ruler": "10 m",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   },
+   {
+    "id": "next",
+    "label": "晶圓切割（下一集）",
+    "en": "NEXT",
+    "field": "1 m",
+    "ruler": "10 cm",
+    "art": "none",
+    "readout": false,
+    "note": "查證截至 2026/11/28",
+    "noteAlways": true
+   }
+  ],
+  "theme": "dark",
+  "schematic": {
+   "text": "",
+   "zh": "示意，非特定廠牌實機"
+  },
+  "maxLabels": 4,
+  "smallPx": 30,
+  "layout": "fill",
+  "scanBand": 0.3
+ },
+ "cover": {
+  "title": [
+   "晶片壞在哪？",
+   "送實驗室找原因"
+  ],
+  "sub": "定位→切片→電子顯微鏡→成分分析",
+  "frame": 40
+ },
+ "sample": false,
+ "scenes": [
+  {
+   "id": "s1",
+   "beat": "hook",
+   "para": 1,
+   "narration": "前一集說晶片會壞，壞在哪，誰來找？交給第三方實驗室，像幫晶片看病的醫院。",
+   "tts": "前一集說晶片會壞，壞在哪，誰來找？交給第三方實驗室，像幫晶片看病的醫院。",
+   "subtitle": {
+    "zh": "前一集說晶片會壞\n壞在哪\n誰來找？\n交給第三方實驗室\n像幫晶片看病的醫院",
+    "en": "Last episode: chips still fail. | Where's the fault, | and who finds it? | A third-party lab, | like a hospital for chips."
+   },
+   "keywords": [
+    "前一集",
+    "第三方實驗室",
+    "醫院"
+   ],
+   "cues": [
+    {
+     "id": "prev",
+     "text": "前一集"
+    },
+    {
+     "id": "fail",
+     "text": "會壞"
+    },
+    {
+     "id": "q",
+     "text": "誰來找"
+    },
+    {
+     "id": "lab",
+     "text": "第三方實驗室"
+    },
+    {
+     "id": "hosp",
+     "text": "醫院"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "hook": {
+     "kicker": "接上集：光罩盒",
+     "title": "晶片壞在哪？",
+     "size": 96,
+     "top": 236
+    },
+    "shot": [
+     {
+      "at": "start-30",
+      "dur": 1,
+      "x": 0.2,
+      "y": 0.9,
+      "d": 21,
+      "elev": 30
+     },
+     {
+      "at": "lab+34",
+      "dur": 22,
+      "x": 0.6,
+      "y": 2.4,
+      "d": 56,
+      "elev": 14
+     }
+    ],
+    "shift": [
+     {
+      "layer": "aBase",
+      "at": "s2:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "aBoard",
+      "at": "s2:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "aChip",
+      "at": "s2:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "aFail",
+      "at": "s2:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "aLab",
+      "at": "s2:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bTable",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bTable",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bHot",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bHot",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bProbes",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bProbes",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bTips",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bTips",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bScope",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bScope",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bSmu",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bSmu",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bBoxBack",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bBoxBack",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bDoorL",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bDoorL",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bDoorR",
+      "at": "s1:start-40",
+      "until": "s2:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "bDoorR",
+      "at": "s3:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cBase",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cBase",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cChamber",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cChamber",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cStage",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cStage",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cDoor",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cDoor",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cEcol",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cEcol",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cIcol",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cIcol",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cGis",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cGis",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cCon",
+      "at": "s1:start-40",
+      "until": "s3:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "cCon",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBase",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBase",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBlock",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dBlock",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dLam",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dLam",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dSkinA",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dSkinA",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dSkinB",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dSkinB",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dGrid",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dGrid",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dWeldG",
+      "at": "s1:start-40",
+      "until": "s4:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "dWeldG",
+      "at": "s5:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eDesk",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eDesk",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eCam",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eCam",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eView",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eView",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eProj",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eProj",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eObj",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eObj",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eCond",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eCond",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eGun",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eGun",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eHv",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eHv",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eHolder",
+      "at": "s1:start-40",
+      "until": "s5:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "eHolder",
+      "at": "s6:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fBase",
+      "at": "s1:start-40",
+      "until": "s6:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fBase",
+      "at": "s7:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fSample",
+      "at": "s1:start-40",
+      "until": "s6:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fSample",
+      "at": "s7:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fPole",
+      "at": "s1:start-40",
+      "until": "s6:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fPole",
+      "at": "s7:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fEds",
+      "at": "s1:start-40",
+      "until": "s6:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "fEds",
+      "at": "s7:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gFab",
+      "at": "s1:start-40",
+      "until": "s7:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gFab",
+      "at": "s8:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gDes",
+      "at": "s1:start-40",
+      "until": "s7:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gDes",
+      "at": "s8:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gLab",
+      "at": "s1:start-40",
+      "until": "s7:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gLab",
+      "at": "s8:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gBoxA",
+      "at": "s1:start-40",
+      "until": "s7:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gBoxA",
+      "at": "s8:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gBoxB",
+      "at": "s1:start-40",
+      "until": "s7:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "gBoxB",
+      "at": "s8:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "hLabA",
+      "at": "s1:start-40",
+      "until": "s8:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "hLabA",
+      "at": "s9:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "hLabB",
+      "at": "s1:start-40",
+      "until": "s8:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "hLabB",
+      "at": "s9:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "nBase",
+      "at": "s1:start-40",
+      "until": "s9:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "nFrame",
+      "at": "s1:start-40",
+      "until": "s9:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "nSpindle",
+      "at": "s1:start-40",
+      "until": "s9:start-20",
+      "opacity": 0,
+      "dur": 2
+     },
+     {
+      "layer": "aLab",
+      "at": "s1:start-40",
+      "until": "s1:lab+46",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "aLab",
+      "at": "s2:start+20",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 10
+     },
+     {
+      "layer": "bBoxBack",
+      "at": "s2:bad-14",
+      "until": "s3:start+20",
+      "opacity": 0.2,
+      "dur": 10
+     },
+     {
+      "layer": "bDoorL",
+      "at": "s2:bad-14",
+      "until": "s3:start+20",
+      "opacity": 0.2,
+      "dur": 10
+     },
+     {
+      "layer": "bDoorR",
+      "at": "s2:bad-14",
+      "until": "s3:start+20",
+      "opacity": 0.2,
+      "dur": 10
+     },
+     {
+      "layer": "bHot",
+      "at": "s1:start-40",
+      "until": "s2:bad-6",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "bTips",
+      "at": "s1:start-40",
+      "until": "s2:pow+2",
+      "dur": 16,
+      "dy": 0.3
+     },
+     {
+      "layer": "cEcol",
+      "at": "s3:start+22",
+      "until": "s3:start+112",
+      "dur": 22,
+      "dy": 2.2
+     },
+     {
+      "layer": "cIcol",
+      "at": "s3:start+22",
+      "until": "s3:start+112",
+      "dur": 22,
+      "dx": -1.734,
+      "dy": 1.354
+     },
+     {
+      "layer": "cDoor",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.18,
+      "dur": 8
+     },
+     {
+      "layer": "cChamber",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cEcol",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cIcol",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cGis",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cBase",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "cCon",
+      "at": "s3:start+116",
+      "until": "s4:start+20",
+      "opacity": 0.25,
+      "dur": 10
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s1:start-40",
+      "until": "s4:start+16",
+      "dur": 18,
+      "dx": 2.2,
+      "dy": 2.0
+     },
+     {
+      "layer": "dLam",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": -3.27,
+      "dy": 0.9
+     },
+     {
+      "layer": "dSkinA",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": -3.27,
+      "dy": 0.9
+     },
+     {
+      "layer": "dSkinB",
+      "at": "s4:start+20",
+      "until": "s10:start+400",
+      "dur": 30,
+      "dx": -3.27,
+      "dy": 0.9
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s4:start+20",
+      "until": "s4:start+50",
+      "dur": 28,
+      "dx": -3.27,
+      "dy": 0.9
+     },
+     {
+      "layer": "dNeedle",
+      "at": "s4:start+50",
+      "until": "s10:start+400",
+      "dur": 12,
+      "dx": 2.2,
+      "dy": 2.0
+     },
+     {
+      "layer": "dWeldG",
+      "at": "s1:start-40",
+      "until": "s4:start+48",
+      "opacity": 0,
+      "dur": 6
+     },
+     {
+      "layer": "dSkinA",
+      "at": "s4:start+88",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "dSkinB",
+      "at": "s4:start+116",
+      "until": "s10:start+400",
+      "opacity": 0,
+      "dur": 12
+     },
+     {
+      "layer": "eProj",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 0.3
+     },
+     {
+      "layer": "eObj",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 0.6
+     },
+     {
+      "layer": "eCond",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 0.95
+     },
+     {
+      "layer": "eGun",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 1.3
+     },
+     {
+      "layer": "eHv",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dy": 1.65
+     },
+     {
+      "layer": "eHolder",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dx": 1.2,
+      "dy": 0.6
+     },
+     {
+      "layer": "eCam",
+      "at": "s5:start+6",
+      "until": "s5:start+96",
+      "dur": 18,
+      "dz": 1.6
+     },
+     {
+      "layer": "gBoxA",
+      "at": "s7:send-4",
+      "until": "s10:start+400",
+      "dur": 40,
+      "dx": 13.3
+     },
+     {
+      "layer": "gBoxB",
+      "at": "s7:send+4",
+      "until": "s10:start+400",
+      "dur": 32,
+      "dx": 7.3
+     }
+    ],
+    "run": [
+     {
+      "id": "aFailGlow",
+      "at": "start",
+      "ramp": 6,
+      "until": "s2:start"
+     },
+     {
+      "id": "aSend",
+      "at": "lab+48",
+      "ramp": 6,
+      "until": "s2:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "aChipA",
+      "text": "故障晶片：插在測試板上",
+      "en": "Failed chip on a test board",
+      "color": "amber",
+      "at": "start+1",
+      "until": "lab-2",
+      "cut": true
+     },
+     {
+      "part": "aLabA",
+      "text": "第三方實驗室（示意）",
+      "en": "Third-party lab (illustrative)",
+      "color": "blue",
+      "at": "lab+52",
+      "until": "s2:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-hook",
+      "at": "start",
+      "until": "s2:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "中游補充篇・M6",
+      "tag": "示意",
+      "t": {
+       "prev": {
+        "at": "prev"
+       },
+       "fail": {
+        "at": "fail"
+       },
+       "q": {
+        "at": "q"
+       },
+       "lab": {
+        "at": "lab"
+       },
+       "hosp": {
+        "at": "hosp"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.8,
+   "holdSec": 0.6,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s2",
+   "beat": "mechanism",
+   "para": 2,
+   "narration": "晶片先通電，壞掉的地方會發出微弱的光和熱，像熱像儀找發燒的人。",
+   "tts": "晶片先通電，壞掉的地方會發出微弱的光和熱，像熱像儀找發燒的人。",
+   "subtitle": {
+    "zh": "晶片先通電\n壞掉的地方\n會發出微弱的光和熱\n像熱像儀\n找發燒的人",
+    "en": "First, power the chip. | The broken spot | gives off faint light and heat, | like a thermal camera | spotting someone with a fever."
+   },
+   "keywords": [
+    "通電",
+    "光和熱",
+    "熱像儀"
+   ],
+   "cues": [
+    {
+     "id": "pow",
+     "text": "通電"
+    },
+    {
+     "id": "bad",
+     "text": "壞掉的地方"
+    },
+    {
+     "id": "light",
+     "text": "光和熱"
+    },
+    {
+     "id": "cam",
+     "text": "熱像儀"
+    },
+    {
+     "id": "fever",
+     "text": "發燒"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Thermo Fisher；AnySilicon；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "loc",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 30,
+      "y": 4.6,
+      "d": 36,
+      "elev": 12
+     },
+     {
+      "at": "bad-12",
+      "dur": 28,
+      "x": 30.1,
+      "y": 3.8000000000000003,
+      "d": 34,
+      "elev": 28
+     },
+     {
+      "at": "cam-4",
+      "dur": 26,
+      "x": 30,
+      "y": 5.1,
+      "d": 38,
+      "elev": 4
+     }
+    ],
+    "run": [
+     {
+      "id": "bDoorLOpen",
+      "at": "start-2",
+      "ramp": 18,
+      "until": "bad-18"
+     },
+     {
+      "id": "bDoorROpen",
+      "at": "start-2",
+      "ramp": 18,
+      "until": "bad-18"
+     },
+     {
+      "id": "bHotGlow",
+      "at": "bad-4",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bPhot",
+      "at": "light-4",
+      "ramp": 6,
+      "until": "s3:start"
+     },
+     {
+      "id": "bHeat0",
+      "at": "light+4",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bHeat1",
+      "at": "light+10",
+      "ramp": 8,
+      "until": "s3:start"
+     },
+     {
+      "id": "bHeat2",
+      "at": "light+16",
+      "ramp": 8,
+      "until": "s3:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "bDoorA",
+      "text": "暗箱：擋掉外面的光",
+      "en": "Dark box blocks outside light",
+      "color": "blue",
+      "at": "start+14",
+      "until": "bad-20",
+      "cut": true
+     },
+     {
+      "part": "bHotA",
+      "text": "壞的地方：發光、發熱",
+      "en": "Fault spot: emits light and heat",
+      "color": "amber",
+      "at": "bad-10",
+      "until": "cam-6",
+      "cut": true
+     },
+     {
+      "part": "bCamA",
+      "text": "冷卻相機：拍下微弱的光",
+      "en": "Cooled camera catches faint light",
+      "color": "blue",
+      "at": "cam-2",
+      "until": "s3:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-loc",
+      "at": "voice-3",
+      "until": "s3:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "先定位：通電找光和熱",
+      "tag": "示意（暗箱半透明剖開）",
+      "t": {
+       "pow": {
+        "at": "pow"
+       },
+       "bad": {
+        "at": "bad"
+       },
+       "light": {
+        "at": "light"
+       },
+       "cam": {
+        "at": "cam"
+       },
+       "fever": {
+        "at": "fever"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s3",
+   "beat": "mechanism",
+   "para": 3,
+   "narration": "找到位置才動刀。聚焦離子束像極細的噴砂槍，一點點挖出剖面。",
+   "tts": "找到位置才動刀。聚焦離子束像極細的噴砂槍，一點點挖出剖面。",
+   "subtitle": {
+    "zh": "找到位置才動刀\n聚焦離子束\n像極細的噴砂槍\n一點點挖出剖面",
+    "en": "Only once it's located do we cut. | A focused ion beam | works like a super-fine sandblaster, | digging out a cross-section bit by bit."
+   },
+   "keywords": [
+    "動刀",
+    "聚焦離子束",
+    "噴砂槍"
+   ],
+   "cues": [
+    {
+     "id": "loc",
+     "text": "找到位置"
+    },
+    {
+     "id": "cut",
+     "text": "動刀"
+    },
+    {
+     "id": "fib",
+     "text": "聚焦離子束"
+    },
+    {
+     "id": "sand",
+     "text": "噴砂槍"
+    },
+    {
+     "id": "dig",
+     "text": "挖出剖面"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Waterloo QNFCF；EPFL CMI；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "fib",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 59.0,
+      "y": 5.6,
+      "d": 46,
+      "elev": 10
+     },
+     {
+      "at": "start+116",
+      "dur": 24,
+      "x": 60,
+      "y": 2.6,
+      "d": 12,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "cDoorOpen",
+      "at": "start+22",
+      "ramp": 22,
+      "until": "start+112"
+     },
+     {
+      "id": "cEbeam",
+      "at": "start+124",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cIon",
+      "at": "start+124",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput0",
+      "at": "start+130",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput1",
+      "at": "start+132",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput2",
+      "at": "start+134",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput3",
+      "at": "start+136",
+      "ramp": 6,
+      "until": "s4:start"
+     },
+     {
+      "id": "cSput4",
+      "at": "start+138",
+      "ramp": 6,
+      "until": "s4:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "cEcolA",
+      "text": "電子束鏡筒：負責看",
+      "en": "Electron column: imaging",
+      "color": "blue",
+      "at": "start+30",
+      "until": "start+75",
+      "cut": true
+     },
+     {
+      "part": "cIcolA",
+      "text": "離子束鏡筒：鎵離子負責挖",
+      "en": "Ion column: gallium ions mill",
+      "color": "amber",
+      "at": "start+78",
+      "until": "start+123",
+      "cut": true,
+      "xy": [
+       420,
+       330
+      ]
+     },
+     {
+      "part": "cStageA",
+      "text": "樣品台（門剖開示意）",
+      "en": "Stage (door cut away)",
+      "color": "blue",
+      "at": "start+126",
+      "until": "s4:start-8",
+      "cut": true,
+      "xy": [
+       540,
+       330
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-fib",
+      "at": "voice-3",
+      "until": "s4:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "再動刀：聚焦離子束挖剖面",
+      "tag": "示意",
+      "t": {
+       "loc": {
+        "at": "loc"
+       },
+       "cut": {
+        "at": "cut"
+       },
+       "fib": {
+        "at": "fib"
+       },
+       "sand": {
+        "at": "sand"
+       },
+       "dig": {
+        "at": "dig"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.2,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s4",
+   "beat": "mechanism",
+   "para": 4,
+   "narration": "再削成約一百奈米的薄片，薄到電子穿得過去。",
+   "tts": "再削成約一百奈米的薄片，薄到電子穿得過去。",
+   "subtitle": {
+    "zh": "再削成約一百奈米\n的薄片\n薄到電子穿得過去",
+    "en": "Then it's thinned to about 100 nm | into a slice | thin enough for electrons to pass."
+   },
+   "keywords": [
+    "一百奈米",
+    "薄片",
+    "電子"
+   ],
+   "cues": [
+    {
+     "id": "trim",
+     "text": "削成"
+    },
+    {
+     "id": "nm",
+     "text": "一百奈米"
+    },
+    {
+     "id": "slice",
+     "text": "薄片"
+    },
+    {
+     "id": "pass",
+     "text": "穿得過去"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Waterloo QNFCF；USPTO 7196338；示意（放大）"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "lam",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 87.4,
+      "y": 2.75,
+      "d": 30,
+      "elev": 30
+     },
+     {
+      "at": "start+64",
+      "dur": 1,
+      "x": 86.73,
+      "y": 0.6499999999999999,
+      "d": 22,
+      "elev": 52
+     }
+    ],
+    "run": [
+     {
+      "id": "dThinA",
+      "at": "start+62",
+      "ramp": 6,
+      "until": "start+90"
+     },
+     {
+      "id": "dThinB",
+      "at": "start+90",
+      "ramp": 6,
+      "until": "start+118"
+     }
+    ],
+    "labels": [
+     {
+      "part": "dNeedleA",
+      "text": "鎢針先把薄片提到載網",
+      "en": "Needle moves it to a grid",
+      "color": "blue",
+      "at": "start+2",
+      "until": "start+50",
+      "cut": true,
+      "xy": [
+       600,
+       300
+      ]
+     },
+     {
+      "part": "dLamA",
+      "text": "在載網上削到約 100 nm",
+      "en": "Thinned to ~100 nm on the grid",
+      "color": "amber",
+      "at": "start+72",
+      "until": "s5:start",
+      "cut": true,
+      "xy": [
+       480,
+       300
+      ]
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-lam",
+      "at": "voice-3",
+      "until": "s5:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "削成薄片：電子穿得過去",
+      "tag": "示意（放大）",
+      "t": {
+       "trim": {
+        "at": "trim"
+       },
+       "nm": {
+        "at": "nm"
+       },
+       "slice": {
+        "at": "slice"
+       },
+       "pass": {
+        "at": "pass"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 4.8,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s5",
+   "beat": "mechanism",
+   "para": 5,
+   "narration": "電子顯微鏡用電子代替光，薄膜哪裡斷、哪裡歪，一清二楚。",
+   "tts": "電子顯微鏡用電子代替光，薄膜哪裡斷、哪裡歪，一清二楚。",
+   "subtitle": {
+    "zh": "電子顯微鏡\n用電子代替光\n薄膜哪裡斷\n哪裡歪\n一清二楚",
+    "en": "An electron microscope | uses electrons instead of light; | where a film breaks | or bends | becomes crystal clear."
+   },
+   "keywords": [
+    "電子顯微鏡",
+    "電子",
+    "一清二楚"
+   ],
+   "cues": [
+    {
+     "id": "tem",
+     "text": "電子顯微鏡"
+    },
+    {
+     "id": "elec",
+     "text": "電子代替光"
+    },
+    {
+     "id": "brk",
+     "text": "哪裡斷"
+    },
+    {
+     "id": "bend",
+     "text": "哪裡歪"
+    },
+    {
+     "id": "clear",
+     "text": "一清二楚"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Thermo Fisher wp0035；AnySilicon；示意動畫"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tem",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 120,
+      "y": 6.4,
+      "d": 54,
+      "elev": 8
+     },
+     {
+      "at": "start+96",
+      "dur": 20,
+      "x": 120,
+      "y": 5.0,
+      "d": 32,
+      "elev": 8
+     }
+    ],
+    "run": [
+     {
+      "id": "eCoilGlow",
+      "at": "start+92",
+      "ramp": 10,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam0",
+      "at": "start+96",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam1",
+      "at": "start+96",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam2",
+      "at": "start+96",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam3",
+      "at": "start+96",
+      "ramp": 6,
+      "until": "s6:start"
+     },
+     {
+      "id": "eBeam4",
+      "at": "start+96",
+      "ramp": 6,
+      "until": "s6:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "eGunA",
+      "text": "電子槍＋聚光鏡：射出、聚焦",
+      "en": "Gun + condenser: emit and focus",
+      "color": "blue",
+      "at": "start+8",
+      "until": "start+56",
+      "cut": true,
+      "xy": [
+       540,
+       300
+      ]
+     },
+     {
+      "part": "eHolderA",
+      "text": "樣品桿：薄片放這裡",
+      "en": "Holder: the lamella sits here",
+      "color": "amber",
+      "at": "start+58",
+      "until": "start+106",
+      "cut": true,
+      "xy": [
+       680,
+       300
+      ]
+     },
+     {
+      "part": "eProjA",
+      "text": "投影鏡＋相機：放大成像",
+      "en": "Projector + camera: magnified image",
+      "color": "blue",
+      "at": "start+108",
+      "until": "s6:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-tem",
+      "at": "voice-3",
+      "until": "s6:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "電子顯微鏡：用電子代替光",
+      "tag": "示意",
+      "t": {
+       "tem": {
+        "at": "tem"
+       },
+       "elec": {
+        "at": "elec"
+       },
+       "brk": {
+        "at": "brk"
+       },
+       "bend": {
+        "at": "bend"
+       },
+       "clear": {
+        "at": "clear"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.6,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s6",
+   "beat": "twist",
+   "para": 6,
+   "narration": "成分分析也靠電子，元素放出的 X 光各不同，像指紋，一比就知道混進什麼。",
+   "tts": "成分分析也靠電子，元素放出的艾克斯光各不同，像指紋，一比就知道混進什麼。",
+   "subtitle": {
+    "zh": "成分分析也靠電子\n元素放出的 X 光\n各不同\n像指紋\n一比就知道混進什麼",
+    "en": "Composition analysis uses electrons too: | the X-rays each element gives off | are all different, | like fingerprints, | so one match shows what got mixed in."
+   },
+   "keywords": [
+    "成分分析",
+    "X 光",
+    "指紋"
+   ],
+   "cues": [
+    {
+     "id": "comp",
+     "text": "成分分析"
+    },
+    {
+     "id": "elem",
+     "text": "元素"
+    },
+    {
+     "id": "diff",
+     "text": "各不同"
+    },
+    {
+     "id": "finger",
+     "text": "指紋"
+    },
+    {
+     "id": "mix",
+     "text": "混進什麼"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "Thermo Fisher；AnySilicon（EDS）；能譜是示意，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "eds",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 151.6,
+      "y": 2.3,
+      "d": 23,
+      "elev": 16
+     }
+    ],
+    "run": [
+     {
+      "id": "fEbeam",
+      "at": "start-6",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "fXsi",
+      "at": "elem-4",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "fXcu",
+      "at": "elem+6",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "fXcl",
+      "at": "mix-10",
+      "ramp": 6,
+      "until": "s7:start"
+     },
+     {
+      "id": "fPartGlow",
+      "at": "mix-6",
+      "ramp": 6,
+      "until": "s7:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "fEdsA",
+      "text": "X 光偵測器（EDS）",
+      "en": "X-ray detector (EDS)",
+      "color": "blue",
+      "at": "start+6",
+      "until": "mix-14",
+      "cut": true
+     },
+     {
+      "part": "fPartA",
+      "text": "混進的顆粒",
+      "en": "A contaminant particle",
+      "color": "amber",
+      "at": "mix-10",
+      "until": "s7:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-eds",
+      "at": "voice-3",
+      "until": "s7:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "成分分析：X 光像指紋",
+      "tag": "能譜是示意",
+      "t": {
+       "comp": {
+        "at": "comp"
+       },
+       "elem": {
+        "at": "elem"
+       },
+       "diff": {
+        "at": "diff"
+       },
+       "finger": {
+        "at": "finger"
+       },
+       "mix": {
+        "at": "mix"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 6.9,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s7",
+   "beat": "payoff",
+   "para": 7,
+   "narration": "機台貴、要專人操作，所以晶圓廠和設計公司常送出去做。",
+   "tts": "機台貴、要專人操作，所以晶圓廠和設計公司常送出去做。",
+   "subtitle": {
+    "zh": "機台貴\n要專人操作\n所以晶圓廠\n和設計公司\n常送出去做",
+    "en": "The tools are expensive | and need specialists, | so fabs | and chip-design firms | often send the work out."
+   },
+   "keywords": [
+    "機台貴",
+    "專人",
+    "送出去"
+   ],
+   "cues": [
+    {
+     "id": "cost",
+     "text": "機台貴"
+    },
+    {
+     "id": "staff",
+     "text": "專人操作"
+    },
+    {
+     "id": "fab",
+     "text": "晶圓廠"
+    },
+    {
+     "id": "des",
+     "text": "設計公司"
+    },
+    {
+     "id": "send",
+     "text": "送出去"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "out",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 180.4,
+      "y": 3.2,
+      "d": 44,
+      "elev": 14
+     }
+    ],
+    "labels": [
+     {
+      "part": "gLabA",
+      "text": "實驗室：機台貴、要專人",
+      "en": "Lab: costly tools, specialists",
+      "color": "blue",
+      "at": "start+4",
+      "until": "fab-8",
+      "cut": true
+     },
+     {
+      "part": "gFabA",
+      "text": "晶圓廠、設計公司送樣",
+      "en": "Fabs and design firms send samples",
+      "color": "amber",
+      "at": "fab-4",
+      "until": "s8:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-out",
+      "at": "voice-3",
+      "until": "s8:voice-3",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "為什麼送出去做",
+      "tag": "示意",
+      "t": {
+       "cost": {
+        "at": "cost"
+       },
+       "staff": {
+        "at": "staff"
+       },
+       "fab": {
+        "at": "fab"
+       },
+       "des": {
+        "at": "des"
+       },
+       "send": {
+        "at": "send"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 5.5,
+   "holdSec": 0.6,
+   "headSec": 0.3,
+   "pauseAfter": 0.6
+  },
+  {
+   "id": "s8",
+   "beat": "payoff",
+   "para": 8,
+   "narration": "台灣有宜特，做故障分析和可靠度驗證。閎康以材料分析為主，日本也有據點。",
+   "tts": "台灣有宜特，做故障分析和可靠度驗證。宏康以材料分析為主，日本也有據點。",
+   "subtitle": {
+    "zh": "台灣有宜特\n做故障分析\n和可靠度驗證\n閎康以材料分析為主\n日本也有據點",
+    "en": "In Taiwan, iST | does failure analysis | and reliability testing. | MA-tek focuses on materials analysis, | with labs in Japan too."
+   },
+   "keywords": [
+    "宜特",
+    "閎康",
+    "日本"
+   ],
+   "cues": [
+    {
+     "id": "ist",
+     "text": "宜特"
+    },
+    {
+     "id": "fa",
+     "text": "故障分析"
+    },
+    {
+     "id": "rel",
+     "text": "可靠度"
+    },
+    {
+     "id": "ma",
+     "text": "閎康"
+    },
+    {
+     "id": "jp",
+     "text": "日本"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "工商時報、DIGITIMES、聯合報報導；截至 2026/11/28"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "tw",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "voice-4",
+      "dur": 1,
+      "x": 210,
+      "y": 4.2,
+      "d": 40,
+      "elev": 10
+     }
+    ],
+    "labels": [
+     {
+      "part": "hAA",
+      "text": "實驗室（示意建築）",
+      "en": "Lab (illustrative building)",
+      "color": "blue",
+      "at": "ist",
+      "until": "ma-4",
+      "cut": true
+     },
+     {
+      "part": "hBA",
+      "text": "實驗室（示意建築）",
+      "en": "Lab (illustrative building)",
+      "color": "amber",
+      "at": "ma",
+      "until": "s9:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-tw",
+      "at": "voice-3",
+      "until": "s9:voice-3",
+      "x": 64,
+      "y": 1000,
+      "w": 952,
+      "h": 392,
+      "avoid": false,
+      "title": "台灣的分析實驗室",
+      "tag": "媒體報導；截至 2026/11/28",
+      "t": {
+       "ist": {
+        "at": "ist"
+       },
+       "fa": {
+        "at": "fa"
+       },
+       "rel": {
+        "at": "rel"
+       },
+       "ma": {
+        "at": "ma"
+       },
+       "jp": {
+        "at": "jp"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 7.2,
+   "holdSec": 0.7,
+   "headSec": 0.3,
+   "pauseAfter": 0.7
+  },
+  {
+   "id": "s9",
+   "beat": "cta",
+   "para": 9,
+   "narration": "中游到這裡講完了，晶圓做好、驗過，接著要切成一顆顆晶片，下一集看晶圓切割。留言故障分析，拿完整資料。",
+   "tts": "中游到這裡講完了，晶圓做好、驗過，接著要切成一顆顆晶片，下一集看晶圓切割。留言故障分析，拿完整資料。",
+   "subtitle": {
+    "zh": "中游到這裡講完了\n晶圓做好、驗過\n接著要切成\n一顆顆晶片\n下一集看晶圓切割\n留言故障分析\n拿完整資料",
+    "en": "That wraps up the midstream. | Wafers made and verified | next get cut | into individual chips. | Next episode: wafer dicing. | Comment \"failure analysis\" | for the full notes."
+   },
+   "keywords": [
+    "中游",
+    "晶圓切割",
+    "故障分析"
+   ],
+   "cues": [
+    {
+     "id": "mid",
+     "text": "中游"
+    },
+    {
+     "id": "done",
+     "text": "驗過"
+    },
+    {
+     "id": "cut",
+     "text": "切成"
+    },
+    {
+     "id": "chips",
+     "text": "一顆顆晶片"
+    },
+    {
+     "id": "next",
+     "text": "下一集"
+    },
+    {
+     "id": "kw",
+     "text": "留言故障分析"
+    }
+   ],
+   "component": "ThreeScene",
+   "sources": [
+    "示意動畫，不是量測"
+   ],
+   "props": {
+    "zoom": [
+     {
+      "to": "next",
+      "at": "voice-4",
+      "dur": 1
+     }
+    ],
+    "shot": [
+     {
+      "at": "start",
+      "dur": 1,
+      "x": 239.4,
+      "y": 0.9,
+      "d": 24,
+      "elev": 26
+     }
+    ],
+    "run": [
+     {
+      "id": "nSpin",
+      "at": "cut-6",
+      "ramp": 12,
+      "until": "s10:start"
+     },
+     {
+      "id": "nWater",
+      "at": "cut",
+      "ramp": 6,
+      "until": "s10:start"
+     }
+    ],
+    "labels": [
+     {
+      "part": "nBladeA",
+      "text": "切割刀（下一集）",
+      "en": "Dicing blade (next episode)",
+      "color": "amber",
+      "at": "cut",
+      "until": "s10:start",
+      "cut": true
+     }
+    ],
+    "overlay": [
+     {
+      "type": "section",
+      "kind": "fa-next",
+      "at": "voice-3",
+      "until": "s10:start",
+      "x": 64,
+      "y": 1066,
+      "w": 952,
+      "h": 330,
+      "avoid": false,
+      "title": "下一集：晶圓切割與薄化",
+      "tag": "留言「故障分析」",
+      "t": {
+       "mid": {
+        "at": "mid"
+       },
+       "done": {
+        "at": "done"
+       },
+       "cut": {
+        "at": "cut"
+       },
+       "chips": {
+        "at": "chips"
+       },
+       "next": {
+        "at": "next"
+       },
+       "kw": {
+        "at": "kw"
+       }
+      },
+      "cut": true
+     }
+    ]
+   },
+   "durationSec": 9.4,
+   "holdSec": 0.6,
+   "headSec": 0.3
+  },
+  {
+   "id": "s10",
+   "beat": "end",
+   "silent": true,
+   "durationSec": 3.2,
+   "subtitle": {
+    "zh": "",
+    "en": ""
+   },
+   "keywords": [],
+   "cues": [],
+   "component": "ThreeScene",
+   "sources": [],
+   "props": {
+    "endCard": {
+     "next": "晶圓切割與薄化",
+     "trail": [
+      "故障分析：先定位、再切開、再看清楚"
+     ],
+     "comment": "故障分析",
+     "logoAnim": "transparent"
+    }
+   }
+  }
+ ]
+}
