@@ -3,15 +3,15 @@
  "styleVersion": 3,
  "fps": 30,
  "timeline": "v2",
- "totalFrames": 1896,
- "totalSec": 63.2,
+ "totalFrames": 1875,
+ "totalSec": 62.5,
  "scenes": [
   {
    "id": "s1",
    "startFrame": 0,
-   "durationFrames": 180,
+   "durationFrames": 185,
    "startSec": 0,
-   "durationSec": 6,
+   "durationSec": 6.17,
    "component": "ThreeScene",
    "beat": "hook",
    "transition": {
@@ -20,13 +20,17 @@
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 9,
+    "endFrame": 158,
+    "pauseAfterSec": 0.6
+   },
    "cues": [
     {
      "id": "prev",
      "text": "前一集",
-     "frame": 0,
-     "sceneFrame": 0
+     "frame": 9,
+     "sceneFrame": 9
     },
     {
      "id": "test",
@@ -37,736 +41,768 @@
     {
      "id": "q",
      "text": "幹嘛",
-     "frame": 72,
-     "sceneFrame": 72
+     "frame": 69,
+     "sceneFrame": 69
     },
     {
      "id": "chip",
      "text": "不做晶片",
-     "frame": 96,
-     "sceneFrame": 96
+     "frame": 98,
+     "sceneFrame": 98
     },
     {
      "id": "tool",
      "text": "測機台",
-     "frame": 144,
-     "sceneFrame": 144
+     "frame": 142,
+     "sceneFrame": 142
     }
    ],
-   "stillFrame": 179,
+   "stillFrame": 175,
    "subtitles": [
     {
      "zh": "前一集說的測試片",
      "en": "Last episode's test wafers:",
      "startFrame": 0,
-     "endFrame": 44
+     "endFrame": 50
     },
     {
      "zh": "到底拿來幹嘛？",
      "en": "what are they actually for?",
-     "startFrame": 44,
-     "endFrame": 80
+     "startFrame": 50,
+     "endFrame": 88
     },
     {
      "zh": "它們不做晶片",
      "en": "They never become chips;",
-     "startFrame": 80,
-     "endFrame": 116
+     "startFrame": 88,
+     "endFrame": 121
     },
     {
      "zh": "專門用來測機台",
      "en": "they're just for testing tools.",
-     "startFrame": 116,
-     "endFrame": 186
+     "startFrame": 121,
+     "endFrame": 182
     }
    ],
    "narration": "前一集說的測試片，到底拿來幹嘛？它們不做晶片，專門用來測機台。"
   },
   {
    "id": "s2",
-   "startFrame": 180,
-   "durationFrames": 201,
-   "startSec": 6,
-   "durationSec": 6.7,
+   "startFrame": 175,
+   "durationFrames": 219,
+   "startSec": 5.83,
+   "durationSec": 7.3,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 185,
+    "endFrame": 368,
+    "pauseAfterSec": 0.6
+   },
    "cues": [
     {
      "id": "tool",
      "text": "機台",
-     "frame": 189,
-     "sceneFrame": 9
+     "frame": 185,
+     "sceneFrame": 10
     },
     {
      "id": "blank",
      "text": "空白晶圓",
-     "frame": 243,
-     "sceneFrame": 63
+     "frame": 236,
+     "sceneFrame": 61
     },
     {
      "id": "run",
      "text": "試跑",
-     "frame": 267,
-     "sceneFrame": 87
+     "frame": 256,
+     "sceneFrame": 81
     },
     {
      "id": "soup",
      "text": "試一口湯",
-     "frame": 303,
-     "sceneFrame": 123
+     "frame": 301,
+     "sceneFrame": 126
     },
     {
      "id": "film",
      "text": "測膜厚",
-     "frame": 327,
-     "sceneFrame": 147
+     "frame": 329,
+     "sceneFrame": 154
     },
     {
      "id": "dust",
      "text": "數灰塵",
-     "frame": 345,
-     "sceneFrame": 165
+     "frame": 352,
+     "sceneFrame": 177
     }
    ],
-   "stillFrame": 380,
+   "stillFrame": 384,
    "subtitles": [
     {
      "zh": "機台開工前",
      "en": "Before a tool starts work,",
-     "startFrame": 186,
+     "startFrame": 182,
      "endFrame": 215
     },
     {
      "zh": "先放一片",
      "en": "it first runs",
      "startFrame": 215,
-     "endFrame": 239
+     "endFrame": 233
     },
     {
      "zh": "空白晶圓試跑",
      "en": "a blank test wafer,",
-     "startFrame": 239,
+     "startFrame": 233,
      "endFrame": 275
     },
     {
      "zh": "像廚師先試一口湯",
      "en": "like a chef tasting the soup,",
      "startFrame": 275,
-     "endFrame": 323
+     "endFrame": 325
     },
     {
      "zh": "測膜厚",
      "en": "then measures film thickness",
-     "startFrame": 323,
-     "endFrame": 341
+     "startFrame": 325,
+     "endFrame": 348
     },
     {
      "zh": "數灰塵",
      "en": "and counts dust.",
-     "startFrame": 341,
-     "endFrame": 387
+     "startFrame": 348,
+     "endFrame": 391
     }
    ],
    "narration": "機台開工前，先放一片空白晶圓試跑，像廚師先試一口湯，測膜厚、數灰塵。"
   },
   {
    "id": "s3",
-   "startFrame": 381,
-   "durationFrames": 198,
-   "startSec": 12.7,
-   "durationSec": 6.6,
+   "startFrame": 384,
+   "durationFrames": 207,
+   "startSec": 12.8,
+   "durationSec": 6.9,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 394,
+    "endFrame": 563,
+    "pauseAfterSec": 0.7
+   },
    "cues": [
     {
      "id": "dum",
      "text": "擋片",
-     "frame": 414,
-     "sceneFrame": 33
+     "frame": 409,
+     "sceneFrame": 25
     },
     {
      "id": "gap",
      "text": "空位",
-     "frame": 450,
-     "sceneFrame": 69
+     "frame": 447,
+     "sceneFrame": 63
     },
     {
      "id": "tray",
      "text": "烤盤",
-     "frame": 468,
-     "sceneFrame": 87
+     "frame": 473,
+     "sceneFrame": 89
     },
     {
      "id": "cookie",
      "text": "假餅乾",
-     "frame": 504,
-     "sceneFrame": 123
+     "frame": 508,
+     "sceneFrame": 124
     },
     {
      "id": "heat",
      "text": "均勻",
-     "frame": 546,
-     "sceneFrame": 165
+     "frame": 553,
+     "sceneFrame": 169
     }
    ],
-   "stillFrame": 578,
+   "stillFrame": 581,
    "subtitles": [
     {
      "zh": "另一種叫擋片",
      "en": "Another kind is the dummy wafer,",
-     "startFrame": 387,
-     "endFrame": 422
+     "startFrame": 391,
+     "endFrame": 425
     },
     {
      "zh": "補在爐管空位",
      "en": "filling empty furnace slots,",
-     "startFrame": 422,
-     "endFrame": 458
+     "startFrame": 425,
+     "endFrame": 464
     },
     {
      "zh": "像烤盤沒排滿",
      "en": "like a half-full baking tray",
-     "startFrame": 458,
-     "endFrame": 494
+     "startFrame": 464,
+     "endFrame": 500
     },
     {
      "zh": "用假餅乾補位",
      "en": "padded with fake cookies",
-     "startFrame": 494,
-     "endFrame": 530
+     "startFrame": 500,
+     "endFrame": 539
     },
     {
      "zh": "熱才均勻",
      "en": "so the heat stays even.",
-     "startFrame": 530,
-     "endFrame": 585
+     "startFrame": 539,
+     "endFrame": 588
     }
    ],
    "narration": "另一種叫擋片，補在爐管空位，像烤盤沒排滿，用假餅乾補位，熱才均勻。"
   },
   {
    "id": "s4",
-   "startFrame": 579,
-   "durationFrames": 162,
-   "startSec": 19.3,
-   "durationSec": 5.4,
+   "startFrame": 581,
+   "durationFrames": 157,
+   "startSec": 19.37,
+   "durationSec": 5.23,
    "component": "ThreeScene",
    "beat": "twist",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 591,
+    "endFrame": 710,
+    "pauseAfterSec": 0.7
+   },
    "cues": [
     {
      "id": "run",
      "text": "跑一趟",
-     "frame": 612,
-     "sceneFrame": 33
+     "frame": 609,
+     "sceneFrame": 28
     },
     {
      "id": "film",
      "text": "薄膜",
-     "frame": 648,
-     "sceneFrame": 69
+     "frame": 634,
+     "sceneFrame": 53
     },
     {
      "id": "toss",
      "text": "丟掉",
-     "frame": 660,
-     "sceneFrame": 81
+     "frame": 655,
+     "sceneFrame": 74
     },
     {
      "id": "ship",
      "text": "再生",
-     "frame": 708,
-     "sceneFrame": 129
+     "frame": 699,
+     "sceneFrame": 118
     }
    ],
-   "stillFrame": 740,
+   "stillFrame": 728,
    "subtitles": [
     {
      "zh": "這些片子跑一趟",
      "en": "After one run, these wafers",
-     "startFrame": 585,
-     "endFrame": 626
+     "startFrame": 588,
+     "endFrame": 618
     },
     {
      "zh": "就沾滿薄膜",
      "en": "are coated with films.",
-     "startFrame": 626,
-     "endFrame": 656
+     "startFrame": 618,
+     "endFrame": 651
     },
     {
      "zh": "丟掉太貴",
      "en": "Tossing them costs too much,",
-     "startFrame": 656,
-     "endFrame": 680
+     "startFrame": 651,
+     "endFrame": 679
     },
     {
      "zh": "所以送去再生",
      "en": "so they get reclaimed.",
-     "startFrame": 680,
-     "endFrame": 747
+     "startFrame": 679,
+     "endFrame": 735
     }
    ],
    "narration": "這些片子跑一趟就沾滿薄膜，丟掉太貴，所以送去再生。"
   },
   {
    "id": "s5",
-   "startFrame": 741,
-   "durationFrames": 171,
-   "startSec": 24.7,
-   "durationSec": 5.7,
+   "startFrame": 728,
+   "durationFrames": 173,
+   "startSec": 24.27,
+   "durationSec": 5.77,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 738,
+    "endFrame": 874,
+    "pauseAfterSec": 0.6
+   },
    "cues": [
     {
      "id": "dip",
      "text": "泡藥水",
-     "frame": 768,
-     "sceneFrame": 27
+     "frame": 751,
+     "sceneFrame": 23
     },
     {
      "id": "metal",
      "text": "金屬",
-     "frame": 810,
-     "sceneFrame": 69
+     "frame": 793,
+     "sceneFrame": 65
     },
     {
      "id": "layer",
      "text": "一層層",
-     "frame": 822,
-     "sceneFrame": 81
+     "frame": 806,
+     "sceneFrame": 78
     },
     {
      "id": "pan",
      "text": "鍋子",
-     "frame": 864,
+     "frame": 851,
      "sceneFrame": 123
     }
    ],
-   "stillFrame": 911,
+   "stillFrame": 891,
    "subtitles": [
     {
      "zh": "第一步泡藥水",
      "en": "Step one: a chemical bath",
-     "startFrame": 747,
-     "endFrame": 782
+     "startFrame": 735,
+     "endFrame": 770
     },
     {
      "zh": "把薄膜和金屬",
      "en": "that dissolves films and metal",
-     "startFrame": 782,
-     "endFrame": 818
+     "startFrame": 770,
+     "endFrame": 802
     },
     {
      "zh": "一層層溶掉",
      "en": "layer by layer,",
-     "startFrame": 818,
-     "endFrame": 848
+     "startFrame": 802,
+     "endFrame": 837
     },
     {
      "zh": "像幫鍋子去油垢",
      "en": "like degreasing a pan.",
-     "startFrame": 848,
-     "endFrame": 918
+     "startFrame": 837,
+     "endFrame": 898
     }
    ],
    "narration": "第一步泡藥水，把薄膜和金屬一層層溶掉，像幫鍋子去油垢。"
   },
   {
    "id": "s6",
-   "startFrame": 912,
-   "durationFrames": 150,
-   "startSec": 30.4,
-   "durationSec": 5,
+   "startFrame": 891,
+   "durationFrames": 159,
+   "startSec": 29.7,
+   "durationSec": 5.3,
    "component": "ThreeScene",
    "beat": "mechanism",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 901,
+    "endFrame": 1022,
+    "pauseAfterSec": 0.7
+   },
    "cues": [
     {
      "id": "grind",
      "text": "研磨",
-     "frame": 933,
-     "sceneFrame": 21
+     "frame": 910,
+     "sceneFrame": 19
     },
     {
      "id": "pol",
      "text": "拋光",
-     "frame": 945,
-     "sceneFrame": 33
+     "frame": 923,
+     "sceneFrame": 32
     },
     {
      "id": "mirror",
      "text": "鏡面",
-     "frame": 969,
-     "sceneFrame": 57
+     "frame": 945,
+     "sceneFrame": 54
     },
     {
      "id": "clean",
      "text": "清洗",
-     "frame": 987,
-     "sceneFrame": 75
+     "frame": 969,
+     "sceneFrame": 78
     },
     {
      "id": "insp",
      "text": "檢查",
-     "frame": 999,
-     "sceneFrame": 87
+     "frame": 986,
+     "sceneFrame": 95
     }
    ],
-   "stillFrame": 1061,
+   "stillFrame": 1040,
    "subtitles": [
     {
      "zh": "接著研磨",
      "en": "Then grinding",
-     "startFrame": 918,
-     "endFrame": 941
+     "startFrame": 898,
+     "endFrame": 920
     },
     {
      "zh": "拋光回到鏡面",
      "en": "and polishing back to a mirror,",
-     "startFrame": 941,
-     "endFrame": 977
+     "startFrame": 920,
+     "endFrame": 961
     },
     {
      "zh": "再清洗",
      "en": "then cleaning,",
-     "startFrame": 977,
-     "endFrame": 995
+     "startFrame": 961,
+     "endFrame": 983
     },
     {
      "zh": "檢查刮傷和微粒",
      "en": "and checking for scratches and particles.",
-     "startFrame": 995,
-     "endFrame": 1068
+     "startFrame": 983,
+     "endFrame": 1047
     }
    ],
    "narration": "接著研磨、拋光回到鏡面，再清洗、檢查刮傷和微粒。"
   },
   {
    "id": "s7",
-   "startFrame": 1062,
-   "durationFrames": 171,
-   "startSec": 35.4,
-   "durationSec": 5.7,
+   "startFrame": 1040,
+   "durationFrames": 164,
+   "startSec": 34.67,
+   "durationSec": 5.47,
    "component": "ThreeScene",
    "beat": "payoff",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1050,
+    "endFrame": 1178,
+    "pauseAfterSec": 0.6
+   },
    "cues": [
     {
      "id": "thin",
      "text": "薄一點",
-     "frame": 1101,
-     "sceneFrame": 39
+     "frame": 1073,
+     "sceneFrame": 33
     },
     {
      "id": "use",
      "text": "能用",
-     "frame": 1143,
-     "sceneFrame": 81
+     "frame": 1111,
+     "sceneFrame": 71
     },
     {
      "id": "n",
      "text": "六到二十次",
-     "frame": 1155,
-     "sceneFrame": 93
+     "frame": 1120,
+     "sceneFrame": 80
     },
     {
      "id": "out",
      "text": "淘汰",
-     "frame": 1203,
-     "sceneFrame": 141
+     "frame": 1168,
+     "sceneFrame": 128
     }
    ],
-   "stillFrame": 1232,
+   "stillFrame": 1194,
    "subtitles": [
     {
      "zh": "每磨一次就薄一點",
      "en": "Each pass makes it thinner;",
-     "startFrame": 1068,
-     "endFrame": 1115
+     "startFrame": 1047,
+     "endFrame": 1089
     },
     {
      "zh": "一片大約能用",
      "en": "one wafer can be used",
-     "startFrame": 1115,
-     "endFrame": 1151
+     "startFrame": 1089,
+     "endFrame": 1117
     },
     {
      "zh": "六到二十次",
      "en": "about six to twenty times,",
-     "startFrame": 1151,
-     "endFrame": 1181
+     "startFrame": 1117,
+     "endFrame": 1149
     },
     {
      "zh": "太薄就淘汰",
      "en": "then it's too thin and retired.",
-     "startFrame": 1181,
-     "endFrame": 1239
+     "startFrame": 1149,
+     "endFrame": 1201
     }
    ],
    "narration": "每磨一次就薄一點，一片大約能用六到二十次，太薄就淘汰。"
   },
   {
    "id": "s8",
-   "startFrame": 1233,
-   "durationFrames": 297,
-   "startSec": 41.1,
-   "durationSec": 9.9,
+   "startFrame": 1194,
+   "durationFrames": 318,
+   "startSec": 39.8,
+   "durationSec": 10.6,
    "component": "ThreeScene",
    "beat": "payoff",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1204,
+    "endFrame": 1484,
+    "pauseAfterSec": 0.7
+   },
    "cues": [
     {
      "id": "psi",
      "text": "昇陽半",
-     "frame": 1260,
-     "sceneFrame": 27
+     "frame": 1218,
+     "sceneFrame": 24
     },
     {
      "id": "cap",
      "text": "數一數二",
-     "frame": 1301,
-     "sceneFrame": 68
+     "frame": 1263,
+     "sceneFrame": 69
     },
     {
      "id": "kinik",
      "text": "中砂",
-     "frame": 1325,
-     "sceneFrame": 92
+     "frame": 1297,
+     "sceneFrame": 103
     },
     {
      "id": "wheel",
      "text": "砂輪",
-     "frame": 1349,
-     "sceneFrame": 116
+     "frame": 1318,
+     "sceneFrame": 124
     },
     {
      "id": "half",
      "text": "一半",
-     "frame": 1426,
-     "sceneFrame": 193
+     "frame": 1390,
+     "sceneFrame": 196
     },
     {
      "id": "sci",
      "text": "辛耘",
-     "frame": 1438,
-     "sceneFrame": 205
+     "frame": 1421,
+     "sceneFrame": 227
     },
     {
      "id": "self",
      "text": "自己做再生",
-     "frame": 1479,
-     "sceneFrame": 246
+     "frame": 1460,
+     "sceneFrame": 266
     }
    ],
-   "stillFrame": 1529,
+   "stillFrame": 1502,
    "subtitles": [
     {
      "zh": "台灣有昇陽半",
      "en": "In Taiwan, PSI",
-     "startFrame": 1239,
-     "endFrame": 1274
+     "startFrame": 1201,
+     "endFrame": 1237
     },
     {
      "zh": "產能全球數一數二",
      "en": "ranks near the top in global capacity.",
-     "startFrame": 1274,
-     "endFrame": 1321
+     "startFrame": 1237,
+     "endFrame": 1294
     },
     {
      "zh": "中砂是做砂輪起家的",
      "en": "Kinik started with grinding wheels;",
-     "startFrame": 1321,
-     "endFrame": 1374
+     "startFrame": 1294,
+     "endFrame": 1346
     },
     {
      "zh": "再生占它營收",
      "en": "reclaim makes up",
-     "startFrame": 1374,
-     "endFrame": 1410
+     "startFrame": 1346,
+     "endFrame": 1378
     },
     {
      "zh": "大約一半",
      "en": "about half its revenue.",
-     "startFrame": 1410,
-     "endFrame": 1434
+     "startFrame": 1378,
+     "endFrame": 1418
     },
     {
      "zh": "辛耘代理設備",
      "en": "Scientech distributes equipment",
-     "startFrame": 1434,
-     "endFrame": 1469
+     "startFrame": 1418,
+     "endFrame": 1453
     },
     {
      "zh": "也自己做再生",
      "en": "and does its own reclaim too.",
-     "startFrame": 1469,
-     "endFrame": 1536
+     "startFrame": 1453,
+     "endFrame": 1509
     }
    ],
    "narration": "台灣有昇陽半，產能全球數一數二。中砂是做砂輪起家的，再生占它營收大約一半。辛耘代理設備，也自己做再生。"
   },
   {
    "id": "s9",
-   "startFrame": 1530,
-   "durationFrames": 270,
-   "startSec": 51,
-   "durationSec": 9,
+   "startFrame": 1502,
+   "durationFrames": 287,
+   "startSec": 50.07,
+   "durationSec": 9.57,
    "component": "ThreeScene",
    "beat": "cta",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
-   "voice": null,
+   "voice": {
+    "startFrame": 1512,
+    "endFrame": 1761,
+    "pauseAfterSec": null
+   },
    "cues": [
     {
      "id": "dust",
      "text": "灰塵",
-     "frame": 1580,
-     "sceneFrame": 50
+     "frame": 1540,
+     "sceneFrame": 38
     },
     {
      "id": "move",
      "text": "來回運送",
-     "frame": 1592,
-     "sceneFrame": 62
+     "frame": 1561,
+     "sceneFrame": 59
     },
     {
      "id": "box",
      "text": "密封盒",
-     "frame": 1628,
-     "sceneFrame": 98
+     "frame": 1593,
+     "sceneFrame": 91
     },
     {
      "id": "next",
      "text": "下一集",
-     "frame": 1646,
-     "sceneFrame": 116
+     "frame": 1622,
+     "sceneFrame": 120
     },
     {
      "id": "pod",
      "text": "光罩盒",
-     "frame": 1669,
-     "sceneFrame": 139
+     "frame": 1640,
+     "sceneFrame": 138
     },
     {
      "id": "kw",
      "text": "留言再生晶圓",
-     "frame": 1717,
-     "sceneFrame": 187
+     "frame": 1701,
+     "sceneFrame": 199
     }
    ],
-   "stillFrame": 1799,
+   "stillFrame": 1779,
    "subtitles": [
     {
      "zh": "因為晶圓不能沾灰塵",
      "en": "Because wafers can't touch dust,",
-     "startFrame": 1536,
-     "endFrame": 1588
+     "startFrame": 1509,
+     "endFrame": 1557
     },
     {
      "zh": "來回運送",
      "en": "every trip back and forth",
-     "startFrame": 1588,
-     "endFrame": 1612
+     "startFrame": 1557,
+     "endFrame": 1578
     },
     {
      "zh": "全靠密封盒",
      "en": "relies on sealed boxes.",
-     "startFrame": 1612,
-     "endFrame": 1642
+     "startFrame": 1578,
+     "endFrame": 1618
     },
     {
      "zh": "下一集看",
      "en": "Next episode:",
-     "startFrame": 1642,
-     "endFrame": 1665
+     "startFrame": 1618,
+     "endFrame": 1636
     },
     {
      "zh": "光罩盒與晶圓載具",
      "en": "mask pods and wafer carriers.",
-     "startFrame": 1665,
-     "endFrame": 1713
+     "startFrame": 1636,
+     "endFrame": 1697
     },
     {
      "zh": "留言再生晶圓",
      "en": "Comment \"reclaim\"",
-     "startFrame": 1713,
-     "endFrame": 1748
+     "startFrame": 1697,
+     "endFrame": 1733
     },
     {
      "zh": "拿完整資料",
      "en": "for the full notes.",
-     "startFrame": 1748,
-     "endFrame": 1801
+     "startFrame": 1733,
+     "endFrame": 1789
     }
    ],
    "narration": "因為晶圓不能沾灰塵，來回運送全靠密封盒。下一集看光罩盒與晶圓載具。留言再生晶圓，拿完整資料。"
   },
   {
    "id": "s10",
-   "startFrame": 1800,
+   "startFrame": 1779,
    "durationFrames": 96,
-   "startSec": 60,
+   "startSec": 59.3,
    "durationSec": 3.2,
    "component": "ThreeScene",
    "beat": "end",
    "transition": {
-    "type": "none",
-    "frames": 0
+    "type": "fade",
+    "frames": 10
    },
    "camera": null,
    "cueEarly": [],
    "voice": null,
    "cues": [],
-   "stillFrame": 1884,
+   "stillFrame": 1863,
    "subtitles": []
   }
  ]

@@ -228,7 +228,7 @@ P["s4"] = {"zoom": [{"to": "used", "at": CC, "dur": 1}],
 P["s5"] = {"zoom": [{"to": "strip", "at": CC, "dur": 1}],
  "shot": [S_(CC, EV, 1)],
  "run": [run("eWave", "start-10", "s6:start", 10), run("eBub", "dip+10", "s6:start", 8)],
- "labels": [lab("eBasketA", "整籃晶圓（直立插在籃裡）", "A basket of upright wafers", "blue", "start", "dip+20"),
+ "labels": [lab("eBasketA", "整籃晶圓（直立插在籃裡）", "A basket of upright wafers", "blue", "start+8", "dip+20"),
             lab("eTankA", "藥水槽：溶掉薄膜", "Chemical bath dissolves films", "amber", "dip+22", "s6:start-8")],
  "overlay": [card("s5", "reclaim-strip", "第一步：泡藥水去膜", "示意", {"dip": "dip", "metal": "metal", "lyr": "layer", "pan": "pan"})]}
 P["s6"] = {"zoom": [{"to": "cmp", "at": CC, "dur": 1}],
