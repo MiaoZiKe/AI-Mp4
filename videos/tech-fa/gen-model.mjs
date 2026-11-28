@@ -340,8 +340,8 @@ for (const [i, sx] of [[0, -1], [1, 1]]) { const x = EX + sx * 3.6;
   BOX(`eMon${i}`, "eDesk", x - 1.0, x + 1.0, 2.4, 3.8, -0.2, -0.1, "darker"); BOX(`eMonS${i}`, "eDesk", x - 0.9, x + 0.9, 2.5, 3.7, -0.1, -0.08, "screen"); BOX(`eMonP${i}`, "eDesk", x - 0.06, x + 0.06, 1.72, 2.4, -0.2, -0.1, "steel"); }
 const COL = [EX, -1.6];   // 鏡筒中心（x, z）
 const mods = [   // [層 id, y0, y1, 半徑, 材質, 爆炸位移 dy]
-  ["eCam", 1.72, 2.8, 1.1, "darker", 0], ["eView", 2.8, 4.0, 1.25, "steel2", 0], ["eProj", 4.0, 5.6, 0.8, "panel", 0.45],
-  ["eObj", 5.6, 6.8, 1.0, "steel", 0.95], ["eCond", 6.8, 8.6, 0.85, "panel", 1.55], ["eGun", 8.6, 10.2, 0.75, "steel2", 2.15], ["eHv", 10.2, 11.8, 1.15, "band", 2.75]];
+  ["eCam", 1.72, 2.8, 1.1, "darker", 0], ["eView", 2.8, 4.0, 1.25, "steel2", 0], ["eProj", 4.0, 5.6, 0.8, "panel", 0.3],
+  ["eObj", 5.6, 6.8, 1.0, "steel", 0.6], ["eCond", 6.8, 8.6, 0.85, "panel", 0.95], ["eGun", 8.6, 10.2, 0.75, "steel2", 1.3], ["eHv", 10.2, 11.8, 1.15, "band", 1.65]];
 const EXP = {};
 for (const [id, y0, y1, r, m, d] of mods) { LAY(id, [3, R2(y1 - y0), COL[0], R2((y0 + y1) / 2)]); EXP[id] = d; VC(`${id}C`, id, r, y0, y1, m, { x: COL[0], z: COL[1] });
   RING(`${id}F0`, id, r + 0.12, r - 0.1, y0, y0 + 0.1, "steel", COL[0], COL[1]); RING(`${id}F1`, id, r + 0.12, r - 0.1, y1 - 0.1, y1, "steel", COL[0], COL[1]);
