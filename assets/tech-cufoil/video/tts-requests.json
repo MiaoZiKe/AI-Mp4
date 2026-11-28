@@ -46,5 +46,83 @@
    "retrySec": 29881,
    "daily": true
   }
+ },
+ {
+  "at": "2026-11-28T06:55:11.985Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 429,
+  "error": "{ \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metr"
+ },
+ {
+  "at": "2026-11-28T06:55:11.985Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 429,
+  "quota": {
+   "ids": [
+    "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+   ],
+   "retrySec": 3888,
+   "daily": true
+  }
+ },
+ {
+  "at": "2026-11-28T08:03:16.916Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 362,
+   "candidatesTokenCount": 1748,
+   "totalTokenCount": 2110,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 362
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 1748
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
+ },
+ {
+  "at": "2026-11-28T08:05:12.274Z",
+  "purpose": "take",
+  "model": "gemini-2.5-flash-preview-tts",
+  "voice": "Iapetus",
+  "languageCode": "cmn-TW",
+  "status": 200,
+  "usage": {
+   "promptTokenCount": 362,
+   "candidatesTokenCount": 1590,
+   "totalTokenCount": 1952,
+   "promptTokensDetails": [
+    {
+     "modality": "TEXT",
+     "tokenCount": 362
+    }
+   ],
+   "candidatesTokensDetails": [
+    {
+     "modality": "AUDIO",
+     "tokenCount": 1590
+    }
+   ],
+   "serviceTier": "standard"
+  },
+  "audio": true
  }
 ]
